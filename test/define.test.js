@@ -48,7 +48,6 @@ var Wolf = define(Mammal, {
             this.super(arguments);
             this._sound = "growl";
             this._color = options.color || "grey";
-
         },
 
         speak : function() {
