@@ -19,6 +19,34 @@ suite.addBatch({
             return tree;
         },
 
+        "it should find values less than the value" : function(tree){
+            assert.deepEqual(tree.findLessThan("a", true), []);
+            assert.deepEqual(tree.findLessThan("b", true), ["a", "aa", "ab"]);
+            assert.deepEqual(tree.findLessThan("c", true), ["a", "aa", "ab", "b", "ba", "bb"]);
+            assert.deepEqual(tree.findLessThan("ca", true), ["a", "aa", "ab", "b", "ba", "bb", "c"]);
+        },
+
+        "it should find values less or equal to the value" : function(tree){
+            assert.deepEqual(tree.findLessThan("a"), ["a"]);
+            assert.deepEqual(tree.findLessThan("b"), ["a", "aa", "ab", "b"]);
+            assert.deepEqual(tree.findLessThan("c"), ["a", "aa", "ab", "b", "ba", "bb", "c"]);
+            assert.deepEqual(tree.findLessThan("ca"), ["a", "aa", "ab", "b", "ba", "bb", "c", "ca"]);
+        },
+
+         "it should find values greater than equal to the value" : function(tree){
+            assert.deepEqual(tree.findGreaterThan("a"), ["ca", "c", "bb", "ba", "b", "ab", "aa", "a"]);
+            assert.deepEqual(tree.findGreaterThan("b"), ["ca", "c", "bb", "ba", "b"]);
+            assert.deepEqual(tree.findGreaterThan("c"), ["ca", "c"]);
+            assert.deepEqual(tree.findGreaterThan("ca"), ["ca"]);
+        },
+
+        "it should find values greater than the value" : function(tree){
+            assert.deepEqual(tree.findGreaterThan("a", true), ["ca", "c", "bb", "ba", "b", "ab", "aa"]);
+            assert.deepEqual(tree.findGreaterThan("b", true), ["ca", "c", "bb", "ba"]);
+            assert.deepEqual(tree.findGreaterThan("c", true), ["ca"]);
+            assert.deepEqual(tree.findGreaterThan("ca", true), []);
+        },
+
         "and it should contain those string" : function(tree) {
             words.forEach(function(w) {
                 assert.isTrue(tree.contains(w));
