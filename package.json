@@ -1,17 +1,21 @@
 {
-  "name": "comb",
-  "description": "A framework for node",
-  "version": "0.0.1",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:Pollen-LLC/comb.git"
-  },
-  "author": "Pollenware (http://www.pollenware.com)",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib"
-  },
-  "engines": {
-    "node": ">= 0.4.4"
-  }
+    "name": "comb",
+    "description": "A framework for node",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:Pollen-LLC/comb.git"
+    },
+    "author": "Pollenware (http://www.pollenware.com)",
+    "main": "index.js",
+    "directories": {
+        "lib": "lib"
+    },
+    "dependencies" :
+    {
+        "vows" : "*"
+    },
+    "engines": {
+        "node": ">= 0.4.4"
+    }
 }
