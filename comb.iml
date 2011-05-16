@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="RUBY_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$/../node/lib" />
+    <content url="file:///usr/local/lib/dojo">
+      <sourceFolder url="file:///usr/local/lib/dojo/util/buildscripts/webbuild/server/src" isTestSource="false" />
+      <sourceFolder url="file:///usr/local/lib/dojo/util/shrinksafe/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+  <component name="RModuleSettingsStorage" number="1" string0="$MODULE_DIR$/../node/lib" />
+</module>
+

@@ -68,7 +68,7 @@ var testLookUps = function(map, table) {
         }
     }
     end = new Date();
-    printStats("MAP", "LOOK UP", start, end);
+    printStats("HASHTABLE", "LOOK UP", start, end);
 };
 
 var testDeletion = function(map, table) {
@@ -89,7 +89,7 @@ var testDeletion = function(map, table) {
         table.remove(word);
     }
     end = new Date();
-    printStats("TABLE", "DELETION", start, end);
+    printStats("HASHTABLE", "DELETION", start, end);
 };
 
 var loop = function(map, table) {
@@ -104,7 +104,7 @@ var loop = function(map, table) {
     start = new Date();
     table.forEach(function(e){});
     end = new Date();
-    printStats("TABLE", "LOOP", start, end);
+    printStats("HASHTABLE", "LOOP", start, end);
 };
 
 

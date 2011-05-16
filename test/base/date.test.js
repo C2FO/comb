@@ -226,9 +226,6 @@ suite.addBatch({
         "it should be 0 " : function(topic) {
             var d1 = new Date();
             d1.setHours(0);
-            var d2 = new Date();
-            d2.setFullYear(2005);
-            d2.setHours(12);
             assert.equal(topic.compare(d1, d1), 0);
         },
 

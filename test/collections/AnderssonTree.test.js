@@ -42,7 +42,6 @@ suite.addBatch({
         },
 
         "and return them in pre order" : function(tree) {
-            tree.print();
             assert.deepEqual(tree.toArray(AnderssonTree.PRE_ORDER), wordsPreOrder);
         },
 

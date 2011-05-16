@@ -89,6 +89,16 @@ suite.addBatch({
             assert.equal(topic, "apple and orange");
         }
 
+    },
+
+    "when parsing a string to an array" : {
+        topic : comb.string,
+
+        "it should split the string " : function(topic){
+            assert.deepEqual(topic.toArray("a|b|c|d", "|"), ["a","b","c","d"]);
+            assert.deepEqual(topic.toArray("a", "|"), ["a"]);
+            assert.deepEqual(topic.toArray("", "|"), []);
+        }
     }
 });
 

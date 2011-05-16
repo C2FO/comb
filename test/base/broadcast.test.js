@@ -18,7 +18,7 @@ var Mammal = define(null, {
 
         speak : function() {
             var str = "A mammal of type " + this._type + " sounds like";
-            comb.publish("speak", str);
+            comb.broadcast("speak", str);
             this.onSpeak(str);
             return str;
         },
@@ -63,39 +63,7 @@ suite.addBatch({
     }
 });
 
-suite.addBatch({
-    "comb " :{
-        topic : function() {
-            var m = new Mammal({color : "gold"});
-            comb.subscribe("speak", hitch(this, "callback", null));
-            m.speak();
-        },
 
-        "should subscribe a speak event" : function(str) {
-            //This is true because they inherit from eachother!
-            assert.equal(str, "A mammal of type mammal sounds like");
-        }
-    }
-});
-
-suite.addBatch({
-    "comb " :{
-        topic : function() {
-            var m = new Mammal({color : "gold"});
-            var han = comb.listen("speak", hitch(this, "callback"));
-            comb.unSubscribe(han);
-            comb.subscribe("speak", hitch(this, function() {
-                this.callback(null, "The second connection");
-            }));
-            m.speak();
-        },
-
-        "should unSubscribe a listener" : function(str) {
-            //This is true because they inherit from eachother!
-            assert.equal(str, "The second connection");
-        }
-    }
-});
 
 suite.addBatch({
     "comb " :{
