@@ -4,9 +4,9 @@
     "version": "0.0.1",
     "repository": {
         "type": "git",
-        "url": "git@github.com:Pollen-LLC/comb.git"
+        "url": "git@github.com:Pollen/comb.git"
     },
-    "author": "Pollenware (http://www.pollenware.com)",
+    "author": "Pollenware (http://pollenware.github.com)",
     "main": "index.js",
     "directories": {
         "lib": "lib"
