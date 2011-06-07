@@ -2,7 +2,7 @@ var comb = require("../../lib"),
         HashTable = comb.collections.HashTable;
 
 console.log("CREATING TEST DATA....");
-var words = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"].reverse();
+var words = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r"].reverse();
 var permuttedWords = comb.array.powerSet(words).map(
         function(w) {
             var ret = [];
@@ -36,11 +36,9 @@ var testInserts = function(map, table) {
     }
     var end = new Date();
     printStats("MAP", "INSERTION", start, end);
-
     start = new Date();
     for (var i = 0; i < l; i++) {
         var word = words[i];
-        //done need index and its not used just look it up so as to not skew actual insert time
         table.put(word, word);
     }
     end = new Date();
@@ -62,7 +60,7 @@ var testLookUps = function(map, table) {
 
     start = new Date();
     for (var i = 0; i < l; i++) {
-        var word = words[i];
+        word = words[i];
         if (!table.contains(word)) {
             console.log("LOOKUP ERROR");
         }
@@ -94,7 +92,7 @@ var testDeletion = function(map, table) {
 
 var loop = function(map, table) {
     var l = words.length;
-    console.log("\nTESTING DELETING %d WORDS....", l);
+    console.log("\nTESTING LOOPING %d WORDS....", l);
     var start = new Date();
     for(var i in map){
 
