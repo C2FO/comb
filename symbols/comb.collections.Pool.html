@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - comb.Promise</title>
+		<title>JsDoc Reference - comb.collections.Pool</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -278,7 +278,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class comb.Promise
+				Class comb.collections.Pool
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -286,16 +286,16 @@ ul.inheritsList
 				
 				
 			
+				Base class for a pool.
 				
 				
-				
-					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_promise.js.html">promise.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_collections_Pool.js.html">Pool.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class comb.Promise.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class comb.collections.Pool.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -308,9 +308,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/comb.Promise.html#constructor">comb.Promise</a></b>()
+								<b><a href="../symbols/comb.collections.Pool.html#constructor">comb.collections.Pool</a></b>()
 							</div>
-							<div class="description">Promise object used for handling a thread</div>
+							<div class="description"></div>
 						</td>
 					</tr>
 				</tbody>
@@ -319,12 +319,80 @@ ul.inheritsList
 
 <!-- ============================== properties summary ===================== -->
 			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class comb.collections.Pool.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/comb.collections.Pool.html#count">count</a></b>
+								</div>
+								<div class="description">the total number of objects in the pool, including free and in use objects.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/comb.collections.Pool.html#freeCount">freeCount</a></b>
+								</div>
+								<div class="description">the number of free objects in this pool.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/comb.collections.Pool.html#inUseCount">inUseCount</a></b>
+								</div>
+								<div class="description">the number of objects in use in this pool.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/comb.collections.Pool.html#maxObjects">maxObjects</a></b>
+								</div>
+								<div class="description">the maximum number of objects this pool should contain</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/comb.collections.Pool.html#minObjects">minObjects</a></b>
+								</div>
+								<div class="description">the minimum number of objects this pool should contain.</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
 
 <!-- ============================== methods summary ======================== -->
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class comb.Promise.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class comb.collections.Pool.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -335,56 +403,48 @@ ul.inheritsList
 					<tbody>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.Promise.html#addCallback">addCallback</a></b>(cb)
+								<div class="fixedFont">comb.collections.Pool.<b><a href="../symbols/comb.collections.Pool.html#.createObject">createObject</a></b>()
 								</div>
-								<div class="description">Add a callback to the callback chain of the promise</div>
+								<div class="description">Creates a new object for this pool.</div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.Promise.html#addErrback">addErrback</a></b>(cb)
+								<div class="fixedFont">comb.collections.Pool.<b><a href="../symbols/comb.collections.Pool.html#.getObject">getObject</a></b>()
 								</div>
-								<div class="description">Add a callback to the errback chain of the promise</div>
+								<div class="description">Retrieves an object from this pool.</div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.Promise.html#callback">callback</a></b>(anything)
+								<div class="fixedFont">comb.collections.Pool.<b><a href="../symbols/comb.collections.Pool.html#.removeObject">removeObject</a></b>(obj)
 								</div>
-								<div class="description">When called all functions registered as callbacks are called with the passed in results.</div>
+								<div class="description">Removes an object from the pool, this can be overriden to provide any
+teardown of objects that needs to take place.</div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.Promise.html#chain">chain</a></b>(callback, errback)
+								<div class="fixedFont">comb.collections.Pool.<b><a href="../symbols/comb.collections.Pool.html#.returnObject">returnObject</a></b>(obj)
 								</div>
-								<div class="description">Call to chaining of promises</div>
+								<div class="description">Returns an object to this pool.</div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.Promise.html#errback">errback</a></b>(anything)
+								<div class="fixedFont">comb.collections.Pool.<b><a href="../symbols/comb.collections.Pool.html#.validate">validate</a></b>(obj)
 								</div>
-								<div class="description">When called all functions registered as errbacks are called with the passed in error(s)</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.Promise.html#then">then</a></b>(callback, errback)
-								</div>
-								<div class="description">Call to specify action to take after promise completes or errors</div>
+								<div class="description">Validates an object in this pool.</div>
 							</td>
 						</tr>
 					
@@ -405,40 +465,13 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>comb.Promise</b>()
+						<b>comb.collections.Pool</b>()
 				</div>
 				
 				<div class="description">
-					Promise object used for handling a thread
+					
 					
 				</div>
-				
-				
-				
-				<pre class="code">         var myFunc = function(){
-             var promise = new Promise();
-             //callback the promise after 10 Secs
-             setTimeout(hitch(promise, "callback"), 10000);
-             return promise;
-         }
-         var myFunc2 = function(){
-             var promises =[];
-             for(var i = 0; i < 10; i++){
-                 promises.push(myFunc);
-             }
-             //create a new promise list with all 10 promises
-             return new PromiseList(promises);
-         }
-
-         myFunc.then(do something...)
-         myFunc.addCallback(do something...)
-         myFunc.cain(myfunc).then(do something...)
-         myFunc.cain(myfunc).addCallback(do something...)
-
-         myFunc2.then(do something...)
-         myFunc2.addCallback(do something...)
-         myFunc2.cain(myfunc).then(do something...)
-         myFunc2.cain(myfunc).addCallback(do something...)</pre>
 				
 				
 				
@@ -456,6 +489,135 @@ ul.inheritsList
 
 <!-- ============================== field details ========================== -->		
 			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name="count"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Number}</span>
+					<b>count</b>
+					
+					</div>
+					<div class="description">
+						the total number of objects in the pool, including free and in use objects.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="freeCount"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Number}</span>
+					<b>freeCount</b>
+					
+					</div>
+					<div class="description">
+						the number of free objects in this pool.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="inUseCount"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Number}</span>
+					<b>inUseCount</b>
+					
+					</div>
+					<div class="description">
+						the number of objects in use in this pool.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="maxObjects"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Number}</span>
+					<b>maxObjects</b>
+					
+					</div>
+					<div class="description">
+						the maximum number of objects this pool should contain
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								1
+							</dd>
+							</dl>
+						
+
+					<hr />
+				
+					<a name="minObjects"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Number}</span>
+					<b>minObjects</b>
+					
+					</div>
+					<div class="description">
+						the minimum number of objects this pool should contain.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Default Value:</dt>
+							<dd>
+								0
+							</dd>
+							</dl>
+						
+
+					
+				
+			
 
 <!-- ============================== method details ========================= -->		
 			
@@ -463,15 +625,83 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="addCallback"> </a>
-					<div class="fixedFont">
+					<a name=".createObject"> </a>
+					<div class="fixedFont">&lt;static&gt; 
 					
-					
-					<b>addCallback</b>(cb)
+					<span class="light">{Object}</span>
+					<span class="light">comb.collections.Pool.</span><b>createObject</b>()
 					
 					</div>
 					<div class="description">
-						Add a callback to the callback chain of the promise
+						Creates a new object for this pool.
+* </br>
+<b>THIS SHOULD BE OVERRIDDEN TO ADD THE CORRECT TYPE OF OBJECT</b>
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Object}</span> be default just creates an object.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".getObject"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{*}</span>
+					<span class="light">comb.collections.Pool.</span><b>getObject</b>()
+					
+					</div>
+					<div class="description">
+						Retrieves an object from this pool.
+`
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{*}</span> an object to contained in this pool</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".removeObject"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{*}</span>
+					<span class="light">comb.collections.Pool.</span><b>removeObject</b>(obj)
+					
+					</div>
+					<div class="description">
+						Removes an object from the pool, this can be overriden to provide any
+teardown of objects that needs to take place.
 						
 						
 					</div>
@@ -483,10 +713,54 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{Function}</span> <b>cb</b>
+									<span class="light fixedFont">{*}</span> <b>obj</b>
 									
 								</dt>
-								<dd>the function to callback when the promise is resolved</dd>
+								<dd>the object that needs to be removed.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{*}</span> the object removed.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".returnObject"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">comb.collections.Pool.</span><b>returnObject</b>(obj)
+					
+					</div>
+					<div class="description">
+						Returns an object to this pool. The object is validated before it is returned to the pool,
+if the validation fails then it is removed from the pool;
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{*}</span> <b>obj</b>
+									
+								</dt>
+								<dd>the object to return to the pool</dd>
 							
 							</dl>
 						
@@ -499,15 +773,17 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="addErrback"> </a>
-					<div class="fixedFont">
+					<a name=".validate"> </a>
+					<div class="fixedFont">&lt;static&gt; 
 					
 					
-					<b>addErrback</b>(cb)
+					<span class="light">comb.collections.Pool.</span><b>validate</b>(obj)
 					
 					</div>
 					<div class="description">
-						Add a callback to the errback chain of the promise
+						Validates an object in this pool.
+</br>
+<b>THIS SHOULD BE OVERRIDDEN TO VALIDATE</b>
 						
 						
 					</div>
@@ -519,166 +795,10 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{Function}</span> <b>cb</b>
+									<span class="light fixedFont">{*}</span> <b>obj</b>
 									
 								</dt>
-								<dd>the function to callback when the promise errors</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="callback"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>callback</b>(anything)
-					
-					</div>
-					<div class="description">
-						When called all functions registered as callbacks are called with the passed in results.
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>anything</b>
-									
-								</dt>
-								<dd>variable number of results to pass back to listeners of the promise</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="chain"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>chain</b>(callback, errback)
-					
-					</div>
-					<div class="description">
-						Call to chaining of promises
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>callback</b>
-									
-								</dt>
-								<dd>method to call that returns a promise to call after this one completes.</dd>
-							
-								<dt>
-									<b>errback</b>
-									
-								</dt>
-								<dd>method to call if this promise errors.</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="errback"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>errback</b>(anything)
-					
-					</div>
-					<div class="description">
-						When called all functions registered as errbacks are called with the passed in error(s)
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>anything</b>
-									
-								</dt>
-								<dd>variable number of errors to pass back to listeners of the promise</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="then"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>then</b>(callback, errback)
-					
-					</div>
-					<div class="description">
-						Call to specify action to take after promise completes or errors
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<span class="light fixedFont">{Function}</span> <b>callback</b>
-									<i>Optional, Default: null</i>
-								</dt>
-								<dd>function to call after the promise completes successfully</dd>
-							
-								<dt>
-									<span class="light fixedFont">{Function}</span> <b>errback</b>
-									<i>Optional, Default: null</i>
-								</dt>
-								<dd>function to call if the promise errors</dd>
+								<dd>the object to validate.</dd>
 							
 							</dl>
 						

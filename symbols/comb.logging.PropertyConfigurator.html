@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - comb.collections.RedBlackTree</title>
+		<title>JsDoc Reference - comb.logging.PropertyConfigurator</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -278,35 +278,26 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class comb.collections.RedBlackTree
+				Class comb.logging.PropertyConfigurator
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
 				<br />Extends
-					<a href="../symbols/comb.collections.Tree.html">comb.collections.Tree</a>.<br />
+					<a href="../symbols/comb.logging.BasicConfigurator.html">comb.logging.BasicConfigurator</a>.<br />
 				
 			
-				<p>A RedBlack tree is a form of a self balancing binary tree.</p>
-
-<b>Performance</b>
-<table>
-    <tr><td></td><td>Best</td><td>Worst</td></tr>
-    <tr><td>Space</td><td>O(n)</td><td>O(n)</td></tr>
-    <tr><td>Search</td><td>O(log n)</td><td>O(log n)</td></tr>
-    <tr><td>Insert</td><td>O(log n)</td><td>O(log n)</td></tr>
-    <tr><td>Delete</td><td>O(log n)</td><td>O(log n)</td></tr>
-<table>
+				Configures comb.Logger with the properties or properties contained within a file
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_collections_RedBlackTree.js.html">RedBlackTree.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_logging_config.js.html">config.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class comb.collections.RedBlackTree.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class comb.logging.PropertyConfigurator.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -319,7 +310,7 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/comb.collections.RedBlackTree.html#constructor">comb.collections.RedBlackTree</a></b>()
+								<b><a href="../symbols/comb.logging.PropertyConfigurator.html#constructor">comb.logging.PropertyConfigurator</a></b>()
 							</div>
 							<div class="description"></div>
 						</td>
@@ -330,24 +321,37 @@ ul.inheritsList
 
 <!-- ============================== properties summary ===================== -->
 			
-				
-				
-				
-				
-				<dl class="inheritsList">
-				<dt>Fields borrowed from class <a href="../symbols/comb.collections.Tree.html">comb.collections.Tree</a>: </dt><dd><a href="../symbols/comb.collections.Tree.html#root">root</a></dd>
-				</dl>
-				
-			
 
 <!-- ============================== methods summary ======================== -->
 			
 				
 				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class comb.logging.PropertyConfigurator.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/comb.logging.PropertyConfigurator.html#configure">configure</a></b>(properties)
+								</div>
+								<div class="description">Call to configure logging</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
 				
 				
 				<dl class="inheritsList">
-				<dt>Methods borrowed from class <a href="../symbols/comb.collections.Tree.html">comb.collections.Tree</a>: </dt><dd><a href="../symbols/comb.collections.Tree.html#clear">clear</a>, <a href="../symbols/comb.collections.Tree.html#contains">contains</a>, <a href="../symbols/comb.collections.Tree.html#every">every</a>, <a href="../symbols/comb.collections.Tree.html#filter">filter</a>, <a href="../symbols/comb.collections.Tree.html#find">find</a>, <a href="../symbols/comb.collections.Tree.html#findGreaterThan">findGreaterThan</a>, <a href="../symbols/comb.collections.Tree.html#findLessThan">findLessThan</a>, <a href="../symbols/comb.collections.Tree.html#forEach">forEach</a>, <a href="../symbols/comb.collections.Tree.html#insert">insert</a>, <a href="../symbols/comb.collections.Tree.html#isEmpty">isEmpty</a>, <a href="../symbols/comb.collections.Tree.html#map">map</a>, <a href="../symbols/comb.collections.Tree.html#print">print</a>, <a href="../symbols/comb.collections.Tree.html#reduce">reduce</a>, <a href="../symbols/comb.collections.Tree.html#reduceRight">reduceRight</a>, <a href="../symbols/comb.collections.Tree.html#remove">remove</a>, <a href="../symbols/comb.collections.Tree.html#some">some</a>, <a href="../symbols/comb.collections.Tree.html#toArray">toArray</a>, <a href="../symbols/comb.collections.Tree.html#traverse">traverse</a>, <a href="../symbols/comb.collections.Tree.html#traverseWithCondition">traverseWithCondition</a></dd><dt>Methods borrowed from class <a href="../symbols/comb.collections.Collection.html">comb.collections.Collection</a>: </dt><dd><a href="../symbols/comb.collections.Collection.html#concat">concat</a>, <a href="../symbols/comb.collections.Collection.html#indexOf">indexOf</a>, <a href="../symbols/comb.collections.Collection.html#join">join</a>, <a href="../symbols/comb.collections.Collection.html#lastIndexOf">lastIndexOf</a>, <a href="../symbols/comb.collections.Collection.html#slice">slice</a>, <a href="../symbols/comb.collections.Collection.html#toString">toString</a></dd>
+				
 				</dl>
 				
 			
@@ -362,13 +366,63 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>comb.collections.RedBlackTree</b>()
+						<b>comb.logging.PropertyConfigurator</b>()
 				</div>
 				
 				<div class="description">
 					
 					
 				</div>
+				
+				
+				
+				<pre class="code">
+var propertyConfigurator = new comb.logging.PropertyConfigurator();
+
+propertyConfigurator.configure("/location/of/combLogger.json");
+
+//or
+
+var config = {
+    "my.logger" : {
+        level : "INFO",
+        appenders : [
+            {
+                //default file appender
+                type : "FileAppender",
+                file : "/var/log/myApp.log",
+            },
+            {
+                //default JSON appender
+                type : "JSONAppender",
+                file : "/var/log/myApp.JSON",
+            },
+            {
+                type : "FileAppender",
+                 //override default patter
+                pattern : "{[EEEE, MMMM dd, yyyy h:m a]timeStamp} {[5]level}"
+                         + " {[- 5]levelName} {[-20]name} : {message}",
+                //location of my log file
+                file : "/var/log/myApp-errors.log",
+                //override name so it will get added to the log
+                name : "errorFileAppender",
+                //overwrite each time
+                overwrite : true,
+                //explicity set the appender to only accept errors
+                level : "ERROR"
+            },
+            {
+                type : "JSONAppender",
+                file : "/var/log/myApp-error.json",
+                //explicity set the appender to only accept errors
+                level : "ERROR"
+            }
+        ]
+    }
+    //repeat for more loggers
+
+    propertyConfigurator.configure(config);
+}</pre>
 				
 				
 				
@@ -388,6 +442,88 @@ ul.inheritsList
 			
 
 <!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="configure"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>configure</b>(properties)
+					
+					</div>
+					<div class="description">
+						Call to configure logging
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">
+//Example configuration
+ {
+    "my.logger" : {
+        level : "INFO",
+        appenders : [
+            {
+                //default file appender
+                type : "FileAppender",
+                file : "/var/log/myApp.log",
+            },
+            {
+                //default JSON appender
+                type : "JSONAppender",
+                file : "/var/log/myApp.JSON",
+            },
+            {
+                type : "FileAppender",
+                 //override default patter
+                pattern : "{[EEEE, MMMM dd, yyyy h:m a]timeStamp} {[5]level}"
+                         + " {[- 5]levelName} {[-20]name} : {message}",
+                //location of my log file
+                file : "/var/log/myApp-errors.log",
+                //override name so it will get added to the log
+                name : "errorFileAppender",
+                //overwrite each time
+                overwrite : true,
+                //explicity set the appender to only accept errors
+                level : "ERROR"
+            },
+            {
+                type : "JSONAppender",
+                file : "/var/log/myApp-error.json",
+                //explicity set the appender to only accept errors
+                level : "ERROR"
+            }
+        ]
+    }</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Object|String}</span> <b>properties</b>
+									
+								</dt>
+								<dd>Object containing configuration or string containing a file name with the configuration.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
 			
 			
 <!-- ============================== event details ========================= -->		

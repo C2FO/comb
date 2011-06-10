@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - comb.Promise</title>
+		<title>JsDoc Reference - comb.logging.Level</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -278,7 +278,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class comb.Promise
+				Class comb.logging.Level
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -286,16 +286,20 @@ ul.inheritsList
 				
 				
 			
+				Level class used to describe logging levels. The levels determine what types of events are logged to the appenders
+ for example the if Level.ALL is used then all event will be logged, however if Level.INFO was used then <b>ONLY</b>
+ INFO, WARN, ERROR, and FATAL events will be logged. To turn off logging for a logger use Level.OFF.
+
+<p><b>Not typically instantiated directly, but through staticly defined levels</b></p>
 				
 				
-				
-					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_promise.js.html">promise.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_logging_level.js.html">level.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class comb.Promise.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class comb.logging.Level.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -308,9 +312,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/comb.Promise.html#constructor">comb.Promise</a></b>()
+								<b><a href="../symbols/comb.logging.Level.html#constructor">comb.logging.Level</a></b>()
 							</div>
-							<div class="description">Promise object used for handling a thread</div>
+							<div class="description"></div>
 						</td>
 					</tr>
 				</tbody>
@@ -319,12 +323,130 @@ ul.inheritsList
 
 <!-- ============================== properties summary ===================== -->
 			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class comb.logging.Level.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								comb.logging.Level.<b><a href="../symbols/comb.logging.Level.html#.ALL">ALL</a></b>
+								</div>
+								<div class="description">Level to allow logging of all events.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								comb.logging.Level.<b><a href="../symbols/comb.logging.Level.html#.DEBUG">DEBUG</a></b>
+								</div>
+								<div class="description">Logs only events debug or greater.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								comb.logging.Level.<b><a href="../symbols/comb.logging.Level.html#.ERROR">ERROR</a></b>
+								</div>
+								<div class="description">Error or fatal events</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								comb.logging.Level.<b><a href="../symbols/comb.logging.Level.html#.FATAL">FATAL</a></b>
+								</div>
+								<div class="description">Only fatal events</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								comb.logging.Level.<b><a href="../symbols/comb.logging.Level.html#.INFO">INFO</a></b>
+								</div>
+								<div class="description">Only info, or error related events</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/comb.logging.Level.html#level">level</a></b>
+								</div>
+								<div class="description">the numerical representation of this level.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/comb.logging.Level.html#name">name</a></b>
+								</div>
+								<div class="description">the name of level.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								comb.logging.Level.<b><a href="../symbols/comb.logging.Level.html#.OFF">OFF</a></b>
+								</div>
+								<div class="description">No events will be logged.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								comb.logging.Level.<b><a href="../symbols/comb.logging.Level.html#.TRACE">TRACE</a></b>
+								</div>
+								<div class="description">Like debug but provides a finer level of detail</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								comb.logging.Level.<b><a href="../symbols/comb.logging.Level.html#.WARN">WARN</a></b>
+								</div>
+								<div class="description">Only warn or error related events</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
 
 <!-- ============================== methods summary ======================== -->
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class comb.Promise.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class comb.logging.Level.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -337,54 +459,28 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.Promise.html#addCallback">addCallback</a></b>(cb)
+								<div class="fixedFont"><b><a href="../symbols/comb.logging.Level.html#equals">equals</a></b>(level)
 								</div>
-								<div class="description">Add a callback to the callback chain of the promise</div>
+								<div class="description">Determing if this level is equal to another level based off of the numerical rank.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.Promise.html#addErrback">addErrback</a></b>(cb)
+								<div class="fixedFont"><b><a href="../symbols/comb.logging.Level.html#isGreaterOrEqualToo">isGreaterOrEqualToo</a></b>(level)
 								</div>
-								<div class="description">Add a callback to the errback chain of the promise</div>
+								<div class="description">Determing if this level is >= another level</div>
 							</td>
 						</tr>
 					
 						<tr>
-							<td class="attributes">&nbsp;</td>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.Promise.html#callback">callback</a></b>(anything)
+								<div class="fixedFont">comb.logging.Level.<b><a href="../symbols/comb.logging.Level.html#.toLevel">toLevel</a></b>(level, defaultLevel)
 								</div>
-								<div class="description">When called all functions registered as callbacks are called with the passed in results.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.Promise.html#chain">chain</a></b>(callback, errback)
-								</div>
-								<div class="description">Call to chaining of promises</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.Promise.html#errback">errback</a></b>(anything)
-								</div>
-								<div class="description">When called all functions registered as errbacks are called with the passed in error(s)</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.Promise.html#then">then</a></b>(callback, errback)
-								</div>
-								<div class="description">Call to specify action to take after promise completes or errors</div>
+								<div class="description">Converts a numerical or string representation of a level, if a default level is provided,
+then if a level cannot be determined then the default level is used.</div>
 							</td>
 						</tr>
 					
@@ -405,40 +501,28 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>comb.Promise</b>()
+						<b>comb.logging.Level</b>()
 				</div>
 				
 				<div class="description">
-					Promise object used for handling a thread
+					
 					
 				</div>
 				
 				
 				
-				<pre class="code">         var myFunc = function(){
-             var promise = new Promise();
-             //callback the promise after 10 Secs
-             setTimeout(hitch(promise, "callback"), 10000);
-             return promise;
-         }
-         var myFunc2 = function(){
-             var promises =[];
-             for(var i = 0; i < 10; i++){
-                 promises.push(myFunc);
-             }
-             //create a new promise list with all 10 promises
-             return new PromiseList(promises);
-         }
+				<pre class="code">//Levels in ascending order
+comb.logging.Level.ALL
+comb.logging.Level.DEBUG
+comb.logging.Level.TRACE
+comb.logging.Level.INFO
+comb.logging.Level.WARN
+comb.logging.Level.ERROR
+comb.logging.Level.FATAL
+comb.logging.Level.OFF
 
-         myFunc.then(do something...)
-         myFunc.addCallback(do something...)
-         myFunc.cain(myfunc).then(do something...)
-         myFunc.cain(myfunc).addCallback(do something...)
-
-         myFunc2.then(do something...)
-         myFunc2.addCallback(do something...)
-         myFunc2.cain(myfunc).then(do something...)
-         myFunc2.cain(myfunc).addCallback(do something...)</pre>
+//or
+Level.getLevel("INFO");</pre>
 				
 				
 				
@@ -456,6 +540,231 @@ ul.inheritsList
 
 <!-- ============================== field details ========================== -->		
 			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name=".ALL"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">comb.logging.Level.</span><b>ALL</b>
+					
+					</div>
+					<div class="description">
+						Level to allow logging of all events.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".DEBUG"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">comb.logging.Level.</span><b>DEBUG</b>
+					
+					</div>
+					<div class="description">
+						Logs only events debug or greater.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".ERROR"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">comb.logging.Level.</span><b>ERROR</b>
+					
+					</div>
+					<div class="description">
+						Error or fatal events
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".FATAL"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">comb.logging.Level.</span><b>FATAL</b>
+					
+					</div>
+					<div class="description">
+						Only fatal events
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".INFO"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">comb.logging.Level.</span><b>INFO</b>
+					
+					</div>
+					<div class="description">
+						Only info, or error related events
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="level"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Number}</span>
+					<b>level</b>
+					
+					</div>
+					<div class="description">
+						the numerical representation of this level.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="name"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{String}</span>
+					<b>name</b>
+					
+					</div>
+					<div class="description">
+						the name of level.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".OFF"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">comb.logging.Level.</span><b>OFF</b>
+					
+					</div>
+					<div class="description">
+						No events will be logged.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".TRACE"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">comb.logging.Level.</span><b>TRACE</b>
+					
+					</div>
+					<div class="description">
+						Like debug but provides a finer level of detail
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".WARN"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">comb.logging.Level.</span><b>WARN</b>
+					
+					</div>
+					<div class="description">
+						Only warn or error related events
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
 
 <!-- ============================== method details ========================= -->		
 			
@@ -463,15 +772,15 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="addCallback"> </a>
+					<a name="equals"> </a>
 					<div class="fixedFont">
 					
-					
-					<b>addCallback</b>(cb)
+					<span class="light">{Boolean}</span>
+					<b>equals</b>(level)
 					
 					</div>
 					<div class="description">
-						Add a callback to the callback chain of the promise
+						Determing if this level is equal to another level based off of the numerical rank.
 						
 						
 					</div>
@@ -483,31 +792,38 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{Function}</span> <b>cb</b>
+									<span class="light fixedFont">{<a href="../symbols/comb.logging.Level.html">comb.logging.Level</a>}</span> <b>level</b>
 									
 								</dt>
-								<dd>the function to callback when the promise is resolved</dd>
+								<dd>the level to compare</dd>
 							
 							</dl>
 						
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> true if this is equal to that false otherwise.</dd>
+							
+							</dl>
 						
 						
 						
 
 					<hr />
 				
-					<a name="addErrback"> </a>
+					<a name="isGreaterOrEqualToo"> </a>
 					<div class="fixedFont">
 					
-					
-					<b>addErrback</b>(cb)
+					<span class="light">{Boolean}</span>
+					<b>isGreaterOrEqualToo</b>(level)
 					
 					</div>
 					<div class="description">
-						Add a callback to the errback chain of the promise
+						Determing if this level is >= another level
 						
 						
 					</div>
@@ -519,31 +835,39 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{Function}</span> <b>cb</b>
+									<span class="light fixedFont">{<a href="../symbols/comb.logging.Level.html">comb.logging.Level</a>}</span> <b>level</b>
 									
 								</dt>
-								<dd>the function to callback when the promise errors</dd>
+								<dd>the level to test against</dd>
 							
 							</dl>
 						
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> true if this is >= false otherwise.</dd>
+							
+							</dl>
 						
 						
 						
 
 					<hr />
 				
-					<a name="callback"> </a>
-					<div class="fixedFont">
+					<a name=".toLevel"> </a>
+					<div class="fixedFont">&lt;static&gt; 
 					
-					
-					<b>callback</b>(anything)
+					<span class="light">{<a href="../symbols/comb.logging.Level.html">comb.logging.Level</a>|null}</span>
+					<span class="light">comb.logging.Level.</span><b>toLevel</b>(level, defaultLevel)
 					
 					</div>
 					<div class="description">
-						When called all functions registered as callbacks are called with the passed in results.
+						Converts a numerical or string representation of a level, if a default level is provided,
+then if a level cannot be determined then the default level is used.
 						
 						
 					</div>
@@ -555,136 +879,29 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>anything</b>
+									<span class="light fixedFont">{Number|String|<a href="../symbols/comb.logging.Level.html">comb.logging.Level</a>}</span> <b>level</b>
 									
 								</dt>
-								<dd>variable number of results to pass back to listeners of the promise</dd>
+								<dd>the level to try to convert</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/comb.logging.Level.html">comb.logging.Level</a>}</span> <b>defaultLevel</b>
+									<i>Optional</i>
+								</dt>
+								<dd>default level to use if one cannot be determined,</dd>
 							
 							</dl>
 						
 						
 						
 						
-						
-						
-						
-
-					<hr />
-				
-					<a name="chain"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>chain</b>(callback, errback)
-					
-					</div>
-					<div class="description">
-						Call to chaining of promises
-						
-						
-					</div>
-					
-					
-					
 						
 							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
+							<dt class="heading">Returns:</dt>
 							
-								<dt>
-									<b>callback</b>
-									
-								</dt>
-								<dd>method to call that returns a promise to call after this one completes.</dd>
-							
-								<dt>
-									<b>errback</b>
-									
-								</dt>
-								<dd>method to call if this promise errors.</dd>
+								<dd><span class="light fixedFont">{<a href="../symbols/comb.logging.Level.html">comb.logging.Level</a>|null}</span> returns a level if one can be determined null otherwise.</dd>
 							
 							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="errback"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>errback</b>(anything)
-					
-					</div>
-					<div class="description">
-						When called all functions registered as errbacks are called with the passed in error(s)
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>anything</b>
-									
-								</dt>
-								<dd>variable number of errors to pass back to listeners of the promise</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="then"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>then</b>(callback, errback)
-					
-					</div>
-					<div class="description">
-						Call to specify action to take after promise completes or errors
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<span class="light fixedFont">{Function}</span> <b>callback</b>
-									<i>Optional, Default: null</i>
-								</dt>
-								<dd>function to call after the promise completes successfully</dd>
-							
-								<dt>
-									<span class="light fixedFont">{Function}</span> <b>errback</b>
-									<i>Optional, Default: null</i>
-								</dt>
-								<dd>function to call if the promise errors</dd>
-							
-							</dl>
-						
-						
-						
-						
 						
 						
 						

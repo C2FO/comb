@@ -195,6 +195,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/comb.array.html">comb.array</a></li>
 	
+	<li><a href="../symbols/comb.characters.html">comb.characters</a></li>
+	
 	<li><a href="../symbols/comb.collections.html">comb.collections</a></li>
 	
 	<li><a href="../symbols/comb.collections.AnderssonTree.html">comb.collections.AnderssonTree</a></li>
@@ -209,9 +211,13 @@ ul.inheritsList
 	
 	<li><a href="../symbols/comb.collections.Heap.html">comb.collections.Heap</a></li>
 	
+	<li><a href="../symbols/comb.collections.Iterable.html">comb.collections.Iterable</a></li>
+	
 	<li><a href="../symbols/comb.collections.MaxHeap.html">comb.collections.MaxHeap</a></li>
 	
 	<li><a href="../symbols/comb.collections.MinHeap.html">comb.collections.MinHeap</a></li>
+	
+	<li><a href="../symbols/comb.collections.Pool.html">comb.collections.Pool</a></li>
 	
 	<li><a href="../symbols/comb.collections.PriorityQueue.html">comb.collections.PriorityQueue</a></li>
 	
@@ -224,6 +230,28 @@ ul.inheritsList
 	<li><a href="../symbols/comb.collections.Tree.html">comb.collections.Tree</a></li>
 	
 	<li><a href="../symbols/comb.date.html">comb.date</a></li>
+	
+	<li><a href="../symbols/comb.logging.html">comb.logging</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.html">comb.logging.appenders</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.Appender.html">comb.logging.appenders.Appender</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+	
+	<li><a href="../symbols/comb.logging.BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+	
+	<li><a href="../symbols/comb.logging.Level.html">comb.logging.Level</a></li>
+	
+	<li><a href="../symbols/comb.logging.Logger.html">comb.logging.Logger</a></li>
+	
+	<li><a href="../symbols/comb.logging.PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
 	
 	<li><a href="../symbols/comb.number.html">comb.number</a></li>
 	
@@ -258,7 +286,7 @@ ul.inheritsList
 				
 				
 			
-				
+				Base class for all collections
 				
 				
 					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_collections_Collection.js.html">Collection.js</a>.
@@ -282,7 +310,7 @@ ul.inheritsList
 							<div class="fixedFont">
 								<b><a href="../symbols/comb.collections.Collection.html#constructor">comb.collections.Collection</a></b>()
 							</div>
-							<div class="description">Base class for all collections</div>
+							<div class="description"></div>
 						</td>
 					</tr>
 				</tbody>
@@ -318,33 +346,6 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.collections.Collection.html#every">every</a></b>()
-								</div>
-								<div class="description">Determine if every item in a collection meets the criteria</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.collections.Collection.html#filter">filter</a></b>()
-								</div>
-								<div class="description">Filter items from a collection</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.collections.Collection.html#forEach">forEach</a></b>()
-								</div>
-								<div class="description">Loop through the items in a collection</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/comb.collections.Collection.html#indexOf">indexOf</a></b>()
 								</div>
 								<div class="description">Find the index of an item in a collection</div>
@@ -372,45 +373,9 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.collections.Collection.html#map">map</a></b>()
-								</div>
-								<div class="description">Map every item in a collection</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.collections.Collection.html#reduce">reduce</a></b>()
-								</div>
-								<div class="description">Reduce a collection</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.collections.Collection.html#reduceRight">reduceRight</a></b>()
-								</div>
-								<div class="description">Reduce a collection starting from the right most position</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/comb.collections.Collection.html#slice">slice</a></b>()
 								</div>
 								<div class="description">Slice a portion from a collection</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/comb.collections.Collection.html#some">some</a></b>()
-								</div>
-								<div class="description">Determing if some items in a colleciton meet the criteria</div>
 							</td>
 						</tr>
 					
@@ -444,7 +409,7 @@ ul.inheritsList
 				</div>
 				
 				<div class="description">
-					Base class for all collections
+					
 					
 				</div>
 				
@@ -480,81 +445,6 @@ ul.inheritsList
 					</div>
 					<div class="description">
 						Concats two collections
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="every"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>every</b>()
-					
-					</div>
-					<div class="description">
-						Determine if every item in a collection meets the criteria
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="filter"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>filter</b>()
-					
-					</div>
-					<div class="description">
-						Filter items from a collection
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="forEach"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>forEach</b>()
-					
-					</div>
-					<div class="description">
-						Loop through the items in a collection
 						
 						
 					</div>
@@ -646,81 +536,6 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="map"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>map</b>()
-					
-					</div>
-					<div class="description">
-						Map every item in a collection
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="reduce"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>reduce</b>()
-					
-					</div>
-					<div class="description">
-						Reduce a collection
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="reduceRight"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>reduceRight</b>()
-					
-					</div>
-					<div class="description">
-						Reduce a collection starting from the right most position
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
 					<a name="slice"> </a>
 					<div class="fixedFont">
 					
@@ -730,31 +545,6 @@ ul.inheritsList
 					</div>
 					<div class="description">
 						Slice a portion from a collection
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="some"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>some</b>()
-					
-					</div>
-					<div class="description">
-						Determing if some items in a colleciton meet the criteria
 						
 						
 					</div>
@@ -808,7 +598,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Mon May 16 2011 00:42:16 GMT-0500 (CDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Jun 10 2011 01:48:52 GMT-0500 (CDT)
 		</div>
 	</body>
 </html>

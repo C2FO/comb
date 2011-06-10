@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - comb.collections.AndersonnTree</title>
+		<title>JsDoc Reference - comb.logging.appenders.JSONAppender</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -195,11 +195,15 @@ ul.inheritsList
 	
 	<li><a href="../symbols/comb.array.html">comb.array</a></li>
 	
+	<li><a href="../symbols/comb.characters.html">comb.characters</a></li>
+	
 	<li><a href="../symbols/comb.collections.html">comb.collections</a></li>
 	
-	<li><a href="../symbols/comb.collections.AndersonnTree.html">comb.collections.AndersonnTree</a></li>
+	<li><a href="../symbols/comb.collections.AnderssonTree.html">comb.collections.AnderssonTree</a></li>
 	
 	<li><a href="../symbols/comb.collections.AVLTree.html">comb.collections.AVLTree</a></li>
+	
+	<li><a href="../symbols/comb.collections.BinaryTree.html">comb.collections.BinaryTree</a></li>
 	
 	<li><a href="../symbols/comb.collections.Collection.html">comb.collections.Collection</a></li>
 	
@@ -207,17 +211,47 @@ ul.inheritsList
 	
 	<li><a href="../symbols/comb.collections.Heap.html">comb.collections.Heap</a></li>
 	
+	<li><a href="../symbols/comb.collections.Iterable.html">comb.collections.Iterable</a></li>
+	
 	<li><a href="../symbols/comb.collections.MaxHeap.html">comb.collections.MaxHeap</a></li>
 	
 	<li><a href="../symbols/comb.collections.MinHeap.html">comb.collections.MinHeap</a></li>
 	
+	<li><a href="../symbols/comb.collections.Pool.html">comb.collections.Pool</a></li>
+	
 	<li><a href="../symbols/comb.collections.PriorityQueue.html">comb.collections.PriorityQueue</a></li>
 	
+	<li><a href="../symbols/comb.collections.Queue.html">comb.collections.Queue</a></li>
+	
 	<li><a href="../symbols/comb.collections.RedBlackTree.html">comb.collections.RedBlackTree</a></li>
+	
+	<li><a href="../symbols/comb.collections.Stack.html">comb.collections.Stack</a></li>
 	
 	<li><a href="../symbols/comb.collections.Tree.html">comb.collections.Tree</a></li>
 	
 	<li><a href="../symbols/comb.date.html">comb.date</a></li>
+	
+	<li><a href="../symbols/comb.logging.html">comb.logging</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.html">comb.logging.appenders</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.Appender.html">comb.logging.appenders.Appender</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+	
+	<li><a href="../symbols/comb.logging.BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+	
+	<li><a href="../symbols/comb.logging.Level.html">comb.logging.Level</a></li>
+	
+	<li><a href="../symbols/comb.logging.Logger.html">comb.logging.Logger</a></li>
+	
+	<li><a href="../symbols/comb.logging.PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
 	
 	<li><a href="../symbols/comb.number.html">comb.number</a></li>
 	
@@ -244,26 +278,40 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class comb.collections.AndersonnTree
+				Class comb.logging.appenders.JSONAppender
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
 				<br />Extends
-					<a href="../symbols/comb.collections.Tree.html">comb.collections.Tree</a>.<br />
+					<a href="../symbols/comb.logging.appenders.FileAppender.html">comb.logging.appenders.FileAppender</a>.<br />
 				
 			
+				Appends messages to a file in JSON format. The messages are logged to an array in a JSON file
+<b>The file is always overwritten</b>
+
+<pre class="code">
+//example log.json
+[
+   {
+     "timestamp" : "Wed Jun 08 2011 11:16:20 GMT-0500 (CDT)",
+     "level" : "INFO",
+     "name" : "comb",
+     "message" :  "INFO MESSAGE!!!!"
+   }
+ ]
+
+</pre>
 				
 				
-				
-					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_collections_AnderssonTree.js.html">AnderssonTree.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_logging_appenders_jsonAppender.js.html">jsonAppender.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class comb.collections.AndersonnTree.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class comb.logging.appenders.JSONAppender.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -276,9 +324,9 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/comb.collections.AndersonnTree.html#constructor">comb.collections.AndersonnTree</a></b>()
+								<b><a href="../symbols/comb.logging.appenders.JSONAppender.html#constructor">comb.logging.appenders.JSONAppender</a></b>(options)
 							</div>
-							<div class="description"><p>Andersson Trees are a version of a balanced Binary tree, while similar to RedBlack Trees the balancing is not as strict.</div>
+							<div class="description"></div>
 						</td>
 					</tr>
 				</tbody>
@@ -292,7 +340,7 @@ ul.inheritsList
 				
 				
 				<dl class="inheritsList">
-				<dt>Fields borrowed from class <a href="../symbols/comb.collections.Tree.html">comb.collections.Tree</a>: </dt><dd><a href="../symbols/comb.collections.Tree.html#root">root</a></dd>
+				<dt>Fields borrowed from class <a href="../symbols/comb.logging.appenders.Appender.html">comb.logging.appenders.Appender</a>: </dt><dd><a href="../symbols/comb.logging.appenders.Appender.html#level">level</a>, <a href="../symbols/comb.logging.appenders.Appender.html#name">name</a>, <a href="../symbols/comb.logging.appenders.Appender.html#pattern">pattern</a></dd>
 				</dl>
 				
 			
@@ -304,7 +352,7 @@ ul.inheritsList
 				
 				
 				<dl class="inheritsList">
-				<dt>Methods borrowed from class <a href="../symbols/comb.collections.Tree.html">comb.collections.Tree</a>: </dt><dd><a href="../symbols/comb.collections.Tree.html#clear">clear</a>, <a href="../symbols/comb.collections.Tree.html#contains">contains</a>, <a href="../symbols/comb.collections.Tree.html#every">every</a>, <a href="../symbols/comb.collections.Tree.html#filter">filter</a>, <a href="../symbols/comb.collections.Tree.html#find">find</a>, <a href="../symbols/comb.collections.Tree.html#findGreaterThan">findGreaterThan</a>, <a href="../symbols/comb.collections.Tree.html#findLessThan">findLessThan</a>, <a href="../symbols/comb.collections.Tree.html#forEach">forEach</a>, <a href="../symbols/comb.collections.Tree.html#insert">insert</a>, <a href="../symbols/comb.collections.Tree.html#isEmpty">isEmpty</a>, <a href="../symbols/comb.collections.Tree.html#map">map</a>, <a href="../symbols/comb.collections.Tree.html#print">print</a>, <a href="../symbols/comb.collections.Tree.html#reduce">reduce</a>, <a href="../symbols/comb.collections.Tree.html#reduceRight">reduceRight</a>, <a href="../symbols/comb.collections.Tree.html#remove">remove</a>, <a href="../symbols/comb.collections.Tree.html#some">some</a>, <a href="../symbols/comb.collections.Tree.html#toArray">toArray</a>, <a href="../symbols/comb.collections.Tree.html#traverse">traverse</a>, <a href="../symbols/comb.collections.Tree.html#traverseWithCondition">traverseWithCondition</a></dd><dt>Methods borrowed from class <a href="../symbols/comb.collections.Collection.html">comb.collections.Collection</a>: </dt><dd><a href="../symbols/comb.collections.Collection.html#concat">concat</a>, <a href="../symbols/comb.collections.Collection.html#indexOf">indexOf</a>, <a href="../symbols/comb.collections.Collection.html#join">join</a>, <a href="../symbols/comb.collections.Collection.html#lastIndexOf">lastIndexOf</a>, <a href="../symbols/comb.collections.Collection.html#slice">slice</a>, <a href="../symbols/comb.collections.Collection.html#toString">toString</a></dd>
+				<dt>Methods borrowed from class <a href="../symbols/comb.logging.appenders.Appender.html">comb.logging.appenders.Appender</a>: </dt><dd><a href="../symbols/comb.logging.appenders.Appender.html#append">append</a></dd>
 				</dl>
 				
 			
@@ -319,26 +367,69 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>comb.collections.AndersonnTree</b>()
+						<b>comb.logging.appenders.JSONAppender</b>(options)
 				</div>
 				
 				<div class="description">
-					<p>Andersson Trees are a version of a balanced Binary tree, while similar to RedBlack Trees the balancing is not as strict.</p>
-
-<b>Performance</b>
-<table>
-    <tr><td></td><td>Best</td><td>Worst</td></tr>
-    <tr><td>space</td><td>O(n)</td><td>O(n)</td></tr>
-    <tr><td>Search</td><td>O(log n)</td><td>O(log n)</td></tr>
-    <tr><td>Insert</td><td>O(log n)</td><td>O(log n)</td></tr>
-    <tr><td>Delete</td><td>O(log n)</td><td>O(log n)</td></tr>
-<table>
+					
 					
 				</div>
 				
 				
 				
 				
+					
+						<dl class="detailList">
+						<dt class="heading">Parameters:</dt>
+						
+							<dt>
+								<span class="light fixedFont">{Object}</span>  <b>options</b>
+								<i>Optional</i>
+							</dt>
+								<dd>options to assign to this Appender</dd>
+						
+							<dt>
+								<span class="light fixedFont">{String}</span>  <b>options.name</b>
+								<i>Optional, Default: "appender"</i>
+							</dt>
+								<dd>the name of this Appender. If you want two of the same type of appender
+                                          on a logger it must have a different name.</dd>
+						
+							<dt>
+								<span class="light fixedFont">{String}</span>  <b>options.pattern</b>
+								<i>Optional, Default: "{"timestamp" : "{timeStamp}", "level" : "{levelName}", "name" : "{name}", "message" :  "{message}"}"</i>
+							</dt>
+								<dd><p>Available Options for formatting see <a href="../symbols/comb.string.html#.format">comb.string.format</a> for formatting options</p>
+ <ul>
+     <li>timeStamp - the timestamp of the event being logged</li>
+     <li>level - the <a href="../symbols/comb.logging.Level.html">comb.logging.Level</a> of the event</li>
+     <li>levelName - the name of the level being logged</li>
+     <li>name - the name of the logger logging the event</li>
+     <li>message - the message being logged</li>
+</ul></dd>
+						
+							<dt>
+								<span class="light fixedFont">{<a href="../symbols/comb.logging.Level.html">comb.logging.Level</a>|String}</span>  <b>options.level</b>
+								<i>Optional, Default: comb.logging.Level.INFO</i>
+							</dt>
+								<dd>the logging level of this appender
+     <p><b>Note:</b> the level can be different from the logger in the case that you want a particular logger
+     to only log particular event of a level. For example an appender that only logs errors. BEWARE that if the
+     appenders level is lower than the logger is will not recieve any messages.</p></dd>
+						
+							<dt>
+								<span class="light fixedFont">{String}</span>  <b>options.file</b>
+								<i>Optional, Default: "./log.json"</i>
+							</dt>
+								<dd>the file to log events to.</dd>
+						
+							<dt>
+								<span class="light fixedFont">{String}</span>  <b>options.encoding</b>
+								<i>Optional, Default: "utf8"</i>
+							</dt>
+								<dd>the encoding of the file.</dd>
+						
+						</dl>
 					
 					
 					
@@ -366,7 +457,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun May 15 2011 23:14:52 GMT-0500 (CDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Jun 10 2011 01:48:52 GMT-0500 (CDT)
 		</div>
 	</body>
 </html>

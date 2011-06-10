@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - comb.collections.Tree#instance-AVLTree</title>
+		<title>JsDoc Reference - comb.logging</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -195,17 +195,63 @@ ul.inheritsList
 	
 	<li><a href="../symbols/comb.array.html">comb.array</a></li>
 	
+	<li><a href="../symbols/comb.characters.html">comb.characters</a></li>
+	
 	<li><a href="../symbols/comb.collections.html">comb.collections</a></li>
 	
-	<li><a href="../symbols/comb.collections.AndersonnTree.html">comb.collections.AndersonnTree</a></li>
+	<li><a href="../symbols/comb.collections.AnderssonTree.html">comb.collections.AnderssonTree</a></li>
+	
+	<li><a href="../symbols/comb.collections.AVLTree.html">comb.collections.AVLTree</a></li>
+	
+	<li><a href="../symbols/comb.collections.BinaryTree.html">comb.collections.BinaryTree</a></li>
 	
 	<li><a href="../symbols/comb.collections.Collection.html">comb.collections.Collection</a></li>
 	
+	<li><a href="../symbols/comb.collections.HashTable.html">comb.collections.HashTable</a></li>
+	
+	<li><a href="../symbols/comb.collections.Heap.html">comb.collections.Heap</a></li>
+	
+	<li><a href="../symbols/comb.collections.Iterable.html">comb.collections.Iterable</a></li>
+	
+	<li><a href="../symbols/comb.collections.MaxHeap.html">comb.collections.MaxHeap</a></li>
+	
+	<li><a href="../symbols/comb.collections.MinHeap.html">comb.collections.MinHeap</a></li>
+	
+	<li><a href="../symbols/comb.collections.Pool.html">comb.collections.Pool</a></li>
+	
+	<li><a href="../symbols/comb.collections.PriorityQueue.html">comb.collections.PriorityQueue</a></li>
+	
+	<li><a href="../symbols/comb.collections.Queue.html">comb.collections.Queue</a></li>
+	
+	<li><a href="../symbols/comb.collections.RedBlackTree.html">comb.collections.RedBlackTree</a></li>
+	
+	<li><a href="../symbols/comb.collections.Stack.html">comb.collections.Stack</a></li>
+	
 	<li><a href="../symbols/comb.collections.Tree.html">comb.collections.Tree</a></li>
 	
-	<li><a href="../symbols/comb.collections.Tree%23instance-AVLTree.html">comb.collections.Tree#instance-AVLTree</a></li>
-	
 	<li><a href="../symbols/comb.date.html">comb.date</a></li>
+	
+	<li><a href="../symbols/comb.logging.html">comb.logging</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.html">comb.logging.appenders</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.Appender.html">comb.logging.appenders.Appender</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+	
+	<li><a href="../symbols/comb.logging.BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+	
+	<li><a href="../symbols/comb.logging.Level.html">comb.logging.Level</a></li>
+	
+	<li><a href="../symbols/comb.logging.Logger.html">comb.logging.Logger</a></li>
+	
+	<li><a href="../symbols/comb.logging.PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
 	
 	<li><a href="../symbols/comb.number.html">comb.number</a></li>
 	
@@ -232,41 +278,25 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class comb.collections.Tree#instance-AVLTree
+				Namespace comb.logging
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
-				<br />Extends
-					<a href="../symbols/comb.collections.Tree.html">comb.collections.Tree</a>.<br />
 				
 			
-				<p>An AVL tree is a self-balancing binary search tree.
-   In an AVL tree, the heights of the two child subtrees of any node differ by at most one.
-   Lookup, insertion, and deletion all take O(log n) time in both the average and worst cases,
-   where n is the number of nodes in the tree prior to the operation.
-   Insertions and deletions may require the tree to be rebalanced by one or more tree rotations.</p>
-<p>AVL trees are more rigidly balanced than red-black trees, leading to slower insertion and removal but faster retrieval</p>
-
-<b>Performance</b>
-<table>
-    <tr><td></td><td>Best</td><td>Worst</td></tr>
-    <tr><td>space</td><td>O(n)</td><td>O(n)</td></tr>
-    <tr><td>Search</td><td>O(log n)</td><td>O(log n)</td></tr>
-    <tr><td>Insert</td><td>O(log n)</td><td>O(log n)</td></tr>
-    <tr><td>Delete</td><td>O(log n)</td><td>O(log n)</td></tr>
-<table>
+				logging package
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_collections_AVLTree.js.html">AVLTree.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_logging_index.js.html">index.js</a>.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class comb.collections.Tree#instance-AVLTree.">
-				<caption>Class Summary</caption>
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class comb.logging.">
+				<caption>Namespace Summary</caption>
 				<thead>
 					<tr>
 						<th scope="col">Constructor Attributes</th>
@@ -275,10 +305,10 @@ ul.inheritsList
 				</thead>
 				<tbody>
 					<tr>
-						<td class="attributes">&lt;inner&gt; &nbsp;</td>
+						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/comb.collections.Tree%23instance-AVLTree.html#constructor">comb.collections.Tree#instance-AVLTree</a></b>()
+								<b><a href="../symbols/comb.logging.html#constructor">comb.logging</a></b>
 							</div>
 							<div class="description"></div>
 						</td>
@@ -293,22 +323,9 @@ ul.inheritsList
 				
 				
 				
-				<dl class="inheritsList">
-				<dt>Fields borrowed from class <a href="../symbols/comb.collections.Tree.html">comb.collections.Tree</a>: </dt><dd><a href="../symbols/comb.collections.Tree.html#root">root</a></dd>
-				</dl>
-				
 			
 
 <!-- ============================== methods summary ======================== -->
-			
-				
-				
-				
-				
-				<dl class="inheritsList">
-				<dt>Methods borrowed from class <a href="../symbols/comb.collections.Tree.html">comb.collections.Tree</a>: </dt><dd><a href="../symbols/comb.collections.Tree.html#clear">clear</a>, <a href="../symbols/comb.collections.Tree.html#contains">contains</a>, <a href="../symbols/comb.collections.Tree.html#every">every</a>, <a href="../symbols/comb.collections.Tree.html#filter">filter</a>, <a href="../symbols/comb.collections.Tree.html#find">find</a>, <a href="../symbols/comb.collections.Tree.html#findGreaterThan">findGreaterThan</a>, <a href="../symbols/comb.collections.Tree.html#findLessThan">findLessThan</a>, <a href="../symbols/comb.collections.Tree.html#forEach">forEach</a>, <a href="../symbols/comb.collections.Tree.html#insert">insert</a>, <a href="../symbols/comb.collections.Tree.html#isEmpty">isEmpty</a>, <a href="../symbols/comb.collections.Tree.html#map">map</a>, <a href="../symbols/comb.collections.Tree.html#print">print</a>, <a href="../symbols/comb.collections.Tree.html#reduce">reduce</a>, <a href="../symbols/comb.collections.Tree.html#reduceRight">reduceRight</a>, <a href="../symbols/comb.collections.Tree.html#remove">remove</a>, <a href="../symbols/comb.collections.Tree.html#some">some</a>, <a href="../symbols/comb.collections.Tree.html#toArray">toArray</a>, <a href="../symbols/comb.collections.Tree.html#traverse">traverse</a>, <a href="../symbols/comb.collections.Tree.html#traverseWithCondition">traverseWithCondition</a></dd><dt>Methods borrowed from class <a href="../symbols/comb.collections.Collection.html">comb.collections.Collection</a>: </dt><dd><a href="../symbols/comb.collections.Collection.html#concat">concat</a>, <a href="../symbols/comb.collections.Collection.html#indexOf">indexOf</a>, <a href="../symbols/comb.collections.Collection.html#join">join</a>, <a href="../symbols/comb.collections.Collection.html#lastIndexOf">lastIndexOf</a>, <a href="../symbols/comb.collections.Collection.html#slice">slice</a>, <a href="../symbols/comb.collections.Collection.html#toString">toString</a></dd>
-				</dl>
-				
 			
 <!-- ============================== events summary ======================== -->
 			
@@ -317,11 +334,11 @@ ul.inheritsList
 			
 			<div class="details"><a name="constructor"> </a>
 				<div class="sectionTitle">
-					Class Detail
+					Namespace Detail
 				</div>
 				
-				<div class="fixedFont">&lt;inner&gt; 
-						<b>comb.collections.Tree#instance-AVLTree</b>()
+				<div class="fixedFont">
+						<b>comb.logging</b>
 				</div>
 				
 				<div class="description">
@@ -359,7 +376,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun May 15 2011 14:15:48 GMT-0500 (CDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Jun 10 2011 01:48:52 GMT-0500 (CDT)
 		</div>
 	</body>
 </html>
