@@ -205,7 +205,7 @@
 <span class='line'>198</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>199</span> 
 <span class='line'>200</span> </span><span class="WHIT">    </span><span class="COMM">/**
-<span class='line'>201</span>      * Detrmines if a date is on a weekend
+<span class='line'>201</span>      * Determines if a date is on a weekend
 <span class='line'>202</span>      *
 <span class='line'>203</span>      * @example
 <span class='line'>204</span>      *
@@ -845,7 +845,7 @@
 <span class='line'>838</span>      * &lt;/ul>
 <span class='line'>839</span>      */</span><span class="WHIT">
 <span class='line'>840</span> </span><span class="WHIT">    </span><span class="NAME">format</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">date</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">format</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>841</span> </span><span class="WHIT">        </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">format.replace</span><span class="PUNC">(</span><span class="REGX">/([a-z])\1*/ig</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">match</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>841</span> </span><span class="WHIT">        </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">format.replace</span><span class="PUNC">(</span><span class="REGX">/([a-z])\1*/ig</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">match</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>842</span> </span><span class="WHIT">            </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">s</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">pad</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">h</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>843</span> </span><span class="WHIT">                    </span><span class="NAME">c</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">match.charAt</span><span class="PUNC">(</span><span class="NUMB">0</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>844</span> </span><span class="WHIT">                    </span><span class="NAME">l</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">match.length</span><span class="PUNC">;</span><span class="WHIT">
@@ -934,7 +934,7 @@
 <span class='line'>927</span> </span><span class="WHIT">                    </span><span class="KEYW">break</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>928</span> </span><span class="WHIT">                </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="STRN">'v'</span><span class="PUNC">:</span><span class="WHIT">
 <span class='line'>929</span> </span><span class="WHIT">                </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="STRN">'z'</span><span class="PUNC">:</span><span class="WHIT">
-<span class='line'>930</span> </span><span class="WHIT">                    </span><span class="NAME">s</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">date.getTimezoneName</span><span class="PUNC">(</span><span class="NAME">date</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>930</span> </span><span class="WHIT">                    </span><span class="NAME">s</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">comb.date.getTimezoneName</span><span class="PUNC">(</span><span class="NAME">date</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>931</span> </span><span class="WHIT">                    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">s</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>932</span> </span><span class="WHIT">                        </span><span class="KEYW">break</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>933</span> </span><span class="WHIT">                    </span><span class="PUNC">}</span><span class="WHIT">
@@ -956,15 +956,16 @@
 <span class='line'>949</span> </span><span class="COMM">//				case 'Y': case 'u': case 'W': case 'F': case 'g': case 'A': case 'e':</span><span class="WHIT">
 <span class='line'>950</span> </span><span class="COMM">//					console.log(match+" modifier unimplemented");</span><span class="WHIT">
 <span class='line'>951</span> </span><span class="WHIT">                </span><span class="KEYW">default</span><span class="PUNC">:</span><span class="WHIT">
-<span class='line'>952</span> </span><span class="WHIT">                    </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"comb.date.format: invalid pattern char: "</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">match</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>953</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>954</span> </span><span class="WHIT">            </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">pad</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>955</span> </span><span class="WHIT">                </span><span class="NAME">s</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">string.pad</span><span class="PUNC">(</span><span class="NAME">s</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">l</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>956</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>957</span> </span><span class="WHIT">            </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">s</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>958</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>959</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>960</span> 
-<span class='line'>961</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>962</span> 
-<span class='line'>963</span> </span><span class="NAME">date</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">comb.date</span><span class="PUNC">;</span></pre></body></html>
+<span class='line'>952</span> </span><span class="WHIT">		        </span><span class="NAME">s</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">match</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>953</span> </span><span class="WHIT">                  </span><span class="COMM">//  throw new Error("comb.date.format: invalid pattern char: " + match);</span><span class="WHIT">
+<span class='line'>954</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>955</span> </span><span class="WHIT">            </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">pad</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>956</span> </span><span class="WHIT">                </span><span class="NAME">s</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">string.pad</span><span class="PUNC">(</span><span class="NAME">s</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">l</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'0'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>957</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>958</span> </span><span class="WHIT">            </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">s</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>959</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>960</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>961</span> 
+<span class='line'>962</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>963</span> 
+<span class='line'>964</span> </span><span class="NAME">date</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">comb.date</span><span class="PUNC">;</span></pre></body></html>

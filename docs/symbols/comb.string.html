@@ -195,6 +195,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/comb.array.html">comb.array</a></li>
 	
+	<li><a href="../symbols/comb.characters.html">comb.characters</a></li>
+	
 	<li><a href="../symbols/comb.collections.html">comb.collections</a></li>
 	
 	<li><a href="../symbols/comb.collections.AnderssonTree.html">comb.collections.AnderssonTree</a></li>
@@ -209,9 +211,13 @@ ul.inheritsList
 	
 	<li><a href="../symbols/comb.collections.Heap.html">comb.collections.Heap</a></li>
 	
+	<li><a href="../symbols/comb.collections.Iterable.html">comb.collections.Iterable</a></li>
+	
 	<li><a href="../symbols/comb.collections.MaxHeap.html">comb.collections.MaxHeap</a></li>
 	
 	<li><a href="../symbols/comb.collections.MinHeap.html">comb.collections.MinHeap</a></li>
+	
+	<li><a href="../symbols/comb.collections.Pool.html">comb.collections.Pool</a></li>
 	
 	<li><a href="../symbols/comb.collections.PriorityQueue.html">comb.collections.PriorityQueue</a></li>
 	
@@ -224,6 +230,28 @@ ul.inheritsList
 	<li><a href="../symbols/comb.collections.Tree.html">comb.collections.Tree</a></li>
 	
 	<li><a href="../symbols/comb.date.html">comb.date</a></li>
+	
+	<li><a href="../symbols/comb.logging.html">comb.logging</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.html">comb.logging.appenders</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.Appender.html">comb.logging.appenders.Appender</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+	
+	<li><a href="../symbols/comb.logging.appenders.RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+	
+	<li><a href="../symbols/comb.logging.BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+	
+	<li><a href="../symbols/comb.logging.Level.html">comb.logging.Level</a></li>
+	
+	<li><a href="../symbols/comb.logging.Logger.html">comb.logging.Logger</a></li>
+	
+	<li><a href="../symbols/comb.logging.PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
 	
 	<li><a href="../symbols/comb.number.html">comb.number</a></li>
 	
@@ -318,6 +346,15 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont">comb.string.<b><a href="../symbols/comb.string.html#.multiply">multiply</a></b>(str, times)
+								</div>
+								<div class="description">Returns a string duplicated n times;</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont">comb.string.<b><a href="../symbols/comb.string.html#.pad">pad</a></b>(string, length, ch, end)
 								</div>
 								<div class="description">Pads a string</div>
@@ -327,9 +364,27 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont">comb.string.<b><a href="../symbols/comb.string.html#.style">style</a></b>(str, styles)
+								</div>
+								<div class="description">Styles a string according to the specified styles.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont">comb.string.<b><a href="../symbols/comb.string.html#.toArray">toArray</a></b>(str, delimeter)
 								</div>
 								<div class="description">Converts a string to an array</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">comb.string.<b><a href="../symbols/comb.string.html#.truncate">truncate</a></b>(string, length, end)
+								</div>
+								<div class="description">Truncates a string to the specified length.</div>
 							</td>
 						</tr>
 					
@@ -397,9 +452,34 @@ ul.inheritsList
 					
 					
 					<pre class="code">
- comb.string.format("%s, %s", ["Hello", "World"]);
- comb.string.format("%s, %s", "Hello", "World");
- comb.string.format("{hello}, {world}", {hello : "Hello", world : {"World"});</pre>
+ var format = comb.string.format;
+
+ format("%s, %s", ["Hello", "World"]) => "Hello, World";
+ format("%[ 10]s, %[- 10]s", ["Hello", "World"])
+     => "     Hello, World     ";
+ format("%-!10s, %#10s, %10s and %-10s",
+                         "apple", "orange", "bananas", "watermelons")
+     => "apple!!!!!, ####orange,    bananas and watermelon"
+ format("%+d, %+d, %10d, %-10d, %-+#10d, %10d",
+                         1,-2, 1, 2, 3, 100000000000)
+     => "+1, -2, 0000000001, 2000000000, +3########, 1000000000"
+
+ //When using object formats they must be in an array otherwise
+ //format will try to interpolate the properties into the string.
+ format("%j", [{a : "b"}])
+     => '{"a":"b"}'
+ format("%1j, %4j", [{a : "b"}, {a : "b"}])
+     => '{\n "a": "b"\n},\n{\n    "a": "b"\n}'
+ format("{hello}, {world}", {hello : "Hello", world : "World")
+     => "Hello, World";
+ format({[-s10]apple}, {[%#10]orange}, {[10]banana} and {[-10]watermelons}",
+                     {
+                         apple : "apple",
+                         orange : "orange",
+                         banana : "bananas",
+                         watermelons : "watermelons"
+       });
+     => applesssss, ####orange,    bananas and watermelon</pre>
 					
 					
 					
@@ -411,7 +491,29 @@ ul.inheritsList
 									<span class="light fixedFont">{String}</span> <b>str</b>
 									
 								</dt>
-								<dd>the string to format</dd>
+								<dd>the string to format, if you want to use a spacing character as padding (other than \\s) then put your format in brackets.
+ <ol>
+     <li>String Formats %[options]s</li>
+         <ul>
+             <li>- : left justified</li>
+             <li>Char : padding character <b>Excludes d,j,s</b></li>
+             <li>Number : width</li>
+         </ul>
+     </li>
+     <li>Number Formats %[options]d</li>
+         <ul>
+             <li>- : left justified</li>
+             <li>+ : signed number</li>
+             <li>Char : padding character <b>Excludes d,j,s</b></li>
+             <li>Number : width</li>
+         </ul>
+     </li>
+     <li>Object Formats %[options]j</li>
+         <ul>
+             <li>Number : spacing for object properties.</li>
+         </ul>
+     </li>
+ </ol></dd>
 							
 								<dt>
 									<span class="light fixedFont">{Object|Array|Arguments...}</span> <b>obj</b>
@@ -434,6 +536,53 @@ ul.inheritsList
 								<dd><span class="light fixedFont">{String}</span> the formatted string</dd>
 							
 							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".multiply"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">comb.string.</span><b>multiply</b>(str, times)
+					
+					</div>
+					<div class="description">
+						Returns a string duplicated n times;
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">
+comb.string.multiply("HELLO", 5) => "HELLOHELLOHELLOHELLOHELLO"</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>str</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>times</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
 						
 						
 						
@@ -479,7 +628,7 @@ comb.string.pad("STR", 5, "$") => "$$STR"</pre>
 							
 								<dt>
 									<span class="light fixedFont">{String}</span> <b>ch</b>
-									
+									<i>Optional, Default:  " "</i>
 								</dt>
 								<dd>character to pad the string with</dd>
 							
@@ -501,6 +650,82 @@ comb.string.pad("STR", 5, "$") => "$$STR"</pre>
 								<dd><span class="light fixedFont">{String}</span> the padded string</dd>
 							
 							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".style"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">comb.string.</span><b>style</b>(str, styles)
+					
+					</div>
+					<div class="description">
+						Styles a string according to the specified styles.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">//style a string red
+comb.string.style('myStr', 'red');
+//style a string red and bold
+comb.string.style('myStr', ['red', bold]);</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>str</b>
+									
+								</dt>
+								<dd>The string to style.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{String|Array}</span> <b>styles</b>
+									
+								</dt>
+								<dd>the style or styles to apply to a string.
+         options include :
+         <ul>
+            <li>bold</li>
+            <li>bright</li>
+            <li>italic</li>
+            <li>underline</li>
+            <li>inverse</li>
+            <li>crossedOut</li>
+            <li>blink</li>
+            <li>red</li>
+            <li>green</li>
+            <li>yellow</li>
+            <li>blue</li>
+            <li>magenta</li>
+            <li>cyan</li>
+            <li>white</li>
+            <li>redBackground</li>
+            <li>greenBackground</li>
+            <li>yellowBackground</li>
+            <li>blueBackground</li>
+            <li>magentaBackground</li>
+            <li>cyanBackground</li>
+            <li>whiteBackground</li>
+            <li>grey</li>
+            <li>black</li>
+
+         </ul></dd>
+							
+							</dl>
+						
+						
+						
+						
 						
 						
 						
@@ -554,6 +779,72 @@ comb.string.toArray("", "|") => []</pre>
 						
 						
 
+					<hr />
+				
+					<a name=".truncate"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">comb.string.</span><b>truncate</b>(string, length, end)
+					
+					</div>
+					<div class="description">
+						Truncates a string to the specified length.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">
+//from the beginning
+comb.string.truncate("abcdefg", 3) => "abc";
+//from the end
+comb.string.truncate("abcdefg", 3,true) => "efg"
+//omit the length
+comb.string.truncate("abcdefg") => "abcdefg"</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>string</b>
+									
+								</dt>
+								<dd>the string to truncate</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>length</b>
+									<i>Optional, Default:  -1</i>
+								</dt>
+								<dd>the max length of the string, if the string is
+                             shorter than the length then the string is returned.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Boolean}</span> <b>end</b>
+									<i>Optional, Default: false</i>
+								</dt>
+								<dd>truncate starting at the end of the string</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{String}</span> the truncated string.</dd>
+							
+							</dl>
+						
+						
+						
+
 					
 				
 			
@@ -568,7 +859,7 @@ comb.string.toArray("", "|") => []</pre>
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Mon May 16 2011 00:42:17 GMT-0500 (CDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Jun 10 2011 01:48:52 GMT-0500 (CDT)
 		</div>
 	</body>
 </html>
