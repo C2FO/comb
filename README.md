@@ -4,7 +4,13 @@ Comb
 Overview
 --------
 
-Framework for node. See Usage
+Framework for node that provides a one stop shop for frequently needed utilities, including:
+
+* Collections 
+* Logging
+* String & date formatting
+
+See Usage for more details.
 
 ## Installation
 
