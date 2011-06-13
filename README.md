@@ -6,6 +6,10 @@ Overview
 
 Framework for node. See Usage
 
+## Installation
+
+    npm install comb
+
 Usage
 -----
 

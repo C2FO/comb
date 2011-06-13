@@ -12,10 +12,6 @@
     "directories": {
         "lib": "lib"
     },
-    "dependencies" :
-    {
-        "vows" : "*"
-    },
     "engines": {
         "node": ">= 0.4.4"
     }
