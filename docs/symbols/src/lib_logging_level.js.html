@@ -112,7 +112,7 @@
 <span class='line'>105</span> </span><span class="WHIT">							</span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">level</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>106</span> </span><span class="WHIT">						</span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">base.isNumber</span><span class="PUNC">(</span><span class="NAME">level</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>107</span> </span><span class="WHIT">							</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">strLevel</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">LEVELS_REVERSE</span><span class="PUNC">[</span><span class="NAME">level</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>108</span> </span><span class="WHIT">							</span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Level</span><span class="PUNC">[</span><span class="NAME">level.toUpperCase</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>108</span> </span><span class="WHIT">							</span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Level</span><span class="PUNC">[</span><span class="NAME">strLevel</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>109</span> </span><span class="WHIT">						</span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">base.isString</span><span class="PUNC">(</span><span class="NAME">level</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>110</span> </span><span class="WHIT">							</span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Level</span><span class="PUNC">[</span><span class="NAME">level.toUpperCase</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>111</span> </span><span class="WHIT">						</span><span class="PUNC">}</span><span class="WHIT">
@@ -122,42 +122,72 @@
 <span class='line'>115</span> </span><span class="WHIT">					</span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>116</span> </span><span class="WHIT">				</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>117</span> 
-<span class='line'>118</span> </span><span class="WHIT">				</span><span class="COMM">/**
-<span class='line'>119</span> 				 * Level to allow logging of all events.
-<span class='line'>120</span> 				 */</span><span class="WHIT">
-<span class='line'>121</span> </span><span class="WHIT">				</span><span class="NAME">ALL</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>122</span> </span><span class="WHIT">				</span><span class="COMM">/**
-<span class='line'>123</span> 				 * Logs only events debug or greater.
-<span class='line'>124</span> 				 */</span><span class="WHIT">
-<span class='line'>125</span> </span><span class="WHIT">				</span><span class="NAME">DEBUG</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>126</span> </span><span class="WHIT">				</span><span class="COMM">/**
-<span class='line'>127</span> 				 * Like debug but provides a finer level of detail
-<span class='line'>128</span> 				 */</span><span class="WHIT">
-<span class='line'>129</span> </span><span class="WHIT">				</span><span class="NAME">TRACE</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>130</span> </span><span class="WHIT">				</span><span class="COMM">/**
-<span class='line'>131</span> 				 * Only info, or error related events
-<span class='line'>132</span> 				 */</span><span class="WHIT">
-<span class='line'>133</span> </span><span class="WHIT">				</span><span class="NAME">INFO</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>134</span> </span><span class="WHIT">				</span><span class="COMM">/**
-<span class='line'>135</span> 				 * Only warn or error related events
-<span class='line'>136</span> 				 */</span><span class="WHIT">
-<span class='line'>137</span> </span><span class="WHIT">				</span><span class="NAME">WARN</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>138</span> </span><span class="WHIT">				</span><span class="COMM">/**
-<span class='line'>139</span> 				 * Error or fatal events
-<span class='line'>140</span> 				 */</span><span class="WHIT">
-<span class='line'>141</span> </span><span class="WHIT">				</span><span class="NAME">ERROR</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>142</span> </span><span class="WHIT">				</span><span class="COMM">/**
-<span class='line'>143</span> 				 * Only fatal events
-<span class='line'>144</span> 				 */</span><span class="WHIT">
-<span class='line'>145</span> </span><span class="WHIT">				</span><span class="NAME">FATAL</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>146</span> </span><span class="WHIT">				</span><span class="COMM">/**
-<span class='line'>147</span> 				 * No events will be logged.
-<span class='line'>148</span> 				 */</span><span class="WHIT">
-<span class='line'>149</span> </span><span class="WHIT">				</span><span class="NAME">OFF</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="WHIT">
-<span class='line'>150</span> 
-<span class='line'>151</span> </span><span class="WHIT">			</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>152</span> </span><span class="WHIT">		</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>153</span> 
-<span class='line'>154</span> </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="KEYW">in</span><span class="WHIT"> </span><span class="NAME">LEVELS_REVERSE</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>155</span> </span><span class="WHIT">	</span><span class="NAME">Level</span><span class="PUNC">[</span><span class="NAME">LEVELS_REVERSE</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Level</span><span class="PUNC">(</span><span class="NAME">i</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">LEVELS_REVERSE</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>156</span> </span><span class="PUNC">}</span></pre></body></html>
+<span class='line'>118</span> </span><span class="WHIT">                </span><span class="COMM">/**
+<span class='line'>119</span>                  * Adds a new level to the Level object.
+<span class='line'>120</span>                  *
+<span class='line'>121</span>                  * @example
+<span class='line'>122</span>                  *
+<span class='line'>123</span>                  * logger = Logger.getLogger("my.logger");
+<span class='line'>124</span>                  *
+<span class='line'>125</span>                  * //create the custom level
+<span class='line'>126</span>                  * Level.addLevel("custom_Level", 20);
+<span class='line'>127</span>                  *
+<span class='line'>128</span>                  * //now set the level on a logger
+<span class='line'>129</span>                  * logger.level = Level.CUSTOM_LEVEL;
+<span class='line'>130</span>                  *
+<span class='line'>131</span>                  * @param {string} label the label of the level, &lt;b>Note:&lt;/b> the label will be coverted to uppercase.
+<span class='line'>132</span>                  * @param {number} level the level of the level
+<span class='line'>133</span>                  *
+<span class='line'>134</span>                  * @return {undefined|comb.logging.Level} the level that was created.
+<span class='line'>135</span>                  *
+<span class='line'>136</span>                  */</span><span class="WHIT">
+<span class='line'>137</span> </span><span class="WHIT">                </span><span class="NAME">addLevel</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">label</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">level</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>138</span> </span><span class="WHIT">                    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>139</span> </span><span class="WHIT">                    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">base.isString</span><span class="PUNC">(</span><span class="NAME">label</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">base.isNumber</span><span class="PUNC">(</span><span class="NAME">level</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>140</span> </span><span class="WHIT">                        </span><span class="NAME">label</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">label.toUpperCase</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>141</span> </span><span class="WHIT">                        </span><span class="NAME">LEVELS_REVERSE</span><span class="PUNC">[</span><span class="NAME">level</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">label</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>142</span> </span><span class="WHIT">                        </span><span class="NAME">LEVELS</span><span class="PUNC">[</span><span class="NAME">label</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">level</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>143</span> </span><span class="WHIT">                        </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">[</span><span class="NAME">label</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Level</span><span class="PUNC">(</span><span class="NAME">level</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">label</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>144</span> </span><span class="WHIT">                    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>145</span> </span><span class="WHIT">                    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>146</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>147</span> 
+<span class='line'>148</span> </span><span class="WHIT">				</span><span class="COMM">/**
+<span class='line'>149</span> 				 * Level to allow logging of all events.
+<span class='line'>150</span> 				 */</span><span class="WHIT">
+<span class='line'>151</span> </span><span class="WHIT">				</span><span class="NAME">ALL</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>152</span> </span><span class="WHIT">				</span><span class="COMM">/**
+<span class='line'>153</span> 				 * Logs only events debug or greater.
+<span class='line'>154</span> 				 */</span><span class="WHIT">
+<span class='line'>155</span> </span><span class="WHIT">				</span><span class="NAME">DEBUG</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>156</span> </span><span class="WHIT">				</span><span class="COMM">/**
+<span class='line'>157</span> 				 * Like debug but provides a finer level of detail
+<span class='line'>158</span> 				 */</span><span class="WHIT">
+<span class='line'>159</span> </span><span class="WHIT">				</span><span class="NAME">TRACE</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>160</span> </span><span class="WHIT">				</span><span class="COMM">/**
+<span class='line'>161</span> 				 * Only info, or error related events
+<span class='line'>162</span> 				 */</span><span class="WHIT">
+<span class='line'>163</span> </span><span class="WHIT">				</span><span class="NAME">INFO</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>164</span> </span><span class="WHIT">				</span><span class="COMM">/**
+<span class='line'>165</span> 				 * Only warn or error related events
+<span class='line'>166</span> 				 */</span><span class="WHIT">
+<span class='line'>167</span> </span><span class="WHIT">				</span><span class="NAME">WARN</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>168</span> </span><span class="WHIT">				</span><span class="COMM">/**
+<span class='line'>169</span> 				 * Error or fatal events
+<span class='line'>170</span> 				 */</span><span class="WHIT">
+<span class='line'>171</span> </span><span class="WHIT">				</span><span class="NAME">ERROR</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>172</span> </span><span class="WHIT">				</span><span class="COMM">/**
+<span class='line'>173</span> 				 * Only fatal events
+<span class='line'>174</span> 				 */</span><span class="WHIT">
+<span class='line'>175</span> </span><span class="WHIT">				</span><span class="NAME">FATAL</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>176</span> </span><span class="WHIT">				</span><span class="COMM">/**
+<span class='line'>177</span> 				 * No events will be logged.
+<span class='line'>178</span> 				 */</span><span class="WHIT">
+<span class='line'>179</span> </span><span class="WHIT">				</span><span class="NAME">OFF</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="WHIT">
+<span class='line'>180</span> 
+<span class='line'>181</span> </span><span class="WHIT">			</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>182</span> </span><span class="WHIT">		</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>183</span> 
+<span class='line'>184</span> </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="KEYW">in</span><span class="WHIT"> </span><span class="NAME">LEVELS_REVERSE</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>185</span> </span><span class="WHIT">	</span><span class="NAME">Level</span><span class="PUNC">[</span><span class="NAME">LEVELS_REVERSE</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Level</span><span class="PUNC">(</span><span class="NAME">parseInt</span><span class="PUNC">(</span><span class="NAME">i</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">10</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">LEVELS_REVERSE</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>186</span> </span><span class="PUNC">}</span></pre></body></html>

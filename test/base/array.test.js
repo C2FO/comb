@@ -1,10 +1,11 @@
 var vows = require('vows'),
         assert = require('assert'),
-        comb = require("../../lib"),
+        comb = require("index"),
         define = comb.define,
         hitch = comb.hitch,
         Broadcaster = comb;
 
+var ret = (module.exports = exports = new comb.Promise());
 var suite = vows.describe("Array utilities");
 //Super of other classes
 suite.addBatch({
@@ -12,6 +13,8 @@ suite.addBatch({
         topic : comb.array,
 
         "is should sum properly" : function(topic) {
+            assert.equal(topic.sum(), 0);
+            assert.equal(topic.sum([]), 0);
             assert.equal(topic.sum([1,2,3]), 6);
             assert.equal(topic.sum(["A","B","C"]), "ABC");
             var d1 = new Date(1999), d2 = new Date(2000), d3 = new Date(3000);
@@ -24,6 +27,7 @@ suite.addBatch({
         },
 
         "is should flatten properly" : function(topic) {
+            assert.deepEqual(topic.flatten([1,2,3]), [1,2,3]);
             assert.deepEqual(topic.flatten([1,2], [2,3], [3,4]), [1,2,2,3,3,4]);
             assert.deepEqual(topic.flatten([1,"A"], [2,"B"], [3,"C"]), [1,"A",2,"B",3,"C"]);
         },
@@ -196,4 +200,4 @@ suite.addBatch({
 });
 
 
-suite.run({reporter : require("vows/reporters/spec")});
+suite.run({reporter : require("vows/reporters/spec")}, comb.hitch(ret,"callback"));

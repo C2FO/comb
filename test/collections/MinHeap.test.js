@@ -1,9 +1,10 @@
 var vows = require('vows'),
         assert = require('assert'),
-        comb = require("../../lib"),
+        comb = require("index"),
         MinHeap = comb.collections.MinHeap;
 
-var suite = vows.describe("A MinHead colleciton");
+var ret = (module.exports = exports = new comb.Promise());
+var suite = vows.describe("A MinHeap collection");
 suite.addBatch({
     "when using a heap and getting its count" : {
         topic : function() {
@@ -129,13 +130,21 @@ suite.addBatch({
             return h;
         },
 
+        "it should return the right key" : function(h) {
+            assert.equal(h.peekKey(), 0);
+        },
+
         "it should return the right value" : function(h) {
             assert.equal(h.peek(), "a");
         },
 
-        "after clearing it should be undefined" : function(h) {
+        "after clearing the value should be undefined" : function(h) {
             h.clear();
             assert.isUndefined(h.peek());
+        },
+
+          "after clearing the key should be undefined" : function(h) {
+            assert.isUndefined(h.peekKey());
         }
     },
 
@@ -218,4 +227,4 @@ suite.addBatch({
 
 });
 
-suite.run({reporter : require("vows/reporters/spec")});
+suite.run({reporter : require("vows/reporters/spec")}, comb.hitch(ret,"callback"));

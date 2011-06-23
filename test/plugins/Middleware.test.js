@@ -1,10 +1,11 @@
 var vows = require('vows'),
         assert = require('assert'),
-        comb = require("../../lib"),
+        comb = require("index"),
         define = comb.define,
         hitch = comb.hitch;
 
-var suite = vows.describe("A Broadcaster");
+var ret = (module.exports = exports = new comb.Promise());
+var suite = vows.describe("Middleware");
 //Super of other classes
 var Mammal = define(comb.plugins.Middleware, {
     instance : {
@@ -19,7 +20,15 @@ var Mammal = define(comb.plugins.Middleware, {
             var ret = new comb.Promise();
             this._hook("pre", "speak")
                     .then(comb.hitch(this, "_hook", "post", "speak"), hitch(ret, "errback"))
-                    .then(comb.hitch(ret, "callback"), comb.hitch(ret, "errback"));
+                    .then(comb.hitch(ret, "callback", "speak"), comb.hitch(ret, "errback"));
+            return ret;
+        },
+
+        eat : function() {
+            var ret = new comb.Promise();
+            this._hook("pre", "eat")
+                    .then(comb.hitch(this, "_hook", "post", "eat"), hitch(ret, "errback"))
+                    .then(comb.hitch(ret, "callback", "eat"), comb.hitch(ret, "errback"));
             return ret;
         }
     }
@@ -44,8 +53,23 @@ suite.addBatch({
     "a Mammal instance" :{
         topic : function() {
             var m = new Mammal({color : "gold"});
-            m.pre("speak", hitch(this, "callback", null));
-            m.speak();
+            m.eat().then(comb.hitch(this, function(str){
+                this.callback(null, str);
+            }));
+        },
+
+        "should callback right away" : function(str) {
+            assert.equal(str, "eat");
+        }
+    }
+});
+
+suite.addBatch({
+    "a Mammal instance" :{
+        topic : function() {
+            var m = new Mammal({color : "gold"});
+            m.pre("eat", hitch(this, "callback", null));
+            m.eat();
         },
 
         "should call pre middleware" : function(next) {
@@ -74,8 +98,8 @@ suite.addBatch({
     "a Mammal instance" :{
         topic : function() {
             var m = new Mammal({color : "gold"});
-            m.post("speak", hitch(this, "callback", null));
-            m.speak();
+            m.post("eat", hitch(this, "callback", null));
+            m.eat();
         },
 
         "should call post middleware" : function(next) {
@@ -86,5 +110,5 @@ suite.addBatch({
 });
 
 
-suite.run({reporter : require("vows/reporters/spec")});
+suite.run({reporter : require("vows/reporters/spec")}, comb.hitch(ret,"callback"));
 

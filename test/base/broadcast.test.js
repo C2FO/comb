@@ -1,10 +1,11 @@
 var vows = require('vows'),
         assert = require('assert'),
-        comb = require("../../lib"),
+        comb = require("index"),
         define = comb.define,
         hitch = comb.hitch,
         Broadcaster = comb;
 
+var ret = (module.exports = exports = new comb.Promise());
 var suite = vows.describe("A Broadcaster");
 //Super of other classes
 var Mammal = define(null, {
@@ -29,17 +30,21 @@ var Mammal = define(null, {
     }
 });
 
+
 suite.addBatch({
     "comb " :{
         topic : function() {
-            var m = new Mammal({color : "gold"});
-            comb.listen("speak", hitch(this, "callback", null));
+            var m = new Mammal({color : "gold"}), h;
+            h = comb.listen("speak", hitch(this, function(str){
+                this.callback(null, {handle : h, str : str});
+            }));
             m.speak();
         },
 
-        "listen for speak events" : function(str) {
+        "listen for speak events" : function(obj) {
             //This is true because they inherit from eachother!
-            assert.equal(str, "A mammal of type mammal sounds like");
+            assert.equal(obj.str, "A mammal of type mammal sounds like");
+            comb.unListen(obj.handle);
         }
     }
 });
@@ -63,19 +68,36 @@ suite.addBatch({
     }
 });
 
+suite.addBatch({
+    "comb " :{
+        topic : function() {
+            var m = new Mammal({color : "gold"}), h;
+            h = comb.connect(m, "onSpeak", hitch(this, function(str){
+                this.callback(null, {handle : h, str : str});
+            }));
+            m.speak();
+        },
+
+        "should connect to listener" : function(ret) {
+             //This is true because they inherit from eachother!
+            assert.equal(ret.str, "A mammal of type mammal sounds like");
+            comb.disconnect(ret.handle);
+
+        }
+    }
+});
 
 
 suite.addBatch({
     "comb " :{
         topic : function() {
-            var m = new Mammal({color : "gold"});
-            comb.connect(m, "onSpeak", hitch(this, "callback", null));
-            m.speak();
+            return new Mammal({color : "gold"});
         },
 
-        "should connect to listener" : function(str) {
-             //This is true because they inherit from eachother!
-            assert.equal(str, "A mammal of type mammal sounds like");
+        "should throw an error if the method does not exist connect to listener" : function(topic) {
+            assert.throws(function(){
+                comb.connect(topic, "someMethod", function(){});
+            })
         }
     }
 });
@@ -100,7 +122,24 @@ suite.addBatch({
     }
 });
 
+suite.addBatch({
+    "comb " :{
+        topic : comb,
+
+        "should throw an error disconnect with invalid handles a listener" : function(topic) {
+            //This is true because they inherit from eachother!
+            assert.throws(function(){
+                topic.disconnect();
+            });
+
+            assert.throws(function(){
+                topic.disconnect([topic, "someMethod", function(){}]);
+            });
+        }
+    }
+});
 
 
-suite.run({reporter : require("vows/reporters/spec")});
+
+suite.run({reporter : require("vows/reporters/spec")}, comb.hitch(ret,"callback"));
 

@@ -1,9 +1,10 @@
 var vows = require('vows'),
         assert = require('assert'),
-        comb = require("../../lib"),
+        comb = require("index"),
         define = comb.define,
         hitch = comb.hitch;
 
+var ret = (module.exports = exports = new comb.Promise());
 var suite = vows.describe("A Broadcaster");
 //Super of other classes
 var Mammal = define(comb.plugins.Broadcaster, {
@@ -65,5 +66,5 @@ suite.addBatch({
 
 
 
-suite.run({reporter : require("vows/reporters/spec")});
+suite.run({reporter : require("vows/reporters/spec")}, comb.hitch(ret,"callback"));
 

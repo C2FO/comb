@@ -1,10 +1,10 @@
 var vows = require('vows'),
         assert = require('assert'),
-        comb = require("../lib"),
+        comb = require("index"),
         Promise = comb.Promise,
         PromiseList = comb.PromiseList;
 
-
+var ret = (module.exports = exports = new comb.Promise());
 var suite = vows.describe("A Promise");
 
 suite.addBatch({
@@ -20,7 +20,31 @@ suite.addBatch({
         }
     },
 
-    "when using addErrback " : {
+    "when using addCallback after callback has been called" : {
+        topic : function() {
+            var promise = new Promise();
+            promise.callback("hello");
+            promise.addCallback(comb.hitch(this, "callback", null));
+        },
+        "it should callback " : function(res) {
+            assert.equal(res, "hello")
+        }
+    },
+
+    "when using callback after callback has been called" : {
+        topic : function() {
+            var promise = new Promise();
+            promise.callback("hello");
+            return promise;
+        },
+        "it should throw an error " : function(promise) {
+            assert.throws(function(){
+                promise.callback();
+            });
+        }
+    },
+
+    "when using addErrback after" : {
         topic : function() {
             var promise = new Promise();
             promise.addErrback(comb.hitch(this, "callback", null));
@@ -31,6 +55,33 @@ suite.addBatch({
             assert.equal(res, "error");
         }
     },
+
+    "when using addErrback after errback has been called" : {
+        topic : function() {
+            var promise = new Promise();
+            promise.errback("error");
+            promise.addErrback(comb.hitch(this, "callback", null));
+        },
+
+        "it should errback " : function(res) {
+            assert.equal(res, "error");
+        }
+    },
+
+    "when using errback after errback has been called" : {
+        topic : function() {
+            var promise = new Promise();
+            promise.errback("error");
+           return promise;
+        },
+
+        "it should throw an error " : function(promise) {
+            assert.throws(function(){
+                promise.errback();
+            });
+        }
+    },
+
 
     "when using then and calling back" : {
         topic : function() {
@@ -51,7 +102,30 @@ suite.addBatch({
             setTimeout(comb.hitch(promise, "errback", "error"), 1000);
         },
         "it should errback " : function(res) {
-            assert.equal(res,"error")
+            assert.equal(res, "error")
+        }
+    },
+
+    "when using then and calling back before a then has been registered" : {
+        topic : function() {
+            var promise = new Promise();
+            promise.callback("hello");
+            promise.then(comb.hitch(this, "callback", null), comb.hitch(this, "callback"));
+        },
+
+        "it should callback " : function(res) {
+            assert.equal(res, "hello")
+        }
+    },
+
+    "when using then and erring back before then has been registered" : {
+        topic : function() {
+            var promise = new Promise();
+            promise.errback("error");
+            promise.then(comb.hitch(this, "callback"), comb.hitch(this, "callback", null));
+        },
+        "it should errback " : function(res) {
+            assert.equal(res, "error")
         }
     },
 
@@ -73,7 +147,7 @@ suite.addBatch({
         },
 
         "it should callback after all are done " : function(res) {
-            assert.equal(res,"hello world!")
+            assert.equal(res, "hello world!")
         }
     },
 
@@ -96,9 +170,9 @@ suite.addBatch({
         },
 
         "it should errback after the third one " : function(res) {
-            assert.equal(res,"error")
+            assert.equal(res, "error")
         }
     }
 });
 
-suite.run({reporter : require("vows/reporters/spec")});
+suite.run({reporter : require("vows/reporters/spec")}, comb.hitch(ret, "callback"));
