@@ -193,9 +193,9 @@ ul.inheritsList
 	
 	<li><a href="../symbols/comb.html">comb</a></li>
 	
-	<li><a href="../symbols/comb-comb.html">comb-comb</a></li>
-	
 	<li><a href="../symbols/comb.array.html">comb.array</a></li>
+	
+	<li><a href="../symbols/comb.characters.html">comb.characters</a></li>
 	
 	<li><a href="../symbols/comb.collections.html">comb.collections</a></li>
 	
@@ -355,7 +355,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">comb.date.<b><a href="../symbols/comb.date.html#.difference">difference</a></b>(date1, date2, interval)
+								<div class="fixedFont">comb.date.<b><a href="../symbols/comb.date.html#.difference">difference</a></b>(date1, date2, interval, utc)
 								</div>
 								<div class="description">Finds the difference between two dates based on the specified interval</div>
 							</td>
@@ -364,7 +364,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">comb.date.<b><a href="../symbols/comb.date.html#.format">format</a></b>(date, format)
+								<div class="fixedFont">comb.date.<b><a href="../symbols/comb.date.html#.format">format</a></b>(date, format, utc)
 								</div>
 								<div class="description">Formats a date to the specidifed format string</div>
 							</td>
@@ -391,7 +391,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">comb.date.<b><a href="../symbols/comb.date.html#.isLeapYear">isLeapYear</a></b>(dateObject)
+								<div class="fixedFont">comb.date.<b><a href="../symbols/comb.date.html#.isLeapYear">isLeapYear</a></b>(dateObject, utc)
 								</div>
 								<div class="description">Determines if a date is a leap year</div>
 							</td>
@@ -400,7 +400,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">comb.date.<b><a href="../symbols/comb.date.html#.isWeekend">isWeekend</a></b>(dateObject)
+								<div class="fixedFont">comb.date.<b><a href="../symbols/comb.date.html#.isWeekend">isWeekend</a></b>(dateObject, utc)
 								</div>
 								<div class="description">Determines if a date is on a weekend</div>
 							</td>
@@ -645,7 +645,7 @@ comb.date.compare(d1, d1) => 0
 					<div class="fixedFont">&lt;static&gt; 
 					
 					
-					<span class="light">comb.date.</span><b>difference</b>(date1, date2, interval)
+					<span class="light">comb.date.</span><b>difference</b>(date1, date2, interval, utc)
 					
 					</div>
 					<div class="description">
@@ -732,6 +732,12 @@ comb.date.difference(dtA, dtB, "millisecond") => 1</pre>
      <li>millisecond | milliseconds</li>
  </ul></dd>
 							
+								<dt>
+									<b>utc</b>
+									
+								</dt>
+								<dd></dd>
+							
 							</dl>
 						
 						
@@ -747,7 +753,7 @@ comb.date.difference(dtA, dtB, "millisecond") => 1</pre>
 					<div class="fixedFont">&lt;static&gt; 
 					
 					
-					<span class="light">comb.date.</span><b>format</b>(date, format)
+					<span class="light">comb.date.</span><b>format</b>(date, format, utc)
 					
 					</div>
 					<div class="description">
@@ -807,6 +813,12 @@ comb.date.format(date, "ddMMyyyy") => "11082006"</pre>
                  <li> z    Time zone    General time zone    Pacific Standard Time; PST; GMT-08:00</li>
                  <li> Z    Time zone    RFC 822 time zone    -0800 </li>
 </ul></dd>
+							
+								<dt>
+									<b>utc</b>
+									
+								</dt>
+								<dd></dd>
 							
 							</dl>
 						
@@ -931,7 +943,7 @@ comb.date.format(date, "ddMMyyyy") => "11082006"</pre>
 					<div class="fixedFont">&lt;static&gt; 
 					
 					<span class="light">{Boolean}</span>
-					<span class="light">comb.date.</span><b>isLeapYear</b>(dateObject)
+					<span class="light">comb.date.</span><b>isLeapYear</b>(dateObject, utc)
 					
 					</div>
 					<div class="description">
@@ -963,6 +975,12 @@ comb.date.format(date, "ddMMyyyy") => "11082006"</pre>
 								</dt>
 								<dd></dd>
 							
+								<dt>
+									<b>utc</b>
+									
+								</dt>
+								<dd></dd>
+							
 							</dl>
 						
 						
@@ -985,7 +1003,7 @@ comb.date.format(date, "ddMMyyyy") => "11082006"</pre>
 					<div class="fixedFont">&lt;static&gt; 
 					
 					<span class="light">{Boolean}</span>
-					<span class="light">comb.date.</span><b>isWeekend</b>(dateObject)
+					<span class="light">comb.date.</span><b>isWeekend</b>(dateObject, utc)
 					
 					</div>
 					<div class="description">
@@ -1017,6 +1035,12 @@ comb.date.isWeekend(monday)) => false</pre>
 									
 								</dt>
 								<dd>the date to test</dd>
+							
+								<dt>
+									<b>utc</b>
+									
+								</dt>
+								<dd></dd>
 							
 							</dl>
 						
@@ -1127,7 +1151,7 @@ comb.date.isWeekend(monday)) => false</pre>
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Mon Jun 13 2011 13:10:47 GMT-0500 (CDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jun 23 2011 10:52:18 GMT-0500 (CDT)
 		</div>
 	</body>
 </html>
