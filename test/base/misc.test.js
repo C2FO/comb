@@ -1,30 +1,16 @@
 var vows = require('vows'),
         assert = require('assert'),
-        comb = require("../../lib"),
+        comb = require("index"),
         define = comb.define,
         hitch = comb.hitch,
         Broadcaster = comb;
 
+var ret = (module.exports = exports = new comb.Promise());
 var suite = vows.describe("Misc utilities");
 //Super of other classes
 suite.addBatch({
     "comb " :{
-        topic : function() {
-            return comb
-        },
-
-        "should test if something is a number" : function(topic) {
-            //This is true because they inherit from eachother!
-            assert.isTrue(topic.isNumber(1));
-            assert.isFalse(topic.isNumber(function() {
-            }));
-            assert.isFalse(topic.isNumber("hello"));
-            assert.isFalse(topic.isNumber({}));
-            assert.isFalse(topic.isNumber(new Date()));
-            assert.isFalse(topic.isNumber(true));
-
-        },
-
+        topic : comb,
 
         "should test if something is a boolean" : function(topic) {
             //This is true because they inherit from eachother!
@@ -71,11 +57,12 @@ suite.addBatch({
             assert.isTrue(topic.isInstanceOf(new Number(1), Number));
             assert.isTrue(topic.isInstanceOf(new String(1), String));
             assert.isFalse(topic.isInstanceOf(undefined, String));
+            assert.isFalse(topic.isInstanceOf(undefined, 1));
 
         }
     }
 });
 
 
-suite.run({reporter : require("vows/reporters/spec")});
+suite.run({reporter : require("vows/reporters/spec")}, comb.hitch(ret,"callback"));
 

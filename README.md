@@ -12,6 +12,10 @@ Framework for node that provides a one stop shop for frequently needed utilities
 
 See Usage for more details.
 
+## Installation
+
+    npm install comb
+
 Usage
 -----
 

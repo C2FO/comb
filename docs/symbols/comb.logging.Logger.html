@@ -322,7 +322,7 @@ ul.inheritsList
 <p>For information on configurators see <a href="../symbols/comb.logging.BasicConfigurator.html">comb.logging.BasicConfigurator</a> or <a href="../symbols/comb.logging.PropertyConfigurator.html">comb.logging.PropertyConfigurator</a>.</p>
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_logging_index.js.html">index.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/lib_logging_index.js.html">index.js</a>.
 				
 			</p>
 
@@ -410,7 +410,7 @@ ul.inheritsList
 								<div class="fixedFont">
 								<b><a href="../symbols/comb.logging.Logger.html#isError">isError</a></b>
 								</div>
-								<div class="description">true if this Loggers level is DEBUG</div>
+								<div class="description">true if this Loggers level is ERROR</div>
 							</td>
 						</tr>
 					
@@ -420,7 +420,7 @@ ul.inheritsList
 								<div class="fixedFont">
 								<b><a href="../symbols/comb.logging.Logger.html#isFatal">isFatal</a></b>
 								</div>
-								<div class="description">true if this Loggers level is DEBUG</div>
+								<div class="description">true if this Loggers level is FATAL</div>
 							</td>
 						</tr>
 					
@@ -430,7 +430,7 @@ ul.inheritsList
 								<div class="fixedFont">
 								<b><a href="../symbols/comb.logging.Logger.html#isInfo">isInfo</a></b>
 								</div>
-								<div class="description">true if this Loggers level is DEBUG</div>
+								<div class="description">true if this Loggers level is INFO</div>
 							</td>
 						</tr>
 					
@@ -440,7 +440,7 @@ ul.inheritsList
 								<div class="fixedFont">
 								<b><a href="../symbols/comb.logging.Logger.html#isOff">isOff</a></b>
 								</div>
-								<div class="description">true if this Loggers level is DEBUG</div>
+								<div class="description">true if this Loggers level is OFF</div>
 							</td>
 						</tr>
 					
@@ -450,7 +450,7 @@ ul.inheritsList
 								<div class="fixedFont">
 								<b><a href="../symbols/comb.logging.Logger.html#isTrace">isTrace</a></b>
 								</div>
-								<div class="description">true if this Loggers level is DEBUG</div>
+								<div class="description">true if this Loggers level is TRACE</div>
 							</td>
 						</tr>
 					
@@ -460,7 +460,7 @@ ul.inheritsList
 								<div class="fixedFont">
 								<b><a href="../symbols/comb.logging.Logger.html#isWarn">isWarn</a></b>
 								</div>
-								<div class="description">true if this Loggers level is DEBUG</div>
+								<div class="description">true if this Loggers level is WARN</div>
 							</td>
 						</tr>
 					
@@ -536,9 +536,38 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/comb.logging.Logger.html#broadcast">broadcast</a></b>(topic, params)
+								</div>
+								<div class="description">Broadcasts an event to all listeners
+NOTE : the function takes a variable number of arguments
+       i.e.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/comb.logging.Logger.html#connect">connect</a></b>(obj, method, cb, scope)
+								</div>
+								<div class="description">Function to listen when other functions are called</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/comb.logging.Logger.html#debug">debug</a></b>(message)
 								</div>
 								<div class="description">Log an debug level message</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/comb.logging.Logger.html#disconnect">disconnect</a></b>(A)
+								</div>
+								<div class="description">Disconnects a listener to a function</div>
 							</td>
 						</tr>
 					
@@ -557,6 +586,15 @@ ul.inheritsList
 								<div class="fixedFont"><b><a href="../symbols/comb.logging.Logger.html#fatal">fatal</a></b>(message)
 								</div>
 								<div class="description">Log an fatal level message</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/comb.logging.Logger.html#getAppender">getAppender</a></b>(name)
+								</div>
+								<div class="description">Gets an appender from this logger</div>
 							</td>
 						</tr>
 					
@@ -593,6 +631,15 @@ ul.inheritsList
 								<div class="fixedFont"><b><a href="../symbols/comb.logging.Logger.html#isAppenderAttached">isAppenderAttached</a></b>(name)
 								</div>
 								<div class="description">Determines if an appender is attached.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/comb.logging.Logger.html#listen">listen</a></b>(topic, callback)
+								</div>
+								<div class="description">Listen for the broadcast of certain events</div>
 							</td>
 						</tr>
 					
@@ -638,6 +685,15 @@ ul.inheritsList
 								<div class="fixedFont"><b><a href="../symbols/comb.logging.Logger.html#trace">trace</a></b>(message)
 								</div>
 								<div class="description">Log an trace level message</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/comb.logging.Logger.html#unListen">unListen</a></b>(handle)
+								</div>
+								<div class="description">Disconnects a listener</div>
 							</td>
 						</tr>
 					
@@ -819,7 +875,7 @@ treeLogger.addAppender(new appenders.JSONAppender({file : "/var/log/myTreeLogger
 					
 					</div>
 					<div class="description">
-						true if this Loggers level is DEBUG
+						true if this Loggers level is ERROR
 						
 						
 					</div>
@@ -841,7 +897,7 @@ treeLogger.addAppender(new appenders.JSONAppender({file : "/var/log/myTreeLogger
 					
 					</div>
 					<div class="description">
-						true if this Loggers level is DEBUG
+						true if this Loggers level is FATAL
 						
 						
 					</div>
@@ -863,7 +919,7 @@ treeLogger.addAppender(new appenders.JSONAppender({file : "/var/log/myTreeLogger
 					
 					</div>
 					<div class="description">
-						true if this Loggers level is DEBUG
+						true if this Loggers level is INFO
 						
 						
 					</div>
@@ -885,7 +941,7 @@ treeLogger.addAppender(new appenders.JSONAppender({file : "/var/log/myTreeLogger
 					
 					</div>
 					<div class="description">
-						true if this Loggers level is DEBUG
+						true if this Loggers level is OFF
 						
 						
 					</div>
@@ -907,7 +963,7 @@ treeLogger.addAppender(new appenders.JSONAppender({file : "/var/log/myTreeLogger
 					
 					</div>
 					<div class="description">
-						true if this Loggers level is DEBUG
+						true if this Loggers level is TRACE
 						
 						
 					</div>
@@ -929,7 +985,7 @@ treeLogger.addAppender(new appenders.JSONAppender({file : "/var/log/myTreeLogger
 					
 					</div>
 					<div class="description">
-						true if this Loggers level is DEBUG
+						true if this Loggers level is WARN
 						
 						
 					</div>
@@ -1089,6 +1145,132 @@ treeLogger.addAppender(new appenders.JSONAppender({file : "/var/log/myTreeLogger
 
 					<hr />
 				
+					<a name="broadcast"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>broadcast</b>(topic, params)
+					
+					</div>
+					<div class="description">
+						Broadcasts an event to all listeners
+NOTE : the function takes a variable number of arguments
+       i.e. all arguments after the topic will be passed to the listeners
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_broadcast.js.html">broadcast.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">
+
+comb.broadcast("hello", "hello world");
+//the args "hello" and "world" will be passed to any listener of the topic
+//"hello"
+comb.broadcast("hello", "hello", "world");</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>topic</b>
+									
+								</dt>
+								<dd>the topic to brodcast</dd>
+							
+								<dt>
+									<b>params</b>
+									
+								</dt>
+								<dd>the information to bradcast</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="connect"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Array}</span>
+					<b>connect</b>(obj, method, cb, scope)
+					
+					</div>
+					<div class="description">
+						Function to listen when other functions are called
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_broadcast.js.html">broadcast.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">
+ comb.connect(obj, "event", myfunc);
+ comb.connect(obj, "event", "log", console);</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>obj</b>
+									
+								</dt>
+								<dd>the object in which the method you are connection to resides</dd>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>method</b>
+									
+								</dt>
+								<dd>the name of the method to connect to</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>cb</b>
+									
+								</dt>
+								<dd>the function to callback</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>scope</b>
+									<i>Optional</i>
+								</dt>
+								<dd>the scope to call the specified cb in</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Array}</span> handle to pass to comb.disconnect</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
 					<a name="debug"> </a>
 					<div class="fixedFont">
 					
@@ -1113,6 +1295,45 @@ treeLogger.addAppender(new appenders.JSONAppender({file : "/var/log/myTreeLogger
 									
 								</dt>
 								<dd>the message to log.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="disconnect"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>disconnect</b>(A)
+					
+					</div>
+					<div class="description">
+						Disconnects a listener to a function
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_broadcast.js.html">broadcast.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{handle}</span> <b>A</b>
+									
+								</dt>
+								<dd>handle returned from comb.connect</dd>
 							
 							</dl>
 						
@@ -1191,6 +1412,50 @@ treeLogger.addAppender(new appenders.JSONAppender({file : "/var/log/myTreeLogger
 						
 						
 						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getAppender"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{comb.logging.Appender|undefined}</span>
+					<b>getAppender</b>(name)
+					
+					</div>
+					<div class="description">
+						Gets an appender from this logger
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>name</b>
+									
+								</dt>
+								<dd>the name of the appender.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{comb.logging.Appender|undefined}</span> returns the appender with the specified name or
+                                         undefined if it is not found.</dd>
+							
+							</dl>
 						
 						
 						
@@ -1324,6 +1589,65 @@ treeLogger.addAppender(new appenders.JSONAppender({file : "/var/log/myTreeLogger
 						
 						
 						
+						
+						
+						
+
+					<hr />
+				
+					<a name="listen"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>listen</b>(topic, callback)
+					
+					</div>
+					<div class="description">
+						Listen for the broadcast of certain events
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_broadcast.js.html">broadcast.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code"> comb.listen("hello", function(arg1, arg2){
+    console.log(arg1);
+    console.log(arg2);
+ });</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>topic</b>
+									
+								</dt>
+								<dd>the topic to listen for</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>callback</b>
+									
+								</dt>
+								<dd>the funciton to call when the topic is published</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>a handle to pass to comb.unListen</dd>
+							
+							</dl>
 						
 						
 						
@@ -1505,6 +1829,45 @@ treeLogger.addAppender(new appenders.JSONAppender({file : "/var/log/myTreeLogger
 
 					<hr />
 				
+					<a name="unListen"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>unListen</b>(handle)
+					
+					</div>
+					<div class="description">
+						Disconnects a listener
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_broadcast.js.html">broadcast.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>handle</b>
+									
+								</dt>
+								<dd>a handle returned from comb.listen</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
 					<a name="warn"> </a>
 					<div class="fixedFont">
 					
@@ -1553,7 +1916,7 @@ treeLogger.addAppender(new appenders.JSONAppender({file : "/var/log/myTreeLogger
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Jun 10 2011 01:48:52 GMT-0500 (CDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jun 23 2011 10:52:18 GMT-0500 (CDT)
 		</div>
 	</body>
 </html>

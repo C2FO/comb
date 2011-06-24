@@ -1,7 +1,8 @@
 var vows = require('vows'),
         assert = require('assert'),
-        comb = require("../../lib"),
+        comb = require("index"),
         PriorityQueue = comb.collections.PriorityQueue;
+var ret = (module.exports = exports = new comb.Promise());
 var suite = vows.describe("A PriorityQueue colleciton");
 suite.addBatch({
     "when using a PriorityQueue and getting its count" : {
@@ -217,4 +218,4 @@ suite.addBatch({
 
 });
 
-suite.run({reporter : require("vows/reporters/spec")});
+suite.run({reporter : require("vows/reporters/spec")}, comb.hitch(ret,"callback"));

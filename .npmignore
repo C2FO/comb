@@ -3,3 +3,6 @@ node_modules
 examples
 benchmark
 docs
+support
+lib-cov
+Makefile

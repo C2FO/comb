@@ -286,10 +286,10 @@ ul.inheritsList
 				
 				
 			
-				comb
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_index.js.html">index.js</a>.
+				
+					<br /><i>Defined in: </i> <a href="../symbols/src/lib_index.js.html">index.js</a>.
 				
 			</p>
 
@@ -360,6 +360,15 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.extend">extend</a></b>(parent, extend)
+								</div>
+								<div class="description">Extends the prototype of an object if it exists otherwise it extends the object.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.hitch">hitch</a></b>(scope, method, args)
 								</div>
 								<div class="description">Binds a method to a particular scope</div>
@@ -381,6 +390,15 @@ ul.inheritsList
 								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.isDate">isDate</a></b>(obj)
 								</div>
 								<div class="description">Determines if obj is a Date</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.isEmpty">isEmpty</a></b>(object)
+								</div>
+								<div class="description">Determines if an object is empty</div>
 							</td>
 						</tr>
 					
@@ -423,9 +441,37 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.isObject">isObject</a></b>(obj)
+								</div>
+								<div class="description">Determines if obj is an object</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.isUndefined">isUndefined</a></b>(obj)
 								</div>
 								<div class="description">Determines if obj is undefined</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;inner&gt; &lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.logging.Logger#-argsToArray">logging.Logger#-argsToArray</a></b>(args)
+								</div>
+								<div class="description">Converts an arguments object to an array</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.merge">merge</a></b>(obj, props)
+								</div>
+								<div class="description">Merges objects together
+NOTE: this function takes a variable number of objects to merge</div>
 							</td>
 						</tr>
 					
@@ -507,7 +553,7 @@ especially useful for callbacks that you want to provide additional parameters t
 						Curries a function
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_base_functions.js.html">functions.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_functions.js.html">functions.js</a>.
 						
 						
 					</div>
@@ -579,7 +625,7 @@ especially useful for callbacks that you want to provide additional parameters t
 						Defines a new class to be used
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_define.js.html">define.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/lib_define.js.html">define.js</a>.
 						
 						
 					</div>
@@ -849,6 +895,81 @@ Lab.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</pre>
 
 					<hr />
 				
+					<a name=".extend"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{Object}</span>
+					<span class="light">comb.</span><b>extend</b>(parent, extend)
+					
+					</div>
+					<div class="description">
+						Extends the prototype of an object if it exists otherwise it extends the object.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_object.js.html">object.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">
+ var MyObj = function(){};
+ MyObj.prototype.test = true;
+ comb.extend(MyObj, {test2 : false, test3 : "hello", test4 : "world"});
+
+ var myObj = new MyObj();
+
+ myObj.test => true
+ myObj.test2 => false
+ myObj.test3 => "hello"
+ myObj.test4 => "world"
+
+ var myObj2 = {};
+ myObj2.test = true;
+ comb.extend(myObj2, {test2 : false, test3 : "hello", test4 : "world"});
+
+ myObj2.test => true
+ myObj2.test2 => false
+ myObj2.test3 => "hello"
+ myObj2.test4 => "world"</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>parent</b>
+									
+								</dt>
+								<dd>the parent object to extend</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>extend</b>
+									
+								</dt>
+								<dd>the extension object to mixin to the parent</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Object}</span> returns the extended object</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
 					<a name=".hitch"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
@@ -860,7 +981,7 @@ Lab.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</pre>
 						Binds a method to a particular scope
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_base_functions.js.html">functions.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_functions.js.html">functions.js</a>.
 						
 						
 					</div>
@@ -918,7 +1039,7 @@ Lab.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</pre>
 						Determines if obj is a boolean
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_base_misc.js.html">misc.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_misc.js.html">misc.js</a>.
 						
 						
 					</div>
@@ -964,7 +1085,7 @@ Lab.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</pre>
 						Determines if obj is a Date
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_base_date.js.html">date.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_date.js.html">date.js</a>.
 						
 						
 					</div>
@@ -999,6 +1120,51 @@ Lab.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</pre>
 
 					<hr />
 				
+					<a name=".isEmpty"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">comb.</span><b>isEmpty</b>(object)
+					
+					</div>
+					<div class="description">
+						Determines if an object is empty
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_object.js.html">object.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">
+comb.isEmpty({}) => true
+comg.isEmpty({a : 1}) => false</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>object</b>
+									
+								</dt>
+								<dd>the object to test</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
 					<a name=".isFunction"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
@@ -1010,7 +1176,7 @@ Lab.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</pre>
 						Determins if something is a function
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_base_functions.js.html">functions.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_functions.js.html">functions.js</a>.
 						
 						
 					</div>
@@ -1056,7 +1222,7 @@ Lab.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</pre>
 						Determines if obj is an instance of a particular class
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_base_misc.js.html">misc.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_misc.js.html">misc.js</a>.
 						
 						
 					</div>
@@ -1108,7 +1274,7 @@ Lab.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</pre>
 						Determines if obj is null
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_base_misc.js.html">misc.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_misc.js.html">misc.js</a>.
 						
 						
 					</div>
@@ -1154,7 +1320,7 @@ Lab.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</pre>
 						Determines if obj is a number
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_base_number.js.html">number.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_number.js.html">number.js</a>.
 						
 						
 					</div>
@@ -1189,6 +1355,52 @@ Lab.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</pre>
 
 					<hr />
 				
+					<a name=".isObject"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">comb.</span><b>isObject</b>(obj)
+					
+					</div>
+					<div class="description">
+						Determines if obj is an object
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_object.js.html">object.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Anything}</span> <b>obj</b>
+									
+								</dt>
+								<dd>the thing to test if it is an object</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> true if it is an object false otherwise</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
 					<a name=".isUndefined"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
@@ -1200,7 +1412,7 @@ Lab.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</pre>
 						Determines if obj is undefined
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_base_misc.js.html">misc.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_misc.js.html">misc.js</a>.
 						
 						
 					</div>
@@ -1235,6 +1447,119 @@ Lab.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</pre>
 
 					<hr />
 				
+					<a name=".logging.Logger#-argsToArray"> </a>
+					<div class="fixedFont">&lt;inner&gt; &lt;static&gt; 
+					
+					<span class="light">{Array}</span>
+					<span class="light">comb.</span><b>logging.Logger#-argsToArray</b>(args)
+					
+					</div>
+					<div class="description">
+						Converts an arguments object to an array
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_array.js.html">array.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Arguments}</span> <b>args</b>
+									
+								</dt>
+								<dd>the arguments object to convert</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Array}</span> array version of the arguments object</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".merge"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{Object}</span>
+					<span class="light">comb.</span><b>merge</b>(obj, props)
+					
+					</div>
+					<div class="description">
+						Merges objects together
+NOTE: this function takes a variable number of objects to merge
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_object.js.html">object.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">
+var myObj = {};
+comb.merge(myObj, {test : true});
+
+myObj.test => true
+
+comb.merge(myObj, {test : false}, {test2 : false}, {test3 : "hello", test4 : "world"});
+myObj.test => false
+myObj.test2 => false
+myObj.test3 => "hello"
+myObj.test4 => "world"</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>obj</b>
+									
+								</dt>
+								<dd>the object to merge into</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Obejct}</span> <b>props</b>
+									
+								</dt>
+								<dd>variable number of objects to merge into the obj</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Object}</span> the merged object</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
 					<a name=".partial"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
@@ -1247,7 +1572,7 @@ Lab.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</pre>
 especially useful for callbacks that you want to provide additional parameters to
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_base_functions.js.html">functions.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_functions.js.html">functions.js</a>.
 						
 						
 					</div>
@@ -1299,7 +1624,7 @@ especially useful for callbacks that you want to provide additional parameters t
 						Defines a singleton instance of a Class
 						
 							<br />
-							<i>Defined in: </i> <a href="../symbols/src/_Users_pollen_gitProjects_comb_lib_define.js.html">define.js</a>.
+							<i>Defined in: </i> <a href="../symbols/src/lib_define.js.html">define.js</a>.
 						
 						
 					</div>
@@ -1356,7 +1681,7 @@ See {@link define}</pre>
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Jun 10 2011 01:48:51 GMT-0500 (CDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jun 23 2011 10:52:17 GMT-0500 (CDT)
 		</div>
 	</body>
 </html>

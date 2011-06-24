@@ -1,8 +1,9 @@
 var vows = require('vows'),
         assert = require('assert'),
-        comb = require("../../lib"),
+        comb = require("index"),
         Queue = comb.collections.Queue;
 
+var ret = (module.exports = exports = new comb.Promise());
 var suite = vows.describe("A Queue colleciton");
 suite.addBatch({
    "when using a queue " : {
@@ -46,7 +47,28 @@ suite.addBatch({
            assert.isTrue(queue.values.every(function(v, i){return v == vals[i]}));
        },
 
+
+       "it should remove values" : function(queue) {
+           queue.remove("test6");
+           queue.remove("test5");
+           queue.remove("test4");
+           queue.remove("test3");
+           queue.remove("test2");
+           queue.remove("test1");
+           queue.remove("test");
+           assert.isTrue(queue.isEmpty);
+       },
+
+
        "it clear all elements" : function(queue){
+           queue.enqueue("test");
+           queue.enqueue("test1");
+           queue.enqueue("test2");
+           queue.enqueue("test3");
+           queue.enqueue("test4");
+           queue.enqueue("test5");
+           queue.enqueue("test6");
+           assert.isFalse(queue.isEmpty);
            queue.clear();
            assert.isTrue(queue.isEmpty);
            assert.equal(queue.count, 0);
@@ -57,4 +79,4 @@ suite.addBatch({
        }
    }
 });
-suite.run({reporter : require("vows/reporters/spec")});
+suite.run({reporter : require("vows/reporters/spec")}, comb.hitch(ret,"callback"));
