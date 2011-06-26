@@ -159,7 +159,7 @@ var Breed = define(Dog, {
 //be found through inheritance
 var Lab = define([Mammal, Wolf, Dog, Breed]);
 
-var MyLab = singleton([Mammal, Wolf, Dog, Breed]);
+var MyLab = singleton(Lab);
 
 var MyLabWithConstructor = singleton([Mammal, Wolf, Dog, Breed], {
     instance : {
