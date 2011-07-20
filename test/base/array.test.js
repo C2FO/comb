@@ -12,6 +12,18 @@ suite.addBatch({
     "when summing arrays " :{
         topic : comb.array,
 
+        "it should covert values to arrays" : function(topic){
+              assert.deepEqual(topic.toArray(), []);
+            assert.deepEqual(topic.toArray(1), [1]);
+            assert.deepEqual(topic.toArray([1]), [1]);
+            assert.deepEqual(topic.toArray({a : "b", c : "c"}), [["a", "b"],["c", "c"]]);
+            assert.deepEqual(topic.toArray("a", {a : "b"}), ["a",["a", "b"]]);
+            var date = new Date();
+            assert.deepEqual(topic.toArray(date), [date]);
+            assert.deepEqual(topic.toArray(true), [true]);
+            assert.deepEqual(topic.toArray(false), [false]);
+        },
+
         "is should sum properly" : function(topic) {
             assert.equal(topic.sum(), 0);
             assert.equal(topic.sum([]), 0);
