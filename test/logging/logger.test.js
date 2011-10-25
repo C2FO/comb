@@ -164,7 +164,7 @@ suite.addBatch({
                 },
 
                 "comb logger should have sub loggers now " : function() {
-                    assert.length(combLogger.subLoggers, 1);
+                    assert.lengthOf(combLogger.subLoggers, 1);
                 },
 
                 "and when setting combLogger level to DEBUG the topic should also change " : function(logger) {
@@ -192,4 +192,4 @@ suite.addBatch({
             }
         });
 
-suite.run({reporter : require("vows/reporters/spec")}, comb.hitch(ret, "callback"));
+suite.run({reporter : vows.reporter.spec}, comb.hitch(ret, "callback"));

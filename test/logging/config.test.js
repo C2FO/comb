@@ -211,7 +211,7 @@ suite.addBatch({
             }
         });
 
-suite.run({reporter : require("vows/reporters/spec")}, function() {
+suite.run({reporter : vows.reporter.spec}, function() {
     resetFS();
     ret.callback.apply(ret, arguments);
 });
