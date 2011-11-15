@@ -159,7 +159,7 @@ var Breed = define(Dog, {
 //be found through inheritance
 var Lab = define([Mammal, Wolf, Dog, Breed]);
 
-var MyLab = singleton([Mammal, Wolf, Dog, Breed]);
+var MyLab = singleton(Lab);
 
 var MyLabWithConstructor = singleton([Mammal, Wolf, Dog, Breed], {
     instance : {
@@ -436,5 +436,28 @@ suite.addBatch({
     }
 });
 
+suite.addBatch({
+    "When exporting an object to exports" : {
+        topic : function() {
+            Mammal.export(exports, "Mammal");
+            return Mammal;
+        },
 
-suite.run({reporter : require("vows/reporters/spec")}, comb.hitch(ret, "callback"));
+        "it should export to the exports " : function(topic) {
+            assert.equal(exports.Mammal, topic);
+        }
+    },
+
+    "When exporting an object to an object" : {
+        topic : function() {
+            return Mammal.export(module);;
+        },
+
+        "it should export to the module " : function(topic) {
+            assert.equal(module.exports, Mammal);
+        }
+    }
+});
+
+
+suite.run({reporter : vows.reporter.spec}, comb.hitch(ret, "callback"));

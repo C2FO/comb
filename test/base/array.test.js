@@ -1,9 +1,9 @@
 var vows = require('vows'),
-        assert = require('assert'),
-        comb = require("index"),
-        define = comb.define,
-        hitch = comb.hitch,
-        Broadcaster = comb;
+    assert = require('assert'),
+    comb = require("index"),
+    define = comb.define,
+    hitch = comb.hitch,
+    Broadcaster = comb;
 
 var ret = (module.exports = exports = new comb.Promise());
 var suite = vows.describe("Array utilities");
@@ -11,6 +11,21 @@ var suite = vows.describe("Array utilities");
 suite.addBatch({
     "when summing arrays " :{
         topic : comb.array,
+
+        "it should covert values to arrays" : function(topic) {
+            assert.deepEqual(topic.toArray(), []);
+            assert.deepEqual(topic.toArray(1), [1]);
+            assert.deepEqual(topic.toArray([1]), [1]);
+            assert.deepEqual(topic.toArray({a : "b", c : "c"}), [
+                ["a", "b"],
+                ["c", "c"]
+            ]);
+            assert.deepEqual(topic.toArray("a", {a : "b"}), ["a",["a", "b"]]);
+            var date = new Date();
+            assert.deepEqual(topic.toArray(date), [date]);
+            assert.deepEqual(topic.toArray(true), [true]);
+            assert.deepEqual(topic.toArray(false), [false]);
+        },
 
         "is should sum properly" : function(topic) {
             assert.equal(topic.sum(), 0);
@@ -179,25 +194,51 @@ suite.addBatch({
             ]);
         },
 
-        "it should union arrays" : function(topic){
+        "it should union arrays" : function(topic) {
             assert.deepEqual(topic.union(["a","b","c"], ["b","c", "d"]), ["a", "b", "c", "d"]);
             assert.deepEqual(topic.union(["a"], ["b"], ["c"], ["d"], ["c"]), ["a", "b", "c", "d"]);
         },
 
-        "it should find values at particular indexes" : function(topic){
-            var arr =["a", "b", "c", "d"]
-            assert.deepEqual(topic.valuesAt(arr, 1,2,3), ["b", "c", "d"]);
-            assert.deepEqual(topic.valuesAt(arr, 1,2,3, 4), ["b", "c", "d", null]);
-            assert.deepEqual(topic.valuesAt(arr, 0,3), ["a", "d"]);
+        "it should find values at particular indexes" : function(topic) {
+            var arr = ["a", "b", "c", "d"]
+            assert.deepEqual(topic.valuesAt(arr, 1, 2, 3), ["b", "c", "d"]);
+            assert.deepEqual(topic.valuesAt(arr, 1, 2, 3, 4), ["b", "c", "d", null]);
+            assert.deepEqual(topic.valuesAt(arr, 0, 3), ["a", "d"]);
         },
 
-        "it should transpose an array of arrays" : function(topic){
-            assert.deepEqual(topic.transpose([[1,2,3], [4,5,6]]), [ [ 1, 4 ], [ 2, 5 ], [ 3, 6 ] ]);
-            assert.deepEqual(topic.transpose([[1,2], [3,4], [5,6]]), [ [ 1, 3, 5 ], [ 2, 4, 6 ] ]);
-            assert.deepEqual(topic.transpose([[1], [3,4], [5,6]]), [[1]]);
+        "it should transpose an array of arrays" : function(topic) {
+            assert.deepEqual(topic.transpose([
+                [1,2,3],
+                [4,5,6]
+            ]), [
+                [ 1, 4 ],
+                [ 2, 5 ],
+                [ 3, 6 ]
+            ]);
+            assert.deepEqual(topic.transpose([
+                [1,2],
+                [3,4],
+                [5,6]
+            ]), [
+                [ 1, 3, 5 ],
+                [ 2, 4, 6 ]
+            ]);
+            assert.deepEqual(topic.transpose([
+                [1],
+                [3,4],
+                [5,6]
+            ]), [
+                [1]
+            ]);
+        },
+
+        "it should compact an array " : function(topic) {
+            var x;
+            assert.deepEqual(topic.compact([1,null,null,x,2]), [1,2]);
+            assert.deepEqual(topic.compact([1,2]), [1,2]);
         }
     }
 });
 
 
-suite.run({reporter : require("vows/reporters/spec")}, comb.hitch(ret,"callback"));
+suite.run({reporter : vows.reporter.spec}, comb.hitch(ret, "callback"));

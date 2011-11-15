@@ -179,7 +179,7 @@ suite.addBatch({
             }
         });
 
-suite.run({reporter : require("vows/reporters/spec")}, function() {
+suite.run({reporter : vows.reporter.spec}, function() {
     resetFs();
     ret.callback.apply(ret, arguments);
 });

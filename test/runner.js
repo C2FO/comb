@@ -29,7 +29,7 @@ var PRINT_FORMAT = comb.hitch(string, "format", "| %-40s | %9s | %4s | %5s | %6s
  * @param  {Object} cov
  */
 
-var reportCoverage = "coverage";
+var reportCoverage = process.argv[2];
 var fileMatcher = /.js$/;
 
 var printFile = function(file) {

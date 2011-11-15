@@ -207,7 +207,7 @@ suite.addBatch({
                     var ret = table.filter(function(entry, i) {
                         return i % 2;
                     });
-                    assert.length(ret.entrySet, 4);
+                    assert.lengthOf(ret.entrySet, 4);
                 },
 
                 "it should some the values" : function(table) {
@@ -248,9 +248,9 @@ suite.addBatch({
                     entrySet.forEach(function(es) {
                         table.remove(es.key);
                     });
-                    assert.length(table.entrySet, 0);
-                    assert.length(table.keys, 0);
-                    assert.length(table.values, 0);
+                    assert.lengthOf(table.entrySet, 0);
+                    assert.lengthOf(table.keys, 0);
+                    assert.lengthOf(table.values, 0);
                     assert.isTrue(table.isEmpty);
                     assert.isNull(table.remove("key"));
                     assert.isNull(table.remove("key"));
@@ -258,9 +258,9 @@ suite.addBatch({
                         table.set(es.key, es.value);
                     });
                     table.clear();
-                    assert.length(table.entrySet, 0);
-                    assert.length(table.keys, 0);
-                    assert.length(table.values, 0);
+                    assert.lengthOf(table.entrySet, 0);
+                    assert.lengthOf(table.keys, 0);
+                    assert.lengthOf(table.values, 0);
                     assert.isTrue(table.isEmpty);
                     assert.isNull(table.remove("key"));
                     assert.isNull(table.remove("key"));
@@ -269,4 +269,4 @@ suite.addBatch({
 
         });
 
-suite.run({reporter : require("vows/reporters/spec")}, comb.hitch(ret, "callback"));
+suite.run({reporter : vows.reporter.spec}, comb.hitch(ret, "callback"));

@@ -29,4 +29,4 @@ suite.addBatch({
             }
         });
 
-suite.run({reporter : require("vows/reporters/spec")}, comb.hitch(ret,"callback"));
+suite.run({reporter : vows.reporter.spec}, comb.hitch(ret,"callback"));

@@ -18,7 +18,21 @@ suite.addBatch({
                         assert.equal(topic.escapeString(c, [c]), c);
                     });
                 }
-            }
+            },
+
+             "when testing if something is an regexp" : {
+                topic : comb,
+
+                "it should determine properly" : function(topic) {
+                    assert.isTrue(topic.isRexExp(/a/));
+                    assert.isTrue(topic.isRexExp(new RegExp("a")));
+                    assert.isFalse(topic.isRexExp());
+                    assert.isFalse(topic.isRexExp(""));
+                    assert.isFalse(topic.isRexExp(1));
+                    assert.isFalse(topic.isRexExp(false));
+                    assert.isFalse(topic.isRexExp(true));
+                }
+            },
         });
 
-suite.run({reporter : require("vows/reporters/spec")}, comb.hitch(ret,"callback"));
+suite.run({reporter : vows.reporter.spec}, comb.hitch(ret,"callback"));
