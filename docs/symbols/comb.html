@@ -373,7 +373,27 @@ NOTE : the function takes a variable number of arguments
 							<td class="nameDescription">
 								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.define">define</a></b>(super, proto)
 								</div>
-								<div class="description">Defines a new class to be used</div>
+								<div class="description">Defines a new class to be used
+
+<p>
+    Class methods
+    <ul>
+        <li>as(module | bject, name): exports the object to module or the object with the name</li>
+        <li>mixin(mixin) : mixes in an object</li>
+    </ul>
+    </br>
+    Instance methods
+    <ul>
+        <li>_super(argumnents, [?newargs]): calls the super of the current method</li>
+    </ul>
+
+     </br>
+    Instance properties
+    <ul>
+        <li>_static: use to reference class properties and methods</li>
+    </ul>
+
+</p></div>
 							</td>
 						</tr>
 					
@@ -383,6 +403,15 @@ NOTE : the function takes a variable number of arguments
 								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.disconnect">disconnect</a></b>(A)
 								</div>
 								<div class="description">Disconnects a listener to a function</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.executeInOrder">executeInOrder</a></b>(args, cb)
+								</div>
+								<div class="description">This method allows one to code asynchronous code in a synchronous manner.</div>
 							</td>
 						</tr>
 					
@@ -443,6 +472,15 @@ NOTE : the function takes a variable number of arguments
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.isHash">isHash</a></b>(obj)
+								</div>
+								<div class="description">Determins if an object is just a hash and not a qualified Object such as number</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.isInstanceOf">isInstanceOf</a></b>(obj, Clazz)
 								</div>
 								<div class="description">Determines if obj is an instance of a particular class</div>
@@ -488,6 +526,15 @@ NOTE : the function takes a variable number of arguments
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.isUndefinedOrNull">isUndefinedOrNull</a></b>(obj)
+								</div>
+								<div class="description">Determines if obj is undefined or null</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.listen">listen</a></b>(topic, callback)
 								</div>
 								<div class="description">Listen for the broadcast of certain events</div>
@@ -526,7 +573,7 @@ especially useful for callbacks that you want to provide additional parameters t
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.singleton">singleton</a></b>(super, proto)
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.singleton">singleton</a></b>(sup, proto)
 								</div>
 								<div class="description">Defines a singleton instance of a Class</div>
 							</td>
@@ -796,6 +843,26 @@ comb.broadcast("hello", "hello", "world");</pre>
 					</div>
 					<div class="description">
 						Defines a new class to be used
+
+<p>
+    Class methods
+    <ul>
+        <li>as(module | bject, name): exports the object to module or the object with the name</li>
+        <li>mixin(mixin) : mixes in an object</li>
+    </ul>
+    </br>
+    Instance methods
+    <ul>
+        <li>_super(argumnents, [?newargs]): calls the super of the current method</li>
+    </ul>
+
+     </br>
+    Instance properties
+    <ul>
+        <li>_static: use to reference class properties and methods</li>
+    </ul>
+
+</p>
 						
 							<br />
 							<i>Defined in: </i> <a href="../symbols/src/lib_define.js.html">define.js</a>.
@@ -811,7 +878,7 @@ var Mammal = comb.define(null, {
 
          constructor: function(options) {
              options = options || {};
-             this.super(arguments);
+             this._super(arguments);
              this._type = options.type || "mammal";
          },
 
@@ -849,7 +916,7 @@ var Wolf = comb.define(Mammal, {
          options = options || {};
          //You can call your super constructor, or you may not
          //call it to prevent the super initializing parameters
-         this.super(arguments);
+         this._super(arguments);
          this._sound = "growl";
          this._color = options.color || "grey";
      },
@@ -857,7 +924,7 @@ var Wolf = comb.define(Mammal, {
      speak : function() {
          //override my super classes speak
          //Should return "A mammal of type mammal sounds like a growl"
-         return this.super(arguments) + " a " + this._sound;
+         return this._super(arguments) + " a " + this._sound;
      },
 
      //add new getters for sound and color
@@ -888,7 +955,7 @@ var Wolf = comb.define(Mammal, {
      soundOff : function() {
          //You can even call super in your statics!!!
          //should return "I'm a mammal!! that growls"
-         return this.super(arguments) + " that growls";
+         return this._super(arguments) + " that growls";
      }
  }
 });
@@ -900,7 +967,7 @@ var Dog = comb.define(Wolf, {
    instance: {
        constructor: function(options) {
            options = options || {};
-           this.super(arguments);
+           this._super(arguments);
            //override Wolfs initialization of sound to woof.
            this._sound = "woof";
 
@@ -908,14 +975,14 @@ var Dog = comb.define(Wolf, {
 
        speak : function() {
            //Should return "A mammal of type mammal sounds like a growl thats domesticated"
-           return this.super(arguments) + " thats domesticated";
+           return this._super(arguments) + " thats domesticated";
        }
    },
 
    static : {
        soundOff : function() {
            //should return "I'm a mammal!! that growls but now barks"
-           return this.super(arguments) + " but now barks";
+           return this._super(arguments) + " but now barks";
        }
    }
 });
@@ -939,14 +1006,14 @@ var Breed = comb.define(Dog, {
 
        constructor: function(options) {
            options = options || {};
-           this.super(arguments);
+           this._super(arguments);
            this.breed = options.breed || "lab";
        },
 
        speak : function() {
            //Should return "A mammal of type mammal sounds like a
            //growl thats domesticated with a high pitch!"
-           return this.super(arguments) + " with a " + this._pitch + " pitch!";
+           return this._super(arguments) + " with a " + this._pitch + " pitch!";
        },
 
        getters : {
@@ -959,7 +1026,7 @@ var Breed = comb.define(Dog, {
    static : {
        soundOff : function() {
            //should return "I'M A MAMMAL!! THAT GROWLS BUT NOW BARKS!"
-           return this.super(arguments).toUpperCase() + "!";
+           return this._super(arguments).toUpperCase() + "!";
        }
    }
 });
@@ -1101,6 +1168,78 @@ Lab.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</pre>
 						
 						
 						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".executeInOrder"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">comb.</span><b>executeInOrder</b>(args, cb)
+					
+					</div>
+					<div class="description">
+						This method allows one to code asynchronous code in a synchronous manner.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_promise.js.html">promise.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">var a = {
+     promiseMethod : function(){
+         var ret = new Promise();
+         setTimeout(comb.hitch(ret, "callback", 10), 1000);
+         return ret;
+     }
+}
+
+var p = comb.executeInOrder(a, function(a){
+     var x = a.promiseMethod();
+     var y = a.promiseMethod();
+     return [x, y];
+});
+
+p.then(function(ret){
+   console.log(ret) //=>[10, 10];
+});</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Object...}</span> <b>args</b>
+									
+								</dt>
+								<dd>variable number of objects.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Funciton}</span> <b>cb</b>
+									
+								</dt>
+								<dd>the function to callback to execute in order</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>comb.Promise</dd>
+							
+							</dl>
 						
 						
 						
@@ -1423,6 +1562,66 @@ comg.isEmpty({a : 1}) => false</pre>
 
 					<hr />
 				
+					<a name=".isHash"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">comb.</span><b>isHash</b>(obj)
+					
+					</div>
+					<div class="description">
+						Determins if an object is just a hash and not a qualified Object such as number
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_object.js.html">object.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">   comb.isHash({}) => true
+   comb.isHash({1 : 2, a : "b"}) => true
+   comb.isHash(new Date()) => false
+   comb.isHash(new String()) => false
+   comb.isHash(new Number()) => false
+   comb.isHash(new Boolean()) => false
+   comb.isHash() => false
+   comb.isHash("") => false
+   comb.isHash(1) => false
+   comb.isHash(false) => false
+   comb.isHash(true) => false</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Anything}</span> <b>obj</b>
+									
+								</dt>
+								<dd>the thing to test if it is a hash</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> true if it is a hash false otherwise</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
 					<a name=".isInstanceOf"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
@@ -1651,6 +1850,52 @@ comg.isEmpty({a : 1}) => false</pre>
 							<dt class="heading">Returns:</dt>
 							
 								<dd><span class="light fixedFont">{Boolean}</span> true if it is undefined false otherwise</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".isUndefinedOrNull"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">comb.</span><b>isUndefinedOrNull</b>(obj)
+					
+					</div>
+					<div class="description">
+						Determines if obj is undefined or null
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_misc.js.html">misc.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Anything}</span> <b>obj</b>
+									
+								</dt>
+								<dd>the thing to test if it is undefined or null</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> true if it is undefined or null false otherwise</dd>
 							
 							</dl>
 						
@@ -1888,7 +2133,7 @@ especially useful for callbacks that you want to provide additional parameters t
 					<div class="fixedFont">&lt;static&gt; 
 					
 					
-					<span class="light">comb.</span><b>singleton</b>(super, proto)
+					<span class="light">comb.</span><b>singleton</b>(sup, proto)
 					
 					</div>
 					<div class="description">
@@ -1918,7 +2163,7 @@ See {@link define}</pre>
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>super</b>
+									<b>sup</b>
 									
 								</dt>
 								<dd></dd>
@@ -1991,7 +2236,7 @@ See {@link define}</pre>
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Sep 08 2011 19:36:07 GMT-0500 (CDT)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Nov 18 2011 01:10:51 GMT-0600 (CST)
 		</div>
 	</body>
 </html>

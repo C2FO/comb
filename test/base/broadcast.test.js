@@ -13,7 +13,7 @@ var Mammal = define(null, {
 
         constructor: function(options) {
             options = options || {};
-            this.super(arguments);
+            this._super(arguments);
             this._type = options.type || "mammal";
         },
 
