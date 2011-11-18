@@ -1,14 +1,15 @@
 PREFIX ?= /usr/local
+PWD = `pwd`
 JSCOV = support/jscoverage/node-jscoverage
 JS_FILES = $(shell find ./lib | grep index.js && find lib | awk '!/index.js/ && /.js/' )
 BENCHMARKS = `find benchmark -name *.benchmark.js `
 DOC_COMMAND=java -jar ./support/jsdoc/jsrun.jar ./support/jsdoc/app/run.js -t=./support/jsdoc/templates/jsdoc -d=./docs
 
 test:
-	node test/runner.js
+	export NODE_PATH=$NODE_PATH:lib && node test/runner.js
 
 test-coverage:
-	node test/runner.js coverage
+	export NODE_PATH=$NODE_PATH:lib-cov && node test/runner.js coverage
 
 docs: docclean
 	$(DOC_COMMAND) $(JS_FILES)

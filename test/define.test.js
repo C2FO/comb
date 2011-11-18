@@ -15,7 +15,7 @@ var Mammal = define(null, {
 
         constructor: function(options) {
             options = options || {};
-            this.super(arguments);
+            this._super(arguments);
             this._type = options.type || "mammal";
         },
 
@@ -52,13 +52,13 @@ var Wolf = define(Mammal, {
             options = options || {};
             //call your super constructor you can call this after you initialize or not
             //call it at all to prevent the supers from initilizing things
-            this.super(arguments);
+            this._super(arguments);
             this._sound = "growl";
             this._color = options.color || "grey";
         },
 
         speak : function() {
-            return this.super(arguments) + " a " + this._sound;
+            return this._super(arguments) + " a " + this._sound;
         },
 
         getters : {
@@ -85,7 +85,7 @@ var Wolf = define(Mammal, {
     static : {
         soundOff : function() {
             //You can even call super in your statics!!!
-            return this.super(arguments) + " that growls";
+            return this._super(arguments) + " that growls";
         }
     }
 });
@@ -97,19 +97,19 @@ var Dog = define(Wolf, {
     instance: {
         constructor: function(options) {
             options = options || {};
-            this.super(arguments);
+            this._super(arguments);
             this._sound = "woof";
 
         },
 
         speak : function() {
-            return this.super(arguments) + " thats domesticated";
+            return this._super(arguments) + " thats domesticated";
         }
     },
 
     static : {
         soundOff : function() {
-            return this.super(arguments) + " but now barks";
+            return this._super(arguments) + " but now barks";
         }
     }
 });
@@ -122,12 +122,12 @@ var Breed = define(Dog, {
 
         constructor: function(options) {
             options = options || {};
-            this.super(arguments);
+            this._super(arguments);
             this.breed = options.breed || "lab";
         },
 
         speak : function() {
-            return this.super(arguments) + " with a " + this._pitch + " pitch!";
+            return this._super(arguments) + " with a " + this._pitch + " pitch!";
         },
 
         getters : {
@@ -145,7 +145,7 @@ var Breed = define(Dog, {
 
     static : {
         soundOff : function() {
-            return this.super(arguments).toUpperCase() + "!";
+            return this._super(arguments).toUpperCase() + "!";
         }
     }
 });
@@ -155,7 +155,7 @@ var Breed = define(Dog, {
 //However you are only truely an instance of Mammal
 //However the inheritance chain will look like
 //Mammal->Wolf->Dog->Breed
-//So if you call this.super, it will check breed then dog then wolf then mammal
+//So if you call this._super, it will check breed then dog then wolf then mammal
 //be found through inheritance
 var Lab = define([Mammal, Wolf, Dog, Breed]);
 
@@ -164,7 +164,7 @@ var MyLab = singleton(Lab);
 var MyLabWithConstructor = singleton([Mammal, Wolf, Dog, Breed], {
     instance : {
         constructor : function() {
-            this.super(arguments);
+            this._super(arguments);
         }
     }
 });
@@ -374,12 +374,12 @@ suite.addBatch({
 });
 
 suite.addBatch({
-    "when in creating a class that calls super without arguments" : {
+    "when in creating a class that calls _super without arguments" : {
         topic : function() {
             return define([Mammal, Wolf, Dog, Breed], {
                 instance : {
                     speak : function() {
-                        this.super();
+                        this._super();
                     }
                 }
             });
@@ -395,12 +395,12 @@ suite.addBatch({
 });
 
 suite.addBatch({
-    "when in creating a class that calls super with improper arguments" : {
+    "when in creating a class that calls _super with improper arguments" : {
         topic : function() {
             return define([Mammal, Wolf, Dog, Breed], {
                 instance : {
                     speak : function() {
-                        this.super([]);
+                        this._super([]);
                     }
                 }
             });
@@ -416,12 +416,12 @@ suite.addBatch({
 });
 
 suite.addBatch({
-    "when in creating a class that calls super with improper arguments" : {
+    "when in creating a class that calls _super with improper arguments" : {
         topic : function() {
             return define([Mammal, Wolf, Dog, Breed], {
                 instance : {
                     speak : function() {
-                        this.super(arguments);
+                        this._super(arguments);
                     }
                 }
             });
@@ -437,23 +437,23 @@ suite.addBatch({
 });
 
 suite.addBatch({
-    "When exporting an object to exports" : {
+    "When using as to export an object to exports" : {
         topic : function() {
-            Mammal.export(exports, "Mammal");
+            Mammal.as(exports, "Mammal");
             return Mammal;
         },
 
-        "it should export to the exports " : function(topic) {
+        "it should as to the exports " : function(topic) {
             assert.equal(exports.Mammal, topic);
         }
     },
 
-    "When exporting an object to an object" : {
+    "When using as to export an object to an object" : {
         topic : function() {
-            return Mammal.export(module);;
+            return Mammal.as(module);
         },
 
-        "it should export to the module " : function(topic) {
+        "it should as to the module " : function(topic) {
             assert.equal(module.exports, Mammal);
         }
     }
