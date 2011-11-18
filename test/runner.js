@@ -130,18 +130,15 @@ var startTests = function() {
         if (err) ret.errback();
         var files = stdout.split("\n");
         if (files.length) {
-
             if (reportCoverage && reportCoverage == "coverage") {
                 exec('rm -fr ' + __dirname + "/../lib-cov && node-jscoverage " + __dirname + "/../lib " + __dirname + "/../lib-cov", function(err) {
                     if (err) {
                         ret.errback(err);
                     } else {
-                        require.paths.unshift(__dirname + "/../lib-cov");
                         runTests(files).then(comb.hitch(ret, "callback"), comb.hitch(ret, "errback"));
                     }
                 });
             } else {
-                require.paths.unshift(__dirname + "/../lib");
                 runTests(files).then(comb.hitch(ret, "callback"), comb.hitch(ret, "errback"));
             }
         } else {
