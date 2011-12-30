@@ -2,8 +2,7 @@ var vows = require('vows'),
         assert = require('assert'),
         comb = require("index"),
         define = comb.define,
-        hitch = comb.hitch,
-        Broadcaster = comb;
+        hitch = comb.hitch;
 
 var ret = (module.exports = exports = new comb.Promise());
 var suite = vows.describe("A date object");

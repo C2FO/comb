@@ -44,7 +44,6 @@ var printFileSource = function(file) {
 
 function reportCoverageTable(cov) {
     // Stats
-    console.log(cov);
     var print = sys.error;
     print(COVERAGE_HEADER);
     print(TABLE_SEP(PRINT_FORMAT('filename', 'coverage', 'LOC', 'SLOC', 'missed')));

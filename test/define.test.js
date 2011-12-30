@@ -437,6 +437,45 @@ suite.addBatch({
 });
 
 suite.addBatch({
+    "when in creating a class that that has a static init method" : {
+        topic : function() {
+            return define([Mammal, Wolf, Dog, Breed], {
+                static : {
+                    initCalled : false,
+                    init : function(){
+                        this.initCalled = true;
+                    }
+                }
+            });
+        },
+
+        "it should call init" : function(Mammal) {
+           assert.isTrue(Mammal.initCalled);
+        }
+    }
+});
+
+
+suite.addBatch({
+    "when in creating a singleton that that has a static init method" : {
+        topic : function() {
+            return singleton([Mammal, Wolf, Dog, Breed], {
+                static : {
+                    initCalled : false,
+                    init : function(){
+                        this.initCalled = true;
+                    }
+                }
+            });
+        },
+
+        "it should call init" : function(Mammal) {
+            assert.isTrue(Mammal.initCalled);
+        }
+    }
+});
+
+suite.addBatch({
     "When using as to export an object to exports" : {
         topic : function() {
             Mammal.as(exports, "Mammal");
