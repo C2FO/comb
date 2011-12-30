@@ -12,6 +12,7 @@ suite.addBatch({
                 "it should push" : function(stack) {
                     stack.push("test");
                     assert.isTrue(stack.contains("test"));
+                    assert.equal("test", stack.toString());
                 },
 
                 "it should pop" : function(stack) {
@@ -40,6 +41,7 @@ suite.addBatch({
                     stack.push("test5");
                     stack.push("test6");
                     assert.equal(stack.count, 7);
+                    assert.equal("test,test1,test2,test3,test4,test5,test6", stack.toString());
                 },
 
                 "it pop values" : function(stack) {
@@ -65,6 +67,7 @@ suite.addBatch({
                     assert.isTrue(stack.values.every(function(v, i) {
                         return v == vals[i]
                     }));
+                    assert.equal("test,test1,test2,test3,test4,test5,test6", stack.toString());
                 },
 
                 "it should remove values" : function(stack) {

@@ -12,6 +12,7 @@ suite.addBatch({
        "it should enqueue" : function(queue){
            queue.enqueue("test");
            assert.isTrue(queue.contains("test"));
+           assert.equal("test", queue.toString());
        },
 
        "it should dequeue" : function(queue){
@@ -40,6 +41,7 @@ suite.addBatch({
            queue.enqueue("test5");
            queue.enqueue("test6");
            assert.equal(queue.count, 7);
+           assert.equal(",,test,test1,test2,test3,test4,test5,test6", queue.toString());
        },
 
        "it should return all values" : function(queue){
@@ -69,6 +71,7 @@ suite.addBatch({
            queue.enqueue("test5");
            queue.enqueue("test6");
            assert.isFalse(queue.isEmpty);
+           assert.equal(",,,test,test1,test2,test3,test4,test5,test6", queue.toString());
            queue.clear();
            assert.isTrue(queue.isEmpty);
            assert.equal(queue.count, 0);
