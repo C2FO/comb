@@ -134,6 +134,19 @@ suite.addBatch({
                 assert.equal(res[1], "error");
             });
         }
+    },
+
+    "when using a promise list and normailizing the results " : {
+        topic : function() {
+            var promise = new Promise(), promise2 = new Promise(), promise3 = new Promise();
+            setTimeout(comb.hitch(promise, "callback", "hello"), 1000);
+            setTimeout(comb.hitch(promise2, "callback", "world"), 1500);
+            setTimeout(comb.hitch(promise3, "callback", "!"), 2000);
+            new PromiseList([promise, promise2, promise3], true).then(comb.hitch(this, "callback", null), comb.hitch(this, "callback"));
+        },
+        "it should callback after all have fired and be in order" : function(res) {
+            assert.deepEqual(res, ["hello", "world", "!"]);
+        }
     }
 });
 
