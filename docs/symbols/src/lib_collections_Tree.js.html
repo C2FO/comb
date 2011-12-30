@@ -73,7 +73,7 @@
 <span class='line'> 66</span> 
 <span class='line'> 67</span> </span><span class="WHIT">        </span><span class="COMM">/**
 <span class='line'> 68</span>          * Inserts an item into the tree
-<span class='line'> 69</span>          * @param {*} data the item to insert
+<span class='line'> 69</span>          * @param {Anything} data the item to insert
 <span class='line'> 70</span>          */</span><span class="WHIT">
 <span class='line'> 71</span> </span><span class="WHIT">        </span><span class="NAME">insert</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">data</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 72</span> </span><span class="WHIT">            </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Not Implemented"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -81,7 +81,7 @@
 <span class='line'> 74</span> 
 <span class='line'> 75</span> </span><span class="WHIT">        </span><span class="COMM">/**
 <span class='line'> 76</span>          * Removes an item from the tree
-<span class='line'> 77</span>          * @param {*} data the item to insert
+<span class='line'> 77</span>          * @param {Anything} data the item to insert
 <span class='line'> 78</span>          */</span><span class="WHIT">
 <span class='line'> 79</span> </span><span class="WHIT">        </span><span class="NAME">remove</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">data</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 80</span> </span><span class="WHIT">            </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Not Implemented"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -247,7 +247,7 @@
 <span class='line'>240</span> </span><span class="WHIT">        </span><span class="COMM">/**
 <span class='line'>241</span>          * Reduces a tree
 <span class='line'>242</span>          *
-<span class='line'>243</span>          * @param {Function} cb called for each item in the tree
+<span class='line'>243</span>          * @param {Function} fun called for each item in the tree
 <span class='line'>244</span>          * @param [accumulator=First item in tree(Order dependant)] scope to call the function in
 <span class='line'>245</span>          * @param {Tree.PRE_ORDER|Tree.POST_ORDER|Tree.IN_ORDER|Tree.REVERSE_ORDER} [order=Tree.IN_ORDER] the traversal scheme
 <span class='line'>246</span>          *
@@ -265,7 +265,7 @@
 <span class='line'>258</span> </span><span class="WHIT">        </span><span class="COMM">/**
 <span class='line'>259</span>          * Reduces from right to left
 <span class='line'>260</span>          *
-<span class='line'>261</span>          * @param {Function} cb called for each item in the tree
+<span class='line'>261</span>          * @param {Function} fun called for each item in the tree
 <span class='line'>262</span>          * @param [accumulator=First item in tree(Order dependant)] scope to call the function in
 <span class='line'>263</span>          * @param {Tree.PRE_ORDER|Tree.POST_ORDER|Tree.IN_ORDER|Tree.REVERSE_ORDER} [order=Tree.IN_ORDER] the traversal scheme
 <span class='line'>264</span>          *
@@ -434,39 +434,35 @@
 <span class='line'>427</span>          */</span><span class="WHIT">
 <span class='line'>428</span> </span><span class="WHIT">        </span><span class="NAME">print</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>429</span> </span><span class="WHIT">            </span><span class="NAME">this.__printNode</span><span class="PUNC">(</span><span class="NAME">this.__root</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>430</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>431</span> 
-<span class='line'>432</span> </span><span class="WHIT">	    </span><span class="NAME">__iterator__</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>433</span> 
-<span class='line'>434</span> </span><span class="WHIT">	    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>435</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>436</span> 
-<span class='line'>437</span> </span><span class="WHIT">    </span><span class="NAME">static</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>438</span> </span><span class="WHIT">    </span><span class="COMM">/** @lends comb.collections.Tree */</span><span class="WHIT">
-<span class='line'>439</span> 
-<span class='line'>440</span> </span><span class="WHIT">        </span><span class="COMM">/**
-<span class='line'>441</span>          * Pre Order
-<span class='line'>442</span>          */</span><span class="WHIT">
-<span class='line'>443</span> </span><span class="WHIT">        </span><span class="NAME">PRE_ORDER</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"pre_order"</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>444</span> 
-<span class='line'>445</span> </span><span class="WHIT">        </span><span class="COMM">/**
-<span class='line'>446</span>          * In Order
-<span class='line'>447</span>          */</span><span class="WHIT">
-<span class='line'>448</span> </span><span class="WHIT">        </span><span class="NAME">IN_ORDER</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"in_order"</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>449</span> 
-<span class='line'>450</span> </span><span class="WHIT">        </span><span class="COMM">/**
-<span class='line'>451</span>          * Post Order
-<span class='line'>452</span>          */</span><span class="WHIT">
-<span class='line'>453</span> </span><span class="WHIT">        </span><span class="NAME">POST_ORDER</span><span class="PUNC">:</span><span class="STRN">"post_order"</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>454</span> 
-<span class='line'>455</span> </span><span class="WHIT">        </span><span class="COMM">/**
-<span class='line'>456</span> 
-<span class='line'>457</span>          * Reverse Order
-<span class='line'>458</span>          */</span><span class="WHIT">
-<span class='line'>459</span> </span><span class="WHIT">        </span><span class="NAME">REVERSE_ORDER</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"reverse_order"</span><span class="WHIT">
-<span class='line'>460</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>461</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>462</span> </span><span class="COMM">/**@ignore*/</span><span class="WHIT">
-<span class='line'>463</span> </span><span class="NAME">module.exports</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">exports</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Tree</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>464</span> 
-<span class='line'>465</span> </span></pre></body></html>
+<span class='line'>430</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>431</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>432</span> 
+<span class='line'>433</span> </span><span class="WHIT">    </span><span class="NAME">static</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>434</span> </span><span class="WHIT">    </span><span class="COMM">/** @lends comb.collections.Tree */</span><span class="WHIT">
+<span class='line'>435</span> 
+<span class='line'>436</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'>437</span>          * Pre Order
+<span class='line'>438</span>          */</span><span class="WHIT">
+<span class='line'>439</span> </span><span class="WHIT">        </span><span class="NAME">PRE_ORDER</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"pre_order"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>440</span> 
+<span class='line'>441</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'>442</span>          * In Order
+<span class='line'>443</span>          */</span><span class="WHIT">
+<span class='line'>444</span> </span><span class="WHIT">        </span><span class="NAME">IN_ORDER</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"in_order"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>445</span> 
+<span class='line'>446</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'>447</span>          * Post Order
+<span class='line'>448</span>          */</span><span class="WHIT">
+<span class='line'>449</span> </span><span class="WHIT">        </span><span class="NAME">POST_ORDER</span><span class="PUNC">:</span><span class="STRN">"post_order"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>450</span> 
+<span class='line'>451</span> </span><span class="WHIT">        </span><span class="COMM">/**
+<span class='line'>452</span> 
+<span class='line'>453</span>          * Reverse Order
+<span class='line'>454</span>          */</span><span class="WHIT">
+<span class='line'>455</span> </span><span class="WHIT">        </span><span class="NAME">REVERSE_ORDER</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"reverse_order"</span><span class="WHIT">
+<span class='line'>456</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>457</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>458</span> </span><span class="COMM">/**@ignore*/</span><span class="WHIT">
+<span class='line'>459</span> </span><span class="NAME">module.exports</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">exports</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Tree</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>460</span> 
+<span class='line'>461</span> </span></pre></body></html>

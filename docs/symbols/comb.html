@@ -321,6 +321,30 @@ ul.inheritsList
 			
 				
 				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class comb.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&lt;inner&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/comb.html#-array">array</a></b>
+								</div>
+								<div class="description">A port of the Rails/Sequel inflections class
+http://sequel.rubyforge.org/rdoc/classes/Sequel/Inflections.html</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
 				
 				
 			
@@ -340,6 +364,15 @@ ul.inheritsList
 					<tbody>
 					
 						<tr>
+							<td class="attributes">&lt;inner&gt; &lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.argsToArray">argsToArray</a></b>(args)
+								</div>
+								<div class="description">Converts an arguments object to an array</div>
+							</td>
+						</tr>
+					
+						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.broadcast">broadcast</a></b>(topic, params)
@@ -353,9 +386,36 @@ NOTE : the function takes a variable number of arguments
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.camelize">camelize</a></b>(str)
+								</div>
+								<div class="description">Converts a string to camelcase</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.classify">classify</a></b>(str)
+								</div>
+								<div class="description">Singularizes and camelizes the string.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.connect">connect</a></b>(obj, method, cb, scope)
 								</div>
 								<div class="description">Function to listen when other functions are called</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.createFunctionWrapper">createFunctionWrapper</a></b>(obj, handler, constructTrap, opts)
+								</div>
+								<div class="description">Creates a function proxy for an object.</div>
 							</td>
 						</tr>
 					
@@ -421,6 +481,15 @@ NOTE : the function takes a variable number of arguments
 								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.extend">extend</a></b>(parent, extend)
 								</div>
 								<div class="description">Extends the prototype of an object if it exists otherwise it extends the object.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.handlerProxy">handlerProxy</a></b>(obj, opts)
+								</div>
+								<div class="description">Creates a proxy for an object.</div>
 							</td>
 						</tr>
 					
@@ -517,6 +586,15 @@ NOTE : the function takes a variable number of arguments
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.isProxy">isProxy</a></b>(obj)
+								</div>
+								<div class="description">Determines if the object is a proxy or not.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.isUndefined">isUndefined</a></b>(obj)
 								</div>
 								<div class="description">Determines if obj is undefined</div>
@@ -542,21 +620,21 @@ NOTE : the function takes a variable number of arguments
 						</tr>
 					
 						<tr>
-							<td class="attributes">&lt;inner&gt; &lt;static&gt; &nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.logging.Logger#-argsToArray">logging.Logger#-argsToArray</a></b>(args)
-								</div>
-								<div class="description">Converts an arguments object to an array</div>
-							</td>
-						</tr>
-					
-						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.merge">merge</a></b>(obj, props)
 								</div>
 								<div class="description">Merges objects together
 NOTE: this function takes a variable number of objects to merge</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.methodMissing">methodMissing</a></b>(obj, handler, opts)
+								</div>
+								<div class="description">Creates a method missing proxy for an object.</div>
 							</td>
 						</tr>
 					
@@ -573,6 +651,15 @@ especially useful for callbacks that you want to provide additional parameters t
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.pluralize">pluralize</a></b>(str)
+								</div>
+								<div class="description">Returns the plural form of the word in the string.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.singleton">singleton</a></b>(sup, proto)
 								</div>
 								<div class="description">Defines a singleton instance of a Class</div>
@@ -582,9 +669,36 @@ especially useful for callbacks that you want to provide additional parameters t
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.singularize">singularize</a></b>(str)
+								</div>
+								<div class="description">The reverse of pluralize, returns the singular form of a word in a string.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.underscore">underscore</a></b>(str)
+								</div>
+								<div class="description">The reverse of camelize.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.unListen">unListen</a></b>(handle)
 								</div>
 								<div class="description">Disconnects a listener</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">comb.<b><a href="../symbols/comb.html#.when">when</a></b>(args, cb, eb)
+								</div>
+								<div class="description">Waits for promise and non promise values to resolve and fires callback or errback appropriately.</div>
 							</td>
 						</tr>
 					
@@ -629,12 +743,89 @@ especially useful for callbacks that you want to provide additional parameters t
 
 <!-- ============================== field details ========================== -->		
 			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name="-array"> </a>
+					<div class="fixedFont">&lt;inner&gt; 
+					
+					
+					<b>array</b>
+					
+					</div>
+					<div class="description">
+						A port of the Rails/Sequel inflections class
+http://sequel.rubyforge.org/rdoc/classes/Sequel/Inflections.html
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_inflections.js.html">inflections.js</a>.
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
 
 <!-- ============================== method details ========================= -->		
 			
 				<div class="sectionTitle">
 					Method Detail
 				</div>
+				
+					<a name=".argsToArray"> </a>
+					<div class="fixedFont">&lt;inner&gt; &lt;static&gt; 
+					
+					<span class="light">{Array}</span>
+					<span class="light">comb.</span><b>argsToArray</b>(args)
+					
+					</div>
+					<div class="description">
+						Converts an arguments object to an array
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_misc.js.html">misc.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Arguments}</span> <b>args</b>
+									
+								</dt>
+								<dd>the arguments object to convert</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Array}</span> array version of the arguments object</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
 				
 					<a name=".broadcast"> </a>
 					<div class="fixedFont">&lt;static&gt; 
@@ -686,6 +877,113 @@ comb.broadcast("hello", "hello", "world");</pre>
 						
 						
 						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".camelize"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">comb.</span><b>camelize</b>(str)
+					
+					</div>
+					<div class="description">
+						Converts a string to camelcase
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_inflections.js.html">inflections.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code"> comb.camelize('hello_world') => helloWorld
+ comb.camelize('column_name') => columnName
+ comb.camelize('columnName') => columnName
+ comb.camelize(null) => null
+ comb.camelize() => undefined</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>str</b>
+									
+								</dt>
+								<dd>the string to camelize</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{String}</span> the camelized version of the string</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".classify"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">comb.</span><b>classify</b>(str)
+					
+					</div>
+					<div class="description">
+						Singularizes and camelizes the string.  Also strips out all characters preceding
+and including a period (".").
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_inflections.js.html">inflections.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">  comb.classify('egg_and_hams') => "eggAndHam"
+  comb.classify('post') => "post"
+  comb.classify('schema.post') => "post"</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>str</b>
+									
+								</dt>
+								<dd>the string to classify</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{String}</span> the classified version of the string</dd>
+							
+							</dl>
 						
 						
 						
@@ -756,6 +1054,98 @@ comb.broadcast("hello", "hello", "world");</pre>
 								<dd><span class="light fixedFont">{Array}</span> handle to pass to <a href="../symbols/comb.html#.disconnect">comb.disconnect</a></dd>
 							
 							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".createFunctionWrapper"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">comb.</span><b>createFunctionWrapper</b>(obj, handler, constructTrap, opts)
+					
+					</div>
+					<div class="description">
+						Creates a function proxy for an object.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_proxy.js.html">proxy.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">
+//create an object that can use properties or as a function through the new operator
+var MyObject = comb.define(null, {
+    instance : {
+        hello : "hello",
+        constructor : function(){
+            this.args = comb.argsToArray(arguments);
+        }
+    }
+});
+
+//NOTE: this will not work properly for native objects like Date.
+var createNewMyObject = function(){
+   try {
+     p = new MyObject();
+    } catch (ignore) {
+         //ignore the error because its probably from missing arguments
+    }
+    //Now lets take care of arguments supplied!!!
+    return MyObject.apply(p, comb.argsToArray(arguments));
+};
+
+//This example creates an object with a world property but its not a function!
+var handle = comb.createFunctionWrapper({world : "world"}, createNewMyObject, createNewMyObject);
+
+handle.world //=> "world"
+var a = handle(1);
+a.hello;  //=>"hello"
+a.args; //=> [1];
+a = new handle(1,2);
+a.hello; //=>"hello"
+a.args; //=> [1,2];</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>obj</b>
+									
+								</dt>
+								<dd>the object to proxy</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>handler</b>
+									
+								</dt>
+								<dd>the handler to call when the object is used as a function</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>constructTrap</b>
+									
+								</dt>
+								<dd>the funciton to use when using new on the object</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>opts</b>
+									
+								</dt>
+								<dd>the prototype of the object.</dd>
+							
+							</dl>
+						
+						
+						
+						
 						
 						
 						
@@ -1183,6 +1573,14 @@ Lab.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</pre>
 					</div>
 					<div class="description">
 						This method allows one to code asynchronous code in a synchronous manner.
+
+    <p>
+        <b>
+            Using Object.define[rest of name] on objects passed will result in unexpected behavior.</br>
+            Enumerating passed in object keys is not currently supported. i.e for in loops on objects.
+            using array enumeration methods will work though!!
+        </b>
+    </p>
 						
 							<br />
 							<i>Defined in: </i> <a href="../symbols/src/lib_promise.js.html">promise.js</a>.
@@ -1192,22 +1590,29 @@ Lab.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</pre>
 					
 					
 					
-					<pre class="code">var a = {
-     promiseMethod : function(){
-         var ret = new Promise();
-         setTimeout(comb.hitch(ret, "callback", 10), 1000);
-         return ret;
-     }
-}
+					<pre class="code">
+var staticValueFunction = function (value) {
+     return comb.argsToArray(arguments).join(" ");
+};
 
-var p = comb.executeInOrder(a, function(a){
-     var x = a.promiseMethod();
-     var y = a.promiseMethod();
-     return [x, y];
+var promiseValueFunction = function (value) {
+     var ret = new comb.Promise();
+     setTimeout(comb.hitch(ret, "callback", comb.argsToArray(arguments).join(" ")), 100);
+     return ret;
+};
+
+var hash = {
+     staticValueFunction:staticValueFunction,
+     promiseValueFunction:promiseValueFunction
+};
+
+var p = comb.executeInOrder(hash, staticValueFunction, promiseValueFunction, function (hash, staticValueFunction, promiseValueFunction) {
+    var toBe = staticValueFunction(promiseValueFunction("to"), "be");
+    var notToBe = hash.promiseValueFunction("or", hash.staticValueFunction("not", toBe));
+    return hash.promiseValueFunction(toBe, notToBe);
 });
-
-p.then(function(ret){
-   console.log(ret) //=>[10, 10];
+p.addCallback(function(ret){
+    console.log(ret); //=>"to be or not to be"
 });</pre>
 					
 					
@@ -1223,7 +1628,7 @@ p.then(function(ret){
 								<dd>variable number of objects.</dd>
 							
 								<dt>
-									<span class="light fixedFont">{Funciton}</span> <b>cb</b>
+									<span class="light fixedFont">{Function}</span> <b>cb</b>
 									
 								</dt>
 								<dd>the function to callback to execute in order</dd>
@@ -1315,6 +1720,51 @@ p.then(function(ret){
 								<dd><span class="light fixedFont">{Object}</span> returns the extended object</dd>
 							
 							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".handlerProxy"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">comb.</span><b>handlerProxy</b>(obj, opts)
+					
+					</div>
+					<div class="description">
+						Creates a proxy for an object.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_proxy.js.html">proxy.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>obj</b>
+									
+								</dt>
+								<dd>object to proxy</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>opts</b>
+									
+								</dt>
+								<dd>object with methods to define on the handler.</dd>
+							
+							</dl>
+						
+						
+						
+						
 						
 						
 						
@@ -1812,6 +2262,52 @@ comg.isEmpty({a : 1}) => false</pre>
 
 					<hr />
 				
+					<a name=".isProxy"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">comb.</span><b>isProxy</b>(obj)
+					
+					</div>
+					<div class="description">
+						Determines if the object is a proxy or not.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_proxy.js.html">proxy.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Anything}</span> <b>obj</b>
+									
+								</dt>
+								<dd>object to test</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> true if it is a proxy false otherwise</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
 					<a name=".isUndefined"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
@@ -1963,52 +2459,6 @@ comg.isEmpty({a : 1}) => false</pre>
 
 					<hr />
 				
-					<a name=".logging.Logger#-argsToArray"> </a>
-					<div class="fixedFont">&lt;inner&gt; &lt;static&gt; 
-					
-					<span class="light">{Array}</span>
-					<span class="light">comb.</span><b>logging.Logger#-argsToArray</b>(args)
-					
-					</div>
-					<div class="description">
-						Converts an arguments object to an array
-						
-							<br />
-							<i>Defined in: </i> <a href="../symbols/src/lib_base_array.js.html">array.js</a>.
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<span class="light fixedFont">{Arguments}</span> <b>args</b>
-									
-								</dt>
-								<dd>the arguments object to convert</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-							<dl class="detailList">
-							<dt class="heading">Returns:</dt>
-							
-								<dd><span class="light fixedFont">{Array}</span> array version of the arguments object</dd>
-							
-							</dl>
-						
-						
-						
-
-					<hr />
-				
 					<a name=".merge"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
@@ -2053,7 +2503,7 @@ myObj.test4 => "world"</pre>
 								<dd>the object to merge into</dd>
 							
 								<dt>
-									<span class="light fixedFont">{Obejct}</span> <b>props</b>
+									<span class="light fixedFont">{Object}</span> <b>props</b>
 									
 								</dt>
 								<dd>variable number of objects to merge into the obj</dd>
@@ -2068,6 +2518,79 @@ myObj.test4 => "world"</pre>
 							<dt class="heading">Returns:</dt>
 							
 								<dd><span class="light fixedFont">{Object}</span> the merged object</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".methodMissing"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{Proxy}</span>
+					<span class="light">comb.</span><b>methodMissing</b>(obj, handler, opts)
+					
+					</div>
+					<div class="description">
+						Creates a method missing proxy for an object.
+<b>NOTE:</b> This method does not gurantee that the property will be used as a function call.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_proxy.js.html">proxy.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">
+ var x = {hello:function () {return "hello"}, world:"world"};
+ var xHandler = comb.methodMissing(x, function (m) {
+             //you can do more interesting stuff in here!
+              return function () {
+                  return [m].concat(comb.argsToArray(arguments));
+              }
+  });
+ xHandler.hello(); //=> "hello"
+ xHandler.world //=> "world"
+ xHandler.someMethod("hello", "world"); //=> [ 'someMethod', 'hello', 'world' ]</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>obj</b>
+									
+								</dt>
+								<dd>object to wrap with a method missing proxy</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>handler</b>
+									
+								</dt>
+								<dd>handle to call when a property is missing</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>opts</b>
+									
+								</dt>
+								<dd>prototype to assign to the proxy</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Proxy}</span> a proxy</dd>
 							
 							</dl>
 						
@@ -2121,6 +2644,61 @@ especially useful for callbacks that you want to provide additional parameters t
 							<dt class="heading">Returns:</dt>
 							
 								<dd><span class="light fixedFont">{Function}</span> partially hitched function</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".pluralize"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">comb.</span><b>pluralize</b>(str)
+					
+					</div>
+					<div class="description">
+						Returns the plural form of the word in the string.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_inflections.js.html">inflections.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code"> comb.pluralize("post") => "posts"
+ comb.pluralize("octopus") => "octopi"
+ comb.pluralize("sheep") => "sheep"
+ comb.pluralize("words") => "words"
+ comb.pluralize("the blue mailman") => "the blue mailmen"
+ comb.pluralize("CamelOctopus") => "CamelOctopi"</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>str</b>
+									
+								</dt>
+								<dd>the string to pluralize</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{String}</span> the pluralized version of the string</dd>
 							
 							</dl>
 						
@@ -2185,6 +2763,115 @@ See {@link define}</pre>
 
 					<hr />
 				
+					<a name=".singularize"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">comb.</span><b>singularize</b>(str)
+					
+					</div>
+					<div class="description">
+						The reverse of pluralize, returns the singular form of a word in a string.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_inflections.js.html">inflections.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">  comb.singularize("posts") => "post"
+  comb.singularize("octopi")=> "octopus"
+  comb.singularize("sheep") => "sheep"
+  comb.singularize("word") => "word"
+  comb.singularize("the blue mailmen") => "the blue mailman"
+  comb.singularize("CamelOctopi") => "CamelOctopus"</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>str</b>
+									
+								</dt>
+								<dd>the string to singularize</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{String}</span> the singularized version of the string</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".underscore"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{String}</span>
+					<span class="light">comb.</span><b>underscore</b>(str)
+					
+					</div>
+					<div class="description">
+						The reverse of camelize. Makes an underscored form from the expression in the string.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_inflections.js.html">inflections.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code"> comb.underscore('helloWorld') => hello_world
+ comb.underscore('column_name') => column_name
+ comb.underscore('columnName') => column_name
+ comb.underscore(null) => null
+ comb.underscore() => undefined</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span> <b>str</b>
+									
+								</dt>
+								<dd>The string to underscore</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{String}</span> the underscored version of the string</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
 					<a name=".unListen"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
@@ -2222,6 +2909,70 @@ See {@link define}</pre>
 						
 						
 
+					<hr />
+				
+					<a name=".when"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{<a href="../symbols/comb.Promise.html">comb.Promise</a>}</span>
+					<span class="light">comb.</span><b>when</b>(args, cb, eb)
+					
+					</div>
+					<div class="description">
+						Waits for promise and non promise values to resolve and fires callback or errback appropriately.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_promise.js.html">promise.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code"> var a = "hello";
+ var b = new comb.Promise().callback(world);
+ comb.when(a, b) => called back with ["hello", "world"];</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Anything...}</span> <b>args</b>
+									
+								</dt>
+								<dd>variable number of arguments to wait for</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>cb</b>
+									
+								</dt>
+								<dd>the callback function</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>eb</b>
+									
+								</dt>
+								<dd>the errback function</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/comb.Promise.html">comb.Promise</a>}</span> a promise that is fired when all values have resolved</dd>
+							
+							</dl>
+						
+						
+						
+
 					
 				
 			
@@ -2236,7 +2987,7 @@ See {@link define}</pre>
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Nov 18 2011 01:10:51 GMT-0600 (CST)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Dec 29 2011 18:26:03 GMT-0600 (CST)
 		</div>
 	</body>
 </html>
