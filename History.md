@@ -1,4 +1,17 @@
-0.0.3 / 2010-06-23
+0.0.6 / 2011-12-29
+==================
+  * Bug Fixes
+  * Added new Proxy methods
+  * comb.executeInOrder
+  * new test for isHash
+  * added listener or "uncaughtException" when using logging
+  * new inflections API
+  * comb.when
+  * new promise methods [both, chainBoth]
+  * static initialization block on objects using comb.define
+  * more tests
+
+0.0.3 / 2011-06-23
 ==================
   * 100% test coverage
   * Bug fixes
@@ -12,7 +25,7 @@
     * make uninstall
   * Added jscoverage sub module
 
-0.0.2 / 2010-06-11
+0.0.2 / 2011-06-11
 ==================
 
   * Added Logging

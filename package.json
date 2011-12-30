@@ -1,8 +1,8 @@
 {
     "name": "comb",
     "description": "A framework for node",
-    "version": "0.0.5",
-    "keywords" : ["OO", "Object Oriented", "Collections", "Tree", "HashTable", "Pool", "Logging", "Promise", "Promises"],
+    "version": "0.0.6",
+    "keywords" : ["OO", "Object Oriented", "Collections", "Tree", "HashTable", "Pool", "Logging", "Promise", "Promises", "Proxy"],
     "repository": {
         "type": "git",
         "url": "git@github.com:Pollen/comb.git"
