@@ -1,0 +1,274 @@
+/* default.css */
+
+@import "menu.css";
+
+html, head, body {
+    font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background: #525252;
+    overflow: hidden;
+}
+
+#menuContainer {
+    width: 100%;
+
+}
+
+.classMemberMenu {
+    position: fixed;
+    left: 10px;
+    top: 58px;
+    background: lightgray;
+    border-radius: 10px;
+    padding: 10px;
+    overflow: hidden;
+    width: 250px;
+}
+
+.classMemberMenu .memberMenuContent {
+    height: 100%;
+    overflow: auto;
+}
+
+.classMemberMenu .classMemberMenuTitle {
+    font-weight: bold;
+    font-size: 12pt;
+    margin-bottom: 17px;
+    text-decoration: underline;
+}
+
+.classMemberMenu .classMemberMenuSection {
+    font-weight: bold;
+    margin: 5px;
+    font-size: 12pt;
+
+}
+
+.classMemberMenu ul {
+    background: #525252;
+    color: white;
+    list-style-type: none;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.classMemberMenu ul li a {
+    color: white !important;
+    font-weight: normal !important;
+    text-decoration: none;
+}
+
+.classMemberMenu .italic {
+    font-style: italic;
+}
+
+.classMemberMenu .bold {
+    font-weight: bold;
+}
+
+.classMemberMenu .linethorough {
+    text-decoration: line-through;
+}
+
+.classMemberMenu .underscore {
+    text-decoration: underline;
+}
+
+#menu {
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #E5E5E5;
+}
+
+.methodDetail {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 20px;
+}
+
+.vim-js {
+    background: #525252;
+    color: white;
+    padding: 10px;
+}
+
+.header {
+    clear: both;
+    background-color: #ccc;
+    padding: 8px;
+}
+
+h1 {
+    font-size: 150%;
+    font-weight: bold;
+    padding: 0;
+    margin: 1em 0 0 .3em;
+}
+
+hr {
+    border: none 0;
+    border-top: 1px solid #525252;
+    height: 1px;
+}
+
+pre.code {
+    display: block;
+    padding: 8px;
+    border: 1px dashed #ccc;
+    color: white;
+    background: #525252;
+}
+
+#index {
+    margin-top: 24px;
+    float: left;
+    width: 160px;
+    position: absolute;
+    left: 8px;
+    background-color: #F3F3F3;
+    padding: 8px;
+}
+
+.contentContainer{
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
+#content {
+    width: 70%;
+    margin-left: 300px;
+}
+
+.section {
+    background: #d3d3d3;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+#content a {
+    color: #525252;
+    font-weight: bold;
+}
+
+.classList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 0 8px;
+    font-family: arial, sans-serif;
+    font-size: 1em;
+    overflow: auto;
+}
+
+.classList li {
+    padding: 0;
+    margin: 0 0 8px 0;
+}
+
+.summaryTable {
+    width: 100%;
+}
+
+h1.classTitle {
+    font-size: 170%;
+    line-height: 130%;
+}
+
+h2 {
+    font-size: 110%;
+}
+
+caption, div.sectionTitle {
+    color: black;
+    font-size: 16pt;
+    text-align: left;
+    padding: 2px 6px 2px 6px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+div.sectionTitle {
+    margin-bottom: 20px;
+}
+
+.summaryTable thead {
+    display: none;
+}
+
+.summaryTable td {
+    vertical-align: top;
+    padding: 4px;
+    border-bottom: 1px black solid;
+    border-right: 1px black solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes {
+    border-left: 1px black solid;
+    width: 140px;
+    text-align: right;
+    color: #525252;
+}
+
+td.attributes, .fixedFont {
+    line-height: 15px;
+    color: black;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+}
+
+.summaryTable td.nameDescription {
+    color: black;
+    text-align: left;
+    font-size: 13px;
+    line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description {
+    line-height: 15px;
+    padding: 4px;
+    padding-left: 4px;
+}
+
+.summaryTable {
+    margin-bottom: 8px;
+}
+
+ul.inheritsList {
+    list-style: square;
+    margin-left: 20px;
+    padding-left: 0;
+}
+
+.detailList {
+    margin-left: 20px;
+    line-height: 15px;
+}
+
+.detailList dt {
+    margin-left: 20px;
+}
+
+.detailList .heading {
+    font-weight: bold;
+    padding-bottom: 6px;
+    margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited {
+    color: #777;
+    font-style: italic;
+}
+
+.fineprint {
+    text-align: right;
+    font-size: 10px;
+}
