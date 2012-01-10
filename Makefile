@@ -3,7 +3,7 @@ PWD = `pwd`
 JSCOV = support/jscoverage/node-jscoverage
 JS_FILES = $(shell find ./lib | grep index.js && find lib | awk '!/index.js/ && /.js/' )
 BENCHMARKS = `find benchmark -name *.benchmark.js `
-DOC_COMMAND=java -jar ./support/jsdoc/jsrun.jar ./support/jsdoc/app/run.js -t=./support/jsdoc/templates/CoolTemplate -d=./docs
+DOC_COMMAND=java -jar ./support/jsdoc/jsrun.jar ./support/jsdoc/app/run.js -t=./support/jsdoc/templates/CoolTemplate -d=./docs -D="github:Pollenware/comb"
 
 test:
 	export NODE_PATH=$NODE_PATH:lib && node test/runner.js
