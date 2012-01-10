@@ -123,14 +123,14 @@ var runTests = function(files) {
     return ret;
 }
 
-var startTests = function() {
+var startTests = function () {
     var ret = new comb.Promise();
-    exec("find " + __dirname + " -name *.test.js", function(err, stdout) {
-        if (err) ret.errback();
+    exec("find \"" + __dirname + "\" -name *.test.js", function (err, stdout) {
+        if (err) ret.errback(err);
         var files = stdout.split("\n");
         if (files.length) {
-            if (reportCoverage && reportCoverage == "coverage") {
-                exec('rm -fr ' + __dirname + "/../lib-cov && node-jscoverage " + __dirname + "/../lib " + __dirname + "/../lib-cov", function(err) {
+            if (reportCoverage) {
+                exec('rm -fr \"' + __dirname + "/../lib-cov\" && node-jscoverage \"" + __dirname + "/../lib\" \"" + __dirname + "/../lib-cov\"", function (err) {
                     if (err) {
                         ret.errback(err);
                     } else {
@@ -148,7 +148,7 @@ var startTests = function() {
 };
 
 startTests().addErrback(function(error) {
-    console.log(error.stack);
+    console.log(error);
 });
 
 var orig = process.emit;
