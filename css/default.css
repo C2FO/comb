@@ -60,9 +60,10 @@ hr {
 }
 
 #content {
-    width: 70%;
-    margin-left: 300px;
+    margin-left: 325px;
     padding: 10px;
+    margin-right: auto;
+    max-width: 1000px;
 }
 
 .section {
@@ -87,9 +88,7 @@ hr {
     font-weight: bold;
 }
 
-.classMenu .parent ul{
-    background: none;
-}
+
 
 
 

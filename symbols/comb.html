@@ -7,31 +7,286 @@
 		
 		<title>comb</title>
 
+<!--[if gte IE 9]>
+            <style type="text/css">
+              * {
+                 filter: none !important;
+              }
+            </style>
+          <![endif]-->
         <link type="text/css" href="../css/default.css" rel="stylesheet" />
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js" type="text/javascript" charset="utf-8"></script>
-        <script type="text/javascript" src="../js/jquery.menuTree.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript" src="../js/doc.js"></script>
         <script type="text/javaScript" src="../js/chili/jquery.chili-2.2.js"></script>
         <script type="text/javaScript" src="../js/chili/recipes.js"></script>
 	</head>
 
 	<body>
+	
+    	    <a href="http://github.com/Pollenware/comb">
+    	            <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub">
+    	       </a>
+    	    
+         <div class="menuContainer">
+                        <div class="menuContainerContent">
 
-<!-- ============================== classes index ============================ -->
-		<div class="menuContainer">
-            <div class="menuContainerContent classMenu">
-    <div class="menuContainerTitle">Class Navigation</div>
-        <ul>
-            <li><span class='parentContainer'><a href="../index.html" class=""><span>All Classes</span></a></span></li>
-            <li><span class='parentContainer'><a href="../index.html" class=""><span>API</span></a></span></a>
+                        <div class="menuContainerTitle">Class Table Of Contents</div>
+                        <ul>
+                            
+            <li><span class='nodeContainer'><a href="../index.html" class=""><span>All Classes</span></a></span></li>
+            <li><span class='nodeContainer'><a href="../files.html" class=""><span>All Files</span></a></span></li>
+            <li class="parent"><span class='parentContainer'><a href="../index.html" class=""><span>API</span></a></span></a>
                 <ul><li class='parent'><span class='parentContainer'><a href="../symbols/comb.html" class="" >comb</a></span><ul><li class='parent'><span class='parentContainer'><a href="../symbols/comb.logging.html" class="" >logging</a></span><ul><li><span class='nodeContainer'><a href="../symbols/comb.logging.PropertyConfigurator.html" class="" >PropertyConfigurator</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.logging.Level.html" class="" >Level</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.logging.BasicConfigurator.html" class="" >BasicConfigurator</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.logging.Logger.html" class="" >Logger</a></span></li><li class='parent'><span class='parentContainer'><a href="../symbols/comb.logging.appenders.html" class="" >appenders</a></span><ul><li><span class='nodeContainer'><a href="../symbols/comb.logging.appenders.RollingFileAppender.html" class="" >RollingFileAppender</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.logging.appenders.ConsoleAppender.html" class="" >ConsoleAppender</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.logging.appenders.Appender.html" class="" >Appender</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.logging.appenders.FileAppender.html" class="" >FileAppender</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.logging.appenders.JSONAppender.html" class="" >JSONAppender</a></span></li></ul></li></ul></li><li><span class='nodeContainer'><a href="../symbols/comb.PromiseList.html" class="" >PromiseList</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.Promise.html" class="" >Promise</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.regexp.html" class="" >regexp</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.array.html" class="" >array</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.string.html" class="" >string</a></span></li><li class='parent'><span class='parentContainer'><a href="../symbols/comb.collections.html" class="" >collections</a></span><ul><li><span class='nodeContainer'><a href="../symbols/comb.collections.Pool.html" class="" >Pool</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.collections.Iterable.html" class="" >Iterable</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.collections.HashTable.html" class="" >HashTable</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.collections.MaxHeap.html" class="" >MaxHeap</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.collections.Heap.html" class="" >Heap</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.collections.Stack.html" class="" >Stack</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.collections.AVLTree.html" class="" >AVLTree</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.collections.AnderssonTree.html" class="" >AnderssonTree</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.collections.Collection.html" class="" >Collection</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.collections.RedBlackTree.html" class="" >RedBlackTree</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.collections.Tree.html" class="" >Tree</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.collections.Queue.html" class="" >Queue</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.collections.BinaryTree.html" class="" >BinaryTree</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.collections.PriorityQueue.html" class="" >PriorityQueue</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.collections.MinHeap.html" class="" >MinHeap</a></span></li></ul></li><li class='parent'><span class='parentContainer'><a href="../symbols/comb.plugins.html" class="" >plugins</a></span><ul><li><span class='nodeContainer'><a href="../symbols/comb.plugins.Middleware.html" class="" >Middleware</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.plugins.Broadcaster.html" class="" >Broadcaster</a></span></li></ul></li><li><span class='nodeContainer'><a href="../symbols/comb.number.html" class="" >number</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.characters.html" class="" >characters</a></span></li><li><span class='nodeContainer'><a href="../symbols/comb.date.html" class="" >date</a></span></li></ul></li></ul>
 
             </li>
-            <li><span class='parentContainer'><a href="../files.html" class=""><span>File</span></a></span></li>
-</ul>
-</div>
-</div>
-        </div>
+
+
+                        <!-- ============================== constructor summary ==================== -->
+                        			
+
+                        			   <li>
+                        			        <span class="nodeContainer">
+                        			                <a href="../symbols/comb.html#constructor" class="" >comb</a>
+                        			        </span>
+                        			   </li>
+                                     
+                        <!-- ============================== properties toc ===================== -->
+                        			
+                        				
+                        				
+                        			
+
+                        <!-- ============================== methods toc ======================== -->
+                                    
+                                        
+                                        	
+                                        	 <li class="parent"><span class="parentContainer"><a href="#">Methods</a></span>
+                                                <ul>
+                                                    	
+                                                    	       <li class=" underscore italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.argsToArray" class="" >argsToArray</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.broadcast" class="" >broadcast</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.camelize" class="" >camelize</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.classify" class="" >classify</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.connect" class="" >connect</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.createFunctionWrapper" class="" >createFunctionWrapper</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.curry" class="" >curry</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.define" class="" >define</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.disconnect" class="" >disconnect</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.executeInOrder" class="" >executeInOrder</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.extend" class="" >extend</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.handlerProxy" class="" >handlerProxy</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.hitch" class="" >hitch</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.isBoolean" class="" >isBoolean</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.isDate" class="" >isDate</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.isEmpty" class="" >isEmpty</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.isFunction" class="" >isFunction</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.isHash" class="" >isHash</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.isInstanceOf" class="" >isInstanceOf</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.isNull" class="" >isNull</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.isNumber" class="" >isNumber</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.isObject" class="" >isObject</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.isProxy" class="" >isProxy</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.isUndefined" class="" >isUndefined</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.isUndefinedOrNull" class="" >isUndefinedOrNull</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.listen" class="" >listen</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.merge" class="" >merge</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.methodMissing" class="" >methodMissing</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.partial" class="" >partial</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.pluralize" class="" >pluralize</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.singleton" class="" >singleton</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.singularize" class="" >singularize</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.underscore" class="" >underscore</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.unListen" class="" >unListen</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.when" class="" >when</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                </ul>
+                                             </li>
+                                        	
+                                     
+
+                        <!-- ============================== events toc ======================== -->
+                        			
+                               </ul>
+                         </div>
+
+                    </div>
+
+
+<!-- ============================== classes index ============================ -->
 		<div class="contentContainer">
 		<div id="content">
 		<div class="section">
@@ -55,219 +310,6 @@
                 
                 
 			</p>
-            </div>
-            <div class="menuContainer">
-                <div class="menuContainerContent">
-                <div class="menuContainerTitle">Class Table Of Contents</div>
-                <!-- ============================== constructor summary ==================== -->
-                			
-
-                			   <div class="menuContainerSection">Constructor</div>
-                			   <hr/>
-                				<ul>
-                				    <li>
-                				        <a href="../symbols/comb.html#constructor" class="" >comb</a>
-                				    </li>
-                				</ul>
-                			
-
-                <!-- ============================== properties toc ===================== -->
-                			
-                				
-                				
-                			
-
-                <!-- ============================== methods toc ======================== -->
-                            
-                                
-                                	
-                                	 <div class="menuContainerSection">Methods</div>
-                                	 <hr/>
-                	                 <ul>
-                	                     	
-                	                     	       <li class=" underscore italic">
-
-                                                        		<a href="../symbols/comb.html#.argsToArray" class="" >argsToArray</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.broadcast" class="" >broadcast</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.camelize" class="" >camelize</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.classify" class="" >classify</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.connect" class="" >connect</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.createFunctionWrapper" class="" >createFunctionWrapper</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.curry" class="" >curry</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.define" class="" >define</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.disconnect" class="" >disconnect</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.executeInOrder" class="" >executeInOrder</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.extend" class="" >extend</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.handlerProxy" class="" >handlerProxy</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.hitch" class="" >hitch</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.isBoolean" class="" >isBoolean</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.isDate" class="" >isDate</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.isEmpty" class="" >isEmpty</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.isFunction" class="" >isFunction</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.isHash" class="" >isHash</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.isInstanceOf" class="" >isInstanceOf</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.isNull" class="" >isNull</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.isNumber" class="" >isNumber</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.isObject" class="" >isObject</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.isProxy" class="" >isProxy</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.isUndefined" class="" >isUndefined</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.isUndefinedOrNull" class="" >isUndefinedOrNull</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.listen" class="" >listen</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.merge" class="" >merge</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.methodMissing" class="" >methodMissing</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.partial" class="" >partial</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.pluralize" class="" >pluralize</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.singleton" class="" >singleton</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.singularize" class="" >singularize</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.underscore" class="" >underscore</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.unListen" class="" >unListen</a>
-                                                    </li>
-                                              
-                	                     	       <li class=" italic">
-
-                                                        		<a href="../symbols/comb.html#.when" class="" >when</a>
-                                                    </li>
-                                              
-                	                 </ul>
-                                	
-                             
-
-                <!-- ============================== events toc ======================== -->
-                			
-                 </div>
-
             </div>
 
 
@@ -3105,12 +3147,10 @@ return p;
 			<hr />
 			<div class="fineprint section" style="clear:both">
                     			
-                    			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Sun Jan 08 2012 17:31:30 GMT-0600 (CST)
+                    			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Jan 10 2012 01:01:16 GMT-0600 (CST)
                     		</div>
 		</div>
        </div>
-		
-<!-- ============================== footer ================================= -->
 
 	</body>
 </html>

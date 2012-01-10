@@ -42,49 +42,34 @@ var codeView = {
         }
         }
         codeView.setUpCodeView();
-        codeView.resize();
         codeView.initMenus();
         $(window).resize(codeView.resize);
     },
 
     initMenus:function () {
         var timeout = null;
-        $('.menuContainer').each(function () {
-            $(this).click(function () {
-                clearTimeout(timeout);
-                timeout = setTimeout(codeView.resizeMenus, 200);
-            });
-        });
+
 
         $(".parentContainer").click(function () {
-            $(this).parent().children("ul").toggle(200);
-        })
+            var elem = $(this).closest(".menuContainerContent");
+            var scroll = elem.scrollTop();
+            var children = $(this).toggleClass("expanded").parent().children("ul");
+            children.toggle(300,function(){
+                children.toggleClass("collapsed");
+                codeView.resizeMenus();
+                elem.scrollTop(scroll);
+            });
+        });
+        $(".parentContainer").first().click();
     },
 
     resizeMenus:function () {
         var menuContainers = $('.menuContainer').addClass("menuContainer-noHover");
         var h = $(document).height();
-        var currHeight = 0;
-        var size = menuContainers.size();
-        var heightMult = 1 - (1 / size);
-        var maxHeight = ((h / size)) - 50;
-        menuContainers.each(function (i) {
-            $(this).height("auto");
-            var tHeight = $(this).children().height();
-            var top = currHeight + (i > 0 ? 50 : 10)
-            $(this).css("top", top);
-            if ((top + tHeight) > h || tHeight > maxHeight) {
-                var newH = maxHeight;
-                if (i == size - 1 && tHeight > newH) {
-                    newH = h - top - 50;
-                }
-                $(this).height(newH);
-                currHeight += newH;
-            } else {
-                $(this).height(tHeight);
-                currHeight += tHeight + (i > 0 ? 50 : 10);
-            }
-        });
+        var tHeight = menuContainers.height("auto").height();
+        if(tHeight > h){
+            menuContainers.height(h * .9);
+        }
     },
 
     setUpCodeView:function () {
