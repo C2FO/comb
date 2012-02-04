@@ -73,10 +73,7 @@ var codeView = {
     },
 
     setUpCodeView:function () {
-        $(".exampleCode").each(function () {
-            var showing = true;
-            var children = $(this).children(".code").removeClass("code").addClass("vim-js").chili();
-        });
+        $(".code").removeClass("code").addClass("vim-js").chili();
 
         $(".methodDetail").each(function () {
             var showing = false;

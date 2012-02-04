@@ -1,3 +1,17 @@
+0.0.7 / 2012-02-04
+==================
+  * Bug Fixes
+  * Fixed issue with array.zip
+  * Fixed error with date.parse and alternate characters
+  * Fixed MaxCallStack exceeded error
+    * Changed callback and errback to resolved listeners in a new stack using process.nextTick
+    * Changed the middle ware plugin to use process.nextTick when calling next.
+  * Altered  logging.Level to allow the setting of levels from external APIs
+  * Fixed issue with runner.js where paths that contained spaces would not run
+  * Changed comb.when to test if the arguments are "promiseLike" so multiple versions of comb will work together
+  * Updated docs.
+
+
 0.0.6 / 2011-12-29
 ==================
   * Bug Fixes
