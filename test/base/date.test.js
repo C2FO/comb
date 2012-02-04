@@ -428,6 +428,11 @@ suite.addBatch({
                 "it should parse format date : 223 32, 6 with format: D w, q" : function(topic) {
                     var date = new Date(1970, 7, 11);
                     assert.deepEqual(topic.parse("223 32, 3", "D w, q"), date);
+                },
+
+                "it should parse format date : 223T32,T6 with format: DTw,Tq" : function(topic) {
+                    var date = new Date(1970, 7, 11);
+                    assert.deepEqual(topic.parse("223T32,T3", "DTw,Tq"), date);
                 }
             },
 
