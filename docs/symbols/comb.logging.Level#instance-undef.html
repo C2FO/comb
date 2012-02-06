@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>comb.logging</title>
+		<title>comb.logging.Level#instance-undef</title>
 
 <!--[if gte IE 9]>
             <style type="text/css">
@@ -46,14 +46,11 @@
 
                         			   <li>
                         			        <span class="nodeContainer">
-                        			                <a href="../symbols/comb.logging.html#constructor" class="" >comb.logging</a>
+                        			                <a href="../symbols/comb.logging.Level%23instance-undef.html#constructor" class="" >comb.logging.Level#instance-undef</a>
                         			        </span>
                         			   </li>
                                      
                         <!-- ============================== properties toc ===================== -->
-                        			
-                        				
-                        				
                         			
 
                         <!-- ============================== methods toc ======================== -->
@@ -74,7 +71,7 @@
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Namespace comb.logging
+				Class comb.logging.Level#instance-undef
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -82,10 +79,14 @@
 				
 				
 			
-				logging package
+				This plugin exposes two instance properties:
+<ul>
+    <li><b>getMissingProperty</b> method called when a property is being retrieved and is not found on the current instance</li>
+    <li><b>setMissingProperty</b> method called when a property is being set and the property is not found on the current instance</li>
+</ul>
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/lib_logging_index.js.html" class="">index.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/lib_plugins_MethodMissing.js.html" class="">MethodMissing.js</a>.
 				
 				
                 
@@ -98,17 +99,40 @@
 			
 			<div class="section">
 			<div class="sectionTitle">
-            					Namespace Detail
+            					Class Detail
             				</div>
 			<div class="methodDetail"><a name="constructor"> </a>
 				
-				<div class="fixedFont">
-						<b>comb.logging</b>
+				<div class="fixedFont">&lt;inner&gt; 
+						<b>comb.logging.Level#instance-undef</b>()
 				</div>
 				
 				<div class="description">
 					
 					
+				</div>
+				
+				
+				
+				<div class="exampleCode">
+				    <h4>Example 1 : </h4>
+				    <pre class="code">
+var MyClass = comb.define(comb.plugins.MethodMissing, {
+    instance : {
+
+        constructor : function(){
+             this._attributes = {};
+        },
+
+        getMissingProperty : function(name){
+            return this._attributes[name];
+        },
+
+        setMissingProperty : function(name, value){
+            return this._attributes[name] = value;
+        }
+    }
+});</pre>
 				</div>
 				
 				
