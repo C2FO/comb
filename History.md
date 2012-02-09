@@ -1,3 +1,9 @@
+0.0.8 / 2012-02-9
+===
+  * Added new MethodMissing plugin 
+  * Bug fixes
+    * Changed inflections to underscore between word boundaries and numbers and vice versa with camelize.
+
 0.0.7 / 2012-02-04
 ==================
   * Bug Fixes
