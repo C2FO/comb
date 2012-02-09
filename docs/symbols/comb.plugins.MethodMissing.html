@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>comb.plugins.Middleware</title>
+		<title>comb.plugins.MethodMissing</title>
 
 <!--[if gte IE 9]>
             <style type="text/css">
@@ -46,7 +46,7 @@
 
                         			   <li>
                         			        <span class="nodeContainer">
-                        			                <a href="../symbols/comb.plugins.Middleware.html#constructor" class="" >comb.plugins.Middleware</a>
+                        			                <a href="../symbols/comb.plugins.MethodMissing.html#constructor" class="" >comb.plugins.MethodMissing</a>
                         			        </span>
                         			   </li>
                                      
@@ -60,33 +60,15 @@
                                         	 <li class="parent"><span class="parentContainer"><a href="#">Methods</a></span>
                                                 <ul>
                                                     	
-                                                    	       <li class="">
+                                                    	       <li class=" italic">
                                                                    		<span class="nodeContainer">
-                                                                   		    <a href="../symbols/comb.plugins.Middleware.html#_hook" class="" >_hook</a>
-                                                                   		</span>
-                                                               </li>
-                                                         
-                                                    	       <li class="">
-                                                                   		<span class="nodeContainer">
-                                                                   		    <a href="../symbols/comb.plugins.Middleware.html#post" class="" >post</a>
+                                                                   		    <a href="../symbols/comb.plugins.MethodMissing.html#.getMissingProperty" class="" >getMissingProperty</a>
                                                                    		</span>
                                                                </li>
                                                          
                                                     	       <li class=" italic">
                                                                    		<span class="nodeContainer">
-                                                                   		    <a href="../symbols/comb.plugins.Middleware.html#.post" class="" >post</a>
-                                                                   		</span>
-                                                               </li>
-                                                         
-                                                    	       <li class=" italic">
-                                                                   		<span class="nodeContainer">
-                                                                   		    <a href="../symbols/comb.plugins.Middleware.html#.pre" class="" >pre</a>
-                                                                   		</span>
-                                                               </li>
-                                                         
-                                                    	       <li class="">
-                                                                   		<span class="nodeContainer">
-                                                                   		    <a href="../symbols/comb.plugins.Middleware.html#pre" class="" >pre</a>
+                                                                   		    <a href="../symbols/comb.plugins.MethodMissing.html#.setMissingProperty" class="" >setMissingProperty</a>
                                                                    		</span>
                                                                </li>
                                                          
@@ -110,7 +92,7 @@
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class comb.plugins.Middleware
+				Class comb.plugins.MethodMissing
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -118,10 +100,14 @@
 				
 				
 			
-				Plugin to enable middleware on a class
+				This plugin exposes two instance properties:
+<ul>
+    <li><b>getMissingProperty</b> method called when a property is being retrieved and is not found on the current instance</li>
+    <li><b>setMissingProperty</b> method called when a property is being set and the property is not found on the current instance</li>
+</ul>
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/lib_plugins_Middleware.js.html" class="">Middleware.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/lib_plugins_MethodMissing.js.html" class="">MethodMissing.js</a>.
 				
 				
                 
@@ -139,7 +125,7 @@
 			<div class="methodDetail"><a name="constructor"> </a>
 				
 				<div class="fixedFont">
-						<b>comb.plugins.Middleware</b>()
+						<b>comb.plugins.MethodMissing</b>()
 				</div>
 				
 				<div class="description">
@@ -152,31 +138,22 @@
 				<div class="exampleCode">
 				    <h4>Example 1 : </h4>
 				    <pre class="code">
-var Mammal = define(comb.plugins.Middleware, {
- instance : {
+var MyClass = comb.define(comb.plugins.MethodMissing, {
+    instance : {
 
-   constructor: function(options) {
-       options = options || {};
-       this.super(arguments);
-       this._type = options.type || "mammal";
-   },
+        constructor : function(){
+             this._attributes = {};
+        },
 
-   speak : function() {
-       var ret = new comb.Promise();
-       this._hook("pre", "speak")
-               .then(comb.hitch(this, "_hook", "post", "speak"), hitch(ret, "errback"))
-               .then(comb.hitch(ret, "callback"), comb.hitch(ret, "errback"));
-       return ret;
-   }
- }
-});
+        getMissingProperty : function(name){
+            return this._attributes[name];
+        },
 
- Mammal.pre('speak', function(next){
-    //do something meaningful
-    next();
- });
- var m = new Mammal({color : "gold"});
- m.speak();</pre>
+        setMissingProperty : function(name, value){
+            return this._attributes[name] = value;
+        }
+    }
+});</pre>
 				</div>
 				
 				
@@ -190,13 +167,6 @@ var Mammal = define(comb.plugins.Middleware, {
 					
 					
 					
-                        <div class="sourceCode">
-                            <pre class="code">
-this.__hooks = obj.merge({}, this.__hooks);
-this._super(arguments);
-        </pre>
-                        </div>
-                    
 
 			</div>
 			</div>
@@ -212,200 +182,19 @@ this._super(arguments);
 					Method Detail
 				</div>
 				
-				<a name="_hook"> </a>
-				<div class="methodDetail">
-					<div class="fixedFont">
-					
-					<span class="light">{<a href="../symbols/comb.Promise.html" class="" >comb.Promise</a>}</span>
-					<b>_hook</b>(state, op, args)
-					
-					</div>
-					<div class="description">
-						<p>Protected!</p>
-
-<p>Call to initiate middleware for the topic</p>
-<p><b>NOTE:</b> this function takes a variable number of arguments
-      whatever comes after the op param will be passed into
-      the listening function, with the last argument to the listenting
-      function being the next function</p>
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<span class="light fixedFont">{"pre"|"post"}</span> <b>state</b>
-									
-								</dt>
-								<dd>the state in which the hook should be called</dd>
-							
-								<dt>
-									<span class="light fixedFont">{String}</span> <b>op</b>
-									
-								</dt>
-								<dd>the operation that is being acted upong</dd>
-							
-								<dt>
-									<b>args</b>
-									
-								</dt>
-								<dd>arguments to be passed into the listening functions.</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-							<dl class="detailList">
-							<dt class="heading">Returns:</dt>
-							
-								<dd><span class="light fixedFont">{<a href="../symbols/comb.Promise.html" class="" >comb.Promise</a>}</span> a promise to use after middleware chain completes</dd>
-							
-							</dl>
-						
-						
-						
-						
-                        	<div class="sourceCode">
-                                <pre class="code">
-args = args || [];
-var promise = new Promise();
-var funcs, length;
-if (this.__hooks[state] && (funcs = this.__hooks[state][op]) != null && (length = funcs.length) > 0) {
-    var count = 0;
-    var next = func.hitch(this, function () {
-        process.nextTick(func.hitch(this, function () {
-            
-            if (count == length) {
-                promise.callback();
-            } else {
-                
-                var nextArgs = args.slice(0);
-                nextArgs.unshift(next);
-                funcs[count++].apply(this, nextArgs);
-            }
-        }));
-    });
-    next();
-} else {
-    promise.callback();
-}
-return promise;
-        </pre>
-                            </div>
-                        
-                    </div>
-				
-				<a name="post"> </a>
-				<div class="methodDetail">
-					<div class="fixedFont">
-					
-					
-					<b>post</b>(fun, callback)
-					
-					</div>
-					<div class="description">
-						<p>Use to listen to after an event has occurred i.e. post save</p>
-<b>NOTE:</b></br>
-<ul>
-    <li>You must call next in order for the middleware chain to complete</li>
-     <li>This connects to events on the instance of an object, NOT all instances!</li>
-     <li>Hooks are called in the order they are received!</li>
-     <li>When connecting your callback will be called in the scope of the class</br>if you want a certain scope use <a href="../symbols/comb.html#.hitch" class="" >comb.hitch</a></li>
- </ul>
-						
-						
-					</div>
-					
-					
-					
-					   <div class="exampleCode">
-                       				    <h4>Example 1 : </h4>
-                       				    <pre class="code">
-instance.post("save", function(next){
-               //do something...
-                //you have to call next!!!!!
-                next();
-         });</pre>
-                       				</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>fun</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>callback</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-						
-                        	<div class="sourceCode">
-                                <pre class="code">
-var hook = this.__hooks.post[fun];
-
-if (hook == undefined) {
-    hook = this.__hooks.post[fun] = [];
-}
-hook.push(callback);
-        </pre>
-                            </div>
-                        
-                    </div>
-				
-				<a name=".post"> </a>
+				<a name=".getMissingProperty"> </a>
 				<div class="methodDetail">
 					<div class="fixedFont">&lt;static&gt; 
 					
 					
-					<span class="light">comb.plugins.Middleware.</span><b>post</b>(name, cb)
+					<span class="light">comb.plugins.MethodMissing.</span><b>getMissingProperty</b>(name)
 					
 					</div>
 					<div class="description">
-						<p>Use to listen to after an event has occurred i.e. post save</p>
-
-<b>NOTE:</b></br>
-<ul>
-    <li>You must call next in order for the middleware chain to complete</li>
-     <li>This connects to events on ALL instances of an object</li>
-     <li>Hooks are called in the order they are received!</li>
-     <li>When connecting your callback will be called in the scope of the class</br>if you want a certain scope use <a href="../symbols/comb.html#.hitch" class="" >comb.hitch</a></li>
- </ul>
+						Method called to retrieve a property that is not found on the current instance of the object
 						
 						
 					</div>
-					
-					
-					
-					   <div class="exampleCode">
-                       				    <h4>Example 1 : </h4>
-                       				    <pre class="code">Class.post("save", function(next){
-              ...
-              //you must call next
-         });</pre>
-                       				</div>
 					
 					
 					
@@ -414,16 +203,10 @@ hook.push(callback);
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>name</b>
+									<span class="light fixedFont">{String}</span> <b>name</b>
 									
 								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>cb</b>
-									
-								</dt>
-								<dd></dd>
+								<dd>the name of the property to retrieve.</dd>
 							
 							</dl>
 						
@@ -436,48 +219,26 @@ hook.push(callback);
 						
                         	<div class="sourceCode">
                                 <pre class="code">
-var hooks = this.prototype.__hooks;
-var hook = hooks.post[name];
-if (!hook) {
-    hook = hooks.post[name] = [];
-}
-hook.push(cb);
+
+return this[name];
         </pre>
                             </div>
                         
                     </div>
 				
-				<a name=".pre"> </a>
+				<a name=".setMissingProperty"> </a>
 				<div class="methodDetail">
 					<div class="fixedFont">&lt;static&gt; 
 					
 					
-					<span class="light">comb.plugins.Middleware.</span><b>pre</b>(name, cb)
+					<span class="light">comb.plugins.MethodMissing.</span><b>setMissingProperty</b>(name, value)
 					
 					</div>
 					<div class="description">
-						<p> Use to listen to after an event has occurred i.e. post save</p>
-
-<b>NOTE:</b></br>
-<ul>
-    <li>You must call next in order for the middleware chain to complete</li>
-     <li>This connects to events on ALL instances of an object</li>
-     <li>Hooks are called in the order they are received!</li>
-     <li>When connecting your callback will be called in the scope of the class</br>if you want a certain scope use <a href="../symbols/comb.html#.hitch" class="" >comb.hitch</a></li>
- </ul>
+						Method called to set a property that is not found on the current instance of the object
 						
 						
 					</div>
-					
-					
-					
-					   <div class="exampleCode">
-                       				    <h4>Example 1 : </h4>
-                       				    <pre class="code">Class.pre("save", function(next){
-              ...
-              //you must call next
-         });</pre>
-                       				</div>
 					
 					
 					
@@ -486,16 +247,16 @@ hook.push(cb);
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>name</b>
+									<span class="light fixedFont">{String}</span> <b>name</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>the name of the property to set.</dd>
 							
 								<dt>
-									<b>cb</b>
+									<b>value</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>the value to set the property to.</dd>
 							
 							</dl>
 						
@@ -508,84 +269,8 @@ hook.push(cb);
 						
                         	<div class="sourceCode">
                                 <pre class="code">
-var hooks = this.prototype.__hooks;
-var hook = hooks.pre[name];
-if (!hook) {
-    hook = hooks.pre[name] = [];
-}
-hook.push(cb);
-        </pre>
-                            </div>
-                        
-                    </div>
-				
-				<a name="pre"> </a>
-				<div class="methodDetail">
-					<div class="fixedFont">
-					
-					
-					<b>pre</b>(fun, callback)
-					
-					</div>
-					<div class="description">
-						Use to listen to before an event occurred i.e. pre save
 
-<b>NOTE:</b></br>
-<ul>
-    <li>You must call next in order for the middleware chain to complete</li>
-     <li>This connects to events on the instance of an object, not all instances!</li>
-     <li>Hooks are called in the order they are received!</li>
-     <li> When connecting your callback will be called in the scope of the class</br>if you want a certain scope use <a href="../symbols/comb.html#.hitch" class="" >comb.hitch</a></li>
- </ul>
-						
-						
-					</div>
-					
-					
-					
-					   <div class="exampleCode">
-                       				    <h4>Example 1 : </h4>
-                       				    <pre class="code">     instance.pre("save", function(args,...., next){
-         //do something...
-         //you have to call next!!!!!
-         next();
-     });</pre>
-                       				</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>fun</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>callback</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-						
-                        	<div class="sourceCode">
-                                <pre class="code">
-var hook = this.__hooks.pre[fun];
-if (!hook) {
-    hook = this.__hooks.pre[fun] = [];
-}
-hook.push(callback);
+return this[name] = value;
         </pre>
                             </div>
                         

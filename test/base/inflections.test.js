@@ -77,6 +77,8 @@ suite.addBatch({
             assert.isNull(topic.underscore(null));
             assert.isUndefined(topic.underscore());
             assert.equal(topic.underscore("helloWorld"), "hello_world");
+            assert.equal(topic.underscore("helloWorld1"), "hello_world_1");
+            assert.equal(topic.underscore("1HelloWorld"), "1_hello_world");
             assert.equal(topic.underscore("column_name"), "column_name");
             assert.equal(topic.underscore("columnName"), "column_name");
         }
