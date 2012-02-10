@@ -1,3 +1,4 @@
+"use strict";
 var fs = require("fs"), path = require("path"), exec = require("child_process").exec, sys = require("sys"), comb = require("../lib"), string = comb.string;
 
 /**
