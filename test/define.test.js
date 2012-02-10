@@ -429,6 +429,24 @@ suite.addBatch({
     }
 });
 
+
+suite.addBatch({
+    "when in creating a class that that has another class as a property it should not wrap it":{
+        topic:function () {
+            return define([Mammal, Wolf, Dog, Breed], {
+                static:{
+                    DogMammal : Dog
+                }
+            });
+        },
+
+        "it should call init":function (Mammal) {
+            assert.deepEqual(Mammal.DogMammal, Dog);
+            assert.instanceOf(new Mammal.DogMammal(), Dog);
+        }
+    }
+});
+
 suite.addBatch({
     "When using as to export an object to exports":{
         topic:function () {
