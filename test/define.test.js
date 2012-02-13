@@ -118,7 +118,6 @@ var Dog = define(Wolf, {
     }
 });
 
-//Mammal.mammalInheritedProp = "mammalInheritedPropChange"
 // Mammal->Wolf->Dog->Breed
 var Breed = define(Dog, {
     instance:{
