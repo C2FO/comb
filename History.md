@@ -1,3 +1,32 @@
+0.0.9 /2012-02-16
+===
+  * Complete redesign of comb.define to be more flexible and efficient
+     * this._super does not require and Arguments object any more to call super
+  * added "use strict" to all tests
+  * New Features
+     * comb.serial method for executing methods that return promises serially
+     * comb.wrap method for wrapping node methods that require a function callback, with a promise
+     * new date helper methods
+        * comb.yearsFromNow
+        * comb.yearsAgo
+        * comb.daysFromNow
+        * comb.daysAgo
+        * comb.monthsFromNow
+        * comb.monthsAgo
+        * comb.hoursFromNow
+        * comb.hoursAgo
+        * comb.minutesFromNow
+        * comb.minutesAgo
+        * comb.secondsFromNow
+        * comb.secondsAgo
+     * comb.hitchIgnore/bindIngore for binding a method to a certain scope but ignoring all passed in parameters
+     * comb.number.roundCeil for round numbers up always
+  * Bug Fixes
+     * Fixed logging appender level setting, before the appenders level would always be overriden on initialization
+     
+
+
+
 0.0.8 / 2012-02-9
 ===
   * Added new MethodMissing plugin 
