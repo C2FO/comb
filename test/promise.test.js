@@ -852,4 +852,158 @@ suite.addBatch({
 
 });
 
+
+var nodeCBStyle = function (cb) {
+    var args = comb.argsToArray(arguments);
+    cb = args.pop();
+    cb.apply(this, [null].concat(args));
+};
+
+var nodeCBStyleError = function (cb) {
+    var args = comb.argsToArray(arguments);
+    cb = args.pop();
+    cb.apply(this, ["ERROR"]);
+};
+
+suite.addBatch({
+
+    "comb.wrap":{
+        topic:function () {
+            comb.wrap(nodeCBStyle)("HELLO WORLD").then(comb.hitch(this, "callback", null), comb.hitch(this, "callback"));
+        },
+
+        "should wrap traditional node cb methods with a promise":function (res) {
+            assert.equal(res, "HELLO WORLD");
+        }
+    }
+
+});
+
+suite.addBatch({
+
+    "comb.wrap":{
+        topic:function () {
+            comb.wrap(nodeCBStyleError)("HELLO WORLD").then(comb.hitch(this, "callback"), comb.hitch(this, "callback", null));
+        },
+
+        "should errback if an error is the first argument":function (res) {
+            assert.equal(res, "ERROR");
+        }
+    }
+
+});
+
+var asyncAction = function (item, timeout, error) {
+    var ret = new comb.Promise();
+    setTimeout(comb.hitchIgnore(ret, error ? "errback" : "callback", item), timeout);
+    return ret;
+};
+
+var syncAction = function (item, error) {
+    if (error)
+        throw "ERROR";
+    else
+        return item;
+};
+
+suite.addBatch({
+
+    "comb.serial":{
+        topic:function () {
+            comb.serial([
+                comb.partial(asyncAction, 1, 1000),
+                comb.partial(syncAction, 1.5),
+                comb.partial(asyncAction, 2, 900),
+                comb.partial(syncAction, 2.5),
+                comb.partial(asyncAction, 3, 800),
+                comb.partial(syncAction, 3.5),
+                comb.partial(asyncAction, 4, 700),
+                comb.partial(syncAction, 4.5),
+                comb.partial(asyncAction, 5, 600),
+                comb.partial(syncAction, 5.5),
+                comb.partial(asyncAction, 6, 500)
+            ]).then(comb.hitch(this, "callback", null), comb.hitch(this, "callback"));
+
+        },
+
+        "should execute the items serially":function (res) {
+            assert.deepEqual(res, [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6]);
+        }
+    }
+
+});
+
+suite.addBatch({
+
+    "comb.serial":{
+        topic:function () {
+            comb.serial([
+                comb.partial(asyncAction, 1, 1000),
+                comb.partial(syncAction, 1.5),
+                comb.partial(asyncAction, 2, 900),
+                comb.partial(syncAction, 2.5),
+                comb.partial(asyncAction, 3, 800),
+                comb.partial(syncAction, 3.5),
+                comb.partial(asyncAction, 4, 700),
+                comb.partial(syncAction, 4.5),
+                comb.partial(asyncAction, 5, 600),
+                comb.partial(syncAction, 5.5, true),
+                comb.partial(asyncAction, 6, 500)
+            ]).then(comb.hitch(this, "callback"), comb.hitch(this, "callback", null));
+
+        },
+
+        "should catch errors":function (res) {
+            assert.deepEqual(res, "ERROR");
+        }
+    }
+
+});
+
+suite.addBatch({
+
+    "comb.serial":{
+        topic:function () {
+            comb.serial([
+                comb.partial(asyncAction, 1, 1000, true),
+                comb.partial(syncAction, 1.5),
+                comb.partial(asyncAction, 2, 900),
+                comb.partial(syncAction, 2.5),
+                comb.partial(asyncAction, 3, 800),
+                comb.partial(syncAction, 3.5),
+                comb.partial(asyncAction, 4, 700),
+                comb.partial(syncAction, 4.5),
+                comb.partial(asyncAction, 5, 600),
+                comb.partial(syncAction, 5.5, true),
+                comb.partial(asyncAction, 6, 500)
+            ]).then(comb.hitch(this, "callback"), comb.hitch(this, "callback", null));
+
+        },
+
+        "should catch async errors":function (res) {
+            assert.deepEqual(res, 1);
+        },
+
+        "should throw an error if not called with an array":function () {
+            assert.throws(function () {
+                comb.serial(
+                    comb.partial(asyncAction, 1, 1000, true),
+                    comb.partial(syncAction, 1.5),
+                    comb.partial(asyncAction, 2, 900),
+                    comb.partial(syncAction, 2.5),
+                    comb.partial(asyncAction, 3, 800),
+                    comb.partial(syncAction, 3.5),
+                    comb.partial(asyncAction, 4, 700),
+                    comb.partial(syncAction, 4.5),
+                    comb.partial(asyncAction, 5, 600),
+                    comb.partial(syncAction, 5.5, true),
+                    comb.partial(asyncAction, 6, 500)
+                )
+            });
+        }
+    }
+
+});
+
+
 suite.run({reporter:vows.reporter.spec}, comb.hitch(ret, "callback"));
