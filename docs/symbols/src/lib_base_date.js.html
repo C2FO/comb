@@ -959,4 +959,153 @@
 <span class='line'>952</span> 
 <span class='line'>953</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>954</span> 
-<span class='line'>955</span> </span><span class="NAME">date</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">comb.date</span><span class="PUNC">;</span></pre></body></html>
+<span class='line'>955</span> </span><span class="NAME">date</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">comb.date</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>956</span> 
+<span class='line'>957</span> </span><span class="COMM">/**
+<span class='line'>958</span>  * Adds the specified year/s to the current date.
+<span class='line'>959</span>  *
+<span class='line'>960</span>  * @example
+<span class='line'>961</span>  *
+<span class='line'>962</span>  * //assuming that current year is 2012
+<span class='line'>963</span>  * comb.yearsFromNow(1); //2013-mm-dd hh:MM:ss
+<span class='line'>964</span>  *
+<span class='line'>965</span>  * @param {Number} val the number of years to add
+<span class='line'>966</span>  *
+<span class='line'>967</span>  * @return {Date} a date with the number of years added
+<span class='line'>968</span>  */</span><span class="WHIT">
+<span class='line'>969</span> </span><span class="NAME">comb.yearsFromNow</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">val</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>970</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">date.add</span><span class="PUNC">(</span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Date</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"years"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">val</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>971</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>972</span> 
+<span class='line'>973</span> </span><span class="COMM">/**
+<span class='line'>974</span>  * Subtracts the specified year/s from the current date.
+<span class='line'>975</span>  *
+<span class='line'>976</span>  * @param {Number} val the number of years to subtract
+<span class='line'>977</span>  *
+<span class='line'>978</span>  * @return {Date} a date with the number of years subtracted
+<span class='line'>979</span>  */</span><span class="WHIT">
+<span class='line'>980</span> </span><span class="NAME">comb.yearsAgo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">val</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>981</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">date.add</span><span class="PUNC">(</span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Date</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"years"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="NAME">val</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>982</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>983</span> 
+<span class='line'>984</span> 
+<span class='line'>985</span> </span><span class="COMM">/**
+<span class='line'>986</span>  * Adds the specified month/s to the current date.
+<span class='line'>987</span>  *
+<span class='line'>988</span>  * @example
+<span class='line'>989</span>  *
+<span class='line'>990</span>  * //assuming that current month is february
+<span class='line'>991</span>  * comb.yearsFromNow(2); //yyyy-04-dd hh:MM:ss
+<span class='line'>992</span>  *
+<span class='line'>993</span>  * @param {Number} val the number of months to add
+<span class='line'>994</span>  *
+<span class='line'>995</span>  * @return {Date} a date with the number of years added
+<span class='line'>996</span>  */</span><span class="WHIT">
+<span class='line'>997</span> </span><span class="NAME">comb.monthsFromNow</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">val</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>998</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">date.add</span><span class="PUNC">(</span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Date</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"months"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">val</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>999</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1000</span> 
+<span class='line'>1001</span> 
+<span class='line'>1002</span> </span><span class="COMM">/**
+<span class='line'>1003</span>  * Subtracts the specified month/s from the current date.
+<span class='line'>1004</span>  *
+<span class='line'>1005</span>  * @param {Number} val the number of months to subtract
+<span class='line'>1006</span>  *
+<span class='line'>1007</span>  * @return {Date} a date with the number of monts subtracted
+<span class='line'>1008</span>  */</span><span class="WHIT">
+<span class='line'>1009</span> </span><span class="NAME">comb.monthsAgo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">val</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>1010</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">date.add</span><span class="PUNC">(</span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Date</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"months"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="NAME">val</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1011</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1012</span> 
+<span class='line'>1013</span> </span><span class="COMM">/**
+<span class='line'>1014</span>  * Adds the specified days/s to the current date.
+<span class='line'>1015</span>  *
+<span class='line'>1016</span>  * @param {Number} val the number of days to add
+<span class='line'>1017</span>  *
+<span class='line'>1018</span>  * @return {Date} a date with the number of days added
+<span class='line'>1019</span>  */</span><span class="WHIT">
+<span class='line'>1020</span> </span><span class="NAME">comb.daysFromNow</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">val</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>1021</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">date.add</span><span class="PUNC">(</span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Date</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"days"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">val</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1022</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1023</span> 
+<span class='line'>1024</span> </span><span class="COMM">/**
+<span class='line'>1025</span>  * Subtracts the specified days/s from the current date.
+<span class='line'>1026</span>  *
+<span class='line'>1027</span>  * @param {Number} val the number of days to subtract
+<span class='line'>1028</span>  *
+<span class='line'>1029</span>  * @return {Date} a date with the number of days subtracted
+<span class='line'>1030</span>  */</span><span class="WHIT">
+<span class='line'>1031</span> </span><span class="NAME">comb.daysAgo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">val</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>1032</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">date.add</span><span class="PUNC">(</span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Date</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"days"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="NAME">val</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1033</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1034</span> 
+<span class='line'>1035</span> </span><span class="COMM">/**
+<span class='line'>1036</span>  * Adds the specified hour/s to the current date.
+<span class='line'>1037</span>  *
+<span class='line'>1038</span>  * @param {Number} val the number of hours to add
+<span class='line'>1039</span>  *
+<span class='line'>1040</span>  * @return {Date} a date with the number of hours added
+<span class='line'>1041</span>  */</span><span class="WHIT">
+<span class='line'>1042</span> </span><span class="NAME">comb.hoursFromNow</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">val</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>1043</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">date.add</span><span class="PUNC">(</span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Date</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"hours"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">val</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1044</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1045</span> 
+<span class='line'>1046</span> 
+<span class='line'>1047</span> </span><span class="COMM">/**
+<span class='line'>1048</span>  * Subtracts the specified hour/s from the current date.
+<span class='line'>1049</span>  *
+<span class='line'>1050</span>  * @param {Number} val the number of hours to subtract
+<span class='line'>1051</span>  *
+<span class='line'>1052</span>  * @return {Date} a date with the number of hours subtracted
+<span class='line'>1053</span>  */</span><span class="WHIT">
+<span class='line'>1054</span> </span><span class="NAME">comb.hoursAgo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">val</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>1055</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">date.add</span><span class="PUNC">(</span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Date</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"hours"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="NAME">val</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1056</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1057</span> 
+<span class='line'>1058</span> 
+<span class='line'>1059</span> </span><span class="COMM">/**
+<span class='line'>1060</span>  * Adds the specified minutes/s to the current date.
+<span class='line'>1061</span>  *
+<span class='line'>1062</span>  * @param {Number} val the number of minutes to add
+<span class='line'>1063</span>  *
+<span class='line'>1064</span>  * @return {Date} a date with the number of minutes added
+<span class='line'>1065</span>  */</span><span class="WHIT">
+<span class='line'>1066</span> </span><span class="NAME">comb.minutesFromNow</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">val</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>1067</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">date.add</span><span class="PUNC">(</span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Date</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"minutes"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">val</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1068</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1069</span> 
+<span class='line'>1070</span> 
+<span class='line'>1071</span> </span><span class="COMM">/**
+<span class='line'>1072</span>  * Subtracts the specified minutes/s from the current date.
+<span class='line'>1073</span>  *
+<span class='line'>1074</span>  * @param {Number} val the number of minutes to subtract
+<span class='line'>1075</span>  *
+<span class='line'>1076</span>  * @return {Date} a date with the number of minutes subtracted
+<span class='line'>1077</span>  */</span><span class="WHIT">
+<span class='line'>1078</span> </span><span class="NAME">comb.minutesAgo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">val</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>1079</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">date.add</span><span class="PUNC">(</span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Date</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"minutes"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="NAME">val</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1080</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1081</span> 
+<span class='line'>1082</span> 
+<span class='line'>1083</span> </span><span class="COMM">/**
+<span class='line'>1084</span>  * Adds the specified second/s to the current date.
+<span class='line'>1085</span>  *
+<span class='line'>1086</span>  * @param {Number} val the number of seconds to add
+<span class='line'>1087</span>  *
+<span class='line'>1088</span>  * @return {Date} a date with the number of seconds added
+<span class='line'>1089</span>  */</span><span class="WHIT">
+<span class='line'>1090</span> </span><span class="NAME">comb.secondsFromNow</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">val</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>1091</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">date.add</span><span class="PUNC">(</span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Date</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"seconds"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">val</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1092</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1093</span> 
+<span class='line'>1094</span> 
+<span class='line'>1095</span> </span><span class="COMM">/**
+<span class='line'>1096</span>  * Subtracts the specified seconds/s from the current date.
+<span class='line'>1097</span>  *
+<span class='line'>1098</span>  * @param {Number} val the number of seconds to subtract
+<span class='line'>1099</span>  *
+<span class='line'>1100</span>  * @return {Date} a date with the number of seconds subtracted
+<span class='line'>1101</span>  */</span><span class="WHIT">
+<span class='line'>1102</span> </span><span class="NAME">comb.secondsAgo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">val</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>1103</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">date.add</span><span class="PUNC">(</span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Date</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"seconds"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="NAME">val</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1104</span> </span><span class="PUNC">}</span><span class="PUNC">;</span></pre></body></html>

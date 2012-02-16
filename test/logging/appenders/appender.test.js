@@ -1,3 +1,4 @@
+"use strict";
 var vows = require('vows'),
         assert = require('assert'),
         comb = require("index"),
@@ -21,12 +22,12 @@ var ret = (module.exports = exports = new comb.Promise());
 var suite = vows.describe("A Appender");
 
 var logger1 = logging.Logger.getLogger("AppenderTest"),
-        logger2 = logging.Logger.getLogger("AppenderTest.one")
+        logger2 = logging.Logger.getLogger("AppenderTest.one"),
 logger3 = logging.Logger.getLogger("AppenderTest.one.two");
 suite.addBatch({
             "when adding an appender " : {
                 topic : function() {
-                    appender = new Appender({name : "myAppender1"});
+                    var appender = new Appender({name : "myAppender1"});
                     logger1.addAppender(appender);
                     return appender;
                 },
