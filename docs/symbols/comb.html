@@ -979,14 +979,15 @@ var MyObject = comb.define(null, {
 });
 
 //NOTE: this will not work properly for native objects like Date.
-var createNewMyObject = function(){
-   try {
-     p = new MyObject();
+var createNewMyObject = function () {
+    try {
+        var p = new MyObject();
     } catch (ignore) {
-         //ignore the error because its probably from missing arguments
+        //ignore the error because its probably from missing arguments
     }
     //Now lets take care of arguments supplied!!!
-    return MyObject.apply(p, comb.argsToArray(arguments));
+    MyObject.apply(p, comb.array.flatten(["called by function wrapper"], comb.argsToArray(arguments)));
+    return p;
 };
 
 //This example creates an object with a world property but its not a function!
