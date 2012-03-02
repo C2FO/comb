@@ -41,7 +41,7 @@ var Mammal = define(null, {
     //Define your static methods
     static:{
 
-        mammalInheritedProp : "mammalInheritedProp",
+        mammalInheritedProp:"mammalInheritedProp",
 
         soundOff:function () {
             return "Im a mammal!!";
@@ -173,9 +173,35 @@ var MyLabWithConstructor = singleton([Mammal, Wolf, Dog, Breed], {
     }
 });
 
+var StaticInitClass = define([Mammal, Wolf, Dog, Breed], {
+    static:{
+        initCalled:false,
+        init:function () {
+            this.initCalled = true;
+        }
+    }
+});
+
+var SingletonInit = singleton([Mammal, Wolf, Dog, Breed], {
+    static:{
+        initCalled:false,
+        init:function () {
+            this.initCalled = true;
+        }
+    }
+});
+
+var WrappedClass = define([Mammal, Wolf, Dog, Breed], {
+    static:{
+        DogMammal:Dog
+    }
+});
+
 suite.addBatch({
     "a dog ":{
-        topic:new Dog({color:"gold"}),
+        topic:function () {
+            return new Dog({color:"gold"});
+        },
 
         "should sound like a dog":function (dog) {
             //This is true because they inherit from eachother!
@@ -202,7 +228,9 @@ suite.addBatch({
 
 suite.addBatch({
     "a Breed ":{
-        topic:new Breed({color:"gold", type:"lab"}),
+        topic:function () {
+            return  new Breed({color:"gold", type:"lab"});
+        },
 
         "should sound like a lab":function (breed) {
             //the next three are true because they inherit from each other
@@ -278,7 +306,9 @@ suite.addBatch({
 
 suite.addBatch({
     "a LAB ":{
-        topic:new Lab(),
+        topic:function () {
+            return new Lab();
+        },
 
         "should sound like a lab":function (dog) {
             //the next three are false because they are mixins
@@ -298,7 +328,9 @@ suite.addBatch({
 
 suite.addBatch({
     "when in creating my lab singleton":{
-        topic:new MyLab({type:"dog"}),
+        topic:function () {
+            return new MyLab({type:"dog"});
+        },
 
         "should still be a dog":function (topic) {
             var myLab = new MyLab();
@@ -321,7 +353,9 @@ suite.addBatch({
 
 suite.addBatch({
     "when in creating my lab singleton with a constructor":{
-        topic:new MyLabWithConstructor({type:"dog"}),
+        topic:function () {
+            return new MyLabWithConstructor({type:"dog"});
+        },
 
         "should still be a dog":function (topic) {
             var myLab = new MyLabWithConstructor();
@@ -344,7 +378,9 @@ suite.addBatch({
 
 suite.addBatch({
     "when in creating my lab singleton with params":{
-        topic:new MyLab(),
+        topic:function () {
+            return new MyLab();
+        },
 
         "it should still be a dog":function (topic) {
             var myLab = new MyLab();
@@ -367,7 +403,9 @@ suite.addBatch({
 
 suite.addBatch({
     "when in creating my lab singleton with a constructor":{
-        topic:new MyLabWithConstructor(),
+        topic:function () {
+            return new MyLabWithConstructor();
+        },
 
         "it should still be a dog":function (topic) {
             var myLab = new MyLabWithConstructor();
@@ -393,14 +431,7 @@ suite.addBatch({
 suite.addBatch({
     "when in creating a class that that has a static init method":{
         topic:function () {
-            return define([Mammal, Wolf, Dog, Breed], {
-                static:{
-                    initCalled:false,
-                    init:function () {
-                        this.initCalled = true;
-                    }
-                }
-            });
+            return StaticInitClass;
         },
 
         "it should call init":function (Mammal) {
@@ -413,14 +444,7 @@ suite.addBatch({
 suite.addBatch({
     "when in creating a singleton that that has a static init method":{
         topic:function () {
-            return singleton([Mammal, Wolf, Dog, Breed], {
-                static:{
-                    initCalled:false,
-                    init:function () {
-                        this.initCalled = true;
-                    }
-                }
-            });
+            return SingletonInit;
         },
 
         "it should call init":function (Mammal) {
@@ -433,11 +457,7 @@ suite.addBatch({
 suite.addBatch({
     "when in creating a class that that has another class as a property it should not wrap it":{
         topic:function () {
-            return define([Mammal, Wolf, Dog, Breed], {
-                static:{
-                    DogMammal : Dog
-                }
-            });
+            return WrappedClass;
         },
 
         "it should call init":function (Mammal) {
@@ -472,3 +492,5 @@ suite.addBatch({
 
 
 suite.run({reporter:vows.reporter.spec}, comb.hitch(ret, "callback"));
+
+
