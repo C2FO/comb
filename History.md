@@ -1,3 +1,9 @@
+0.1.0/2012-03-02
+===
+  * comb.define performance increase
+  * Changed HashTable to use strict equal
+  * Doc fixes
+
 0.0.9 /2012-02-16
 ===
   * Complete redesign of comb.define to be more flexible and efficient
