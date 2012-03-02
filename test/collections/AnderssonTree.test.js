@@ -234,7 +234,9 @@ suite.addBatch({
                     var tree = new AnderssonTree({
                                 compare : Mammal.compare
                             });
-                    mammals.forEach(comb.hitch(tree, "insert"));
+                    mammals.forEach(function(m){
+                        tree.insert(m);
+                    });
                     return tree;
                 },
 
