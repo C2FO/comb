@@ -131,12 +131,6 @@
                                                          
                                                     	       <li class=" italic">
                                                                    		<span class="nodeContainer">
-                                                                   		    <a href="../symbols/comb.html#.define" class="" >define</a>
-                                                                   		</span>
-                                                               </li>
-                                                         
-                                                    	       <li class=" italic">
-                                                                   		<span class="nodeContainer">
                                                                    		    <a href="../symbols/comb.html#.disconnect" class="" >disconnect</a>
                                                                    		</span>
                                                                </li>
@@ -336,12 +330,6 @@
                                                     	       <li class=" italic">
                                                                    		<span class="nodeContainer">
                                                                    		    <a href="../symbols/comb.html#.serial" class="" >serial</a>
-                                                                   		</span>
-                                                               </li>
-                                                         
-                                                    	       <li class=" italic">
-                                                                   		<span class="nodeContainer">
-                                                                   		    <a href="../symbols/comb.html#.singleton" class="" >singleton</a>
                                                                    		</span>
                                                                </li>
                                                          
@@ -986,7 +974,8 @@ var createNewMyObject = function(){
          //ignore the error because its probably from missing arguments
     }
     //Now lets take care of arguments supplied!!!
-    return MyObject.apply(p, comb.argsToArray(arguments));
+    MyObject.apply(p, comb.argsToArray(arguments));
+    return p;
 };
 
 //This example creates an object with a world property but its not a function!
@@ -1265,325 +1254,6 @@ return date.add(new Date(), "days", val);
                         
                     </div>
 				
-				<a name=".define"> </a>
-				<div class="methodDetail">
-					<div class="fixedFont">&lt;static&gt; 
-					
-					<span class="light">{Object}</span>
-					<span class="light">comb.</span><b>define</b>(super, proto)
-					
-					</div>
-					<div class="description">
-						Defines a new class to be used
-
-<p>
-    Class methods
-    <ul>
-        <li>as(module | bject, name): exports the object to module or the object with the name</li>
-        <li>mixin(mixin) : mixes in an object</li>
-    </ul>
-    </br>
-    Instance methods
-    <ul>
-        <li>_super(argumnents, [?newargs]): calls the super of the current method</li>
-    </ul>
-
-     </br>
-    Instance properties
-    <ul>
-        <li>_static: use to reference class properties and methods</li>
-    </ul>
-
-</p>
-						
-							<br />
-							<i>Defined in: </i> <a href="../symbols/src/lib_define.js.html" class="">define.js</a>.
-						
-						
-					</div>
-					
-					
-					
-					   <div class="exampleCode">
-                       				    <h4>Example 1 : </h4>
-                       				    <pre class="code"> //Class without a super class
-var Mammal = comb.define(null, {
-     instance : {
-
-         constructor: function(options) {
-             options = options || {};
-             this._super(arguments);
-             this._type = options.type || "mammal";
-         },
-
-         speak : function() {
-             return  "A mammal of type " + this._type + " sounds like";
-         },
-
-         //Define your getters
-         getters : {
-             type : function() {
-                 return this._type;
-             }
-         },
-
-          //Define your setters
-         setters : {
-             type : function(t) {
-                 this._type = t;
-             }
-         }
-     },
-
-     //Define your static methods
-     static : {
-         soundOff : function() {
-             return "Im a mammal!!";
-         }
-     }
-});
-
-//Show singular inheritance
-var Wolf = comb.define(Mammal, {
-  instance: {
-      constructor: function(options) {
-         options = options || {};
-         //You can call your super constructor, or you may not
-         //call it to prevent the super initializing parameters
-         this._super(arguments);
-         this._sound = "growl";
-         this._color = options.color || "grey";
-     },
-
-     speak : function() {
-         //override my super classes speak
-         //Should return "A mammal of type mammal sounds like a growl"
-         return this._super(arguments) + " a " + this._sound;
-     },
-
-     //add new getters for sound and color
-     getters : {
-
-         color : function() {
-             return this._color;
-         },
-
-         sound : function() {
-             return this._sound;
-         }
-     },
-
-     setters : {
-
-         //NOTE color is read only except on initialization
-
-         sound : function(s) {
-             this._sound = s;
-         }
-     }
-
- },
-
- static : {
-     //override my satic soundOff
-     soundOff : function() {
-         //You can even call super in your statics!!!
-         //should return "I'm a mammal!! that growls"
-         return this._super(arguments) + " that growls";
-     }
- }
-});
-
-
-//Typical hierarchical inheritance
-// Mammal->Wolf->Dog
-var Dog = comb.define(Wolf, {
-   instance: {
-       constructor: function(options) {
-           options = options || {};
-           this._super(arguments);
-           //override Wolfs initialization of sound to woof.
-           this._sound = "woof";
-
-       },
-
-       speak : function() {
-           //Should return "A mammal of type mammal sounds like a growl thats domesticated"
-           return this._super(arguments) + " thats domesticated";
-       }
-   },
-
-   static : {
-       soundOff : function() {
-           //should return "I'm a mammal!! that growls but now barks"
-           return this._super(arguments) + " but now barks";
-       }
-   }
-});
-
-
-
-dog instanceof Wolf => true
-dog instanceof Mammal => true
-dog.speak() => "A mammal of type mammal sounds like a woof thats domesticated"
-dog.type => "mammal"
-dog.color => "gold"
-dog.sound => "woof"
-Dog.soundOff() => "Im a mammal!! that growls but now barks"
-
-// Mammal->Wolf->Dog->Breed
-var Breed = comb.define(Dog, {
-   instance: {
-
-       //initialize outside of constructor
-       _pitch : "high",
-
-       constructor: function(options) {
-           options = options || {};
-           this._super(arguments);
-           this.breed = options.breed || "lab";
-       },
-
-       speak : function() {
-           //Should return "A mammal of type mammal sounds like a
-           //growl thats domesticated with a high pitch!"
-           return this._super(arguments) + " with a " + this._pitch + " pitch!";
-       },
-
-       getters : {
-           pitch : function() {
-               return this._pitch;
-           }
-       }
-   },
-
-   static : {
-       soundOff : function() {
-           //should return "I'M A MAMMAL!! THAT GROWLS BUT NOW BARKS!"
-           return this._super(arguments).toUpperCase() + "!";
-       }
-   }
-});
-
-
-var breed = new Breed({color : "gold", type : "lab"}),
-
-
-
-breed instanceof Dog => true
-breed instanceof Wolf => true
-breed instanceof Mammal => true
-breed.speak() => "A mammal of type lab sounds like a woof "
-                 + "thats domesticated with a high pitch!"
-breed.type => "lab"
-breed.color => "gold"
-breed.sound => "woof"
-breed.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"
-
-
- //Example of multiple inheritance
- //NOTE proto is optional
-
- //Mammal is super class
- //Wolf Dog and Breed inject functionality into the prototype
-var Lab = comb.define([Mammal, Wolf, Dog, Breed]);
-
-var lab = new Lab();
-lab instanceof Wolf => false
-lab instanceof Dog => false
-lab instanceof Breed => false
-lab instanceof Mammal => true
-lab.speak() => "A mammal of type mammal sounds like a"
-               + " woof thats domesticated with a high pitch!"
-Lab.soundOff() => "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</pre>
-                       				</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<span class="light fixedFont">{Array|Class}</span> <b>super</b>
-									
-								</dt>
-								<dd>the supers of this class</dd>
-							
-								<dt>
-									<span class="light fixedFont">{Object}</span> <b>proto</b>
-									<i>Optional</i>
-								</dt>
-								<dd>the object used to define this class</dd>
-							
-								<dt>
-									<span class="light fixedFont">{Object}</span> <b>proto.instance</b>
-									<i>Optional</i>
-								</dt>
-								<dd>the instance methods of the class</dd>
-							
-								<dt>
-									<span class="light fixedFont">{Object}</span> <b>proto.instance.getters</b>
-									<i>Optional</i>
-								</dt>
-								<dd>the getters for the class</dd>
-							
-								<dt>
-									<span class="light fixedFont">{Object}</span> <b>proto.instance.setters</b>
-									<i>Optional</i>
-								</dt>
-								<dd>the setters for the class</dd>
-							
-								<dt>
-									<span class="light fixedFont">{Object}</span> <b>proto.static</b>
-									<i>Optional</i>
-								</dt>
-								<dd>the Class level methods of this class</dd>
-							
-								<dt>
-									<span class="light fixedFont">{Object}</span> <b>proto.static.getters</b>
-									<i>Optional</i>
-								</dt>
-								<dd>static getters for the object</dd>
-							
-								<dt>
-									<span class="light fixedFont">{Object}</span> <b>proto.static.setters</b>
-									<i>Optional</i>
-								</dt>
-								<dd>static setters for the object</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-							<dl class="detailList">
-							<dt class="heading">Returns:</dt>
-							
-								<dd><span class="light fixedFont">{Object}</span> the constructor of the class to be used with new keyword</dd>
-							
-							</dl>
-						
-						
-						
-						
-                        	<div class="sourceCode">
-                                <pre class="code">
-proto = proto || {};
-var child = function () {
-    this.constructor.apply(this, arguments);
-};
-var ret = __define(child, sup, proto);
-if (typeof ret.init === "function") {
-    ret = ret.init() || ret;
-}
-return ret;
-    </pre>
-                            </div>
-                        
-                    </div>
-				
 				<a name=".disconnect"> </a>
 				<div class="methodDetail">
 					<div class="fixedFont">&lt;static&gt; 
@@ -1755,11 +1425,11 @@ if (cb) {
             var cbResults;
             if (base.isArray(cbRet)) {
                 cbResults = cbRet.map(
-                    function (arg) {
-                        return getValueFromArrayMap(arg, pMap, newArgs);
-                    }).filter(function (r) {
-                        return !base.isUndefined(r)
-                    });
+                        function (arg) {
+                            return getValueFromArrayMap(arg, pMap, newArgs);
+                        }).filter(function (r) {
+                            return !base.isUndefined(r)
+                        });
             } else if (base.isHash(cbRet)) {
                 cbResults = {};
                 for (var i in cbRet) {
@@ -2802,7 +2472,7 @@ return obj != null && obj != undef && typeof obj == "object";
                         	<div class="sourceCode">
                                 <pre class="code">
 return !base.isUndefinedOrNull(obj) && (base.isInstanceOf(obj, Promise) || (base.isFunction(obj.then)
-    && base.isFunction(obj.addCallback) && base.isFunction(obj.addErrback)));
+        && base.isFunction(obj.addCallback) && base.isFunction(obj.addErrback)));
     </pre>
                             </div>
                         
@@ -3765,119 +3435,13 @@ comb.serial([
 						
                         	<div class="sourceCode">
                                 <pre class="code">
-var ret = new Promise(), results = [], isErrored = false;
+var ret = new Promise();
 if (base.isArray(list)) {
-    (function next(index) {
-        if (index &lt; list.length) {
-            var item = list[index];
-            try {
-                exports.when(base.isFunction(item) ? item() : item,
-                    function () {
-                        
-                        var args = base.argsToArray(arguments);
-                        results.push(args.length == 1 ? args[0] : args);
-                        process.nextTick(base.partial(next, index + 1));
-                    },
-                    function (err) {
-                        
-                        if (!isErrored) {
-                            isErrored = true;
-                            ret.errback.apply(ret, arguments);
-                        }
-                    });
-            } catch (e) {
-                if (!isErrored) {
-                    isErrored = true;
-                    ret.errback(e);
-                }
-            }
-        } else {
-            ret.callback(results);
-        }
-    })(0);
+    callNext(list, 0, [], false, ret)
 } else {
     throw new Error("When calling comb.serial the first argument must be an array");
 }
 ret.then(callback, errback);
-return ret;
-    </pre>
-                            </div>
-                        
-                    </div>
-				
-				<a name=".singleton"> </a>
-				<div class="methodDetail">
-					<div class="fixedFont">&lt;static&gt; 
-					
-					
-					<span class="light">comb.</span><b>singleton</b>(sup, proto)
-					
-					</div>
-					<div class="description">
-						Defines a singleton instance of a Class
-						
-							<br />
-							<i>Defined in: </i> <a href="../symbols/src/lib_define.js.html" class="">define.js</a>.
-						
-						
-					</div>
-					
-					
-					
-					   <div class="exampleCode">
-                       				    <h4>Example 1 : </h4>
-                       				    <pre class="code"> var MyLab = comb.singleton([Mammal, Wolf, Dog, Breed]);
- var myLab1 = new MyLab();
- myLab1.type = "collie"
- var myLab2 = new MyLab();
- myLab1 === myLab2 => true
- myLab1.type => "collie"
- myLab2.type => "collie"
-See {@link define}</pre>
-                       				</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>sup</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>proto</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-						
-                        	<div class="sourceCode">
-                                <pre class="code">
-var retInstance;
-proto = proto || {};
-var child = function () {
-    if (!retInstance) {
-        this.constructor.apply(this, arguments);
-        retInstance = this;
-    }
-    return retInstance;
-};
-var ret = __define(child, sup, proto);
-if (typeof ret.init === "function") {
-    ret = ret.init() || ret;
-}
 return ret;
     </pre>
                             </div>
@@ -4400,7 +3964,7 @@ return date.add(new Date(), "years", val);
 			<hr />
 			<div class="fineprint section" style="clear:both">
                     			
-                    			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Feb 16 2012 15:02:57 GMT-0600 (CST)
+                    			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Mar 02 2012 14:00:04 GMT-0600 (CST)
                     		</div>
 		</div>
        </div>
