@@ -132,6 +132,56 @@ suite.addBatch({
     },
 
 
+    "when using classic for an callback":{
+        topic:function () {
+            var promise = new Promise();
+            promise.both(comb.hitch(this, "callback", null));
+            setTimeout(comb.hitch(promise, "callback", "callback"), 1000);
+        },
+
+        "it should callback ":function (res) {
+            assert.equal(res, "callback");
+        }
+    },
+
+    "when using classic for an errback":{
+        topic:function () {
+            var promise = new Promise();
+            promise.both(comb.hitch(this, "callback", null));
+            setTimeout(comb.hitch(promise, "errback", "error"), 1000);
+        },
+
+        "it should errback ":function (res) {
+            assert.equal(res, "error");
+        }
+    },
+
+    "when using classic after callback has been called":{
+        topic:function () {
+            var promise = new Promise();
+            promise.callback("callback");
+            promise.both(comb.hitch(this, "callback", null));
+        },
+
+        "it should callback ":function (res) {
+            assert.equal(res, "callback");
+        }
+    },
+
+    "when using classic after errback has been called":{
+        topic:function () {
+            var promise = new Promise();
+            promise.errback("error");
+            promise.both(comb.hitch(this, "callback", null));
+        },
+
+        "it should errback ":function (res) {
+            assert.equal(res, "error");
+        }
+    },
+
+
+
     "when using then and calling back":{
         topic:function () {
             var promise = new Promise();

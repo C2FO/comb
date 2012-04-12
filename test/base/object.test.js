@@ -160,6 +160,28 @@ suite.addBatch({
             assert.equal(topic.test3, "hello");
             assert.equal(topic.test4, "world");
         }
+    },
+
+    "when using deepEqual":{
+        topic:comb.deepEqual,
+
+        "it should determine correctly":function () {
+            assert.isTrue(comb.deepEqual({a:"a"}, {a:"a"}));
+            assert.isFalse(comb.deepEqual({a:"b"}, {a:"a"}));
+            assert.isTrue(comb.deepEqual(new Date(2000, 2, 2, 2, 2, 2), new Date(2000, 2, 2, 2, 2, 2)));
+            assert.isFalse(comb.deepEqual(new Date(2000, 2, 2, 2, 2, 2), new Date(2000, 2, 2, 2, 2, 1)));
+            assert.isTrue(comb.deepEqual([
+                {a:"a"}
+            ], [
+                {a:"a"}
+            ]));
+            assert.isFalse(comb.deepEqual([
+                {a:"b"}
+            ], [
+                {a:"a"}
+            ]));
+
+        }
     }
 });
 
