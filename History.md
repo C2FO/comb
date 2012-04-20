@@ -1,3 +1,9 @@
+0.1.1/2012-04-20
+===
+  * Migrated all tests to use [it](http://github.com/doug-martin/it)
+  * More Tests
+  * Added functionality to comb.Promise/PromiseList (allowing promises as callbacks and node style callbacks for)
+
 0.1.0/2012-03-02
 ===
   * comb.define performance increase
