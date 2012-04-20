@@ -1,33 +1,26 @@
 "use strict";
-var vows = require('vows'),
-        assert = require('assert'),
-        comb = require("index"),
-        Collection = comb.collections.Collection;
+var it = require('it'),
+    assert = require('assert'),
+    comb = require("index"),
+    Collection = comb.collections.Collection;
 
 
-var ret = (module.exports = exports = new comb.Promise());
-var suite = vows.describe("A Colleciton interface");
- var methods = ["concat","join","slice","toString","indexOf","lastIndexOf"];
-suite.addBatch({
-            "when calling the collection interface" : {
-                topic : function(){
-                    return new Collection();
-                },
+it.describe("comb.collections.Collection", function (it) {
 
-                "it should contain the collection methods" : function(topic){
-                    for(var i in methods){
-                        assert.isFunction(topic[methods[i]]);
-                    }
-                },
 
-                "the collection methods should be abstract" : function(topic){
-                    for(var i in methods){
-                        assert.throws(function(){
-                            topic[methods[i]]();
-                        });
-                    }
-                }
-            }
-        });
+    var collection = new Collection();
+    ["concat", "join", "slice", "toString", "indexOf", "lastIndexOf"].forEach(function (m) {
+        it.describe("#" + m, function (it) {
+            it.should("be a method", function () {
+                assert.isFunction(collection[m]);
+            });
 
-suite.run({reporter : vows.reporter.spec}, comb.hitch(ret,"callback"));
+            it.should("throw an error if invoked", function () {
+                assert.throws(function () {
+                    collection[m]();
+                })
+            })
+        })
+    });
+
+});

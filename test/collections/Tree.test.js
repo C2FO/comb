@@ -1,27 +1,23 @@
 "use strict";
-var vows = require('vows'),
-        assert = require('assert'),
-        comb = require("index"),
-        Tree = comb.collections.Tree;
+var it = require('it'),
+    assert = require('assert'),
+    comb = require("index"),
+    Tree = comb.collections.Tree;
 
 
-var ret = (module.exports = exports = new comb.Promise());
-var suite = vows.describe("A Tree interface");
- var methods = ["insert","remove"];
-suite.addBatch({
-            "when calling the collection interface" : {
-                topic : function(){
-                    return new Tree();
-                },
+it.describe("A Tree interface", function (it) {
+    var methods = ["insert", "remove"];
 
-                "the insert, and remove methods should be abstract" : function(topic){
-                    for(var i in methods){
-                        assert.throws(function(){
-                            topic[methods[i]]();
-                        });
-                    }
-                }
-            }
-        });
+    var tree = new Tree();
+    methods.forEach(function (m) {
+        it.describe("#" + m, function (it) {
+            it.should("be abstract", function () {
+                assert.throws(function () {
+                    tree[m]();
+                });
+            })
+        })
+    });
 
-suite.run({reporter : vows.reporter.spec}, comb.hitch(ret,"callback"));
+});
+

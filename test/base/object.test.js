@@ -1,189 +1,136 @@
 "use strict";
-var vows = require('vows'),
+var it = require('it'),
     assert = require('assert'),
-    comb = require("../../index"),
-    define = comb.define,
-    hitch = comb.hitch,
-    Broadcaster = comb;
+    comb = require("index");
 
-var ret = (module.exports = exports = new comb.Promise());
-var suite = vows.describe("Object utilities");
-//Super of other classes
-suite.addBatch({
-    "when testing if something is an object":{
-        topic:comb,
+it.describe("comb/base/object.js", function (it) {
 
-        "it should determine properly":function (topic) {
-            assert.isTrue(topic.isObject(new Date()));
-            assert.isTrue(topic.isObject(new String()));
-            assert.isTrue(topic.isObject(new Number()));
-            assert.isTrue(topic.isObject(new Boolean()));
-            assert.isTrue(topic.isObject({}));
-            assert.isFalse(topic.isObject());
-            assert.isFalse(topic.isObject(""));
-            assert.isFalse(topic.isObject(1));
-            assert.isFalse(topic.isObject(false));
-            assert.isFalse(topic.isObject(true));
-        }
-    },
+    it.should("determine if someting is an objecct", function () {
+        assert.isTrue(comb.isObject(new Date()));
+        assert.isTrue(comb.isObject(new String()));
+        assert.isTrue(comb.isObject(new Number()));
+        assert.isTrue(comb.isObject(new Boolean()));
+        assert.isTrue(comb.isObject({}));
+        assert.isFalse(comb.isObject());
+        assert.isFalse(comb.isObject(""));
+        assert.isFalse(comb.isObject(1));
+        assert.isFalse(comb.isObject(false));
+        assert.isFalse(comb.isObject(true));
+    });
 
-    "when testing if something is a hash":{
-        topic:comb,
+    it.should("determine if something is a hash", function () {
+        assert.isTrue(comb.isHash({}));
+        assert.isTrue(comb.isHash({1:2, a:"b"}));
+        assert.isFalse(comb.isHash(new Date()));
+        assert.isFalse(comb.isHash(new String()));
+        assert.isFalse(comb.isHash(new Number()));
+        assert.isFalse(comb.isHash(new Boolean()));
+        assert.isFalse(comb.isHash());
+        assert.isFalse(comb.isHash(""));
+        assert.isFalse(comb.isHash(1));
+        assert.isFalse(comb.isHash(false));
+        assert.isFalse(comb.isHash(true));
+    });
 
-        "it should determine properly":function (topic) {
-            assert.isTrue(topic.isHash({}));
-            assert.isTrue(topic.isHash({1:2, a:"b"}));
-            assert.isFalse(topic.isHash(new Date()));
-            assert.isFalse(topic.isHash(new String()));
-            assert.isFalse(topic.isHash(new Number()));
-            assert.isFalse(topic.isHash(new Boolean()));
-            assert.isFalse(topic.isHash());
-            assert.isFalse(topic.isHash(""));
-            assert.isFalse(topic.isHash(1));
-            assert.isFalse(topic.isHash(false));
-            assert.isFalse(topic.isHash(true));
-        }
-    },
+    it.should("determine in an object is empty", function () {
+        assert.isTrue(comb.isEmpty());
+        assert.isTrue(comb.isEmpty({}));
+        assert.isTrue(comb.isEmpty([]));
+        assert.isFalse(comb.isEmpty({A:"b"}));
+        assert.isFalse(comb.isEmpty([
+            {A:"b"}
+        ]));
+    });
 
-    "when testing if an object is empty":{
-        topic:comb,
+    it.describe("#merge", function (it) {
 
-        "it should determine properly":function (topic) {
-            assert.isTrue(topic.isEmpty());
-            assert.isTrue(topic.isEmpty({}));
-            assert.isFalse(topic.isEmpty({A:"b"}));
-        }
-    },
 
-    "when merging objects ":{
-        topic:function () {
+        it.should("merge all properties", function () {
+            //This is true because they inherit from eachother!
             var ret = {};
             comb.merge(ret, {test:true}, {test2:false}, {test3:"hello", test4:"world"});
-            return ret;
+            assert.isTrue(ret.test);
+            assert.isFalse(ret.test2);
+            assert.equal(ret.test3, "hello");
+            assert.equal(ret.test4, "world");
+        });
 
-
-        },
-
-        "is should contain all properties":function (topic) {
+        it.should("merge objects if a start object is not provided", function () {
             //This is true because they inherit from eachother!
-            assert.isTrue(topic.test);
-            assert.isFalse(topic.test2);
-            assert.equal(topic.test3, "hello");
-            assert.equal(topic.test4, "world");
-        }
-    },
+            var ret = comb.merge(null, {test:true}, {test2:false}, {test3:"hello", test4:"world"});
+            assert.isTrue(ret.test);
+            assert.isFalse(ret.test2);
+            assert.equal(ret.test3, "hello");
+            assert.equal(ret.test4, "world");
+        });
+    });
 
-    "when merging objects and not providing a start object":{
-        topic:function () {
-            return comb.merge(null, {test:true}, {test2:false}, {test3:"hello", test4:"world"});
-        },
-
-        "is should contain all properties":function (topic) {
-            //This is true because they inherit from eachother!
-            assert.isTrue(topic.test);
-            assert.isFalse(topic.test2);
-            assert.equal(topic.test3, "hello");
-            assert.equal(topic.test4, "world");
-        }
-    },
-
-    "when deepMerging objects and not providing a start object":{
-        topic:function () {
-            return comb.merge(null, {test:true, a:{b:4}},
+    it.describe("#deepMerge", function (it) {
+        it.should("merge all nested objects", function () {
+            var ret = comb.deepMerge(null, {test:true, a:{b:4}},
                 {test2:false, a:{c:3}},
                 {test3:"hello", test4:"world", a:{d:{e:2}}},
                 {a:{d:{f:{g:1}}}});
-        },
+            assert.isTrue(ret.test);
+            assert.isFalse(ret.test2);
+            assert.equal(ret.test3, "hello");
+            assert.equal(ret.test4, "world");
+            assert.deepEqual(ret.a, {b:4, c:3, d:{e:2, f:{g:1}}});
+        });
+    });
 
-        "is should contain all properties":function (topic) {
-            //This is true because they inherit from eachother!
-            assert.isTrue(topic.test);
-            assert.isFalse(topic.test2);
-            assert.equal(topic.test3, "hello");
-            assert.equal(topic.test4, "world");
-        }
-    },
-
-    "when deepMerging objects ":{
-        topic:function () {
-            var ret = {a:{b:1, c:2, d:{e:3, f:{g:4}}}};
-            comb.deepMerge(ret,
-                {test:true, a:{b:4}},
-                {test2:false, a:{c:3}},
-                {test3:"hello", test4:"world", a:{d:{e:2}}},
-                {a:{d:{f:{g:1}}}});
-            return ret;
-
-
-        },
-
-        "is should contain all properties":function (topic) {
-            //This is true because they inherit from eachother!
-            assert.isTrue(topic.test);
-            assert.isFalse(topic.test2);
-            assert.equal(topic.test3, "hello");
-            assert.equal(topic.test4, "world");
-            assert.deepEqual(topic.a, {b:4, c:3, d:{e:2, f:{g:1}}});
-        }
-    },
-
-    "when extending a class ":{
-        topic:function () {
+    it.describe("#extend", function (it) {
+        it.should("extend a class properly", function () {
             var myObj = function () {
             };
             myObj.prototype.test = true;
             comb.extend(myObj, {test2:false, test3:"hello", test4:"world"});
-            return new myObj;
-        },
+            var m = new myObj();
+            assert.isTrue(m.test);
+            assert.isFalse(m.test2);
+            assert.equal(m.test3, "hello");
+            assert.equal(m.test4, "world");
+        });
 
-        "is should contain all properties":function (topic) {
-            //This is true because they inherit from eachother!
-            assert.isTrue(topic.test);
-            assert.isFalse(topic.test2);
-            assert.equal(topic.test3, "hello");
-            assert.equal(topic.test4, "world");
-        }
-    },
+        it.should("extend a objects properly", function () {
+            var m = {};
+            m.test = true;
+            comb.extend(m, {test2:false, test3:"hello", test4:"world"});
+            assert.isTrue(m.test);
+            assert.isFalse(m.test2);
+            assert.equal(m.test3, "hello");
+            assert.equal(m.test4, "world");
+        })
+    });
 
-    "when extending an object ":{
-        topic:function () {
-            var myObj = {};
-            myObj.test = true;
-            comb.extend(myObj, {test2:false, test3:"hello", test4:"world"});
-            return myObj;
-        },
+    it.should("determine if objects are deepEqual properly", function () {
+        assert.isTrue(comb.deepEqual({a:"a"}, {a:"a"}));
+        assert.isFalse(comb.deepEqual({a:"b"}, {a:"a"}));
+        assert.isFalse(comb.deepEqual("a", new String("a")));
+        assert.isTrue(comb.deepEqual(/a|b/ig, /a|b/ig));
+        assert.isFalse(comb.deepEqual(/a|b/ig, /a|b/g));
+        assert.isTrue(comb.deepEqual(new Date(2000, 2, 2, 2, 2, 2), new Date(2000, 2, 2, 2, 2, 2)));
+        assert.isFalse(comb.deepEqual(new Date(2000, 2, 2, 2, 2, 2), new Date(2000, 2, 2, 2, 2, 1)));
+        assert.isTrue(comb.deepEqual([
+            {a:"a"}
+        ], [
+            {a:"a"}
+        ]));
+        assert.isTrue(comb.deepEqual(new Buffer("abc"), new Buffer("abc")))
+        assert.isFalse(comb.deepEqual([
+            {a:"b"}
+        ], [
+            {a:"a"}
+        ]));
+        (function () {
+            var argsA = arguments;
+            (function () {
+                assert.isTrue(comb.deepEqual(argsA, arguments));
+                assert.isFalse(comb.deepEqual(argsA, 'a'));
+            })(["a"])
+        })(["a"])
 
-        "is should contain all properties":function (topic) {
-            //This is true because they inherit from eachother!
-            assert.isTrue(topic.test);
-            assert.isFalse(topic.test2);
-            assert.equal(topic.test3, "hello");
-            assert.equal(topic.test4, "world");
-        }
-    },
-
-    "when using deepEqual":{
-        topic:comb.deepEqual,
-
-        "it should determine correctly":function () {
-            assert.isTrue(comb.deepEqual({a:"a"}, {a:"a"}));
-            assert.isFalse(comb.deepEqual({a:"b"}, {a:"a"}));
-            assert.isTrue(comb.deepEqual(new Date(2000, 2, 2, 2, 2, 2), new Date(2000, 2, 2, 2, 2, 2)));
-            assert.isFalse(comb.deepEqual(new Date(2000, 2, 2, 2, 2, 2), new Date(2000, 2, 2, 2, 2, 1)));
-            assert.isTrue(comb.deepEqual([
-                {a:"a"}
-            ], [
-                {a:"a"}
-            ]));
-            assert.isFalse(comb.deepEqual([
-                {a:"b"}
-            ], [
-                {a:"a"}
-            ]));
-
-        }
-    }
+    });
 });
 
 
-suite.run({reporter:vows.reporter.spec}, comb.hitch(ret, "callback"));

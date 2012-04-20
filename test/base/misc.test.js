@@ -1,84 +1,77 @@
 "use strict";
-var vows = require('vows'),
-        assert = require('assert'),
-        comb = require("index"),
-        define = comb.define,
-        hitch = comb.hitch,
-        Broadcaster = comb;
+var it = require('it'),
+    assert = require('assert'),
+    comb = require("index");
 
-var ret = (module.exports = exports = new comb.Promise());
-var suite = vows.describe("Misc utilities");
+it.describe("comb/base/misc.js", function (it) {
 //Super of other classes
-suite.addBatch({
-    "comb " :{
-        topic : comb,
+    it.should("#isBoolean", function () {
+        //This is true because they inherit from eachother!
+        assert.isTrue(comb.isBoolean(true));
+        assert.isFalse(comb.isBoolean(function () {
+        }));
+        assert.isFalse(comb.isBoolean("hello"));
+        assert.isFalse(comb.isBoolean({}));
+        assert.isFalse(comb.isBoolean(new Date()));
+        assert.isFalse(comb.isBoolean(1));
+    });
 
-        "should test if something is a boolean" : function(topic) {
-            //This is true because they inherit from eachother!
-            assert.isTrue(topic.isBoolean(true));
-            assert.isFalse(topic.isBoolean(function() {
-            }));
-            assert.isFalse(topic.isBoolean("hello"));
-            assert.isFalse(topic.isBoolean({}));
-            assert.isFalse(topic.isBoolean(new Date()));
-            assert.isFalse(topic.isBoolean(1));
+    it.should("#isArguments", function () {
+        //This is true because they inherit from eachother!
+        assert.isTrue(comb.isArguments(arguments));
+        assert.isFalse(comb.isArguments(function () {
+        }));
+        assert.isFalse(comb.isArguments("hello"));
+        assert.isFalse(comb.isArguments({}));
+        assert.isFalse(comb.isArguments(new Date()));
+        assert.isFalse(comb.isArguments(1));
+    });
 
-        },
+    it.should("#isUndefined", function () {
+        assert.isTrue(comb.isUndefined(undefined));
+        assert.isFalse(comb.isUndefined(null));
+        assert.isFalse(comb.isUndefined(true));
+        assert.isFalse(comb.isUndefined(function () {
+        }));
+        assert.isFalse(comb.isUndefined("hello"));
+        assert.isFalse(comb.isUndefined({}));
+        assert.isFalse(comb.isUndefined(new Date()));
+        assert.isFalse(comb.isUndefined(1));
+    });
 
-        "should test if something is undefined" : function(topic) {
+    it.should("#isNull", function () {
+        //This is true because they inherit from eachother!
+        assert.isTrue(comb.isNull(null));
+        assert.isFalse(comb.isNull(undefined));
+        assert.isFalse(comb.isNull(true));
+        assert.isFalse(comb.isNull(function () {
+        }));
+        assert.isFalse(comb.isNull("hello"));
+        assert.isFalse(comb.isNull({}));
+        assert.isFalse(comb.isNull(new Date()));
+        assert.isFalse(comb.isNull(1));
+    });
 
-            assert.isTrue(topic.isUndefined(undefined));
-            assert.isFalse(topic.isUndefined(null));
-            assert.isFalse(topic.isUndefined(true));
-            assert.isFalse(topic.isUndefined(function() {
-            }));
-            assert.isFalse(topic.isUndefined("hello"));
-            assert.isFalse(topic.isUndefined({}));
-            assert.isFalse(topic.isUndefined(new Date()));
-            assert.isFalse(topic.isUndefined(1));
+    it.should("#isDefined", function () {
+        //This is true because they inherit from eachother!
+        assert.isTrue(comb.isDefined(null));
+        assert.isFalse(comb.isDefined(undefined));
+        assert.isTrue(comb.isDefined(true));
+        assert.isTrue(comb.isDefined(function () {
+        }));
+        assert.isTrue(comb.isDefined("hello"));
+        assert.isTrue(comb.isDefined({}));
+        assert.isTrue(comb.isDefined(new Date()));
+        assert.isTrue(comb.isDefined(1));
+    });
 
-        },
-
-        "should test if something is null" : function(topic) {
-            //This is true because they inherit from eachother!
-            assert.isTrue(topic.isNull(null));
-            assert.isFalse(topic.isNull(undefined));
-            assert.isFalse(topic.isNull(true));
-            assert.isFalse(topic.isNull(function() {
-            }));
-            assert.isFalse(topic.isNull("hello"));
-            assert.isFalse(topic.isNull({}));
-            assert.isFalse(topic.isNull(new Date()));
-            assert.isFalse(topic.isNull(1));
-
-        },
-
-        "should test if something is defined" : function(topic) {
-            //This is true because they inherit from eachother!
-            assert.isTrue(topic.isDefined(null));
-            assert.isFalse(topic.isDefined(undefined));
-            assert.isTrue(topic.isDefined(true));
-            assert.isTrue(topic.isDefined(function() {
-            }));
-            assert.isTrue(topic.isDefined("hello"));
-            assert.isTrue(topic.isDefined({}));
-            assert.isTrue(topic.isDefined(new Date()));
-            assert.isTrue(topic.isDefined(1));
-
-        },
-
-        "should test if something is an instanceof" : function(topic) {
-            //This is true because they inherit from eachother!
-            assert.isTrue(topic.isInstanceOf(new Date(), Date));
-            assert.isTrue(topic.isInstanceOf(new Number(1), Number));
-            assert.isTrue(topic.isInstanceOf(new String(1), String));
-            assert.isFalse(topic.isInstanceOf(undefined, String));
-            assert.isFalse(topic.isInstanceOf(undefined, 1));
-
-        }
-    }
+    it.should("#isInstanceOf", function () {
+        //This is true because they inherit from eachother!
+        assert.isTrue(comb.isInstanceOf(new Date(), Date));
+        assert.isTrue(comb.isInstanceOf(new Number(1), Number));
+        assert.isTrue(comb.isInstanceOf(new String(1), String));
+        assert.isFalse(comb.isInstanceOf(undefined, String));
+        assert.isFalse(comb.isInstanceOf(undefined, 1));
+    });
 });
-
-
-suite.run({reporter : vows.reporter.spec}, comb.hitch(ret,"callback"));
 

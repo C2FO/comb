@@ -7,9 +7,6 @@
         "type": "git",
         "url": "git@github.com:Pollen/comb.git"
     },
-    "dependencies" : {
-        "node-proxy" : ">=0.5.2"
-    },
     "homepage": "http://pollenware.github.com/comb/symbols/comb.html",
     "author": "Pollenware (http://pollenware.github.com)",
     "main": "index.js",

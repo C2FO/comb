@@ -1,115 +1,96 @@
 "use strict";
-var vows = require('vows'),
-        assert = require('assert'),
-        comb = require("index"),
-        define = comb.define,
-        hitch = comb.hitch;
+var it = require('it'),
+    assert = require('assert'),
+    comb = require("index"),
+    define = comb.define,
+    hitch = comb.hitch;
 
-var ret = (module.exports = exports = new comb.Promise());
-var suite = vows.describe("Middleware");
+
+it.describe("comb.plugins.Middleware", function (it) {
 //Super of other classes
-var Mammal = define(comb.plugins.Middleware, {
-    instance : {
+    var Mammal = define(comb.plugins.Middleware, {
+        instance:{
 
-        constructor: function(options) {
-            options = options || {};
-            this._super(arguments);
-            this._type = options.type || "mammal";
-        },
+            constructor:function (options) {
+                options = options || {};
+                this._super(arguments);
+                this._type = options.type || "mammal";
+            },
 
-        speak : function() {
-            var ret = new comb.Promise();
-            this._hook("pre", "speak")
+            speak:function () {
+                var ret = new comb.Promise();
+                this._hook("pre", "speak")
                     .then(comb.hitch(this, "_hook", "post", "speak"), hitch(ret, "errback"))
                     .then(comb.hitch(ret, "callback", "speak"), comb.hitch(ret, "errback"));
-            return ret;
-        },
+                return ret;
+            },
 
-        eat : function() {
-            var ret = new comb.Promise();
-            this._hook("pre", "eat")
+            speakAgain:function () {
+                var ret = new comb.Promise();
+                this._hook("pre", "speakAgain")
+                    .then(comb.hitch(this, "_hook", "post", "speakAgain"), hitch(ret, "errback"))
+                    .then(comb.hitch(ret, "callback", "speakAgain"), comb.hitch(ret, "errback"));
+                return ret;
+            },
+
+            eat:function () {
+                var ret = new comb.Promise();
+                this._hook("pre", "eat")
                     .then(comb.hitch(this, "_hook", "post", "eat"), hitch(ret, "errback"))
                     .then(comb.hitch(ret, "callback", "eat"), comb.hitch(ret, "errback"));
-            return ret;
+                return ret;
+            }
         }
-    }
-});
+    });
 
-suite.addBatch({
-    "a Mammal class" :{
-        topic : function() {
-            Mammal.pre('speak', hitch(this, "callback", null));
-            var m = new Mammal({color : "gold"});
-            m.speak();
-        },
-
-        "should call pre middleware" : function(next) {
-            assert.isTrue(comb.isFunction(next));
+    it.should("call pre middleware", function (next) {
+        Mammal.pre('speak', function (n) {
+            assert.isTrue(comb.isFunction(n));
+            n();
             next();
-        }
-    }
-});
+        });
+        var m = new Mammal({color:"gold"});
+        m.speak();
+    });
 
-suite.addBatch({
-    "a Mammal instance" :{
-        topic : function() {
-            var m = new Mammal({color : "gold"});
-            m.eat().then(comb.hitch(this, function(str){
-                this.callback(null, str);
-            }));
-        },
-
-        "should callback right away" : function(str) {
-            assert.equal(str, "eat");
-        }
-    }
-});
-
-suite.addBatch({
-    "a Mammal instance" :{
-        topic : function() {
-            var m = new Mammal({color : "gold"});
-            m.pre("eat", hitch(this, "callback", null));
-            m.eat();
-        },
-
-        "should call pre middleware" : function(next) {
-            assert.isTrue(comb.isFunction(next));
+    it.should("call pre middleware on an instance of middleware", function (next) {
+        var m = new Mammal({color:"gold"});
+        m.pre('speakAgain', function (n) {
+            assert.isTrue(comb.isFunction(n));
+            n();
             next();
-        }
-    }
-});
+        });
+        m.speakAgain();
+    });
 
-suite.addBatch({
-    "a Mammal class" :{
-        topic : function() {
-            Mammal.post('speak', hitch(this, "callback", null));
-            var m = new Mammal({color : "gold"});
-            m.speak();
-        },
-
-        "should call post middleware" : function(next) {
-            assert.isTrue(comb.isFunction(next));
+    it.should("call post middleware", function (next) {
+        Mammal.post('speak', function (n) {
+            assert.isTrue(comb.isFunction(n));
+            n();
             next();
-        }
-    }
-});
+        });
+        var m = new Mammal({color:"gold"});
+        m.speak();
+    });
 
-suite.addBatch({
-    "a Mammal instance" :{
-        topic : function() {
-            var m = new Mammal({color : "gold"});
-            m.post("eat", hitch(this, "callback", null));
-            m.eat();
-        },
-
-        "should call post middleware" : function(next) {
-            assert.isTrue(comb.isFunction(next));
+    it.should("call post middleware on an instance of middleware", function (next) {
+        var m = new Mammal({color:"gold"});
+        m.post('speakAgain', function (n) {
+            assert.isTrue(comb.isFunction(n));
+            n();
             next();
-        }
-    }
+        });
+        m.speakAgain();
+    });
+
+    it.should("callback right away if there is no middleware", function (next) {
+        var m = new Mammal({color:"gold"});
+        m.eat().then(comb.hitch(this, function (str) {
+            next();
+        }));
+    });
+
 });
 
 
-suite.run({reporter : vows.reporter.spec}, comb.hitch(ret,"callback"));
 

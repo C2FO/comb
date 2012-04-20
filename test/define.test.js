@@ -1,158 +1,156 @@
 "use strict";
-var vows = require('vows'),
+var it = require('it'),
     assert = require('assert'),
     comb = require("index"),
     define = comb.define,
     singleton = comb.singleton;
 
-
-var ret = (module.exports = exports = new comb.Promise());
-var suite = vows.describe("Define");
+it.describe("comb.define", function (it) {
 
 
 //Super of other classes
-var Mammal = define(null, {
-    instance:{
+    var Mammal = define(null, {
+        instance:{
 
-        constructor:function (options) {
-            options = options || {};
-            this._super(arguments);
-            this._type = options.type || "mammal";
-        },
+            constructor:function (options) {
+                options = options || {};
+                this._super(arguments);
+                this._type = options.type || "mammal";
+            },
 
-        speak:function () {
-            return  "A mammal of type " + this._type + " sounds like";
-        },
+            speak:function () {
+                return  "A mammal of type " + this._type + " sounds like";
+            },
 
-        //Define your getters
-        getters:{
-            type:function () {
-                return this._type;
+            //Define your getters
+            getters:{
+                type:function () {
+                    return this._type;
+                }
+            },
+
+            setters:{
+                type:function (type) {
+                    this._type = type;
+                }
             }
         },
 
-        setters:{
-            type:function (type) {
-                this._type = type;
+        //Define your static methods
+        static:{
+
+            mammalInheritedProp:"mammalInheritedProp",
+
+            soundOff:function () {
+                return "Im a mammal!!";
             }
         }
-    },
-
-    //Define your static methods
-    static:{
-
-        mammalInheritedProp:"mammalInheritedProp",
-
-        soundOff:function () {
-            return "Im a mammal!!";
-        }
-    }
-});
+    });
 
 //Show singular inheritance
-var Wolf = define(Mammal, {
-    instance:{
-        constructor:function (options) {
-            options = options || {};
-            //call your super constructor you can call this after you initialize or not
-            //call it at all to prevent the supers from initilizing things
-            this._super(arguments);
-            this._sound = "growl";
-            this._color = options.color || "grey";
-        },
-
-        speak:function () {
-            return this._super(arguments) + " a " + this._sound;
-        },
-
-        getters:{
-            color:function () {
-                return this._color;
+    var Wolf = define(Mammal, {
+        instance:{
+            constructor:function (options) {
+                options = options || {};
+                //call your super constructor you can call this after you initialize or not
+                //call it at all to prevent the supers from initilizing things
+                this._super(arguments);
+                this._sound = "growl";
+                this._color = options.color || "grey";
             },
 
-            sound:function () {
-                return this._sound;
+            speak:function () {
+                return this._super(arguments) + " a " + this._sound;
+            },
+
+            getters:{
+                color:function () {
+                    return this._color;
+                },
+
+                sound:function () {
+                    return this._sound;
+                }
+            },
+
+            setters:{
+                color:function (color) {
+                    this._color = color;
+                },
+
+                sound:function (sound) {
+                    this._sound = sound;
+                }
             }
         },
 
-        setters:{
-            color:function (color) {
-                this._color = color;
-            },
-
-            sound:function (sound) {
-                this._sound = sound;
+        static:{
+            soundOff:function () {
+                //You can even call super in your statics!!!
+                return this._super(arguments) + " that growls";
             }
         }
-    },
-
-    static:{
-        soundOff:function () {
-            //You can even call super in your statics!!!
-            return this._super(arguments) + " that growls";
-        }
-    }
-});
+    });
 
 
 //Typical heirachical inheritance
 // Mammal->Wolf->Dog
-var Dog = define(Wolf, {
-    instance:{
-        constructor:function (options) {
-            options = options || {};
-            this._super(arguments);
-            this._sound = "woof";
+    var Dog = define(Wolf, {
+        instance:{
+            constructor:function (options) {
+                options = options || {};
+                this._super(arguments);
+                this._sound = "woof";
 
+            },
+
+            speak:function () {
+                return this._super(arguments) + " thats domesticated";
+            }
         },
 
-        speak:function () {
-            return this._super(arguments) + " thats domesticated";
+        static:{
+            soundOff:function () {
+                return this._super(arguments) + " but now barks";
+            }
         }
-    },
-
-    static:{
-        soundOff:function () {
-            return this._super(arguments) + " but now barks";
-        }
-    }
-});
+    });
 
 // Mammal->Wolf->Dog->Breed
-var Breed = define(Dog, {
-    instance:{
+    var Breed = define(Dog, {
+        instance:{
 
-        _pitch:"high",
+            _pitch:"high",
 
-        constructor:function (options) {
-            options = options || {};
-            this._super(arguments);
-            this.breed = options.breed || "lab";
-        },
+            constructor:function (options) {
+                options = options || {};
+                this._super(arguments);
+                this.breed = options.breed || "lab";
+            },
 
-        speak:function () {
-            return this._super(arguments) + " with a " + this._pitch + " pitch!";
-        },
+            speak:function () {
+                return this._super(arguments) + " with a " + this._pitch + " pitch!";
+            },
 
-        getters:{
-            pitch:function () {
-                return this._pitch;
+            getters:{
+                pitch:function () {
+                    return this._pitch;
+                }
+            },
+
+            setters:{
+                pitch:function (pitch) {
+                    this._pitch = pitch;
+                }
             }
         },
 
-        setters:{
-            pitch:function (pitch) {
-                this._pitch = pitch;
+        static:{
+            soundOff:function () {
+                return this._super(arguments).toUpperCase() + "!";
             }
         }
-    },
-
-    static:{
-        soundOff:function () {
-            return this._super(arguments).toUpperCase() + "!";
-        }
-    }
-});
+    });
 
 //Example of multiple inheritace
 //What really happens is you mixin Wold, Dog, and Breed
@@ -161,49 +159,45 @@ var Breed = define(Dog, {
 //Mammal->Wolf->Dog->Breed
 //So if you call this._super, it will check breed then dog then wolf then mammal
 //be found through inheritance
-var Lab = define([Mammal, Wolf, Dog, Breed]);
+    var Lab = define([Mammal, Wolf, Dog, Breed]);
 
-var MyLab = singleton(Lab);
+    var MyLab = singleton(Lab);
 
-var MyLabWithConstructor = singleton([Mammal, Wolf, Dog, Breed], {
-    instance:{
-        constructor:function () {
-            this._super(arguments);
+    var MyLabWithConstructor = singleton([Mammal, Wolf, Dog, Breed], {
+        instance:{
+            constructor:function () {
+                this._super(arguments);
+            }
         }
-    }
-});
+    });
 
-var StaticInitClass = define([Mammal, Wolf, Dog, Breed], {
-    static:{
-        initCalled:false,
-        init:function () {
-            this.initCalled = true;
+    var StaticInitClass = define([Mammal, Wolf, Dog, Breed], {
+        static:{
+            initCalled:false,
+            init:function () {
+                this.initCalled = true;
+            }
         }
-    }
-});
+    });
 
-var SingletonInit = singleton([Mammal, Wolf, Dog, Breed], {
-    static:{
-        initCalled:false,
-        init:function () {
-            this.initCalled = true;
+    var SingletonInit = singleton([Mammal, Wolf, Dog, Breed], {
+        static:{
+            initCalled:false,
+            init:function () {
+                this.initCalled = true;
+            }
         }
-    }
-});
+    });
 
-var WrappedClass = define([Mammal, Wolf, Dog, Breed], {
-    static:{
-        DogMammal:Dog
-    }
-});
+    var WrappedClass = define([Mammal, Wolf, Dog, Breed], {
+        static:{
+            DogMammal:Dog
+        }
+    });
 
-suite.addBatch({
-    "a dog ":{
-        topic:function () {
-            return new Dog({color:"gold"});
-        },
-
-        "should sound like a dog":function (dog) {
+    it.describe("Dog", function (it) {
+        var dog = new Dog({color:"gold"});
+        it.should("sound like a dog", function () {
             //This is true because they inherit from eachother!
             assert.isTrue(dog instanceof Wolf);
             assert.isTrue(dog instanceof Mammal);
@@ -213,26 +207,25 @@ suite.addBatch({
             assert.equal(dog.color, "gold");
             assert.equal(dog.sound, "woof");
             assert.equal(Dog.soundOff(), "Im a mammal!! that growls but now barks");
-        },
+        });
 
-        "but after setting type it should be a dog":function (dog) {
+        it.should("be a DOG after setting type", function () {
             dog.type = "DOG";
             assert.equal(dog.speak(), "A mammal of type DOG sounds like a woof thats domesticated");
             assert.equal(dog.type, "DOG");
             assert.equal(dog.color, "gold");
             assert.equal(dog.sound, "woof");
             assert.equal(Dog.soundOff(), "Im a mammal!! that growls but now barks");
-        }
-    }
-});
+        });
+    });
 
-suite.addBatch({
-    "a Breed ":{
-        topic:function () {
-            return  new Breed({color:"gold", type:"lab"});
-        },
 
-        "should sound like a lab":function (breed) {
+    it.describe("a Breed ", function (it) {
+
+        var breed = new Breed({color:"gold", type:"lab"});
+
+
+        it.should("sound like a lab", function () {
             //the next three are true because they inherit from each other
             assert.isTrue(breed instanceof Dog);
             assert.isTrue(breed instanceof Wolf);
@@ -244,9 +237,9 @@ suite.addBatch({
             assert.equal(breed.sound, "woof");
             assert.equal(breed.pitch, "high");
             assert.equal(Breed.soundOff(), "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!");
-        },
+        });
 
-        "but after setting the type it should be a collie":function (breed) {
+        it.should("but after setting the type it should be a collie", function () {
             breed.type = "collie"
             assert.isTrue(breed instanceof Dog);
             assert.isTrue(breed instanceof Wolf);
@@ -258,9 +251,9 @@ suite.addBatch({
             assert.equal(breed.sound, "woof");
             assert.equal(breed.pitch, "high");
             assert.equal(Breed.soundOff(), "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!");
-        },
+        });
 
-        "but after setting the color it should be grey":function (breed) {
+        it.should("but after setting the color it should be grey", function () {
             breed.color = "grey"
             assert.isTrue(breed instanceof Dog);
             assert.isTrue(breed instanceof Wolf);
@@ -272,9 +265,9 @@ suite.addBatch({
             assert.equal(breed.sound, "woof");
             assert.equal(breed.pitch, "high");
             assert.equal(Breed.soundOff(), "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!");
-        },
+        });
 
-        "but after setting the sound it should sound like a bark":function (breed) {
+        it.should("but after setting the sound it should sound like a bark", function () {
             breed.sound = "bark"
             assert.isTrue(breed instanceof Dog);
             assert.isTrue(breed instanceof Wolf);
@@ -286,9 +279,9 @@ suite.addBatch({
             assert.equal(breed.sound, "bark");
             assert.equal(breed.pitch, "high");
             assert.equal(Breed.soundOff(), "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!");
-        },
+        });
 
-        "but after setting the pitch it should be low pitched":function (breed) {
+        it.should("but after setting the pitch it should be low pitched", function () {
             breed.pitch = "low"
             assert.isTrue(breed instanceof Dog);
             assert.isTrue(breed instanceof Wolf);
@@ -300,197 +293,119 @@ suite.addBatch({
             assert.equal(breed.sound, "bark");
             assert.equal(breed.pitch, "low");
             assert.equal(Breed.soundOff(), "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!");
-        }
-    }
-});
+        });
+    });
 
-suite.addBatch({
-    "a LAB ":{
-        topic:function () {
-            return new Lab();
-        },
 
-        "should sound like a lab":function (dog) {
+    it.describe("a LAB ", function (it) {
+        var lab = new Lab();
+
+        it.should("sound like a lab", function () {
             //the next three are false because they are mixins
-            assert.isFalse(dog instanceof Breed);
-            assert.isFalse(dog instanceof Dog);
-            assert.isFalse(dog instanceof Wolf);
-            assert.isTrue(dog instanceof Mammal);
+            assert.isFalse(lab instanceof Breed);
+            assert.isFalse(lab instanceof Dog);
+            assert.isFalse(lab instanceof Wolf);
+            assert.isTrue(lab instanceof Mammal);
             assert.equal(Dog.mammalInheritedProp, "mammalInheritedProp");
-            assert.equal(dog.speak(), "A mammal of type mammal sounds like a woof thats domesticated with a high pitch!");
-            assert.equal(dog.type, "mammal");
-            assert.equal(dog.color, "grey");
-            assert.equal(dog.sound, "woof");
+            assert.equal(lab.speak(), "A mammal of type mammal sounds like a woof thats domesticated with a high pitch!");
+            assert.equal(lab.type, "mammal");
+            assert.equal(lab.color, "grey");
+            assert.equal(lab.sound, "woof");
             assert.equal(Lab.soundOff(), "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!");
-        }
-    }
-});
+        });
+    });
 
-suite.addBatch({
-    "when in creating my lab singleton":{
-        topic:function () {
-            return new MyLab({type:"dog"});
-        },
+    it.describe("Singletons", function (it) {
+        it.describe("when in creating my lab singleton", function (it) {
 
-        "should still be a dog":function (topic) {
-            var myLab = new MyLab();
-            assert.isTrue(topic == myLab);
-            assert.equal(topic.type, "dog");
-            assert.equal(myLab.type, "dog");
-            assert.equal(Dog.mammalInheritedProp, "mammalInheritedProp");
-            assert.equal(topic.speak(), "A mammal of type dog sounds like a woof thats domesticated with a high pitch!");
-            assert.equal(myLab.speak(), "A mammal of type dog sounds like a woof thats domesticated with a high pitch!");
-            assert.equal(topic.type, "dog");
-            assert.equal(myLab.type, "dog");
-            assert.equal(topic.color, "grey");
-            assert.equal(myLab.color, "grey");
-            assert.equal(topic.sound, "woof");
-            assert.equal(myLab.sound, "woof");
-            assert.equal(MyLab.soundOff(), "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!");
-        }
-    }
-});
+            var lab = new MyLab({type:"dog"});
 
-suite.addBatch({
-    "when in creating my lab singleton with a constructor":{
-        topic:function () {
-            return new MyLabWithConstructor({type:"dog"});
-        },
-
-        "should still be a dog":function (topic) {
-            var myLab = new MyLabWithConstructor();
-            assert.isTrue(topic == myLab);
-            assert.equal(topic.type, "dog");
-            assert.equal(myLab.type, "dog");
-            assert.equal(Dog.mammalInheritedProp, "mammalInheritedProp");
-            assert.equal(topic.speak(), "A mammal of type dog sounds like a woof thats domesticated with a high pitch!");
-            assert.equal(myLab.speak(), "A mammal of type dog sounds like a woof thats domesticated with a high pitch!");
-            assert.equal(topic.type, "dog");
-            assert.equal(myLab.type, "dog");
-            assert.equal(topic.color, "grey");
-            assert.equal(myLab.color, "grey");
-            assert.equal(topic.sound, "woof");
-            assert.equal(myLab.sound, "woof");
-            assert.equal(MyLab.soundOff(), "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!");
-        }
-    }
-});
-
-suite.addBatch({
-    "when in creating my lab singleton with params":{
-        topic:function () {
-            return new MyLab();
-        },
-
-        "it should still be a dog":function (topic) {
-            var myLab = new MyLab();
-            assert.isTrue(topic == myLab);
-            assert.equal(topic.type, "dog");
-            assert.equal(myLab.type, "dog");
-            assert.equal(Dog.mammalInheritedProp, "mammalInheritedProp");
-            assert.equal(topic.speak(), "A mammal of type dog sounds like a woof thats domesticated with a high pitch!");
-            assert.equal(myLab.speak(), "A mammal of type dog sounds like a woof thats domesticated with a high pitch!");
-            assert.equal(topic.type, "dog");
-            assert.equal(myLab.type, "dog");
-            assert.equal(topic.color, "grey");
-            assert.equal(myLab.color, "grey");
-            assert.equal(topic.sound, "woof");
-            assert.equal(myLab.sound, "woof");
-            assert.equal(MyLab.soundOff(), "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!");
-        }
-    }
-});
-
-suite.addBatch({
-    "when in creating my lab singleton with a constructor":{
-        topic:function () {
-            return new MyLabWithConstructor();
-        },
-
-        "it should still be a dog":function (topic) {
-            var myLab = new MyLabWithConstructor();
-            assert.isTrue(topic == myLab);
-            assert.equal(topic.type, "dog");
-            assert.equal(myLab.type, "dog");
-            assert.equal(Dog.mammalInheritedProp, "mammalInheritedProp");
-            assert.equal(topic.speak(), "A mammal of type dog sounds like a woof thats domesticated with a high pitch!");
-            assert.equal(myLab.speak(), "A mammal of type dog sounds like a woof thats domesticated with a high pitch!");
-            assert.equal(topic.type, "dog");
-            assert.equal(myLab.type, "dog");
-            assert.equal(topic.color, "grey");
-            assert.equal(myLab.color, "grey");
-            assert.equal(topic.sound, "woof");
-            assert.equal(myLab.sound, "woof");
-            assert.equal(Dog.mammalInheritedProp, "mammalInheritedProp");
-            assert.equal(MyLab.soundOff(), "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!");
-        }
-    }
-});
+            it.should("still be a dog", function () {
+                var myLab = new MyLab();
+                assert.isTrue(lab == myLab);
+                assert.equal(lab.type, "dog");
+                assert.equal(myLab.type, "dog");
+                assert.equal(Dog.mammalInheritedProp, "mammalInheritedProp");
+                assert.equal(lab.speak(), "A mammal of type dog sounds like a woof thats domesticated with a high pitch!");
+                assert.equal(myLab.speak(), "A mammal of type dog sounds like a woof thats domesticated with a high pitch!");
+                assert.equal(lab.type, "dog");
+                assert.equal(myLab.type, "dog");
+                assert.equal(lab.color, "grey");
+                assert.equal(myLab.color, "grey");
+                assert.equal(lab.sound, "woof");
+                assert.equal(myLab.sound, "woof");
+                assert.equal(MyLab.soundOff(), "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!");
+            });
+        });
 
 
-suite.addBatch({
-    "when in creating a class that that has a static init method":{
-        topic:function () {
-            return StaticInitClass;
-        },
+        it.describe("when in creating my lab singleton with a constructor", function (it) {
 
-        "it should call init":function (Mammal) {
-            assert.isTrue(Mammal.initCalled);
-        }
-    }
-});
+            var lab = new MyLabWithConstructor({type:"dog"});
+
+            it.should("still be a dog", function () {
+                var myLab = new MyLabWithConstructor();
+                assert.isTrue(lab == myLab);
+                assert.equal(lab.type, "dog");
+                assert.equal(myLab.type, "dog");
+                assert.equal(Dog.mammalInheritedProp, "mammalInheritedProp");
+                assert.equal(lab.speak(), "A mammal of type dog sounds like a woof thats domesticated with a high pitch!");
+                assert.equal(myLab.speak(), "A mammal of type dog sounds like a woof thats domesticated with a high pitch!");
+                assert.equal(lab.type, "dog");
+                assert.equal(myLab.type, "dog");
+                assert.equal(lab.color, "grey");
+                assert.equal(myLab.color, "grey");
+                assert.equal(lab.sound, "woof");
+                assert.equal(myLab.sound, "woof");
+                assert.equal(MyLab.soundOff(), "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!");
+            });
+        });
+
+        it.describe("when in creating my lab singleton with params", function (it) {
+
+            var lab = new MyLab();
+
+            it.should("still be a dog", function () {
+                var myLab = new MyLab();
+                assert.isTrue(lab == myLab);
+                assert.equal(lab.type, "dog");
+                assert.equal(myLab.type, "dog");
+                assert.equal(Dog.mammalInheritedProp, "mammalInheritedProp");
+                assert.equal(lab.speak(), "A mammal of type dog sounds like a woof thats domesticated with a high pitch!");
+                assert.equal(myLab.speak(), "A mammal of type dog sounds like a woof thats domesticated with a high pitch!");
+                assert.equal(lab.type, "dog");
+                assert.equal(myLab.type, "dog");
+                assert.equal(lab.color, "grey");
+                assert.equal(myLab.color, "grey");
+                assert.equal(lab.sound, "woof");
+                assert.equal(myLab.sound, "woof");
+                assert.equal(MyLab.soundOff(), "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!");
+            });
+        });
+
+    });
+
+    it.should("call static init methods", function () {
+        assert.isTrue(StaticInitClass.initCalled);
+        assert.isTrue(SingletonInit.initCalled);
+        assert.deepEqual(WrappedClass.DogMammal, Dog);
+        assert.instanceOf(new WrappedClass.DogMammal(), Dog);
+    });
 
 
-suite.addBatch({
-    "when in creating a singleton that that has a static init method":{
-        topic:function () {
-            return SingletonInit;
-        },
+    it.describe("#as", function (it) {
 
-        "it should call init":function (Mammal) {
-            assert.isTrue(Mammal.initCalled);
-        }
-    }
-});
-
-
-suite.addBatch({
-    "when in creating a class that that has another class as a property it should not wrap it":{
-        topic:function () {
-            return WrappedClass;
-        },
-
-        "it should call init":function (Mammal) {
-            assert.deepEqual(Mammal.DogMammal, Dog);
-            assert.instanceOf(new Mammal.DogMammal(), Dog);
-        }
-    }
-});
-
-suite.addBatch({
-    "When using as to export an object to exports":{
-        topic:function () {
+        it.should("add to the exports ", function () {
             Mammal.as(exports, "Mammal");
-            return Mammal;
-        },
+            assert.equal(exports.Mammal, Mammal);
+        });
 
-        "it should as to the exports ":function (topic) {
-            assert.equal(exports.Mammal, topic);
-        }
-    },
-
-    "When using as to export an object to an object":{
-        topic:function () {
-            return Mammal.as(module);
-        },
-
-        "it should as to the module ":function (topic) {
+        it.should("export as module", function () {
+            Mammal.as(module);
             assert.equal(module.exports, Mammal);
-        }
-    }
+        })
+    });
+
 });
-
-
-suite.run({reporter:vows.reporter.spec}, comb.hitch(ret, "callback"));
 
 

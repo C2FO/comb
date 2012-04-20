@@ -1,34 +1,27 @@
 "use strict";
-var vows = require('vows'),
-        assert = require('assert'),
-        comb = require("index"),
-        Iterable = comb.collections.Iterable;
+var it = require('it'),
+    assert = require('assert'),
+    comb = require("index"),
+    Iterable = comb.collections.Iterable;
 
 
-var ret = (module.exports = exports = new comb.Promise());
-var suite = vows.describe("A Iterable interface");
+it.describe("comb.collections.Iterable", function (it) {
 
- var methods = ["filter","forEach","every","map","some","reduce", "reduceRight"];
-suite.addBatch({
-            "when calling the Iterable interface" : {
-                topic : function(){
-                    return new Iterable();
-                },
+    var iter = new Iterable();
+        ["filter", "forEach", "every", "map", "some", "reduce", "reduceRight"].forEach(function (m) {
+        it.describe("#" + m, function (it) {
 
-                "it should contain the iterable methods" : function(topic){
-                    for(var i in methods){
-                        assert.isFunction(topic[methods[i]]);
-                    }
-                },
+            it.should("be a function", function () {
+                assert.isFunction(iter[m]);
+            });
 
-                "the iterable methods should be abstract" : function(topic){
-                    for(var i in methods){
-                        assert.throws(function(){
-                            topic[methods[i]]();
-                        });
-                    }
-                }
-            }
+            it.should("throw an error if invoked", function () {
+                assert.throws(function () {
+                    iter[m]();
+                });
+            })
+
         });
+    });
 
-suite.run({reporter : vows.reporter.spec}, comb.hitch(ret,"callback"));
+});
