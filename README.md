@@ -1,4 +1,3 @@
-/usr/local/bin/node /Users/doug/git/downdoc/index.js
 <a name="top"></a>
 
 Comb
@@ -11478,5 +11477,3 @@ Meta
 * Website:  <http://pollenware.com> - Twitter: <http://twitter.com/pollenware> - 877.465.4045
 
 
-
-Process finished with exit code 0
