@@ -1,14 +1,11 @@
 {
     "name": "comb",
     "description": "A framework for node",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "keywords" : ["OO", "Object Oriented", "Collections", "Tree", "HashTable", "Pool", "Logging", "Promise", "Promises", "Proxy"],
     "repository": {
         "type": "git",
         "url": "git@github.com:Pollen/comb.git"
-    },
-    "dependencies" : {
-        "node-proxy" : ">=0.5.2"
     },
     "homepage": "http://pollenware.github.com/comb/symbols/comb.html",
     "author": "Pollenware (http://pollenware.github.com)",

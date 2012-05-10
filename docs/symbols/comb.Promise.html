@@ -74,6 +74,12 @@
                                                          
                                                     	       <li class="">
                                                                    		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.Promise.html#both" class="" >both</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class="">
+                                                                   		<span class="nodeContainer">
                                                                    		    <a href="../symbols/comb.Promise.html#callback" class="" >callback</a>
                                                                    		</span>
                                                                </li>
@@ -87,6 +93,12 @@
                                                     	       <li class="">
                                                                    		<span class="nodeContainer">
                                                                    		    <a href="../symbols/comb.Promise.html#chainBoth" class="" >chainBoth</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class="">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.Promise.html#classic" class="" >classic</a>
                                                                    		</span>
                                                                </li>
                                                          
@@ -226,7 +238,7 @@ this.__cbs = [];
 				<div class="methodDetail">
 					<div class="fixedFont">
 					
-					
+					<span class="light">{<a href="../symbols/comb.Promise.html" class="" >comb.Promise</a>}</span>
 					<b>addCallback</b>(cb)
 					
 					</div>
@@ -243,10 +255,10 @@ this.__cbs = [];
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{Function}</span> <b>cb</b>
+									<span class="light fixedFont">{Function|<a href="../symbols/comb.Promise.html" class="" >comb.Promise</a>}</span> <b>cb</b>
 									
 								</dt>
-								<dd>the function to callback when the promise is resolved</dd>
+								<dd>the function or promise to callback when the promise is resolved.</dd>
 							
 							</dl>
 						
@@ -254,12 +266,22 @@ this.__cbs = [];
 						
 						
 						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/comb.Promise.html" class="" >comb.Promise</a>}</span> this promise for chaining</dd>
+							
+							</dl>
+						
 						
 						
 						
                         	<div class="sourceCode">
                                 <pre class="code">
 if (cb) {
+    if (exports.isPromiseLike(cb)) {
+        cb = hitch(cb, "callback");
+    }
     if (this.__fired && this.__results) {
         cb.apply(this, this.__results);
     } else {
@@ -276,7 +298,7 @@ return this;
 				<div class="methodDetail">
 					<div class="fixedFont">
 					
-					
+					<span class="light">{<a href="../symbols/comb.Promise.html" class="" >comb.Promise</a>}</span>
 					<b>addErrback</b>(cb)
 					
 					</div>
@@ -293,10 +315,10 @@ return this;
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{Function}</span> <b>cb</b>
+									<span class="light fixedFont">{Function|<a href="../symbols/comb.Promise.html" class="" >comb.Promise</a>}</span> <b>cb</b>
 									
 								</dt>
-								<dd>the function to callback when the promise errors</dd>
+								<dd>the function or promise to callback when the promise errors</dd>
 							
 							</dl>
 						
@@ -304,18 +326,88 @@ return this;
 						
 						
 						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/comb.Promise.html" class="" >comb.Promise</a>}</span> this promise for chaining</dd>
+							
+							</dl>
+						
 						
 						
 						
                         	<div class="sourceCode">
                                 <pre class="code">
 if (cb) {
+    if (exports.isPromiseLike(cb)) {
+        cb = hitch(cb, "errback");
+    }
     if (this.__fired && this.__error) {
         cb.apply(this, this.__error);
     } else {
         this.__errorCbs.push(cb);
     }
 }
+return this;
+        </pre>
+                            </div>
+                        
+                    </div>
+				
+				<a name="both"> </a>
+				<div class="methodDetail">
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/comb.Promise.html" class="" >comb.Promise</a>}</span>
+					<b>both</b>(cb)
+					
+					</div>
+					<div class="description">
+						Adds a callback or promise to be resolved for both success
+and error.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Function|<a href="../symbols/comb.Promise.html" class="" >comb.Promise</a>}</span> <b>cb</b>
+									
+								</dt>
+								<dd>callback or promise to be resolved for both success
+and error.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/comb.Promise.html" class="" >comb.Promise</a>}</span> this promise for chaining</dd>
+							
+							</dl>
+						
+						
+						
+						
+                        	<div class="sourceCode">
+                                <pre class="code">
+this.addCallback(cb);
+if (exports.isPromiseLike(cb)) {
+    this.addErrback(hitch(cb, "callback"));
+} else {
+    this.addErrback(cb);
+}
+
+return this;
         </pre>
                             </div>
                         
@@ -326,7 +418,7 @@ if (cb) {
 					<div class="fixedFont">
 					
 					
-					<b>callback</b>(anything)
+					<b>callback</b>(args)
 					
 					</div>
 					<div class="description">
@@ -342,7 +434,7 @@ if (cb) {
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>anything</b>
+									<span class="light fixedFont">{*}</span> <b>args</b>
 									
 								</dt>
 								<dd>variable number of results to pass back to listeners of the promise</dd>
@@ -358,11 +450,11 @@ if (cb) {
 						
                         	<div class="sourceCode">
                                 <pre class="code">
-var args = base.argsToArray(arguments);
+args = base.argsToArray(arguments);
 if (this.__fired) {
     throw new Error("Already fired!");
 }
-this.__results = Array.prototype.slice.call(arguments);
+this.__results = args;
 this.__resolve();
 return this;
         </pre>
@@ -374,7 +466,7 @@ return this;
 				<div class="methodDetail">
 					<div class="fixedFont">
 					
-					
+					<span class="light">{<a href="../symbols/comb.Promise.html" class="" >comb.Promise</a>}</span>
 					<b>chain</b>(callback, errback)
 					
 					</div>
@@ -408,6 +500,13 @@ return this;
 						
 						
 						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/comb.Promise.html" class="" >comb.Promise</a>}</span> A new that wraps the promise for chaining</dd>
+							
+							</dl>
+						
 						
 						
 						
@@ -415,7 +514,7 @@ return this;
                                 <pre class="code">
 var promise = new Promise();
 this.addCallback(function (results) {
-    callback.call(this, results).then(hitch(promise, "callback"), hitch(promise, "errback"));
+    callback.call(this, results).then(promise);
 });
 this.addErrback(errback);
 return promise;
@@ -470,9 +569,85 @@ return promise;
                                 <pre class="code">
 var p = this.chain(callback);
 this.addErrback(function (results) {
-    callback.call(this, results).then(hitch(p, "callback"), hitch(p, "errback"));
+    callback.call(this, results).then(p);
 });
 return p;
+        </pre>
+                            </div>
+                        
+                    </div>
+				
+				<a name="classic"> </a>
+				<div class="methodDetail">
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/comb.Promise.html" class="" >comb.Promise</a>}</span>
+					<b>classic</b>(cb)
+					
+					</div>
+					<div class="description">
+						Call this function as a classic node callback where the first argument
+will be an error, or null if no error occured. The other arugments will
+be the result from the promise.
+						
+						
+					</div>
+					
+					
+					
+					   <div class="exampleCode">
+                       				    <h4>Example 1 : </h4>
+                       				    <pre class="code">
+promise.classic(function(err, res){
+     if(err){
+         console.log(err);
+     }else{
+         console.log(res);
+     }
+});</pre>
+                       				</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>cb</b>
+									
+								</dt>
+								<dd>callback where the first argument
+will be an error, or null if no error occured. The other arugments will
+be the result from the promise.</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/comb.Promise.html" class="" >comb.Promise</a>}</span> the promise to chain</dd>
+							
+							</dl>
+						
+						
+						
+						
+                        	<div class="sourceCode">
+                                <pre class="code">
+if ("function" === typeof cb) {
+    this.addErrback(function (err) {
+        cb(err);
+    });
+    this.addCallback(function () {
+        cb.apply(this, [null].concat(base.argsToArray(arguments)));
+    });
+}
+return this;
         </pre>
                             </div>
                         
@@ -483,7 +658,7 @@ return p;
 					<div class="fixedFont">
 					
 					
-					<b>errback</b>(anything)
+					<b>errback</b>(args)
 					
 					</div>
 					<div class="description">
@@ -499,10 +674,10 @@ return p;
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>anything</b>
+									<span class="light fixedFont">{*}</span> <b>args</b>
 									
 								</dt>
-								<dd>variable number of errors to pass back to listeners of the promise</dd>
+								<dd>number of errors to pass back to listeners of the promise</dd>
 							
 							</dl>
 						
@@ -516,9 +691,9 @@ return p;
                         	<div class="sourceCode">
                                 <pre class="code">
 if (this.__fired) {
-    throw i || new Error("Already fired");
+    throw args || new Error("Already fired");
 }
-this.__error = Array.prototype.slice.call(arguments);
+this.__error = base.argsToArray(arguments);
 this.__resolve();
 return this;
         </pre>
@@ -530,7 +705,7 @@ return this;
 				<div class="methodDetail">
 					<div class="fixedFont">
 					
-					
+					<span class="light">{<a href="../symbols/comb.Promise.html" class="" >comb.Promise</a>}</span>
 					<b>then</b>(callback, errback)
 					
 					</div>
@@ -564,13 +739,25 @@ return this;
 						
 						
 						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/comb.Promise.html" class="" >comb.Promise</a>}</span> this promise for chaining</dd>
+							
+							</dl>
+						
 						
 						
 						
                         	<div class="sourceCode">
                                 <pre class="code">
-this.addCallback(callback);
-this.addErrback(errback);
+if (exports.isPromiseLike(callback)) {
+    this.addCallback(callback);
+    this.addErrback(callback);
+} else {
+    this.addCallback(callback);
+    this.addErrback(errback);
+}
 return this;
         </pre>
                             </div>
@@ -586,7 +773,7 @@ return this;
 			<hr />
 			<div class="fineprint section" style="clear:both">
                     			
-                    			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Mar 02 2012 14:00:05 GMT-0600 (CST)
+                    			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Apr 19 2012 11:15:18 GMT-0500 (CDT)
                     		</div>
 		</div>
        </div>

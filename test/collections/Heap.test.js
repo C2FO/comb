@@ -1,34 +1,28 @@
 "use strict";
-var vows = require('vows'),
-        assert = require('assert'),
-        comb = require("index"),
-        Heap = comb.collections.Heap;
+var it = require('it'),
+    assert = require('assert'),
+    comb = require("index"),
+    Heap = comb.collections.Heap;
 
 
-var ret = (module.exports = exports = new comb.Promise());
-var suite = vows.describe("A Heap abstract class");
+it.describe("comb.collections.Heap", function (it) {
+    var heap = new Heap();
 
-suite.addBatch({
-            "when calling the Heap interface" : {
-                topic : function(){
-                    return new Heap();
-                },
+    it.should("throw an error when calling insert and remove methods", function () {
+        assert.throws(function () {
+            heap.insert(1, "hello");
+        })
+        assert.throws(function () {
+            heap.__downHeap();
+        })
+    });
 
-                "it should throw an error when calling insert and remove methods" : function(heap){
-                    assert.throws(function(){
-                          heap.insert(1, "hello");
-                    })
-                    assert.throws(function(){
-                        heap.__downHeap();
-                    })
-                },
+    it.should("throw an error when using an invalid key", function () {
+        assert.throws(function () {
+            heap.insert("1", 2);
+        })
+    });
 
-                "it should throw an error when using an invalid key" : function(heap){
-                    assert.throws(function(){
-                        heap.insert("1", 2);
-                    })
-                }
-            }
-        });
 
-suite.run({reporter : vows.reporter.spec}, comb.hitch(ret,"callback"));
+});
+

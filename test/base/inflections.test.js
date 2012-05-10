@@ -1,128 +1,106 @@
 "use strict";
-var vows = require('vows'),
+var it = require('it'),
     assert = require('assert'),
     comb = require("index");
 
-var ret = (module.exports = exports = new comb.Promise());
-var suite = vows.describe("Inflection utilities");
-
-var INFLECTIONS = {
-    test:"tests",
-    ax:"axes",
-    testis:"testes",
-    octopus:"octopuses",
-    virus:"viruses",
-    alias:"aliases",
-    status:"statuses",
-    bus:"buses",
-    buffalo:"buffaloes",
-    tomato:"tomatoes",
-    datum:"data",
-    bacterium:"bacteria",
-    analysis:"analyses",
-    basis:"bases",
-    diagnosis:"diagnoses",
-    parenthesis:"parentheses",
-    prognosis:"prognoses",
-    synopsis:"synopses",
-    thesis:"theses",
-    wife:"wives",
-    giraffe:"giraffes",
-    self:"selves",
-    dwarf:"dwarves",
-    hive:"hives",
-    fly:"flies",
-    buy:"buys",
-    soliloquy:"soliloquies",
-    day:"days",
-    attorney:"attorneys",
-    boy:"boys",
-    hoax:"hoaxes",
-    lunch:"lunches",
-    princess:"princesses",
-    matrix:"matrices",
-    vertex:"vertices",
-    index:"indices",
-    mouse:"mice",
-    louse:"lice",
-    quiz:"quizzes",
-    motive:"motives",
-    movie:"movies",
-    series:"series",
-    crisis:"crises",
-    person:"people",
-    man:"men",
-    woman:"women",
-    child:"children",
-    sex:"sexes",
-    move:"moves"
-};
+it.describe("comb/base/inflections.js", function (it) {
+    var INFLECTIONS = {
+        test:"tests",
+        ax:"axes",
+        testis:"testes",
+        octopus:"octopuses",
+        virus:"viruses",
+        alias:"aliases",
+        status:"statuses",
+        bus:"buses",
+        buffalo:"buffaloes",
+        tomato:"tomatoes",
+        datum:"data",
+        bacterium:"bacteria",
+        analysis:"analyses",
+        basis:"bases",
+        diagnosis:"diagnoses",
+        parenthesis:"parentheses",
+        prognosis:"prognoses",
+        synopsis:"synopses",
+        thesis:"theses",
+        wife:"wives",
+        giraffe:"giraffes",
+        self:"selves",
+        dwarf:"dwarves",
+        hive:"hives",
+        fly:"flies",
+        buy:"buys",
+        soliloquy:"soliloquies",
+        day:"days",
+        attorney:"attorneys",
+        boy:"boys",
+        hoax:"hoaxes",
+        lunch:"lunches",
+        princess:"princesses",
+        matrix:"matrices",
+        vertex:"vertices",
+        index:"indices",
+        mouse:"mice",
+        louse:"lice",
+        quiz:"quizzes",
+        motive:"motives",
+        movie:"movies",
+        series:"series",
+        crisis:"crises",
+        person:"people",
+        man:"men",
+        woman:"women",
+        child:"children",
+        sex:"sexes",
+        move:"moves"
+    };
 //Super of other classes
-suite.addBatch({
-    "when camelizing a string":{
-        topic:comb,
 
-        "it should camelize correctly":function (topic) {
-            assert.isNull(topic.camelize(null));
-            assert.isUndefined(topic.camelize());
-            assert.equal(topic.camelize("hello_world"), "helloWorld");
-            assert.equal(topic.camelize("column_name"), "columnName");
-            assert.equal(topic.camelize("columnName"), "columnName");
+    it.should("camelize correctly", function () {
+        assert.isNull(comb.camelize(null));
+        assert.isUndefined(comb.camelize());
+        assert.equal(comb.camelize("hello_world"), "helloWorld");
+        assert.equal(comb.camelize("column_name"), "columnName");
+        assert.equal(comb.camelize("columnName"), "columnName");
+    });
+
+
+    it.should("underscore correctly", function () {
+        assert.isNull(comb.underscore(null));
+        assert.isUndefined(comb.underscore());
+        assert.equal(comb.underscore("helloWorld"), "hello_world");
+        assert.equal(comb.underscore("helloWorld1"), "hello_world_1");
+        assert.equal(comb.underscore("1HelloWorld"), "1_hello_world");
+        assert.equal(comb.underscore("column_name"), "column_name");
+        assert.equal(comb.underscore("columnName"), "column_name");
+    });
+
+    it.should("classify correctly", function () {
+        assert.isNull(comb.classify(null));
+        assert.isUndefined(comb.classify());
+        assert.equal(comb.classify('egg_and_hams'), "eggAndHam");
+        assert.equal(comb.classify('post'), "post");
+        assert.equal(comb.classify('schema.post'), "post");
+    });
+
+
+    it.should("singularize correctly", function () {
+        assert.isNull(comb.singularize(null));
+        assert.isUndefined(comb.singularize());
+        for (var i in INFLECTIONS) {
+            assert.equal(comb.singularize(INFLECTIONS[i]), i);
         }
-    },
+    });
 
-    "when underscoring a string":{
-        topic:comb,
-
-        "it should underscore correctly":function (topic) {
-            assert.isNull(topic.underscore(null));
-            assert.isUndefined(topic.underscore());
-            assert.equal(topic.underscore("helloWorld"), "hello_world");
-            assert.equal(topic.underscore("helloWorld1"), "hello_world_1");
-            assert.equal(topic.underscore("1HelloWorld"), "1_hello_world");
-            assert.equal(topic.underscore("column_name"), "column_name");
-            assert.equal(topic.underscore("columnName"), "column_name");
+    it.should("pluralize correctly", function () {
+        assert.isNull(comb.pluralize(null));
+        assert.isUndefined(comb.pluralize());
+        for (var i in INFLECTIONS) {
+            assert.equal(comb.pluralize(i), INFLECTIONS[i]);
         }
-    },
-
-    "when classifying a string":{
-        topic:comb,
-
-        "it should underscore correctly":function (topic) {
-            assert.isNull(topic.classify(null));
-            assert.isUndefined(topic.classify());
-            assert.equal(topic.classify('egg_and_hams'), "eggAndHam");
-            assert.equal(topic.classify('post'), "post");
-            assert.equal(topic.classify('schema.post'), "post");
-        }
-    },
-
-    "when singularizing a string":{
-        topic:comb,
-
-        "it should singularize correctly":function (topic) {
-            assert.isNull(topic.singularize(null));
-            assert.isUndefined(topic.singularize());
-            for(var i in INFLECTIONS){
-                assert.equal(topic.singularize(INFLECTIONS[i]), i);
-            }
-        }
-    },
-
-    "when pluralizing a string":{
-        topic:comb,
-
-        "it should singularize correctly":function (topic) {
-            assert.isNull(topic.pluralize(null));
-            assert.isUndefined(topic.pluralize());
-            for(var i in INFLECTIONS){
-                assert.equal(topic.pluralize(i), INFLECTIONS[i]);
-            }
-        }
-    }
+    });
 
 
 });
 
-
-suite.run({reporter:vows.reporter.spec}, comb.hitch(ret, "callback"));
