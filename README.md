@@ -1,6 +1,8 @@
 Comb
 =========
 
+##NOTE: v0.1.1 removed proxy code out of core see [comb-proxy](http://github.com/Pollenware/comb-proxy)
+
 Overview
 --------
 
@@ -10,7 +12,6 @@ Framework for node that provides a one stop shop for frequently needed utilities
 * Collections 
 * Logging
 * String & date formatting
-* Proxy
 * Flow control
 * Date Management
 
@@ -56,12 +57,6 @@ Highlights
 * Flow control
   * [Promises](http://pollenware.github.com/comb/symbols/comb.Promise.html)
   * [PromiseLists](http://pollenware.github.com/comb/symbols/comb.PromiseList.html)
-  * [executeInOrder](http://pollenware.github.com/comb/symbols/comb.html#.executeInOrder)
-     * Allows you to program asynchronous functions synchronously.
-* Proxy helpers
-  * [methodMissing](http://pollenware.github.com/comb/symbols/comb.html#.methodMissing) - handle those pesky 'has no method exception's
-  * [functionWrapper](http://pollenware.github.com/comb/symbols/comb.html#.createFunctionWrapper) - wrap an object so you can use it as a function
-  * [handlerProxy](http://pollenware.github.com/comb/symbols/comb.html#.handlerProxy) - create a proxy for an object
 * [Tell me more!](http://pollenware.github.com/comb/symbols/comb.html)
  
   

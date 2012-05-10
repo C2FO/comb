@@ -131,6 +131,18 @@
                                                          
                                                     	       <li class=" italic">
                                                                    		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.deepEqual" class="" >deepEqual</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.deepMerge" class="" >deepMerge</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
                                                                    		    <a href="../symbols/comb.html#.disconnect" class="" >disconnect</a>
                                                                    		</span>
                                                                </li>
@@ -174,6 +186,12 @@
                                                     	       <li class=" italic">
                                                                    		<span class="nodeContainer">
                                                                    		    <a href="../symbols/comb.html#.hoursFromNow" class="" >hoursFromNow</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.isArguments" class="" >isArguments</a>
                                                                    		</span>
                                                                </li>
                                                          
@@ -264,6 +282,12 @@
                                                     	       <li class=" italic">
                                                                    		<span class="nodeContainer">
                                                                    		    <a href="../symbols/comb.html#.listen" class="" >listen</a>
+                                                                   		</span>
+                                                               </li>
+                                                         
+                                                    	       <li class=" italic">
+                                                                   		<span class="nodeContainer">
+                                                                   		    <a href="../symbols/comb.html#.listenForExit" class="" >listenForExit</a>
                                                                    		</span>
                                                                </li>
                                                          
@@ -1254,6 +1278,153 @@ return date.add(new Date(), "days", val);
                         
                     </div>
 				
+				<a name=".deepEqual"> </a>
+				<div class="methodDetail">
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">comb.</span><b>deepEqual</b>(o1, o3)
+					
+					</div>
+					<div class="description">
+						Determines if an two things are deep equal.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_object.js.html" class="">object.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					   <div class="exampleCode">
+                       				    <h4>Example 1 : </h4>
+                       				    <pre class="code">
+comb.deepEqual({a : 1, b : 2}, {a : 1, b : 2}) => true
+comb.deepEqual({a : 1}, {a : 1, b : 2}) => false</pre>
+                       				</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>o1</b>
+									
+								</dt>
+								<dd>the first thing to compare</dd>
+							
+								<dt>
+									<b>o3</b>
+									
+								</dt>
+								<dd>the second thing to compare</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> </dd>
+							
+							</dl>
+						
+						
+						
+						
+                        	<div class="sourceCode">
+                                <pre class="code">
+return  _deepEqual(o1, o2);
+</pre>
+                            </div>
+                        
+                    </div>
+				
+				<a name=".deepMerge"> </a>
+				<div class="methodDetail">
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{Object}</span>
+					<span class="light">comb.</span><b>deepMerge</b>(obj, props)
+					
+					</div>
+					<div class="description">
+						Merges objects together only overriding properties that are different.
+NOTE: this function takes a variable number of objects to merge
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_object.js.html" class="">object.js</a>.
+						
+						
+					</div>
+					
+					
+					
+					   <div class="exampleCode">
+                       				    <h4>Example 1 : </h4>
+                       				    <pre class="code">
+var myObj = {my : {cool : {property1 : 1, property2 : 2}}};
+comb.deepMerge(myObj, {my : {cool : {property3 : 3}}});
+
+myObj.my.cool.property1 => 1
+myObj.my.cool.property2 => 2
+myObj.my.cool.property3 => 3</pre>
+                       				</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>obj</b>
+									
+								</dt>
+								<dd>the object to merge into</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>props</b>
+									
+								</dt>
+								<dd>variable number of objects to merge into the obj</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Object}</span> the merged object</dd>
+							
+							</dl>
+						
+						
+						
+						
+                        	<div class="sourceCode">
+                                <pre class="code">
+if (!obj) {
+    obj = {};
+}
+for (var i = 1, l = arguments.length; i &lt; l; i++) {
+    deepMerge(obj, arguments[i]);
+}
+return obj; 
+</pre>
+                            </div>
+                        
+                    </div>
+				
 				<a name=".disconnect"> </a>
 				<div class="methodDetail">
 					<div class="fixedFont">&lt;static&gt; 
@@ -1425,11 +1596,11 @@ if (cb) {
             var cbResults;
             if (base.isArray(cbRet)) {
                 cbResults = cbRet.map(
-                        function (arg) {
-                            return getValueFromArrayMap(arg, pMap, newArgs);
-                        }).filter(function (r) {
-                            return !base.isUndefined(r)
-                        });
+                    function (arg) {
+                        return getValueFromArrayMap(arg, pMap, newArgs);
+                    }).filter(function (r) {
+                        return !base.isUndefined(r)
+                    });
             } else if (base.isHash(cbRet)) {
                 cbResults = {};
                 for (var i in cbRet) {
@@ -1861,6 +2032,59 @@ return date.add(new Date(), "hours", val);
                         
                     </div>
 				
+				<a name=".isArguments"> </a>
+				<div class="methodDetail">
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{Boolean}</span>
+					<span class="light">comb.</span><b>isArguments</b>(obj)
+					
+					</div>
+					<div class="description">
+						Determines if obj is an Arguments object;
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_misc.js.html" class="">misc.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Anything}</span> <b>obj</b>
+									
+								</dt>
+								<dd>the thing to test if it is null</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> true if it is an Arguments Object false otherwise</dd>
+							
+							</dl>
+						
+						
+						
+						
+                        	<div class="sourceCode">
+                                <pre class="code">
+return !comb.isUndefinedOrNull(object) && Object.prototype.toString.call(object) == '[object Arguments]';
+</pre>
+                            </div>
+                        
+                    </div>
+				
 				<a name=".isBoolean"> </a>
 				<div class="methodDetail">
 					<div class="fixedFont">&lt;static&gt; 
@@ -2026,7 +2250,7 @@ return !comb.isUndefined(obj);
 				<div class="methodDetail">
 					<div class="fixedFont">&lt;static&gt; 
 					
-					
+					<span class="light">{Boolean}</span>
 					<span class="light">comb.</span><b>isEmpty</b>(object)
 					
 					</div>
@@ -2045,7 +2269,7 @@ return !comb.isUndefined(obj);
                        				    <h4>Example 1 : </h4>
                        				    <pre class="code">
 comb.isEmpty({}) => true
-comg.isEmpty({a : 1}) => false</pre>
+comb.isEmpty({a : 1}) => false</pre>
                        				</div>
 					
 					
@@ -2066,12 +2290,19 @@ comg.isEmpty({a : 1}) => false</pre>
 						
 						
 						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> true if the object is empty;</dd>
+							
+							</dl>
+						
 						
 						
 						
                         	<div class="sourceCode">
                                 <pre class="code">
-if (object) {
+if (comb.isObject(object)) {
     for (var i in object) {
         if (object.hasOwnProperty(i)) {
             return false;
@@ -2261,7 +2492,7 @@ return ret && obj.constructor === Object;
 						
                         	<div class="sourceCode">
                                 <pre class="code">
-return argsToArray(arguments).slice(1).some(function(c) {
+return argsToArray(arguments).slice(1).some(function (c) {
     return isInstance(obj, c);
 });
 </pre>
@@ -2472,7 +2703,7 @@ return obj != null && obj != undef && typeof obj == "object";
                         	<div class="sourceCode">
                                 <pre class="code">
 return !base.isUndefinedOrNull(obj) && (base.isInstanceOf(obj, Promise) || (base.isFunction(obj.then)
-        && base.isFunction(obj.addCallback) && base.isFunction(obj.addErrback)));
+    && base.isFunction(obj.addCallback) && base.isFunction(obj.addErrback)));
     </pre>
                             </div>
                         
@@ -2716,6 +2947,54 @@ list.push(handle);
 handle.pos = list.length - 1;
 return handle;
 			</pre>
+                            </div>
+                        
+                    </div>
+				
+				<a name=".listenForExit"> </a>
+				<div class="methodDetail">
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">comb.</span><b>listenForExit</b>(cb)
+					
+					</div>
+					<div class="description">
+						Adds listeners to process.exit with out having to change setMaxListeners useful if you
+are writing a library and do not want to change core setting.
+						
+							<br />
+							<i>Defined in: </i> <a href="../symbols/src/lib_base_misc.js.html" class="">misc.js</a>.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Funciton}</span> <b>cb</b>
+									
+								</dt>
+								<dd>funciton to call when process is exiting</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+						
+                        	<div class="sourceCode">
+                                <pre class="code">
+setupListener();
+listeners.push(cb);
+    </pre>
                             </div>
                         
                     </div>
@@ -3964,7 +4243,7 @@ return date.add(new Date(), "years", val);
 			<hr />
 			<div class="fineprint section" style="clear:both">
                     			
-                    			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Mar 02 2012 14:00:04 GMT-0600 (CST)
+                    			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Apr 19 2012 11:15:17 GMT-0500 (CDT)
                     		</div>
 		</div>
        </div>
