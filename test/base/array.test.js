@@ -1,7 +1,7 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index");
+    comb = require("../../index");
 
 it.describe("comb.array", function (it) {
 
@@ -231,6 +231,14 @@ it.describe("comb.array", function (it) {
         assert.deepEqual(comb.array.compact([1, null, null, x, 2]), [1, 2]);
         assert.deepEqual(comb.array.compact([1, 2]), [1, 2]);
     });
-    ;
+
+    it.should("multiply an array", function () {
+        assert.deepEqual(comb.array.multiply([1, 2, 3]), [1, 2, 3]);
+        assert.deepEqual(comb.array.multiply([1, 2, 3], 0), [1, 2, 3]);
+        assert.deepEqual(comb.array.multiply([1, 2, 3], 1), [1, 2, 3]);
+        assert.deepEqual(comb.array.multiply([1, 2, 3], 2), [1, 2, 3, 1, 2, 3]);
+    });
+
+    it.run();
 });
 
