@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comb</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/js/google-code-prettify/prettify.css">
+    <style type="text/css">
+        
+
+.subnav-inner {
+    width: 100%;
+    height: 36px;
+    background-color: #EEE;
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));
+    background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);
+    background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.subnav .nav > li > a:hover {
+    color: black !important;
+}
+
+.subnav .nav li.dropdown .dropdown-toggle .caret,
+.subnav .nav li.dropdown.open .caret {
+    border-top-color: #999 !important;
+    border-bottom-color: #999 !important;
+}
+
+.subnav-fixed {
+    position: fixed;
+    width : 90%;
+    margin-right: auto;
+    margin-left: auto;
+    top: 40px;
+    left: 0;
+    right: 0;
+    z-index: 1020;
+    border-color: #D5D5D5;
+    border-width: 0 0 1px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.navbar .nav  .dropdown-menu {
+    max-height: 500px;
+    overflow: auto;
+}​
+
+    </style>
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+    <script type="text/javascript">
+        var init = (function () {
+            "use strict";
+
+            var processScroll = (function () {
+                var curr = null, prev = null;
+                return function (nav) {
+                    var $win = $(window);
+                    $('.subnav').each(function () {
+                        var nav = $(this);
+                        var navTop = nav.offset().top - 40;
+                        var scrollTop = $win.scrollTop();
+                        if (scrollTop >= navTop && curr != nav) {
+                            if(curr){
+                                curr.removeClass('subnav-fixed')
+                                prev = curr;
+                            }
+                            curr = nav;
+                            curr.addClass('subnav-fixed')
+                        } else if (curr == nav && scrollTop <= navTop) {
+                            curr.removeClass('subnav-fixed');
+                            prev.addClass('subnav-fixed');
+                            curr = prev;
+                        }else{
+                            nav.removeClass('subnav-fixed');
+                        }
+                    });
+                };
+            })();
+
+            return function () {
+                window.prettyPrint && prettyPrint();
+                $(".collapse").collapse();
+                // fix sub nav on scroll
+                processScroll();
+                $(window).on('scroll', processScroll)
+            }
+        })();
+    </script>
+</head>
+<body onload="init()">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+      
+          <a href="./index.html" class="brand">comb</a>
+      
+      <div class="nav-collapse">
+      <ul class="nav nav-pills">
+      
+
+      
+        <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+           <ul class="dropdown-menu">
+             
+                         <li><a href="comb.html">comb</a></li>
+               
+                         <li><a href="comb_array.html">comb.array</a></li>
+               
+                         <li><a href="comb_characters.html">comb.characters</a></li>
+               
+                         <li><a href="comb_date.html">comb.date</a></li>
+               
+                         <li><a href="comb_number.html">comb.number</a></li>
+               
+                         <li><a href="comb_plugins.html">comb.plugins</a></li>
+               
+                         <li><a href="comb_regexp.html">comb.regexp</a></li>
+               
+                         <li><a href="comb_string.html">comb.string</a></li>
+               
+           </ul>
+           </li>
+        
+        
+           <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+           <ul class="dropdown-menu">
+             
+                         <li><a href="./comb_Promise.html">comb.Promise</a></li>
+               
+                         <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
+               
+                         <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
+               
+                         <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
+               
+                         <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
+               
+                         <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
+               
+                         <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
+               
+                         <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
+               
+                         <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
+               
+                         <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
+               
+                         <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
+               
+                         <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
+               
+                         <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
+               
+                         <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
+               
+                         <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
+               
+                         <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
+               
+                         <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
+               
+                         <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+               
+                         <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
+               
+                         <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
+               
+                         <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
+               
+                         <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+               
+                         <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
+               
+                         <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
+               
+           </ul>
+        </li>
+       
+      </ul>
+      
+      <ul class="nav pull-right">
+                  <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+    <a name="top"></a>
+    <div class="container">
+
+
+
+    <a name=".characters"></a>
+    <div class="navbar subnav">
+    <div class="navbar-inner  subnav-inner">
+                  <div class="container">
+                    <a href="#" class="brand">
+                                comb.characters
+                                
+                                
+                                        
+                                 <span class="label label-success">Public</span>
+                                        
+                                
+                    </a>
+                   <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                            </a>
+
+                            <div class="nav-collapse">
+            
+            </div>
+            </div>
+     </div>
+</div>
+<em>Defined base/string.js</em>
+
+<p>comb characters</p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+{
+    /**@lends comb.characters*/
+    /**
+     * ☺
+     */
+    SMILEY : &quot;☺&quot;,
+    /**
+     * ☻
+     */
+    SOLID_SMILEY : &quot;☻&quot;,
+    /**
+     * ♥
+     */
+    HEART:&quot;♥&quot;,
+    /**
+     * ♦
+     */
+    DIAMOND : &quot;♦&quot;,
+    /**
+     * ♣
+     */
+    CLOVE : &quot;♣&quot;,
+    /**
+     * ♠
+     */
+    SPADE : &quot;♠&quot;,
+    /**
+     * •
+     */
+    DOT: &quot;•&quot;,
+    /**
+     * ◘
+     */
+    SQUARE_CIRCLE: &quot;◘&quot;,
+    /**
+     * ○
+     */
+    CIRCLE: &quot;○&quot;,
+    /**
+     * ◙
+     */
+    FILLED_SQUARE_CIRCLE: &quot;◙&quot;,
+    /**
+     * ♂
+     */
+    MALE : &quot;♂&quot;,
+    /**
+     * ♀
+     */
+    FEMALE : &quot;♀&quot;,
+    /**
+     * ♪
+     */
+    EIGHT_NOTE: &quot;♪&quot;,
+    /**
+     * ♫
+     */
+    DOUBLE_EIGHT_NOTE: &quot;♫&quot;,
+    /**
+     * ☼
+     */
+    SUN : &quot;☼&quot;,
+    /**
+     * ►
+     */
+    PLAY : &quot;►&quot;,
+    /**
+     * ◄
+     */
+    REWIND : &quot;◄&quot;,
+    /**
+     * ↕
+     */
+    UP_DOWN : &quot;↕&quot;,
+    /**
+     * ¶
+     */
+    PILCROW : &quot;¶&quot;,
+    /**
+     * §
+     */
+    SECTION : &quot;§&quot;,
+    /**
+     * ▬
+     */
+    THICK_MINUS : &quot;▬&quot;,
+    /**
+     * ↨
+     */
+    SMALL_UP_DOWN : &quot;↨&quot;,
+    /**
+     * ↑
+     */
+    UP_ARROW : &quot;↑&quot;,
+    /**
+     * ↓
+     */
+    DOWN_ARROW: &quot;↓&quot;,
+    /**
+     * →
+     */
+    RIGHT_ARROW : &quot;→&quot;,
+    /**
+     * ←
+     */
+    LEFT_ARROW: &quot;←&quot;,
+    /**
+     * ∟
+     */
+    RIGHT_ANGLE: &quot;∟&quot;,
+    /**
+     * ↔
+     */
+    LEFT_RIGHT_ARROW: &quot;↔&quot;,
+    /**
+     * ▲
+     */
+    TRIANGLE: &quot;▲&quot;,
+    /**
+     * ▼
+     */
+    DOWN_TRIANGLE: &quot;▼&quot;,
+    /**
+     * ⌂
+     */
+    HOUSE : &quot;⌂&quot;,
+    /**
+     * Ç
+     */
+    C_CEDILLA: &quot;Ç&quot;,
+    /**
+     * ü
+     */
+    U_UMLAUT: &quot;ü&quot;,
+    /**
+     * é
+     */
+    E_ACCENT: &quot;é&quot;,
+    /**
+     * â
+     */
+    A_LOWER_CIRCUMFLEX: &quot;â&quot;,
+    /**
+     * ä
+     */
+    A_LOWER_UMLAUT: &quot;ä&quot;,
+    /**
+     * à
+     */
+    A_LOWER_GRAVE_ACCENT: &quot;à&quot;,
+    /**
+     * å
+     */
+    A_LOWER_CIRCLE_OVER: &quot;å&quot;,
+    /**
+     * ç
+     */
+    C_LOWER_CIRCUMFLEX: &quot;ç&quot;,
+    /**
+     * ê
+     */
+    E_LOWER_CIRCUMFLEX: &quot;ê&quot;,
+    /**
+     * ë
+     */
+    E_LOWER_UMLAUT: &quot;ë&quot;,
+    /**
+     * è
+     */
+    E_LOWER_GRAVE_ACCENT: &quot;è&quot;,
+    /**
+     * ï
+     */
+    I_LOWER_UMLAUT: &quot;ï&quot;,
+    /**
+     * î
+     */
+    I_LOWER_CIRCUMFLEX: &quot;î&quot;,
+    /**
+     * ì
+     */
+    I_LOWER_GRAVE_ACCENT: &quot;ì&quot;,
+    /**
+     * Ä
+     */
+    A_UPPER_UMLAUT: &quot;Ä&quot;,
+    /**
+     * Å
+     */
+    A_UPPER_CIRCLE: &quot;Å&quot;,
+    /**
+     * É
+     */
+    E_UPPER_ACCENT: &quot;É&quot;,
+    /**
+     * æ
+     */
+    A_E_LOWER: &quot;æ&quot;,
+    /**
+     * Æ
+     */
+    A_E_UPPER: &quot;Æ&quot;,
+    /**
+     * ô
+     */
+    O_LOWER_CIRCUMFLEX: &quot;ô&quot;,
+    /**
+     * ö
+     */
+    O_LOWER_UMLAUT: &quot;ö&quot;,
+    /**
+     * ò
+     */
+    O_LOWER_GRAVE_ACCENT: &quot;ò&quot;,
+    /**
+     * û
+     */
+    U_LOWER_CIRCUMFLEX: &quot;û&quot;,
+    /**
+     * ù
+     */
+    U_LOWER_GRAVE_ACCENT: &quot;ù&quot;,
+    /**
+     * ÿ
+     */
+    Y_LOWER_UMLAUT: &quot;ÿ&quot;,
+    /**
+     * Ö
+     */
+    O_UPPER_UMLAUT: &quot;Ö&quot;,
+    /**
+     * Ü
+     */
+    U_UPPER_UMLAUT: &quot;Ü&quot;,
+    /**
+     * ¢
+     */
+    CENTS: &quot;¢&quot;,
+    /**
+     * £
+     */
+    POUND: &quot;£&quot;,
+    /**
+     * ¥
+     */
+    YEN: &quot;¥&quot;,
+    /**
+     * ¤
+     */
+    CURRENCY : &quot;¤&quot;,
+    /**
+     * ₧
+     */
+    PTS: &quot;₧&quot;,
+    /**
+     * ƒ
+     */
+    FUNCTION: &quot;ƒ&quot;,
+    /**
+     * á
+     */
+    A_LOWER_ACCENT: &quot;á&quot;,
+    /**
+     * í
+     */
+    I_LOWER_ACCENT: &quot;í&quot;,
+    /**
+     * ó
+     */
+    O_LOWER_ACCENT: &quot;ó&quot;,
+    /**
+     * ú
+     */
+    U_LOWER_ACCENT: &quot;ú&quot;,
+    /**
+     * ñ
+     */
+    N_LOWER_TILDE: &quot;ñ&quot;,
+    /**
+     * Ñ
+     */
+    N_UPPER_TILDE: &quot;Ñ&quot;,
+    /**
+     * ª
+     */
+    A_SUPER: &quot;ª&quot;,
+    /**
+     * º
+     */
+    O_SUPER: &quot;º&quot;,
+    /**
+     * ¿
+     */
+    UPSIDEDOWN_QUESTION: &quot;¿&quot;,
+    /**
+     * ⌐
+     */
+    SIDEWAYS_L : &quot;⌐&quot;,
+    /**
+     * ¬
+     */
+    NEGATION: &quot;¬&quot;,
+    /**
+     * ½
+     */
+    ONE_HALF : &quot;½&quot;,
+    /**
+     * ¼
+     */
+    ONE_FOURTH: &quot;¼&quot;,
+    /**
+     * ¡
+     */
+    UPSIDEDOWN_EXCLAMATION: &quot;¡&quot;,
+    /**
+     * «
+     */
+    DOUBLE_LEFT: &quot;«&quot;,
+    /**
+     * »
+     */
+    DOUBLE_RIGHT: &quot;»&quot;,
+    /**
+     * ░
+     */
+    LIGHT_SHADED_BOX: &quot;░&quot;,
+    /**
+     * ▒
+     */
+    MEDIUM_SHADED_BOX: &quot;▒&quot;,
+    /**
+     * ▓
+     */
+    DARK_SHADED_BOX: &quot;▓&quot;,
+    /**
+     * │
+     */
+    VERTICAL_LINE: &quot;│&quot;,
+    /**
+     * ┤
+     */
+    MAZE__SINGLE_RIGHT_T: &quot;┤&quot;,
+    /**
+     * ┐
+     */
+    MAZE_SINGLE_RIGHT_TOP: &quot;┐&quot;,
+    /**
+     * ┘
+     */
+    MAZE_SINGLE_RIGHT_BOTTOM_SMALL: &quot;┘&quot;,
+    /**
+     * ┌
+     */
+    MAZE_SINGLE_LEFT_TOP_SMALL: &quot;┌&quot;,
+    /**
+     * └
+     */
+    MAZE_SINGLE_LEFT_BOTTOM_SMALL: &quot;└&quot;,
+    /**
+     * ├
+     */
+    MAZE_SINGLE_LEFT_T: &quot;├&quot;,
+    /**
+     * ┴
+     */
+    MAZE_SINGLE_BOTTOM_T: &quot;┴&quot;,
+    /**
+     * ┬
+     */
+    MAZE_SINGLE_TOP_T: &quot;┬&quot;,
+    /**
+     * ┼
+     */
+    MAZE_SINGLE_CENTER: &quot;┼&quot;,
+    /**
+     * ─
+     */
+    MAZE_SINGLE_HORIZONTAL_LINE: &quot;─&quot;,
+    /**
+     * ╡
+     */
+    MAZE_SINGLE_RIGHT_DOUBLECENTER_T: &quot;╡&quot;,
+    /**
+     * ╛
+     */
+    MAZE_SINGLE_RIGHT_DOUBLE_BL: &quot;╛&quot;,
+    /**
+     * ╢
+     */
+    MAZE_SINGLE_RIGHT_DOUBLE_T: &quot;╢&quot;,
+    /**
+     * ╖
+     */
+    MAZE_SINGLE_RIGHT_DOUBLEBOTTOM_TOP: &quot;╖&quot;,
+    /**
+     * ╕
+     */
+    MAZE_SINGLE_RIGHT_DOUBLELEFT_TOP: &quot;╕&quot;,
+    /**
+     * ╞
+     */
+    MAZE_SINGLE_LEFT_DOUBLE_T: &quot;╞&quot;,
+    /**
+     * ╧
+     */
+    MAZE_SINGLE_BOTTOM_DOUBLE_T: &quot;╧&quot;,
+    /**
+     * ╤
+     */
+    MAZE_SINGLE_TOP_DOUBLE_T: &quot;╤&quot;,
+    /**
+     * ╥
+     */
+    MAZE_SINGLE_TOP_DOUBLECENTER_T: &quot;╥&quot;,
+    /**
+     * ╨
+     */
+    MAZE_SINGLE_BOTTOM_DOUBLECENTER_T: &quot;╨&quot;,
+    /**
+     * ╘
+     */
+    MAZE_SINGLE_LEFT_DOUBLERIGHT_BOTTOM: &quot;╘&quot;,
+    /**
+     * ╒
+     */
+    MAZE_SINGLE_LEFT_DOUBLERIGHT_TOP: &quot;╒&quot;,
+    /**
+     * ╓
+     */
+    MAZE_SINGLE_LEFT_DOUBLEBOTTOM_TOP: &quot;╓&quot;,
+    /**
+     * ╙
+     */
+    MAZE_SINGLE_LEFT_DOUBLETOP_BOTTOM: &quot;╙&quot;,
+    /**
+     * Γ
+     */
+    MAZE_SINGLE_LEFT_TOP: &quot;Γ&quot;,
+    /**
+     * ╜
+     */
+    MAZE_SINGLE_RIGHT_BOTTOM: &quot;╜&quot;,
+    /**
+     * ╟
+     */
+    MAZE_SINGLE_LEFT_CENTER: &quot;╟&quot;,
+    /**
+     * ╫
+     */
+    MAZE_SINGLE_DOUBLECENTER_CENTER: &quot;╫&quot;,
+    /**
+     * ╪
+     */
+    MAZE_SINGLE_DOUBLECROSS_CENTER: &quot;╪&quot;,
+    /**
+     * ╣
+     */
+    MAZE_DOUBLE_LEFT_CENTER: &quot;╣&quot;,
+    /**
+     * ║
+     */
+    MAZE_DOUBLE_VERTICAL: &quot;║&quot;,
+    /**
+     * ╗
+     */
+    MAZE_DOUBLE_RIGHT_TOP: &quot;╗&quot;,
+    /**
+     * ╝
+     */
+    MAZE_DOUBLE_RIGHT_BOTTOM: &quot;╝&quot;,
+    /**
+     * ╚
+     */
+    MAZE_DOUBLE_LEFT_BOTTOM: &quot;╚&quot;,
+    /**
+     * ╔
+     */
+    MAZE_DOUBLE_LEFT_TOP: &quot;╔&quot;,
+    /**
+     * ╩
+     */
+    MAZE_DOUBLE_BOTTOM_T: &quot;╩&quot;,
+    /**
+     * ╦
+     */
+    MAZE_DOUBLE_TOP_T : &quot;╦&quot;,
+    /**
+     * ╠
+     */
+    MAZE_DOUBLE_LEFT_T: &quot;╠&quot;,
+    /**
+     * ═
+     */
+    MAZE_DOUBLE_HORIZONTAL: &quot;═&quot;,
+    /**
+     * ╬
+     */
+    MAZE_DOUBLE_CROSS: &quot;╬&quot;,
+    /**
+     * █
+     */
+    SOLID_RECTANGLE: &quot;█&quot;,
+    /**
+     * ▌
+     */
+    THICK_LEFT_VERTICAL: &quot;▌&quot;,
+    /**
+     * ▐
+     */
+    THICK_RIGHT_VERTICAL: &quot;▐&quot;,
+    /**
+     * ▄
+     */
+    SOLID_SMALL_RECTANGLE_BOTTOM: &quot;▄&quot;,
+    /**
+     * ▀
+     */
+    SOLID_SMALL_RECTANGLE_TOP: &quot;▀&quot;,
+    /**
+     * Φ
+     */
+    PHI_UPPER: &quot;Φ&quot;,
+    /**
+     * ∞
+     */
+    INFINITY: &quot;∞&quot;,
+    /**
+     * ∩
+     */
+    INTERSECTION: &quot;∩&quot;,
+    /**
+     * ≡
+     */
+    DEFINITION: &quot;≡&quot;,
+    /**
+     * ±
+     */
+    PLUS_MINUS: &quot;±&quot;,
+    /**
+     * ≥
+     */
+    GT_EQ: &quot;≥&quot;,
+    /**
+     * ≤
+     */
+    LT_EQ: &quot;≤&quot;,
+    /**
+     * ⌠
+     */
+    THEREFORE: &quot;⌠&quot;,
+    /**
+     * ∵
+     */
+    SINCE : &quot;∵&quot;,
+    /**
+     * ∄
+     */
+    DOESNOT_EXIST : &quot;∄&quot;,
+    /**
+     * ∃
+     */
+    EXISTS : &quot;∃&quot;,
+    /**
+     * ∀
+     */
+    FOR_ALL :&quot;∀&quot;,
+    /**
+     * ⊕
+     */
+    EXCLUSIVE_OR : &quot;⊕&quot;,
+    /**
+     * ⌡
+     */
+    BECAUSE: &quot;⌡&quot;,
+    /**
+     * ÷
+     */
+    DIVIDE: &quot;÷&quot;,
+    /**
+     * ≈
+     */
+    APPROX: &quot;≈&quot;,
+    /**
+     * °
+     */
+    DEGREE: &quot;°&quot;,
+    /**
+     * ∙
+     */
+    BOLD_DOT: &quot;∙&quot;,
+    /**
+     * ·
+     */
+    DOT_SMALL: &quot;·&quot;,
+    /**
+     * √
+     */
+    CHECK: &quot;√&quot;,
+    /**
+     * ✗
+     */
+    ITALIC_X : &quot;✗&quot;,
+    /**
+     * ⁿ
+     */
+    SUPER_N: &quot;ⁿ&quot;,
+    /**
+     * ²
+     */
+    SQUARED: &quot;²&quot;,
+    /**
+     * ³
+     */
+    CUBED : &quot;³&quot;,
+    /**
+     * ■
+     */
+    SOLID_BOX: &quot;■&quot;,
+    /**
+     * ‰
+     */
+    PERMILE : &quot;‰&quot;,
+    /**
+     * ®
+     */
+    REGISTERED_TM : &quot;®&quot;,
+    /**
+     * ©
+     */
+    COPYRIGHT : &quot;©&quot;,
+    /**
+     * ™
+     */
+    TRADEMARK : &quot;™&quot;,
+    /**
+     * β
+     */
+    BETA: &quot;β&quot;,
+    /**
+     * γ
+     */
+    GAMMA: &quot;γ&quot;,
+    /**
+     * ζ
+     */
+    ZETA: &quot;ζ&quot;,
+    /**
+     * η
+     */
+    ETA: &quot;η&quot;,
+    /**
+     * ι
+     */
+    IOTA: &quot;ι&quot;,
+    /**
+     * κ
+     */
+    KAPPA: &quot;κ&quot;,
+    /**
+     * λ
+     */
+    LAMBDA: &quot;λ&quot;,
+    /**
+     * ν
+     */
+    NU: &quot;ν&quot;,
+    /**
+     * ξ
+     */
+    XI: &quot;ξ&quot;,
+    /**
+     * ο
+     */
+    OMICRON: &quot;ο&quot;,
+    /**
+     * ρ
+     */
+    RHO: &quot;ρ&quot;,
+    /**
+     * υ
+     */
+    UPSILON: &quot;υ&quot;,
+    /**
+     * φ
+     */
+    CHI_LOWER: &quot;φ&quot;,
+    /**
+     * χ
+     */
+    CHI_UPPER: &quot;χ&quot;,
+    /**
+     * ψ
+     */
+    PSI : &quot;ψ&quot;,
+    /**
+     * α
+     */
+    ALPHA: &quot;α&quot;,
+    /**
+     * ß
+     */
+    ESZETT: &quot;ß&quot;,
+    /**
+     * π
+     */
+    PI: &quot;π&quot;,
+    /**
+     * Σ
+     */
+    SIGMA_UPPER: &quot;Σ&quot;,
+    /**
+     * σ
+     */
+    SIGMA_LOWER: &quot;σ&quot;,
+    /**
+     * µ
+     */
+    MU: &quot;µ&quot;,
+    /**
+     * τ
+     */
+    TAU: &quot;τ&quot;,
+    /**
+     * Θ
+     */
+    THETA: &quot;Θ&quot;,
+    /**
+     * Ω
+     */
+    OMEGA: &quot;Ω&quot;,
+    /**
+     * δ
+     */
+    DELTA: &quot;δ&quot;,
+    /**
+     * φ
+     */
+    PHI_LOWER: &quot;φ&quot;,
+    /**
+     * ε
+     */
+    EPSILON: &quot;ε&quot;
+}
+    </pre>
+    
+
+    <table class='table table-bordered table-striped'><tr><td>Property</td><td>Type</td><td>Default Value</td><td>Description</td></tr><tr><td><em>ALPHA</em></td><td>property</td><td><code>"α"</code></td><td>
+α
+     </td><tr><tr><td><em>APPROX</em></td><td>property</td><td><code>"≈"</code></td><td>
+≈
+     </td><tr><tr><td><em>A_E_LOWER</em></td><td>property</td><td><code>"æ"</code></td><td>
+æ
+     </td><tr><tr><td><em>A_E_UPPER</em></td><td>property</td><td><code>"Æ"</code></td><td>
+Æ
+     </td><tr><tr><td><em>A_LOWER_ACCENT</em></td><td>property</td><td><code>"á"</code></td><td>
+á
+     </td><tr><tr><td><em>A_LOWER_CIRCLE_OVER</em></td><td>property</td><td><code>"å"</code></td><td>
+å
+     </td><tr><tr><td><em>A_LOWER_CIRCUMFLEX</em></td><td>property</td><td><code>"â"</code></td><td>
+â
+     </td><tr><tr><td><em>A_LOWER_GRAVE_ACCENT</em></td><td>property</td><td><code>"à"</code></td><td>
+à
+     </td><tr><tr><td><em>A_LOWER_UMLAUT</em></td><td>property</td><td><code>"ä"</code></td><td>
+ä
+     </td><tr><tr><td><em>A_SUPER</em></td><td>property</td><td><code>"ª"</code></td><td>
+ª
+     </td><tr><tr><td><em>A_UPPER_CIRCLE</em></td><td>property</td><td><code>"Å"</code></td><td>
+Å
+     </td><tr><tr><td><em>A_UPPER_UMLAUT</em></td><td>property</td><td><code>"Ä"</code></td><td>
+Ä
+     </td><tr><tr><td><em>BECAUSE</em></td><td>property</td><td><code>"⌡"</code></td><td>
+⌡
+     </td><tr><tr><td><em>BETA</em></td><td>property</td><td><code>"β"</code></td><td>
+β
+     </td><tr><tr><td><em>BOLD_DOT</em></td><td>property</td><td><code>"∙"</code></td><td>
+∙
+     </td><tr><tr><td><em>CENTS</em></td><td>property</td><td><code>"¢"</code></td><td>
+¢
+     </td><tr><tr><td><em>CHECK</em></td><td>property</td><td><code>"√"</code></td><td>
+√
+     </td><tr><tr><td><em>CHI_LOWER</em></td><td>property</td><td><code>"φ"</code></td><td>
+φ
+     </td><tr><tr><td><em>CHI_UPPER</em></td><td>property</td><td><code>"χ"</code></td><td>
+χ
+     </td><tr><tr><td><em>CIRCLE</em></td><td>property</td><td><code>"○"</code></td><td>
+○
+     </td><tr><tr><td><em>CLOVE</em></td><td>property</td><td><code>"♣"</code></td><td>
+♣
+     </td><tr><tr><td><em>COPYRIGHT</em></td><td>property</td><td><code>"©"</code></td><td>
+©
+     </td><tr><tr><td><em>CUBED</em></td><td>property</td><td><code>"³"</code></td><td>
+³
+     </td><tr><tr><td><em>CURRENCY</em></td><td>property</td><td><code>"¤"</code></td><td>
+¤
+     </td><tr><tr><td><em>C_CEDILLA</em></td><td>property</td><td><code>"Ç"</code></td><td>
+Ç
+     </td><tr><tr><td><em>C_LOWER_CIRCUMFLEX</em></td><td>property</td><td><code>"ç"</code></td><td>
+ç
+     </td><tr><tr><td><em>DARK_SHADED_BOX</em></td><td>property</td><td><code>"▓"</code></td><td>
+▓
+     </td><tr><tr><td><em>DEFINITION</em></td><td>property</td><td><code>"≡"</code></td><td>
+≡
+     </td><tr><tr><td><em>DEGREE</em></td><td>property</td><td><code>"°"</code></td><td>
+°
+     </td><tr><tr><td><em>DELTA</em></td><td>property</td><td><code>"δ"</code></td><td>
+δ
+     </td><tr><tr><td><em>DIAMOND</em></td><td>property</td><td><code>"♦"</code></td><td>
+♦
+     </td><tr><tr><td><em>DIVIDE</em></td><td>property</td><td><code>"÷"</code></td><td>
+÷
+     </td><tr><tr><td><em>DOESNOT_EXIST</em></td><td>property</td><td><code>"∄"</code></td><td>
+∄
+     </td><tr><tr><td><em>DOT</em></td><td>property</td><td><code>"•"</code></td><td>
+•
+     </td><tr><tr><td><em>DOT_SMALL</em></td><td>property</td><td><code>"·"</code></td><td>
+·
+     </td><tr><tr><td><em>DOUBLE_EIGHT_NOTE</em></td><td>property</td><td><code>"♫"</code></td><td>
+♫
+     </td><tr><tr><td><em>DOUBLE_LEFT</em></td><td>property</td><td><code>"«"</code></td><td>
+«
+     </td><tr><tr><td><em>DOUBLE_RIGHT</em></td><td>property</td><td><code>"»"</code></td><td>
+»
+     </td><tr><tr><td><em>DOWN_ARROW</em></td><td>property</td><td><code>"↓"</code></td><td>
+↓
+     </td><tr><tr><td><em>DOWN_TRIANGLE</em></td><td>property</td><td><code>"▼"</code></td><td>
+▼
+     </td><tr><tr><td><em>EIGHT_NOTE</em></td><td>property</td><td><code>"♪"</code></td><td>
+♪
+     </td><tr><tr><td><em>EPSILON</em></td><td>property</td><td><code>"ε"</code></td><td>
+ε
+     </td><tr><tr><td><em>ESZETT</em></td><td>property</td><td><code>"ß"</code></td><td>
+ß
+     </td><tr><tr><td><em>ETA</em></td><td>property</td><td><code>"η"</code></td><td>
+η
+     </td><tr><tr><td><em>EXCLUSIVE_OR</em></td><td>property</td><td><code>"⊕"</code></td><td>
+⊕
+     </td><tr><tr><td><em>EXISTS</em></td><td>property</td><td><code>"∃"</code></td><td>
+∃
+     </td><tr><tr><td><em>E_ACCENT</em></td><td>property</td><td><code>"é"</code></td><td>
+é
+     </td><tr><tr><td><em>E_LOWER_CIRCUMFLEX</em></td><td>property</td><td><code>"ê"</code></td><td>
+ê
+     </td><tr><tr><td><em>E_LOWER_GRAVE_ACCENT</em></td><td>property</td><td><code>"è"</code></td><td>
+è
+     </td><tr><tr><td><em>E_LOWER_UMLAUT</em></td><td>property</td><td><code>"ë"</code></td><td>
+ë
+     </td><tr><tr><td><em>E_UPPER_ACCENT</em></td><td>property</td><td><code>"É"</code></td><td>
+É
+     </td><tr><tr><td><em>FEMALE</em></td><td>property</td><td><code>"♀"</code></td><td>
+♀
+     </td><tr><tr><td><em>FILLED_SQUARE_CIRCLE</em></td><td>property</td><td><code>"◙"</code></td><td>
+◙
+     </td><tr><tr><td><em>FOR_ALL</em></td><td>property</td><td><code>"∀"</code></td><td>
+∀
+     </td><tr><tr><td><em>FUNCTION</em></td><td>property</td><td><code>"ƒ"</code></td><td>
+ƒ
+     </td><tr><tr><td><em>GAMMA</em></td><td>property</td><td><code>"γ"</code></td><td>
+γ
+     </td><tr><tr><td><em>GT_EQ</em></td><td>property</td><td><code>"≥"</code></td><td>
+≥
+     </td><tr><tr><td><em>HEART</em></td><td>property</td><td><code>"♥"</code></td><td>
+♥
+     </td><tr><tr><td><em>HOUSE</em></td><td>property</td><td><code>"⌂"</code></td><td>
+⌂
+     </td><tr><tr><td><em>INFINITY</em></td><td>property</td><td><code>"∞"</code></td><td>
+∞
+     </td><tr><tr><td><em>INTERSECTION</em></td><td>property</td><td><code>"∩"</code></td><td>
+∩
+     </td><tr><tr><td><em>IOTA</em></td><td>property</td><td><code>"ι"</code></td><td>
+ι
+     </td><tr><tr><td><em>ITALIC_X</em></td><td>property</td><td><code>"✗"</code></td><td>
+✗
+     </td><tr><tr><td><em>I_LOWER_ACCENT</em></td><td>property</td><td><code>"í"</code></td><td>
+í
+     </td><tr><tr><td><em>I_LOWER_CIRCUMFLEX</em></td><td>property</td><td><code>"î"</code></td><td>
+î
+     </td><tr><tr><td><em>I_LOWER_GRAVE_ACCENT</em></td><td>property</td><td><code>"ì"</code></td><td>
+ì
+     </td><tr><tr><td><em>I_LOWER_UMLAUT</em></td><td>property</td><td><code>"ï"</code></td><td>
+ï
+     </td><tr><tr><td><em>KAPPA</em></td><td>property</td><td><code>"κ"</code></td><td>
+κ
+     </td><tr><tr><td><em>LAMBDA</em></td><td>property</td><td><code>"λ"</code></td><td>
+λ
+     </td><tr><tr><td><em>LEFT_ARROW</em></td><td>property</td><td><code>"←"</code></td><td>
+←
+     </td><tr><tr><td><em>LEFT_RIGHT_ARROW</em></td><td>property</td><td><code>"↔"</code></td><td>
+↔
+     </td><tr><tr><td><em>LIGHT_SHADED_BOX</em></td><td>property</td><td><code>"░"</code></td><td>
+░
+     </td><tr><tr><td><em>LT_EQ</em></td><td>property</td><td><code>"≤"</code></td><td>
+≤
+     </td><tr><tr><td><em>MALE</em></td><td>property</td><td><code>"♂"</code></td><td>
+♂
+     </td><tr><tr><td><em>MAZE_DOUBLE_BOTTOM_T</em></td><td>property</td><td><code>"╩"</code></td><td>
+╩
+     </td><tr><tr><td><em>MAZE_DOUBLE_CROSS</em></td><td>property</td><td><code>"╬"</code></td><td>
+╬
+     </td><tr><tr><td><em>MAZE_DOUBLE_HORIZONTAL</em></td><td>property</td><td><code>"═"</code></td><td>
+═
+     </td><tr><tr><td><em>MAZE_DOUBLE_LEFT_BOTTOM</em></td><td>property</td><td><code>"╚"</code></td><td>
+╚
+     </td><tr><tr><td><em>MAZE_DOUBLE_LEFT_CENTER</em></td><td>property</td><td><code>"╣"</code></td><td>
+╣
+     </td><tr><tr><td><em>MAZE_DOUBLE_LEFT_T</em></td><td>property</td><td><code>"╠"</code></td><td>
+╠
+     </td><tr><tr><td><em>MAZE_DOUBLE_LEFT_TOP</em></td><td>property</td><td><code>"╔"</code></td><td>
+╔
+     </td><tr><tr><td><em>MAZE_DOUBLE_RIGHT_BOTTOM</em></td><td>property</td><td><code>"╝"</code></td><td>
+╝
+     </td><tr><tr><td><em>MAZE_DOUBLE_RIGHT_TOP</em></td><td>property</td><td><code>"╗"</code></td><td>
+╗
+     </td><tr><tr><td><em>MAZE_DOUBLE_TOP_T</em></td><td>property</td><td><code>"╦"</code></td><td>
+╦
+     </td><tr><tr><td><em>MAZE_DOUBLE_VERTICAL</em></td><td>property</td><td><code>"║"</code></td><td>
+║
+     </td><tr><tr><td><em>MAZE_SINGLE_BOTTOM_DOUBLECENTER_T</em></td><td>property</td><td><code>"╨"</code></td><td>
+╨
+     </td><tr><tr><td><em>MAZE_SINGLE_BOTTOM_DOUBLE_T</em></td><td>property</td><td><code>"╧"</code></td><td>
+╧
+     </td><tr><tr><td><em>MAZE_SINGLE_BOTTOM_T</em></td><td>property</td><td><code>"┴"</code></td><td>
+┴
+     </td><tr><tr><td><em>MAZE_SINGLE_CENTER</em></td><td>property</td><td><code>"┼"</code></td><td>
+┼
+     </td><tr><tr><td><em>MAZE_SINGLE_DOUBLECENTER_CENTER</em></td><td>property</td><td><code>"╫"</code></td><td>
+╫
+     </td><tr><tr><td><em>MAZE_SINGLE_DOUBLECROSS_CENTER</em></td><td>property</td><td><code>"╪"</code></td><td>
+╪
+     </td><tr><tr><td><em>MAZE_SINGLE_HORIZONTAL_LINE</em></td><td>property</td><td><code>"─"</code></td><td>
+─
+     </td><tr><tr><td><em>MAZE_SINGLE_LEFT_BOTTOM_SMALL</em></td><td>property</td><td><code>"└"</code></td><td>
+└
+     </td><tr><tr><td><em>MAZE_SINGLE_LEFT_CENTER</em></td><td>property</td><td><code>"╟"</code></td><td>
+╟
+     </td><tr><tr><td><em>MAZE_SINGLE_LEFT_DOUBLEBOTTOM_TOP</em></td><td>property</td><td><code>"╓"</code></td><td>
+╓
+     </td><tr><tr><td><em>MAZE_SINGLE_LEFT_DOUBLERIGHT_BOTTOM</em></td><td>property</td><td><code>"╘"</code></td><td>
+╘
+     </td><tr><tr><td><em>MAZE_SINGLE_LEFT_DOUBLERIGHT_TOP</em></td><td>property</td><td><code>"╒"</code></td><td>
+╒
+     </td><tr><tr><td><em>MAZE_SINGLE_LEFT_DOUBLETOP_BOTTOM</em></td><td>property</td><td><code>"╙"</code></td><td>
+╙
+     </td><tr><tr><td><em>MAZE_SINGLE_LEFT_DOUBLE_T</em></td><td>property</td><td><code>"╞"</code></td><td>
+╞
+     </td><tr><tr><td><em>MAZE_SINGLE_LEFT_T</em></td><td>property</td><td><code>"├"</code></td><td>
+├
+     </td><tr><tr><td><em>MAZE_SINGLE_LEFT_TOP</em></td><td>property</td><td><code>"Γ"</code></td><td>
+Γ
+     </td><tr><tr><td><em>MAZE_SINGLE_LEFT_TOP_SMALL</em></td><td>property</td><td><code>"┌"</code></td><td>
+┌
+     </td><tr><tr><td><em>MAZE_SINGLE_RIGHT_BOTTOM</em></td><td>property</td><td><code>"╜"</code></td><td>
+╜
+     </td><tr><tr><td><em>MAZE_SINGLE_RIGHT_BOTTOM_SMALL</em></td><td>property</td><td><code>"┘"</code></td><td>
+┘
+     </td><tr><tr><td><em>MAZE_SINGLE_RIGHT_DOUBLEBOTTOM_TOP</em></td><td>property</td><td><code>"╖"</code></td><td>
+╖
+     </td><tr><tr><td><em>MAZE_SINGLE_RIGHT_DOUBLECENTER_T</em></td><td>property</td><td><code>"╡"</code></td><td>
+╡
+     </td><tr><tr><td><em>MAZE_SINGLE_RIGHT_DOUBLELEFT_TOP</em></td><td>property</td><td><code>"╕"</code></td><td>
+╕
+     </td><tr><tr><td><em>MAZE_SINGLE_RIGHT_DOUBLE_BL</em></td><td>property</td><td><code>"╛"</code></td><td>
+╛
+     </td><tr><tr><td><em>MAZE_SINGLE_RIGHT_DOUBLE_T</em></td><td>property</td><td><code>"╢"</code></td><td>
+╢
+     </td><tr><tr><td><em>MAZE_SINGLE_RIGHT_TOP</em></td><td>property</td><td><code>"┐"</code></td><td>
+┐
+     </td><tr><tr><td><em>MAZE_SINGLE_TOP_DOUBLECENTER_T</em></td><td>property</td><td><code>"╥"</code></td><td>
+╥
+     </td><tr><tr><td><em>MAZE_SINGLE_TOP_DOUBLE_T</em></td><td>property</td><td><code>"╤"</code></td><td>
+╤
+     </td><tr><tr><td><em>MAZE_SINGLE_TOP_T</em></td><td>property</td><td><code>"┬"</code></td><td>
+┬
+     </td><tr><tr><td><em>MAZE__SINGLE_RIGHT_T</em></td><td>property</td><td><code>"┤"</code></td><td>
+┤
+     </td><tr><tr><td><em>MEDIUM_SHADED_BOX</em></td><td>property</td><td><code>"▒"</code></td><td>
+▒
+     </td><tr><tr><td><em>MU</em></td><td>property</td><td><code>"µ"</code></td><td>
+µ
+     </td><tr><tr><td><em>NEGATION</em></td><td>property</td><td><code>"¬"</code></td><td>
+¬
+     </td><tr><tr><td><em>NU</em></td><td>property</td><td><code>"ν"</code></td><td>
+ν
+     </td><tr><tr><td><em>N_LOWER_TILDE</em></td><td>property</td><td><code>"ñ"</code></td><td>
+ñ
+     </td><tr><tr><td><em>N_UPPER_TILDE</em></td><td>property</td><td><code>"Ñ"</code></td><td>
+Ñ
+     </td><tr><tr><td><em>OMEGA</em></td><td>property</td><td><code>"Ω"</code></td><td>
+Ω
+     </td><tr><tr><td><em>OMICRON</em></td><td>property</td><td><code>"ο"</code></td><td>
+ο
+     </td><tr><tr><td><em>ONE_FOURTH</em></td><td>property</td><td><code>"¼"</code></td><td>
+¼
+     </td><tr><tr><td><em>ONE_HALF</em></td><td>property</td><td><code>"½"</code></td><td>
+½
+     </td><tr><tr><td><em>O_LOWER_ACCENT</em></td><td>property</td><td><code>"ó"</code></td><td>
+ó
+     </td><tr><tr><td><em>O_LOWER_CIRCUMFLEX</em></td><td>property</td><td><code>"ô"</code></td><td>
+ô
+     </td><tr><tr><td><em>O_LOWER_GRAVE_ACCENT</em></td><td>property</td><td><code>"ò"</code></td><td>
+ò
+     </td><tr><tr><td><em>O_LOWER_UMLAUT</em></td><td>property</td><td><code>"ö"</code></td><td>
+ö
+     </td><tr><tr><td><em>O_SUPER</em></td><td>property</td><td><code>"º"</code></td><td>
+º
+     </td><tr><tr><td><em>O_UPPER_UMLAUT</em></td><td>property</td><td><code>"Ö"</code></td><td>
+Ö
+     </td><tr><tr><td><em>PERMILE</em></td><td>property</td><td><code>"‰"</code></td><td>
+‰
+     </td><tr><tr><td><em>PHI_LOWER</em></td><td>property</td><td><code>"φ"</code></td><td>
+φ
+     </td><tr><tr><td><em>PHI_UPPER</em></td><td>property</td><td><code>"Φ"</code></td><td>
+Φ
+     </td><tr><tr><td><em>PI</em></td><td>property</td><td><code>"π"</code></td><td>
+π
+     </td><tr><tr><td><em>PILCROW</em></td><td>property</td><td><code>"¶"</code></td><td>
+¶
+     </td><tr><tr><td><em>PLAY</em></td><td>property</td><td><code>"►"</code></td><td>
+►
+     </td><tr><tr><td><em>PLUS_MINUS</em></td><td>property</td><td><code>"±"</code></td><td>
+±
+     </td><tr><tr><td><em>POUND</em></td><td>property</td><td><code>"£"</code></td><td>
+£
+     </td><tr><tr><td><em>PSI</em></td><td>property</td><td><code>"ψ"</code></td><td>
+ψ
+     </td><tr><tr><td><em>PTS</em></td><td>property</td><td><code>"₧"</code></td><td>
+₧
+     </td><tr><tr><td><em>REGISTERED_TM</em></td><td>property</td><td><code>"®"</code></td><td>
+®
+     </td><tr><tr><td><em>REWIND</em></td><td>property</td><td><code>"◄"</code></td><td>
+◄
+     </td><tr><tr><td><em>RHO</em></td><td>property</td><td><code>"ρ"</code></td><td>
+ρ
+     </td><tr><tr><td><em>RIGHT_ANGLE</em></td><td>property</td><td><code>"∟"</code></td><td>
+∟
+     </td><tr><tr><td><em>RIGHT_ARROW</em></td><td>property</td><td><code>"→"</code></td><td>
+→
+     </td><tr><tr><td><em>SECTION</em></td><td>property</td><td><code>"§"</code></td><td>
+§
+     </td><tr><tr><td><em>SIDEWAYS_L</em></td><td>property</td><td><code>"⌐"</code></td><td>
+⌐
+     </td><tr><tr><td><em>SIGMA_LOWER</em></td><td>property</td><td><code>"σ"</code></td><td>
+σ
+     </td><tr><tr><td><em>SIGMA_UPPER</em></td><td>property</td><td><code>"Σ"</code></td><td>
+Σ
+     </td><tr><tr><td><em>SINCE</em></td><td>property</td><td><code>"∵"</code></td><td>
+∵
+     </td><tr><tr><td><em>SMALL_UP_DOWN</em></td><td>property</td><td><code>"↨"</code></td><td>
+↨
+     </td><tr><tr><td><em>SMILEY</em></td><td>property</td><td><code>"☺"</code></td><td>
+☺
+     </td><tr><tr><td><em>SOLID_BOX</em></td><td>property</td><td><code>"■"</code></td><td>
+■
+     </td><tr><tr><td><em>SOLID_RECTANGLE</em></td><td>property</td><td><code>"█"</code></td><td>
+█
+     </td><tr><tr><td><em>SOLID_SMALL_RECTANGLE_BOTTOM</em></td><td>property</td><td><code>"▄"</code></td><td>
+▄
+     </td><tr><tr><td><em>SOLID_SMALL_RECTANGLE_TOP</em></td><td>property</td><td><code>"▀"</code></td><td>
+▀
+     </td><tr><tr><td><em>SOLID_SMILEY</em></td><td>property</td><td><code>"☻"</code></td><td>
+☻
+     </td><tr><tr><td><em>SPADE</em></td><td>property</td><td><code>"♠"</code></td><td>
+♠
+     </td><tr><tr><td><em>SQUARED</em></td><td>property</td><td><code>"²"</code></td><td>
+²
+     </td><tr><tr><td><em>SQUARE_CIRCLE</em></td><td>property</td><td><code>"◘"</code></td><td>
+◘
+     </td><tr><tr><td><em>SUN</em></td><td>property</td><td><code>"☼"</code></td><td>
+☼
+     </td><tr><tr><td><em>SUPER_N</em></td><td>property</td><td><code>"ⁿ"</code></td><td>
+ⁿ
+     </td><tr><tr><td><em>TAU</em></td><td>property</td><td><code>"τ"</code></td><td>
+τ
+     </td><tr><tr><td><em>THEREFORE</em></td><td>property</td><td><code>"⌠"</code></td><td>
+⌠
+     </td><tr><tr><td><em>THETA</em></td><td>property</td><td><code>"Θ"</code></td><td>
+Θ
+     </td><tr><tr><td><em>THICK_LEFT_VERTICAL</em></td><td>property</td><td><code>"▌"</code></td><td>
+▌
+     </td><tr><tr><td><em>THICK_MINUS</em></td><td>property</td><td><code>"▬"</code></td><td>
+▬
+     </td><tr><tr><td><em>THICK_RIGHT_VERTICAL</em></td><td>property</td><td><code>"▐"</code></td><td>
+▐
+     </td><tr><tr><td><em>TRADEMARK</em></td><td>property</td><td><code>"™"</code></td><td>
+™
+     </td><tr><tr><td><em>TRIANGLE</em></td><td>property</td><td><code>"▲"</code></td><td>
+▲
+     </td><tr><tr><td><em>UPSIDEDOWN_EXCLAMATION</em></td><td>property</td><td><code>"¡"</code></td><td>
+¡
+     </td><tr><tr><td><em>UPSIDEDOWN_QUESTION</em></td><td>property</td><td><code>"¿"</code></td><td>
+¿
+     </td><tr><tr><td><em>UPSILON</em></td><td>property</td><td><code>"υ"</code></td><td>
+υ
+     </td><tr><tr><td><em>UP_ARROW</em></td><td>property</td><td><code>"↑"</code></td><td>
+↑
+     </td><tr><tr><td><em>UP_DOWN</em></td><td>property</td><td><code>"↕"</code></td><td>
+↕
+     </td><tr><tr><td><em>U_LOWER_ACCENT</em></td><td>property</td><td><code>"ú"</code></td><td>
+ú
+     </td><tr><tr><td><em>U_LOWER_CIRCUMFLEX</em></td><td>property</td><td><code>"û"</code></td><td>
+û
+     </td><tr><tr><td><em>U_LOWER_GRAVE_ACCENT</em></td><td>property</td><td><code>"ù"</code></td><td>
+ù
+     </td><tr><tr><td><em>U_UMLAUT</em></td><td>property</td><td><code>"ü"</code></td><td>
+ü
+     </td><tr><tr><td><em>U_UPPER_UMLAUT</em></td><td>property</td><td><code>"Ü"</code></td><td>
+Ü
+     </td><tr><tr><td><em>VERTICAL_LINE</em></td><td>property</td><td><code>"│"</code></td><td>
+│
+     </td><tr><tr><td><em>XI</em></td><td>property</td><td><code>"ξ"</code></td><td>
+ξ
+     </td><tr><tr><td><em>YEN</em></td><td>property</td><td><code>"¥"</code></td><td>
+¥
+     </td><tr><tr><td><em>Y_LOWER_UMLAUT</em></td><td>property</td><td><code>"ÿ"</code></td><td>
+ÿ
+     </td><tr><tr><td><em>ZETA</em></td><td>property</td><td><code>"ζ"</code></td><td>
+ζ
+     </td><tr></table>
+    
+<hr>
+
+Documentation gennerated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
+
+
+</div>
+</div>
+<script type="text/javascript" src="./assets/js/jquery.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-transition.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-tab.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-tooltip.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-popover.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-button.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-collapse.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-carousel.js"></script>
+<script type="text/javascript"
+        src="./assets/js/google-code-prettify/prettify.js"></script>
+
+</body>
+</html>
+

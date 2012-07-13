@@ -231,206 +231,455 @@
 
 
 
+    <a name=""></a>
+    <div class="navbar subnav">
+    <div class="navbar-inner  subnav-inner">
+          <div class="container">
+            <a href="#" class="brand">
+            comb.collections.Stack
+            
+                    
+             <span class="label label-success">Public</span>
+                    
+            
+            </a>
+           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </a>
+                    <div class="nav-collapse">
 
-  <h1>Comb</h1>
+            <ul class="nav pull-right">
+             <li><a href="#constructor">Constructor</a></li>
+                        
+                        <li><a href="#instanceProperties">Instance Properties</a></li>
+                        
+                        
+                        
+                        
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instance Methods<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                
+                                <li><a href="./comb_collections_Stack.html#clear">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                clear
 
-<h2>Overview</h2>
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Stack.html#contains">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                contains
 
-<p>Framework for node that provides a one stop shop for frequently needed utilities, including:</p>
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Stack.html#peek">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                peek
 
-<ul>
-<li>OO utilties</li>
-<li>Collections</li>
-<li>Logging</li>
-<li>String &amp; date formatting</li>
-<li>Flow control</li>
-<li>Date Management</li>
-</ul>
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Stack.html#pop">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                pop
 
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Stack.html#push">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                push
 
-<p>See Usage for more details.</p>
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Stack.html#remove">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                remove
 
-<h2>Installation</h2>
-
-<pre><code>npm install comb
-</code></pre>
-
-<h2>Why?</h2>
-
-<p>If your like us its fun to find new modules to use but often wish you didn&rsquo;t have to sift through NPM registry
-or the node modules page to find what you need.</p>
-
-<p> So&hellip;.</p>
-
-<p>We created a library of things we use often, or commons utilities that are used by our other APIs.</p>
-
-<h2>Highlights</h2>
-
-<ul>
-<li>&gt; 99% test coverage! And we&rsquo;re always adding more!</li>
-<li>comb(<a href="./comb.html#.define">define</a>|<a
-href="./comb.html#.singleton">singleton</a>)
-
-<ul>
-<li>The back bone of comb.</li>
-<li>Options for classical inheritance models as well as mixins(pseudo multi-inheritance)</li>
-<li>You can call this._super from any method. Including statically defined ones!</li>
-<li>Access to you class level properties within an instance</li>
-<li>And <a href="./comb.html#.define">much more&hellip;</a></li>
-</ul>
-</li>
-<li>Logging
-
-<ul>
-<li><a href="http://pollenware.github.com/comb_logging_Logger.html">Powerful logging API!</a></li>
-<li>Logger inheritance through name spaces</li>
-<li><a href="./comb_logging_Level.html">Predefined level definition along
-with the ability to define your own.</a></li>
-<li>Multiple appenders including
-
-<ul>
-<li><a href="./comb_logging_appenders_FileAppender.html">FileAppender</a>
-- log it to a file
-</li>
-<li><a href="./comb_logging_appenders_RollingFileAppender.html">RollingFileAppender</a>
-- log it to a file up to a customizable size then create a new one!
-</li>
-<li><a href="./comb_logging_appenders_JSONAppender.html">JSONAppender</a>
-- write it out as JSON to a file.
-</li>
-<li><a href="./comb_logging_appenders_ConsoleAppender.html">ConsoleAppender</a>
-- log it to the console
-</li>
-</ul>
-</li>
-<li>All appenders can be using with custom levels, separately, or all together.</li>
-<li>Configurable with <a href="./comb_logging_BasicConfigurator.html">files
-OR programatically</a></li>
-</ul>
-</li>
-<li>Collections
-
-<ul>
-<li><a href="./comb_collections_RedBlackTree.html">RedBlackTree</a>, <a
-href="./comb_collections_AVLTree.html">AVLTree</a>, <a
-href="./comb_collections_AnderssonTree.html">AnderssonTree</a>, <a
-href="./comb_collections_BinaryTree.html">BinaryTree</a>, <a
-href="./comb_collections_HashTable.html">HashTable</a>, <a
-href="./comb_collections_MaxHeap.html">MaxHeap</a>, <a
-href="./comb_collections_MinHeap.html">MinHeap</a>, <a
-href="./comb_collections_Pool.html">Pool</a>, <a
-href="./comb_collections_PriorityQueue.html">PriorityQueue</a>, <a
-href="./comb_collections_Queue.html">Queue</a>, <a
-href="./comb_collections_Stack.html">Stack</a></li>
-</ul>
-</li>
-<li>Flow control
-
-<ul>
-<li><a href="./comb_Promise.html">Promises</a></li>
-<li><a href="./comb.PromiseList.html">PromiseLists</a></li>
-</ul>
-</li>
-<li><a href="./comb.html">Tell me more!</a></li>
-</ul>
-
-
-<h2>Usage</h2>
-
-<ul>
-<li>OO system
-
-<ul>
-<li><a href="./comb.html#.define">define</a></li>
-<li><a href="./comb.html#.singleton">singleton</a></li>
-</ul>
-</li>
-<li>Collections
-
-<ul>
-<li><a href="./comb_collections_RedBlackTree.html">RedBlackTree</a></li>
-<li><a href="./comb_collections_AVLTree.html">AVLTree</a></li>
-<li><a href="./comb_collections_AnderssonTree.html">AnderssonTree</a></li>
-<li><a href="./comb_collections_BinaryTree.html">BinaryTree</a></li>
-<li><a href="./comb_collections_HashTable.html">HashTable</a></li>
-<li><a href="./comb_collections_MaxHeap.html">MaxHeap</a></li>
-<li><a href="./comb_collections_MinHeap.html">MinHeap</a></li>
-<li><a href="./comb_collections_Pool.html">Pool</a></li>
-<li><a href="./comb_collections_PriorityQueue.html">PriorityQueue</a></li>
-<li><a href="./comb_collections_Queue.html">Queue</a></li>
-<li><a href="./comb_collections_Stack.html">Stack</a></li>
-</ul>
-</li>
-<li>Logging
-
-<ul>
-<li><a href="./comb_logging_Logger.html">Logger</a></li>
-<li><a href="./comb_logging_Level.html">Level</a></li>
-<li>Appenders
-
-<ul>
-<li><a href="./comb_logging_appenders_Appender.html">Appender</a>
-</li>
-<li><a href="./comb_logging_appenders_ConsoleAppender.html">ConsoleAppender</a>
-</li>
-<li><a href="./comb_logging_appenders_FileAppender.html">FileAppender</a>
-</li>
-<li><a href="./comb_logging_appenders_JSONAppender.html">JSONAppender</a>
-</li>
-<li><a href="./comb_logging_appenders_RollingFileAppender.html">RollingFileAppender</a>
-</li>
-</ul>
-</li>
-<li>Configurators
-
-<ul>
-<li><a href="./comb_logging_BasicConfigurator.html">BasicConfigurator</a>
-</li>
-<li><a href="./comb_logging_PropertyConfigurator.html">PropertyConfigurator</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Plugins for objects defined with comb
-
-<ul>
-<li><a href="./comb_plugins_Broadcaster.html">Broadcaster</a></li>
-<li><a href="./comb_plugins_Middleware.html">Middleware </a></li>
-</ul>
-</li>
-<li><a href="./comb.Promise.html">Promises</a></li>
-<li><a href="./comb.PromiseList.html">PromiseLists</a></li>
-<li>Utilities
-
-<ul>
-<li><a href="./comb.html">comb</a></li>
-<li><a href="./comb_array.html">Array</a></li>
-<li><a href="./comb_date.html">Date</a></li>
-<li><a href="./comb_number.html">Number</a></li>
-<li><a href="./comb_regexp.html">Regexp</a></li>
-<li><a href="./comb_string.html">String</a></li>
-<li><a href="./comb_characters.html">Characters</a></li>
-</ul>
-</li>
-</ul>
+                                </a></li>
+                                
+                            </ul>
+                        </li>
+                        
+            </ul>
+            </div>
+            </div>
+     </div>
+</div>
 
 
-<h2>License</h2>
 
-<p>MIT <a href="https://github.com/Pollenware/comb/raw/master/LICENSE">https://github.com/Pollenware/comb/raw/master/LICENSE</a>
+    <p>
+<p>LIFO Data structure</p></p>
+    
+
+    
+        <em>Extends</em>
+        <ul>
+            
+                <li> <a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
+            
+        </ul>
+    
+
+    
+    
+        <a name="instanceProperties"></a>
+        <em>Instance Properties</em>
+        <table class='table table-bordered table-striped'><tr><td>Property</td><td>Type</td><td>Default Value</td><td>Description</td></tr><tr><td>count</td><td>Number</td><td></td><td>the current number of elements in this queue</td><tr><tr><td>isEmpty</td><td>Boolean</td><td></td><td>true if this queue is empty</td><tr><tr><td>values</td><td>Array</td><td></td><td>a copy of the values contained in this queue</td><tr></table>
+    
+
+    <a name="constructor"></a>
+    <h3>Constructor</h3>
+
+    <em>Defined collections/Stack.js</em>
+    
+    
+    
+
+  
+  
+    <a name="clear"></a>
+    <h3>
+        clear
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Stack.js</em>
+
+<p>
+Removes all items from this stack.
+         </p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   this.__stack.length = 0;
+   this.__next = -1;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="contains"></a>
+    <h3>
+        contains
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Stack.js</em>
+
+<p>
+Determine if this stack contains the element
 </p>
 
-<h2>Meta</h2>
 
-<ul>
-<li>Code: <code>git clone git://github.com/Pollenware/comb.git</code></li>
-<li>JsDoc: <a href="http://pollenware.github.com/comb">http://pollenware.github.com/comb</a></li>
-<li>Website: <a href="http://pollenware.com">http://pollenware.com</a> - Twitter: <a
-href="http://twitter.com/pollenware">http://twitter.com/pollenware</a> - 877.465.4045
-</li>
-</ul>
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the object to find</li>
+    
+     </ul>
 
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if this stack contains the element</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj){
+   return this.__stack.indexOf(obj) != -1;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="peek"></a>
+    <h3>
+        peek
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Stack.js</em>
+
+<p>
+Retrieves the item at the tail of the stack without removing it
+
+</p>
+
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>*</code> The element at the tail of the stack. Returns undefined if the stack is empty.</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   var ret = undefined,next = this.__next;
+   if (next &gt;= 0) {
+       ret = this.__stack[next];
+   }
+   return ret;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="pop"></a>
+    <h3>
+        pop
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Stack.js</em>
+
+<p>
+Removes the tail of this static
+</p>
+
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>*</code> the data at the tail of this stack</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   var ret = undefined, stack, next = this.__next;
+   if (next &gt;= 0) {
+       stack = this.__stack;
+       ret = stack[next];
+       stack[this.__next--] = undefined;
+   }
+   return ret;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="push"></a>
+    <h3>
+        push
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Stack.js</em>
+
+<p>
+Add an item to the tail of this stack
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>data</em>  : item to qppend to this stack</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (data){
+   this.__stack[++this.__next] = data;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="remove"></a>
+    <h3>
+        remove
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Stack.js</em>
+
+<p>
+Removes an element from this stack.
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the data to remove.</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if the element was removed, false otherwise.</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj){
+   var index = this.__stack.indexOf(obj), ret = false;
+   if (index != -1) {
+       if (index == this.__next) {
+           this.pop();
+       } else {
+           this.__stack.splice(index, 1);
+           this.__next--;
+       }
+       ret = true;
+   }
+   return ret;
+           
+}
+    </pre>
+    
+
+
+  
 <hr>
 
 Documentation gennerated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
@@ -452,4 +701,3 @@ Documentation gennerated using <a href="https://github.com/doug-martin/coddoc">c
 
 </body>
 </html>
-

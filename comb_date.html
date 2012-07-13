@@ -1,0 +1,2388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comb</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/js/google-code-prettify/prettify.css">
+    <style type="text/css">
+        
+
+.subnav-inner {
+    width: 100%;
+    height: 36px;
+    background-color: #EEE;
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));
+    background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);
+    background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.subnav .nav > li > a:hover {
+    color: black !important;
+}
+
+.subnav .nav li.dropdown .dropdown-toggle .caret,
+.subnav .nav li.dropdown.open .caret {
+    border-top-color: #999 !important;
+    border-bottom-color: #999 !important;
+}
+
+.subnav-fixed {
+    position: fixed;
+    width : 90%;
+    margin-right: auto;
+    margin-left: auto;
+    top: 40px;
+    left: 0;
+    right: 0;
+    z-index: 1020;
+    border-color: #D5D5D5;
+    border-width: 0 0 1px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.navbar .nav  .dropdown-menu {
+    max-height: 500px;
+    overflow: auto;
+}​
+
+    </style>
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+    <script type="text/javascript">
+        var init = (function () {
+            "use strict";
+
+            var processScroll = (function () {
+                var curr = null, prev = null;
+                return function (nav) {
+                    var $win = $(window);
+                    $('.subnav').each(function () {
+                        var nav = $(this);
+                        var navTop = nav.offset().top - 40;
+                        var scrollTop = $win.scrollTop();
+                        if (scrollTop >= navTop && curr != nav) {
+                            if(curr){
+                                curr.removeClass('subnav-fixed')
+                                prev = curr;
+                            }
+                            curr = nav;
+                            curr.addClass('subnav-fixed')
+                        } else if (curr == nav && scrollTop <= navTop) {
+                            curr.removeClass('subnav-fixed');
+                            prev.addClass('subnav-fixed');
+                            curr = prev;
+                        }else{
+                            nav.removeClass('subnav-fixed');
+                        }
+                    });
+                };
+            })();
+
+            return function () {
+                window.prettyPrint && prettyPrint();
+                $(".collapse").collapse();
+                // fix sub nav on scroll
+                processScroll();
+                $(window).on('scroll', processScroll)
+            }
+        })();
+    </script>
+</head>
+<body onload="init()">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+      
+          <a href="./index.html" class="brand">comb</a>
+      
+      <div class="nav-collapse">
+      <ul class="nav nav-pills">
+      
+
+      
+        <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+           <ul class="dropdown-menu">
+             
+                         <li><a href="comb.html">comb</a></li>
+               
+                         <li><a href="comb_array.html">comb.array</a></li>
+               
+                         <li><a href="comb_characters.html">comb.characters</a></li>
+               
+                         <li><a href="comb_date.html">comb.date</a></li>
+               
+                         <li><a href="comb_number.html">comb.number</a></li>
+               
+                         <li><a href="comb_plugins.html">comb.plugins</a></li>
+               
+                         <li><a href="comb_regexp.html">comb.regexp</a></li>
+               
+                         <li><a href="comb_string.html">comb.string</a></li>
+               
+           </ul>
+           </li>
+        
+        
+           <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+           <ul class="dropdown-menu">
+             
+                         <li><a href="./comb_Promise.html">comb.Promise</a></li>
+               
+                         <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
+               
+                         <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
+               
+                         <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
+               
+                         <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
+               
+                         <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
+               
+                         <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
+               
+                         <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
+               
+                         <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
+               
+                         <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
+               
+                         <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
+               
+                         <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
+               
+                         <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
+               
+                         <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
+               
+                         <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
+               
+                         <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
+               
+                         <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
+               
+                         <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+               
+                         <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
+               
+                         <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
+               
+                         <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
+               
+                         <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+               
+                         <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
+               
+                         <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
+               
+           </ul>
+        </li>
+       
+      </ul>
+      
+      <ul class="nav pull-right">
+                  <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+    <a name="top"></a>
+    <div class="container">
+
+
+
+    <a name=".date"></a>
+    <div class="navbar subnav">
+    <div class="navbar-inner  subnav-inner">
+                  <div class="container">
+                    <a href="#" class="brand">
+                                comb.date
+                                
+                                
+                                        
+                                 <span class="label label-success">Public</span>
+                                        
+                                
+                    </a>
+                   <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                            </a>
+
+                            <div class="nav-collapse">
+            
+            <ul class="nav pull-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methods<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    
+                    <li><a href="./comb_date.html#.add">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        add
+                     </a></li>
+                    
+                    <li><a href="./comb_date.html#.compare">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        compare
+                     </a></li>
+                    
+                    <li><a href="./comb_date.html#.difference">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        difference
+                     </a></li>
+                    
+                    <li><a href="./comb_date.html#.format">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        format
+                     </a></li>
+                    
+                    <li><a href="./comb_date.html#.getDaysInMonth">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        getDaysInMonth
+                     </a></li>
+                    
+                    <li><a href="./comb_date.html#.getTimezoneName">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        getTimezoneName
+                     </a></li>
+                    
+                    <li><a href="./comb_date.html#.isLeapYear">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isLeapYear
+                     </a></li>
+                    
+                    <li><a href="./comb_date.html#.isWeekend">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isWeekend
+                     </a></li>
+                    
+                    <li><a href="./comb_date.html#.parse">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        parse
+                     </a></li>
+                    
+                </ul>
+            </li>
+            </ul>
+            
+            </div>
+            </div>
+     </div>
+</div>
+<em>Defined base/date.js</em>
+
+<p>
+Utilities for Dates</p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+{
+    /**@lends comb.date*/
+    /**
+     * Returns the number of days in the month of a date
+     *
+     * @example
+     *
+     *  comb.date.getDaysInMonth(new Date(2006, 1, 1)) =&gt; 28
+     *  comb.date.getDaysInMonth(new Date(2004, 1, 1)) =&gt; 29
+     *  comb.date.getDaysInMonth(new Date(2006, 2, 1)) =&gt; 31
+     *  comb.date.getDaysInMonth(new Date(2006, 3, 1)) =&gt; 30
+     *  comb.date.getDaysInMonth(new Date(2006, 4, 1)) =&gt; 31
+     *  comb.date.getDaysInMonth(new Date(2006, 5, 1)) =&gt; 30
+     *  comb.date.getDaysInMonth(new Date(2006, 6, 1)) =&gt; 31
+     * @param {Date} dateObject the date containing the month
+     * @return {Number} the number of days in the month
+     */
+    getDaysInMonth:function (/*Date*/dateObject) {
+        //	summary:
+        //		Returns the number of days in the month used by dateObject
+        var month = dateObject.getMonth();
+        var days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        if (month == 1 &amp;&amp; date.isLeapYear(dateObject)) {
+            return 29;
+        } // Number
+        return days[month]; // Number
+    },
+    /**
+     * Determines if a date is a leap year
+     *
+     * @example
+     *
+     *  comb.date.isLeapYear(new Date(1600, 0, 1)) =&gt; true
+     *  comb.date.isLeapYear(new Date(2004, 0, 1)) =&gt; true
+     *  comb.date.isLeapYear(new Date(2000, 0, 1)) =&gt; true
+     *  comb.date.isLeapYear(new Date(2006, 0, 1)) =&gt; false
+     *  comb.date.isLeapYear(new Date(1900, 0, 1)) =&gt; false
+     *  comb.date.isLeapYear(new Date(1800, 0, 1)) =&gt; false
+     *  comb.date.isLeapYear(new Date(1700, 0, 1)) =&gt; false
+     *
+     * @param {Date} dateObject
+     * @returns {Boolean} true if it is a leap year false otherwise
+     */
+    isLeapYear:function (/*Date*/dateObject, utc) {
+        var year = dateObject[utc ? &quot;getUTCFullYear&quot; : &quot;getFullYear&quot;]();
+        return !(year % 400) || (!(year % 4) &amp;&amp; !!(year % 100)); // Boolean
+    },
+    /**
+     * Determines if a date is on a weekend
+     *
+     * @example
+     *
+     * var thursday = new Date(2006, 8, 21);
+     * var saturday = new Date(2006, 8, 23);
+     * var sunday = new Date(2006, 8, 24);
+     * var monday = new Date(2006, 8, 25);
+     * comb.date.isWeekend(thursday)) =&gt; false
+     * comb.date.isWeekend(saturday) =&gt; true
+     * comb.date.isWeekend(sunday) =&gt; true
+     * comb.date.isWeekend(monday)) =&gt; false
+     *
+     * @param {Date} dateObject the date to test
+     *
+     * @returns {Boolean} true if the date is a weekend
+     */
+    isWeekend:function (/*Date?*/dateObject, utc) {
+        // summary:
+        //	Determines if the date falls on a weekend, according to local custom.
+        var day = (dateObject || new Date())[utc ? &quot;getUTCDay&quot; : &quot;getDay&quot;]();
+        return day == 0 || day == 6;
+    },
+    /**
+     * Get the timezone of a date
+     *
+     * @example
+     *  //just setting the strLocal to simulate the toString() of a date
+     *  dt.str = &#x27;Sun Sep 17 2006 22:25:51 GMT-0500 (CDT)&#x27;;
+     *  //just setting the strLocal to simulate the locale
+     *  dt.strLocale = &#x27;Sun 17 Sep 2006 10:25:51 PM CDT&#x27;;
+     *  comb.date.getTimezoneName(dt) =&gt; &#x27;CDT&#x27;
+     *  dt.str = &#x27;Sun Sep 17 2006 22:57:18 GMT-0500 (CDT)&#x27;;
+     *  dt.strLocale = &#x27;Sun Sep 17 22:57:18 2006&#x27;;
+     *  comb.date.getTimezoneName(dt) =&gt; &#x27;CDT&#x27;
+     * @param dateObject the date to get the timezone from
+     *
+     * @returns {String} the timezone of the date
+     */
+    getTimezoneName:function (/*Date*/dateObject) {
+        var str = dateObject.toString();
+        var tz = &#x27;&#x27;;
+        var pos = str.indexOf(&#x27;(&#x27;);
+        if (pos &gt; -1) {
+            tz = str.substring(++pos, str.indexOf(&#x27;)&#x27;));
+        }
+        return tz; // String
+    },
+    /**
+     * Compares two dates
+     *
+     * @example
+     *
+     * var d1 = new Date();
+     * d1.setHours(0);
+     * comb.date.compare(d1, d1) =&gt; 0
+     *
+     *  var d1 = new Date();
+     *  d1.setHours(0);
+     *  var d2 = new Date();
+     *  d2.setFullYear(2005);
+     *  d2.setHours(12);
+     *  comb.date.compare(d1, d2, &quot;date&quot;) =&gt; 1
+     *  comb.date.compare(d1, d2, &quot;datetime&quot;) =&gt; 1
+     *
+     *  var d1 = new Date();
+     *  d1.setHours(0);
+     *  var d2 = new Date();
+     *  d2.setFullYear(2005);
+     *  d2.setHours(12);
+     *  comb.date.compare(d2, d1, &quot;date&quot;), -1);
+     *  comb.date.compare(d1, d2, &quot;time&quot;), -1);
+     *
+     * @param {Date|String} date1 the date to comapare
+     * @param {Date|String} [date2=new Date()] the date to compare date1 againse
+     * @param {&quot;date&quot;|&quot;time&quot;|&quot;datetime&quot;} portion compares the portion specified
+     *
+     * @returns -1 if date1 is &lt; date2 0 if date1 === date2  1 if date1 &gt; date2
+     */
+    compare:function (/*Date*/date1, /*Date*/date2, /*String*/portion) {
+        date1 = new Date(date1);
+        date2 = new Date((date2 || new Date()));
+        if (portion == &quot;date&quot;) {
+            // Ignore times and compare dates.
+            date1.setHours(0, 0, 0, 0);
+            date2.setHours(0, 0, 0, 0);
+        } else if (portion == &quot;time&quot;) {
+            // Ignore dates and compare times.
+            date1.setFullYear(0, 0, 0);
+            date2.setFullYear(0, 0, 0);
+        }
+        var ret = 0;
+        date1 &gt; date2 &amp;&amp; (ret = 1);
+        date1 &lt; date2 &amp;&amp; (ret = -1);
+        return ret; // int
+    },
+    /**
+     * Adds a specified interval and amount to a date
+     *
+     * @example
+     *  var dtA = new Date(2005, 11, 27);
+     *  comb.date.add(dtA, &quot;year&quot;, 1) =&gt; new Date(2006, 11, 27);
+     *  comb.date.add(dtA, &quot;years&quot;, 1) =&gt; new Date(2006, 11, 27);
+     *
+     *  dtA = new Date(2000, 0, 1);
+     *  comb.date.add(dtA, &quot;quarter&quot;, 1) =&gt; new Date(2000, 3, 1);
+     *  comb.date.add(dtA, &quot;quarters&quot;, 1) =&gt; new Date(2000, 3, 1);
+     *
+     *  dtA = new Date(2000, 0, 1);
+     *  comb.date.add(dtA, &quot;month&quot;, 1) =&gt; new Date(2000, 1, 1);
+     *  comb.date.add(dtA, &quot;months&quot;, 1) =&gt; new Date(2000, 1, 1);
+     *
+     *  dtA = new Date(2000, 0, 31);
+     *  comb.date.add(dtA, &quot;month&quot;, 1) =&gt; new Date(2000, 1, 29);
+     *  comb.date.add(dtA, &quot;months&quot;, 1) =&gt; new Date(2000, 1, 29);
+     *
+     *  dtA = new Date(2000, 0, 1);
+     *  comb.date.add(dtA, &quot;week&quot;, 1) =&gt; new Date(2000, 0, 8);
+     *  comb.date.add(dtA, &quot;weeks&quot;, 1) =&gt; new Date(2000, 0, 8);
+     *
+     *  dtA = new Date(2000, 0, 1);
+     *  comb.date.add(dtA, &quot;day&quot;, 1) =&gt; new Date(2000, 0, 2);
+     *
+     *  dtA = new Date(2000, 0, 1);
+     *  comb.date.add(dtA, &quot;weekday&quot;, 1) =&gt; new Date(2000, 0, 3);
+     *
+     *  dtA = new Date(2000, 0, 1, 11);
+     *  comb.date.add(dtA, &quot;hour&quot;, 1) =&gt; new Date(2000, 0, 1, 12);
+     *
+     *  dtA = new Date(2000, 11, 31, 23, 59);
+     *  comb.date.add(dtA, &quot;minute&quot;, 1) =&gt; new Date(2001, 0, 1, 0, 0);
+     *
+     *  dtA = new Date(2000, 11, 31, 23, 59, 59);
+     *  comb.date.add(dtA, &quot;second&quot;, 1) =&gt; new Date(2001, 0, 1, 0, 0, 0);
+     *
+     *  dtA = new Date(2000, 11, 31, 23, 59, 59, 999);
+     *  comb.date.add(dtA, &quot;millisecond&quot;, 1) =&gt; new Date(2001, 0, 1, 0, 0, 0, 0);
+     *
+     * @param {Date} date
+     * @param {String} interval the interval to add
+     *  &lt;ul&gt;
+     *      &lt;li&gt;day | days&lt;/li&gt;
+     *      &lt;li&gt;weekday | weekdays&lt;/li&gt;
+     *      &lt;li&gt;year | years&lt;/li&gt;
+     *      &lt;li&gt;week | weeks&lt;/li&gt;
+     *      &lt;li&gt;quarter | quarters&lt;/li&gt;
+     *      &lt;li&gt;months | months&lt;/li&gt;
+     *      &lt;li&gt;hour | hours&lt;/li&gt;
+     *      &lt;li&gt;minute | minutes&lt;/li&gt;
+     *      &lt;li&gt;second | seconds&lt;/li&gt;
+     *      &lt;li&gt;millisecond | milliseconds&lt;/li&gt;
+     *  &lt;/ul&gt;
+     * @param {Number} [amount=0] the amount to add
+     */
+    add:function (/*Date*/date, /*String*/interval, /*int*/amount) {
+        amount = amount | 0
+        var sum = new Date(date);
+        var fixOvershoot = false;
+        var property = &quot;Date&quot;;
+        //noinspection FallthroughInSwitchStatementJS
+        switch (interval) {
+            case &quot;day&quot;:
+            case &quot;days&quot; :
+                break;
+            case &quot;weekday&quot;:
+            case &quot;weekdays&quot;:
+                // Divide the increment time span into weekspans plus leftover days
+                // e.g., 8 days is one 5-day weekspan / and two leftover days
+                // Can&#x27;t have zero leftover days, so numbers divisible by 5 get
+                // a days value of 5, and the remaining days make up the number of weeks
+                var days, weeks, mod = amount % 5, strt = date.getDay(), adj = 0;
+                if (!mod) {
+                    days = (amount &gt; 0) ? 5 : -5;
+                    weeks = (amount &gt; 0) ? ((amount - 5) / 5) : ((amount + 5) / 5);
+                } else {
+                    days = mod;
+                    weeks = parseInt(amount / 5);
+                }
+                if (strt == 6 &amp;&amp; amount &gt; 0) {
+                    adj = 1;
+                } else if (strt == 0 &amp;&amp; amount &lt; 0) {
+                    // Orig date is Sun / negative increment
+                    // Jump back over Sat
+                    adj = -1;
+                }
+                // Get weekday val for the new date
+                var trgt = strt + days;
+                // New date is on Sat or Sun
+                if (trgt == 0 || trgt == 6) {
+                    adj = (amount &gt; 0) ? 2 : -2;
+                }
+                // Increment by number of weeks plus leftover days plus
+                // weekend adjustments
+                amount = (7 * weeks) + days + adj;
+                break;
+            case &quot;year&quot;:
+            case &quot;years&quot;:
+                property = &quot;FullYear&quot;;
+                fixOvershoot = true;
+                break;
+            case &quot;week&quot;:
+            case &quot;weeks&quot;:
+                amount *= 7;
+                break;
+            case &quot;quarter&quot;:
+            case &quot;quarters&quot; :
+                // Naive quarter is just three months
+                amount *= 3;
+            case &quot;month&quot;:
+            case &quot;months&quot;:
+                // Reset to last day of month if you overshoot
+                fixOvershoot = true;
+                property = &quot;Month&quot;;
+                break;
+            default:
+                interval = interval.replace(/s$/, &quot;&quot;);
+                property = &quot;UTC&quot; + interval.charAt(0).toUpperCase() + interval.substring(1) + &quot;s&quot;;
+        }
+        if (property) {
+            sum[&quot;set&quot; + property](sum[&quot;get&quot; + property]() + amount);
+        }
+        if (fixOvershoot &amp;&amp; (sum.getDate() &lt; date.getDate())) {
+            sum.setDate(0);
+        }
+        return sum; // Date
+    },
+    /**
+     * Finds the difference between two dates based on the specified interval
+     *
+     * @example
+     *
+     * var dtA, dtB;
+     *
+     * dtA = new Date(2005, 11, 27);
+     * dtB = new Date(2006, 11, 27);
+     * comb.date.difference(dtA, dtB, &quot;year&quot;) =&gt; 1
+     *
+     * dtA = new Date(2000, 1, 29);
+     * dtB = new Date(2001, 2, 1);
+     * comb.date.difference(dtA, dtB, &quot;quarter&quot;) =&gt; 4
+     * comb.date.difference(dtA, dtB, &quot;month&quot;) =&gt; 13
+     *
+     * dtA = new Date(2000, 1, 1);
+     * dtB = new Date(2000, 1, 8);
+     * comb.date.difference(dtA, dtB, &quot;week&quot;) =&gt; 1
+     *
+     * dtA = new Date(2000, 1, 29);
+     * dtB = new Date(2000, 2, 1);
+     * comb.date.difference(dtA, dtB, &quot;day&quot;) =&gt; 1
+     *
+     * dtA = new Date(2006, 7, 3);
+     * dtB = new Date(2006, 7, 11);
+     * comb.date.difference(dtA, dtB, &quot;weekday&quot;) =&gt; 6
+     *
+     * dtA = new Date(2000, 11, 31, 23);
+     * dtB = new Date(2001, 0, 1, 0);
+     * comb.date.difference(dtA, dtB, &quot;hour&quot;) =&gt; 1
+     *
+     * dtA = new Date(2000, 11, 31, 23, 59);
+     * dtB = new Date(2001, 0, 1, 0, 0);
+     * comb.date.difference(dtA, dtB, &quot;minute&quot;) =&gt; 1
+     *
+     * dtA = new Date(2000, 11, 31, 23, 59, 59);
+     * dtB = new Date(2001, 0, 1, 0, 0, 0);
+     * comb.date.difference(dtA, dtB, &quot;second&quot;) =&gt; 1
+     *
+     * dtA = new Date(2000, 11, 31, 23, 59, 59, 999);
+     * dtB = new Date(2001, 0, 1, 0, 0, 0, 0);
+     * comb.date.difference(dtA, dtB, &quot;millisecond&quot;) =&gt; 1
+     *
+     *
+     * @param {Date} date1
+     * @param {Date} [date2 = new Date()]
+     * @param {String} [interval = &quot;day&quot;] the intercal to find the difference of.
+     *   &lt;ul&gt;
+     *      &lt;li&gt;day | days&lt;/li&gt;
+     *      &lt;li&gt;weekday | weekdays&lt;/li&gt;
+     *      &lt;li&gt;year | years&lt;/li&gt;
+     *      &lt;li&gt;week | weeks&lt;/li&gt;
+     *      &lt;li&gt;quarter | quarters&lt;/li&gt;
+     *      &lt;li&gt;months | months&lt;/li&gt;
+     *      &lt;li&gt;hour | hours&lt;/li&gt;
+     *      &lt;li&gt;minute | minutes&lt;/li&gt;
+     *      &lt;li&gt;second | seconds&lt;/li&gt;
+     *      &lt;li&gt;millisecond | milliseconds&lt;/li&gt;
+     *  &lt;/ul&gt;
+     */
+    difference:function (/*Date*/date1, /*Date?*/date2, /*String*/interval, utc) {
+        date2 = date2 || new Date();
+        interval = interval || &quot;day&quot;;
+        var yearDiff = date2.getFullYear() - date1.getFullYear();
+        var delta = 1; // Integer return value
+        switch (interval) {
+            case &quot;quarter&quot;:
+            case &quot;quarters&quot;:
+                var m1 = date1[utc ? &quot;getUTCMonth&quot; : &quot;getMonth&quot;]();
+                var m2 = date2[utc ? &quot;getUTCMonth&quot; : &quot;getMonth&quot;]();
+                // Figure out which quarter the months are in
+                var q1 = floor(m1 / 3) + 1;
+                var q2 = floor(m2 / 3) + 1;
+                // Add quarters for any year difference between the dates
+                q2 += (yearDiff * 4);
+                delta = q2 - q1;
+                break;
+            case &quot;weekday&quot;:
+            case &quot;weekdays&quot;:
+                var days = round(date.difference(date1, date2, &quot;day&quot;, utc));
+                var weeks = parseInt(date.difference(date1, date2, &quot;week&quot;, utc));
+                var mod = days % 7;
+                // Even number of weeks
+                if (mod == 0) {
+                    days = weeks * 5;
+                } else {
+                    // Weeks plus spare change (&lt; 7 days)
+                    var adj = 0;
+                    var aDay = date1[utc ? &quot;getUTCDay&quot; : &quot;getDay&quot;]();
+                    var bDay = date2[utc ? &quot;getUTCDay&quot; : &quot;getDay&quot;]();
+                    weeks = parseInt(days / 7);
+                    mod = days % 7;
+                    // Mark the date advanced by the number of
+                    // round weeks (may be zero)
+                    var dtMark = new Date(date1);
+                    dtMark.setDate(dtMark[utc ? &quot;getUTCDate&quot; : &quot;getDate&quot;]() + (weeks * 7));
+                    var dayMark = dtMark[utc ? &quot;getUTCDay&quot; : &quot;getDay&quot;]();
+                    // Spare change days -- 6 or less
+                    if (days &gt; 0) {
+                        switch (true) {
+                            // Range starts on Sat
+                            case (aDay == 6 || bDay == 6):
+                                adj = -1;
+                                break;
+                            // Range starts on Sun
+                            case aDay == 0:
+                                adj = 0;
+                                break;
+                            // Range ends on Sun
+                            case bDay == 0:
+                                adj = -2;
+                                break;
+                            // Range contains weekend
+                            case (dayMark + mod) &gt; 5:
+                                adj = -2;
+                        }
+                    } else if (days &lt; 0) {
+                        switch (true) {
+                            // Range starts on Sat
+                            case aDay == 6:
+                                adj = 0;
+                                break;
+                            // Range starts on Sun
+                            case aDay == 0:
+                                adj = 1;
+                                break;
+                            // Range ends on Sat
+                            case bDay == 6:
+                                adj = 2;
+                                break;
+                            // Range ends on Sun
+                            case bDay == 0:
+                                adj = 1;
+                                break;
+                            // Range contains weekend
+                            case (dayMark + mod) &lt; 0:
+                                adj = 2;
+                        }
+                    }
+                    days += adj;
+                    days -= (weeks * 2);
+                }
+                delta = days;
+                break;
+            case &quot;year&quot;:
+            case &quot;years&quot;:
+                delta = yearDiff;
+                break;
+            case &quot;month&quot;:
+            case &quot;months&quot;:
+                var m1 = date1[utc ? &quot;getUTCMonth&quot; : &quot;getMonth&quot;]();
+                var m2 = date2[utc ? &quot;getUTCMonth&quot; : &quot;getMonth&quot;]();
+                delta = (m2 - m1) + (yearDiff * 12);
+                break;
+            case &quot;week&quot;:
+            case &quot;weeks&quot;:
+                delta = parseInt(date.difference(date1, date2, &quot;day&quot;, utc) / 7);
+                break;
+            case &quot;day&quot;:
+            case &quot;days&quot;:
+                delta /= 24;
+            case &quot;hour&quot;:
+            case &quot;hours&quot;:
+                delta /= 60;
+            case &quot;minute&quot;:
+            case &quot;minutes&quot;:
+                delta /= 60;
+            case &quot;second&quot;:
+            case &quot;seconds&quot;:
+                delta /= 1000;
+            case &quot;millisecond&quot;:
+            case &quot;milliseconds&quot;:
+                delta *= date2.getTime() - date1.getTime();
+        }
+        // Round for fractional values and DST leaps
+        return round(delta); // Number (integer)
+    },
+    /**
+     * Parses a date string into a date object
+     *
+     * @example
+     *  var aug_11_2006 = new Date(2006, 7, 11, 0);
+     *  comb.date.parse(&quot;08/11/06&quot;, &quot;MM/dd/yy&quot;) =&gt; aug_11_2006
+     *  comb.date.parse(&quot;11Aug2006&quot;, &#x27;ddMMMyyyy&#x27;) =&gt; aug_11_2006
+     *  comb.date.parse(&quot;Aug2006&quot;, &#x27;MMMyyyy&#x27;) =&gt; new Date(2006, 7, 1)
+     *  comb.date.parse(&quot;Aug 11, 2006&quot;, &quot;MMM dd, yyyy&quot;) =&gt; aug_11_2006
+     *  comb.date.parse(&quot;August 11, 2006&quot;, &quot;MMMM dd, yyyy&quot;) =&gt; aug_11_2006
+     *  comb.date.parse(&quot;Friday, August 11, 2006&quot;, &quot;EEEE, MMMM dd, yyyy&quot;) =&gt; aug_11_2006
+     *
+     * @param {String} dateStr The string to parse
+     * @param {String} format the format of the date composed of the following options
+     * &lt;ul&gt;
+     *                  &lt;li&gt; G    Era designator    Text    AD&lt;/li&gt;
+     *                  &lt;li&gt; y    Year    Year    1996; 96&lt;/li&gt;
+     *                  &lt;li&gt; M    Month in year    Month    July; Jul; 07&lt;/li&gt;
+     *                  &lt;li&gt; w    Week in year    Number    27&lt;/li&gt;
+     *                  &lt;li&gt; W    Week in month    Number    2&lt;/li&gt;
+     *                  &lt;li&gt; D    Day in year    Number    189&lt;/li&gt;
+     *                  &lt;li&gt; d    Day in month    Number    10&lt;/li&gt;
+     *                  &lt;li&gt; E    Day in week    Text    Tuesday; Tue&lt;/li&gt;
+     *                  &lt;li&gt; a    Am/pm marker    Text    PM&lt;/li&gt;
+     *                  &lt;li&gt; H    Hour in day (0-23)    Number    0&lt;/li&gt;
+     *                  &lt;li&gt; k    Hour in day (1-24)    Number    24&lt;/li&gt;
+     *                  &lt;li&gt; K    Hour in am/pm (0-11)    Number    0&lt;/li&gt;
+     *                  &lt;li&gt; h    Hour in am/pm (1-12)    Number    12&lt;/li&gt;
+     *                  &lt;li&gt; m    Minute in hour    Number    30&lt;/li&gt;
+     *                  &lt;li&gt; s    Second in minute    Number    55&lt;/li&gt;
+     *                  &lt;li&gt; S    Millisecond    Number    978&lt;/li&gt;
+     *                  &lt;li&gt; z    Time zone    General time zone    Pacific Standard Time; PST; GMT-08:00&lt;/li&gt;
+     *                  &lt;li&gt; Z    Time zone    RFC 822 time zone    -0800 &lt;/li&gt;
+     * &lt;/ul&gt;
+     *
+     * @returns {Date} the parsed date
+     *
+     *
+     */
+    parse:function (dateStr, format) {
+        if (!format) throw new Error(&#x27;format required when calling comb.date.parse&#x27;);
+        var tokens = [], regexp = buildDateEXP(format, tokens),
+            re = new RegExp(&quot;^&quot; + regexp + &quot;$&quot;, &quot;i&quot;),
+            match = re.exec(dateStr);
+        if (!match) {
+            return null;
+        } // null
+        var result = [1970, 0, 1, 0, 0, 0, 0], // will get converted to a Date at the end
+            amPm = &quot;&quot;,
+            valid = match.every(function (v, i) {
+                if (!i) {
+                    return true;
+                }
+                var token = tokens[i - 1];
+                var l = token.length;
+                switch (token.charAt(0)) {
+                    case &#x27;y&#x27;:
+                        if (v &lt; 100) {
+                            v = parseInt(v, 10);
+                            //choose century to apply, according to a sliding window
+                            //of 80 years before and 20 years after present year
+                            var year = &#x27;&#x27; + new Date().getFullYear(),
+                                century = year.substring(0, 2) * 100,
+                                cutoff = min(year.substring(2, 4) + 20, 99);
+                            result[0] = (v &lt; cutoff) ? century + v : century - 100 + v;
+                        } else {
+                            result[0] = v;
+                        }
+                        break;
+                    case &#x27;M&#x27;:
+                        if (l &gt; 2) {
+                            var months = monthNames;
+                            if (l === 3) {
+                                months = monthAbbr;
+                            }
+                            //Tolerate abbreviating period in month part
+                            //Case-insensitive comparison
+                            v = v.replace(&quot;.&quot;, &quot;&quot;).toLowerCase();
+                            months = months.map(function (s) {
+                                return s.replace(&quot;.&quot;, &quot;&quot;).toLowerCase();
+                            });
+                            if ((v = months.indexOf(v)) == -1) {
+                                return false;
+                            }
+                        } else {
+                            v--;
+                        }
+                        result[1] = v;
+                        break;
+                    case &#x27;E&#x27;:
+                    case &#x27;e&#x27;:
+                        var days = dayNames;
+                        if (l == 3) {
+                            days = dayAbbr;
+                        }
+                        //Case-insensitive comparison
+                        v = v.toLowerCase();
+                        days = days.map(function (d) {
+                            return d.toLowerCase();
+                        });
+                        var d = days.indexOf(v);
+                        if (d == -1) {
+                            v = parseInt(v);
+                            if (isNaN(v) || v &gt; days.length) {
+                                return false;
+                            }
+                        } else {
+                            v = d;
+                        }
+                        break;
+                    case &#x27;D&#x27;:
+                        result[1] = 0;
+                    case &#x27;d&#x27;:
+                        result[2] = v;
+                        break;
+                    case &#x27;a&#x27;: //am/pm
+                        var am = &quot;am&quot;;
+                        var pm = &quot;pm&quot;;
+                        var period = /\./g;
+                        v = v.replace(period, &#x27;&#x27;).toLowerCase();
+                        // we might not have seen the hours field yet, so store the state and apply hour change later
+                        amPm = (v == pm) ? &#x27;p&#x27; : (v == am) ? &#x27;a&#x27; : &#x27;&#x27;;
+                        break;
+                    case &#x27;k&#x27;: //hour (0-11)
+                        if (v == 24) {
+                            v = 0;
+                        }
+                    // fallthrough...
+                    case &#x27;h&#x27;: //hour (1-12)
+                    case &#x27;H&#x27;: //hour (0-23)
+                    case &#x27;K&#x27;: //hour (0-11)
+                        //in the 12-hour case, adjusting for am/pm requires the &#x27;a&#x27; part
+                        //which could come before or after the hour, so we will adjust later
+                        result[3] = v;
+                        break;
+                    case &#x27;m&#x27;: //minutes
+                        result[4] = v;
+                        break;
+                    case &#x27;s&#x27;: //seconds
+                        result[5] = v;
+                        break;
+                    case &#x27;S&#x27;: //milliseconds
+                        result[6] = v;
+                        break;
+                }
+                return true;
+            });
+        if (valid) {
+            var hours = +result[3];
+            //account for am/pm
+            if (amPm === &#x27;p&#x27; &amp;&amp; hours &lt; 12) {
+                result[3] = hours + 12; //e.g., 3pm -&gt; 15
+            } else if (amPm === &#x27;a&#x27; &amp;&amp; hours == 12) {
+                result[3] = 0; //12am -&gt; 0
+            }
+            var dateObject = new Date(result[0], result[1], result[2], result[3], result[4], result[5], result[6]); // Date
+            var dateToken = (tokens.indexOf(&#x27;d&#x27;) != -1),
+                monthToken = (tokens.indexOf(&#x27;M&#x27;) != -1),
+                month = result[1],
+                day = result[2],
+                dateMonth = dateObject.getMonth(),
+                dateDay = dateObject.getDate();
+            if ((monthToken &amp;&amp; dateMonth &gt; month) || (dateToken &amp;&amp; dateDay &gt; day)) {
+                return null;
+            }
+            return dateObject; // Date
+        } else {
+            return null;
+        }
+    },
+    /**
+     * Formats a date to the specidifed format string
+     *
+     * @example
+     *
+     * var date = new Date(2006, 7, 11, 0, 55, 12, 345);
+     * comb.date.format(date, &quot;EEEE, MMMM dd, yyyy&quot;) =&gt; &quot;Friday, August 11, 2006&quot;
+     * comb.date.format(date, &quot;M/dd/yy&quot;) =&gt; &quot;8/11/06&quot;
+     * comb.date.format(date, &quot;E&quot;) =&gt; &quot;6&quot;
+     * comb.date.format(date, &quot;h:m a&quot;) =&gt; &quot;12:55 AM&quot;
+     * comb.date.format(date, &#x27;h:m:s&#x27;) =&gt; &quot;12:55:12&quot;
+     * comb.date.format(date, &#x27;h:m:s.SS&#x27;) =&gt; &quot;12:55:12.35&quot;
+     * comb.date.format(date, &#x27;k:m:s.SS&#x27;) =&gt; &quot;24:55:12.35&quot;
+     * comb.date.format(date, &#x27;H:m:s.SS&#x27;) =&gt; &quot;0:55:12.35&quot;
+     * comb.date.format(date, &quot;ddMMyyyy&quot;) =&gt; &quot;11082006&quot;
+     *
+     * @param date the date to format
+     * @param {String} format the format of the date composed of the following options
+     * &lt;ul&gt;
+     *                  &lt;li&gt; G    Era designator    Text    AD&lt;/li&gt;
+     *                  &lt;li&gt; y    Year    Year    1996; 96&lt;/li&gt;
+     *                  &lt;li&gt; M    Month in year    Month    July; Jul; 07&lt;/li&gt;
+     *                  &lt;li&gt; w    Week in year    Number    27&lt;/li&gt;
+     *                  &lt;li&gt; W    Week in month    Number    2&lt;/li&gt;
+     *                  &lt;li&gt; D    Day in year    Number    189&lt;/li&gt;
+     *                  &lt;li&gt; d    Day in month    Number    10&lt;/li&gt;
+     *                  &lt;li&gt; E    Day in week    Text    Tuesday; Tue&lt;/li&gt;
+     *                  &lt;li&gt; a    Am/pm marker    Text    PM&lt;/li&gt;
+     *                  &lt;li&gt; H    Hour in day (0-23)    Number    0&lt;/li&gt;
+     *                  &lt;li&gt; k    Hour in day (1-24)    Number    24&lt;/li&gt;
+     *                  &lt;li&gt; K    Hour in am/pm (0-11)    Number    0&lt;/li&gt;
+     *                  &lt;li&gt; h    Hour in am/pm (1-12)    Number    12&lt;/li&gt;
+     *                  &lt;li&gt; m    Minute in hour    Number    30&lt;/li&gt;
+     *                  &lt;li&gt; s    Second in minute    Number    55&lt;/li&gt;
+     *                  &lt;li&gt; S    Millisecond    Number    978&lt;/li&gt;
+     *                  &lt;li&gt; z    Time zone    General time zone    Pacific Standard Time; PST; GMT-08:00&lt;/li&gt;
+     *                  &lt;li&gt; Z    Time zone    RFC 822 time zone    -0800 &lt;/li&gt;
+     * &lt;/ul&gt;
+     */
+    format:function (date, format, utc) {
+        utc = utc || false;
+        var fullYear, month, day, d, hour, minute, second, millisecond;
+        if (utc) {
+            fullYear = date.getUTCFullYear(),
+                month = date.getUTCMonth(),
+                day = date.getUTCDay(),
+                d = date.getUTCDate(),
+                hour = date.getUTCHours(),
+                minute = date.getUTCMinutes(),
+                second = date.getUTCSeconds(),
+                millisecond = date.getUTCMilliseconds();
+        } else {
+            fullYear = date.getFullYear(),
+                month = date.getMonth(),
+                d = date.getDate(),
+                day = date.getDay(),
+                hour = date.getHours(),
+                minute = date.getMinutes(),
+                second = date.getSeconds(),
+                millisecond = date.getMilliseconds();
+        }
+        return format.replace(/([a-z])\1*/ig, function (match, options) {
+            var s, pad, h,
+                c = match.charAt(0),
+                l = match.length;
+            switch (c) {
+                case &#x27;d&#x27;:
+                    s = &quot;&quot; + d;
+                case &#x27;H&#x27;:
+                    !s &amp;&amp; (s = &quot;&quot; + hour);
+                case &#x27;m&#x27;:
+                    !s &amp;&amp; (s = &quot;&quot; + minute);
+                case &#x27;s&#x27;:
+                    !s &amp;&amp; (s = &quot;&quot; + second);
+                    pad = true;
+                    break;
+                case &#x27;G&#x27;:
+                    s = ((l &lt; 4) ? eraAbbr : eraNames)[fullYear &lt; 0 ? 0 : 1];
+                    break;
+                case &#x27;y&#x27;:
+                    s = fullYear;
+                    if (l &gt; 1) {
+                        l == 2 ? s = string.truncate(&quot;&quot; + s, 2, true) : pad = true;
+                    }
+                    break;
+                case &#x27;Q&#x27;:
+                case &#x27;q&#x27;:
+                    s = ceil((month + 1) / 3);
+                    pad = true;
+                    break;
+                case &#x27;M&#x27;:
+                    if (l &lt; 3) {
+                        s = month + 1;
+                        pad = true;
+                    } else {
+                        s = (l == 3 ? monthAbbr : monthNames)[month];
+                    }
+                    break;
+                case &#x27;w&#x27;:
+                    s = getWeekOfYear(date, 0, utc), pad = true;
+                    break;
+                case &#x27;D&#x27;:
+                    s = getDayOfYear(date, utc), pad = true;
+                    break;
+                case &#x27;E&#x27;:
+                    if (l &lt; 3) {
+                        s = day + 1;
+                        pad = true;
+                    } else {
+                        s = (l == 3 ? dayAbbr : dayNames)[day];
+                    }
+                    break;
+                case &#x27;a&#x27;:
+                    s = (hour &lt; 12) ? &#x27;AM&#x27; : &#x27;PM&#x27;;
+                    break;
+                case &#x27;h&#x27;:
+                    s = (hour % 12) || 12, pad = true;
+                    break;
+                case &#x27;K&#x27;:
+                    s = (hour % 12), pad = true;
+                    break;
+                case &#x27;k&#x27;:
+                    s = hour || 24, pad = true;
+                    break;
+                case &#x27;S&#x27;:
+                    s = round(millisecond * pow(10, l - 3)), pad = true;
+                    break;
+                case &#x27;v&#x27;:
+                case &#x27;z&#x27;:
+                    s = comb.date.getTimezoneName(date);
+                    if (s) {
+                        break;
+                    }
+                    l = 4;
+                // fallthrough... use GMT if tz not available
+                case &#x27;Z&#x27;:
+                    var offset = date.getTimezoneOffset();
+                    var tz = [
+                        (offset &gt;= 0 ? &quot;-&quot; : &quot;+&quot;),
+                        string.pad(floor(abs(offset) / 60), 2, &quot;0&quot;),
+                        string.pad(abs(offset) % 60, 2, &quot;0&quot;)
+                    ];
+                    if (l == 4) {
+                        tz.splice(0, 0, &quot;GMT&quot;);
+                        tz.splice(3, 0, &quot;:&quot;);
+                    }
+                    s = tz.join(&quot;&quot;);
+                    break;
+//				case &#x27;Y&#x27;: case &#x27;u&#x27;: case &#x27;W&#x27;: case &#x27;F&#x27;: case &#x27;g&#x27;: case &#x27;A&#x27;: case &#x27;e&#x27;:
+//					console.log(match+&quot; modifier unimplemented&quot;);
+                default:
+                    s = match;
+                //  throw new Error(&quot;comb.date.format: invalid pattern char: &quot; + match);
+            }
+            if (pad) {
+                s = string.pad(s, l, &#x27;0&#x27;);
+            }
+            return s;
+        });
+    }
+}
+    </pre>
+    
+
+    
+    
+        <a name=".add"></a>
+    <h3>
+        add
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Adds a specified interval and amount to a date
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var dtA = new Date(2005, 11, 27);
+ comb.date.add(dtA, &quot;year&quot;, 1) =&gt; new Date(2006, 11, 27);
+ comb.date.add(dtA, &quot;years&quot;, 1) =&gt; new Date(2006, 11, 27);
+
+ dtA = new Date(2000, 0, 1);
+ comb.date.add(dtA, &quot;quarter&quot;, 1) =&gt; new Date(2000, 3, 1);
+ comb.date.add(dtA, &quot;quarters&quot;, 1) =&gt; new Date(2000, 3, 1);
+
+ dtA = new Date(2000, 0, 1);
+ comb.date.add(dtA, &quot;month&quot;, 1) =&gt; new Date(2000, 1, 1);
+ comb.date.add(dtA, &quot;months&quot;, 1) =&gt; new Date(2000, 1, 1);
+
+ dtA = new Date(2000, 0, 31);
+ comb.date.add(dtA, &quot;month&quot;, 1) =&gt; new Date(2000, 1, 29);
+ comb.date.add(dtA, &quot;months&quot;, 1) =&gt; new Date(2000, 1, 29);
+
+ dtA = new Date(2000, 0, 1);
+ comb.date.add(dtA, &quot;week&quot;, 1) =&gt; new Date(2000, 0, 8);
+ comb.date.add(dtA, &quot;weeks&quot;, 1) =&gt; new Date(2000, 0, 8);
+
+ dtA = new Date(2000, 0, 1);
+ comb.date.add(dtA, &quot;day&quot;, 1) =&gt; new Date(2000, 0, 2);
+
+ dtA = new Date(2000, 0, 1);
+ comb.date.add(dtA, &quot;weekday&quot;, 1) =&gt; new Date(2000, 0, 3);
+
+ dtA = new Date(2000, 0, 1, 11);
+ comb.date.add(dtA, &quot;hour&quot;, 1) =&gt; new Date(2000, 0, 1, 12);
+
+ dtA = new Date(2000, 11, 31, 23, 59);
+ comb.date.add(dtA, &quot;minute&quot;, 1) =&gt; new Date(2001, 0, 1, 0, 0);
+
+ dtA = new Date(2000, 11, 31, 23, 59, 59);
+ comb.date.add(dtA, &quot;second&quot;, 1) =&gt; new Date(2001, 0, 1, 0, 0, 0);
+
+ dtA = new Date(2000, 11, 31, 23, 59, 59, 999);
+ comb.date.add(dtA, &quot;millisecond&quot;, 1) =&gt; new Date(2001, 0, 1, 0, 0, 0, 0);
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>/*Date*/date</em>  : </li>
+    
+        <li> <em>/*String*/interval</em>  : </li>
+    
+        <li> <em>/*int*/amount</em>  : </li>
+    
+        <li> <em>date</em> <code>Date</code> : </li>
+    
+        <li> <em>interval</em> <code>String</code> : the interval to add  <ul>      <li>day | days</li>      <li>weekday | weekdays</li>      <li>year | years</li>      <li>week | weeks</li>      <li>quarter | quarters</li>      <li>months | months</li>      <li>hour | hours</li>      <li>minute | minutes</li>      <li>second | seconds</li>      <li>millisecond | milliseconds</li>  </ul></li>
+    
+        <li> <em>[amount= <code>0</code>]</em> <code>Number</code> : the amount to add</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (/*Date*/date,/*String*/interval,/*int*/amount){
+   amount = amount | 0
+   var sum = new Date(date);
+   var fixOvershoot = false;
+   var property = &quot;Date&quot;;
+   //noinspection FallthroughInSwitchStatementJS
+   switch (interval) {
+       case &quot;day&quot;:
+       case &quot;days&quot; :
+           break;
+       case &quot;weekday&quot;:
+       case &quot;weekdays&quot;:
+           // Divide the increment time span into weekspans plus leftover days
+           // e.g., 8 days is one 5-day weekspan / and two leftover days
+           // Can&#x27;t have zero leftover days, so numbers divisible by 5 get
+           // a days value of 5, and the remaining days make up the number of weeks
+           var days, weeks, mod = amount % 5, strt = date.getDay(), adj = 0;
+           if (!mod) {
+               days = (amount &gt; 0) ? 5 : -5;
+               weeks = (amount &gt; 0) ? ((amount - 5) / 5) : ((amount + 5) / 5);
+           } else {
+               days = mod;
+               weeks = parseInt(amount / 5);
+           }
+           if (strt == 6 &amp;&amp; amount &gt; 0) {
+               adj = 1;
+           } else if (strt == 0 &amp;&amp; amount &lt; 0) {
+               // Orig date is Sun / negative increment
+               // Jump back over Sat
+               adj = -1;
+           }
+           // Get weekday val for the new date
+           var trgt = strt + days;
+           // New date is on Sat or Sun
+           if (trgt == 0 || trgt == 6) {
+               adj = (amount &gt; 0) ? 2 : -2;
+           }
+           // Increment by number of weeks plus leftover days plus
+           // weekend adjustments
+           amount = (7 * weeks) + days + adj;
+           break;
+       case &quot;year&quot;:
+       case &quot;years&quot;:
+           property = &quot;FullYear&quot;;
+           fixOvershoot = true;
+           break;
+       case &quot;week&quot;:
+       case &quot;weeks&quot;:
+           amount *= 7;
+           break;
+       case &quot;quarter&quot;:
+       case &quot;quarters&quot; :
+           // Naive quarter is just three months
+           amount *= 3;
+       case &quot;month&quot;:
+       case &quot;months&quot;:
+           // Reset to last day of month if you overshoot
+           fixOvershoot = true;
+           property = &quot;Month&quot;;
+           break;
+       default:
+           interval = interval.replace(/s$/, &quot;&quot;);
+           property = &quot;UTC&quot; + interval.charAt(0).toUpperCase() + interval.substring(1) + &quot;s&quot;;
+   }
+   if (property) {
+       sum[&quot;set&quot; + property](sum[&quot;get&quot; + property]() + amount);
+   }
+   if (fixOvershoot &amp;&amp; (sum.getDate() &lt; date.getDate())) {
+       sum.setDate(0);
+   }
+   return sum; // Date
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".compare"></a>
+    <h3>
+        compare
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Compares two dates
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var d1 = new Date();
+d1.setHours(0);
+comb.date.compare(d1, d1) =&gt; 0
+
+ var d1 = new Date();
+ d1.setHours(0);
+ var d2 = new Date();
+ d2.setFullYear(2005);
+ d2.setHours(12);
+ comb.date.compare(d1, d2, &quot;date&quot;) =&gt; 1
+ comb.date.compare(d1, d2, &quot;datetime&quot;) =&gt; 1
+
+ var d1 = new Date();
+ d1.setHours(0);
+ var d2 = new Date();
+ d2.setFullYear(2005);
+ d2.setHours(12);
+ comb.date.compare(d2, d1, &quot;date&quot;), -1);
+ comb.date.compare(d1, d2, &quot;time&quot;), -1);
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>/*Date*/date1</em>  : </li>
+    
+        <li> <em>/*Date*/date2</em>  : </li>
+    
+        <li> <em>/*String*/portion</em>  : </li>
+    
+        <li> <em>date1</em> <code>Date|String</code> : the date to comapare</li>
+    
+        <li> <em>[date2= <code>new Date()</code>]</em> <code>Date|String</code> : the date to compare date1 againse</li>
+    
+        <li> <em>portion</em> <code>"date"|"time"|"datetime"</code> : compares the portion specified</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li>  -1 if date1 is < date2 0 if date1 === date2  1 if date1 > date2</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (/*Date*/date1,/*Date*/date2,/*String*/portion){
+   date1 = new Date(date1);
+   date2 = new Date((date2 || new Date()));
+   if (portion == &quot;date&quot;) {
+       // Ignore times and compare dates.
+       date1.setHours(0, 0, 0, 0);
+       date2.setHours(0, 0, 0, 0);
+   } else if (portion == &quot;time&quot;) {
+       // Ignore dates and compare times.
+       date1.setFullYear(0, 0, 0);
+       date2.setFullYear(0, 0, 0);
+   }
+   var ret = 0;
+   date1 &gt; date2 &amp;&amp; (ret = 1);
+   date1 &lt; date2 &amp;&amp; (ret = -1);
+   return ret; // int
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".difference"></a>
+    <h3>
+        difference
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Finds the difference between two dates based on the specified interval
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var dtA, dtB;
+
+dtA = new Date(2005, 11, 27);
+dtB = new Date(2006, 11, 27);
+comb.date.difference(dtA, dtB, &quot;year&quot;) =&gt; 1
+
+dtA = new Date(2000, 1, 29);
+dtB = new Date(2001, 2, 1);
+comb.date.difference(dtA, dtB, &quot;quarter&quot;) =&gt; 4
+comb.date.difference(dtA, dtB, &quot;month&quot;) =&gt; 13
+
+dtA = new Date(2000, 1, 1);
+dtB = new Date(2000, 1, 8);
+comb.date.difference(dtA, dtB, &quot;week&quot;) =&gt; 1
+
+dtA = new Date(2000, 1, 29);
+dtB = new Date(2000, 2, 1);
+comb.date.difference(dtA, dtB, &quot;day&quot;) =&gt; 1
+
+dtA = new Date(2006, 7, 3);
+dtB = new Date(2006, 7, 11);
+comb.date.difference(dtA, dtB, &quot;weekday&quot;) =&gt; 6
+
+dtA = new Date(2000, 11, 31, 23);
+dtB = new Date(2001, 0, 1, 0);
+comb.date.difference(dtA, dtB, &quot;hour&quot;) =&gt; 1
+
+dtA = new Date(2000, 11, 31, 23, 59);
+dtB = new Date(2001, 0, 1, 0, 0);
+comb.date.difference(dtA, dtB, &quot;minute&quot;) =&gt; 1
+
+dtA = new Date(2000, 11, 31, 23, 59, 59);
+dtB = new Date(2001, 0, 1, 0, 0, 0);
+comb.date.difference(dtA, dtB, &quot;second&quot;) =&gt; 1
+
+dtA = new Date(2000, 11, 31, 23, 59, 59, 999);
+dtB = new Date(2001, 0, 1, 0, 0, 0, 0);
+comb.date.difference(dtA, dtB, &quot;millisecond&quot;) =&gt; 1
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>/*Date*/date1</em>  : </li>
+    
+        <li> <em>/*Date?*/date2</em>  : </li>
+    
+        <li> <em>/*String*/interval</em>  : </li>
+    
+        <li> <em>utc</em>  : </li>
+    
+        <li> <em>date1</em> <code>Date</code> : </li>
+    
+        <li> <em>[date2 = <code> new Date()</code>]</em> <code>Date</code> : </li>
+    
+        <li> <em>[interval = <code> "day"</code>]</em> <code>String</code> : the intercal to find the difference of.
+  <ul>
+     <li>day | days</li>
+     <li>weekday | weekdays</li>
+     <li>year | years</li>
+     <li>week | weeks</li>
+     <li>quarter | quarters</li>
+     <li>months | months</li>
+     <li>hour | hours</li>
+     <li>minute | minutes</li>
+     <li>second | seconds</li>
+     <li>millisecond | milliseconds</li>
+ </ul></li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (/*Date*/date1,/*Date?*/date2,/*String*/interval,utc){
+   date2 = date2 || new Date();
+   interval = interval || &quot;day&quot;;
+   var yearDiff = date2.getFullYear() - date1.getFullYear();
+   var delta = 1; // Integer return value
+   switch (interval) {
+       case &quot;quarter&quot;:
+       case &quot;quarters&quot;:
+           var m1 = date1[utc ? &quot;getUTCMonth&quot; : &quot;getMonth&quot;]();
+           var m2 = date2[utc ? &quot;getUTCMonth&quot; : &quot;getMonth&quot;]();
+           // Figure out which quarter the months are in
+           var q1 = floor(m1 / 3) + 1;
+           var q2 = floor(m2 / 3) + 1;
+           // Add quarters for any year difference between the dates
+           q2 += (yearDiff * 4);
+           delta = q2 - q1;
+           break;
+       case &quot;weekday&quot;:
+       case &quot;weekdays&quot;:
+           var days = round(date.difference(date1, date2, &quot;day&quot;, utc));
+           var weeks = parseInt(date.difference(date1, date2, &quot;week&quot;, utc));
+           var mod = days % 7;
+           // Even number of weeks
+           if (mod == 0) {
+               days = weeks * 5;
+           } else {
+               // Weeks plus spare change (&lt; 7 days)
+               var adj = 0;
+               var aDay = date1[utc ? &quot;getUTCDay&quot; : &quot;getDay&quot;]();
+               var bDay = date2[utc ? &quot;getUTCDay&quot; : &quot;getDay&quot;]();
+               weeks = parseInt(days / 7);
+               mod = days % 7;
+               // Mark the date advanced by the number of
+               // round weeks (may be zero)
+               var dtMark = new Date(date1);
+               dtMark.setDate(dtMark[utc ? &quot;getUTCDate&quot; : &quot;getDate&quot;]() + (weeks * 7));
+               var dayMark = dtMark[utc ? &quot;getUTCDay&quot; : &quot;getDay&quot;]();
+               // Spare change days -- 6 or less
+               if (days &gt; 0) {
+                   switch (true) {
+                       // Range starts on Sat
+                       case (aDay == 6 || bDay == 6):
+                           adj = -1;
+                           break;
+                       // Range starts on Sun
+                       case aDay == 0:
+                           adj = 0;
+                           break;
+                       // Range ends on Sun
+                       case bDay == 0:
+                           adj = -2;
+                           break;
+                       // Range contains weekend
+                       case (dayMark + mod) &gt; 5:
+                           adj = -2;
+                   }
+               } else if (days &lt; 0) {
+                   switch (true) {
+                       // Range starts on Sat
+                       case aDay == 6:
+                           adj = 0;
+                           break;
+                       // Range starts on Sun
+                       case aDay == 0:
+                           adj = 1;
+                           break;
+                       // Range ends on Sat
+                       case bDay == 6:
+                           adj = 2;
+                           break;
+                       // Range ends on Sun
+                       case bDay == 0:
+                           adj = 1;
+                           break;
+                       // Range contains weekend
+                       case (dayMark + mod) &lt; 0:
+                           adj = 2;
+                   }
+               }
+               days += adj;
+               days -= (weeks * 2);
+           }
+           delta = days;
+           break;
+       case &quot;year&quot;:
+       case &quot;years&quot;:
+           delta = yearDiff;
+           break;
+       case &quot;month&quot;:
+       case &quot;months&quot;:
+           var m1 = date1[utc ? &quot;getUTCMonth&quot; : &quot;getMonth&quot;]();
+           var m2 = date2[utc ? &quot;getUTCMonth&quot; : &quot;getMonth&quot;]();
+           delta = (m2 - m1) + (yearDiff * 12);
+           break;
+       case &quot;week&quot;:
+       case &quot;weeks&quot;:
+           delta = parseInt(date.difference(date1, date2, &quot;day&quot;, utc) / 7);
+           break;
+       case &quot;day&quot;:
+       case &quot;days&quot;:
+           delta /= 24;
+       case &quot;hour&quot;:
+       case &quot;hours&quot;:
+           delta /= 60;
+       case &quot;minute&quot;:
+       case &quot;minutes&quot;:
+           delta /= 60;
+       case &quot;second&quot;:
+       case &quot;seconds&quot;:
+           delta /= 1000;
+       case &quot;millisecond&quot;:
+       case &quot;milliseconds&quot;:
+           delta *= date2.getTime() - date1.getTime();
+   }
+   // Round for fractional values and DST leaps
+   return round(delta); // Number (integer)
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".format"></a>
+    <h3>
+        format
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Formats a date to the specidifed format string
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var date = new Date(2006, 7, 11, 0, 55, 12, 345);
+comb.date.format(date, &quot;EEEE, MMMM dd, yyyy&quot;) =&gt; &quot;Friday, August 11, 2006&quot;
+comb.date.format(date, &quot;M/dd/yy&quot;) =&gt; &quot;8/11/06&quot;
+comb.date.format(date, &quot;E&quot;) =&gt; &quot;6&quot;
+comb.date.format(date, &quot;h:m a&quot;) =&gt; &quot;12:55 AM&quot;
+comb.date.format(date, &#x27;h:m:s&#x27;) =&gt; &quot;12:55:12&quot;
+comb.date.format(date, &#x27;h:m:s.SS&#x27;) =&gt; &quot;12:55:12.35&quot;
+comb.date.format(date, &#x27;k:m:s.SS&#x27;) =&gt; &quot;24:55:12.35&quot;
+comb.date.format(date, &#x27;H:m:s.SS&#x27;) =&gt; &quot;0:55:12.35&quot;
+comb.date.format(date, &quot;ddMMyyyy&quot;) =&gt; &quot;11082006&quot;
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>date</em>  : the date to format</li>
+    
+        <li> <em>format</em>  : the format of the date composed of the following options <ul>                  <li> G    Era designator    Text    AD</li>                  <li> y    Year    Year    1996; 96</li>                  <li> M    Month in year    Month    July; Jul; 07</li>                  <li> w    Week in year    Number    27</li>                  <li> W    Week in month    Number    2</li>                  <li> D    Day in year    Number    189</li>                  <li> d    Day in month    Number    10</li>                  <li> E    Day in week    Text    Tuesday; Tue</li>                  <li> a    Am/pm marker    Text    PM</li>                  <li> H    Hour in day (0-23)    Number    0</li>                  <li> k    Hour in day (1-24)    Number    24</li>                  <li> K    Hour in am/pm (0-11)    Number    0</li>                  <li> h    Hour in am/pm (1-12)    Number    12</li>                  <li> m    Minute in hour    Number    30</li>                  <li> s    Second in minute    Number    55</li>                  <li> S    Millisecond    Number    978</li>                  <li> z    Time zone    General time zone    Pacific Standard Time; PST; GMT-08:00</li>                  <li> Z    Time zone    RFC 822 time zone    -0800 </li> </ul></li>
+    
+        <li> <em>utc</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (date,format,utc){
+   utc = utc || false;
+   var fullYear, month, day, d, hour, minute, second, millisecond;
+   if (utc) {
+       fullYear = date.getUTCFullYear(),
+           month = date.getUTCMonth(),
+           day = date.getUTCDay(),
+           d = date.getUTCDate(),
+           hour = date.getUTCHours(),
+           minute = date.getUTCMinutes(),
+           second = date.getUTCSeconds(),
+           millisecond = date.getUTCMilliseconds();
+   } else {
+       fullYear = date.getFullYear(),
+           month = date.getMonth(),
+           d = date.getDate(),
+           day = date.getDay(),
+           hour = date.getHours(),
+           minute = date.getMinutes(),
+           second = date.getSeconds(),
+           millisecond = date.getMilliseconds();
+   }
+   return format.replace(/([a-z])\1*/ig, function (match, options) {
+       var s, pad, h,
+           c = match.charAt(0),
+           l = match.length;
+       switch (c) {
+           case &#x27;d&#x27;:
+               s = &quot;&quot; + d;
+           case &#x27;H&#x27;:
+               !s &amp;&amp; (s = &quot;&quot; + hour);
+           case &#x27;m&#x27;:
+               !s &amp;&amp; (s = &quot;&quot; + minute);
+           case &#x27;s&#x27;:
+               !s &amp;&amp; (s = &quot;&quot; + second);
+               pad = true;
+               break;
+           case &#x27;G&#x27;:
+               s = ((l &lt; 4) ? eraAbbr : eraNames)[fullYear &lt; 0 ? 0 : 1];
+               break;
+           case &#x27;y&#x27;:
+               s = fullYear;
+               if (l &gt; 1) {
+                   l == 2 ? s = string.truncate(&quot;&quot; + s, 2, true) : pad = true;
+               }
+               break;
+           case &#x27;Q&#x27;:
+           case &#x27;q&#x27;:
+               s = ceil((month + 1) / 3);
+               pad = true;
+               break;
+           case &#x27;M&#x27;:
+               if (l &lt; 3) {
+                   s = month + 1;
+                   pad = true;
+               } else {
+                   s = (l == 3 ? monthAbbr : monthNames)[month];
+               }
+               break;
+           case &#x27;w&#x27;:
+               s = getWeekOfYear(date, 0, utc), pad = true;
+               break;
+           case &#x27;D&#x27;:
+               s = getDayOfYear(date, utc), pad = true;
+               break;
+           case &#x27;E&#x27;:
+               if (l &lt; 3) {
+                   s = day + 1;
+                   pad = true;
+               } else {
+                   s = (l == 3 ? dayAbbr : dayNames)[day];
+               }
+               break;
+           case &#x27;a&#x27;:
+               s = (hour &lt; 12) ? &#x27;AM&#x27; : &#x27;PM&#x27;;
+               break;
+           case &#x27;h&#x27;:
+               s = (hour % 12) || 12, pad = true;
+               break;
+           case &#x27;K&#x27;:
+               s = (hour % 12), pad = true;
+               break;
+           case &#x27;k&#x27;:
+               s = hour || 24, pad = true;
+               break;
+           case &#x27;S&#x27;:
+               s = round(millisecond * pow(10, l - 3)), pad = true;
+               break;
+           case &#x27;v&#x27;:
+           case &#x27;z&#x27;:
+               s = comb.date.getTimezoneName(date);
+               if (s) {
+                   break;
+               }
+               l = 4;
+           // fallthrough... use GMT if tz not available
+           case &#x27;Z&#x27;:
+               var offset = date.getTimezoneOffset();
+               var tz = [
+                   (offset &gt;= 0 ? &quot;-&quot; : &quot;+&quot;),
+                   string.pad(floor(abs(offset) / 60), 2, &quot;0&quot;),
+                   string.pad(abs(offset) % 60, 2, &quot;0&quot;)
+               ];
+               if (l == 4) {
+                   tz.splice(0, 0, &quot;GMT&quot;);
+                   tz.splice(3, 0, &quot;:&quot;);
+               }
+               s = tz.join(&quot;&quot;);
+               break;
+   //				case &#x27;Y&#x27;: case &#x27;u&#x27;: case &#x27;W&#x27;: case &#x27;F&#x27;: case &#x27;g&#x27;: case &#x27;A&#x27;: case &#x27;e&#x27;:
+   //					console.log(match+&quot; modifier unimplemented&quot;);
+           default:
+               s = match;
+           //  throw new Error(&quot;comb.date.format: invalid pattern char: &quot; + match);
+       }
+       if (pad) {
+           s = string.pad(s, l, &#x27;0&#x27;);
+       }
+       return s;
+   });
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".getDaysInMonth"></a>
+    <h3>
+        getDaysInMonth
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Returns the number of days in the month of a date
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.date.getDaysInMonth(new Date(2006, 1, 1)) =&gt; 28
+ comb.date.getDaysInMonth(new Date(2004, 1, 1)) =&gt; 29
+ comb.date.getDaysInMonth(new Date(2006, 2, 1)) =&gt; 31
+ comb.date.getDaysInMonth(new Date(2006, 3, 1)) =&gt; 30
+ comb.date.getDaysInMonth(new Date(2006, 4, 1)) =&gt; 31
+ comb.date.getDaysInMonth(new Date(2006, 5, 1)) =&gt; 30
+ comb.date.getDaysInMonth(new Date(2006, 6, 1)) =&gt; 31
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>/*Date*/dateObject</em>  : </li>
+    
+        <li> <em>dateObject</em> <code>Date</code> : the date containing the month</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Number</code> the number of days in the month</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (/*Date*/dateObject){
+   //	summary:
+   //		Returns the number of days in the month used by dateObject
+   var month = dateObject.getMonth();
+   var days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+   if (month == 1 &amp;&amp; date.isLeapYear(dateObject)) {
+       return 29;
+   } // Number
+   return days[month]; // Number
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".getTimezoneName"></a>
+    <h3>
+        getTimezoneName
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Get the timezone of a date
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+//just setting the strLocal to simulate the toString() of a date
+ dt.str = &#x27;Sun Sep 17 2006 22:25:51 GMT-0500 (CDT)&#x27;;
+ //just setting the strLocal to simulate the locale
+ dt.strLocale = &#x27;Sun 17 Sep 2006 10:25:51 PM CDT&#x27;;
+ comb.date.getTimezoneName(dt) =&gt; &#x27;CDT&#x27;
+ dt.str = &#x27;Sun Sep 17 2006 22:57:18 GMT-0500 (CDT)&#x27;;
+ dt.strLocale = &#x27;Sun Sep 17 22:57:18 2006&#x27;;
+ comb.date.getTimezoneName(dt) =&gt; &#x27;CDT&#x27;
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>/*Date*/dateObject</em>  : </li>
+    
+        <li> <em>dateObject</em>  : the date to get the timezone from</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>String</code> the timezone of the date</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (/*Date*/dateObject){
+   var str = dateObject.toString();
+   var tz = &#x27;&#x27;;
+   var pos = str.indexOf(&#x27;(&#x27;);
+   if (pos &gt; -1) {
+       tz = str.substring(++pos, str.indexOf(&#x27;)&#x27;));
+   }
+   return tz; // String
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".isLeapYear"></a>
+    <h3>
+        isLeapYear
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Determines if a date is a leap year
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.date.isLeapYear(new Date(1600, 0, 1)) =&gt; true
+ comb.date.isLeapYear(new Date(2004, 0, 1)) =&gt; true
+ comb.date.isLeapYear(new Date(2000, 0, 1)) =&gt; true
+ comb.date.isLeapYear(new Date(2006, 0, 1)) =&gt; false
+ comb.date.isLeapYear(new Date(1900, 0, 1)) =&gt; false
+ comb.date.isLeapYear(new Date(1800, 0, 1)) =&gt; false
+ comb.date.isLeapYear(new Date(1700, 0, 1)) =&gt; false
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>/*Date*/dateObject</em>  : </li>
+    
+        <li> <em>utc</em>  : </li>
+    
+        <li> <em>dateObject</em> <code>Date</code> : </li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if it is a leap year false otherwise</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (/*Date*/dateObject,utc){
+   var year = dateObject[utc ? &quot;getUTCFullYear&quot; : &quot;getFullYear&quot;]();
+   return !(year % 400) || (!(year % 4) &amp;&amp; !!(year % 100)); // Boolean
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".isWeekend"></a>
+    <h3>
+        isWeekend
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Determines if a date is on a weekend
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var thursday = new Date(2006, 8, 21);
+var saturday = new Date(2006, 8, 23);
+var sunday = new Date(2006, 8, 24);
+var monday = new Date(2006, 8, 25);
+comb.date.isWeekend(thursday)) =&gt; false
+comb.date.isWeekend(saturday) =&gt; true
+comb.date.isWeekend(sunday) =&gt; true
+comb.date.isWeekend(monday)) =&gt; false
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>/*Date?*/dateObject</em>  : </li>
+    
+        <li> <em>utc</em>  : </li>
+    
+        <li> <em>dateObject</em> <code>Date</code> : the date to test</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if the date is a weekend</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (/*Date?*/dateObject,utc){
+   // summary:
+   //	Determines if the date falls on a weekend, according to local custom.
+   var day = (dateObject || new Date())[utc ? &quot;getUTCDay&quot; : &quot;getDay&quot;]();
+   return day == 0 || day == 6;
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".parse"></a>
+    <h3>
+        parse
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Parses a date string into a date object
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var aug_11_2006 = new Date(2006, 7, 11, 0);
+ comb.date.parse(&quot;08/11/06&quot;, &quot;MM/dd/yy&quot;) =&gt; aug_11_2006
+ comb.date.parse(&quot;11Aug2006&quot;, &#x27;ddMMMyyyy&#x27;) =&gt; aug_11_2006
+ comb.date.parse(&quot;Aug2006&quot;, &#x27;MMMyyyy&#x27;) =&gt; new Date(2006, 7, 1)
+ comb.date.parse(&quot;Aug 11, 2006&quot;, &quot;MMM dd, yyyy&quot;) =&gt; aug_11_2006
+ comb.date.parse(&quot;August 11, 2006&quot;, &quot;MMMM dd, yyyy&quot;) =&gt; aug_11_2006
+ comb.date.parse(&quot;Friday, August 11, 2006&quot;, &quot;EEEE, MMMM dd, yyyy&quot;) =&gt; aug_11_2006
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>dateStr</em>  : The string to parse</li>
+    
+        <li> <em>format</em>  : the format of the date composed of the following options <ul>                  <li> G    Era designator    Text    AD</li>                  <li> y    Year    Year    1996; 96</li>                  <li> M    Month in year    Month    July; Jul; 07</li>                  <li> w    Week in year    Number    27</li>                  <li> W    Week in month    Number    2</li>                  <li> D    Day in year    Number    189</li>                  <li> d    Day in month    Number    10</li>                  <li> E    Day in week    Text    Tuesday; Tue</li>                  <li> a    Am/pm marker    Text    PM</li>                  <li> H    Hour in day (0-23)    Number    0</li>                  <li> k    Hour in day (1-24)    Number    24</li>                  <li> K    Hour in am/pm (0-11)    Number    0</li>                  <li> h    Hour in am/pm (1-12)    Number    12</li>                  <li> m    Minute in hour    Number    30</li>                  <li> s    Second in minute    Number    55</li>                  <li> S    Millisecond    Number    978</li>                  <li> z    Time zone    General time zone    Pacific Standard Time; PST; GMT-08:00</li>                  <li> Z    Time zone    RFC 822 time zone    -0800 </li> </ul></li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Date</code> the parsed date</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (dateStr,format){
+   if (!format) throw new Error(&#x27;format required when calling comb.date.parse&#x27;);
+   var tokens = [], regexp = buildDateEXP(format, tokens),
+       re = new RegExp(&quot;^&quot; + regexp + &quot;$&quot;, &quot;i&quot;),
+       match = re.exec(dateStr);
+   if (!match) {
+       return null;
+   } // null
+   var result = [1970, 0, 1, 0, 0, 0, 0], // will get converted to a Date at the end
+       amPm = &quot;&quot;,
+       valid = match.every(function (v, i) {
+           if (!i) {
+               return true;
+           }
+           var token = tokens[i - 1];
+           var l = token.length;
+           switch (token.charAt(0)) {
+               case &#x27;y&#x27;:
+                   if (v &lt; 100) {
+                       v = parseInt(v, 10);
+                       //choose century to apply, according to a sliding window
+                       //of 80 years before and 20 years after present year
+                       var year = &#x27;&#x27; + new Date().getFullYear(),
+                           century = year.substring(0, 2) * 100,
+                           cutoff = min(year.substring(2, 4) + 20, 99);
+                       result[0] = (v &lt; cutoff) ? century + v : century - 100 + v;
+                   } else {
+                       result[0] = v;
+                   }
+                   break;
+               case &#x27;M&#x27;:
+                   if (l &gt; 2) {
+                       var months = monthNames;
+                       if (l === 3) {
+                           months = monthAbbr;
+                       }
+                       //Tolerate abbreviating period in month part
+                       //Case-insensitive comparison
+                       v = v.replace(&quot;.&quot;, &quot;&quot;).toLowerCase();
+                       months = months.map(function (s) {
+                           return s.replace(&quot;.&quot;, &quot;&quot;).toLowerCase();
+                       });
+                       if ((v = months.indexOf(v)) == -1) {
+                           return false;
+                       }
+                   } else {
+                       v--;
+                   }
+                   result[1] = v;
+                   break;
+               case &#x27;E&#x27;:
+               case &#x27;e&#x27;:
+                   var days = dayNames;
+                   if (l == 3) {
+                       days = dayAbbr;
+                   }
+                   //Case-insensitive comparison
+                   v = v.toLowerCase();
+                   days = days.map(function (d) {
+                       return d.toLowerCase();
+                   });
+                   var d = days.indexOf(v);
+                   if (d == -1) {
+                       v = parseInt(v);
+                       if (isNaN(v) || v &gt; days.length) {
+                           return false;
+                       }
+                   } else {
+                       v = d;
+                   }
+                   break;
+               case &#x27;D&#x27;:
+                   result[1] = 0;
+               case &#x27;d&#x27;:
+                   result[2] = v;
+                   break;
+               case &#x27;a&#x27;: //am/pm
+                   var am = &quot;am&quot;;
+                   var pm = &quot;pm&quot;;
+                   var period = /\./g;
+                   v = v.replace(period, &#x27;&#x27;).toLowerCase();
+                   // we might not have seen the hours field yet, so store the state and apply hour change later
+                   amPm = (v == pm) ? &#x27;p&#x27; : (v == am) ? &#x27;a&#x27; : &#x27;&#x27;;
+                   break;
+               case &#x27;k&#x27;: //hour (0-11)
+                   if (v == 24) {
+                       v = 0;
+                   }
+               // fallthrough...
+               case &#x27;h&#x27;: //hour (1-12)
+               case &#x27;H&#x27;: //hour (0-23)
+               case &#x27;K&#x27;: //hour (0-11)
+                   //in the 12-hour case, adjusting for am/pm requires the &#x27;a&#x27; part
+                   //which could come before or after the hour, so we will adjust later
+                   result[3] = v;
+                   break;
+               case &#x27;m&#x27;: //minutes
+                   result[4] = v;
+                   break;
+               case &#x27;s&#x27;: //seconds
+                   result[5] = v;
+                   break;
+               case &#x27;S&#x27;: //milliseconds
+                   result[6] = v;
+                   break;
+           }
+           return true;
+       });
+   if (valid) {
+       var hours = +result[3];
+       //account for am/pm
+       if (amPm === &#x27;p&#x27; &amp;&amp; hours &lt; 12) {
+           result[3] = hours + 12; //e.g., 3pm -&gt; 15
+       } else if (amPm === &#x27;a&#x27; &amp;&amp; hours == 12) {
+           result[3] = 0; //12am -&gt; 0
+       }
+       var dateObject = new Date(result[0], result[1], result[2], result[3], result[4], result[5], result[6]); // Date
+       var dateToken = (tokens.indexOf(&#x27;d&#x27;) != -1),
+           monthToken = (tokens.indexOf(&#x27;M&#x27;) != -1),
+           month = result[1],
+           day = result[2],
+           dateMonth = dateObject.getMonth(),
+           dateDay = dateObject.getDate();
+       if ((monthToken &amp;&amp; dateMonth &gt; month) || (dateToken &amp;&amp; dateDay &gt; day)) {
+           return null;
+       }
+       return dateObject; // Date
+   } else {
+       return null;
+   }
+       
+}
+    </pre>
+    
+
+
+    
+<hr>
+
+Documentation gennerated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
+
+
+</div>
+</div>
+<script type="text/javascript" src="./assets/js/jquery.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-transition.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-tab.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-tooltip.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-popover.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-button.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-collapse.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-carousel.js"></script>
+<script type="text/javascript"
+        src="./assets/js/google-code-prettify/prettify.js"></script>
+
+</body>
+</html>
+

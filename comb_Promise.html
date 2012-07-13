@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comb</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/js/google-code-prettify/prettify.css">
+    <style type="text/css">
+        
+
+.subnav-inner {
+    width: 100%;
+    height: 36px;
+    background-color: #EEE;
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));
+    background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);
+    background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.subnav .nav > li > a:hover {
+    color: black !important;
+}
+
+.subnav .nav li.dropdown .dropdown-toggle .caret,
+.subnav .nav li.dropdown.open .caret {
+    border-top-color: #999 !important;
+    border-bottom-color: #999 !important;
+}
+
+.subnav-fixed {
+    position: fixed;
+    width : 90%;
+    margin-right: auto;
+    margin-left: auto;
+    top: 40px;
+    left: 0;
+    right: 0;
+    z-index: 1020;
+    border-color: #D5D5D5;
+    border-width: 0 0 1px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.navbar .nav  .dropdown-menu {
+    max-height: 500px;
+    overflow: auto;
+}​
+
+    </style>
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+    <script type="text/javascript">
+        var init = (function () {
+            "use strict";
+
+            var processScroll = (function () {
+                var curr = null, prev = null;
+                return function (nav) {
+                    var $win = $(window);
+                    $('.subnav').each(function () {
+                        var nav = $(this);
+                        var navTop = nav.offset().top - 40;
+                        var scrollTop = $win.scrollTop();
+                        if (scrollTop >= navTop && curr != nav) {
+                            if(curr){
+                                curr.removeClass('subnav-fixed')
+                                prev = curr;
+                            }
+                            curr = nav;
+                            curr.addClass('subnav-fixed')
+                        } else if (curr == nav && scrollTop <= navTop) {
+                            curr.removeClass('subnav-fixed');
+                            prev.addClass('subnav-fixed');
+                            curr = prev;
+                        }else{
+                            nav.removeClass('subnav-fixed');
+                        }
+                    });
+                };
+            })();
+
+            return function () {
+                window.prettyPrint && prettyPrint();
+                $(".collapse").collapse();
+                // fix sub nav on scroll
+                processScroll();
+                $(window).on('scroll', processScroll)
+            }
+        })();
+    </script>
+</head>
+<body onload="init()">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+      
+          <a href="./index.html" class="brand">comb</a>
+      
+      <div class="nav-collapse">
+      <ul class="nav nav-pills">
+      
+
+      
+        <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+           <ul class="dropdown-menu">
+             
+                         <li><a href="comb.html">comb</a></li>
+               
+                         <li><a href="comb_array.html">comb.array</a></li>
+               
+                         <li><a href="comb_characters.html">comb.characters</a></li>
+               
+                         <li><a href="comb_date.html">comb.date</a></li>
+               
+                         <li><a href="comb_number.html">comb.number</a></li>
+               
+                         <li><a href="comb_plugins.html">comb.plugins</a></li>
+               
+                         <li><a href="comb_regexp.html">comb.regexp</a></li>
+               
+                         <li><a href="comb_string.html">comb.string</a></li>
+               
+           </ul>
+           </li>
+        
+        
+           <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+           <ul class="dropdown-menu">
+             
+                         <li><a href="./comb_Promise.html">comb.Promise</a></li>
+               
+                         <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
+               
+                         <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
+               
+                         <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
+               
+                         <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
+               
+                         <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
+               
+                         <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
+               
+                         <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
+               
+                         <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
+               
+                         <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
+               
+                         <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
+               
+                         <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
+               
+                         <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
+               
+                         <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
+               
+                         <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
+               
+                         <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
+               
+                         <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
+               
+                         <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+               
+                         <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
+               
+                         <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
+               
+                         <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
+               
+                         <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+               
+                         <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
+               
+                         <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
+               
+           </ul>
+        </li>
+       
+      </ul>
+      
+      <ul class="nav pull-right">
+                  <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+    <a name="top"></a>
+    <div class="container">
+
+
+
+    <a name=""></a>
+    <div class="navbar subnav">
+    <div class="navbar-inner  subnav-inner">
+          <div class="container">
+            <a href="#" class="brand">
+            comb.Promise
+            
+                    
+             <span class="label label-success">Public</span>
+                    
+            
+            </a>
+           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </a>
+                    <div class="nav-collapse">
+
+            <ul class="nav pull-right">
+             <li><a href="#constructor">Constructor</a></li>
+                        
+                        
+                        
+                        
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instance Methods<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                
+                                <li><a href="./comb_Promise.html#__resolve">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                <span class="label label-important">P</span>
+                                
+                                __resolve
+
+                                </a></li>
+                                
+                                <li><a href="./comb_Promise.html#addCallback">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                addCallback
+
+                                </a></li>
+                                
+                                <li><a href="./comb_Promise.html#addErrback">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                addErrback
+
+                                </a></li>
+                                
+                                <li><a href="./comb_Promise.html#both">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                both
+
+                                </a></li>
+                                
+                                <li><a href="./comb_Promise.html#callback">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                callback
+
+                                </a></li>
+                                
+                                <li><a href="./comb_Promise.html#chain">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                chain
+
+                                </a></li>
+                                
+                                <li><a href="./comb_Promise.html#chainBoth">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                chainBoth
+
+                                </a></li>
+                                
+                                <li><a href="./comb_Promise.html#classic">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                classic
+
+                                </a></li>
+                                
+                                <li><a href="./comb_Promise.html#errback">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                errback
+
+                                </a></li>
+                                
+                                <li><a href="./comb_Promise.html#then">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                then
+
+                                </a></li>
+                                
+                            </ul>
+                        </li>
+                        
+            </ul>
+            </div>
+            </div>
+     </div>
+</div>
+
+
+
+    <p>
+Promise object used for handling a thread
+</p>
+    
+        <em>Example</em>
+            <pre class="prettyprint linenums lang-js">
+var myFunc = function(){
+             var promise = new Promise();
+             //callback the promise after 10 Secs
+             setTimeout(hitch(promise, &quot;callback&quot;), 10000);
+             return promise;
+         }
+         var myFunc2 = function(){
+             var promises =[];
+             for(var i = 0; i &lt; 10; i++){
+                 promises.push(myFunc);
+             }
+             //create a new promise list with all 10 promises
+             return new PromiseList(promises);
+         }
+
+         myFunc.then(do something...)
+         myFunc.addCallback(do something...)
+         myFunc.chain(myfunc).then(do something...)
+         myFunc.chain(myfunc).addCallback(do something...)
+
+         myFunc2.then(do something...)
+         myFunc2.addCallback(do something...)
+         myFunc2.chain(myfunc).then(do something...)
+         myFunc2.chain(myfunc).addCallback(do something...)
+            </pre>
+    
+
+    
+
+    
+    
+
+    <a name="constructor"></a>
+    <h3>Constructor</h3>
+
+    <em>Defined promise.js</em>
+    
+    
+    
+        
+            <em>Source</em>
+            <pre class="prettyprint linenums lang-js">
+function (){
+   this.__errorCbs = [];
+   this.__cbs = [];
+           
+}
+            </pre>
+      
+    
+
+  
+  
+    <a name="__resolve"></a>
+    <h3>
+        __resolve
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+        <span class="label label-important">Private</span>
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+</p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   if (!this.__fired) {
+       this.__fired = true;
+       var cbs = this.__error ? this.__errorCbs : this.__cbs,
+           len = cbs.length, i,
+           results = this.__error || this.__results;
+       for (i = 0; i &lt; len; i++) {
+           this.__callNextTick(cbs[i], results);
+       }
+   }
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="addCallback"></a>
+    <h3>
+        addCallback
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+Add a callback to the callback chain of the promise
+
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>cb</em>  : the function or promise to callback when the promise is resolved.</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> this promise for chaining</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (cb){
+   if (cb) {
+       if (exports.isPromiseLike(cb)) {
+           cb = hitch(cb, &quot;callback&quot;);
+       }
+       if (this.__fired &amp;&amp; this.__results) {
+           cb.apply(this, this.__results);
+       } else {
+           this.__cbs.push(cb);
+       }
+   }
+   return this;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="addErrback"></a>
+    <h3>
+        addErrback
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+Add a callback to the errback chain of the promise
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>cb</em>  : the function or promise to callback when the promise errors</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> this promise for chaining</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (cb){
+   if (cb) {
+       if (exports.isPromiseLike(cb)) {
+           cb = hitch(cb, &quot;errback&quot;);
+       }
+       if (this.__fired &amp;&amp; this.__error) {
+           cb.apply(this, this.__error);
+       } else {
+           this.__errorCbs.push(cb);
+       }
+   }
+   return this;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="both"></a>
+    <h3>
+        both
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+
+Adds a callback or promise to be resolved for both success
+and error.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>cb</em>  : callback or promise to be resolved for both success and error.</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> this promise for chaining</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (cb){
+   this.addCallback(cb);
+   if (exports.isPromiseLike(cb)) {
+       this.addErrback(hitch(cb, &quot;callback&quot;));
+   } else {
+       this.addErrback(cb);
+   }
+   return this;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="callback"></a>
+    <h3>
+        callback
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+When called all functions registered as callbacks are called with the passed in results.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>args</em>  : variable number of results to pass back to listeners of the promise</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (args){
+   args = base.argsToArray(arguments);
+   if (this.__fired) {
+       throw new Error(&quot;Already fired!&quot;);
+   }
+   this.__results = args;
+   this.__resolve();
+   return this;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="chain"></a>
+    <h3>
+        chain
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+Call to chaining of promises
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>callback</em>  : method to call that returns a promise to call after this one completes.</li>
+    
+        <li> <em>errback</em>  : method to call if this promise errors.</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> A new that wraps the promise for chaining</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (callback,errback){
+   var promise = new Promise();
+   this.addCallback(function (results) {
+       callback.call(this, results).then(promise);
+   });
+   this.addErrback(errback);
+   return promise;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="chainBoth"></a>
+    <h3>
+        chainBoth
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+Applies the same function that returns a promise to both the callback and errback.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>callback</em>  : function to call. This function must return a Promise</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> a promise to continue chaining or to resolve with.</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (callback){
+   var p = this.chain(callback);
+   this.addErrback(function (results) {
+       callback.call(this, results).then(p);
+   });
+   return p;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="classic"></a>
+    <h3>
+        classic
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+Call this function as a classic node callback where the first argument
+will be an error, or null if no error occured. The other arugments will
+be the result from the promise.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+promise.classic(function(err, res){
+     if(err){
+         console.log(err);
+     }else{
+         console.log(res);
+     }
+});
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>cb</em>  : callback where the first argument will be an error, or null if no error occured. The other arugments will be the result from the promise.</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> the promise to chain</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (cb){
+   if (&quot;function&quot; === typeof cb) {
+       this.addErrback(function (err) {
+           cb(err);
+       });
+       this.addCallback(function () {
+           cb.apply(this, [null].concat(base.argsToArray(arguments)));
+       });
+   }
+   return this;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="errback"></a>
+    <h3>
+        errback
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+When called all functions registered as errbacks are called with the passed in error(s)
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>args</em>  : number of errors to pass back to listeners of the promise</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (args){
+   if (this.__fired) {
+       throw args || new Error(&quot;Already fired&quot;);
+   }
+   this.__error = base.argsToArray(arguments);
+   this.__resolve();
+   return this;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="then"></a>
+    <h3>
+        then
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+Call to specify action to take after promise completes or errors
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>[callback= <code>null</code>]</em>  : function to call after the promise completes successfully</li>
+    
+        <li> <em>[errback= <code>null</code>]</em>  : function to call if the promise errors</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> this promise for chaining</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (callback,errback){
+   if (exports.isPromiseLike(callback)) {
+       this.addCallback(callback);
+       this.addErrback(callback);
+   } else {
+       this.addCallback(callback);
+       this.addErrback(errback);
+   }
+   return this;
+           
+}
+    </pre>
+    
+
+
+  
+<hr>
+
+Documentation gennerated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
+
+
+</div>
+</div>
+<script type="text/javascript" src="./assets/js/jquery.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-transition.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-tab.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-tooltip.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-popover.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-button.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-collapse.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-carousel.js"></script>
+<script type="text/javascript"
+        src="./assets/js/google-code-prettify/prettify.js"></script>
+
+</body>
+</html>
