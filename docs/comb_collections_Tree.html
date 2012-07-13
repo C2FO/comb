@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comb</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/js/google-code-prettify/prettify.css">
+    <style type="text/css">
+        
+
+.subnav-inner {
+    width: 100%;
+    height: 36px;
+    background-color: #EEE;
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));
+    background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);
+    background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.subnav .nav > li > a:hover {
+    color: black !important;
+}
+
+.subnav .nav li.dropdown .dropdown-toggle .caret,
+.subnav .nav li.dropdown.open .caret {
+    border-top-color: #999 !important;
+    border-bottom-color: #999 !important;
+}
+
+.subnav-fixed {
+    position: fixed;
+    width : 90%;
+    margin-right: auto;
+    margin-left: auto;
+    top: 40px;
+    left: 0;
+    right: 0;
+    z-index: 1020;
+    border-color: #D5D5D5;
+    border-width: 0 0 1px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.navbar .nav  .dropdown-menu {
+    max-height: 500px;
+    overflow: auto;
+}​
+
+    </style>
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+    <script type="text/javascript">
+        var init = (function () {
+            "use strict";
+
+            var processScroll = (function () {
+                var curr = null, prev = null;
+                return function (nav) {
+                    var $win = $(window);
+                    $('.subnav').each(function () {
+                        var nav = $(this);
+                        var navTop = nav.offset().top - 40;
+                        var scrollTop = $win.scrollTop();
+                        if (scrollTop >= navTop && curr != nav) {
+                            if(curr){
+                                curr.removeClass('subnav-fixed')
+                                prev = curr;
+                            }
+                            curr = nav;
+                            curr.addClass('subnav-fixed')
+                        } else if (curr == nav && scrollTop <= navTop) {
+                            curr.removeClass('subnav-fixed');
+                            prev.addClass('subnav-fixed');
+                            curr = prev;
+                        }else{
+                            nav.removeClass('subnav-fixed');
+                        }
+                    });
+                };
+            })();
+
+            return function () {
+                window.prettyPrint && prettyPrint();
+                $(".collapse").collapse();
+                // fix sub nav on scroll
+                processScroll();
+                $(window).on('scroll', processScroll)
+            }
+        })();
+    </script>
+</head>
+<body onload="init()">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+      
+          <a href="./index.html" class="brand">comb</a>
+      
+      <div class="nav-collapse">
+      <ul class="nav nav-pills">
+      
+
+      
+        <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+           <ul class="dropdown-menu">
+             
+                         <li><a href="comb.html">comb</a></li>
+               
+                         <li><a href="comb_array.html">comb.array</a></li>
+               
+                         <li><a href="comb_characters.html">comb.characters</a></li>
+               
+                         <li><a href="comb_date.html">comb.date</a></li>
+               
+                         <li><a href="comb_number.html">comb.number</a></li>
+               
+                         <li><a href="comb_plugins.html">comb.plugins</a></li>
+               
+                         <li><a href="comb_regexp.html">comb.regexp</a></li>
+               
+                         <li><a href="comb_string.html">comb.string</a></li>
+               
+           </ul>
+           </li>
+        
+        
+           <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+           <ul class="dropdown-menu">
+             
+                         <li><a href="./comb_Promise.html">comb.Promise</a></li>
+               
+                         <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
+               
+                         <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
+               
+                         <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
+               
+                         <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
+               
+                         <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
+               
+                         <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
+               
+                         <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
+               
+                         <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
+               
+                         <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
+               
+                         <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
+               
+                         <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
+               
+                         <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
+               
+                         <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
+               
+                         <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
+               
+                         <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
+               
+                         <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
+               
+                         <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+               
+                         <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
+               
+                         <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
+               
+                         <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
+               
+                         <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+               
+                         <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
+               
+                         <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
+               
+           </ul>
+        </li>
+       
+      </ul>
+      
+      <ul class="nav pull-right">
+                  <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+    <a name="top"></a>
+    <div class="container">
+
+
+
+    <a name=""></a>
+    <div class="navbar subnav">
+    <div class="navbar-inner  subnav-inner">
+          <div class="container">
+            <a href="#" class="brand">
+            comb.collections.Tree
+            
+                    
+             <span class="label label-success">Public</span>
+                    
+            
+            </a>
+           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </a>
+                    <div class="nav-collapse">
+
+            <ul class="nav pull-right">
+             <li><a href="#constructor">Constructor</a></li>
+                        
+                        
+                        <li><a href="#staticProperties">Static Properties</a></li>
+                        
+                        
+                        
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instance Methods<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                
+                                <li><a href="./comb_collections_Tree.html#__printNode">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                <span class="label label-important">P</span>
+                                
+                                __printNode
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#clear">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                clear
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#contains">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                contains
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#every">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                every
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#filter">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                filter
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#find">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                find
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#findGreaterThan">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                findGreaterThan
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#findLessThan">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                findLessThan
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#forEach">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                forEach
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#insert">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                insert
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#isEmpty">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                isEmpty
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#map">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                map
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#print">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                print
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#reduce">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                reduce
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#reduceRight">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                reduceRight
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#remove">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                remove
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#some">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                some
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#toArray">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                toArray
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#traverse">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                traverse
+
+                                </a></li>
+                                
+                                <li><a href="./comb_collections_Tree.html#traverseWithCondition">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                traverseWithCondition
+
+                                </a></li>
+                                
+                            </ul>
+                        </li>
+                        
+            </ul>
+            </div>
+            </div>
+     </div>
+</div>
+
+
+
+    <p>
+Base Class for all tree implementations
+</p>
+    
+
+    
+        <em>Extends</em>
+        <ul>
+            
+                <li> <a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
+            
+                <li> <a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
+            
+        </ul>
+    
+
+    
+        <a name="staticProperties"></a>
+        <em>Static Properties</em>
+        <table class='table table-bordered table-striped'><tr><td>Property</td><td>Type</td><td>Default Value</td><td>Description</td></tr><tr><td><em>IN_ORDER</em></td><td>property</td><td><code>"in_order"</code></td><td>
+In Order
+         </td><tr><tr><td><em>POST_ORDER</em></td><td>property</td><td><code>"post_order"</code></td><td>
+Post Order
+         </td><tr><tr><td><em>PRE_ORDER</em></td><td>property</td><td><code>"pre_order"</code></td><td>
+Pre Order
+         </td><tr><tr><td><em>REVERSE_ORDER</em></td><td>property</td><td><code>"reverse_order"</code></td><td>
+
+Reverse Order
+         </td><tr></table>
+    
+    
+
+    <a name="constructor"></a>
+    <h3>Constructor</h3>
+
+    <em>Defined collections/Tree.js</em>
+    
+    
+    
+        
+            <em>Source</em>
+            <pre class="prettyprint linenums lang-js">
+function (options){
+   options = options || {};
+   this.compare = options.compare || compare;
+   this.__root = null;
+           
+}
+            </pre>
+      
+    
+
+  
+  
+    <a name="__printNode"></a>
+    <h3>
+        __printNode
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+        <span class="label label-important">Private</span>
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Prints a node
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>node</em>  : node to print</li>
+    
+        <li> <em>level</em>  : the current level the node is at, Used for formatting</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (node,level){
+   //console.log(level);
+   var str = [];
+   if (node == null || node == undefined) {
+       str.push(multiply(&#x27;\t&#x27;, level));
+       str.push(&quot;~&quot;);
+       console.log(str.join(&quot;&quot;));
+   } else {
+       this.__printNode(node.right, level + 1);
+       str.push(multiply(&#x27;\t&#x27;, level));
+       str.push(node.data + &quot;\n&quot;);
+       console.log(str.join(&quot;&quot;));
+       this.__printNode(node.left, level + 1);
+   }
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="clear"></a>
+    <h3>
+        clear
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Clear all items from a tree
+         </p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   this.__root = null;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="contains"></a>
+    <h3>
+        contains
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Determines if a value is contained in the tree
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>value</em>  : the value to find</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if the tree contains the item false otherwise.</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (value){
+   var ret = false;
+   var root = this.__root;
+   while (root != null) {
+       var cmp = this.compare(value, root.data);
+       if (cmp) {
+           root = root[(cmp == -1) ? &quot;left&quot; : &quot;right&quot;];
+       } else {
+           ret = true;
+           root = null;
+       }
+   }
+   return ret;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="every"></a>
+    <h3>
+        every
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Determines if every item meets the condition returned by the callback.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>cb</em>  : called for each item in the tree</li>
+    
+        <li> <em>[scope= <code>this</code>]</em>  : scope to call the function in</li>
+    
+        <li> <em>[order= <code>Tree.IN_ORDER</code>]</em>  : the traversal scheme</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> True if every item passed false otherwise</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (cb,scope,order){
+   if (typeof cb !== &quot;function&quot;)
+       throw new TypeError();
+   order = order || Tree.IN_ORDER;
+   scope = scope || this;
+   var ret = false;
+   this.traverseWithCondition(this.__root, order, function(node) {
+       return (ret = cb.call(scope, node, this));
+   });
+   return ret;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="filter"></a>
+    <h3>
+        filter
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Filters a tree, only returning items that result in true being returned from the callback
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>cb</em>  : called for each item in the tree</li>
+    
+        <li> <em>[scope= <code>this</code>]</em>  : scope to call the function in</li>
+    
+        <li> <em>[order= <code>Tree.IN_ORDER</code>]</em>  : the traversal scheme</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.collections.Tree</code> the tree with items that resulted in true being returned from the callback</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (cb,scope,order){
+   if (typeof cb !== &quot;function&quot;)
+       throw new TypeError();
+   order = order || Tree.IN_ORDER;
+   scope = scope || this;
+   var ret = new this._static();
+   this.traverse(this.__root, order, function(node) {
+       var include = cb.call(scope, node, this);
+       include &amp;&amp; ret.insert(node);
+   });
+   return ret;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="find"></a>
+    <h3>
+        find
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Finds a value in the tree
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>value</em>  : the value to find</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li>  the value of the node that matched</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (value){
+   var ret;
+   var root = this.__root;
+   while (root != null) {
+       var cmp = this.compare(value, root.data);
+       if (cmp) {
+           root = root[(cmp == -1) ? &quot;left&quot; : &quot;right&quot;];
+       } else {
+           ret = root.data;
+           break;
+       }
+   }
+   return ret;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="findGreaterThan"></a>
+    <h3>
+        findGreaterThan
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Find all greater than a value
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>value</em>  : the value to find nodes greater than</li>
+    
+        <li> <em>[exclusive= <code>false</code>]</em>  : if true the value will NOT be included in the return array</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Array</code> the array containing all values greater than</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (value,exclusive){
+   //find a better way!!!!
+   var ret = [], compare = this.compare;
+   this.traverse(this.__root, exports.REVERSE_ORDER, function(v) {
+       var cmp = compare(value, v);
+       if ((!exclusive &amp;&amp; cmp == 0) || cmp == -1) {
+           ret.push(v);
+           return true;
+       } else {
+           return false;
+       }
+   });
+   return ret;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="findLessThan"></a>
+    <h3>
+        findLessThan
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Find all values less than a value
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>value</em>  : the value to find nodes less than</li>
+    
+        <li> <em>[exclusive= <code>false</code>]</em>  : if true the value will NOT be included in the return array</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Array</code> the array containing all values less than</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (value,exclusive){
+   //find a better way!!!!
+   var ret = [], compare = this.compare;
+   this.traverseWithCondition(this.__root, exports.IN_ORDER, function(v) {
+       var cmp = compare(value, v);
+       if ((!exclusive &amp;&amp; cmp == 0) || cmp == 1) {
+           ret.push(v);
+           return true;
+       } else {
+           return false;
+       }
+   });
+   return ret;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="forEach"></a>
+    <h3>
+        forEach
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Loop through each item in the tree
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>cb</em>  : called for each item in the tree</li>
+    
+        <li> <em>[scope= <code>this</code>]</em>  : scope to call the function in</li>
+    
+        <li> <em>[order= <code>Tree.IN_ORDER</code>]</em>  : the traversal scheme</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (cb,scope,order){
+   if (typeof cb !== &quot;function&quot;)
+       throw new TypeError();
+   order = order || Tree.IN_ORDER;
+   scope = scope || this;
+   this.traverse(this.__root, order, function(node) {
+       cb.call(scope, node, this);
+   });
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="insert"></a>
+    <h3>
+        insert
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Inserts an item into the tree
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>data</em>  : the item to insert</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (data){
+   throw new Error(&quot;Not Implemented&quot;);
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="isEmpty"></a>
+    <h3>
+        isEmpty
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Test if a tree is empty
+
+</p>
+
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if empty false otherwise</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   return this.__root == null;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="map"></a>
+    <h3>
+        map
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Loop through each item in the tree, collecting the value returned by the callback funciton.
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>cb</em>  : called for each item in the tree.                   Whatever the function returns is inserted into the return tree</li>
+    
+        <li> <em>[scope= <code>this</code>]</em>  : scope to call the function in</li>
+    
+        <li> <em>[order= <code>Tree.IN_ORDER</code>]</em>  : the traversal scheme</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.collections.Tree</code> the tree with the mapped items</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (cb,scope,order){
+   if (typeof cb !== &quot;function&quot;)
+       throw new TypeError();
+   order = order || Tree.IN_ORDER;
+   scope = scope || this;
+   var construct = this._static;
+   var ret = new this._static();
+   this.traverse(this.__root, order, function(node) {
+       ret.insert(cb.call(scope, node, this));
+   });
+   return ret;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="print"></a>
+    <h3>
+        print
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Prints a tree to the console.
+         </p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   this.__printNode(this.__root, 0);
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="reduce"></a>
+    <h3>
+        reduce
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Reduces a tree
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>fun</em>  : called for each item in the tree</li>
+    
+        <li> <em>[accumulator= <code>First item in tree(Order dependant)</code>]</em>  : scope to call the function in</li>
+    
+        <li> <em>[order= <code>Tree.IN_ORDER</code>]</em>  : the traversal scheme</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li>  the result of the reduce function</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (fun,accumulator,order){
+   var arr = this.toArray(order);
+   var args = [fun];
+   !base.isUndefinedOrNull(accumulator) &amp;&amp; args.push(accumulator)
+   return arr.reduce.apply(arr, args);
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="reduceRight"></a>
+    <h3>
+        reduceRight
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Reduces from right to left
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>fun</em>  : called for each item in the tree</li>
+    
+        <li> <em>[accumulator= <code>First item in tree(Order dependant)</code>]</em>  : scope to call the function in</li>
+    
+        <li> <em>[order= <code>Tree.IN_ORDER</code>]</em>  : the traversal scheme</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li>  the result of the reduce function</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (fun,accumulator,order){
+   var arr = this.toArray(order);
+   var args = [fun];
+   !base.isUndefinedOrNull(accumulator) &amp;&amp; args.push(accumulator)
+   return arr.reduceRight.apply(arr, args);
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="remove"></a>
+    <h3>
+        remove
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Removes an item from the tree
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>data</em>  : the item to insert</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (data){
+   throw new Error(&quot;Not Implemented&quot;);
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="some"></a>
+    <h3>
+        some
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Determines if some item meet the condition returned by the callback. Traversal ends the first time true is found.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>cb</em>  : called for each item in the tree</li>
+    
+        <li> <em>[scope= <code>this</code>]</em>  : scope to call the function in</li>
+    
+        <li> <em>[order= <code>Tree.IN_ORDER</code>]</em>  : the traversal scheme</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> True if every item passed false otherwise</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (cb,scope,order){
+   if (typeof cb !== &quot;function&quot;)
+       throw new TypeError();
+   order = order || Tree.IN_ORDER;
+   scope = scope || this;
+   var ret;
+   this.traverseWithCondition(this.__root, order, function(node) {
+       ret = cb.call(scope, node, this);
+       return !ret;
+   });
+   return ret;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="toArray"></a>
+    <h3>
+        toArray
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Converts a tree into an array based on the specified order
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>[order= <code>Tree.IN_ORDER</code>]</em>  : the traversal scheme</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Array</code> array of all items in the order specified.</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (order){
+   order = order || Tree.IN_ORDER;
+   var arr = [];
+   this.traverse(this.__root, order, function(node) {
+       arr.push(node);
+   });
+   return arr;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="traverse"></a>
+    <h3>
+        traverse
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Traverse a tree
+
+<p><b>Not typically used directly</b></p>
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>node</em>  : the node to start at</li>
+    
+        <li> <em>[order= <code>Tree.IN_ORDER</code>]</em>  : the traversal scheme</li>
+    
+        <li> <em>callback</em>  : called for each item</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (node,order,callback){
+   if (node) {
+       order = order || Tree.PRE_ORDER;
+       if (order === Tree.PRE_ORDER) {
+           callback(node.data);
+           this.traverse(node.left, order, callback);
+           this.traverse(node.right, order, callback);
+       } else if (order === Tree.IN_ORDER) {
+           this.traverse(node.left, order, callback);
+           callback(node.data);
+           this.traverse(node.right, order, callback);
+       } else if (order === Tree.POST_ORDER) {
+           this.traverse(node.left, order, callback);
+           this.traverse(node.right, order, callback);
+           callback(node.data);
+       } else if (order === Tree.REVERSE_ORDER) {
+           this.traverseWithCondition(node.right, order, callback);
+           callback(node.data);
+           this.traverseWithCondition(node.left, order, callback);
+       }
+   }
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="traverseWithCondition"></a>
+    <h3>
+        traverseWithCondition
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined collections/Tree.js</em>
+
+<p>
+Traverse a tree until the callback function returns false
+
+<p><b>Not typically used directly</b></p>
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>node</em>  : the node to start at</li>
+    
+        <li> <em>[order= <code>Tree.IN_ORDER</code>]</em>  : the traversal scheme</li>
+    
+        <li> <em>callback</em>  : called for each item, traversal continues until the function returns false</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (node,order,callback){
+   var cont = true;
+   if (node) {
+       order = order || Tree.PRE_ORDER;
+       if (order === Tree.PRE_ORDER) {
+           cont = callback(node.data);
+           if (cont) {
+               cont = this.traverseWithCondition(node.left, order, callback);
+               cont &amp;&amp; (cont = this.traverseWithCondition(node.right, order, callback));
+           }
+       } else if (order === Tree.IN_ORDER) {
+           cont = this.traverseWithCondition(node.left, order, callback);
+           if (cont) {
+               cont = callback(node.data);
+               cont &amp;&amp; (cont = this.traverseWithCondition(node.right, order, callback));
+           }
+       } else if (order === Tree.POST_ORDER) {
+           cont = this.traverseWithCondition(node.left, order, callback);
+           if (cont) {
+               cont &amp;&amp; (cont = this.traverseWithCondition(node.right, order, callback));
+               cont &amp;&amp; (cont = callback(node.data));
+           }
+       } else if (order === Tree.REVERSE_ORDER) {
+           cont = this.traverseWithCondition(node.right, order, callback);
+           if (cont) {
+               cont = callback(node.data);
+               cont &amp;&amp; (cont = this.traverseWithCondition(node.left, order, callback));
+           }
+       }
+   }
+   return cont;
+           
+}
+    </pre>
+    
+
+
+  
+<hr>
+
+Documentation gennerated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
+
+
+</div>
+</div>
+<script type="text/javascript" src="./assets/js/jquery.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-transition.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-tab.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-tooltip.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-popover.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-button.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-collapse.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-carousel.js"></script>
+<script type="text/javascript"
+        src="./assets/js/google-code-prettify/prettify.js"></script>
+
+</body>
+</html>

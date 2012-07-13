@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comb</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/js/google-code-prettify/prettify.css">
+    <style type="text/css">
+        
+
+.subnav-inner {
+    width: 100%;
+    height: 36px;
+    background-color: #EEE;
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));
+    background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);
+    background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.subnav .nav > li > a:hover {
+    color: black !important;
+}
+
+.subnav .nav li.dropdown .dropdown-toggle .caret,
+.subnav .nav li.dropdown.open .caret {
+    border-top-color: #999 !important;
+    border-bottom-color: #999 !important;
+}
+
+.subnav-fixed {
+    position: fixed;
+    width : 90%;
+    margin-right: auto;
+    margin-left: auto;
+    top: 40px;
+    left: 0;
+    right: 0;
+    z-index: 1020;
+    border-color: #D5D5D5;
+    border-width: 0 0 1px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.navbar .nav  .dropdown-menu {
+    max-height: 500px;
+    overflow: auto;
+}​
+
+    </style>
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+    <script type="text/javascript">
+        var init = (function () {
+            "use strict";
+
+            var processScroll = (function () {
+                var curr = null, prev = null;
+                return function (nav) {
+                    var $win = $(window);
+                    $('.subnav').each(function () {
+                        var nav = $(this);
+                        var navTop = nav.offset().top - 40;
+                        var scrollTop = $win.scrollTop();
+                        if (scrollTop >= navTop && curr != nav) {
+                            if(curr){
+                                curr.removeClass('subnav-fixed')
+                                prev = curr;
+                            }
+                            curr = nav;
+                            curr.addClass('subnav-fixed')
+                        } else if (curr == nav && scrollTop <= navTop) {
+                            curr.removeClass('subnav-fixed');
+                            prev.addClass('subnav-fixed');
+                            curr = prev;
+                        }else{
+                            nav.removeClass('subnav-fixed');
+                        }
+                    });
+                };
+            })();
+
+            return function () {
+                window.prettyPrint && prettyPrint();
+                $(".collapse").collapse();
+                // fix sub nav on scroll
+                processScroll();
+                $(window).on('scroll', processScroll)
+            }
+        })();
+    </script>
+</head>
+<body onload="init()">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+      
+          <a href="./index.html" class="brand">comb</a>
+      
+      <div class="nav-collapse">
+      <ul class="nav nav-pills">
+      
+
+      
+        <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+           <ul class="dropdown-menu">
+             
+                         <li><a href="comb.html">comb</a></li>
+               
+                         <li><a href="comb_array.html">comb.array</a></li>
+               
+                         <li><a href="comb_characters.html">comb.characters</a></li>
+               
+                         <li><a href="comb_date.html">comb.date</a></li>
+               
+                         <li><a href="comb_number.html">comb.number</a></li>
+               
+                         <li><a href="comb_plugins.html">comb.plugins</a></li>
+               
+                         <li><a href="comb_regexp.html">comb.regexp</a></li>
+               
+                         <li><a href="comb_string.html">comb.string</a></li>
+               
+           </ul>
+           </li>
+        
+        
+           <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+           <ul class="dropdown-menu">
+             
+                         <li><a href="./comb_Promise.html">comb.Promise</a></li>
+               
+                         <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
+               
+                         <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
+               
+                         <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
+               
+                         <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
+               
+                         <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
+               
+                         <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
+               
+                         <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
+               
+                         <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
+               
+                         <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
+               
+                         <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
+               
+                         <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
+               
+                         <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
+               
+                         <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
+               
+                         <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
+               
+                         <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
+               
+                         <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
+               
+                         <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+               
+                         <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
+               
+                         <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
+               
+                         <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
+               
+                         <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+               
+                         <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
+               
+                         <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
+               
+           </ul>
+        </li>
+       
+      </ul>
+      
+      <ul class="nav pull-right">
+                  <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+    <a name="top"></a>
+    <div class="container">
+
+
+
+    <a name=".array"></a>
+    <div class="navbar subnav">
+    <div class="navbar-inner  subnav-inner">
+                  <div class="container">
+                    <a href="#" class="brand">
+                                comb.array
+                                
+                                
+                                        
+                                 <span class="label label-success">Public</span>
+                                        
+                                
+                    </a>
+                   <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                            </a>
+
+                            <div class="nav-collapse">
+            
+            <ul class="nav pull-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methods<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    
+                    <li><a href="./comb_array.html#.cartesian">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        cartesian
+                     </a></li>
+                    
+                    <li><a href="./comb_array.html#.compact">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        compact
+                     </a></li>
+                    
+                    <li><a href="./comb_array.html#.flatten">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        flatten
+                     </a></li>
+                    
+                    <li><a href="./comb_array.html#.intersect">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        intersect
+                     </a></li>
+                    
+                    <li><a href="./comb_array.html#.multiply">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        multiply
+                     </a></li>
+                    
+                    <li><a href="./comb_array.html#.permutations">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        permutations
+                     </a></li>
+                    
+                    <li><a href="./comb_array.html#.powerSet">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        powerSet
+                     </a></li>
+                    
+                    <li><a href="./comb_array.html#.removeDuplicates">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        removeDuplicates
+                     </a></li>
+                    
+                    <li><a href="./comb_array.html#.rotate">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        rotate
+                     </a></li>
+                    
+                    <li><a href="./comb_array.html#.sum">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        sum
+                     </a></li>
+                    
+                    <li><a href="./comb_array.html#.toArray">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        toArray
+                     </a></li>
+                    
+                    <li><a href="./comb_array.html#.transpose">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        transpose
+                     </a></li>
+                    
+                    <li><a href="./comb_array.html#.union">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        union
+                     </a></li>
+                    
+                    <li><a href="./comb_array.html#.valuesAt">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        valuesAt
+                     </a></li>
+                    
+                    <li><a href="./comb_array.html#.zip">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        zip
+                     </a></li>
+                    
+                </ul>
+            </li>
+            </ul>
+            
+            </div>
+            </div>
+     </div>
+</div>
+<em>Defined base/array.js</em>
+
+<p>
+Utilities for Arrays</p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+{
+    /**@lends comb.array*/
+    /**
+     * converts anything to an array
+     *
+     * @example
+     *  comb.array.toArray({a : &quot;b&quot;, b : &quot;c&quot;}) =&gt; [[&quot;a&quot;,&quot;b&quot;], [&quot;b&quot;,&quot;c&quot;]];
+     *  comb.array.toArray(&quot;a&quot;) =&gt; [&quot;a&quot;]
+     *  comb.array.toArray([&quot;a&quot;]) =&gt;  [&quot;a&quot;];
+     *  comb.array.toArray() =&gt; [];
+     *  comb.array.toArray(&quot;a&quot;, {a : &quot;b&quot;}) =&gt; [&quot;a&quot;, [&quot;a&quot;, &quot;b&quot;]];
+     */
+    toArray:function (o) {
+        var ret = [];
+        if (o != null) {
+            var args = argsToArray(arguments);
+            if (args.length == 1) {
+                if (isArray(o)) {
+                    ret = o;
+                } else if (obj.isHash(o)) {
+                    for (var i in o) {
+                        if (o.hasOwnProperty(i)) {
+                            ret.push([i, o[i]]);
+                        }
+                    }
+                } else {
+                    ret.push(o);
+                }
+            } else {
+                args.forEach(function (a) {
+                    ret = ret.concat(array.toArray(a));
+                })
+            }
+        }
+        return ret;
+    },
+    /**
+     * Sums all items in an array
+     *
+     * @example
+     *
+     *  comb.array.sum([1,2,3]) =&gt; 6
+     *  comb.array.sum([&quot;A&quot;,&quot;B&quot;,&quot;C&quot;]) =&gt; &quot;ABC&quot;;
+     *  var d1 = new Date(1999), d2 = new Date(2000), d3 = new Date(3000);
+     *  comb.array.sum([d1,d2,d3]) =&gt; &quot;Wed Dec 31 1969 18:00:01 GMT-0600 (CST)&quot;
+     *                              + &quot;Wed Dec 31 1969&quot;  18:00:02 GMT-0600 (CST)&quot;
+     *                              + &quot;Wed Dec 31 1969 18:00:03 GMT-0600 (CST)&quot;
+     *  comb.array.sum([{},{},{}]) =&gt; &quot;[object Object][object Object][object Object]&quot;;
+     *
+     * @param {Number[]} array the array of numbers to sum
+     */
+    sum:function (array) {
+        array = array || [];
+        if (array.length) {
+            return array.reduce(function (a, b) {
+                return a + b;
+            });
+        } else {
+            return 0;
+        }
+    },
+    /**
+     * Removes duplicates from an array
+     *
+     * @example
+     *
+     * comb.array.removeDuplicates([1,1,1]) =&gt; [1]
+     * comb.array.removeDuplicates([1,2,3,2]) =&gt; [1,2,3]
+     *
+     * @param {Aray} array the array of elements to remove duplicates from
+     */
+    removeDuplicates:function (arr) {
+        if (isArray(arr)) {
+            var ret = arr.reduce(function (a, b) {
+                if (a.indexOf(b) == -1) {
+                    return a.concat(b);
+                } else {
+                    return a;
+                }
+            }, []);
+            return ret;
+        }
+    },
+    /**
+     * Rotates an array the number of specified positions
+     *
+     * @example
+     * var arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;];
+     * comb.array.rotate(arr)     =&gt; [&quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;a&quot;]
+     * comb.array.rotate(arr, 2)  =&gt; [&quot;c&quot;, &quot;d&quot;, &quot;a&quot;, &quot;b&quot;]);
+     * comb.array.rotate(arr, 3)  =&gt; [&quot;d&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;]);
+     * comb.array.rotate(arr, 4)  =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]);
+     * comb.array.rotate(arr, -1) =&gt; [&quot;d&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;]);
+     * comb.array.rotate(arr, -2) =&gt; [&quot;c&quot;, &quot;d&quot;, &quot;a&quot;, &quot;b&quot;]);
+     * comb.array.rotate(arr, -3) =&gt; [&quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;a&quot;]);
+     * comb.array.rotate(arr, -4) =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]);
+     *
+     * @param {Array} array the array of elements to remove duplicates from
+     * @param {Number} numberOfTimes the number of times to rotate the array
+     */
+    rotate:function (arr, numberOfTimes) {
+        var ret = arr.slice();
+        if (typeof numberOfTimes != &quot;number&quot;) {
+            numberOfTimes = 1;
+        }
+        if (numberOfTimes &amp;&amp; isArray(arr)) {
+            if (numberOfTimes &gt; 0) {
+                ret.push(ret.shift());
+                numberOfTimes--;
+            } else {
+                ret.unshift(ret.pop());
+                numberOfTimes++;
+            }
+            return array.rotate(ret, numberOfTimes);
+        } else {
+            return ret;
+        }
+    },
+    /**
+     * Finds all permutations of an array
+     *
+     * @example
+     * var arr = [1,2,3];
+     * comb.array.permutations(arr)    =&gt; [[ 1, 2, 3 ],[ 1, 3, 2 ],[ 2, 3, 1 ],
+     *                                     [ 2, 1, 3 ],[ 3, 1, 2 ],[ 3, 2, 1 ]]
+     * comb.array.permutations(arr, 2) =&gt; [[ 1, 2],[ 1, 3],[ 2, 3],[ 2, 1],[ 3, 1],[ 3, 2]]
+     * comb.array.permutations(arr, 1) =&gt; [[1],[2],[3]]
+     * comb.array.permutations(arr, 0) =&gt; [[]]
+     * comb.array.permutations(arr, 4) =&gt; []
+     *
+     * @param {Array} arr the array to permute.
+     * @param {Number} length the number of elements to permute.
+     */
+    permutations:function (arr, length) {
+        var ret = [];
+        if (isArray(arr)) {
+            var copy = arr.slice(0);
+            if (typeof length != &quot;number&quot;) {
+                length = arr.length;
+            }
+            if (!length) {
+                ret = [
+                    []
+                ];
+            } else if (length &lt;= arr.length) {
+                ret = arr.reduce(function (a, b, i) {
+                    if (length &gt; 1) {
+                        var ret = permute(b, array.rotate(copy, i).slice(1), length);
+                    } else {
+                        ret = [
+                            [b]
+                        ];
+                    }
+                    return a.concat(ret);
+                }, [])
+            }
+        }
+        return ret;
+    },
+    /**
+     * Zips to arrays together
+     *
+     * @example
+     *  var a = [ 4, 5, 6 ], b = [ 7, 8, 9 ]
+     *  comb.array.zip([1], [2], [3]) =&gt; [[ 1, 2, 3 ]]);
+     *  comb.array.zip([1,2], [2], [3]) =&gt; [[ 1, 2, 3 ],[2, null, null]]
+     *  comb.array.zip([1,2,3], a, b) =&gt; [[1, 4, 7],[2, 5, 8],[3, 6, 9]]
+     *  comb.array.zip([1,2], a, b) =&gt; [[1, 4, 7],[2, 5, 8]]
+     *  comb.array.zip(a, [1,2], [8]) =&gt; [[4,1,8],[5,2,null],[6,null,null]]
+     *
+     * @param arrays variable number of arrays to zip together
+     */
+    zip:function () {
+        var ret = [];
+        var arrs = argsToArray(arguments);
+        if (arrs.length &gt; 1) {
+            var arr1 = arrs.shift();
+            if (isArray(arr1)) {
+                ret = arr1.reduce(function (a, b, i) {
+                    var curr = [b];
+                    for (var j = 0; j &lt; arrs.length; j++) {
+                        var currArr = arrs[j];
+                        if (isArray(currArr) &amp;&amp; !misc.isUndefined(currArr[i])) {
+                            curr.push(currArr[i]);
+                        } else {
+                            curr.push(null);
+                        }
+                    }
+                    a.push(curr)
+                    return a;
+                }, []);
+            }
+        }
+        return ret;
+    },
+    /**
+     * Transposes an array of arrays
+     * @example
+     *
+     * comb.array.transpose([[1,2,3], [4,5,6]]) =&gt; [ [ 1, 4 ], [ 2, 5 ], [ 3, 6 ] ]
+     * comb.array.transpose([[1,2], [3,4], [5,6]]) =&gt; [ [ 1, 3, 5 ], [ 2, 4, 6 ] ]
+     * comb.array.transpose([[1], [3,4], [5,6]]) =&gt; [[1]])
+     *
+     * @param [Array[Array[]]] arr Array of arrays
+     */
+    transpose:function (arr) {
+        var ret = [];
+        if (isArray(arr) &amp;&amp; arr.length) {
+            var last;
+            arr.forEach(function (a) {
+                if (isArray(a) &amp;&amp; (!last || a.length == last.length)) {
+                    a.forEach(function (b, i) {
+                        !ret[i] &amp;&amp; (ret[i] = []);
+                        ret[i].push(b);
+                    });
+                    last = a;
+                }
+            });
+        }
+        return ret;
+    },
+    /**
+     * Retrieves values at specified indexes in the array
+     *
+     * @example
+     *
+     *  var arr =[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+     *   comb.array.valuesAt(arr, 1,2,3) =&gt; [&quot;b&quot;, &quot;c&quot;, &quot;d&quot;];
+     *   comb.array.valuesAt(arr, 1,2,3, 4) =&gt; [&quot;b&quot;, &quot;c&quot;, &quot;d&quot;, null];
+     *   comb.array.valuesAt(arr, 0,3) =&gt; [&quot;a&quot;, &quot;d&quot;];
+     *
+     *   @param {Array} arr the array to retrieve values from
+     *   @index {Number} index variable number of indexes to retrieve
+     */
+    valuesAt:function (arr, indexes) {
+        var ret = [];
+        var indexes = argsToArray(arguments);
+        var arr = indexes.shift(), l = arr.length;
+        if (isArray(arr) &amp;&amp; indexes.length) {
+            for (var i = 0; i &lt; indexes.length; i++) {
+                ret.push(arr[indexes[i]] || null);
+            }
+        }
+        return ret;
+    },
+    /**
+     * Union a variable number of arrays together
+     *
+     * @example
+     *
+     * comb.array.union([&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;], [&#x27;b&#x27;,&#x27;c&#x27;, &#x27;d&#x27;]) =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+     * comb.array.union([&quot;a&quot;], [&quot;b&quot;], [&quot;c&quot;], [&quot;d&quot;], [&quot;c&quot;]) =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+     *
+     * @param arrs variable number of arrays to union
+     */
+    union:function () {
+        var ret = [];
+        var arrs = argsToArray(arguments);
+        if (arrs.length &gt; 1) {
+            ret = array.removeDuplicates(arrs.reduce(function (a, b) {
+                return a.concat(b);
+            }, []));
+        }
+        return ret;
+    },
+    /**
+     * Finds the intersection of arrays
+     * NOTE : this function accepts an arbitrary number of arrays
+     *
+     * @example
+     * comb.array.intersect([1,2], [2,3], [2,3,5]) =&gt; [2]
+     * comb.array.intersect([1,2,3], [2,3,4,5], [2,3,5]) =&gt; [2,3]
+     * comb.array.intersect([1,2,3,4], [2,3,4,5], [2,3,4,5]) =&gt; [2,3,4]
+     * comb.array.intersect([1,2,3,4,5], [1,2,3,4,5], [1,2,3]) =&gt; [1,2,3]
+     * comb.array.intersect([[1,2,3,4,5],[1,2,3,4,5],[1,2,3]]) =&gt; [1,2,3]
+     *
+     * @param {Array} a
+     * @param {Array} b
+     */
+    intersect:function (a, b) {
+        var collect = [], set;
+        var args = argsToArray(arguments);
+        if (args.length &gt; 1) {
+            //assume we are intersections all the lists in the array
+            set = args;
+        } else {
+            set = args[0];
+        }
+        if (isArray(set)) {
+            var x = set.shift();
+            var collect = set.reduce(function (a, b) {
+                return intersection(a, b);
+            }, x);
+        }
+        return array.removeDuplicates(collect);
+    },
+    /**
+     * Finds the powerset of an array
+     *
+     * @example
+     *
+     *  comb.array.powerSet([1,2]) =&gt; [
+     *           [],
+     *           [ 1 ],
+     *           [ 2 ],
+     *           [ 1, 2 ]
+     *   ]
+     *   comb.array.powerSet([1,2,3]) =&gt; [
+     *           [],
+     *           [ 1 ],
+     *           [ 2 ],
+     *           [ 1, 2 ],
+     *           [ 3 ],
+     *           [ 1, 3 ],
+     *           [ 2, 3 ],
+     *           [ 1, 2, 3 ]
+     *       ]
+     *   comb.array.powerSet([1,2,3,4]) =&gt; [
+     *           [],
+     *           [ 1 ],
+     *           [ 2 ],
+     *           [ 1, 2 ],
+     *           [ 3 ],
+     *           [ 1, 3 ],
+     *           [ 2, 3 ],
+     *           [ 1, 2, 3 ],
+     *           [ 4 ],
+     *           [ 1, 4 ],
+     *           [ 2, 4 ],
+     *           [ 1, 2, 4 ],
+     *           [ 3, 4 ],
+     *           [ 1, 3, 4 ],
+     *           [ 2, 3, 4 ],
+     *           [ 1, 2, 3, 4 ]
+     *       ]
+     *
+     * @param {Array} arr the array to find the powerset of
+     */
+    powerSet:function (arr) {
+        var ret = [];
+        if (isArray(arr) &amp;&amp; arr.length) {
+            var ret = arr.reduce(function (a, b) {
+                var ret = a.map(function (c) {
+                    return c.concat(b);
+                })
+                return a.concat(ret);
+            }, [
+                []
+            ]);
+        }
+        return ret;
+    },
+    /**
+     * Find the cartesian product of two arrays
+     *
+     * @example
+     *
+     * comb.array.cartesian([1,2], [2,3]) =&gt; [
+     *           [1,2],
+     *           [1,3],
+     *           [2,2],
+     *           [2,3]
+     *       ]
+     * comb.array.cartesian([1,2], [2,3,4]) =&gt; [
+     *           [1,2],
+     *           [1,3],
+     *           [1,4] ,
+     *           [2,2],
+     *           [2,3],
+     *           [2,4]
+     *       ]
+     * comb.array.cartesian([1,2,3], [2,3,4]) =&gt; [
+     *           [1,2],
+     *           [1,3],
+     *           [1,4] ,
+     *           [2,2],
+     *           [2,3],
+     *           [2,4] ,
+     *           [3,2],
+     *           [3,3],
+     *           [3,4]
+     *       ]
+     *
+     * @param {Array} a
+     * @param {Array} b
+     */
+    cartesian:function (a, b) {
+        var ret = [];
+        if (isArray(a) &amp;&amp; isArray(b) &amp;&amp; a.length &amp;&amp; b.length)
+            ret = cross(a[0], b).concat(array.cartesian(a.slice(1), b));
+        return ret;
+    },
+    /**
+     * Compacts an array removing null or undefined objects from the array.
+     *
+     * @example
+     *
+     * var x;
+     * comb.array.compact([1,null,null,x,2]) =&gt; [1,2]
+     * comb.array.compact([1,2]) =&gt; [1,2]
+     *
+     * @param {Array} arr
+     */
+    compact:function (arr) {
+        var ret = [];
+        if (isArray(arr) &amp;&amp; arr.length) {
+            ret = arr.filter(function (item) {
+                return !misc.isUndefinedOrNull(item);
+            })
+        }
+        return ret;
+    },
+    /**
+     * Creates a new array that is the result of the array concated the number of
+     * times. If times is not specified or it equals 0 then it defaults to 1.
+     * @param {Array} arr the array to multiply.
+     * @param {Number} [times=1] the number of times to multiple the array.
+     * @return {Array} a new array that is the result of the array multiplied the number of times specified.
+     */
+    multiply:function (arr, times) {
+        times = number.isNumber(times) ? times : 1;
+        if (!times) {
+            //make sure times is greater than zero if it is zero then dont multiply it
+            times = 1;
+        }
+        arr = array.toArray(arr || []);
+        var ret = [], i = 0;
+        while (++i &lt;= times) {
+            ret = ret.concat(arr);
+        }
+        return ret;
+    },
+    /**
+     * Flatten multiple arrays into a single array
+     *
+     * @example
+     *
+     * comb.array.flatten([1,2], [2,3], [3,4]) =&gt; [1,2,2,3,3,4]
+     * comb.array.flatten([1,&quot;A&quot;], [2,&quot;B&quot;], [3,&quot;C&quot;]) =&gt; [1,&quot;A&quot;,2,&quot;B&quot;,3,&quot;C&quot;]
+     *
+     * @param array
+     */
+    flatten:function (arr) {
+        var set;
+        var args = argsToArray(arguments);
+        if (args.length &gt; 1) {
+            //assume we are intersections all the lists in the array
+            set = args;
+        } else {
+            set = array.toArray(arr);
+        }
+        return set.reduce(function (a, b) {
+            return a.concat(b);
+        }, []);
+    }
+}
+    </pre>
+    
+
+    
+    
+        <a name=".cartesian"></a>
+    <h3>
+        cartesian
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Find the cartesian product of two arrays
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.array.cartesian([1,2], [2,3]) =&gt; [
+          [1,2],
+          [1,3],
+          [2,2],
+          [2,3]
+      ]
+comb.array.cartesian([1,2], [2,3,4]) =&gt; [
+          [1,2],
+          [1,3],
+          [1,4] ,
+          [2,2],
+          [2,3],
+          [2,4]
+      ]
+comb.array.cartesian([1,2,3], [2,3,4]) =&gt; [
+          [1,2],
+          [1,3],
+          [1,4] ,
+          [2,2],
+          [2,3],
+          [2,4] ,
+          [3,2],
+          [3,3],
+          [3,4]
+      ]
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>a</em>  : </li>
+    
+        <li> <em>b</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (a,b){
+   var ret = [];
+   if (isArray(a) &amp;&amp; isArray(b) &amp;&amp; a.length &amp;&amp; b.length)
+       ret = cross(a[0], b).concat(array.cartesian(a.slice(1), b));
+   return ret;
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".compact"></a>
+    <h3>
+        compact
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Compacts an array removing null or undefined objects from the array.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var x;
+comb.array.compact([1,null,null,x,2]) =&gt; [1,2]
+comb.array.compact([1,2]) =&gt; [1,2]
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr){
+   var ret = [];
+   if (isArray(arr) &amp;&amp; arr.length) {
+       ret = arr.filter(function (item) {
+           return !misc.isUndefinedOrNull(item);
+       })
+   }
+   return ret;
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".flatten"></a>
+    <h3>
+        flatten
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Flatten multiple arrays into a single array
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.array.flatten([1,2], [2,3], [3,4]) =&gt; [1,2,2,3,3,4]
+comb.array.flatten([1,&quot;A&quot;], [2,&quot;B&quot;], [3,&quot;C&quot;]) =&gt; [1,&quot;A&quot;,2,&quot;B&quot;,3,&quot;C&quot;]
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : </li>
+    
+        <li> <em>array</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr){
+   var set;
+   var args = argsToArray(arguments);
+   if (args.length &gt; 1) {
+       //assume we are intersections all the lists in the array
+       set = args;
+   } else {
+       set = array.toArray(arr);
+   }
+   return set.reduce(function (a, b) {
+       return a.concat(b);
+   }, []);
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".intersect"></a>
+    <h3>
+        intersect
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Finds the intersection of arrays
+NOTE : this function accepts an arbitrary number of arrays
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.array.intersect([1,2], [2,3], [2,3,5]) =&gt; [2]
+comb.array.intersect([1,2,3], [2,3,4,5], [2,3,5]) =&gt; [2,3]
+comb.array.intersect([1,2,3,4], [2,3,4,5], [2,3,4,5]) =&gt; [2,3,4]
+comb.array.intersect([1,2,3,4,5], [1,2,3,4,5], [1,2,3]) =&gt; [1,2,3]
+comb.array.intersect([[1,2,3,4,5],[1,2,3,4,5],[1,2,3]]) =&gt; [1,2,3]
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>a</em>  : </li>
+    
+        <li> <em>b</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (a,b){
+   var collect = [], set;
+   var args = argsToArray(arguments);
+   if (args.length &gt; 1) {
+       //assume we are intersections all the lists in the array
+       set = args;
+   } else {
+       set = args[0];
+   }
+   if (isArray(set)) {
+       var x = set.shift();
+       var collect = set.reduce(function (a, b) {
+           return intersection(a, b);
+       }, x);
+   }
+   return array.removeDuplicates(collect);
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".multiply"></a>
+    <h3>
+        multiply
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Creates a new array that is the result of the array concated the number of
+times. If times is not specified or it equals 0 then it defaults to 1.
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : the array to multiply.</li>
+    
+        <li> <em>[times= <code>1</code>]</em>  : the number of times to multiple the array.</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Array</code> a new array that is the result of the array multiplied the number of times specified.</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr,times){
+   times = number.isNumber(times) ? times : 1;
+   if (!times) {
+       //make sure times is greater than zero if it is zero then dont multiply it
+       times = 1;
+   }
+   arr = array.toArray(arr || []);
+   var ret = [], i = 0;
+   while (++i &lt;= times) {
+       ret = ret.concat(arr);
+   }
+   return ret;
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".permutations"></a>
+    <h3>
+        permutations
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Finds all permutations of an array
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var arr = [1,2,3];
+comb.array.permutations(arr)    =&gt; [[ 1, 2, 3 ],[ 1, 3, 2 ],[ 2, 3, 1 ],
+                                    [ 2, 1, 3 ],[ 3, 1, 2 ],[ 3, 2, 1 ]]
+comb.array.permutations(arr, 2) =&gt; [[ 1, 2],[ 1, 3],[ 2, 3],[ 2, 1],[ 3, 1],[ 3, 2]]
+comb.array.permutations(arr, 1) =&gt; [[1],[2],[3]]
+comb.array.permutations(arr, 0) =&gt; [[]]
+comb.array.permutations(arr, 4) =&gt; []
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : the array to permute.</li>
+    
+        <li> <em>length</em>  : the number of elements to permute.</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr,length){
+   var ret = [];
+   if (isArray(arr)) {
+       var copy = arr.slice(0);
+       if (typeof length != &quot;number&quot;) {
+           length = arr.length;
+       }
+       if (!length) {
+           ret = [
+               []
+           ];
+       } else if (length &lt;= arr.length) {
+           ret = arr.reduce(function (a, b, i) {
+               if (length &gt; 1) {
+                   var ret = permute(b, array.rotate(copy, i).slice(1), length);
+               } else {
+                   ret = [
+                       [b]
+                   ];
+               }
+               return a.concat(ret);
+           }, [])
+       }
+   }
+   return ret;
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".powerSet"></a>
+    <h3>
+        powerSet
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Finds the powerset of an array
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.array.powerSet([1,2]) =&gt; [
+          [],
+          [ 1 ],
+          [ 2 ],
+          [ 1, 2 ]
+  ]
+  comb.array.powerSet([1,2,3]) =&gt; [
+          [],
+          [ 1 ],
+          [ 2 ],
+          [ 1, 2 ],
+          [ 3 ],
+          [ 1, 3 ],
+          [ 2, 3 ],
+          [ 1, 2, 3 ]
+      ]
+  comb.array.powerSet([1,2,3,4]) =&gt; [
+          [],
+          [ 1 ],
+          [ 2 ],
+          [ 1, 2 ],
+          [ 3 ],
+          [ 1, 3 ],
+          [ 2, 3 ],
+          [ 1, 2, 3 ],
+          [ 4 ],
+          [ 1, 4 ],
+          [ 2, 4 ],
+          [ 1, 2, 4 ],
+          [ 3, 4 ],
+          [ 1, 3, 4 ],
+          [ 2, 3, 4 ],
+          [ 1, 2, 3, 4 ]
+      ]
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : the array to find the powerset of</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr){
+   var ret = [];
+   if (isArray(arr) &amp;&amp; arr.length) {
+       var ret = arr.reduce(function (a, b) {
+           var ret = a.map(function (c) {
+               return c.concat(b);
+           })
+           return a.concat(ret);
+       }, [
+           []
+       ]);
+   }
+   return ret;
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".removeDuplicates"></a>
+    <h3>
+        removeDuplicates
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Removes duplicates from an array
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.array.removeDuplicates([1,1,1]) =&gt; [1]
+comb.array.removeDuplicates([1,2,3,2]) =&gt; [1,2,3]
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : </li>
+    
+        <li> <em>array</em> <code>Aray</code> : the array of elements to remove duplicates from</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr){
+   if (isArray(arr)) {
+       var ret = arr.reduce(function (a, b) {
+           if (a.indexOf(b) == -1) {
+               return a.concat(b);
+           } else {
+               return a;
+           }
+       }, []);
+       return ret;
+   }
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".rotate"></a>
+    <h3>
+        rotate
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Rotates an array the number of specified positions
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;];
+comb.array.rotate(arr)     =&gt; [&quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;a&quot;]
+comb.array.rotate(arr, 2)  =&gt; [&quot;c&quot;, &quot;d&quot;, &quot;a&quot;, &quot;b&quot;]);
+comb.array.rotate(arr, 3)  =&gt; [&quot;d&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;]);
+comb.array.rotate(arr, 4)  =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]);
+comb.array.rotate(arr, -1) =&gt; [&quot;d&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;]);
+comb.array.rotate(arr, -2) =&gt; [&quot;c&quot;, &quot;d&quot;, &quot;a&quot;, &quot;b&quot;]);
+comb.array.rotate(arr, -3) =&gt; [&quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;a&quot;]);
+comb.array.rotate(arr, -4) =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]);
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : </li>
+    
+        <li> <em>numberOfTimes</em>  : the number of times to rotate the array</li>
+    
+        <li> <em>array</em> <code>Array</code> : the array of elements to remove duplicates from</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr,numberOfTimes){
+   var ret = arr.slice();
+   if (typeof numberOfTimes != &quot;number&quot;) {
+       numberOfTimes = 1;
+   }
+   if (numberOfTimes &amp;&amp; isArray(arr)) {
+       if (numberOfTimes &gt; 0) {
+           ret.push(ret.shift());
+           numberOfTimes--;
+       } else {
+           ret.unshift(ret.pop());
+           numberOfTimes++;
+       }
+       return array.rotate(ret, numberOfTimes);
+   } else {
+       return ret;
+   }
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".sum"></a>
+    <h3>
+        sum
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Sums all items in an array
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.array.sum([1,2,3]) =&gt; 6
+ comb.array.sum([&quot;A&quot;,&quot;B&quot;,&quot;C&quot;]) =&gt; &quot;ABC&quot;;
+ var d1 = new Date(1999), d2 = new Date(2000), d3 = new Date(3000);
+ comb.array.sum([d1,d2,d3]) =&gt; &quot;Wed Dec 31 1969 18:00:01 GMT-0600 (CST)&quot;
+                             + &quot;Wed Dec 31 1969&quot;  18:00:02 GMT-0600 (CST)&quot;
+                             + &quot;Wed Dec 31 1969 18:00:03 GMT-0600 (CST)&quot;
+ comb.array.sum([{},{},{}]) =&gt; &quot;[object Object][object Object][object Object]&quot;;
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>array</em>  : the array of numbers to sum</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (array){
+   array = array || [];
+   if (array.length) {
+       return array.reduce(function (a, b) {
+           return a + b;
+       });
+   } else {
+       return 0;
+   }
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".toArray"></a>
+    <h3>
+        toArray
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+converts anything to an array
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.array.toArray({a : &quot;b&quot;, b : &quot;c&quot;}) =&gt; [[&quot;a&quot;,&quot;b&quot;], [&quot;b&quot;,&quot;c&quot;]];
+ comb.array.toArray(&quot;a&quot;) =&gt; [&quot;a&quot;]
+ comb.array.toArray([&quot;a&quot;]) =&gt;  [&quot;a&quot;];
+ comb.array.toArray() =&gt; [];
+ comb.array.toArray(&quot;a&quot;, {a : &quot;b&quot;}) =&gt; [&quot;a&quot;, [&quot;a&quot;, &quot;b&quot;]];
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>o</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (o){
+   var ret = [];
+   if (o != null) {
+       var args = argsToArray(arguments);
+       if (args.length == 1) {
+           if (isArray(o)) {
+               ret = o;
+           } else if (obj.isHash(o)) {
+               for (var i in o) {
+                   if (o.hasOwnProperty(i)) {
+                       ret.push([i, o[i]]);
+                   }
+               }
+           } else {
+               ret.push(o);
+           }
+       } else {
+           args.forEach(function (a) {
+               ret = ret.concat(array.toArray(a));
+           })
+       }
+   }
+   return ret;
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".transpose"></a>
+    <h3>
+        transpose
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Transposes an array of arrays
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.array.transpose([[1,2,3], [4,5,6]]) =&gt; [ [ 1, 4 ], [ 2, 5 ], [ 3, 6 ] ]
+comb.array.transpose([[1,2], [3,4], [5,6]]) =&gt; [ [ 1, 3, 5 ], [ 2, 4, 6 ] ]
+comb.array.transpose([[1], [3,4], [5,6]]) =&gt; [[1]])
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : </li>
+    
+        <li> <em>Array[Array[]]?</em>  : arr Array of arrays</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr){
+   var ret = [];
+   if (isArray(arr) &amp;&amp; arr.length) {
+       var last;
+       arr.forEach(function (a) {
+           if (isArray(a) &amp;&amp; (!last || a.length == last.length)) {
+               a.forEach(function (b, i) {
+                   !ret[i] &amp;&amp; (ret[i] = []);
+                   ret[i].push(b);
+               });
+               last = a;
+           }
+       });
+   }
+   return ret;
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".union"></a>
+    <h3>
+        union
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Union a variable number of arrays together
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.array.union([&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;], [&#x27;b&#x27;,&#x27;c&#x27;, &#x27;d&#x27;]) =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+comb.array.union([&quot;a&quot;], [&quot;b&quot;], [&quot;c&quot;], [&quot;d&quot;], [&quot;c&quot;]) =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arrs</em>  : variable number of arrays to union</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   var ret = [];
+   var arrs = argsToArray(arguments);
+   if (arrs.length &gt; 1) {
+       ret = array.removeDuplicates(arrs.reduce(function (a, b) {
+           return a.concat(b);
+       }, []));
+   }
+   return ret;
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".valuesAt"></a>
+    <h3>
+        valuesAt
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Retrieves values at specified indexes in the array
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var arr =[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+  comb.array.valuesAt(arr, 1,2,3) =&gt; [&quot;b&quot;, &quot;c&quot;, &quot;d&quot;];
+  comb.array.valuesAt(arr, 1,2,3, 4) =&gt; [&quot;b&quot;, &quot;c&quot;, &quot;d&quot;, null];
+  comb.array.valuesAt(arr, 0,3) =&gt; [&quot;a&quot;, &quot;d&quot;];
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : the array to retrieve values from   @index {Number} index variable number of indexes to retrieve</li>
+    
+        <li> <em>indexes</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr,indexes){
+   var ret = [];
+   var indexes = argsToArray(arguments);
+   var arr = indexes.shift(), l = arr.length;
+   if (isArray(arr) &amp;&amp; indexes.length) {
+       for (var i = 0; i &lt; indexes.length; i++) {
+           ret.push(arr[indexes[i]] || null);
+       }
+   }
+   return ret;
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".zip"></a>
+    <h3>
+        zip
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Zips to arrays together
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var a = [ 4, 5, 6 ], b = [ 7, 8, 9 ]
+ comb.array.zip([1], [2], [3]) =&gt; [[ 1, 2, 3 ]]);
+ comb.array.zip([1,2], [2], [3]) =&gt; [[ 1, 2, 3 ],[2, null, null]]
+ comb.array.zip([1,2,3], a, b) =&gt; [[1, 4, 7],[2, 5, 8],[3, 6, 9]]
+ comb.array.zip([1,2], a, b) =&gt; [[1, 4, 7],[2, 5, 8]]
+ comb.array.zip(a, [1,2], [8]) =&gt; [[4,1,8],[5,2,null],[6,null,null]]
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arrays</em>  : variable number of arrays to zip together</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   var ret = [];
+   var arrs = argsToArray(arguments);
+   if (arrs.length &gt; 1) {
+       var arr1 = arrs.shift();
+       if (isArray(arr1)) {
+           ret = arr1.reduce(function (a, b, i) {
+               var curr = [b];
+               for (var j = 0; j &lt; arrs.length; j++) {
+                   var currArr = arrs[j];
+                   if (isArray(currArr) &amp;&amp; !misc.isUndefined(currArr[i])) {
+                       curr.push(currArr[i]);
+                   } else {
+                       curr.push(null);
+                   }
+               }
+               a.push(curr)
+               return a;
+           }, []);
+       }
+   }
+   return ret;
+       
+}
+    </pre>
+    
+
+
+    
+<hr>
+
+Documentation gennerated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
+
+
+</div>
+</div>
+<script type="text/javascript" src="./assets/js/jquery.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-transition.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-tab.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-tooltip.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-popover.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-button.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-collapse.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-carousel.js"></script>
+<script type="text/javascript"
+        src="./assets/js/google-code-prettify/prettify.js"></script>
+
+</body>
+</html>
+

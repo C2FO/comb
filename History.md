@@ -1,17 +1,23 @@
-0.1.1/2012-04-20
-===
+#0.1.2/2012-07-17
+* Bug fixes
+  * Changed comb.logging.PropertyConfigurator to deep merge porperties (Clone to config object)
+* Added comb.array.multiply
+* Updated docs to use [coddoc](https://github.comb/doug-martin/coddoc)  
+
+#0.1.1/2012-04-20
+
   * Migrated all tests to use [it](http://github.com/doug-martin/it)
   * More Tests
   * Added functionality to comb.Promise/PromiseList (allowing promises as callbacks and node style callbacks for)
 
-0.1.0/2012-03-02
-===
+#0.1.0/2012-03-02
+
   * comb.define performance increase
   * Changed HashTable to use strict equal
   * Doc fixes
 
-0.0.9 /2012-02-16
-===
+#0.0.9 /2012-02-16
+
   * Complete redesign of comb.define to be more flexible and efficient
      * this._super does not require and Arguments object any more to call super
   * added "use strict" to all tests
@@ -39,14 +45,14 @@
 
 
 
-0.0.8 / 2012-02-9
-===
+#0.0.8 / 2012-02-9
+
   * Added new MethodMissing plugin 
   * Bug fixes
     * Changed inflections to underscore between word boundaries and numbers and vice versa with camelize.
 
-0.0.7 / 2012-02-04
-==================
+#0.0.7 / 2012-02-04
+
   * Bug Fixes
   * Fixed issue with array.zip
   * Fixed error with date.parse and alternate characters
@@ -59,8 +65,8 @@
   * Updated docs.
 
 
-0.0.6 / 2011-12-29
-==================
+#0.0.6 / 2011-12-29
+
   * Bug Fixes
   * Added new Proxy methods
   * comb.executeInOrder
@@ -72,8 +78,8 @@
   * static initialization block on objects using comb.define
   * more tests
 
-0.0.3 / 2011-06-23
-==================
+#0.0.3 / 2011-06-23
+
   * 100% test coverage
   * Bug fixes
   * Added Makefile
@@ -86,15 +92,15 @@
     * make uninstall
   * Added jscoverage sub module
 
-0.0.2 / 2011-06-11
-==================
+#0.0.2 / 2011-06-11
+
 
   * Added Logging
   * More robust String formatting
   * String styling
   * Updated Docs.
 
-0.0.1 / 2011-05-19
-==================
+#0.0.1 / 2011-05-19
+
 
   * Initial release
