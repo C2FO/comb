@@ -1,0 +1,4232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comb</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/js/google-code-prettify/prettify.css">
+    <style type="text/css">
+        
+
+.subnav-inner {
+    width: 100%;
+    height: 36px;
+    background-color: #EEE;
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));
+    background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);
+    background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.subnav .nav > li > a:hover {
+    color: black !important;
+}
+
+.subnav .nav li.dropdown .dropdown-toggle .caret,
+.subnav .nav li.dropdown.open .caret {
+    border-top-color: #999 !important;
+    border-bottom-color: #999 !important;
+}
+
+.subnav-fixed {
+    position: fixed;
+    width : 90%;
+    margin-right: auto;
+    margin-left: auto;
+    top: 40px;
+    left: 0;
+    right: 0;
+    z-index: 1020;
+    border-color: #D5D5D5;
+    border-width: 0 0 1px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.navbar .nav  .dropdown-menu {
+    max-height: 500px;
+    overflow: auto;
+}​
+
+    </style>
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+    <script type="text/javascript">
+        var init = (function () {
+            "use strict";
+
+            var processScroll = (function () {
+                var curr = null, prev = null;
+                return function (nav) {
+                    var $win = $(window);
+                    $('.subnav').each(function () {
+                        var nav = $(this);
+                        var navTop = nav.offset().top - 40;
+                        var scrollTop = $win.scrollTop();
+                        if (scrollTop >= navTop && curr != nav) {
+                            if(curr){
+                                curr.removeClass('subnav-fixed')
+                                prev = curr;
+                            }
+                            curr = nav;
+                            curr.addClass('subnav-fixed')
+                        } else if (curr == nav && scrollTop <= navTop) {
+                            curr.removeClass('subnav-fixed');
+                            prev.addClass('subnav-fixed');
+                            curr = prev;
+                        }else{
+                            nav.removeClass('subnav-fixed');
+                        }
+                    });
+                };
+            })();
+
+            return function () {
+                window.prettyPrint && prettyPrint();
+                $(".collapse").collapse();
+                // fix sub nav on scroll
+                processScroll();
+                $(window).on('scroll', processScroll)
+            }
+        })();
+    </script>
+</head>
+<body onload="init()">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+      
+          <a href="./index.html" class="brand">comb</a>
+      
+      <div class="nav-collapse">
+      <ul class="nav nav-pills">
+      
+
+      
+        <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+           <ul class="dropdown-menu">
+             
+                         <li><a href="comb.html">comb</a></li>
+               
+                         <li><a href="comb_array.html">comb.array</a></li>
+               
+                         <li><a href="comb_characters.html">comb.characters</a></li>
+               
+                         <li><a href="comb_date.html">comb.date</a></li>
+               
+                         <li><a href="comb_number.html">comb.number</a></li>
+               
+                         <li><a href="comb_plugins.html">comb.plugins</a></li>
+               
+                         <li><a href="comb_regexp.html">comb.regexp</a></li>
+               
+                         <li><a href="comb_string.html">comb.string</a></li>
+               
+           </ul>
+           </li>
+        
+        
+           <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+           <ul class="dropdown-menu">
+             
+                         <li><a href="./comb_Promise.html">comb.Promise</a></li>
+               
+                         <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
+               
+                         <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
+               
+                         <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
+               
+                         <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
+               
+                         <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
+               
+                         <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
+               
+                         <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
+               
+                         <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
+               
+                         <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
+               
+                         <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
+               
+                         <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
+               
+                         <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
+               
+                         <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
+               
+                         <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
+               
+                         <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
+               
+                         <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
+               
+                         <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+               
+                         <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
+               
+                         <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
+               
+                         <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
+               
+                         <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+               
+                         <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
+               
+                         <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
+               
+           </ul>
+        </li>
+       
+      </ul>
+      
+      <ul class="nav pull-right">
+                  <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+    <a name="top"></a>
+    <div class="container">
+
+
+
+    <a name=""></a>
+    <div class="navbar subnav">
+    <div class="navbar-inner  subnav-inner">
+                  <div class="container">
+                    <a href="#" class="brand">
+                                comb
+                                
+                                
+                                        
+                                 <span class="label label-success">Public</span>
+                                        
+                                
+                    </a>
+                   <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                            </a>
+
+                            <div class="nav-collapse">
+            
+            <ul class="nav pull-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methods<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    
+                    <li><a href="./comb.html#.argsToArray">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        argsToArray
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.bind">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        bind
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.bindIgnore">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        bindIgnore
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.broadcast">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        broadcast
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.camelize">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        camelize
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.classify">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        classify
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.connect">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        connect
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.curry">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        curry
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.daysAgo">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        daysAgo
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.daysFromNow">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        daysFromNow
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.deepEqual">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        deepEqual
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.deepMerge">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        deepMerge
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.disconnect">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        disconnect
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.extend">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        extend
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.hitch">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        hitch
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.hitchIgnore">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        hitchIgnore
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.hoursAgo">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        hoursAgo
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.hoursFromNow">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        hoursFromNow
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.isArguments">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isArguments
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.isBoolean">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isBoolean
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.isDate">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isDate
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.isDefined">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isDefined
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.isEmpty">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isEmpty
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.isFunction">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isFunction
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.isHash">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isHash
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.isInstanceOf">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isInstanceOf
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.isNull">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isNull
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.isNumber">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isNumber
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.isObject">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isObject
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.isPromiseLike">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isPromiseLike
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.isUndefined">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isUndefined
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.isUndefinedOrNull">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isUndefinedOrNull
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.listen">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        listen
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.listenForExit">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        listenForExit
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.merge">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        merge
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.minutesAgo">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        minutesAgo
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.minutesFromNow">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        minutesFromNow
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.monthsAgo">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        monthsAgo
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.monthsFromNow">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        monthsFromNow
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.partial">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        partial
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.pluralize">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        pluralize
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.secondsAgo">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        secondsAgo
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.secondsFromNow">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        secondsFromNow
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.serial">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        serial
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.singularize">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        singularize
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.unListen">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        unListen
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.underscore">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        underscore
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.when">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        when
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.wrap">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        wrap
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.yearsAgo">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        yearsAgo
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.yearsFromNow">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        yearsFromNow
+                     </a></li>
+                    
+                </ul>
+            </li>
+            </ul>
+            
+            </div>
+            </div>
+     </div>
+</div>
+<em>Defined index.js</em>
+
+<p>
+Utilities for javascript, optimized for the server environment.
+
+
+</p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+exports
+    </pre>
+    
+
+    
+    
+        <a name=".argsToArray"></a>
+    <h3>
+        argsToArray
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/misc.js</em>
+
+<p>
+
+Converts an arguments object to an array
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>args</em> <code>Arguments</code> : the arguments object to convert</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Array</code> array version of the arguments object</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+comb.argsToArray = function (args) {
+    </pre>
+    
+
+
+    
+        <a name=".bind"></a>
+    <h3>
+        bind
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/functions.js</em>
+
+<p>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>scope</em> <code>Object</code> : the scope to bind the callback to</li>
+    
+        <li> <em>method</em> <code>String|Function</code> : the method to callback</li>
+    
+        <li> <em>args?</em>  : optional args to pass to the callback</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Function</code> the hitched function</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+comb.hitch
+    </pre>
+    
+
+
+    
+        <a name=".bindIgnore"></a>
+    <h3>
+        bindIgnore
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/functions.js</em>
+
+<p>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>scope</em> <code>Object</code> : the scope to bind the callback to</li>
+    
+        <li> <em>method</em> <code>String|Function</code> : the method to callback</li>
+    
+        <li> <em>args?</em>  : optional args to pass to the callback</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Function</code> the hitched function</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+comb.hitchIgnore
+    </pre>
+    
+
+
+    
+        <a name=".broadcast"></a>
+    <h3>
+        broadcast
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/broadcast.js</em>
+
+<p>
+Broadcasts an event to all listeners
+NOTE : the function takes a variable number of arguments
+       i.e. all arguments after the topic will be passed to the listeners
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.broadcast(&quot;hello&quot;, &quot;hello world&quot;);
+//the args &quot;hello&quot; and &quot;world&quot; will be passed to any listener of the topic
+//&quot;hello&quot;
+comb.broadcast(&quot;hello&quot;, &quot;hello&quot;, &quot;world&quot;);
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>topic</em> <code>String</code> : the topic to brodcast</li>
+    
+        <li> <em>params</em>  : the information to bradcast</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   var args = Array.prototype.slice.call(arguments);
+   var topic = args.splice(0, 1)[0];
+   if (topic) {
+   	var list = listeners[topic];
+   	if (list) {
+   		for (var i = list.length - 1; i &gt;= 0; i--) {
+   			var han = list[i], cb = han.cb;
+   			if (cb) {
+   				cb.apply(this, args);
+   			}
+   		}
+   	}
+   }
+   			
+}
+    </pre>
+    
+
+
+    
+        <a name=".camelize"></a>
+    <h3>
+        camelize
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/inflections.js</em>
+
+<p>
+Converts a string to camelcase
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.camelize(&#x27;hello_world&#x27;) =&gt; helloWorld
+ comb.camelize(&#x27;column_name&#x27;) =&gt; columnName
+ comb.camelize(&#x27;columnName&#x27;) =&gt; columnName
+ comb.camelize(null) =&gt; null
+ comb.camelize() =&gt; undefined
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>str</em>  : the string to camelize</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>String</code> the camelized version of the string</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (str){
+   var ret = str;
+   if (!misc.isUndefinedOrNull(str)) {
+       ret = str.replace(CAMELIZE_CONVERT_REGEXP, function (a, b) {
+           return b.toUpperCase();
+       });
+   }
+   return ret;
+}
+    </pre>
+    
+
+
+    
+        <a name=".classify"></a>
+    <h3>
+        classify
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/inflections.js</em>
+
+<p>
+Singularizes and camelizes the string.  Also strips out all characters preceding
+and including a period (".").
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.classify(&#x27;egg_and_hams&#x27;) =&gt; &quot;eggAndHam&quot;
+  comb.classify(&#x27;post&#x27;) =&gt; &quot;post&quot;
+  comb.classify(&#x27;schema.post&#x27;) =&gt; &quot;post&quot;
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>str</em>  : the string to classify</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>String</code> the classified version of the string</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (str){
+   var ret = str;
+   if (!misc.isUndefinedOrNull(str)) {
+       ret = comb.camelize(comb.singularize(str.replace(/.*\./g, &#x27;&#x27;)));
+   }
+   return ret;
+}
+    </pre>
+    
+
+
+    
+        <a name=".connect"></a>
+    <h3>
+        connect
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/broadcast.js</em>
+
+<p>
+Function to listen when other functions are called
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.connect(obj, &quot;event&quot;, myfunc);
+ comb.connect(obj, &quot;event&quot;, &quot;log&quot;, console);
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the object in which the method you are connection to resides</li>
+    
+        <li> <em>method</em>  : the name of the method to connect to</li>
+    
+        <li> <em>cb</em>  : the function to callback</li>
+    
+        <li> <em>scope?</em>  : the scope to call the specified cb in</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Array</code> handle to pass to <a href='./comb.html#.disconnect'> comb.disconnect</a></li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj,method,cb,scope){
+   var index;
+   if (typeof method != &quot;string&quot;) throw new Error(&quot;When calling connect the method must be string&quot;);
+   if (!func.isFunction(cb)) throw new Error(&quot;When calling connect callback must be a string&quot;);
+   var scope = obj || global, listeners, newMethod;
+   if (typeof scope[method] == &quot;function&quot;) {
+   	listeners = scope[method].__listeners;
+   	if (!listeners) {
+   		newMethod = wrapper();
+   		newMethod.func = obj[method];
+   		listeners = (newMethod.__listeners = []);
+   		scope[method] = newMethod;
+   	}
+   	index = listeners.push(cb);
+   } else {
+   	throw new Error(&quot;unknow method &quot; + method + &quot; in object &quot; + obj);
+   }
+   return [obj, method, index];
+   			
+}
+    </pre>
+    
+
+
+    
+        <a name=".curry"></a>
+    <h3>
+        curry
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/functions.js</em>
+
+<p>
+Curries a function
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var curried = comb.curry(4, function(a,b,c,d){
+    return [a,b,c,d].join(&quot;,&quot;);
+}
+ curried(&quot;a&quot;);
+ curried(&quot;b&quot;);
+ curried(&quot;c&quot;);
+ curried(&quot;d&quot;) =&gt; &quot;a,b,c,d&quot;
+
+ //OR
+
+ curried(&quot;a&quot;)(&quot;b&quot;)(&quot;c&quot;)(&quot;d&quot;) =&gt; &quot;a,b,c,d&quot;
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>depth</em>  : the number of args you expect</li>
+    
+        <li> <em>cb</em>  : the function to call once all args are gathered</li>
+    
+        <li> <em>scope?</em>  : what scope to call the function in</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Function</code> the curried version of the function</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (depth,cb,scope){
+   var f;
+   if (scope) {
+       f = comb.hitch(scope, cb);
+   } else {
+       f = cb;
+   }
+   if (depth) {
+       var len = depth - 1;
+       for (var i = len; i &gt;= 0; i--) {
+           f = curry(f, i == len);
+       }
+   }
+   return f;
+}
+    </pre>
+    
+
+
+    
+        <a name=".daysAgo"></a>
+    <h3>
+        daysAgo
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Subtracts the specified days/s from the current date.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>val</em>  : the number of days to subtract</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Date</code> a date with the number of days subtracted</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (val){
+   return date.add(new Date(), &quot;days&quot;, -val);
+}
+    </pre>
+    
+
+
+    
+        <a name=".daysFromNow"></a>
+    <h3>
+        daysFromNow
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Adds the specified days/s to the current date.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>val</em>  : the number of days to add</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Date</code> a date with the number of days added</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (val){
+   return date.add(new Date(), &quot;days&quot;, val);
+}
+    </pre>
+    
+
+
+    
+        <a name=".deepEqual"></a>
+    <h3>
+        deepEqual
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/object.js</em>
+
+<p>
+Determines if an two things are deep equal.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.deepEqual({a : 1, b : 2}, {a : 1, b : 2}) =&gt; true
+comb.deepEqual({a : 1}, {a : 1, b : 2}) =&gt; false
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>o1</em>  : the first thing to compare</li>
+    
+        <li> <em>o2</em>  : </li>
+    
+        <li> <em>o3</em>  : the second thing to compare</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> </li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (o1,o2){
+   return  _deepEqual(o1, o2);
+}
+    </pre>
+    
+
+
+    
+        <a name=".deepMerge"></a>
+    <h3>
+        deepMerge
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/object.js</em>
+
+<p>
+Merges objects together only overriding properties that are different.
+NOTE: this function takes a variable number of objects to merge
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var myObj = {my : {cool : {property1 : 1, property2 : 2}}};
+comb.deepMerge(myObj, {my : {cool : {property3 : 3}}});
+
+myObj.my.cool.property1 =&gt; 1
+myObj.my.cool.property2 =&gt; 2
+myObj.my.cool.property3 =&gt; 3
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the object to merge into</li>
+    
+        <li> <em>props</em>  : variable number of objects to merge into the obj</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Object</code> the merged object</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj,props){
+   if (!obj) {
+       obj = {};
+   }
+   for (var i = 1, l = arguments.length; i &lt; l; i++) {
+       deepMerge(obj, arguments[i]);
+   }
+   return obj; // Object
+}
+    </pre>
+    
+
+
+    
+        <a name=".disconnect"></a>
+    <h3>
+        disconnect
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/broadcast.js</em>
+
+<p>
+Disconnects a listener to a function
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>handle</em>  : </li>
+    
+        <li> <em>A</em> <code>handle</code> : handle returned from comb.connect</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (handle){
+   if (handle &amp;&amp; handle.length == 3) {
+   	var obj = handle[0], method = handle[1], cb = handle[2];
+   	if (typeof method != &quot;string&quot;) throw &quot;comb.disconnect : When calling disconnect the method must be string&quot;;
+   	var scope = obj || global, ls;
+   	if (typeof scope[method] == &quot;function&quot;) {
+   		ls = scope[method].__listeners;
+   		if (ls &amp;&amp; cb-- &gt; 0) {
+   			//we dont want to splice it because our indexing will get off
+   			ls[cb] = null;
+   		}
+   	} else {
+   		throw new Error(&quot;unknown method &quot; + method + &quot; in object &quot; + obj);
+   	}
+   } else {
+   	throw &quot;comb.disconnect : invalid handle&quot;
+   }
+   			
+}
+    </pre>
+    
+
+
+    
+        <a name=".extend"></a>
+    <h3>
+        extend
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/object.js</em>
+
+<p>
+Extends the prototype of an object if it exists otherwise it extends the object.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var MyObj = function(){};
+ MyObj.prototype.test = true;
+ comb.extend(MyObj, {test2 : false, test3 : &quot;hello&quot;, test4 : &quot;world&quot;});
+
+ var myObj = new MyObj();
+
+ myObj.test =&gt; true
+ myObj.test2 =&gt; false
+ myObj.test3 =&gt; &quot;hello&quot;
+ myObj.test4 =&gt; &quot;world&quot;
+
+ var myObj2 = {};
+ myObj2.test = true;
+ comb.extend(myObj2, {test2 : false, test3 : &quot;hello&quot;, test4 : &quot;world&quot;});
+
+ myObj2.test =&gt; true
+ myObj2.test2 =&gt; false
+ myObj2.test3 =&gt; &quot;hello&quot;
+ myObj2.test4 =&gt; &quot;world&quot;
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>parent</em>  : the parent object to extend</li>
+    
+        <li> <em>extend</em>  : the extension object to mixin to the parent</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Object</code> returns the extended object</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (parent,extend){
+   var proto = parent.prototype || parent;
+   return exports.merge(proto, extend);
+}
+    </pre>
+    
+
+
+    
+        <a name=".hitch"></a>
+    <h3>
+        hitch
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/functions.js</em>
+
+<p>
+Binds a method to a particular scope
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>scope</em>  : the scope to bind the callback to</li>
+    
+        <li> <em>method</em>  : the method to callback</li>
+    
+        <li> <em>args?</em>  : optional args to pass to the callback</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Function</code> the hitched function</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (scope,method,args){
+   var args = Array.prototype.slice.call(arguments).slice(2);
+   if (typeof method == &quot;string&quot;) {
+       method = scope[method];
+   }
+   if (method) {
+       return function () {
+           var scopeArgs = args.concat(Array.prototype.slice.call(arguments));
+           return method.apply(scope, scopeArgs);
+       };
+   } else {
+       throw new Error(method + &quot;Method not defined&quot;);
+   }
+}
+    </pre>
+    
+
+
+    
+        <a name=".hitchIgnore"></a>
+    <h3>
+        hitchIgnore
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/functions.js</em>
+
+<p>
+Binds a method to a particular scope ignoring any new arguments passed
+into the functuion. This useful if you want to force particular arguments and
+ignore any new ones
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>scope</em>  : the scope to bind the callback to</li>
+    
+        <li> <em>method</em>  : the method to callback</li>
+    
+        <li> <em>args?</em>  : optional args to pass to the callback</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Function</code> the hitched function</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (scope,method,args){
+   var args = Array.prototype.slice.call(arguments).slice(2);
+   if (typeof method == &quot;string&quot;) {
+       method = scope[method];
+   }
+   if (method) {
+       return function () {
+           return method.apply(scope, args);
+       };
+   } else {
+       throw new Error(method + &quot;Method not defined&quot;);
+   }
+}
+    </pre>
+    
+
+
+    
+        <a name=".hoursAgo"></a>
+    <h3>
+        hoursAgo
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Subtracts the specified hour/s from the current date.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>val</em>  : the number of hours to subtract</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Date</code> a date with the number of hours subtracted</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (val){
+   return date.add(new Date(), &quot;hours&quot;, -val);
+}
+    </pre>
+    
+
+
+    
+        <a name=".hoursFromNow"></a>
+    <h3>
+        hoursFromNow
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Adds the specified hour/s to the current date.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>val</em>  : the number of hours to add</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Date</code> a date with the number of hours added</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (val){
+   return date.add(new Date(), &quot;hours&quot;, val);
+}
+    </pre>
+    
+
+
+    
+        <a name=".isArguments"></a>
+    <h3>
+        isArguments
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/misc.js</em>
+
+<p>
+Determines if obj is an Arguments object;
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>object</em>  : </li>
+    
+        <li> <em>obj</em> <code>Anything</code> : the thing to test if it is null</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if it is an Arguments Object false otherwise</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (object){
+   return !comb.isUndefinedOrNull(object) &amp;&amp; Object.prototype.toString.call(object) == &#x27;[object Arguments]&#x27;;
+}
+    </pre>
+    
+
+
+    
+        <a name=".isBoolean"></a>
+    <h3>
+        isBoolean
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/misc.js</em>
+
+<p>
+Determines if obj is a boolean
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the thing to test if it is a boolean</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if it is a boolean false otherwise</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj){
+   var undef, type = typeof obj;
+   return obj != undef &amp;&amp; type == &quot;boolean&quot; || type == &quot;Boolean&quot;;
+}
+    </pre>
+    
+
+
+    
+        <a name=".isDate"></a>
+    <h3>
+        isDate
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Determines if obj is a Date
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the thing to test if it is a Date</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if it is a Date false otherwise</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj){
+   var undef;
+   return (obj !== undef &amp;&amp; typeof obj === &quot;object&quot; &amp;&amp; obj instanceof Date);
+}
+    </pre>
+    
+
+
+    
+        <a name=".isDefined"></a>
+    <h3>
+        isDefined
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/misc.js</em>
+
+<p>
+Determins if the obj is not undefined
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the thing to test if it is not undefined</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if it is defined false otherwise</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj){
+   return !comb.isUndefined(obj);
+}
+    </pre>
+    
+
+
+    
+        <a name=".isEmpty"></a>
+    <h3>
+        isEmpty
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/object.js</em>
+
+<p>
+Determines if an object is empty
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.isEmpty({}) =&gt; true
+comb.isEmpty({a : 1}) =&gt; false
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>object</em>  : the object to test</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if the object is empty;</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (object){
+   if (comb.isObject(object)) {
+       for (var i in object) {
+           if (object.hasOwnProperty(i)) {
+               return false;
+           }
+       }
+   }
+   return true;
+}
+    </pre>
+    
+
+
+    
+        <a name=".isFunction"></a>
+    <h3>
+        isFunction
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/functions.js</em>
+
+<p>
+Determines if something is a function
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the thing to test if it is a function</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if the obj is a function false otherwise</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj){
+   return typeof obj == &quot;function&quot;;
+}
+    </pre>
+    
+
+
+    
+        <a name=".isHash"></a>
+    <h3>
+        isHash
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/object.js</em>
+
+<p>
+Determins if an object is just a hash and not a qualified Object such as number
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.isHash({}) =&gt; true
+   comb.isHash({1 : 2, a : &quot;b&quot;}) =&gt; true
+   comb.isHash(new Date()) =&gt; false
+   comb.isHash(new String()) =&gt; false
+   comb.isHash(new Number()) =&gt; false
+   comb.isHash(new Boolean()) =&gt; false
+   comb.isHash() =&gt; false
+   comb.isHash(&quot;&quot;) =&gt; false
+   comb.isHash(1) =&gt; false
+   comb.isHash(false) =&gt; false
+   comb.isHash(true) =&gt; false
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the thing to test if it is a hash</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if it is a hash false otherwise</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj){
+   var ret = comb.isObject(obj);
+   return ret &amp;&amp; obj.constructor === Object;
+}
+    </pre>
+    
+
+
+    
+        <a name=".isInstanceOf"></a>
+    <h3>
+        isInstanceOf
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/misc.js</em>
+
+<p>
+Determines if obj is an instance of a particular class
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the thing to test if it and instnace of a class</li>
+    
+        <li> <em>clazz</em>  : </li>
+    
+        <li> <em>Clazz</em> <code>Object</code> : used to determine if the object is an instance of</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if it is an instance of the clazz false otherwise</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj,clazz){
+   return argsToArray(arguments).slice(1).some(function (c) {
+       return isInstance(obj, c);
+   });
+}
+    </pre>
+    
+
+
+    
+        <a name=".isNull"></a>
+    <h3>
+        isNull
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/misc.js</em>
+
+<p>
+Determines if obj is null
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the thing to test if it is null</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if it is null false otherwise</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj){
+   var undef;
+   return obj !== undef &amp;&amp; obj == null;
+}
+    </pre>
+    
+
+
+    
+        <a name=".isNumber"></a>
+    <h3>
+        isNumber
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/number.js</em>
+
+<p>
+Determines if obj is a number
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the thing to test if it is a Number</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if it is a number false otherwise</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj){
+   var undef;
+   return obj !== undef &amp;&amp; obj != null &amp;&amp; (typeof obj == &quot;number&quot; || obj instanceof Number);
+}
+    </pre>
+    
+
+
+    
+        <a name=".isObject"></a>
+    <h3>
+        isObject
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/object.js</em>
+
+<p>
+Determines if obj is an object
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the thing to test if it is an object</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if it is an object false otherwise</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj){
+   var undef;
+   return obj != null &amp;&amp; obj != undef &amp;&amp; typeof obj == &quot;object&quot;;
+}
+    </pre>
+    
+
+
+    
+        <a name=".isPromiseLike"></a>
+    <h3>
+        isPromiseLike
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+Tests if an object is like a promise (i.e. it contains then, addCallback, addErrback)
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : object to test</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj){
+   return !base.isUndefinedOrNull(obj) &amp;&amp; (base.isInstanceOf(obj, Promise) || (base.isFunction(obj.then)
+       &amp;&amp; base.isFunction(obj.addCallback) &amp;&amp; base.isFunction(obj.addErrback)));
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".isUndefined"></a>
+    <h3>
+        isUndefined
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/misc.js</em>
+
+<p>
+Determines if obj is undefined
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the thing to test if it is undefined</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if it is undefined false otherwise</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj){
+   var undef;
+   return obj !== null &amp;&amp; obj === undef;
+}
+    </pre>
+    
+
+
+    
+        <a name=".isUndefinedOrNull"></a>
+    <h3>
+        isUndefinedOrNull
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/misc.js</em>
+
+<p>
+Determines if obj is undefined or null
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the thing to test if it is undefined or null</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> true if it is undefined or null false otherwise</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj){
+   return comb.isUndefined(obj) || comb.isNull(obj);
+}
+    </pre>
+    
+
+
+    
+        <a name=".listen"></a>
+    <h3>
+        listen
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/broadcast.js</em>
+
+<p>
+Listen for the broadcast of certain events
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.listen(&quot;hello&quot;, function(arg1, arg2){
+    console.log(arg1);
+    console.log(arg2);
+ });
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>topic</em>  : the topic to listen for</li>
+    
+        <li> <em>callback</em>  : the funciton to call when the topic is published</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li>  a handle to pass to <a href='./comb.html#.unListen'> comb.unListen</a></li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (topic,callback){
+   if (!func.isFunction(callback)) throw new Error(&quot;callback must be a function&quot;);
+   var handle = {
+   	topic : topic,
+   	cb : callback,
+   	pos : null
+   };
+   var list = listeners[topic];
+   if (!list) {
+   	list = (listeners[topic] = []);
+   }
+   list.push(handle);
+   handle.pos = list.length - 1;
+   return handle;
+   			
+}
+    </pre>
+    
+
+
+    
+        <a name=".listenForExit"></a>
+    <h3>
+        listenForExit
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/misc.js</em>
+
+<p>
+Adds listeners to process.exit with out having to change setMaxListeners useful if you
+are writing a library and do not want to change core setting.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>cb</em>  : funciton to call when process is exiting</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (cb){
+   setupListener();
+   listeners.push(cb);
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".merge"></a>
+    <h3>
+        merge
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/object.js</em>
+
+<p>
+Merges objects together
+NOTE: this function takes a variable number of objects to merge
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var myObj = {};
+comb.merge(myObj, {test : true});
+
+myObj.test =&gt; true
+
+comb.merge(myObj, {test : false}, {test2 : false}, {test3 : &quot;hello&quot;, test4 : &quot;world&quot;});
+myObj.test =&gt; false
+myObj.test2 =&gt; false
+myObj.test3 =&gt; &quot;hello&quot;
+myObj.test4 =&gt; &quot;world&quot;
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the object to merge into</li>
+    
+        <li> <em>props</em>  : variable number of objects to merge into the obj</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Object</code> the merged object</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj,props){
+   if (!obj) {
+       obj = {};
+   }
+   for (var i = 1, l = arguments.length; i &lt; l; i++) {
+       merge(obj, arguments[i]);
+   }
+   return obj; // Object
+}
+    </pre>
+    
+
+
+    
+        <a name=".minutesAgo"></a>
+    <h3>
+        minutesAgo
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Subtracts the specified minutes/s from the current date.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>val</em>  : the number of minutes to subtract</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Date</code> a date with the number of minutes subtracted</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (val){
+   return date.add(new Date(), &quot;minutes&quot;, -val);
+}
+    </pre>
+    
+
+
+    
+        <a name=".minutesFromNow"></a>
+    <h3>
+        minutesFromNow
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Adds the specified minutes/s to the current date.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>val</em>  : the number of minutes to add</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Date</code> a date with the number of minutes added</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (val){
+   return date.add(new Date(), &quot;minutes&quot;, val);
+}
+    </pre>
+    
+
+
+    
+        <a name=".monthsAgo"></a>
+    <h3>
+        monthsAgo
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Subtracts the specified month/s from the current date.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>val</em>  : the number of months to subtract</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Date</code> a date with the number of monts subtracted</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (val){
+   return date.add(new Date(), &quot;months&quot;, -val);
+}
+    </pre>
+    
+
+
+    
+        <a name=".monthsFromNow"></a>
+    <h3>
+        monthsFromNow
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Adds the specified month/s to the current date.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+//assuming that current month is february
+comb.yearsFromNow(2); //yyyy-04-dd hh:MM:ss
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>val</em>  : the number of months to add</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Date</code> a date with the number of years added</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (val){
+   return date.add(new Date(), &quot;months&quot;, val);
+}
+    </pre>
+    
+
+
+    
+        <a name=".partial"></a>
+    <h3>
+        partial
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/functions.js</em>
+
+<p>
+Allows the passing of additional arguments to a function when it is called
+especially useful for callbacks that you want to provide additional parameters to
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>method</em>  : the method to callback</li>
+    
+        <li> <em>args?</em>  : variable number of arguments to pass</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Function</code> partially hitched function</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (method,args){
+   var args = Array.prototype.slice.call(arguments).slice(1);
+   if (typeof method == &quot;function&quot;) {
+       return function () {
+           var scopeArgs = args.concat(Array.prototype.slice.call(arguments));
+           return method.apply(this, scopeArgs);
+       };
+   } else {
+       throw new Error(method + &quot;Method not defined&quot;);
+   }
+}
+    </pre>
+    
+
+
+    
+        <a name=".pluralize"></a>
+    <h3>
+        pluralize
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/inflections.js</em>
+
+<p>
+Returns the plural form of the word in the string.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.pluralize(&quot;post&quot;) =&gt; &quot;posts&quot;
+ comb.pluralize(&quot;octopus&quot;) =&gt; &quot;octopi&quot;
+ comb.pluralize(&quot;sheep&quot;) =&gt; &quot;sheep&quot;
+ comb.pluralize(&quot;words&quot;) =&gt; &quot;words&quot;
+ comb.pluralize(&quot;the blue mailman&quot;) =&gt; &quot;the blue mailmen&quot;
+ comb.pluralize(&quot;CamelOctopus&quot;) =&gt; &quot;CamelOctopi&quot;
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>str</em>  : the string to pluralize</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>String</code> the pluralized version of the string</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (str){
+   var ret = str;
+   if (!misc.isUndefinedOrNull(str)) {
+       if (UNCOUNTABLES.indexOf(str) == -1) {
+           for (var i in PLURALS) {
+               var s = PLURALS[i], rule = s[0], replacement = s[1];
+               if ((ret = ret.replace(rule, replacement)) != str) {
+                   break;
+               }
+           }
+       }
+   }
+   return ret;
+}
+    </pre>
+    
+
+
+    
+        <a name=".secondsAgo"></a>
+    <h3>
+        secondsAgo
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Subtracts the specified seconds/s from the current date.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>val</em>  : the number of seconds to subtract</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Date</code> a date with the number of seconds subtracted</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (val){
+   return date.add(new Date(), &quot;seconds&quot;, -val);
+}
+    </pre>
+    
+
+
+    
+        <a name=".secondsFromNow"></a>
+    <h3>
+        secondsFromNow
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Adds the specified second/s to the current date.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>val</em>  : the number of seconds to add</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Date</code> a date with the number of seconds added</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (val){
+   return date.add(new Date(), &quot;seconds&quot;, val);
+}
+    </pre>
+    
+
+
+    
+        <a name=".serial"></a>
+    <h3>
+        serial
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+Executes a list of items in a serial manner. If the list contains promises then each promise
+will be executed in a serial manner, if the list contains non async items then the next item in the list
+is called.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var asyncAction = function(item, timeout){
+   var ret = new comb.Promise();
+   setTimeout(comb.hitchIgnore(ret, &quot;callback&quot;, item), timeout);
+   return ret;
+};
+
+comb.serial([
+    comb.partial(asyncAction, 1, 1000),
+    comb.partial(asyncAction, 2, 900),
+    comb.partial(asyncAction, 3, 800),
+    comb.partial(asyncAction, 4, 700),
+    comb.partial(asyncAction, 5, 600),
+    comb.partial(asyncAction, 6, 500)
+]).then(function(results){
+    console.log(results); // [1,2,3,4,5,6];
+});
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>list</em>  : </li>
+    
+        <li> <em>callback</em>  : </li>
+    
+        <li> <em>errback</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (list,callback,errback){
+   var ret = new Promise();
+   if (base.isArray(list)) {
+       callNext(list, 0, [], false, ret)
+   } else {
+       throw new Error(&quot;When calling comb.serial the first argument must be an array&quot;);
+   }
+   ret.then(callback, errback);
+   return ret;
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".singularize"></a>
+    <h3>
+        singularize
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/inflections.js</em>
+
+<p>
+The reverse of pluralize, returns the singular form of a word in a string.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.singularize(&quot;posts&quot;) =&gt; &quot;post&quot;
+  comb.singularize(&quot;octopi&quot;)=&gt; &quot;octopus&quot;
+  comb.singularize(&quot;sheep&quot;) =&gt; &quot;sheep&quot;
+  comb.singularize(&quot;word&quot;) =&gt; &quot;word&quot;
+  comb.singularize(&quot;the blue mailmen&quot;) =&gt; &quot;the blue mailman&quot;
+  comb.singularize(&quot;CamelOctopi&quot;) =&gt; &quot;CamelOctopus&quot;
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>str</em>  : the string to singularize</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>String</code> the singularized version of the string</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (str){
+   var ret = str;
+   if (!misc.isUndefinedOrNull(str)) {
+       if (UNCOUNTABLES.indexOf(str) == -1) {
+           for (var i in SINGULARS) {
+               var s = SINGULARS[i], rule = s[0], replacement = s[1];
+               if ((ret = ret.replace(rule, replacement)) != str) {
+                   break;
+               }
+           }
+       }
+   }
+   return ret;
+}
+    </pre>
+    
+
+
+    
+        <a name=".unListen"></a>
+    <h3>
+        unListen
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/broadcast.js</em>
+
+<p>
+Disconnects a listener
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>handle</em>  : a handle returned from <a href='./comb.html#.listen'> comb.listen</a></li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (handle){
+   if (handle) {
+   	var topic = handle.topic, list = listeners[topic];
+   	if (list) {
+   		for (var i = list.length - 1; i &gt;= 0; i--) {
+   			if (list[i] == handle) {
+   				list.splice(i, 1);
+   			}
+   		}
+   		if (!list.length) {
+   			delete listeners[topic];
+   		}
+   	}
+   }
+   			
+}
+    </pre>
+    
+
+
+    
+        <a name=".underscore"></a>
+    <h3>
+        underscore
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/inflections.js</em>
+
+<p>
+The reverse of camelize. Makes an underscored form from the expression in the string.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.underscore(&#x27;helloWorld&#x27;) =&gt; hello_world
+ comb.underscore(&#x27;column_name&#x27;) =&gt; column_name
+ comb.underscore(&#x27;columnName&#x27;) =&gt; column_name
+ comb.underscore(null) =&gt; null
+ comb.underscore() =&gt; undefined
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>str</em>  : The string to underscore</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>String</code> the underscored version of the string</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (str){
+   var ret = str;
+   if (!misc.isUndefinedOrNull(str)) {
+       ret = str.replace(UNDERSCORE_CONVERT_REGEXP1, UNDERSCORE_CONVERT_REPLACE)
+           .replace(UNDERSCORE_CONVERT_REGEXP2, UNDERSCORE_CONVERT_REPLACE)
+           .replace(DASH, UNDERSCORE).toLowerCase();
+   }
+   return ret;
+}
+    </pre>
+    
+
+
+    
+        <a name=".when"></a>
+    <h3>
+        when
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+Waits for promise and non promise values to resolve and fires callback or errback appropriately.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var a = &quot;hello&quot;;
+ var b = new comb.Promise().callback(world);
+ comb.when(a, b) =&gt; called back with [&quot;hello&quot;, &quot;world&quot;];
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>args</em>  : variable number of arguments to wait for</li>
+    
+        <li> <em>cb</em>  : the callback function</li>
+    
+        <li> <em>eb</em>  : the errback function</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> a promise that is fired when all values have resolved</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (args,cb,eb){
+   var args = base.argsToArray(arguments), p;
+   eb = base.isFunction(args[args.length - 1]) ? args.pop() : null;
+   cb = base.isFunction(args[args.length - 1]) ? args.pop() : null;
+   if (eb &amp;&amp; !cb) {
+       cb = eb;
+       eb = null;
+   }
+   if (!args.length) {
+       p = new Promise().callback(args);
+   } else if (args.length == 1) {
+       args = args.pop();
+       p = exports.isPromiseLike(args) ? args : new Promise().callback(args);
+   } else {
+       var p = new PromiseList(args.map(function (a) {
+           return exports.isPromiseLike(a) ? a : new Promise().callback(a);
+       }), true);
+   }
+   if (cb) {
+       p.addCallback(cb);
+   }
+   if (eb) {
+       p.addErrback(eb);
+   }
+   return p;
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".wrap"></a>
+    <h3>
+        wrap
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+Wraps traditional node style functions with a promise.
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var fs = require(&quot;fs&quot;);
+var readFile = comb.wrap(fs.readFile, fs);
+readFile(__dirname + &quot;/test.json&quot;).then(
+     function(buffer){
+         console.log(contents);
+     },
+     funciton(err){
+
+     }  console.error(err);
+);
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>fn</em>  : function to wrap</li>
+    
+        <li> <em>scope</em>  : scope to call the function in</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Funciton</code> a wrapped function</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (fn,scope){
+   return function () {
+       var ret = new Promise();
+       var args = base.argsToArray(arguments);
+       args.push(function (err, res) {
+           var args = base.argsToArray(arguments);
+           if (err) {
+               ret.errback(err);
+           } else {
+               args.shift();
+               ret.callback.apply(ret, args);
+           }
+       });
+       fn.apply(scope || this, args);
+       return ret;
+   }
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".yearsAgo"></a>
+    <h3>
+        yearsAgo
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Subtracts the specified year/s from the current date.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>val</em>  : the number of years to subtract</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Date</code> a date with the number of years subtracted</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (val){
+   return date.add(new Date(), &quot;years&quot;, -val);
+}
+    </pre>
+    
+
+
+    
+        <a name=".yearsFromNow"></a>
+    <h3>
+        yearsFromNow
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date.js</em>
+
+<p>
+Adds the specified year/s to the current date.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+//assuming that current year is 2012
+comb.yearsFromNow(1); //2013-mm-dd hh:MM:ss
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>val</em>  : the number of years to add</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Date</code> a date with the number of years added</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (val){
+   return date.add(new Date(), &quot;years&quot;, val);
+}
+    </pre>
+    
+
+
+    
+<hr>
+
+Documentation gennerated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
+
+
+</div>
+</div>
+<script type="text/javascript" src="./assets/js/jquery.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-transition.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-tab.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-tooltip.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-popover.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-button.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-collapse.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-carousel.js"></script>
+<script type="text/javascript"
+        src="./assets/js/google-code-prettify/prettify.js"></script>
+
+</body>
+</html>
+

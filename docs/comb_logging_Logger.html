@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comb</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/js/google-code-prettify/prettify.css">
+    <style type="text/css">
+        
+
+.subnav-inner {
+    width: 100%;
+    height: 36px;
+    background-color: #EEE;
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));
+    background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);
+    background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.subnav .nav > li > a:hover {
+    color: black !important;
+}
+
+.subnav .nav li.dropdown .dropdown-toggle .caret,
+.subnav .nav li.dropdown.open .caret {
+    border-top-color: #999 !important;
+    border-bottom-color: #999 !important;
+}
+
+.subnav-fixed {
+    position: fixed;
+    width : 90%;
+    margin-right: auto;
+    margin-left: auto;
+    top: 40px;
+    left: 0;
+    right: 0;
+    z-index: 1020;
+    border-color: #D5D5D5;
+    border-width: 0 0 1px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.navbar .nav  .dropdown-menu {
+    max-height: 500px;
+    overflow: auto;
+}​
+
+    </style>
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+    <script type="text/javascript">
+        var init = (function () {
+            "use strict";
+
+            var processScroll = (function () {
+                var curr = null, prev = null;
+                return function (nav) {
+                    var $win = $(window);
+                    $('.subnav').each(function () {
+                        var nav = $(this);
+                        var navTop = nav.offset().top - 40;
+                        var scrollTop = $win.scrollTop();
+                        if (scrollTop >= navTop && curr != nav) {
+                            if(curr){
+                                curr.removeClass('subnav-fixed')
+                                prev = curr;
+                            }
+                            curr = nav;
+                            curr.addClass('subnav-fixed')
+                        } else if (curr == nav && scrollTop <= navTop) {
+                            curr.removeClass('subnav-fixed');
+                            prev.addClass('subnav-fixed');
+                            curr = prev;
+                        }else{
+                            nav.removeClass('subnav-fixed');
+                        }
+                    });
+                };
+            })();
+
+            return function () {
+                window.prettyPrint && prettyPrint();
+                $(".collapse").collapse();
+                // fix sub nav on scroll
+                processScroll();
+                $(window).on('scroll', processScroll)
+            }
+        })();
+    </script>
+</head>
+<body onload="init()">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+      
+          <a href="./index.html" class="brand">comb</a>
+      
+      <div class="nav-collapse">
+      <ul class="nav nav-pills">
+      
+
+      
+        <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+           <ul class="dropdown-menu">
+             
+                         <li><a href="comb.html">comb</a></li>
+               
+                         <li><a href="comb_array.html">comb.array</a></li>
+               
+                         <li><a href="comb_characters.html">comb.characters</a></li>
+               
+                         <li><a href="comb_date.html">comb.date</a></li>
+               
+                         <li><a href="comb_number.html">comb.number</a></li>
+               
+                         <li><a href="comb_plugins.html">comb.plugins</a></li>
+               
+                         <li><a href="comb_regexp.html">comb.regexp</a></li>
+               
+                         <li><a href="comb_string.html">comb.string</a></li>
+               
+           </ul>
+           </li>
+        
+        
+           <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+           <ul class="dropdown-menu">
+             
+                         <li><a href="./comb_Promise.html">comb.Promise</a></li>
+               
+                         <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
+               
+                         <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
+               
+                         <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
+               
+                         <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
+               
+                         <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
+               
+                         <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
+               
+                         <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
+               
+                         <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
+               
+                         <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
+               
+                         <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
+               
+                         <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
+               
+                         <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
+               
+                         <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
+               
+                         <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
+               
+                         <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
+               
+                         <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
+               
+                         <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+               
+                         <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
+               
+                         <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
+               
+                         <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
+               
+                         <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+               
+                         <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
+               
+                         <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
+               
+           </ul>
+        </li>
+       
+      </ul>
+      
+      <ul class="nav pull-right">
+                  <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+    <a name="top"></a>
+    <div class="container">
+
+
+
+    <a name=""></a>
+    <div class="navbar subnav">
+    <div class="navbar-inner  subnav-inner">
+          <div class="container">
+            <a href="#" class="brand">
+            comb.logging.Logger
+            
+                    
+             <span class="label label-success">Public</span>
+                    
+            
+            </a>
+           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </a>
+                    <div class="nav-collapse">
+
+            <ul class="nav pull-right">
+             <li><a href="#constructor">Constructor</a></li>
+                        
+                        <li><a href="#instanceProperties">Instance Properties</a></li>
+                        
+                        
+                        
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Static Methods<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                
+                                <li><a href="./comb_logging_Logger.html#.getLogger">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                getLogger
+                                </a></li>
+                                
+                                <li><a href="./comb_logging_Logger.html#.getRootLogger">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                getRootLogger
+                                </a></li>
+                                
+                            </ul>
+                        </li>
+                        
+                        
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instance Methods<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                
+                                <li><a href="./comb_logging_Logger.html#addAppender">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                addAppender
+
+                                </a></li>
+                                
+                                <li><a href="./comb_logging_Logger.html#addAppenders">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                addAppenders
+
+                                </a></li>
+                                
+                                <li><a href="./comb_logging_Logger.html#debug">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                debug
+
+                                </a></li>
+                                
+                                <li><a href="./comb_logging_Logger.html#error">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                error
+
+                                </a></li>
+                                
+                                <li><a href="./comb_logging_Logger.html#fatal">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                fatal
+
+                                </a></li>
+                                
+                                <li><a href="./comb_logging_Logger.html#getAppender">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                getAppender
+
+                                </a></li>
+                                
+                                <li><a href="./comb_logging_Logger.html#info">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                info
+
+                                </a></li>
+                                
+                                <li><a href="./comb_logging_Logger.html#isAppenderAttached">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                isAppenderAttached
+
+                                </a></li>
+                                
+                                <li><a href="./comb_logging_Logger.html#log">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                log
+
+                                </a></li>
+                                
+                                <li><a href="./comb_logging_Logger.html#removeAllAppenders">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                removeAllAppenders
+
+                                </a></li>
+                                
+                                <li><a href="./comb_logging_Logger.html#removeAppender">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                removeAppender
+
+                                </a></li>
+                                
+                                <li><a href="./comb_logging_Logger.html#removeAppenders">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                removeAppenders
+
+                                </a></li>
+                                
+                                <li><a href="./comb_logging_Logger.html#trace">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                trace
+
+                                </a></li>
+                                
+                                <li><a href="./comb_logging_Logger.html#warn">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                warn
+
+                                </a></li>
+                                
+                            </ul>
+                        </li>
+                        
+            </ul>
+            </div>
+            </div>
+     </div>
+</div>
+
+
+
+    <p>
+This class is the entry point for all logging actions in comb.
+<p><b>Logger should be retrieved by calling Logger.getLogger() NOT through the new keyword</b><p>
+<p>
+    All loggers in comb follow a heirarchy of inheritance based on a dot notation.
+    <pre class="code">
+                         rootLogger - ""
+                                 /         \
+                              "my"      "myOther"
+                              /               \
+                        "my.logger"       "myOther.logger"
+                           /                     \
+                      "my.logger.Log"        "myOther.logger.Log"
+
+    </pre>
+    In the above Tree the rootLogger is the base for all logger. my and myOther inherit from rootLogger
+    my.logger inherits from my, and myOther.logger inherits from myOther. The logs do not have to be retrieved in
+    order. If I set rootLogger to ERROR level and added a console appender to it the appender and level will be
+    added to all logs. However if I set my to INFO level and add a fileAppender to it the level and appender will
+    only be added to logs in "my" subtree. If you set my.logger to not be additive then levels, and appenders will not
+    propogate down to the rest of the tree.
+
+</p>
+
+<p>For information on levels see <a href='./comb_logging_Level.html#'> comb.logging.Level</a>.</p>
+<p>For information on appenders see
+         <ul>
+             <li><a href='./comb_logging_appenders_Appender.html#'> comb.logging.appenders.Appender</a></li>
+             <li><a href='./comb_logging_appenders_ConsoleAppender.html#'> comb.logging.appenders.ConsoleAppender</a></li>
+             <li><a href='./comb_logging_appenders_FileAppender.html#'> comb.logging.appenders.FileAppender</a></li>
+             <li><a href='./comb_logging_appenders_JSONAppender.html#'> comb.logging.appenders.JSONAppender</a></li>
+             <li><a href='./comb_logging_appenders_RollingFileAppender.html#'> comb.logging.appenders.RollingFileAppender</a></li>
+         </ul>
+</p>
+<p>For information on configurators see <a href='./comb_logging_BasicConfigurator.html#'> comb.logging.BasicConfigurator</a> or <a href='./comb_logging_PropertyConfigurator.html#'> comb.logging.PropertyConfigurator</a>.</p></p>
+    
+        <em>Example</em>
+            <pre class="prettyprint linenums lang-js">
+var logging = comb.logging,
+    Logger = logging.Logger,
+    appenders = logging.appenders,
+    Level = logging.Level;
+
+//configure you logging environement
+
+var bc = logging.BasicConfigurator();
+//add console appender to all loggers
+bc.configure();
+//add a file appender to all loggers
+bc.configure(new appenders.FileAppender({file : &quot;/var/log/myLog.log&quot;}));
+
+//Retreiving a logger.
+var combLogger = Logger.getLogger(&quot;comb&quot;);
+var combCollectionLogger = Logger.getLogger(&quot;comb.collections&quot;);
+var treeLogger = Logger.getLogger(&quot;comb.collections.Tree&quot;);
+
+//set my treeLogger to DEBUG Level
+treeLogger.level = Level.DEBUG;
+//add a JSON appender to tree logger just for fun!
+treeLogger.addAppender(new appenders.JSONAppender({file : &quot;/var/log/myTreeLogger.json&quot;}));
+
+//NOW USE THEM
+            </pre>
+    
+
+    
+
+    
+    
+        <a name="instanceProperties"></a>
+        <em>Instance Properties</em>
+        <table class='table table-bordered table-striped'><tr><td>Property</td><td>Type</td><td>Default Value</td><td>Description</td></tr><tr><td>additive</td><td>Boolean</td><td></td><td>set to false to prevent changes to this logger from propogating down.</td><tr><tr><td>appenders</td><td>comb.logging.appenders.Appender</td><td></td><td>list of appenders this logger currently contains.</td><tr><tr><td>fullName</td><td>String</td><td></td><td>the full path name of this Logger.</td><tr><tr><td>isDebug</td><td>Boolean</td><td></td><td>true if this Loggers level is DEBUG</td><tr><tr><td>isError</td><td>Boolean</td><td></td><td>true if this Loggers level is ERROR</td><tr><tr><td>isFatal</td><td>Boolean</td><td></td><td>true if this Loggers level is FATAL</td><tr><tr><td>isInfo</td><td>Boolean</td><td></td><td>true if this Loggers level is INFO</td><tr><tr><td>isOff</td><td>Boolean</td><td></td><td>true if this Loggers level is OFF</td><tr><tr><td>isTrace</td><td>Boolean</td><td></td><td>true if this Loggers level is TRACE</td><tr><tr><td>isWarn</td><td>Boolean</td><td></td><td>true if this Loggers level is WARN</td><tr><tr><td>level</td><td>comb.logging.Level</td><td></td><td>the level of this Logger</td><tr><tr><td>name</td><td>String</td><td></td><td>the name of this logger this <b>does not</b> include the dot notated name</td><tr><tr><td>subLoggers</td><td>Array<comb.logging.Logger></td><td></td><td>all loggers this logger is the parent of.</td><tr></table>
+    
+
+    <a name="constructor"></a>
+    <h3>Constructor</h3>
+
+    <em>Defined logging/index.js</em>
+    
+    
+    
+
+  
+    <a name=".getLogger"></a>
+    <h3>
+        getLogger
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p>
+Retrieves/Creates a logger based on the name passed in
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>name</em>  : the name of the logger</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (name){
+   return rootTree.getLogger(name);
+           
+}
+    </pre>
+    
+
+
+  
+    <a name=".getRootLogger"></a>
+    <h3>
+        getRootLogger
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p>
+Return the root of all loggers
+         </p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   return rootTree.getRootLogger();
+           
+}
+    </pre>
+    
+
+
+  
+  
+    <a name="addAppender"></a>
+    <h3>
+        addAppender
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p>
+Add an appender to this logger. If this is additive then the appender is added to all subloggers.
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>appender</em>  : the appender to add.</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (appender){
+   if (!base.isUndefinedOrNull(appender)) {
+       var name = appender.name;
+       if (!(name in this.__appenders)) {
+           this.__appenders[name] = appender;
+           if (!appender.level) {
+               appender.level = this.level;
+           }
+           this._tree.addAppender(appender);
+       }
+   }
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="addAppenders"></a>
+    <h3>
+        addAppenders
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p>
+Short cut to add a list of appenders to this Logger
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>appenders</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (appenders){
+   appenders.forEach(base.hitch(this, &quot;addAppender&quot;));
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="debug"></a>
+    <h3>
+        debug
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p>
+Log an debug level message
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>message</em>  : the message to log.</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (message){
+   this.log(Level.DEBUG, message);
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="error"></a>
+    <h3>
+        error
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p>
+Log an error level message
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>message</em>  : the message to log.</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (message){
+   this.log(Level.ERROR, message);
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="fatal"></a>
+    <h3>
+        fatal
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p>
+Log an fatal level message
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>message</em>  : the message to log.</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (message){
+   this.log(Level.FATAL, message);
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="getAppender"></a>
+    <h3>
+        getAppender
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p>
+Gets an appender from this logger
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>name</em>  : the name of the appender.</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.logging.Appender|undefined</code> returns the appender with the specified name or
+                                         undefined if it is not found.</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (name){
+   var ret;
+   if (name in this.__appenders) {
+       ret = this.__appenders[name];
+   }
+   return ret;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="info"></a>
+    <h3>
+        info
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p>
+Log an info level message
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>message</em>  : the message to log.</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (message){
+   this.log(Level.INFO, message);
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="isAppenderAttached"></a>
+    <h3>
+        isAppenderAttached
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p>
+Determines if an appender is attached.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>name</em>  : the name of the appender.</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (name){
+   return (name in this.__appenders);
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="log"></a>
+    <h3>
+        log
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p>
+Log a message
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>level</em>  : the level the message is</li>
+    
+        <li> <em>message</em>  : the message to log.</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (level,message){
+   if (level.isGreaterOrEqualToo(this.level)) {
+       if (Level.TRACE.equals(level)) {
+           var err = new Error;
+           err.name = &quot;Trace&quot;;
+           err.message = message || &#x27;&#x27;;
+           Error.captureStackTrace(err, arguments.callee);
+           message = err.stack;
+       } else if (Level.ERROR.equals(level) &amp;&amp; base.isInstanceOf(message, Error)) {
+           message = message.stack;
+       }
+       var type = level.name.toLowerCase(), appenders = this.__appenders;
+       var event = {
+           level:level,
+           levelName:level.name,
+           message:message,
+           timeStamp:new Date(),
+           name:this.fullName
+       };
+       for (var i in appenders) {
+           appenders[i].append(event);
+       }
+   }
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="removeAllAppenders"></a>
+    <h3>
+        removeAllAppenders
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p>
+Removes all appenders from this logger and sub loggers if this Logger is additive.
+         </p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   for (var i in this.__appenders) {
+       this.removeAppender(i);
+   }
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="removeAppender"></a>
+    <h3>
+        removeAppender
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p>
+Removes and appender from this logger.
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>name</em>  : the name of the appender</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (name){
+   if (name in this.__appenders) {
+       delete this.__appenders[name];
+       this._tree.removeAppender(name);
+   }
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="removeAppenders"></a>
+    <h3>
+        removeAppenders
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p>
+Removes a list of appenders from this logger.
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>appenders</em>  : a list of names of appenders to remove</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (appenders){
+   appenders.forEach(this.removeAppender, this);
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="trace"></a>
+    <h3>
+        trace
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p>
+Log an trace level message
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>message</em>  : the message to log.</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (message){
+   this.log(Level.TRACE, message);
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="warn"></a>
+    <h3>
+        warn
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p>
+Log an warn level message
+
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>message</em>  : the message to log.</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (message){
+   this.log(Level.WARN, message);
+           
+}
+    </pre>
+    
+
+
+  
+<hr>
+
+Documentation gennerated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
+
+
+</div>
+</div>
+<script type="text/javascript" src="./assets/js/jquery.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-transition.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-tab.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-tooltip.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-popover.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-button.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-collapse.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-carousel.js"></script>
+<script type="text/javascript"
+        src="./assets/js/google-code-prettify/prettify.js"></script>
+
+</body>
+</html>
