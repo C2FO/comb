@@ -437,6 +437,21 @@
                         deepMerge
                      </a></li>
                     
+                    <li><a href="./comb.html#.define">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        define
+                     </a></li>
+                    
                     <li><a href="./comb.html#.disconnect">
                                 
                                 <span class="label label-info">S</span>
@@ -915,6 +930,21 @@
                                         
                                 
                         serial
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.singleton">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        singleton
                      </a></li>
                     
                     <li><a href="./comb.html#.singularize">
@@ -1812,6 +1842,294 @@ function (obj,props){
        deepMerge(obj, arguments[i]);
    }
    return obj; // Object
+}
+    </pre>
+    
+
+
+    
+        <a name=".define"></a>
+    <h3>
+        define
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined define.js</em>
+
+<p>
+Defines a new class to be used
+
+<p>
+    Class methods
+    <ul>
+        <li>as(module | bject, name): exports the object to module or the object with the name</li>
+        <li>mixin(mixin) : mixes in an object</li>
+    </ul>
+    </br>
+    Instance methods
+    <ul>
+        <li>_super(argumnents, [?newargs]): calls the super of the current method</li>
+    </ul>
+
+     </br>
+    Instance properties
+    <ul>
+        <li>_static: use to reference class properties and methods</li>
+    </ul>
+
+</p>
+
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+//Class without a super class
+var Mammal = comb.define(null, {
+     instance : {
+
+         constructor: function(options) {
+             options = options || {};
+             this._super(arguments);
+             this._type = options.type || &quot;mammal&quot;;
+         },
+
+         speak : function() {
+             return  &quot;A mammal of type &quot; + this._type + &quot; sounds like&quot;;
+         },
+
+         //Define your getters
+         getters : {
+             type : function() {
+                 return this._type;
+             }
+         },
+
+          //Define your setters
+         setters : {
+             type : function(t) {
+                 this._type = t;
+             }
+         }
+     },
+
+     //Define your static methods
+     static : {
+         soundOff : function() {
+             return &quot;Im a mammal!!&quot;;
+         }
+     }
+});
+
+//Show singular inheritance
+var Wolf = comb.define(Mammal, {
+  instance: {
+      constructor: function(options) {
+         options = options || {};
+         //You can call your super constructor, or you may not
+         //call it to prevent the super initializing parameters
+         this._super(arguments);
+         this._sound = &quot;growl&quot;;
+         this._color = options.color || &quot;grey&quot;;
+     },
+
+     speak : function() {
+         //override my super classes speak
+         //Should return &quot;A mammal of type mammal sounds like a growl&quot;
+         return this._super(arguments) + &quot; a &quot; + this._sound;
+     },
+
+     //add new getters for sound and color
+     getters : {
+
+         color : function() {
+             return this._color;
+         },
+
+         sound : function() {
+             return this._sound;
+         }
+     },
+
+     setters : {
+
+         //NOTE color is read only except on initialization
+
+         sound : function(s) {
+             this._sound = s;
+         }
+     }
+
+ },
+
+ static : {
+     //override my satic soundOff
+     soundOff : function() {
+         //You can even call super in your statics!!!
+         //should return &quot;I&#x27;m a mammal!! that growls&quot;
+         return this._super(arguments) + &quot; that growls&quot;;
+     }
+ }
+});
+
+
+//Typical hierarchical inheritance
+// Mammal-&gt;Wolf-&gt;Dog
+var Dog = comb.define(Wolf, {
+   instance: {
+       constructor: function(options) {
+           options = options || {};
+           this._super(arguments);
+           //override Wolfs initialization of sound to woof.
+           this._sound = &quot;woof&quot;;
+
+       },
+
+       speak : function() {
+           //Should return &quot;A mammal of type mammal sounds like a growl thats domesticated&quot;
+           return this._super(arguments) + &quot; thats domesticated&quot;;
+       }
+   },
+
+   static : {
+       soundOff : function() {
+           //should return &quot;I&#x27;m a mammal!! that growls but now barks&quot;
+           return this._super(arguments) + &quot; but now barks&quot;;
+       }
+   }
+});
+
+
+
+dog instanceof Wolf =&gt; true
+dog instanceof Mammal =&gt; true
+dog.speak() =&gt; &quot;A mammal of type mammal sounds like a woof thats domesticated&quot;
+dog.type =&gt; &quot;mammal&quot;
+dog.color =&gt; &quot;gold&quot;
+dog.sound =&gt; &quot;woof&quot;
+Dog.soundOff() =&gt; &quot;Im a mammal!! that growls but now barks&quot;
+
+// Mammal-&gt;Wolf-&gt;Dog-&gt;Breed
+var Breed = comb.define(Dog, {
+   instance: {
+
+       //initialize outside of constructor
+       _pitch : &quot;high&quot;,
+
+       constructor: function(options) {
+           options = options || {};
+           this._super(arguments);
+           this.breed = options.breed || &quot;lab&quot;;
+       },
+
+       speak : function() {
+           //Should return &quot;A mammal of type mammal sounds like a
+           //growl thats domesticated with a high pitch!&quot;
+           return this._super(arguments) + &quot; with a &quot; + this._pitch + &quot; pitch!&quot;;
+       },
+
+       getters : {
+           pitch : function() {
+               return this._pitch;
+           }
+       }
+   },
+
+   static : {
+       soundOff : function() {
+           //should return &quot;I&#x27;M A MAMMAL!! THAT GROWLS BUT NOW BARKS!&quot;
+           return this._super(arguments).toUpperCase() + &quot;!&quot;;
+       }
+   }
+});
+
+
+var breed = new Breed({color : &quot;gold&quot;, type : &quot;lab&quot;}),
+
+
+
+breed instanceof Dog =&gt; true
+breed instanceof Wolf =&gt; true
+breed instanceof Mammal =&gt; true
+breed.speak() =&gt; &quot;A mammal of type lab sounds like a woof &quot;
+                 + &quot;thats domesticated with a high pitch!&quot;
+breed.type =&gt; &quot;lab&quot;
+breed.color =&gt; &quot;gold&quot;
+breed.sound =&gt; &quot;woof&quot;
+breed.soundOff() =&gt; &quot;IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!&quot;
+
+
+ //Example of multiple inheritance
+ //NOTE proto is optional
+
+ //Mammal is super class
+ //Wolf Dog and Breed inject functionality into the prototype
+var Lab = comb.define([Mammal, Wolf, Dog, Breed]);
+
+var lab = new Lab();
+lab instanceof Wolf =&gt; false
+lab instanceof Dog =&gt; false
+lab instanceof Breed =&gt; false
+lab instanceof Mammal =&gt; true
+lab.speak() =&gt; &quot;A mammal of type mammal sounds like a&quot;
+               + &quot; woof thats domesticated with a high pitch!&quot;
+Lab.soundOff() =&gt; &quot;IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!&quot;
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>sup</em>  : </li>
+    
+        <li> <em>proto?</em>  : the object used to define this class</li>
+    
+        <li> <em>super</em> <code>Array|Class</code> : the supers of this class</li>
+    
+        <li> <em>proto.instance?</em> <code>Object</code> : the instance methods of the class</li>
+    
+        <li> <em>proto.instance.getters?</em> <code>Object</code> : the getters for the class</li>
+    
+        <li> <em>proto.instance.setters?</em> <code>Object</code> : the setters for the class</li>
+    
+        <li> <em>proto.static?</em> <code>Object</code> : the Class level methods of this class</li>
+    
+        <li> <em>proto.static.getters?</em> <code>Object</code> : static getters for the object</li>
+    
+        <li> <em>proto.static.setters?</em> <code>Object</code> : static setters for the object</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Object</code> the constructor of the class to be used with new keyword</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (sup,proto){
+   var child = function () {
+       this.constructor.apply(this, arguments);
+   };
+   __define(child, sup, proto);
+   return child.init() || child;
 }
     </pre>
     
@@ -3718,6 +4036,73 @@ function (list,callback,errback){
    ret.then(callback, errback);
    return ret;
        
+}
+    </pre>
+    
+
+
+    
+        <a name=".singleton"></a>
+    <h3>
+        singleton
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined define.js</em>
+
+<p>
+Defines a singleton instance of a Class. See <a href='./define.html#'> define</a>
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var MyLab = comb.singleton([Mammal, Wolf, Dog, Breed]);
+ var myLab1 = new MyLab();
+ myLab1.type = &quot;collie&quot;
+ var myLab2 = new MyLab();
+ myLab1 === myLab2 =&gt; true
+ myLab1.type =&gt; &quot;collie&quot;
+ myLab2.type =&gt; &quot;collie&quot;
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>sup</em>  : </li>
+    
+        <li> <em>proto</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (sup,proto){
+   var retInstance;
+   var child = function () {
+       if (!retInstance) {
+           this.constructor.apply(this, arguments);
+           retInstance = this;
+       }
+       return retInstance;
+   };
+   __define(child, sup, proto);
+   return  child.init() || child;
 }
     </pre>
     
