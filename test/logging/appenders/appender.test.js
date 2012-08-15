@@ -19,7 +19,7 @@ it.describe("comb.logging.appenders.Appender", function (it) {
 
             }
         }
-    });
+    }).registerType("MyAppender");
 
 
     var logger1 = logging.Logger.getLogger("AppenderTest"),
@@ -111,6 +111,18 @@ it.describe("comb.logging.appenders.Appender", function (it) {
 
     });
 
+    it.describe(".createAppender", function (it) {
+        it.should("create an appender from a type", function () {
+            var appender = Appender.createAppender("MyAppender");
+            assert.instanceOf(appender, MyAppender);
+        });
+
+        it.should("throw an error if an appender is not registered", function () {
+            assert.throws(function () {
+                Appender.createAppender("nonexistentappender");
+            });
+        });
+    });
 
 });
 
