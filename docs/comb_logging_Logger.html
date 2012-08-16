@@ -706,6 +706,13 @@ Add an appender to this logger. If this is additive then the appender is added t
      </ul>
 
 
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.logging.Logger</code> for chaining.</li>
+    
+    </ul>
+
 
 
     
@@ -722,6 +729,7 @@ function (appender){
            this._tree.addAppender(appender);
        }
    }
+   return this;
            
 }
     </pre>
@@ -759,13 +767,21 @@ Short cut to add a list of appenders to this Logger
      </ul>
 
 
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.logging.Logger</code> for chaining.</li>
+    
+    </ul>
+
 
 
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (appenders){
-   appenders.forEach(base.hitch(this, &quot;addAppender&quot;));
+   appenders.forEach(this.addAppender.bind(this));
+   return this;
            
 }
     </pre>
@@ -804,13 +820,20 @@ Log an debug level message
      </ul>
 
 
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.logging.Logger</code> for chaining.</li>
+    
+    </ul>
+
 
 
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   this.log(Level.DEBUG, message);
+   return this.log(Level.DEBUG, message);
            
 }
     </pre>
@@ -849,13 +872,20 @@ Log an error level message
      </ul>
 
 
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.logging.Logger</code> for chaining.</li>
+    
+    </ul>
+
 
 
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   this.log(Level.ERROR, message);
+   return this.log(Level.ERROR, message);
            
 }
     </pre>
@@ -894,13 +924,20 @@ Log an fatal level message
      </ul>
 
 
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.logging.Logger</code> for chaining.</li>
+    
+    </ul>
+
 
 
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   this.log(Level.FATAL, message);
+   return this.log(Level.FATAL, message);
            
 }
     </pre>
@@ -996,13 +1033,20 @@ Log an info level message
      </ul>
 
 
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.logging.Logger</code> for chaining.</li>
+    
+    </ul>
+
 
 
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   this.log(Level.INFO, message);
+   return this.log(Level.INFO, message);
            
 }
     </pre>
@@ -1088,6 +1132,13 @@ Log a message
      </ul>
 
 
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.logging.Logger</code> for chaining.</li>
+    
+    </ul>
+
 
 
     
@@ -1112,10 +1163,11 @@ function (level,message){
            timeStamp:new Date(),
            name:this.fullName
        };
-       for (var i in appenders) {
+       Object.keys(appenders).forEach(function (i) {
            appenders[i].append(event);
-       }
+       });
    }
+   return this;
            
 }
     </pre>
@@ -1142,9 +1194,17 @@ function (level,message){
 
 <p>
 Removes all appenders from this logger and sub loggers if this Logger is additive.
-         </p>
+
+</p>
 
 
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.logging.Logger</code> for chaining.</li>
+    
+    </ul>
 
 
 
@@ -1152,9 +1212,8 @@ Removes all appenders from this logger and sub loggers if this Logger is additiv
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (){
-   for (var i in this.__appenders) {
-       this.removeAppender(i);
-   }
+   Object.keys(this.__appenders).forEach(this.removeAppender.bind(this));
+   return this;
            
 }
     </pre>
@@ -1192,6 +1251,13 @@ Removes and appender from this logger.
      </ul>
 
 
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.logging.Logger</code> for chaining.</li>
+    
+    </ul>
+
 
 
     
@@ -1202,6 +1268,7 @@ function (name){
        delete this.__appenders[name];
        this._tree.removeAppender(name);
    }
+   return this;
            
 }
     </pre>
@@ -1240,6 +1307,13 @@ Removes a list of appenders from this logger.
      </ul>
 
 
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.logging.Logger</code> for chaining.</li>
+    
+    </ul>
+
 
 
     
@@ -1247,6 +1321,7 @@ Removes a list of appenders from this logger.
     <pre class="prettyprint linenums lang-js">
 function (appenders){
    appenders.forEach(this.removeAppender, this);
+   return this;
            
 }
     </pre>
@@ -1285,13 +1360,20 @@ Log an trace level message
      </ul>
 
 
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.logging.Logger</code> for chaining.</li>
+    
+    </ul>
+
 
 
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   this.log(Level.TRACE, message);
+   return this.log(Level.TRACE, message);
            
 }
     </pre>
@@ -1330,13 +1412,20 @@ Log an warn level message
      </ul>
 
 
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.logging.Logger</code> for chaining.</li>
+    
+    </ul>
+
 
 
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   this.log(Level.WARN, message);
+   return this.log(Level.WARN, message);
            
 }
     </pre>

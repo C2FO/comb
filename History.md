@@ -1,3 +1,15 @@
+#0.1.3/2012-08-16
+* new array methods
+  * sort
+  * min
+  * max
+  * difference
+  * avg
+* Logging changes
+  * Added `comb.logger` as shortcut to get a logger
+  * Changed appenders to register themselves for dynamic appender creation
+* Updated docs   	
+
 #0.1.2/2012-07-17
 * Bug fixes
   * Changed comb.logging.PropertyConfigurator to deep merge porperties (Clone to config object)

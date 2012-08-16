@@ -257,6 +257,43 @@
                         
                         
                         
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Static Methods<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                
+                                <li><a href="./comb_logging_appenders_Appender.html#.createAppender">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                createAppender
+                                </a></li>
+                                
+                                <li><a href="./comb_logging_appenders_Appender.html#.registerType">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                registerType
+                                </a></li>
+                                
+                            </ul>
+                        </li>
+                        
                         
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instance Methods<b class="caret"></b></a>
@@ -307,6 +344,146 @@ Base class for all appenders</p>
     
     
     
+
+  
+    <a name=".createAppender"></a>
+    <h3>
+        createAppender
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/appenders/appender.js</em>
+
+<p>
+Acts as a factory for appenders.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var logging = comb.logging,
+    Logger = logging.Logger,
+    Appender = logging.appenders.Appender;
+
+var logger = comb.logging.Logger.getLogger(&quot;my.logger&quot;);
+logger.addAppender(Appender.createAppender(&quot;consoleAppender&quot;));
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>type</em>  : the type of appender to create.</li>
+    
+        <li> <em>[options= <code>{}</code>]</em>  : additional options to pass to the appender.</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.logging.appenders.Appender</code> an appender to add to a logger.</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (type,options){
+   var caseType = type.toLowerCase();
+   if (caseType in APPENDER_TYPES) {
+       return new APPENDER_TYPES[caseType](options);
+   } else {
+       throw new Error(type + &quot; appender is not registered!&quot;);
+   }
+           
+}
+    </pre>
+    
+
+
+  
+    <a name=".registerType"></a>
+    <h3>
+        registerType
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/appenders/appender.js</em>
+
+<p>
+Register an appender so it can be used with <a href='./comb_logging_PropertyConfigurator.html#'> comb.logging.PropertyConfigurator</a>
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var Appender = comb.logging.appenders.Appender;
+comb.define(Appender, {
+     instance : {
+         append : function(event){
+             //log the message
+         }
+     }
+}).registerType(&quot;MyAppender&quot;).as(module);
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>type</em>  : the identifier for your appender type.</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li>  returns the Appender class for chaining.</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (type){
+   if (base.isString(type)) {
+       APPENDER_TYPES[type.toLowerCase()] = this;
+   }
+   return this;
+           
+}
+    </pre>
+    
+
 
   
   

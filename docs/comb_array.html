@@ -257,6 +257,21 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methods<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     
+                    <li><a href="./comb_array.html#.avg">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        avg
+                     </a></li>
+                    
                     <li><a href="./comb_array.html#.cartesian">
                                 
                                 <span class="label label-info">S</span>
@@ -287,6 +302,21 @@
                         compact
                      </a></li>
                     
+                    <li><a href="./comb_array.html#.difference">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        difference
+                     </a></li>
+                    
                     <li><a href="./comb_array.html#.flatten">
                                 
                                 <span class="label label-info">S</span>
@@ -315,6 +345,36 @@
                                         
                                 
                         intersect
+                     </a></li>
+                    
+                    <li><a href="./comb_array.html#.max">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        max
+                     </a></li>
+                    
+                    <li><a href="./comb_array.html#.min">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        min
                      </a></li>
                     
                     <li><a href="./comb_array.html#.multiply">
@@ -390,6 +450,21 @@
                                         
                                 
                         rotate
+                     </a></li>
+                    
+                    <li><a href="./comb_array.html#.sort">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        sort
                      </a></li>
                     
                     <li><a href="./comb_array.html#.sum">
@@ -564,6 +639,101 @@ Utilities for Arrays</p>
         }
     },
     /**
+     * Averages an array of numbers.
+     * @example
+     *
+     * comb.array.avg([1,2,3]); //2
+     *
+     * @param {Number[]} array - an array of numbers
+     * @return {Number} the average of all the numbers in the array.
+     * @throws {Error} if the array is not all numbers.
+     */
+    avg:function (arr) {
+        arr = arr || [];
+        if (arr.length) {
+            var sum = array.sum(arr);
+            if (number.isNumber(sum)) {
+                return  sum / arr.length;
+            } else {
+                throw new Error(&quot;Cannot average an array of non numbers.&quot;);
+            }
+        } else {
+            return 0;
+        }
+    },
+    /**
+     * Allows the sorting of an array based on a property name instead. This can also
+     * act as a sort that does not change the original array.
+     *
+     * &lt;b&gt;NOTE:&lt;/b&gt; this does not change the original array!
+     *
+     * @example
+     * comb.array.sort([{a : 1}, {a : 2}, {a : -2}], &quot;a&quot;); //[{a : -2}, {a : 1}, {a : 2}];
+     * @param {Array} arr the array to sort
+     * @param {String|Function} cmp the property to sort on. Or a function used to compare.
+     * @return {Array} a copy of the original array that is sorted.
+     */
+    sort:function (arr, cmp) {
+        return _sort(arr, cmp);
+    },
+    /**
+     * Finds that min value of an array. If a second argument is provided and it is a function
+     * it will be used as a comparator function. If the second argument is a string then it will be used
+     * as a property look up on each item.
+     *
+     * @example
+     * comb.array.max([{a : 1}, {a : 2}, {a : -2}], &quot;a&quot;); //{a : -2}
+     * comb.array.max([{a : 1}, {a : 2}, {a : -2}], function(a,b){
+     *      return a.a - b.a
+     * }); //{a : -2}
+     *
+     * @param {Array} arr the array to find the min value on
+     * @param {String|Function} cmp the property to sort on. Or a function used to compare.
+     * @return {*}
+     */
+    min:function (arr, cmp) {
+        return _sort(arr, cmp)[0];
+    },
+    /**
+     * Finds that max value of an array. If a second argument is provided and it is a function
+     * it will be used as a comparator function. If the second argument is a string then it will be used
+     * as a property look up on each item.
+     *
+     * @example
+     * comb.array.max([{a : 1}, {a : 2}, {a : -2}], &quot;a&quot;); //{a : 2}
+     * comb.array.max([{a : 1}, {a : 2}, {a : -2}], function(a,b){
+     *      return a.a - b.a
+     * }); //{a : 2}
+     *
+     * @param arr the array to find the max value on
+     * @param {String|Function} cmp the property to sort on. Or a function used to compare.
+     * @return {*} the maximum value of the array based on the provided cmp.
+     */
+    max:function (arr, cmp) {
+        return _sort(arr, cmp)[arr.length - 1];
+    },
+    /**
+     * Finds the difference of the two arrays.
+     *
+     * @example
+     *
+     * comb.array.difference([1,2,3], [2,3]); //[1]
+     * comb.array.difference([&quot;a&quot;,&quot;b&quot;,3], [3]); //[&quot;a&quot;,&quot;b&quot;]
+     *
+     * @param {Array} arr1 the array we are subtracting from
+     * @param {Array} arr2 the array we are subtracting from arr1
+     * @return {*} the difference of the arrays.
+     */
+    difference:function (arr1, arr2) {
+        var ret = arr1, args = array.flatten(misc.argsToArray(arguments).slice(1));
+        if (isArray(arr1)) {
+            ret = arr1.filter(function (a) {
+                return args.indexOf(a) === -1;
+            });
+        }
+        return ret;
+    },
+    /**
      * Removes duplicates from an array
      *
      * @example
@@ -576,7 +746,7 @@ Utilities for Arrays</p>
     removeDuplicates:function (arr) {
         if (isArray(arr)) {
             var ret = arr.reduce(function (a, b) {
-                if (a.indexOf(b) == -1) {
+                if (a.indexOf(b) === -1) {
                     return a.concat(b);
                 } else {
                     return a;
@@ -584,6 +754,9 @@ Utilities for Arrays</p>
             }, []);
             return ret;
         }
+    },
+    unique:function (arr) {
+        return array.removeDuplicates(arr);
     },
     /**
      * Rotates an array the number of specified positions
@@ -963,6 +1136,83 @@ Utilities for Arrays</p>
 
     
     
+        <a name=".avg"></a>
+    <h3>
+        avg
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Averages an array of numbers.
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.array.avg([1,2,3]); //2
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : </li>
+    
+        <li> <em>array</em> <code>Number[]</code> : - an array of numbers</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Number</code> the average of all the numbers in the array.</li>
+    
+    </ul>
+
+
+    <em>Throws</em>
+    <ul>
+    
+        <li> <code>Error</code> if the array is not all numbers.</li>
+    
+    </ul>
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr){
+   arr = arr || [];
+   if (arr.length) {
+       var sum = array.sum(arr);
+       if (number.isNumber(sum)) {
+           return  sum / arr.length;
+       } else {
+           throw new Error(&quot;Cannot average an array of non numbers.&quot;);
+       }
+   } else {
+       return 0;
+   }
+       
+}
+    </pre>
+    
+
+
+    
         <a name=".cartesian"></a>
     <h3>
         cartesian
@@ -1104,6 +1354,74 @@ function (arr){
 
 
     
+        <a name=".difference"></a>
+    <h3>
+        difference
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Finds the difference of the two arrays.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.array.difference([1,2,3], [2,3]); //[1]
+comb.array.difference([&quot;a&quot;,&quot;b&quot;,3], [3]); //[&quot;a&quot;,&quot;b&quot;]
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr1</em>  : the array we are subtracting from</li>
+    
+        <li> <em>arr2</em>  : the array we are subtracting from arr1</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>*</code> the difference of the arrays.</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr1,arr2){
+   var ret = arr1, args = array.flatten(misc.argsToArray(arguments).slice(1));
+   if (isArray(arr1)) {
+       ret = arr1.filter(function (a) {
+           return args.indexOf(a) === -1;
+       });
+   }
+   return ret;
+       
+}
+    </pre>
+    
+
+
+    
         <a name=".flatten"></a>
     <h3>
         flatten
@@ -1235,6 +1553,138 @@ function (a,b){
        }, x);
    }
    return array.removeDuplicates(collect);
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".max"></a>
+    <h3>
+        max
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Finds that max value of an array. If a second argument is provided and it is a function
+it will be used as a comparator function. If the second argument is a string then it will be used
+as a property look up on each item.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.array.max([{a : 1}, {a : 2}, {a : -2}], &quot;a&quot;); //{a : 2}
+comb.array.max([{a : 1}, {a : 2}, {a : -2}], function(a,b){
+     return a.a - b.a
+}); //{a : 2}
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : the array to find the max value on</li>
+    
+        <li> <em>cmp</em>  : the property to sort on. Or a function used to compare.</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>*</code> the maximum value of the array based on the provided cmp.</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr,cmp){
+   return _sort(arr, cmp)[arr.length - 1];
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".min"></a>
+    <h3>
+        min
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Finds that min value of an array. If a second argument is provided and it is a function
+it will be used as a comparator function. If the second argument is a string then it will be used
+as a property look up on each item.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.array.max([{a : 1}, {a : 2}, {a : -2}], &quot;a&quot;); //{a : -2}
+comb.array.max([{a : 1}, {a : 2}, {a : -2}], function(a,b){
+     return a.a - b.a
+}); //{a : -2}
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : the array to find the min value on</li>
+    
+        <li> <em>cmp</em>  : the property to sort on. Or a function used to compare.</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>*</code> </li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr,cmp){
+   return _sort(arr, cmp)[0];
        
 }
     </pre>
@@ -1536,7 +1986,7 @@ comb.array.removeDuplicates([1,2,3,2]) =&gt; [1,2,3]
 function (arr){
    if (isArray(arr)) {
        var ret = arr.reduce(function (a, b) {
-           if (a.indexOf(b) == -1) {
+           if (a.indexOf(b) === -1) {
                return a.concat(b);
            } else {
                return a;
@@ -1623,6 +2073,70 @@ function (arr,numberOfTimes){
    } else {
        return ret;
    }
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".sort"></a>
+    <h3>
+        sort
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p>
+Allows the sorting of an array based on a property name instead. This can also
+act as a sort that does not change the original array.
+
+<b>NOTE:</b> this does not change the original array!
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.array.sort([{a : 1}, {a : 2}, {a : -2}], &quot;a&quot;); //[{a : -2}, {a : 1}, {a : 2}];
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : the array to sort</li>
+    
+        <li> <em>cmp</em>  : the property to sort on. Or a function used to compare.</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Array</code> a copy of the original array that is sorted.</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr,cmp){
+   return _sort(arr, cmp);
        
 }
     </pre>
