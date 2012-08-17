@@ -138,6 +138,8 @@
                
                          <li><a href="comb_date.html">comb.date</a></li>
                
+                         <li><a href="comb_logger.html">comb.logger</a></li>
+               
                          <li><a href="comb_number.html">comb.number</a></li>
                
                          <li><a href="comb_plugins.html">comb.plugins</a></li>
@@ -765,15 +767,34 @@ function (args){
 
 <p>
 Call to chaining of promises
+
 </p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var p = new Promise();
+
+p
+ .chain(function(previousPromiseResults){
+     return previousPromiseResults + &quot; world&quot;;
+}, errorHandler)
+ .chain(function(previousPromiseResults){
+   return when(dbCall());
+ }).classic(function(err, results){
+     //all promises are done
+ });
+
+ p.callback(&quot;Hello&quot;);
+        </pre>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>callback</em>  : method to call that returns a promise to call after this one completes.</li>
+        <li> <em>callback</em>  : method to call this one completes. If you return a promise the execution will delay until the returned promise has resolved.</li>
     
-        <li> <em>errback</em>  : method to call if this promise errors.</li>
+        <li> <em>[errback= <code>null</code>]</em>  : method to call if this promise errors. If errback is not specified then the returned promises
+errback method will be used.</li>
     
      </ul>
 
@@ -793,9 +814,11 @@ Call to chaining of promises
 function (callback,errback){
    var promise = new Promise();
    this.addCallback(function (results) {
-       callback.call(this, results).then(promise);
+       when(callback.call(this, results)).then(promise);
    });
-   this.addErrback(errback);
+   // If no errback passed, then invoke our promise&#x27;s errback to pass
+   // on to next link in the chain.
+   this.addErrback(errback || promise);
    return promise;
            
 }
@@ -848,11 +871,14 @@ Applies the same function that returns a promise to both the callback and errbac
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (callback){
-   var p = this.chain(callback);
-   this.addErrback(function (results) {
-       callback.call(this, results).then(p);
+   var promise = new Promise();
+   this.addCallback(function (results) {
+       when(callback.call(this, results)).then(promise);
    });
-   return p;
+   this.addErrback(function (results) {
+       when(callback.call(this, results)).then(promise);
+   });
+   return promise;
            
 }
     </pre>
