@@ -124,6 +124,12 @@
       <div class="nav-collapse">
       <ul class="nav nav-pills">
       
+      
+                 <li><a href="./define.html">Define</a></li>
+                 
+                 <li><a href="./logging.html">Logging</a></li>
+                 
+            
 
       
         <li class="dropdown">
@@ -732,7 +738,7 @@ creating the appender.</li>
     <pre class="prettyprint linenums lang-js">
 function (appender,opts){
    var args = base.argsToArray(arguments);
-   if (args.length === 2) {
+   if (base.isString(appender)) {
        this.addAppender(Appender.createAppender(appender, opts));
    } else {
        if (!base.isUndefinedOrNull(appender)) {
@@ -850,7 +856,7 @@ Log an debug level message
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   return this.log(Level.DEBUG, message);
+   return this.log.apply(this, [Level.DEBUG].concat(argsToArray(arguments)));
            
 }
     </pre>
@@ -902,7 +908,7 @@ Log an error level message
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   return this.log(Level.ERROR, message);
+   return this.log.apply(this, [Level.ERROR].concat(argsToArray(arguments)));
            
 }
     </pre>
@@ -954,7 +960,7 @@ Log an fatal level message
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   return this.log(Level.FATAL, message);
+   return this.log.apply(this, [Level.FATAL].concat(argsToArray(arguments)));
            
 }
     </pre>
@@ -1063,7 +1069,7 @@ Log an info level message
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   return this.log(Level.INFO, message);
+   return this.log.apply(this, [Level.INFO].concat(argsToArray(arguments)));
            
 }
     </pre>
@@ -1162,6 +1168,11 @@ Log a message
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (level,message){
+   var args = base.argsToArray(arguments).slice(1);
+   level = Level.toLevel(level);
+   if (args.length &gt; 1) {
+       message = format.apply(null, args);
+   }
    if (level.isGreaterOrEqualToo(this.level)) {
        if (Level.TRACE.equals(level)) {
            var err = new Error;
@@ -1390,7 +1401,7 @@ Log an trace level message
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   return this.log(Level.TRACE, message);
+   return this.log.apply(this, [Level.TRACE].concat(argsToArray(arguments)));
            
 }
     </pre>
@@ -1442,7 +1453,7 @@ Log an warn level message
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   return this.log(Level.WARN, message);
+   return this.log.apply(this, [Level.WARN].concat(argsToArray(arguments)));
            
 }
     </pre>

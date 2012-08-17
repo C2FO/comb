@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comb</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/js/google-code-prettify/prettify.css">
+    <style type="text/css">
+        
+
+.subnav-inner {
+    width: 100%;
+    height: 36px;
+    background-color: #EEE;
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));
+    background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);
+    background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.subnav .nav > li > a:hover {
+    color: black !important;
+}
+
+.subnav .nav li.dropdown .dropdown-toggle .caret,
+.subnav .nav li.dropdown.open .caret {
+    border-top-color: #999 !important;
+    border-bottom-color: #999 !important;
+}
+
+.subnav-fixed {
+    position: fixed;
+    width : 90%;
+    margin-right: auto;
+    margin-left: auto;
+    top: 40px;
+    left: 0;
+    right: 0;
+    z-index: 1020;
+    border-color: #D5D5D5;
+    border-width: 0 0 1px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.navbar .nav  .dropdown-menu {
+    max-height: 500px;
+    overflow: auto;
+}​
+
+    </style>
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+    <script type="text/javascript">
+        var init = (function () {
+            "use strict";
+
+            var processScroll = (function () {
+                var curr = null, prev = null;
+                return function (nav) {
+                    var $win = $(window);
+                    $('.subnav').each(function () {
+                        var nav = $(this);
+                        var navTop = nav.offset().top - 40;
+                        var scrollTop = $win.scrollTop();
+                        if (scrollTop >= navTop && curr != nav) {
+                            if(curr){
+                                curr.removeClass('subnav-fixed')
+                                prev = curr;
+                            }
+                            curr = nav;
+                            curr.addClass('subnav-fixed')
+                        } else if (curr == nav && scrollTop <= navTop) {
+                            curr.removeClass('subnav-fixed');
+                            prev.addClass('subnav-fixed');
+                            curr = prev;
+                        }else{
+                            nav.removeClass('subnav-fixed');
+                        }
+                    });
+                };
+            })();
+
+            return function () {
+                window.prettyPrint && prettyPrint();
+                $(".collapse").collapse();
+                // fix sub nav on scroll
+                processScroll();
+                $(window).on('scroll', processScroll)
+            }
+        })();
+    </script>
+</head>
+<body onload="init()">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+      
+          <a href="./index.html" class="brand">comb</a>
+      
+      <div class="nav-collapse">
+      <ul class="nav nav-pills">
+      
+      
+                 <li><a href="./define.html">Define</a></li>
+                 
+                 <li><a href="./logging.html">Logging</a></li>
+                 
+            
+
+      
+        <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+           <ul class="dropdown-menu">
+             
+                         <li><a href="comb.html">comb</a></li>
+               
+                         <li><a href="comb_array.html">comb.array</a></li>
+               
+                         <li><a href="comb_characters.html">comb.characters</a></li>
+               
+                         <li><a href="comb_date.html">comb.date</a></li>
+               
+                         <li><a href="comb_logger.html">comb.logger</a></li>
+               
+                         <li><a href="comb_number.html">comb.number</a></li>
+               
+                         <li><a href="comb_plugins.html">comb.plugins</a></li>
+               
+                         <li><a href="comb_regexp.html">comb.regexp</a></li>
+               
+                         <li><a href="comb_string.html">comb.string</a></li>
+               
+           </ul>
+           </li>
+        
+        
+           <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+           <ul class="dropdown-menu">
+             
+                         <li><a href="./comb_Promise.html">comb.Promise</a></li>
+               
+                         <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
+               
+                         <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
+               
+                         <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
+               
+                         <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
+               
+                         <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
+               
+                         <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
+               
+                         <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
+               
+                         <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
+               
+                         <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
+               
+                         <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
+               
+                         <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
+               
+                         <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
+               
+                         <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
+               
+                         <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
+               
+                         <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
+               
+                         <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
+               
+                         <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+               
+                         <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
+               
+                         <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
+               
+                         <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
+               
+                         <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+               
+                         <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+               
+                         <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
+               
+                         <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
+               
+           </ul>
+        </li>
+       
+      </ul>
+      
+      <ul class="nav pull-right">
+                  <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+    <a name="top"></a>
+    <div class="container">
+
+
+
+<h1><a href="./comb.html#.define">define</a></h1>
+<h2>Instance Methods</h2>
+<p>When defining classes in <code>comb</code> there are two root level properties you can define,  <code>instance</code> and  <code>static</code>. 
+
+</p>
+<p>The optional instance object is used to define properties and methods on an instance of a class. 
+
+</p>
+<p>The optional static property is used to define class level methods and properties than can be used without an instance of a class.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb.define(null, {
+    instance : {//Define your instance methods and properties}
+    static : {//Define your static methods and properties}
+});</code></pre>
+<p>Lets start of by defining the class Mammal that will be used as the parent for other classes.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define(null, {
+    instance : {
+
+        _type : &quot;mammal&quot;,
+        _sound : &quot; *** &quot;,
+
+        constructor: function(options) {
+            options = options || {};
+            this._super(arguments);
+            var type = options.type, sound = options.mammal;
+            type &amp;&amp; (this._type =  type);
+            sound &amp;&amp; (this._sound = sound);
+        },
+
+        speak : function() {
+            return &quot;A mammal of type &quot; + this._type;
+        }
+    }
+});</code></pre>
+<p>Next lets define two implementing classes, Wolf and Dog. This example is a little contrived as Dog could inherit from Wolf. 
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var Wolf = comb.define(Mammal, {
+    instance: {
+
+        _type : &quot;wolf&quot;,
+
+        _sound : &quot;howl&quot;,
+
+        speak : function() {
+            return this._super(arguments) + &quot; that &quot; + this._sound + &quot;s&quot;;
+        },
+
+        howl : function(){
+            console.log(&quot;Hoooooooooooowl!&quot;)
+        }
+    }
+});
+
+var Dog = comb.define(Mammal, {
+    instance: {
+
+        _type : &quot;dog&quot;,
+
+        _sound : &quot;bark&quot;,
+
+        speak : function() {
+            return this._super(arguments) + &quot;, thats domesticated&quot;;
+        },
+
+        woof : function(){
+            console.log(&quot;Wooooooof!&quot;)
+        }
+    }
+});</code></pre>
+<p><code>Wolf</code> and <code>Dog</code> inherit from <code>Mammal</code>, which means that they are both an instanceof <code>Mammal</code>. Notice that both <code>Wolf</code> and <code>Dog</code> override the <code>Mammal</code> default values <code>type</code> and <code>sound</code> with their own values. 
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>speak : function() {
+     return this._super(arguments) + &quot; that &quot; + this._sound + &quot;s&quot;;
+}</code></pre>
+<p><code>Wolf</code> and <code>Dog</code> also override the <code>speak</code> method, in order to invoke the parents implementation the method <code>_super</code> is invoked. <code>_super</code> traverses the inheritance chain and returns the value.  So for both <code>Dog</code> and <code>Wolf</code> they called _super and appended their own message to their parents message.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>//1. Create a dog and make him speak
+var myDog = new Dog();
+myDog.woof() //prints Wooooooof!
+myDog.speak();
+    //=&gt; A mammal of type dog, thats domesticated
+
+//2. Create a wolf and make him speak
+var myWolf = new Wolf();
+myWolf.howl() //prints &quot;Hoooooooooooowl!&quot;
+myWolf.speak();
+    //=&gt; A mammal of type wolf that howls
+
+
+//3. Create a DogWolf that inherits from Dog, and mixes in Wolf
+var DogWolf = comb.define([Dog, Wolf]);
+var myDogWolf = new DogWolf();
+myDogWolf.woof() //prints Wooooooof!
+myDogWolf.howl() //prints &quot;Hoooooooooooowl!&quot;
+myDogWolf.speak();
+    //=&gt; A mammal of type wolf, thats domesticated that howls
+
+//4. Create a WolfDog that inherits from Wolf, and mixes in Dog
+var WolfDog = comb.define([Wolf, Dog]);
+var myWolfDog = new WolfDog();
+myWolfDog.woof() //prints Wooooooof!
+myWolfDog.howl() //prints &quot;Hoooooooooooowl!&quot;
+myWolfDog.speak();
+    //=&gt; A mammal of type dog that barks, thats domesticated</code></pre>
+<p>1 and 2 : We created instances of <code>Dog</code> and <code>Wolf</code> and made them speak. Notice that the return value of the <code>speak()</code> method is the return value of <code>Mammal</code>&#39;s speak method concatenated  with the implementing classes own message.
+
+
+</p>
+<p>3 and 4 Ok, this is where it gets interesting, so lets break it down line by line.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var DogWolf = comb.define([Dog, Wolf]);</code></pre>
+<p>This line defines a new class aptly named <code>DogWolf</code>. The <code>DogWolf</code> class is an instanceof <code>Dog</code> but mixes in <code>Wolf</code>. What does that mean?
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var myDogWolf = new DogWolf();
+myDogWolf instanceof Dog //=&gt; true
+myWolfDog instanceof Wolf //=&gt; false</code></pre>
+<p>So <code>Wolf</code> is mixed so we can get the <code>howl</code> method.  
+
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>myDogWolf.speak();
+    //=&gt; A mammal of type wolf, thats domesticated that howls</code></pre>
+<p>So when <code>myDogWolf</code> speaks it invokes the speak functionality of <code>Wolf</code>-&gt;<code>Dog</code>-&gt;<code>Mammal</code>. The order of inheritance is important to keep in mind when designing your classes the inheritance chain will happen in reverse, starting with the last mixin traversing the inheritance chain until either <code>_super</code> is not invoked or the parent of the super class is reached, in this case <code>Mammal</code>. 
+
+
+</p>
+<p>So lets add some public properties to <code>Wolf</code> and <code>Dog</code>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var Wolf = comb.define(Mammal, {
+    instance:{
+
+        _type:&quot;wolf&quot;,
+
+        _sound:&quot;howl&quot;,
+
+        __color:&quot;grey&quot;,
+
+        speak:function () {
+            return this._super(arguments) + &quot; that &quot; + this._sound + &quot;s&quot;;
+        },
+
+        howl:function () {
+            console.log(&quot;Hoooooooooooowl!&quot;)
+        },
+
+        setters:{
+            color:function (color) {
+                if (comb.isString(color)) {
+                    this.__color = color;
+                    if (color === &quot;white&quot;) {
+                        this._sound = &quot;LOUD howl&quot;;
+                    }
+                }else{
+                    throw new TypeError(&quot;Color must be a String&quot;);
+                }
+            }
+        },
+
+        getters:{
+            color:function () {
+                return this.__color;
+            }
+        }
+    }
+});
+
+var Dog = comb.define(Mammal, {
+    instance:{
+
+        _type:&quot;dog&quot;,
+
+        _sound:&quot;bark&quot;,
+
+        __breed:null,
+
+        constructor : function(opts){
+           opts = opts || {};
+           !comb.isUndefinedOrNull(opts.breed) 
+                   &amp;&amp; (this.breed = opts.breed);
+           this._super(arguments);
+        },
+
+        speak:function () {
+            return this._super(arguments) + &quot;, thats domesticated&quot;;
+        },
+
+        woof:function () {
+            console.log(&quot;Wooooooof!&quot;)
+        },
+
+        setters:{
+            breed:function (breed) {
+                if (comb.isString(breed)) {
+                    this.__breed = breed;
+                } else {
+                    throw new TypeError(&quot;Breed must be a String&quot;);
+                }
+            }
+        },
+
+        getters:{
+            breed:function () {
+                return this.__breed;
+            },
+
+            foundOldManInWell:function () {
+                return &quot;collie&quot; === this.__breed;
+            }
+        }
+    }
+});</code></pre>
+<p>So we added a <code>setter</code> and <code>getter</code> for  <code>color</code> to the  <code>Wolf</code> class. The advantage of adding <code>setters</code> and <code>getters</code> is that it allows you to add logic when setting/getting properties. When setting the <code>color</code> property on <code>Wolf</code> we check that it is a string and we change our sound depending on the <code>color</code> of the <code>Wolf</code>. If you supply a <code>getter</code> for a property and not a corresponding <code>setter</code> it will be read only(e.g. the <code>Dog</code>s <code>foundOldManInWell</code> property is read only), the same applies for supplying only a <code>setter</code>. Lets try the getters and setters out.
+
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var myDog = new Dog({breed : &quot;beagle&quot;});
+console.log(myDog.breed); //prints beagle
+console.log(myDog.foundOldManInWell); //prints false
+
+myDog.breed = &quot;collie&quot;;
+console.log(myDog.breed); //prints collie
+console.log(myDog.foundOldManInWell); //prints true
+try {
+    myDog.breed = false;
+} catch (e) {
+    console.error(e); //prints [TypeError: Breed must be a String]
+}
+try {
+    new Dog({breed : false});
+} catch (e) {
+    console.error(e); //prints [TypeError: Breed must be a String]
+}</code></pre>
+<h2>Static Methods</h2>
+<p>As stated above  <code>comb.define</code> looks for an optional static  property on the <code>prototype</code> declaration  of a class. 
+
+
+</p>
+<p>Lets modify <code>Mammal</code> to include static properties. 
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define(null, {
+    instance:{
+
+        _type:&quot;mammal&quot;,
+        _sound:&quot; *** &quot;,
+
+        constructor:function (options) {
+            options = options || {};
+            this._super(arguments);
+            var myClass = this._static;
+            this._type = options.type || myClass.DEFAULT_TYPE;
+            this._sound = options.sound || myClass.DEFAULT_SOUND;
+        },
+
+        speak:function () {
+            return &quot;A mammal of type &quot; + this._type;
+        },
+
+        getter : {
+             type : function(){
+                  return this._type;
+             }
+        }
+    },
+
+    static : {
+
+        DEFAULT_TYPE : &quot;mammal&quot;,
+        DEFAULT_SOUND : &quot; *** &quot;,
+
+        soundOff : function() {
+            return &quot;Im a mammal!!&quot;;
+        }
+    }
+});</code></pre>
+<p>So we added two static properties to <code>Mammal</code>, <code>DEFAULT_TYPE</code> and <code>DEFAULT_SOUND</code>. These properties can be accessed by instances through the <code>this._static</code> property.  
+
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>constructor:function (options) {
+     options = options || {};
+     this._super(arguments);
+     var myClass = this._static;
+     this._type = options.type || myClass.DEFAULT_TYPE;
+     this._type = options.sound || myClass.DEFAULT_SOUND;
+}</code></pre>
+<p>So we refactored the <code>constructor</code> function to leverage the new static properties when initializing itself. One example of using this initialization method is when you have properties that you want to be able to configure and apply to all instances of a class.
+
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var myMammal = new Mammal();
+console.log(myMammal.type); //prints mammal
+Mammal.DEFAULT_TYPE = &quot;whale&quot;;
+myMammal = new Mammal();
+console.log(myMammal.type); //prints whale</code></pre>
+<h3>Inheritance In Static Functions.</h3>
+<p>One neat thing about defining classes in <code>comb</code> is that you not only get the advantages of inheritance in instance methods but static methods as well. So lets modify <code>Dog</code> and <code>Wolf</code> to take advantage of that.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var Wolf = comb.define(Mammal, {
+    instance:{
+
+        _type:&quot;wolf&quot;,
+
+        _sound:&quot;howl&quot;,
+
+        __color:&quot;grey&quot;,
+
+        speak:function () {
+            return this._super(arguments) + &quot; that &quot; + this._sound + &quot;s&quot;;
+        },
+
+        howl:function () {
+            console.log(&quot;Hoooooooooooowl!&quot;)
+        },
+
+        setters:{
+            color:function (color) {
+                if (comb.isString(color)) {
+                    this.__color = color;
+                    if (color === &quot;white&quot;) {
+                        this._sound = &quot;LOUD howl&quot;;
+                    }
+                } else {
+                    throw new TypeError(&quot;Color must be a String&quot;);
+                }
+            }
+        },
+
+        getters:{
+            color:function () {
+                return this.__color;
+            }
+        }
+    },
+
+    static:{
+
+        soundOff:function () {
+            return comb.string.format(&quot;%s, %s&quot;, this._super(arguments), &quot;I&#39;m a Wolf&quot;);
+        }
+
+    }
+});
+
+var Dog = comb.define(Mammal, {
+    instance:{
+
+        _type:&quot;dog&quot;,
+
+        _sound:&quot;bark&quot;,
+
+        __breed:null,
+
+        constructor:function (opts) {
+            opts = opts || {};
+            !comb.isUndefinedOrNull(opts.breed) &amp;&amp; (this.breed = opts.breed);
+            this._super(arguments);
+        },
+
+        speak:function () {
+            return this._super(arguments) + &quot;, thats domesticated&quot;;
+        },
+
+        woof:function () {
+            console.log(&quot;Wooooooof!&quot;)
+        },
+
+        setters:{
+            breed:function (breed) {
+                if (comb.isString(breed)) {
+                    this.__breed = breed;
+                } else {
+                    throw new TypeError(&quot;Breed must be a String&quot;);
+                }
+            }
+        },
+
+        getters:{
+            breed:function () {
+                return this.__breed;
+            },
+
+            foundOldManInWell:function () {
+                return &quot;collie&quot; === this.__breed;
+            }
+        }
+    },
+
+    static:{
+
+        soundOff:function () {
+            return comb.string.format(&quot;%s, %s&quot;, this._super(arguments), &quot;I&#39;m a Dog&quot;);
+        }
+
+    }
+});</code></pre>
+<p>When executing soundOff. 
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>console.log(Mammal.soundOff());
+console.log(Wolf.soundOff());
+console.log(Dog.soundOff());
+console.log(DogWolf.soundOff());
+console.log(WolfDog.soundOff());</code></pre>
+<p>As you can see inheritance within the static methods follows the same order as it does within  the instance methods.
+
+
+</p>
+<h3>Static Getters and Setters</h3>
+<p>Getters and setters are declared the same way in a static declaration as they are in an instance declaration.
+
+
+</p>
+<h3>Getting an Instance of my self.</h3>
+<p>One nuance about prototypal inheritance is that the scope in which a function is called is not consistent. For example, lets add a reproduce method to <code>Mammal</code>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define(null, {
+    instance:{
+
+        _type:&quot;mammal&quot;,
+        _sound:&quot; *** &quot;,
+
+        constructor:function (options) {
+            options = options || {};
+            this._super(arguments);
+            var myClass = this._static;
+            this._type = options.type || myClass.DEFAULT_TYPE;
+            this._sound = options.sound || myClass.DEFAULT_SOUND;
+        },
+
+        speak:function () {
+            return &quot;A mammal of type &quot; + this._type;
+        },
+
+        reproduce : function(){
+           return new Mammal(); 
+        },
+
+        getters:{
+            type:function () {
+                return this._type;
+            }
+        }
+    },
+
+    static:{
+
+        DEFAULT_TYPE:&quot;mammal&quot;,
+        DEFAULT_SOUND:&quot; *** &quot;,
+
+        soundOff:function () {
+            return comb.string.format(&quot;Im a %s!!&quot;, this.DEFAULT_TYPE);
+        }
+    }
+});</code></pre>
+<p>This is great except that it will only work for instances of <code>Mammal</code> if we created a <code>Dog</code> and asked it to reproduce it would return a <code>Mammal</code> and <strong>not</strong> a<code>Dog</code>. Solution, change reproduce to:
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>reproduce : function(){
+     return new this._static();
+}</code></pre>
+<p>This guarantees that you create an instance of your type. The same applies if you want to check if something is an instance of your current type. For example lets add a sameSpecies method to <code>Mammal</code>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>sameSpecies : function(obj){
+     return obj instanceof this._static; 
+}</code></pre>
+<p>This comes in handy when dealing with multiple inheritance, and wanting to check if an object is of the same concrete class.
+
+</p>
+<h3>Static initialization</h3>
+<p><code>comb.define</code> also provides a mechanism for initializing when creating a class. <code>init</code> will be called on creation of any class.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define(null, {
+    instance:{
+
+        _type:&quot;mammal&quot;,
+        _sound:&quot; *** &quot;,
+
+        constructor:function (options) {
+            options = options || {};
+            this._super(arguments);
+            var myClass = this._static;
+            this._type = options.type || myClass.DEFAULT_TYPE;
+            this._sound = options.sound || myClass.DEFAULT_SOUND;
+        },
+
+        speak:function () {
+            return &quot;A mammal of type &quot; + this._type;
+        },
+
+        reproduce : function(){
+           return new Mammal(); 
+        },
+
+        getters:{
+            type:function () {
+                return this._type;
+            }
+        }
+    },
+
+    static:{
+
+        soundOff:function () {
+            return comb.string.format(&quot;Im a %s!!&quot;, this.DEFAULT_TYPE);
+        },
+
+        init : function(){
+                this.DEFAULT_TYPE = &quot;mammal&quot;;
+                this.DEFAULT_SOUND = &quot; *** &quot;;
+        }
+    }
+});</code></pre>
+<p>Here we moved the DEFAULT_TYPE and DEFAULT_SOUND initializtion to the <code>init</code> method. 
+
+</p>
+
+<hr>
+
+Documentation gennerated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
+
+
+</div>
+</div>
+<script type="text/javascript" src="./assets/js/jquery.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-transition.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-tab.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-tooltip.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-popover.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-button.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-collapse.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap-carousel.js"></script>
+<script type="text/javascript"
+        src="./assets/js/google-code-prettify/prettify.js"></script>
+
+</body>
+</html>
