@@ -261,6 +261,21 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methods<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     
+                    <li><a href="./comb_logger.html#.appender">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        appender
+                     </a></li>
+                    
                     <li><a href="./comb_logger.html#.configure">
                                 
                                 <span class="label label-info">S</span>
@@ -309,6 +324,48 @@ Logger.getLogger.bind(Logger)
     <table class='table table-bordered table-striped'><tr><td>Property</td><td>Type</td><td>Default Value</td><td>Description</td></tr><tr><td><em>rootLogger</em></td><td>comb.logging.Logger</td><td><code>rootLogger</code></td><td>
 The root for all loggers.
 </td><tr></table>
+    
+        <a name=".appender"></a>
+    <h3>
+        appender
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p>
+Factory method for creating appenders. See <a href='./comb_logging_appenders_Appender.html#.createAppender'> comb.logging.appenders.Appender.createAppender</a> for
+arguments.</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var appender = comb.logger.appender(&quot;ConsoleAppender&quot;);
+comb.logger(&quot;my.logger&quot;).addAppender(appender);
+        </pre>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+Appender.createAppender.bind(Appender)
+    </pre>
+    
+
+
     
         <a name=".configure"></a>
     <h3>
