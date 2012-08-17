@@ -179,7 +179,7 @@ it.describe("comb.logging.Logger", function (it) {
                 assert.deepEqual(logger.categories, ['comb', 'comb.test']);
             });
         });
-    })
+    });
 
 
 });
