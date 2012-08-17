@@ -256,6 +256,32 @@ it.describe("comb.Promise", function (it) {
 
         });
 
+        it.should("propagate errors if no errback ", function (next) {
+            var promise = new Promise();
+            promise.chain(
+                function (res) {
+                    var promise2 = new Promise();
+                    process.nextTick(comb.hitch(promise2, "callback", res + " world"), 1000);
+                    return promise2;
+                }).chain(
+                function (res) {
+                    var promise3 = new Promise();
+                    process.nextTick(comb.hitch(promise3, "errback", "error in 3"), 1000);
+                    return promise3;
+                }).chain(
+                function (res) {
+                    var promise4 = new Promise();
+                    process.nextTick(comb.hitch(promise4, "callback", res + " not called"), 1000);
+                    return promise4;
+                })
+                .then(next, function (res) {
+                    assert.equal(res, "error in 3")
+                    next();
+                });
+            setTimeout(comb.hitch(promise, "callback", "hello"), 1000);
+
+        });
+
     });
 
     it.describe("Promise#chainBoth", function (it) {
@@ -293,6 +319,7 @@ it.describe("comb.Promise", function (it) {
                     setTimeout(comb.hitch(promise3, "callback", res + " error"), 1000);
                     return promise3;
                 }).then(function (res) {
+                    console.log(res);
                     assert.equal(res, "error error error")
                     next();
                 }, next);

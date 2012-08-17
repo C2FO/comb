@@ -5,7 +5,7 @@ BENCHMARKS = `find benchmark -name *.benchmark.js `
 DOC_COMMAND=coddoc -f multi-html -d ./lib --dir ./docs
 
 test:
-	export NODE_PATH=$NODE_PATH:lib && ./node_modules/it/bin/it -r dotmatrix
+	export NODE_PATH=${NODE_PATH}:lib && ./node_modules/it/bin/it -r dotmatrix
 
 test-coverage:
 	rm -rf ./lib-cov && node-jscoverage ./lib ./lib-cov && export NODE_PATH=$NODE_PATH:lib-cov && ./node_modules/it/bin/it -r dotmatrix
