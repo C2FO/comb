@@ -12,8 +12,8 @@ it.describe("comb.Promise", function (it) {
         it.should("callback", function (next) {
             var promise = new Promise();
             promise.addCallback(function (res) {
-                assert.equal(res, "hello")
-                next()
+                assert.equal(res, "hello");
+                next();
             });
             setTimeout(comb.hitch(promise, "callback", "hello"), 1000);
         });
@@ -22,8 +22,8 @@ it.describe("comb.Promise", function (it) {
             var promise = new Promise();
             promise.callback("hello");
             promise.addCallback(function (res) {
-                assert.equal(res, "hello")
-                next()
+                assert.equal(res, "hello");
+                next();
             });
 
         });
@@ -43,8 +43,8 @@ it.describe("comb.Promise", function (it) {
         it.should("errback when using addErback and errback is called", function (next) {
             var promise = new Promise();
             promise.addErrback(function (res) {
-                assert.equal(res, "error")
-                next()
+                assert.equal(res, "error");
+                next();
             });
             process.nextTick(comb.hitch(promise, "errback", "error"));
         });
@@ -73,8 +73,8 @@ it.describe("comb.Promise", function (it) {
         it.should("callback when using both and callback is called", function (next) {
             var promise = new Promise();
             promise.both(function (res) {
-                assert.equal(res, "callback")
-                next()
+                assert.equal(res, "callback");
+                next();
             });
             process.nextTick(comb.hitch(promise, "callback", "callback"), 1000);
         });
@@ -82,8 +82,8 @@ it.describe("comb.Promise", function (it) {
         it.should("callback when using both and errback is called", function (next) {
             var promise = new Promise();
             promise.both(function (res) {
-                assert.equal(res, "errback")
-                next()
+                assert.equal(res, "errback");
+                next();
             });
             process.nextTick(comb.hitch(promise, "errback", "errback"), 1000);
         });
@@ -92,8 +92,8 @@ it.describe("comb.Promise", function (it) {
             var promise = new Promise();
             promise.callback("callback");
             promise.both(function (res) {
-                assert.equal(res, "callback")
-                next()
+                assert.equal(res, "callback");
+                next();
             });
         });
 
@@ -101,15 +101,15 @@ it.describe("comb.Promise", function (it) {
             var promise = new Promise();
             promise.errback("errback");
             promise.both(function (res) {
-                assert.equal(res, "errback")
-                next()
+                assert.equal(res, "errback");
+                next();
             });
         });
 
         it.should("callback when using both with a promise and callback is called", function (next) {
             var promise = new Promise();
             var bothPromise = new Promise().addCallback(function (res) {
-                assert.equal(res, "callback")
+                assert.equal(res, "callback");
                 next();
             });
             promise.callback("callback");
@@ -119,7 +119,7 @@ it.describe("comb.Promise", function (it) {
         it.should("callback when using both with a promise and errback is called", function (next) {
             var promise = new Promise();
             var bothPromise = new Promise().addCallback(function (res) {
-                assert.equal(res, "errback")
+                assert.equal(res, "errback");
                 next();
             });
             promise.errback("errback");
@@ -134,8 +134,8 @@ it.describe("comb.Promise", function (it) {
         it.should("callback when using then and callback is called", function (next) {
             var promise = new Promise();
             promise.then(function (res) {
-                assert.equal(res, "callback")
-                next()
+                assert.equal(res, "callback");
+                next();
             }, next);
             process.nextTick(comb.hitch(promise, "callback", "callback"), 1000);
         });
@@ -143,8 +143,8 @@ it.describe("comb.Promise", function (it) {
         it.should("errback when using then and errback is called", function (next) {
             var promise = new Promise();
             promise.then(next, function (res) {
-                assert.equal(res, "errback")
-                next()
+                assert.equal(res, "errback");
+                next();
             });
             process.nextTick(comb.hitch(promise, "errback", "errback"), 1000);
         });
@@ -152,8 +152,8 @@ it.describe("comb.Promise", function (it) {
         it.should("callback when using then with a promise", function (next) {
             var promise = new Promise();
             var thenPromise = new Promise().then(function (res) {
-                assert.equal(res, "callback")
-                next()
+                assert.equal(res, "callback");
+                next();
             }, next);
             promise.then(thenPromise);
 
@@ -175,8 +175,8 @@ it.describe("comb.Promise", function (it) {
             var promise = new Promise();
             promise.callback("callback");
             promise.then(function (res) {
-                assert.equal(res, "callback")
-                next()
+                assert.equal(res, "callback");
+                next();
             }, next);
         });
 
@@ -184,8 +184,8 @@ it.describe("comb.Promise", function (it) {
             var promise = new Promise();
             promise.errback("errback");
             promise.then(next, function (res) {
-                assert.equal(res, "errback")
-                next()
+                assert.equal(res, "errback");
+                next();
             });
         });
     });
@@ -196,8 +196,8 @@ it.describe("comb.Promise", function (it) {
             var promise = new Promise();
             promise.classic(function (err, res) {
                 assert.isNull(err);
-                assert.equal(res, "callback")
-                next()
+                assert.equal(res, "callback");
+                next();
             });
             process.nextTick(comb.hitch(promise, "callback", "callback"), 1000);
         });
@@ -205,7 +205,7 @@ it.describe("comb.Promise", function (it) {
         it.should("errback when using classic and errback is called", function (next) {
             var promise = new Promise();
             promise.classic(function (err, res) {
-                assert.equal(err, "errback")
+                assert.equal(err, "errback");
                 next();
             });
             process.nextTick(comb.hitch(promise, "errback", "errback"), 1000);
@@ -228,11 +228,25 @@ it.describe("comb.Promise", function (it) {
                     process.nextTick(comb.hitch(promise3, "callback", res + "!"), 1000);
                     return promise3;
                 }, next).then(function (res) {
-                    assert.equal(res, "hello world!")
+                    assert.equal(res, "hello world!");
                     next();
                 }, next);
             process.nextTick(comb.hitch(promise, "callback", "hello"), 1000);
+        });
 
+        it.should("work with sync actions also", function (next) {
+            var promise = new Promise();
+            promise.chain(
+                function (res) {
+                    return res + " world";
+                }, next).chain(
+                function (res) {
+                    return res + "!";
+                }, next).then(function (res) {
+                    assert.equal(res, "hello world!");
+                    next();
+                }, next);
+            process.nextTick(comb.hitch(promise, "callback", "hello"), 1000);
         });
 
         it.should("errback if there is an error ", function (next) {
@@ -249,7 +263,7 @@ it.describe("comb.Promise", function (it) {
                     return promise3;
                 }, comb.hitch(this, "callback"))
                 .then(next, function (res) {
-                    assert.equal(res, "error")
+                    assert.equal(res, "error");
                     next();
                 });
             setTimeout(comb.hitch(promise, "callback", "hello"), 1000);
@@ -275,7 +289,7 @@ it.describe("comb.Promise", function (it) {
                     return promise4;
                 })
                 .then(next, function (res) {
-                    assert.equal(res, "error in 3")
+                    assert.equal(res, "error in 3");
                     next();
                 });
             setTimeout(comb.hitch(promise, "callback", "hello"), 1000);
@@ -306,6 +320,24 @@ it.describe("comb.Promise", function (it) {
 
         });
 
+        it.should("callback after all are done with sync actions", function (next) {
+            var promise = new Promise();
+            promise.chainBoth(
+                function (res) {
+                    return res + " world";
+                }, next).chainBoth(
+                function (res) {
+                    var promise3 = new Promise();
+                    setTimeout(comb.hitch(promise3, "callback", res + "!"), 1000);
+                    return promise3;
+                }, next).then(function (res) {
+                    assert.equal(res, "hello world!");
+                    next();
+                }, next);
+            setTimeout(comb.hitch(promise, "callback", "hello"), 1000);
+
+        });
+
         it.should("errback after all are done ", function (next) {
             var promise = new Promise();
             promise.chainBoth(
@@ -319,8 +351,7 @@ it.describe("comb.Promise", function (it) {
                     setTimeout(comb.hitch(promise3, "callback", res + " error"), 1000);
                     return promise3;
                 }).then(function (res) {
-                    console.log(res);
-                    assert.equal(res, "error error error")
+                    assert.equal(res, "error error error");
                     next();
                 }, next);
             setTimeout(comb.hitch(promise, "errback", "error"), 1000);
@@ -334,7 +365,7 @@ it.describe("comb#when", function (it) {
     it.should("honor the promise api with no callback or errback", function (next) {
         var promise = new Promise();
         comb.when(promise).then(function (res) {
-            assert.equal(res, "hello")
+            assert.equal(res, "hello");
             next();
         }, next);
         setTimeout(comb.hitch(promise, "callback", "hello"), 1000);
@@ -354,7 +385,7 @@ it.describe("comb#when", function (it) {
         comb.when(promise,
             function (res) {
                 assert.equal(res, "hello");
-                next()
+                next();
             }).addErrback(next);
         setTimeout(comb.hitch(promise, "callback", "hello"), 1000);
     });
@@ -481,7 +512,7 @@ it.describe("comb#wrap", function (it) {
             assert.equal(res, "HELLO WORLD");
             next();
         }, next);
-    })
+    });
 
     it.should("wrap traditional node cb methods with a promise and errback if an error is the first argument", function (next) {
         comb.wrap(nodeCBStyleError)("HELLO WORLD").then(next, function (res) {
@@ -500,10 +531,11 @@ it.describe("comb#serial", function (it) {
     };
 
     var syncAction = function (item, error) {
-        if (error)
+        if (error) {
             throw "ERROR";
-        else
+        } else {
             return item;
+        }
     };
 
     it.should("execute the items serially", function (next) {
@@ -577,7 +609,7 @@ it.describe("comb#serial", function (it) {
                 comb.partial(asyncAction, 5, 600),
                 comb.partial(syncAction, 5.5, true),
                 comb.partial(asyncAction, 6, 500)
-            )
+            );
         });
     });
 
