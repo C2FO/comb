@@ -124,6 +124,16 @@
       <div class="nav-collapse">
       <ul class="nav nav-pills">
       
+      
+                 <li><a href="./define.html">OO</a></li>
+                 
+                 <li><a href="./promise.html">Promises</a></li>
+                 
+                 <li><a href="./logging.html">Logging</a></li>
+                 
+                 <li><a href="./utilities.html">Utilities</a></li>
+                 
+            
 
       
         <li class="dropdown">
@@ -137,6 +147,8 @@
                          <li><a href="comb_characters.html">comb.characters</a></li>
                
                          <li><a href="comb_date.html">comb.date</a></li>
+               
+                         <li><a href="comb_logger.html">comb.logger</a></li>
                
                          <li><a href="comb_number.html">comb.number</a></li>
                
@@ -381,6 +393,34 @@
                                         
                                 
                                 errback
+
+                                </a></li>
+                                
+                                <li><a href="./comb_Promise.html#promise">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                promise
+
+                                </a></li>
+                                
+                                <li><a href="./comb_Promise.html#resolve">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                resolve
 
                                 </a></li>
                                 
@@ -732,13 +772,13 @@ When called all functions registered as callbacks are called with the passed in 
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (args){
-   args = base.argsToArray(arguments);
+   args = argsToArray(arguments);
    if (this.__fired) {
        throw new Error(&quot;Already fired!&quot;);
    }
    this.__results = args;
    this.__resolve();
-   return this;
+   return this.promise();
            
 }
     </pre>
@@ -765,15 +805,34 @@ function (args){
 
 <p>
 Call to chaining of promises
+
 </p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var p = new Promise();
+
+p
+ .chain(function(previousPromiseResults){
+     return previousPromiseResults + &quot; world&quot;;
+}, errorHandler)
+ .chain(function(previousPromiseResults){
+   return when(dbCall());
+ }).classic(function(err, results){
+     //all promises are done
+ });
+
+ p.callback(&quot;Hello&quot;);
+        </pre>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>callback</em>  : method to call that returns a promise to call after this one completes.</li>
+        <li> <em>callback</em>  : method to call this one completes. If you return a promise the execution will delay until the returned promise has resolved.</li>
     
-        <li> <em>errback</em>  : method to call if this promise errors.</li>
+        <li> <em>[errback= <code>null</code>]</em>  : method to call if this promise errors. If errback is not specified then the returned promises
+errback method will be used.</li>
     
      </ul>
 
@@ -793,10 +852,12 @@ Call to chaining of promises
 function (callback,errback){
    var promise = new Promise();
    this.addCallback(function (results) {
-       callback.call(this, results).then(promise);
+       when(callback.call(this, results)).then(promise);
    });
-   this.addErrback(errback);
-   return promise;
+   // If no errback passed, then invoke our promise&#x27;s errback to pass
+   // on to next link in the chain.
+   this.addErrback(errback || promise);
+   return promise.promise();
            
 }
     </pre>
@@ -848,11 +909,14 @@ Applies the same function that returns a promise to both the callback and errbac
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (callback){
-   var p = this.chain(callback);
-   this.addErrback(function (results) {
-       callback.call(this, results).then(p);
+   var promise = new Promise();
+   this.addCallback(function (results) {
+       when(callback.call(this, results)).then(promise);
    });
-   return p;
+   this.addErrback(function (results) {
+       when(callback.call(this, results)).then(promise);
+   });
+   return promise.promise();
            
 }
     </pre>
@@ -922,7 +986,7 @@ function (cb){
            cb(err);
        });
        this.addCallback(function () {
-           cb.apply(this, [null].concat(base.argsToArray(arguments)));
+           cb.apply(this, [null].concat(argsToArray(arguments)));
        });
    }
    return this;
@@ -973,8 +1037,145 @@ function (args){
    if (this.__fired) {
        throw args || new Error(&quot;Already fired&quot;);
    }
-   this.__error = base.argsToArray(arguments);
+   this.__error = argsToArray(arguments);
    this.__resolve();
+   return this.promise();
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="promise"></a>
+    <h3>
+        promise
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+Creates an object to that contains methods to listen to resolution but not the "callback" or "errback" methods.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var asyncMethod = function(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, &quot;hello&quot;));
+    return ret.promise();
+}
+
+asyncMethod().callback() //throws error
+        </pre>
+
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Object</code> an object containing "chain", "chainBoth", "promise", "addCallback", "addErrback", "then", "both".</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   var ret = {
+       chain:this.chain.bind(this),
+       chainBoth:this.chainBoth.bind(this),
+       promise:function () {
+           return ret;
+       }
+   };
+   [&quot;addCallback&quot;, &quot;addErrback&quot;, &quot;then&quot;, &quot;both&quot;].forEach(function (action) {
+       ret[action] = function () {
+           this[action].apply(this, arguments);
+           return ret;
+       }.bind(this);
+   }, this);
+   return ret;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="resolve"></a>
+    <h3>
+        resolve
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+Resolved a promise using the node style callback.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var promise = new Promise();
+fs.readFile(&quot;file.txt&quot;, &quot;utf8&quot;, promise.resolve.bind(promise));
+promise.then(function(file){
+    console.log(file);
+});
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>[err= <code>null</code>]</em>  : If specified then the promise will error out</li>
+    
+        <li> <em>args?</em>  : if err is null then the aruments will be used to resolve the promise.</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> for chaining.</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (err,args){
+   if (err) {
+       this.errback(err);
+   } else {
+       this.callback.apply(this, argsToArray(arguments, 1));
+   }
    return this;
            
 }

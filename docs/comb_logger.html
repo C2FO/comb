@@ -243,36 +243,37 @@
 
 
 
-    <a name=""></a>
+    <a name=".logger"></a>
     <div class="navbar subnav">
     <div class="navbar-inner  subnav-inner">
-          <div class="container">
-            <a href="#" class="brand">
-            comb.collections.Iterable
-            
-                    
-             <span class="label label-success">Public</span>
-                    
-            
-            </a>
-           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
+                  <div class="container">
+                    <a href="#" class="brand">
+                                comb.logger
+                                
+                                <span class="label label-label">Function</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">Public</span>
+                                        
+                                
                     </a>
-                    <div class="nav-collapse">
+                   <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                            </a>
 
+                            <div class="nav-collapse">
+            
             <ul class="nav pull-right">
-             <li><a href="#constructor">Constructor</a></li>
-                        
-                        
-                        
-                        
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instance Methods<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methods<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    
+                    <li><a href="./comb_logger.html#.appender">
                                 
-                                <li><a href="./comb_collections_Iterable.html#every">
+                                <span class="label label-info">S</span>
                                 
                                 
                                 <span class="label label-label">F</span>
@@ -282,25 +283,12 @@
                                  <span class="label label-success">P</span>
                                         
                                 
-                                every
-
-                                </a></li>
+                        appender
+                     </a></li>
+                    
+                    <li><a href="./comb_logger.html#.configure">
                                 
-                                <li><a href="./comb_collections_Iterable.html#filter">
-                                
-                                
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                                filter
-
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Iterable.html#forEach">
+                                <span class="label label-info">S</span>
                                 
                                 
                                 <span class="label label-label">F</span>
@@ -310,99 +298,48 @@
                                  <span class="label label-success">P</span>
                                         
                                 
-                                forEach
-
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Iterable.html#map">
-                                
-                                
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                                map
-
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Iterable.html#reduce">
-                                
-                                
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                                reduce
-
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Iterable.html#reduceRight">
-                                
-                                
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                                reduceRight
-
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Iterable.html#some">
-                                
-                                
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                                some
-
-                                </a></li>
-                                
-                            </ul>
-                        </li>
-                        
+                        configure
+                     </a></li>
+                    
+                </ul>
+            </li>
             </ul>
+            
             </div>
             </div>
      </div>
 </div>
+<em>Defined logging/index.js</em>
+
+<p>
+
+Alias to <a href='./comb_logging_Logger.html#.getLogger'> comb.logging.Logger.getLogger</a>.  See <a href='./comb_logging_Logger.html#'> comb.logging.Logger</a> for more information.</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.logger(&quot;my.logger&quot;);
+        </pre>
 
 
 
-    <p>
-Base class for all collections</p>
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+Logger.getLogger.bind(Logger)
+    </pre>
     
 
+    <table class='table table-bordered table-striped'><tr><td>Property</td><td>Type</td><td>Default Value</td><td>Description</td></tr><tr><td><em>rootLogger</em></td><td>comb.logging.Logger</td><td><code>rootLogger</code></td><td>
+The root for all loggers.
+</td><tr></table>
     
-
-    
-    
-
-    <a name="constructor"></a>
-    <h3>Constructor</h3>
-
-    <em>Defined collections/Iterable.js</em>
-    
-    
-    
-
-  
-  
-    <a name="every"></a>
+        <a name=".appender"></a>
     <h3>
-        every
+        appender
+        
+        <span class="label label-info">Static</span>
         
         
         <span class="label label-label">Function</span>
@@ -415,11 +352,17 @@ Base class for all collections</p>
    </h3>
 
 <hr/>
-<em>Defined collections/Iterable.js</em>
+<em>Defined logging/index.js</em>
 
 <p>
-Determine if every item in a collection meets the criteria
-         </p>
+Factory method for creating appenders. See <a href='./comb_logging_appenders_Appender.html#.createAppender'> comb.logging.appenders.Appender.createAppender</a> for
+arguments.</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var appender = comb.logger.appender(&quot;ConsoleAppender&quot;);
+comb.logger(&quot;my.logger&quot;).addAppender(appender);
+        </pre>
 
 
 
@@ -428,18 +371,17 @@ Determine if every item in a collection meets the criteria
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-function (){
-   throw new Error(&quot;Not Implemented&quot;);
-           
-}
+Appender.createAppender.bind(Appender)
     </pre>
     
 
 
-  
-    <a name="filter"></a>
+    
+        <a name=".configure"></a>
     <h3>
-        filter
+        configure
+        
+        <span class="label label-info">Static</span>
         
         
         <span class="label label-label">Function</span>
@@ -452,11 +394,19 @@ function (){
    </h3>
 
 <hr/>
-<em>Defined collections/Iterable.js</em>
+<em>Defined logging/index.js</em>
 
 <p>
-Filter items from a collection
-         </p>
+Shortcut to configure loggers.</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+//same as new comb.logging.BasicConfigurator().configure();
+comb.logger.configure();
+
+//new comb.logging.PropertyConfigurator().configure(&quot;/location/to/logger/configuration.json&quot;);
+comb.logger.configure(&quot;/location/to/logger/configuration.json&quot;);
+        </pre>
 
 
 
@@ -466,199 +416,25 @@ Filter items from a collection
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (){
-   throw new Error(&quot;Not Implemented&quot;);
-           
+   var args = argsToArray(arguments), configurator;
+   if (!args.length) {
+       configurator = new configurators.BasicConfigurator();
+   } else {
+       var first = args[0];
+       if (isHash(first) || isString(first)) {
+           configurator = new configurators.PropertyConfigurator();
+       } else {
+           configurator = new configurators.BasicConfigurator();
+       }
+   }
+   configurator.configure.apply(configurator, args);
+   return this;
 }
     </pre>
     
 
 
-  
-    <a name="forEach"></a>
-    <h3>
-        forEach
-        
-        
-        <span class="label label-label">Function</span>
-        
-        
-                
-         <span class="label label-success">Public</span>
-                
-        
-   </h3>
-
-<hr/>
-<em>Defined collections/Iterable.js</em>
-
-<p>
-Loop through the items in a collection
-         </p>
-
-
-
-
-
     
-    <em>Source</em>
-    <pre class="prettyprint linenums lang-js">
-function (){
-   throw new Error(&quot;Not Implemented&quot;);
-           
-}
-    </pre>
-    
-
-
-  
-    <a name="map"></a>
-    <h3>
-        map
-        
-        
-        <span class="label label-label">Function</span>
-        
-        
-                
-         <span class="label label-success">Public</span>
-                
-        
-   </h3>
-
-<hr/>
-<em>Defined collections/Iterable.js</em>
-
-<p>
-Map every item in a collection
-         </p>
-
-
-
-
-
-    
-    <em>Source</em>
-    <pre class="prettyprint linenums lang-js">
-function (){
-   throw new Error(&quot;Not Implemented&quot;);
-           
-}
-    </pre>
-    
-
-
-  
-    <a name="reduce"></a>
-    <h3>
-        reduce
-        
-        
-        <span class="label label-label">Function</span>
-        
-        
-                
-         <span class="label label-success">Public</span>
-                
-        
-   </h3>
-
-<hr/>
-<em>Defined collections/Iterable.js</em>
-
-<p>
-Reduce a collection
-         </p>
-
-
-
-
-
-    
-    <em>Source</em>
-    <pre class="prettyprint linenums lang-js">
-function (){
-   throw new Error(&quot;Not Implemented&quot;);
-           
-}
-    </pre>
-    
-
-
-  
-    <a name="reduceRight"></a>
-    <h3>
-        reduceRight
-        
-        
-        <span class="label label-label">Function</span>
-        
-        
-                
-         <span class="label label-success">Public</span>
-                
-        
-   </h3>
-
-<hr/>
-<em>Defined collections/Iterable.js</em>
-
-<p>
-Reduce a collection starting from the right most position
-         </p>
-
-
-
-
-
-    
-    <em>Source</em>
-    <pre class="prettyprint linenums lang-js">
-function (){
-   throw new Error(&quot;Not Implemented&quot;);
-           
-}
-    </pre>
-    
-
-
-  
-    <a name="some"></a>
-    <h3>
-        some
-        
-        
-        <span class="label label-label">Function</span>
-        
-        
-                
-         <span class="label label-success">Public</span>
-                
-        
-   </h3>
-
-<hr/>
-<em>Defined collections/Iterable.js</em>
-
-<p>
-Determing if some items in a colleciton meet the criteria
-         </p>
-
-
-
-
-
-    
-    <em>Source</em>
-    <pre class="prettyprint linenums lang-js">
-function (){
-   throw new Error(&quot;Not Implemented&quot;);
-           
-}
-    </pre>
-    
-
-
-  
 <hr>
 
 Documentation gennerated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
@@ -680,3 +456,4 @@ Documentation gennerated using <a href="https://github.com/doug-martin/coddoc">c
 
 </body>
 </html>
+

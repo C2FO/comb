@@ -124,6 +124,16 @@
       <div class="nav-collapse">
       <ul class="nav nav-pills">
       
+      
+                 <li><a href="./define.html">OO</a></li>
+                 
+                 <li><a href="./promise.html">Promises</a></li>
+                 
+                 <li><a href="./logging.html">Logging</a></li>
+                 
+                 <li><a href="./utilities.html">Utilities</a></li>
+                 
+            
 
       
         <li class="dropdown">
@@ -137,6 +147,8 @@
                          <li><a href="comb_characters.html">comb.characters</a></li>
                
                          <li><a href="comb_date.html">comb.date</a></li>
+               
+                         <li><a href="comb_logger.html">comb.logger</a></li>
                
                          <li><a href="comb_number.html">comb.number</a></li>
                
@@ -544,30 +556,23 @@ This class is the entry point for all logging actions in comb.
     
         <em>Example</em>
             <pre class="prettyprint linenums lang-js">
-var logging = comb.logging,
-    Logger = logging.Logger,
-    appenders = logging.appenders,
-    Level = logging.Level;
+var logger = comb.logger;
 
 //configure you logging environement
+logger.configure();
 
-var bc = logging.BasicConfigurator();
-//add console appender to all loggers
-bc.configure();
 //add a file appender to all loggers
-bc.configure(new appenders.FileAppender({file : &quot;/var/log/myLog.log&quot;}));
+logger.configure(logger.appender(&quot;FileAppender&quot;, {file : &quot;/var/log/myLog.log&quot;});
 
 //Retreiving a logger.
-var combLogger = Logger.getLogger(&quot;comb&quot;);
-var combCollectionLogger = Logger.getLogger(&quot;comb.collections&quot;);
-var treeLogger = Logger.getLogger(&quot;comb.collections.Tree&quot;);
+var combLogger = logger(&quot;comb&quot;);
+var combCollectionLogger = logger(&quot;comb.collections&quot;);
+var treeLogger = logger(&quot;comb.collections.Tree&quot;)
+                     //add a JSON appender to tree logger just for fun!
+                     .addAppender(&quot;JSONAppender&quot;, {file : &quot;/var/log/myTreeLogger.json&quot;})
 
 //set my treeLogger to DEBUG Level
-treeLogger.level = Level.DEBUG;
-//add a JSON appender to tree logger just for fun!
-treeLogger.addAppender(new appenders.JSONAppender({file : &quot;/var/log/myTreeLogger.json&quot;}));
-
-//NOW USE THEM
+treeLogger.level = &quot;DEBUG&quot;;
             </pre>
     
 
@@ -695,13 +700,30 @@ function (){
 
 <p>
 Add an appender to this logger. If this is additive then the appender is added to all subloggers.
+
 </p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.logger(&quot;my.logger&quot;)
+ .addAppender(&quot;ConsoleAppender&quot;)
+ .addAppender(&quot;FileAppender&quot;, {file:&#x27;/var/log/my.log&#x27;})
+ .addAppender(&quot;RollingFileAppender&quot;, {file:&#x27;/var/log/myRolling.log&#x27;})
+ .addAppender(&quot;JSONAppender&quot;, {file:&#x27;/var/log/myJson.log&#x27;});
+        </pre>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>appender</em>  : the appender to add.</li>
+        <li> <em>appender</em>  : </li>
+    
+        <li> <em>opts</em>  : </li>
+    
+        <li> <em>If</em> <code>comb.logging.Appender|String</code> : the appender is an <a href='./comb_logging_appenders_Appender.html#'> comb.logging.appenders.Appender</a> then it is added. If the appender is a string then <a href='./comb_logging_appenders_Appender.html#.createAppender'> comb.logging.appenders.Appender.createAppender</a> will be called to create it.</li>
+    
+        <li> <em>[opts = <code> null</code>]</em> <code>Object</code> : If the first argument is a string then the opts will be used as constructor arguments for
+creating the appender.</li>
     
      </ul>
 
@@ -718,15 +740,20 @@ Add an appender to this logger. If this is additive then the appender is added t
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-function (appender){
-   if (!base.isUndefinedOrNull(appender)) {
-       var name = appender.name;
-       if (!(name in this.__appenders)) {
-           this.__appenders[name] = appender;
-           if (!appender.level) {
-               appender.level = this.level;
+function (appender,opts){
+   var args = argsToArray(arguments);
+   if (isString(appender)) {
+       this.addAppender(Appender.createAppender(appender, opts));
+   } else {
+       if (!isUndefinedOrNull(appender)) {
+           var name = appender.name;
+           if (!(name in this.__appenders)) {
+               this.__appenders[name] = appender;
+               if (!appender.level) {
+                   appender.level = this.level;
+               }
+               this._tree.addAppender(appender);
            }
-           this._tree.addAppender(appender);
        }
    }
    return this;
@@ -833,7 +860,7 @@ Log an debug level message
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   return this.log(Level.DEBUG, message);
+   return this.log.apply(this, [Level.DEBUG].concat(argsToArray(arguments)));
            
 }
     </pre>
@@ -885,7 +912,7 @@ Log an error level message
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   return this.log(Level.ERROR, message);
+   return this.log.apply(this, [Level.ERROR].concat(argsToArray(arguments)));
            
 }
     </pre>
@@ -937,7 +964,7 @@ Log an fatal level message
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   return this.log(Level.FATAL, message);
+   return this.log.apply(this, [Level.FATAL].concat(argsToArray(arguments)));
            
 }
     </pre>
@@ -1046,7 +1073,7 @@ Log an info level message
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   return this.log(Level.INFO, message);
+   return this.log.apply(this, [Level.INFO].concat(argsToArray(arguments)));
            
 }
     </pre>
@@ -1145,6 +1172,11 @@ Log a message
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (level,message){
+   var args = argsToArray(arguments, 1);
+   level = Level.toLevel(level);
+   if (args.length &gt; 1) {
+       message = format.apply(null, args);
+   }
    if (level.isGreaterOrEqualToo(this.level)) {
        if (Level.TRACE.equals(level)) {
            var err = new Error;
@@ -1152,7 +1184,7 @@ function (level,message){
            err.message = message || &#x27;&#x27;;
            Error.captureStackTrace(err, arguments.callee);
            message = err.stack;
-       } else if (Level.ERROR.equals(level) &amp;&amp; base.isInstanceOf(message, Error)) {
+       } else if (Level.ERROR.equals(level) &amp;&amp; isInstanceOf(message, Error)) {
            message = message.stack;
        }
        var type = level.name.toLowerCase(), appenders = this.__appenders;
@@ -1373,7 +1405,7 @@ Log an trace level message
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   return this.log(Level.TRACE, message);
+   return this.log.apply(this, [Level.TRACE].concat(argsToArray(arguments)));
            
 }
     </pre>
@@ -1425,7 +1457,7 @@ Log an warn level message
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   return this.log(Level.WARN, message);
+   return this.log.apply(this, [Level.WARN].concat(argsToArray(arguments)));
            
 }
     </pre>
