@@ -24,20 +24,20 @@ See Usage for more details.
 ##Why?
 
 
-If your like us its fun to find new modules to use but often wish you didn't have to sift through NPM registry or the node modules page to find what you need.
+If you're like us its fun to find new modules to use but often wish you didn't have to sift through NPM registry or the node modules page to find what you need.
 
    So....
 
-We created a library of things we use often, or commons utilities that are used by our other APIs.
+We created a library of things we use often, or common utilities that are used by our other APIs.
 
 ##Highlights
 
 * &gt; 99% test coverage! And we're always adding more!
 * comb([define](http://pollenware.github.com/comb/comb.html#.define)|[singleton](http://pollenware.github.com/comb/comb.html#.singleton))
-   * The back bone of comb.
+   * The backbone of comb.
    * Options for classical inheritance models as well as mixins(pseudo multi-inheritance)
    * You can call this._super from any method. Including statically defined ones!
-   * Access to you class level properties within an instance
+   * Access to your class level properties within an instance
    * And [much more...](http://pollenware.github.com/comb/comb.html#.define)
 * Logging
   * [Powerful logging API!](http://pollenware.github.com/comb_logging_Logger.html)
@@ -48,7 +48,7 @@ We created a library of things we use often, or commons utilities that are used 
      * [RollingFileAppender](http://pollenware.github.com/comb/comb_logging_appenders_RollingFileAppender.html) - log it to a file up to a customizable size then create a new one!
      * [JSONAppender](http://pollenware.github.com/comb/comb_logging_appenders_JSONAppender.html) - write it out as JSON to a file.
      * [ConsoleAppender](http://pollenware.github.com/comb/comb_logging_appenders_ConsoleAppender.html) - log it to the console
-  * All appenders can be using with custom levels, separately, or all together.
+  * All appenders can be used with custom levels, separately, or all together.
   * Configurable with [files OR programatically](http://pollenware.github.com/comb/comb_logging_BasicConfigurator.html)
 * Collections
   * [RedBlackTree](http://pollenware.github.com/comb/comb_collections_RedBlackTree.html), [AVLTree](http://pollenware.github.com/comb/comb_collections_AVLTree.html), [AnderssonTree](http://pollenware.github.com/comb/comb_collections_AnderssonTree.html), [BinaryTree](http://pollenware.github.com/comb/comb_collections_BinaryTree.html), [HashTable](http://pollenware.github.com/comb/comb_collections_HashTable.html), [MaxHeap](http://pollenware.github.com/comb/comb_collections_MaxHeap.html), [MinHeap](http://pollenware.github.com/comb/comb_collections_MinHeap.html), [Pool](http://pollenware.github.com/comb/comb_collections_Pool.html), [PriorityQueue](http://pollenware.github.com/comb/comb_collections_PriorityQueue.html), [Queue](http://pollenware.github.com/comb/comb_collections_Queue.html), [Stack](http://pollenware.github.com/comb/comb_collections_Stack.html)
