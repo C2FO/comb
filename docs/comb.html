@@ -125,11 +125,13 @@
       <ul class="nav nav-pills">
       
       
-                 <li><a href="./define.html">Define</a></li>
+                 <li><a href="./define.html">OO</a></li>
                  
                  <li><a href="./promise.html">Promises</a></li>
                  
                  <li><a href="./logging.html">Logging</a></li>
+                 
+                 <li><a href="./utilities.html">Utilities</a></li>
                  
             
 
@@ -730,6 +732,36 @@
                                         
                                 
                         isPromiseLike
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.isRegExp">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isRegExp
+                     </a></li>
+                    
+                    <li><a href="./comb.html#.isString">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        isString
                      </a></li>
                     
                     <li><a href="./comb.html#.isUndefined">
@@ -3216,6 +3248,126 @@ function (obj){
    return !isUndefinedOrNull(obj) &amp;&amp; (isInstanceOf(obj, Promise) || (isFunction(obj.then)
        &amp;&amp; isFunction(obj.addCallback) &amp;&amp; isFunction(obj.addErrback)));
        
+}
+    </pre>
+    
+
+
+    
+        <a name=".isRegExp"></a>
+    <h3>
+        isRegExp
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/regexp.js</em>
+
+<p>
+Tests if something is a regular expression.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.isRegExp(/hello/); //true
+comb.isRegExp(&quot;hello&quot;); //false
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the thing to test.</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> </li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj){
+   var undef;
+   return obj !== undef &amp;&amp; obj != null &amp;&amp; (obj instanceof RegExp);
+}
+    </pre>
+    
+
+
+    
+        <a name=".isString"></a>
+    <h3>
+        isString
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/string.js</em>
+
+<p>
+Tests if something is a string.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.isString(&quot;true&quot;) //true
+comb.isString(true) //false
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>obj</em>  : the thing to test</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Boolean</code> returns true if the argument is a string.</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (obj){
+   var undef;
+   return obj != undef &amp;&amp; (typeof obj == &quot;string&quot; || obj instanceof String);
 }
     </pre>
     

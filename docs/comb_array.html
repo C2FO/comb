@@ -125,11 +125,13 @@
       <ul class="nav nav-pills">
       
       
-                 <li><a href="./define.html">Define</a></li>
+                 <li><a href="./define.html">OO</a></li>
                  
                  <li><a href="./promise.html">Promises</a></li>
                  
                  <li><a href="./logging.html">Logging</a></li>
+                 
+                 <li><a href="./utilities.html">Utilities</a></li>
                  
             
 
@@ -692,8 +694,8 @@ Utilities for Arrays</p>
      * as a property look up on each item.
      *
      * @example
-     * comb.array.max([{a : 1}, {a : 2}, {a : -2}], &quot;a&quot;); //{a : -2}
-     * comb.array.max([{a : 1}, {a : 2}, {a : -2}], function(a,b){
+     * comb.array.min([{a : 1}, {a : 2}, {a : -2}], &quot;a&quot;); //{a : -2}
+     * comb.array.min([{a : 1}, {a : 2}, {a : -2}], function(a,b){
      *      return a.a - b.a
      * }); //{a : -2}
      *
@@ -1664,8 +1666,8 @@ as a property look up on each item.
 
     <em>Example</em>
         <pre class="prettyprint linenums lang-js">
-comb.array.max([{a : 1}, {a : 2}, {a : -2}], &quot;a&quot;); //{a : -2}
-comb.array.max([{a : 1}, {a : 2}, {a : -2}], function(a,b){
+comb.array.min([{a : 1}, {a : 2}, {a : -2}], &quot;a&quot;); //{a : -2}
+comb.array.min([{a : 1}, {a : 2}, {a : -2}], function(a,b){
      return a.a - b.a
 }); //{a : -2}
         </pre>

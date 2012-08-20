@@ -125,11 +125,13 @@
       <ul class="nav nav-pills">
       
       
-                 <li><a href="./define.html">Define</a></li>
+                 <li><a href="./define.html">OO</a></li>
                  
                  <li><a href="./promise.html">Promises</a></li>
                  
                  <li><a href="./logging.html">Logging</a></li>
+                 
+                 <li><a href="./utilities.html">Utilities</a></li>
                  
             
 
@@ -429,13 +431,13 @@ Utilities for Dates</p>
      *
      * @example
      *
-     *  comb.date.getDaysInMonth(new Date(2006, 1, 1)) =&gt; 28
-     *  comb.date.getDaysInMonth(new Date(2004, 1, 1)) =&gt; 29
-     *  comb.date.getDaysInMonth(new Date(2006, 2, 1)) =&gt; 31
-     *  comb.date.getDaysInMonth(new Date(2006, 3, 1)) =&gt; 30
-     *  comb.date.getDaysInMonth(new Date(2006, 4, 1)) =&gt; 31
-     *  comb.date.getDaysInMonth(new Date(2006, 5, 1)) =&gt; 30
-     *  comb.date.getDaysInMonth(new Date(2006, 6, 1)) =&gt; 31
+     *  comb.date.getDaysInMonth(new Date(2006, 1, 1)); //28
+     *  comb.date.getDaysInMonth(new Date(2004, 1, 1)); //29
+     *  comb.date.getDaysInMonth(new Date(2006, 2, 1)); //31
+     *  comb.date.getDaysInMonth(new Date(2006, 3, 1)); //30
+     *  comb.date.getDaysInMonth(new Date(2006, 4, 1)); //31
+     *  comb.date.getDaysInMonth(new Date(2006, 5, 1)); //30
+     *  comb.date.getDaysInMonth(new Date(2006, 6, 1)); //31
      * @param {Date} dateObject the date containing the month
      * @return {Number} the number of days in the month
      */
@@ -454,13 +456,13 @@ Utilities for Dates</p>
      *
      * @example
      *
-     *  comb.date.isLeapYear(new Date(1600, 0, 1)) =&gt; true
-     *  comb.date.isLeapYear(new Date(2004, 0, 1)) =&gt; true
-     *  comb.date.isLeapYear(new Date(2000, 0, 1)) =&gt; true
-     *  comb.date.isLeapYear(new Date(2006, 0, 1)) =&gt; false
-     *  comb.date.isLeapYear(new Date(1900, 0, 1)) =&gt; false
-     *  comb.date.isLeapYear(new Date(1800, 0, 1)) =&gt; false
-     *  comb.date.isLeapYear(new Date(1700, 0, 1)) =&gt; false
+     *  comb.date.isLeapYear(new Date(1600, 0, 1)); //true
+     *  comb.date.isLeapYear(new Date(2004, 0, 1)); //true
+     *  comb.date.isLeapYear(new Date(2000, 0, 1)); //true
+     *  comb.date.isLeapYear(new Date(2006, 0, 1)); //false
+     *  comb.date.isLeapYear(new Date(1900, 0, 1)); //false
+     *  comb.date.isLeapYear(new Date(1800, 0, 1)); //false
+     *  comb.date.isLeapYear(new Date(1700, 0, 1)); //false
      *
      * @param {Date} dateObject
      * @returns {Boolean} true if it is a leap year false otherwise
@@ -478,10 +480,10 @@ Utilities for Dates</p>
      * var saturday = new Date(2006, 8, 23);
      * var sunday = new Date(2006, 8, 24);
      * var monday = new Date(2006, 8, 25);
-     * comb.date.isWeekend(thursday)) =&gt; false
-     * comb.date.isWeekend(saturday) =&gt; true
-     * comb.date.isWeekend(sunday) =&gt; true
-     * comb.date.isWeekend(monday)) =&gt; false
+     * comb.date.isWeekend(thursday)); //false
+     * comb.date.isWeekend(saturday); //true
+     * comb.date.isWeekend(sunday); //true
+     * comb.date.isWeekend(monday)); //false
      *
      * @param {Date} dateObject the date to test
      *
@@ -501,10 +503,10 @@ Utilities for Dates</p>
      *  dt.str = &#x27;Sun Sep 17 2006 22:25:51 GMT-0500 (CDT)&#x27;;
      *  //just setting the strLocal to simulate the locale
      *  dt.strLocale = &#x27;Sun 17 Sep 2006 10:25:51 PM CDT&#x27;;
-     *  comb.date.getTimezoneName(dt) =&gt; &#x27;CDT&#x27;
+     *  comb.date.getTimezoneName(dt); //&#x27;CDT&#x27;
      *  dt.str = &#x27;Sun Sep 17 2006 22:57:18 GMT-0500 (CDT)&#x27;;
      *  dt.strLocale = &#x27;Sun Sep 17 22:57:18 2006&#x27;;
-     *  comb.date.getTimezoneName(dt) =&gt; &#x27;CDT&#x27;
+     *  comb.date.getTimezoneName(dt); //&#x27;CDT&#x27;
      * @param dateObject the date to get the timezone from
      *
      * @returns {String} the timezone of the date
@@ -525,23 +527,23 @@ Utilities for Dates</p>
      *
      * var d1 = new Date();
      * d1.setHours(0);
-     * comb.date.compare(d1, d1) =&gt; 0
+     * comb.date.compare(d1, d1); // 0
      *
      *  var d1 = new Date();
      *  d1.setHours(0);
      *  var d2 = new Date();
      *  d2.setFullYear(2005);
      *  d2.setHours(12);
-     *  comb.date.compare(d1, d2, &quot;date&quot;) =&gt; 1
-     *  comb.date.compare(d1, d2, &quot;datetime&quot;) =&gt; 1
+     *  comb.date.compare(d1, d2, &quot;date&quot;); // 1
+     *  comb.date.compare(d1, d2, &quot;datetime&quot;); // 1
      *
      *  var d1 = new Date();
      *  d1.setHours(0);
      *  var d2 = new Date();
      *  d2.setFullYear(2005);
      *  d2.setHours(12);
-     *  comb.date.compare(d2, d1, &quot;date&quot;), -1);
-     *  comb.date.compare(d1, d2, &quot;time&quot;), -1);
+     *  comb.date.compare(d2, d1, &quot;date&quot;); // -1
+     *  comb.date.compare(d1, d2, &quot;time&quot;); //-1
      *
      * @param {Date|String} date1 the date to comapare
      * @param {Date|String} [date2=new Date()] the date to compare date1 againse
@@ -571,42 +573,42 @@ Utilities for Dates</p>
      *
      * @example
      *  var dtA = new Date(2005, 11, 27);
-     *  comb.date.add(dtA, &quot;year&quot;, 1) =&gt; new Date(2006, 11, 27);
-     *  comb.date.add(dtA, &quot;years&quot;, 1) =&gt; new Date(2006, 11, 27);
+     *  comb.date.add(dtA, &quot;year&quot;, 1); //new Date(2006, 11, 27);
+     *  comb.date.add(dtA, &quot;years&quot;, 1); //new Date(2006, 11, 27);
      *
      *  dtA = new Date(2000, 0, 1);
-     *  comb.date.add(dtA, &quot;quarter&quot;, 1) =&gt; new Date(2000, 3, 1);
-     *  comb.date.add(dtA, &quot;quarters&quot;, 1) =&gt; new Date(2000, 3, 1);
+     *  comb.date.add(dtA, &quot;quarter&quot;, 1); //new Date(2000, 3, 1);
+     *  comb.date.add(dtA, &quot;quarters&quot;, 1); //new Date(2000, 3, 1);
      *
      *  dtA = new Date(2000, 0, 1);
-     *  comb.date.add(dtA, &quot;month&quot;, 1) =&gt; new Date(2000, 1, 1);
-     *  comb.date.add(dtA, &quot;months&quot;, 1) =&gt; new Date(2000, 1, 1);
+     *  comb.date.add(dtA, &quot;month&quot;, 1); //new Date(2000, 1, 1);
+     *  comb.date.add(dtA, &quot;months&quot;, 1); //new Date(2000, 1, 1);
      *
      *  dtA = new Date(2000, 0, 31);
-     *  comb.date.add(dtA, &quot;month&quot;, 1) =&gt; new Date(2000, 1, 29);
-     *  comb.date.add(dtA, &quot;months&quot;, 1) =&gt; new Date(2000, 1, 29);
+     *  comb.date.add(dtA, &quot;month&quot;, 1); //new Date(2000, 1, 29);
+     *  comb.date.add(dtA, &quot;months&quot;, 1); //new Date(2000, 1, 29);
      *
      *  dtA = new Date(2000, 0, 1);
-     *  comb.date.add(dtA, &quot;week&quot;, 1) =&gt; new Date(2000, 0, 8);
-     *  comb.date.add(dtA, &quot;weeks&quot;, 1) =&gt; new Date(2000, 0, 8);
+     *  comb.date.add(dtA, &quot;week&quot;, 1); //new Date(2000, 0, 8);
+     *  comb.date.add(dtA, &quot;weeks&quot;, 1); //new Date(2000, 0, 8);
      *
      *  dtA = new Date(2000, 0, 1);
-     *  comb.date.add(dtA, &quot;day&quot;, 1) =&gt; new Date(2000, 0, 2);
+     *  comb.date.add(dtA, &quot;day&quot;, 1); //new Date(2000, 0, 2);
      *
      *  dtA = new Date(2000, 0, 1);
-     *  comb.date.add(dtA, &quot;weekday&quot;, 1) =&gt; new Date(2000, 0, 3);
+     *  comb.date.add(dtA, &quot;weekday&quot;, 1); //new Date(2000, 0, 3);
      *
      *  dtA = new Date(2000, 0, 1, 11);
-     *  comb.date.add(dtA, &quot;hour&quot;, 1) =&gt; new Date(2000, 0, 1, 12);
+     *  comb.date.add(dtA, &quot;hour&quot;, 1); //new Date(2000, 0, 1, 12);
      *
      *  dtA = new Date(2000, 11, 31, 23, 59);
-     *  comb.date.add(dtA, &quot;minute&quot;, 1) =&gt; new Date(2001, 0, 1, 0, 0);
+     *  comb.date.add(dtA, &quot;minute&quot;, 1); //new Date(2001, 0, 1, 0, 0);
      *
      *  dtA = new Date(2000, 11, 31, 23, 59, 59);
-     *  comb.date.add(dtA, &quot;second&quot;, 1) =&gt; new Date(2001, 0, 1, 0, 0, 0);
+     *  comb.date.add(dtA, &quot;second&quot;, 1); //new Date(2001, 0, 1, 0, 0, 0);
      *
      *  dtA = new Date(2000, 11, 31, 23, 59, 59, 999);
-     *  comb.date.add(dtA, &quot;millisecond&quot;, 1) =&gt; new Date(2001, 0, 1, 0, 0, 0, 0);
+     *  comb.date.add(dtA, &quot;millisecond&quot;, 1); //new Date(2001, 0, 1, 0, 0, 0, 0);
      *
      * @param {Date} date
      * @param {String} interval the interval to add
@@ -705,40 +707,40 @@ Utilities for Dates</p>
      *
      * dtA = new Date(2005, 11, 27);
      * dtB = new Date(2006, 11, 27);
-     * comb.date.difference(dtA, dtB, &quot;year&quot;) =&gt; 1
+     * comb.date.difference(dtA, dtB, &quot;year&quot;); //1
      *
      * dtA = new Date(2000, 1, 29);
      * dtB = new Date(2001, 2, 1);
-     * comb.date.difference(dtA, dtB, &quot;quarter&quot;) =&gt; 4
-     * comb.date.difference(dtA, dtB, &quot;month&quot;) =&gt; 13
+     * comb.date.difference(dtA, dtB, &quot;quarter&quot;); //4
+     * comb.date.difference(dtA, dtB, &quot;month&quot;); //13
      *
      * dtA = new Date(2000, 1, 1);
      * dtB = new Date(2000, 1, 8);
-     * comb.date.difference(dtA, dtB, &quot;week&quot;) =&gt; 1
+     * comb.date.difference(dtA, dtB, &quot;week&quot;); //1
      *
      * dtA = new Date(2000, 1, 29);
      * dtB = new Date(2000, 2, 1);
-     * comb.date.difference(dtA, dtB, &quot;day&quot;) =&gt; 1
+     * comb.date.difference(dtA, dtB, &quot;day&quot;); //1
      *
      * dtA = new Date(2006, 7, 3);
      * dtB = new Date(2006, 7, 11);
-     * comb.date.difference(dtA, dtB, &quot;weekday&quot;) =&gt; 6
+     * comb.date.difference(dtA, dtB, &quot;weekday&quot;); //6
      *
      * dtA = new Date(2000, 11, 31, 23);
      * dtB = new Date(2001, 0, 1, 0);
-     * comb.date.difference(dtA, dtB, &quot;hour&quot;) =&gt; 1
+     * comb.date.difference(dtA, dtB, &quot;hour&quot;); //1
      *
      * dtA = new Date(2000, 11, 31, 23, 59);
      * dtB = new Date(2001, 0, 1, 0, 0);
-     * comb.date.difference(dtA, dtB, &quot;minute&quot;) =&gt; 1
+     * comb.date.difference(dtA, dtB, &quot;minute&quot;); //1
      *
      * dtA = new Date(2000, 11, 31, 23, 59, 59);
      * dtB = new Date(2001, 0, 1, 0, 0, 0);
-     * comb.date.difference(dtA, dtB, &quot;second&quot;) =&gt; 1
+     * comb.date.difference(dtA, dtB, &quot;second&quot;); //1
      *
      * dtA = new Date(2000, 11, 31, 23, 59, 59, 999);
      * dtB = new Date(2001, 0, 1, 0, 0, 0, 0);
-     * comb.date.difference(dtA, dtB, &quot;millisecond&quot;) =&gt; 1
+     * comb.date.difference(dtA, dtB, &quot;millisecond&quot;); //1
      *
      *
      * @param {Date} date1
@@ -879,12 +881,12 @@ Utilities for Dates</p>
      *
      * @example
      *  var aug_11_2006 = new Date(2006, 7, 11, 0);
-     *  comb.date.parse(&quot;08/11/06&quot;, &quot;MM/dd/yy&quot;) =&gt; aug_11_2006
-     *  comb.date.parse(&quot;11Aug2006&quot;, &#x27;ddMMMyyyy&#x27;) =&gt; aug_11_2006
-     *  comb.date.parse(&quot;Aug2006&quot;, &#x27;MMMyyyy&#x27;) =&gt; new Date(2006, 7, 1)
-     *  comb.date.parse(&quot;Aug 11, 2006&quot;, &quot;MMM dd, yyyy&quot;) =&gt; aug_11_2006
-     *  comb.date.parse(&quot;August 11, 2006&quot;, &quot;MMMM dd, yyyy&quot;) =&gt; aug_11_2006
-     *  comb.date.parse(&quot;Friday, August 11, 2006&quot;, &quot;EEEE, MMMM dd, yyyy&quot;) =&gt; aug_11_2006
+     *  comb.date.parse(&quot;08/11/06&quot;, &quot;MM/dd/yy&quot;); //aug_11_2006
+     *  comb.date.parse(&quot;11Aug2006&quot;, &#x27;ddMMMyyyy&#x27;); //aug_11_2006
+     *  comb.date.parse(&quot;Aug2006&quot;, &#x27;MMMyyyy&#x27;); //new Date(2006, 7, 1)
+     *  comb.date.parse(&quot;Aug 11, 2006&quot;, &quot;MMM dd, yyyy&quot;); //aug_11_2006
+     *  comb.date.parse(&quot;August 11, 2006&quot;, &quot;MMMM dd, yyyy&quot;); //aug_11_2006
+     *  comb.date.parse(&quot;Friday, August 11, 2006&quot;, &quot;EEEE, MMMM dd, yyyy&quot;); //aug_11_2006
      *
      * @param {String} dateStr The string to parse
      * @param {String} format the format of the date composed of the following options
@@ -1050,15 +1052,15 @@ Utilities for Dates</p>
      * @example
      *
      * var date = new Date(2006, 7, 11, 0, 55, 12, 345);
-     * comb.date.format(date, &quot;EEEE, MMMM dd, yyyy&quot;) =&gt; &quot;Friday, August 11, 2006&quot;
-     * comb.date.format(date, &quot;M/dd/yy&quot;) =&gt; &quot;8/11/06&quot;
-     * comb.date.format(date, &quot;E&quot;) =&gt; &quot;6&quot;
-     * comb.date.format(date, &quot;h:m a&quot;) =&gt; &quot;12:55 AM&quot;
-     * comb.date.format(date, &#x27;h:m:s&#x27;) =&gt; &quot;12:55:12&quot;
-     * comb.date.format(date, &#x27;h:m:s.SS&#x27;) =&gt; &quot;12:55:12.35&quot;
-     * comb.date.format(date, &#x27;k:m:s.SS&#x27;) =&gt; &quot;24:55:12.35&quot;
-     * comb.date.format(date, &#x27;H:m:s.SS&#x27;) =&gt; &quot;0:55:12.35&quot;
-     * comb.date.format(date, &quot;ddMMyyyy&quot;) =&gt; &quot;11082006&quot;
+     * comb.date.format(date, &quot;EEEE, MMMM dd, yyyy&quot;); //&quot;Friday, August 11, 2006&quot;
+     * comb.date.format(date, &quot;M/dd/yy&quot;); //&quot;8/11/06&quot;
+     * comb.date.format(date, &quot;E&quot;); //&quot;6&quot;
+     * comb.date.format(date, &quot;h:m a&quot;); //&quot;12:55 AM&quot;
+     * comb.date.format(date, &#x27;h:m:s&#x27;); //&quot;12:55:12&quot;
+     * comb.date.format(date, &#x27;h:m:s.SS&#x27;); //&quot;12:55:12.35&quot;
+     * comb.date.format(date, &#x27;k:m:s.SS&#x27;); //&quot;24:55:12.35&quot;
+     * comb.date.format(date, &#x27;H:m:s.SS&#x27;); //&quot;0:55:12.35&quot;
+     * comb.date.format(date, &quot;ddMMyyyy&quot;); //&quot;11082006&quot;
      *
      * @param date the date to format
      * @param {String} format the format of the date composed of the following options
@@ -1237,42 +1239,42 @@ Adds a specified interval and amount to a date
     <em>Example</em>
         <pre class="prettyprint linenums lang-js">
 var dtA = new Date(2005, 11, 27);
- comb.date.add(dtA, &quot;year&quot;, 1) =&gt; new Date(2006, 11, 27);
- comb.date.add(dtA, &quot;years&quot;, 1) =&gt; new Date(2006, 11, 27);
+ comb.date.add(dtA, &quot;year&quot;, 1); //new Date(2006, 11, 27);
+ comb.date.add(dtA, &quot;years&quot;, 1); //new Date(2006, 11, 27);
 
  dtA = new Date(2000, 0, 1);
- comb.date.add(dtA, &quot;quarter&quot;, 1) =&gt; new Date(2000, 3, 1);
- comb.date.add(dtA, &quot;quarters&quot;, 1) =&gt; new Date(2000, 3, 1);
+ comb.date.add(dtA, &quot;quarter&quot;, 1); //new Date(2000, 3, 1);
+ comb.date.add(dtA, &quot;quarters&quot;, 1); //new Date(2000, 3, 1);
 
  dtA = new Date(2000, 0, 1);
- comb.date.add(dtA, &quot;month&quot;, 1) =&gt; new Date(2000, 1, 1);
- comb.date.add(dtA, &quot;months&quot;, 1) =&gt; new Date(2000, 1, 1);
+ comb.date.add(dtA, &quot;month&quot;, 1); //new Date(2000, 1, 1);
+ comb.date.add(dtA, &quot;months&quot;, 1); //new Date(2000, 1, 1);
 
  dtA = new Date(2000, 0, 31);
- comb.date.add(dtA, &quot;month&quot;, 1) =&gt; new Date(2000, 1, 29);
- comb.date.add(dtA, &quot;months&quot;, 1) =&gt; new Date(2000, 1, 29);
+ comb.date.add(dtA, &quot;month&quot;, 1); //new Date(2000, 1, 29);
+ comb.date.add(dtA, &quot;months&quot;, 1); //new Date(2000, 1, 29);
 
  dtA = new Date(2000, 0, 1);
- comb.date.add(dtA, &quot;week&quot;, 1) =&gt; new Date(2000, 0, 8);
- comb.date.add(dtA, &quot;weeks&quot;, 1) =&gt; new Date(2000, 0, 8);
+ comb.date.add(dtA, &quot;week&quot;, 1); //new Date(2000, 0, 8);
+ comb.date.add(dtA, &quot;weeks&quot;, 1); //new Date(2000, 0, 8);
 
  dtA = new Date(2000, 0, 1);
- comb.date.add(dtA, &quot;day&quot;, 1) =&gt; new Date(2000, 0, 2);
+ comb.date.add(dtA, &quot;day&quot;, 1); //new Date(2000, 0, 2);
 
  dtA = new Date(2000, 0, 1);
- comb.date.add(dtA, &quot;weekday&quot;, 1) =&gt; new Date(2000, 0, 3);
+ comb.date.add(dtA, &quot;weekday&quot;, 1); //new Date(2000, 0, 3);
 
  dtA = new Date(2000, 0, 1, 11);
- comb.date.add(dtA, &quot;hour&quot;, 1) =&gt; new Date(2000, 0, 1, 12);
+ comb.date.add(dtA, &quot;hour&quot;, 1); //new Date(2000, 0, 1, 12);
 
  dtA = new Date(2000, 11, 31, 23, 59);
- comb.date.add(dtA, &quot;minute&quot;, 1) =&gt; new Date(2001, 0, 1, 0, 0);
+ comb.date.add(dtA, &quot;minute&quot;, 1); //new Date(2001, 0, 1, 0, 0);
 
  dtA = new Date(2000, 11, 31, 23, 59, 59);
- comb.date.add(dtA, &quot;second&quot;, 1) =&gt; new Date(2001, 0, 1, 0, 0, 0);
+ comb.date.add(dtA, &quot;second&quot;, 1); //new Date(2001, 0, 1, 0, 0, 0);
 
  dtA = new Date(2000, 11, 31, 23, 59, 59, 999);
- comb.date.add(dtA, &quot;millisecond&quot;, 1) =&gt; new Date(2001, 0, 1, 0, 0, 0, 0);
+ comb.date.add(dtA, &quot;millisecond&quot;, 1); //new Date(2001, 0, 1, 0, 0, 0, 0);
         </pre>
 
 
@@ -1405,23 +1407,23 @@ Compares two dates
         <pre class="prettyprint linenums lang-js">
 var d1 = new Date();
 d1.setHours(0);
-comb.date.compare(d1, d1) =&gt; 0
+comb.date.compare(d1, d1); // 0
 
  var d1 = new Date();
  d1.setHours(0);
  var d2 = new Date();
  d2.setFullYear(2005);
  d2.setHours(12);
- comb.date.compare(d1, d2, &quot;date&quot;) =&gt; 1
- comb.date.compare(d1, d2, &quot;datetime&quot;) =&gt; 1
+ comb.date.compare(d1, d2, &quot;date&quot;); // 1
+ comb.date.compare(d1, d2, &quot;datetime&quot;); // 1
 
  var d1 = new Date();
  d1.setHours(0);
  var d2 = new Date();
  d2.setFullYear(2005);
  d2.setHours(12);
- comb.date.compare(d2, d1, &quot;date&quot;), -1);
- comb.date.compare(d1, d2, &quot;time&quot;), -1);
+ comb.date.compare(d2, d1, &quot;date&quot;); // -1
+ comb.date.compare(d1, d2, &quot;time&quot;); //-1
         </pre>
 
 
@@ -1508,40 +1510,40 @@ var dtA, dtB;
 
 dtA = new Date(2005, 11, 27);
 dtB = new Date(2006, 11, 27);
-comb.date.difference(dtA, dtB, &quot;year&quot;) =&gt; 1
+comb.date.difference(dtA, dtB, &quot;year&quot;); //1
 
 dtA = new Date(2000, 1, 29);
 dtB = new Date(2001, 2, 1);
-comb.date.difference(dtA, dtB, &quot;quarter&quot;) =&gt; 4
-comb.date.difference(dtA, dtB, &quot;month&quot;) =&gt; 13
+comb.date.difference(dtA, dtB, &quot;quarter&quot;); //4
+comb.date.difference(dtA, dtB, &quot;month&quot;); //13
 
 dtA = new Date(2000, 1, 1);
 dtB = new Date(2000, 1, 8);
-comb.date.difference(dtA, dtB, &quot;week&quot;) =&gt; 1
+comb.date.difference(dtA, dtB, &quot;week&quot;); //1
 
 dtA = new Date(2000, 1, 29);
 dtB = new Date(2000, 2, 1);
-comb.date.difference(dtA, dtB, &quot;day&quot;) =&gt; 1
+comb.date.difference(dtA, dtB, &quot;day&quot;); //1
 
 dtA = new Date(2006, 7, 3);
 dtB = new Date(2006, 7, 11);
-comb.date.difference(dtA, dtB, &quot;weekday&quot;) =&gt; 6
+comb.date.difference(dtA, dtB, &quot;weekday&quot;); //6
 
 dtA = new Date(2000, 11, 31, 23);
 dtB = new Date(2001, 0, 1, 0);
-comb.date.difference(dtA, dtB, &quot;hour&quot;) =&gt; 1
+comb.date.difference(dtA, dtB, &quot;hour&quot;); //1
 
 dtA = new Date(2000, 11, 31, 23, 59);
 dtB = new Date(2001, 0, 1, 0, 0);
-comb.date.difference(dtA, dtB, &quot;minute&quot;) =&gt; 1
+comb.date.difference(dtA, dtB, &quot;minute&quot;); //1
 
 dtA = new Date(2000, 11, 31, 23, 59, 59);
 dtB = new Date(2001, 0, 1, 0, 0, 0);
-comb.date.difference(dtA, dtB, &quot;second&quot;) =&gt; 1
+comb.date.difference(dtA, dtB, &quot;second&quot;); //1
 
 dtA = new Date(2000, 11, 31, 23, 59, 59, 999);
 dtB = new Date(2001, 0, 1, 0, 0, 0, 0);
-comb.date.difference(dtA, dtB, &quot;millisecond&quot;) =&gt; 1
+comb.date.difference(dtA, dtB, &quot;millisecond&quot;); //1
         </pre>
 
 
@@ -1732,15 +1734,15 @@ Formats a date to the specidifed format string
     <em>Example</em>
         <pre class="prettyprint linenums lang-js">
 var date = new Date(2006, 7, 11, 0, 55, 12, 345);
-comb.date.format(date, &quot;EEEE, MMMM dd, yyyy&quot;) =&gt; &quot;Friday, August 11, 2006&quot;
-comb.date.format(date, &quot;M/dd/yy&quot;) =&gt; &quot;8/11/06&quot;
-comb.date.format(date, &quot;E&quot;) =&gt; &quot;6&quot;
-comb.date.format(date, &quot;h:m a&quot;) =&gt; &quot;12:55 AM&quot;
-comb.date.format(date, &#x27;h:m:s&#x27;) =&gt; &quot;12:55:12&quot;
-comb.date.format(date, &#x27;h:m:s.SS&#x27;) =&gt; &quot;12:55:12.35&quot;
-comb.date.format(date, &#x27;k:m:s.SS&#x27;) =&gt; &quot;24:55:12.35&quot;
-comb.date.format(date, &#x27;H:m:s.SS&#x27;) =&gt; &quot;0:55:12.35&quot;
-comb.date.format(date, &quot;ddMMyyyy&quot;) =&gt; &quot;11082006&quot;
+comb.date.format(date, &quot;EEEE, MMMM dd, yyyy&quot;); //&quot;Friday, August 11, 2006&quot;
+comb.date.format(date, &quot;M/dd/yy&quot;); //&quot;8/11/06&quot;
+comb.date.format(date, &quot;E&quot;); //&quot;6&quot;
+comb.date.format(date, &quot;h:m a&quot;); //&quot;12:55 AM&quot;
+comb.date.format(date, &#x27;h:m:s&#x27;); //&quot;12:55:12&quot;
+comb.date.format(date, &#x27;h:m:s.SS&#x27;); //&quot;12:55:12.35&quot;
+comb.date.format(date, &#x27;k:m:s.SS&#x27;); //&quot;24:55:12.35&quot;
+comb.date.format(date, &#x27;H:m:s.SS&#x27;); //&quot;0:55:12.35&quot;
+comb.date.format(date, &quot;ddMMyyyy&quot;); //&quot;11082006&quot;
         </pre>
 
 
@@ -1914,13 +1916,13 @@ Returns the number of days in the month of a date
 
     <em>Example</em>
         <pre class="prettyprint linenums lang-js">
-comb.date.getDaysInMonth(new Date(2006, 1, 1)) =&gt; 28
- comb.date.getDaysInMonth(new Date(2004, 1, 1)) =&gt; 29
- comb.date.getDaysInMonth(new Date(2006, 2, 1)) =&gt; 31
- comb.date.getDaysInMonth(new Date(2006, 3, 1)) =&gt; 30
- comb.date.getDaysInMonth(new Date(2006, 4, 1)) =&gt; 31
- comb.date.getDaysInMonth(new Date(2006, 5, 1)) =&gt; 30
- comb.date.getDaysInMonth(new Date(2006, 6, 1)) =&gt; 31
+comb.date.getDaysInMonth(new Date(2006, 1, 1)); //28
+ comb.date.getDaysInMonth(new Date(2004, 1, 1)); //29
+ comb.date.getDaysInMonth(new Date(2006, 2, 1)); //31
+ comb.date.getDaysInMonth(new Date(2006, 3, 1)); //30
+ comb.date.getDaysInMonth(new Date(2006, 4, 1)); //31
+ comb.date.getDaysInMonth(new Date(2006, 5, 1)); //30
+ comb.date.getDaysInMonth(new Date(2006, 6, 1)); //31
         </pre>
 
 
@@ -1992,10 +1994,10 @@ Get the timezone of a date
  dt.str = &#x27;Sun Sep 17 2006 22:25:51 GMT-0500 (CDT)&#x27;;
  //just setting the strLocal to simulate the locale
  dt.strLocale = &#x27;Sun 17 Sep 2006 10:25:51 PM CDT&#x27;;
- comb.date.getTimezoneName(dt) =&gt; &#x27;CDT&#x27;
+ comb.date.getTimezoneName(dt); //&#x27;CDT&#x27;
  dt.str = &#x27;Sun Sep 17 2006 22:57:18 GMT-0500 (CDT)&#x27;;
  dt.strLocale = &#x27;Sun Sep 17 22:57:18 2006&#x27;;
- comb.date.getTimezoneName(dt) =&gt; &#x27;CDT&#x27;
+ comb.date.getTimezoneName(dt); //&#x27;CDT&#x27;
         </pre>
 
 
@@ -2062,13 +2064,13 @@ Determines if a date is a leap year
 
     <em>Example</em>
         <pre class="prettyprint linenums lang-js">
-comb.date.isLeapYear(new Date(1600, 0, 1)) =&gt; true
- comb.date.isLeapYear(new Date(2004, 0, 1)) =&gt; true
- comb.date.isLeapYear(new Date(2000, 0, 1)) =&gt; true
- comb.date.isLeapYear(new Date(2006, 0, 1)) =&gt; false
- comb.date.isLeapYear(new Date(1900, 0, 1)) =&gt; false
- comb.date.isLeapYear(new Date(1800, 0, 1)) =&gt; false
- comb.date.isLeapYear(new Date(1700, 0, 1)) =&gt; false
+comb.date.isLeapYear(new Date(1600, 0, 1)); //true
+ comb.date.isLeapYear(new Date(2004, 0, 1)); //true
+ comb.date.isLeapYear(new Date(2000, 0, 1)); //true
+ comb.date.isLeapYear(new Date(2006, 0, 1)); //false
+ comb.date.isLeapYear(new Date(1900, 0, 1)); //false
+ comb.date.isLeapYear(new Date(1800, 0, 1)); //false
+ comb.date.isLeapYear(new Date(1700, 0, 1)); //false
         </pre>
 
 
@@ -2136,10 +2138,10 @@ var thursday = new Date(2006, 8, 21);
 var saturday = new Date(2006, 8, 23);
 var sunday = new Date(2006, 8, 24);
 var monday = new Date(2006, 8, 25);
-comb.date.isWeekend(thursday)) =&gt; false
-comb.date.isWeekend(saturday) =&gt; true
-comb.date.isWeekend(sunday) =&gt; true
-comb.date.isWeekend(monday)) =&gt; false
+comb.date.isWeekend(thursday)); //false
+comb.date.isWeekend(saturday); //true
+comb.date.isWeekend(sunday); //true
+comb.date.isWeekend(monday)); //false
         </pre>
 
 
@@ -2206,12 +2208,12 @@ Parses a date string into a date object
     <em>Example</em>
         <pre class="prettyprint linenums lang-js">
 var aug_11_2006 = new Date(2006, 7, 11, 0);
- comb.date.parse(&quot;08/11/06&quot;, &quot;MM/dd/yy&quot;) =&gt; aug_11_2006
- comb.date.parse(&quot;11Aug2006&quot;, &#x27;ddMMMyyyy&#x27;) =&gt; aug_11_2006
- comb.date.parse(&quot;Aug2006&quot;, &#x27;MMMyyyy&#x27;) =&gt; new Date(2006, 7, 1)
- comb.date.parse(&quot;Aug 11, 2006&quot;, &quot;MMM dd, yyyy&quot;) =&gt; aug_11_2006
- comb.date.parse(&quot;August 11, 2006&quot;, &quot;MMMM dd, yyyy&quot;) =&gt; aug_11_2006
- comb.date.parse(&quot;Friday, August 11, 2006&quot;, &quot;EEEE, MMMM dd, yyyy&quot;) =&gt; aug_11_2006
+ comb.date.parse(&quot;08/11/06&quot;, &quot;MM/dd/yy&quot;); //aug_11_2006
+ comb.date.parse(&quot;11Aug2006&quot;, &#x27;ddMMMyyyy&#x27;); //aug_11_2006
+ comb.date.parse(&quot;Aug2006&quot;, &#x27;MMMyyyy&#x27;); //new Date(2006, 7, 1)
+ comb.date.parse(&quot;Aug 11, 2006&quot;, &quot;MMM dd, yyyy&quot;); //aug_11_2006
+ comb.date.parse(&quot;August 11, 2006&quot;, &quot;MMMM dd, yyyy&quot;); //aug_11_2006
+ comb.date.parse(&quot;Friday, August 11, 2006&quot;, &quot;EEEE, MMMM dd, yyyy&quot;); //aug_11_2006
         </pre>
 
 

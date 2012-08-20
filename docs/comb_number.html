@@ -125,11 +125,13 @@
       <ul class="nav nav-pills">
       
       
-                 <li><a href="./define.html">Define</a></li>
+                 <li><a href="./define.html">OO</a></li>
                  
                  <li><a href="./promise.html">Promises</a></li>
                  
                  <li><a href="./logging.html">Logging</a></li>
+                 
+                 <li><a href="./utilities.html">Utilities</a></li>
                  
             
 
@@ -262,6 +264,45 @@
 
                             <div class="nav-collapse">
             
+            <ul class="nav pull-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methods<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    
+                    <li><a href="./comb_number.html#.round">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        round
+                     </a></li>
+                    
+                    <li><a href="./comb_number.html#.roundCeil">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                        roundCeil
+                     </a></li>
+                    
+                </ul>
+            </li>
+            </ul>
+            
             </div>
             </div>
      </div>
@@ -279,9 +320,17 @@ Utilities for numbers</p>
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 {
+    /**@lends comb.number*/
     /**
      * Rounds a number to the specified places.
      *
+     * @example
+     *
+     * comb.number.round(10.000009, 2); //10
+     * comb.number.round(10.000009, 5); //10.00001
+     * comb.number.round(10.0009, 3); //10.001
+     * comb.number.round(10.0009, 2); //10
+     * comb.number.round(10.0009, 3); //10.001
      *
      * @param {Number} num the number to round.
      * @param {Number} places the number of places to round to.
@@ -294,6 +343,14 @@ Utilities for numbers</p>
     /**
      * Rounds a number to the specified places, rounding up.
      *
+     * @example
+     *
+     * comb.number.roundCeil(10.000001, 2); //10.01
+     * comb.number.roundCeil(10.000002, 5); //10.00001
+     * comb.number.roundCeil(10.0003, 3); //10.001
+     * comb.number.roundCeil(10.0004, 2); //10.01
+     * comb.number.roundCeil(10.0005, 3); //10.001
+     * comb.number.roundCeil(10.0002, 2); //10.01
      *
      * @param {Number} num the number to round.
      * @param {Number} places the number of places to round to.
@@ -306,6 +363,131 @@ Utilities for numbers</p>
     
 
     
+    
+        <a name=".round"></a>
+    <h3>
+        round
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/number.js</em>
+
+<p>
+Rounds a number to the specified places.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.number.round(10.000009, 2); //10
+comb.number.round(10.000009, 5); //10.00001
+comb.number.round(10.0009, 3); //10.001
+comb.number.round(10.0009, 2); //10
+comb.number.round(10.0009, 3); //10.001
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>number</em>  : </li>
+    
+        <li> <em>places</em>  : the number of places to round to.</li>
+    
+        <li> <em>increment</em>  : </li>
+    
+        <li> <em>num</em> <code>Number</code> : the number to round.</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (number,places,increment){
+   increment = increment || 1e-20;
+   var factor = 10 / (10 * (increment || 10));
+   return (Math.ceil(factor * +number) / factor).toFixed(places) * 1; // Number
+       
+}
+    </pre>
+    
+
+
+    
+        <a name=".roundCeil"></a>
+    <h3>
+        roundCeil
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/number.js</em>
+
+<p>
+Rounds a number to the specified places, rounding up.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.number.roundCeil(10.000001, 2); //10.01
+comb.number.roundCeil(10.000002, 5); //10.00001
+comb.number.roundCeil(10.0003, 3); //10.001
+comb.number.roundCeil(10.0004, 2); //10.01
+comb.number.roundCeil(10.0005, 3); //10.001
+comb.number.roundCeil(10.0002, 2); //10.01
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>number</em>  : </li>
+    
+        <li> <em>places</em>  : the number of places to round to.</li>
+    
+        <li> <em>num</em> <code>Number</code> : the number to round.</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (number,places){
+   return Math.ceil(number * Math.pow(10, places))/Math.pow(10, places);
+       
+}
+    </pre>
+    
+
+
     
 <hr>
 

@@ -125,11 +125,13 @@
       <ul class="nav nav-pills">
       
       
-                 <li><a href="./define.html">Define</a></li>
+                 <li><a href="./define.html">OO</a></li>
                  
                  <li><a href="./promise.html">Promises</a></li>
                  
                  <li><a href="./logging.html">Logging</a></li>
+                 
+                 <li><a href="./utilities.html">Utilities</a></li>
                  
             
 
@@ -393,7 +395,7 @@
      *
      * @returns {String} the padded string
      */
-    pad : function(string, length, ch, end) {
+    pad:function (string, length, ch, end) {
         string = &quot;&quot; + string; //check for numbers
         ch = ch || &quot; &quot;;
         var strLen = string.length;
@@ -425,7 +427,7 @@
      *
      * @return {String} the truncated string.
      */
-    truncate : function(string, length, end) {
+    truncate:function (string, length, end) {
         var ret = string;
         if (comb.isString(ret)) {
             if (string.length &gt; length) {
@@ -508,12 +510,12 @@
      *
      * @returns {String} the formatted string
      */
-    format : function(str, obj) {
+    format:function (str, obj) {
         !date &amp;&amp; (date = require(&quot;./date&quot;));
         if (obj instanceof Array) {
             var i = 0, len = obj.length;
             //find the matches
-            return str.replace(FORMAT_REGEX, function(m, format, type) {
+            return str.replace(FORMAT_REGEX, function (m, format, type) {
                 var replacer, ret;
                 if (i &lt; len) {
                     replacer = obj[i++];
@@ -525,12 +527,12 @@
                 if (m == &quot;%s&quot; || m == &quot;%d&quot; || m == &quot;%D&quot;) {
                     //fast path!
                     ret = replacer;
-                }else if(m == &quot;%Z&quot;){
+                } else if (m == &quot;%Z&quot;) {
                     ret = replacer.toUTCString();
                 } else if (m == &quot;%j&quot;) {
                     try {
                         ret = JSON.stringify(replacer);
-                    } catch(e) {
+                    } catch (e) {
                         throw new Error(&quot;comb.string.format : Unable to parse json from &quot;, replacer);
                     }
                 } else {
@@ -556,7 +558,7 @@
                 return ret;
             });
         } else if (typeof obj == &quot;object&quot;) {
-            return str.replace(INTERP_REGEX, function(m, format, value) {
+            return str.replace(INTERP_REGEX, function (m, format, value) {
                 value = obj[value];
                 if (!misc.isUndefined(value)) {
                     if (format) {
@@ -592,7 +594,7 @@
      * @param {String} str the string to parse
      * @param {String} delimeter the delimeter to use
      */
-    toArray : function(testStr, delim) {
+    toArray:function (testStr, delim) {
         var ret = [];
         if (testStr) {
             if (testStr.indexOf(delim) &gt; 0) return testStr.replace(/\s+/g, &quot;&quot;).split(delim);
@@ -609,7 +611,7 @@
      *
      *
      */
-    multiply : function(str, times) {
+    multiply:function (str, times) {
         var ret = [];
         if (times) {
             for (var i = 0; i &lt; times; i++) {
@@ -657,15 +659,15 @@
      *
      *          &lt;/ul&gt;
      */
-    style : function(str, options) {
+    style:function (str, options) {
         var ret = str;
         if (options) {
             if (ret instanceof Array) {
-                ret = ret.map(function(s) {
+                ret = ret.map(function (s) {
                     return comb.string.style(s, options);
                 })
             } else if (options instanceof Array) {
-                options.forEach(function(option) {
+                options.forEach(function (option) {
                     ret = comb.string.style(ret, option);
                 });
             } else if (options in styles) {
@@ -765,7 +767,7 @@ function (str,obj){
    if (obj instanceof Array) {
        var i = 0, len = obj.length;
        //find the matches
-       return str.replace(FORMAT_REGEX, function(m, format, type) {
+       return str.replace(FORMAT_REGEX, function (m, format, type) {
            var replacer, ret;
            if (i &lt; len) {
                replacer = obj[i++];
@@ -777,12 +779,12 @@ function (str,obj){
            if (m == &quot;%s&quot; || m == &quot;%d&quot; || m == &quot;%D&quot;) {
                //fast path!
                ret = replacer;
-           }else if(m == &quot;%Z&quot;){
+           } else if (m == &quot;%Z&quot;) {
                ret = replacer.toUTCString();
            } else if (m == &quot;%j&quot;) {
                try {
                    ret = JSON.stringify(replacer);
-               } catch(e) {
+               } catch (e) {
                    throw new Error(&quot;comb.string.format : Unable to parse json from &quot;, replacer);
                }
            } else {
@@ -808,7 +810,7 @@ function (str,obj){
            return ret;
        });
    } else if (typeof obj == &quot;object&quot;) {
-       return str.replace(INTERP_REGEX, function(m, format, value) {
+       return str.replace(INTERP_REGEX, function (m, format, value) {
            value = obj[value];
            if (!misc.isUndefined(value)) {
                if (format) {
@@ -1029,11 +1031,11 @@ function (str,options){
    var ret = str;
    if (options) {
        if (ret instanceof Array) {
-           ret = ret.map(function(s) {
+           ret = ret.map(function (s) {
                return comb.string.style(s, options);
            })
        } else if (options instanceof Array) {
-           options.forEach(function(option) {
+           options.forEach(function (option) {
                ret = comb.string.style(ret, option);
            });
        } else if (options in styles) {

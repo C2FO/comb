@@ -125,11 +125,13 @@
       <ul class="nav nav-pills">
       
       
-                 <li><a href="./define.html">Define</a></li>
+                 <li><a href="./define.html">OO</a></li>
                  
                  <li><a href="./promise.html">Promises</a></li>
                  
                  <li><a href="./logging.html">Logging</a></li>
+                 
+                 <li><a href="./utilities.html">Utilities</a></li>
                  
             
 
@@ -312,8 +314,8 @@ Regeular expression utilities</p>
      *
      * @returns {String} the escaped string
      */
-    escapeString : function(str, except) {
-        return str.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, function(ch) {
+    escapeString:function (str, except) {
+        return str.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, function (ch) {
             if (except &amp;&amp; except.indexOf(ch) != -1) {
                 return ch;
             }
@@ -374,7 +376,7 @@ Escapes a string
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (str,except){
-   return str.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, function(ch) {
+   return str.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, function (ch) {
        if (except &amp;&amp; except.indexOf(ch) != -1) {
            return ch;
        }
