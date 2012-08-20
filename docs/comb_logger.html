@@ -127,6 +127,8 @@
       
                  <li><a href="./define.html">Define</a></li>
                  
+                 <li><a href="./promise.html">Promises</a></li>
+                 
                  <li><a href="./logging.html">Logging</a></li>
                  
             
@@ -412,12 +414,12 @@ comb.logger.configure(&quot;/location/to/logger/configuration.json&quot;);
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (){
-   var args = base.argsToArray(arguments), configurator;
+   var args = argsToArray(arguments), configurator;
    if (!args.length) {
        configurator = new configurators.BasicConfigurator();
    } else {
        var first = args[0];
-       if (base.isHash(first) || base.isString(first)) {
+       if (isHash(first) || isString(first)) {
            configurator = new configurators.PropertyConfigurator();
        } else {
            configurator = new configurators.BasicConfigurator();

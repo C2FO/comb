@@ -127,6 +127,8 @@
       
                  <li><a href="./define.html">Define</a></li>
                  
+                 <li><a href="./promise.html">Promises</a></li>
+                 
                  <li><a href="./logging.html">Logging</a></li>
                  
             
@@ -634,7 +636,7 @@ function (state,op,args){
    } else {
        promise.callback();
    }
-   return promise;
+   return promise.promise();
            
 }
     </pre>

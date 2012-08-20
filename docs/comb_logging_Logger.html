@@ -127,6 +127,8 @@
       
                  <li><a href="./define.html">Define</a></li>
                  
+                 <li><a href="./promise.html">Promises</a></li>
+                 
                  <li><a href="./logging.html">Logging</a></li>
                  
             
@@ -737,11 +739,11 @@ creating the appender.</li>
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (appender,opts){
-   var args = base.argsToArray(arguments);
-   if (base.isString(appender)) {
+   var args = argsToArray(arguments);
+   if (isString(appender)) {
        this.addAppender(Appender.createAppender(appender, opts));
    } else {
-       if (!base.isUndefinedOrNull(appender)) {
+       if (!isUndefinedOrNull(appender)) {
            var name = appender.name;
            if (!(name in this.__appenders)) {
                this.__appenders[name] = appender;
@@ -1168,7 +1170,7 @@ Log a message
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (level,message){
-   var args = base.argsToArray(arguments).slice(1);
+   var args = argsToArray(arguments, 1);
    level = Level.toLevel(level);
    if (args.length &gt; 1) {
        message = format.apply(null, args);
@@ -1180,7 +1182,7 @@ function (level,message){
            err.message = message || &#x27;&#x27;;
            Error.captureStackTrace(err, arguments.callee);
            message = err.stack;
-       } else if (Level.ERROR.equals(level) &amp;&amp; base.isInstanceOf(message, Error)) {
+       } else if (Level.ERROR.equals(level) &amp;&amp; isInstanceOf(message, Error)) {
            message = message.stack;
        }
        var type = level.name.toLowerCase(), appenders = this.__appenders;

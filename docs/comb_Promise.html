@@ -127,6 +127,8 @@
       
                  <li><a href="./define.html">Define</a></li>
                  
+                 <li><a href="./promise.html">Promises</a></li>
+                 
                  <li><a href="./logging.html">Logging</a></li>
                  
             
@@ -389,6 +391,34 @@
                                         
                                 
                                 errback
+
+                                </a></li>
+                                
+                                <li><a href="./comb_Promise.html#promise">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                promise
+
+                                </a></li>
+                                
+                                <li><a href="./comb_Promise.html#resolve">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                        
+                                 <span class="label label-success">P</span>
+                                        
+                                
+                                resolve
 
                                 </a></li>
                                 
@@ -740,13 +770,13 @@ When called all functions registered as callbacks are called with the passed in 
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (args){
-   args = base.argsToArray(arguments);
+   args = argsToArray(arguments);
    if (this.__fired) {
        throw new Error(&quot;Already fired!&quot;);
    }
    this.__results = args;
    this.__resolve();
-   return this;
+   return this.promise();
            
 }
     </pre>
@@ -825,7 +855,7 @@ function (callback,errback){
    // If no errback passed, then invoke our promise&#x27;s errback to pass
    // on to next link in the chain.
    this.addErrback(errback || promise);
-   return promise;
+   return promise.promise();
            
 }
     </pre>
@@ -884,7 +914,7 @@ function (callback){
    this.addErrback(function (results) {
        when(callback.call(this, results)).then(promise);
    });
-   return promise;
+   return promise.promise();
            
 }
     </pre>
@@ -954,7 +984,7 @@ function (cb){
            cb(err);
        });
        this.addCallback(function () {
-           cb.apply(this, [null].concat(base.argsToArray(arguments)));
+           cb.apply(this, [null].concat(argsToArray(arguments)));
        });
    }
    return this;
@@ -1005,8 +1035,145 @@ function (args){
    if (this.__fired) {
        throw args || new Error(&quot;Already fired&quot;);
    }
-   this.__error = base.argsToArray(arguments);
+   this.__error = argsToArray(arguments);
    this.__resolve();
+   return this.promise();
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="promise"></a>
+    <h3>
+        promise
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+Creates an object to that contains methods to listen to resolution but not the "callback" or "errback" methods.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var asyncMethod = function(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, &quot;hello&quot;));
+    return ret.promise();
+}
+
+asyncMethod().callback() //throws error
+        </pre>
+
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Object</code> an object containing "chain", "chainBoth", "promise", "addCallback", "addErrback", "then", "both".</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   var ret = {
+       chain:this.chain.bind(this),
+       chainBoth:this.chainBoth.bind(this),
+       promise:function () {
+           return ret;
+       }
+   };
+   [&quot;addCallback&quot;, &quot;addErrback&quot;, &quot;then&quot;, &quot;both&quot;].forEach(function (action) {
+       ret[action] = function () {
+           this[action].apply(this, arguments);
+           return ret;
+       }.bind(this);
+   }, this);
+   return ret;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="resolve"></a>
+    <h3>
+        resolve
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p>
+Resolved a promise using the node style callback.
+
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+var promise = new Promise();
+fs.readFile(&quot;file.txt&quot;, &quot;utf8&quot;, promise.resolve.bind(promise));
+promise.then(function(file){
+    console.log(file);
+});
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>[err= <code>null</code>]</em>  : If specified then the promise will error out</li>
+    
+        <li> <em>args?</em>  : if err is null then the aruments will be used to resolve the promise.</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> for chaining.</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (err,args){
+   if (err) {
+       this.errback(err);
+   } else {
+       this.callback.apply(this, argsToArray(arguments, 1));
+   }
    return this;
            
 }

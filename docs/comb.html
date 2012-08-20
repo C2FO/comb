@@ -127,6 +127,8 @@
       
                  <li><a href="./define.html">Define</a></li>
                  
+                 <li><a href="./promise.html">Promises</a></li>
+                 
                  <li><a href="./logging.html">Logging</a></li>
                  
             
@@ -1111,13 +1113,30 @@ exports
 <p>
 
 Converts an arguments object to an array
+
 </p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+function test(){
+    return comb.argsToArray(arguments);
+}
+
+function testSlice(){
+    return comb.argsToArray(arguments, 3);
+}
+
+console.log(test(1,2,3)); //[1,2,3]
+console.log(test(1,2,3,4,5,6)); //[4,5,6]
+        </pre>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>args</em> <code>Arguments</code> : the arguments object to convert</li>
+        <li> <em>args</em>  : the arguments object to convert</li>
+    
+        <li> <em>[slice= <code>0</code>]</em>  : the number of arguments to slice.</li>
     
      </ul>
 
@@ -1134,7 +1153,10 @@ Converts an arguments object to an array
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-comb.argsToArray = function (args) {
+function (args,slice){
+   slice = slice || 0;
+   return arraySlice.call(args, slice);
+}
     </pre>
     
 
@@ -2577,7 +2599,7 @@ Determines if obj is an Arguments object;
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (object){
-   return !comb.isUndefinedOrNull(object) &amp;&amp; Object.prototype.toString.call(object) == &#x27;[object Arguments]&#x27;;
+   return !isUndefinedOrNull(object) &amp;&amp; Object.prototype.toString.call(object) == &#x27;[object Arguments]&#x27;;
 }
     </pre>
     
@@ -2738,7 +2760,7 @@ Determins if the obj is not undefined
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (obj){
-   return !comb.isUndefined(obj);
+   return !isUndefined(obj);
 }
     </pre>
     
@@ -2982,7 +3004,7 @@ Determines if obj is an instance of a particular class
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (obj,clazz){
-   return argsToArray(arguments).slice(1).some(function (c) {
+   return argsToArray(arguments, 1).some(function (c) {
        return isInstance(obj, c);
    });
 }
@@ -3191,8 +3213,8 @@ Tests if an object is like a promise (i.e. it contains then, addCallback, addErr
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (obj){
-   return !base.isUndefinedOrNull(obj) &amp;&amp; (base.isInstanceOf(obj, Promise) || (base.isFunction(obj.then)
-       &amp;&amp; base.isFunction(obj.addCallback) &amp;&amp; base.isFunction(obj.addErrback)));
+   return !isUndefinedOrNull(obj) &amp;&amp; (isInstanceOf(obj, Promise) || (isFunction(obj.then)
+       &amp;&amp; isFunction(obj.addCallback) &amp;&amp; isFunction(obj.addErrback)));
        
 }
     </pre>
@@ -3300,7 +3322,7 @@ Determines if obj is undefined or null
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (obj){
-   return comb.isUndefined(obj) || comb.isNull(obj);
+   return isUndefined(obj) || isNull(obj);
 }
     </pre>
     
@@ -4001,7 +4023,7 @@ is called.
 var asyncAction = function(item, timeout){
    var ret = new comb.Promise();
    setTimeout(comb.hitchIgnore(ret, &quot;callback&quot;, item), timeout);
-   return ret;
+   return ret.promise();
 };
 
 comb.serial([
@@ -4042,7 +4064,7 @@ function (list,callback,errback){
        throw new Error(&quot;When calling comb.serial the first argument must be an array&quot;);
    }
    ret.then(callback, errback);
-   return ret;
+   return ret.promise();
        
 }
     </pre>
@@ -4375,7 +4397,7 @@ var a = &quot;hello&quot;;
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (args,cb,eb){
-   var args = base.argsToArray(arguments), p;
+   var args = argsToArray(arguments), p;
    eb = base.isFunction(args[args.length - 1]) ? args.pop() : null;
    cb = base.isFunction(args[args.length - 1]) ? args.pop() : null;
    if (eb &amp;&amp; !cb) {
@@ -4398,7 +4420,7 @@ function (args,cb,eb){
    if (eb) {
        p.addErrback(eb);
    }
-   return p;
+   return p.promise();
        
 }
     </pre>
@@ -4469,18 +4491,10 @@ readFile(__dirname + &quot;/test.json&quot;).then(
 function (fn,scope){
    return function () {
        var ret = new Promise();
-       var args = base.argsToArray(arguments);
-       args.push(function (err, res) {
-           var args = base.argsToArray(arguments);
-           if (err) {
-               ret.errback(err);
-           } else {
-               args.shift();
-               ret.callback.apply(ret, args);
-           }
-       });
+       var args = argsToArray(arguments);
+       args.push(ret.resolve.bind(ret));
        fn.apply(scope || this, args);
-       return ret;
+       return ret.promise();
    }
        
 }

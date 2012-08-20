@@ -127,6 +127,8 @@
       
                  <li><a href="./define.html">Define</a></li>
                  
+                 <li><a href="./promise.html">Promises</a></li>
+                 
                  <li><a href="./logging.html">Logging</a></li>
                  
             
@@ -410,12 +412,12 @@ Add a promise to our chain
     <pre class="prettyprint linenums lang-js">
 function (promise,i){
    promise.addCallback(hitch(this, function () {
-       var args = Array.prototype.slice.call(arguments);
+       var args = argsToArray(arguments);
        args.unshift(i);
        this.callback.apply(this, args);
    }));
    promise.addErrback(hitch(this, function () {
-       var args = Array.prototype.slice.call(arguments);
+       var args = argsToArray(arguments);
        args.unshift(i);
        this.errback.apply(this, args);
    }));

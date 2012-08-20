@@ -241,217 +241,246 @@
 
 
 
-<h2>Logging.</h2>
-<p><code>comb</code>&#39;s logging api is fairly straight forward.
+<h1><a href="./comb_Promise.html">Promises</a></h1>
+<p><code>comb</code> provides an async wrapper called a <a href="http://en.wikipedia.org/wiki/Futures_and_promises">promise</a>. Promises are a way of handling async and sync behavior by encapsulating it in a wrapper. One of the benefits of promises is that it encourages the separation of success and failure logic, and provides a value that can be passed around rather than providing callbacks for every async action. 
 
 </p>
-<h3>The logger</h3>
-<pre class='prettyprint linenums lang-js'><code>var logger = comb.logger(&quot;logger&quot;);</code></pre>
-<p>The <code>comb.logger</code> function simply creates a logger that can be used to log different <strong>events</strong>. The logging api allows one retrive the same logger anywhere in your module. For example, suppose you have the following two files.
+<h2><a href="./comb_Promise.html">comb.Promise</a></h2>
+<p>The <a href="./comb_Promise.html">comb.Promise</a> is the backbone for <code>comb</code>s async utilities. 
 
 </p>
-<p><code>a.js</code>
+<p>To create a promise
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var promise = new comb.Promise();</code></pre>
+<h3>Resolving Promises</h3>
+<p>When working with a promise you must resolve the promise in order to callbacks/errbacks to be invoked. Resolution can happen before for after callbacks/errbacks have been registered. The methods to resolve a promise are <code>callback</code>, <code>errback</code>, and <code>resolve</code>.
+
+</p>
+<h3>callback  and errback</h3>
+<p>The callback method is used to resolve a promise as a success.
 
 </p>
 <pre class='prettyprint linenums lang-js'><code>
-var logger = comb.logger(&quot;logger&quot;);</code></pre>
-<p><code>b.js</code>
+function readFile(file, encoding){
+    var ret = new comb.Promise();
+    fs.readFile(file, encoding || &quot;utf8&quot;, function(err){
+        if(err){
+            //there was an error so errback
+            ret.errback(err);
+        }else{
+            //resolve the promise removing the first argument
+            ret.callback(comb.argsToArray(arguments, 1));
+        }
+    });
+    //return the promise object which removes the &#39;callback&#39;, &#39;errback&#39; and &#39;resolve&#39; functions.
+    return ret.promise();
+}
+
+readFile(&quot;myFile.txt&quot;).then(function(text){
+    console.log(text);
+}, errorHandler);</code></pre>
+<p>As you can see from above we can easily wrap the <code>fs.readFile</code> function with a promise. The advantage of this is that you can now seperate the success and error resolution paths with the <code>then</code> function. The above example just passes the error to a global error handler and your success callback does not have to worry about the error condition.
 
 </p>
-<pre class='prettyprint linenums lang-js'><code>var logger = comb.logger(&quot;logger&quot;);</code></pre>
-<p>Both of the previous loggers are one and the same.
+<h3>resolve</h3>
+<p><code>callback</code> and <code>errback</code> are great if you are working with other promise methods but as you can see from above you still have to handle the error and success path when working with node style callback. This is where the <code>resolve</code> method comes in handy.
 
 </p>
-<h3>Logger inheritance</h3>
-<p>As with other logging APIs loggers can inherit from eachother, through a <strong>dot</strong> notation.
+<p>Resolve wraps <code>callback</code> and <code>errback</code> in a single method that accepts an <code>error</code> as the first argument. If the error is undefined or null then the rest of the arguments are used to resolve the promise.
 
 </p>
-<pre class='prettyprint linenums lang-js'><code>                         rootLogger - &quot;&quot;
-                                 /         \
-                              &quot;my&quot;      &quot;myOther&quot;
-                              /               \
-                        &quot;my.logger&quot;       &quot;myOther.logger&quot;
-                           /                     \
-                      &quot;my.logger.Log&quot;        &quot;myOther.logger.Log&quot;</code></pre>
-<p>The above configuration shows six loggers the <strong>rootLogger</strong>, two children <code>my</code> and <code>myOther</code>, and sub loggers.
+<p>Lets rewrite the <code>readFile</code> funciton with resolve.
 
 </p>
-<p>So what does this inheritance mean?
+<pre class='prettyprint linenums lang-js'><code>
+function readFile(file, encoding){
+    var ret = new comb.Promise();
+    fs.readFile(file, encoding || &quot;utf8&quot;, ret.resolve.bind(ret));
+    //return the promise object which removes the &#39;callback&#39;, &#39;errback&#39; and &#39;resolve&#39; functions.
+    return ret.promise();
+}
 
-</p>
-<p>Well it has to do with logging <code>levels</code> and <code>appenders</code>.
-
-</p>
-<h4>Levels</h4>
-<p>In the above examples we could define a level of <code>INFO</code> to the logger <code>my</code> and a level of <code>ERROR</code> to <code>myOther</code> and all sub loggers would inherit the respective <code>level</code>. The same applies for <code>appender</code>s  any appenders added to a logger will be propogated down. So lets look at an example.
-
-</p>
-<pre class='prettyprint linenums lang-js'><code>//lets grab two loggers
-var logger = comb.logger(&quot;my&quot;),
-    logger2 = comb.logger(&quot;myOther&quot;),
-    logger3 = comb.logger(&quot;my.logger&quot;),
-    logger4 = comb.logger(&quot;myOther.logger&quot;);
-
-//set the log level on my
-logger.level = &#39;DEBUG&#39;;
-
-console.log(logger.level.name); //&#39;DEBUG&#39;
-console.log(logger2.level.name); //&#39;ALL&#39;
-console.log(logger3.level.name); //&#39;DEBUG&#39;
-console.log(logger4.level.name); //&#39;ALL&#39;
-
-logger2.level = &#39;INFO&#39;;
-
-console.log(logger.level.name); //&#39;DEBUG&#39;
-console.log(logger2.level.name); //&#39;INFO&#39;
-console.log(logger3.level.name); //&#39;DEBUG&#39;
-console.log(logger4.level.name); //&#39;INFO&#39;
-
-logger3.level = &#39;WARN&#39;;
-console.log(logger.level.name); //&#39;DEBUG&#39;
-console.log(logger2.level.name); //&#39;INFO&#39;
-console.log(logger3.level.name); //&#39;WARN&#39;
-console.log(logger4.level.name); //&#39;INFO&#39;
-console.log(comb.logger(&#39;my.logger.log&#39;).level.name); //&#39;WARN&#39;</code></pre>
-<p>Above you can see that as we change levels the loggers that inherit from the parents levels change also. This is a powerful concept especially when handling loggers accross a large application and you do not want to configure every logger but have enough control to log only the information you need at the time.
-
-</p>
-<h4>Appenders</h4>
-<p>Appenders are the objects that handle events and deliver them to where they need to go. <code>comb</code> supports a few types of appenders out of the box.
-
-</p>
-<ul>
-<li><code>ConsoleAppender</code> : Logs <strong>events</strong> to the console the.</li>
-<li><code>FileAppender</code> : Logs <strong>events</strong> to a specified file.</li>
-<li><code>RollingFileAppender</code> : Logs <strong>events</strong> to a specified file up to a certain size. Once the max size has been reached it is renamed and a new log file is created.</li>
-<li><code>JSONAppender</code> : Similar to the FileAppenders but logs json rather than formatted log messages.</li>
-</ul>
-<pre class='prettyprint linenums lang-js'><code>var myLogger = comb.logger(&quot;my.logger&quot;)
-    .addAppender(&quot;ConsoleAppender&quot;)
-    .addAppender(&quot;FileAppender&quot;, {file:&#39;/var/log/my.log&#39;})
-    .addAppender(&quot;RollingFileAppender&quot;, {file:&#39;/var/log/myRolling.log&#39;})
-    .addAppender(&quot;JSONAppender&quot;, {file:&#39;/var/log/myJson.log&#39;});</code></pre>
-<h2>Configuring your loggers</h2>
-<p>Ok so now that we have an idea of the different aspects of a logger, lets look at configuring your loggers.
-
-</p>
-<p>To configure your loggers just call <code>comb.logger.configure</code>
-
-</p>
-<h3>Default configuration</h3>
-<p>If you call <code>comb.logger.configure</code> without any arguments then a <a href="./comb_logging_appenders_ConsoleAppender.html">ConsoleAppender</a> will be added to all loggers.
-
-</p>
-<pre class='prettyprint linenums lang-js'><code>comb.logger.configure();
-
-//myLogger will have a ConsoleAppender
-var myLogger = comb.logger(&quot;my.logger&quot;);</code></pre>
-<p>If you pass in an <a href="./comb_logging_appenders_Appender.html">Appender</a> then that appender will be added to all loggers.
-
-</p>
-<pre class='prettyprint linenums lang-js'><code>comb.logger.configure(comb.logger.appender(&quot;FileAppender&quot;, {file : &#39;/var/log/my.log&#39;}));
-
-//myLogger will have the FileAppender
-var myLogger = comb.logger(&quot;my.logger&quot;);</code></pre>
-<h3>Configuring with JSON or a File</h3>
-<p>You can also pass in either the location of a log configuration or an object with your configuration.
-
-</p>
-<p>A sample configuration can look like the following
+readFile(&quot;myFile.txt&quot;).then(function(text){
+    console.log(text);
+}, errorHandler);</code></pre>
+<p>After rewriting the <code>readFile()</code> method with resolve the code is a lot cleaner with only three lines and you still get the same promise API.
 
 
 </p>
-<pre class='prettyprint linenums lang-js'><code>comb.logger.configure({
-    &quot;my.logger&quot;:{
-        level:&quot;INFO&quot;,
-        appenders:[
-            {
-                //default file appender
-                type:&quot;FileAppender&quot;,
-                file:&quot;/var/log/myApp.log&quot;,
-            },
-            {
-                //default JSON appender
-                type:&quot;JSONAppender&quot;,
-                file:&quot;/var/log/myApp.json&quot;,
-            },
-            {
-                type:&quot;FileAppender&quot;,
-                //override default patter
-                pattern:&quot;{[EEEE, MMMM dd, yyyy h:m a]timeStamp} {[5]level} {[- 5]levelName} {[-20]name} : {message}&quot;,
-                //location of my log file
-                file:&quot;/var/log/myApp-errors.log&quot;,
-                //override name so it will get added to the log
-                name:&quot;errorFileAppender&quot;,
-                //overwrite each time
-                overwrite:true,
-                //explicity set the appender to only accept errors
-                level:&quot;ERROR&quot;
-            },
-            {
-                type:&quot;JSONAppender&quot;,
-                file:&quot;/var/log/myApp-error.json&quot;,
-                //explicity set the appender to only accept errors
-                level:&quot;ERROR&quot;
-            }
-        ]
+<h3>Listening for Promise Resolutions.</h3>
+<p>To listen for the resolution of promises there are the following methods. For the following examples we will use the <code>readFile</code> method defined above.
+
+</p>
+<h3>then</h3>
+<p>The <code>then</code> methods accepts two arugments a <code>callback</code> and an optional <code>errback</code>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var readFilePromise = readFile(&quot;myFile.txt&quot;);
+
+//with two callbacks
+readFilePromise.then(
+    function(file){
+        console.log(&quot;file&quot;)
+    }, 
+    function(err){
+        console.log(err);
     }
-})</code></pre>
-<h2>Log Line Format</h2>
-<p><a href="./comb_logging_appenders_ConsoleAppender.html">ConsoleAppender</a>, <a href="./comb_logging_appenders_FileAppender.html">FileAppender</a>, and <a href="./comb_logging_appenders_RollingFileAppender.html">RollingFileAppender</a> all support custom formatting for writing out log lines. 
+);
+
+//reusing the same promise Ignoring the error case
+readFilePromise.then(function(file){
+    console.log(file);
+});</code></pre>
+<p>You may also pass in a new promise into the <code>then</code> method.
 
 </p>
-<p>By default they all use the following format.
+<pre class='prettyprint linenums lang-js'><code>
+var readAndConvertToUppercase = function(file, encoding){
+    var ret = new comb.Promise();
+    readFile(&quot;myFile.txt&quot;).then(
+        function(data){
+            ret.callback(data.toUpperCase());
+        }, 
+        //pass in the return promise as the second argument. 
+        //this is the same as setting the errback to ret.errback.bind(ret);
+        ret
+    );
+    return ret.promise();
+};
+
+//with two callbacks
+readAndConvertToUppercase(&quot;myFile.txt&quot;).then(
+    function(file){
+        console.log(&quot;file&quot;)
+    }, 
+    function(err){
+        console.log(err);
+    }
+);</code></pre>
+<h3>classic</h3>
+<p>The <code>classic</code> method can be used to register a callback with a node style callback
 
 </p>
-<pre class='prettyprint linenums lang-js'><code>[{[yyyy-MM-ddTHH:mm:ss:SSS (z)]timeStamp}] {[- 5]levelName} {[-20]name} - {message}</code></pre>
-<p>However you can override the format of the message by providing your own. The fields avaiable to use are:
+<pre class='prettyprint linenums lang-js'><code>
+readFile(&quot;myFile.txt&quot;).classic(function(err, file){
+    if(err){
+        console.log(err);
+    }else{
+        console.log(file);
+    }
+});</code></pre>
+<h3>chain</h3>
+<p>The chain method is used to chain promises together so they execute ir order. The chain method is different from the <a href="./comb.html#.serial">comb.serial</a> method in that it pipes the results from one promise into the next.
 
 </p>
-<ul>
-<li><code>level</code> : the level object </li>
-<li><code>levelName</code> : the name of the level</li>
-<li><code>message</code> : the message being logged.</li>
-<li><code>timeStamp</code>: the timestamp of the log event</li>
-<li><code>name</code> : the name of the logger logging the event.</li>
-</ul>
-<p>To override the default pattern just provide it in the options. 
+<p>In the following example we chain the results of different promise actions into a single result.
 
 </p>
-<pre class='prettyprint linenums lang-js'><code>var myLogger = comb.logger(&quot;my.logger&quot;)
-    .addAppender(&quot;ConsoleAppender&quot;, {pattern : &quot;{[- 5]levelName} {[-20]name} - {message}&quot;});</code></pre>
-<p>For more information on formatting syntax see <a href="./comb_string.html#.format">comb.string.format</a>.
+<pre class='prettyprint linenums lang-js'><code>function asyncString(str){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, str));
+    return ret.promise();
+}
+
+asyncString(&quot;hello&quot;)
+    .chain(function(results){
+        return asyncString(results + &quot; world&quot;);
+    })
+    .chain(function(results){
+        return asyncString(results + &quot;!&quot;);
+    })
+    .then(function(str){
+        console.log(str); //&quot;hello world!&quot;
+    });</code></pre>
+<h2><a href="./comb_PromiseList.html">comb.PromiseList</a></h2>
+<p>A promise list is used to listen for the completion of an array of promises. 
 
 </p>
-<h2>Logging Messages</h2>
-<p>To log messages you can use <a href="./comb_logging_Logger.html#log">log</a>.
+<pre class='prettyprint linenums lang-js'><code>var files = [readFile(&quot;myFile.txt&quot;),readFile(&quot;myFile2.txt&quot;),readFile(&quot;myFile3.txt&quot;)];
+
+function readFiles(){
+    var files = comb.argsToArray(arguments).map(function(file){
+        return readFile(file);
+    });
+    return new comb.PromiseList(files, true).promise();
+
+}
+
+readFiles(&quot;myFile.txt&quot;, &quot;myFile2.txt&quot;, &quot;myFile3.txt&quot;).then(function(files){
+    files.forEach(function(data){
+        console.log(data);
+    });
+}, errorHandler);</code></pre>
+<h2><a href="./comb.html#.when">comb.when</a></h2>
+<p>The <code>comb.when</code> function allows one to wrap a sync or async call or calls with the same API.
 
 </p>
-<pre class='prettyprint linenums lang-js'><code>var logger = comb.logger(&quot;logger&quot;);
-
-logger.log(&quot;info&quot;, &quot;my message&quot;);</code></pre>
-<p>Or you can use <a href="./comb_logging_Logger.html#debug">debug</a>,<a href="./comb_logging_Logger.html#trace">trace</a>,<a href="./comb_logging_Logger.html#info">info</a>,<a href="./comb_logging_Logger.html#warn">warn</a>,<a href="./comb_logging_Logger.html#error">error</a>, or <a href="./comb_logging_Logger.html#fatal">fatal</a> functions.
+<p>In the following example we created a new function that reads the files synchronoulsly. We then use the <code>comb.when</code> function to wrap both the async and sync calls in a promise.
 
 </p>
-<pre class='prettyprint linenums lang-js'><code>var logger = comb.logger(&quot;logger&quot;);
+<pre class='prettyprint linenums lang-js'><code>function readFileSync(){
+    return fs.readFileSync.apply(fs, arguments);
+}
 
-logger.debug(&quot;debug message&quot;);
-logger.trace(&quot;trace message&quot;);
-logger.info(&quot;info message&quot;);
-logger.warn(&quot;warn message&quot;);
-logger.error(&quot;error message&quot;);
-logger.fatal(&quot;fatal message&quot;);</code></pre>
-<p>When logging messages you may also provided a format string with extra arguments.
+comb.when(
+    readFile(&quot;myFile.txt&quot;),
+    readFileSync(&quot;myFile.txt&quot;),
+    readFile(&quot;myFile1.txt&quot;),
+    readFileSync(&quot;myFile1.txt&quot;),
+    readFile(&quot;myFile2.txt&quot;),
+    readFileSync(&quot;myFile2.txt&quot;),
+).then(function(files){
+    files.forEach(function(data){
+        console.log(data);
+    });
+}, errorHandler);</code></pre>
+<h2><a href="./comb.html#.serial">comb.serial</a></h2>
+<p>The <code>comb.serial</code> function is useful if you need to perform a set of actions in order. The serial method takes a list of function that need to be executed in order. The return value of the functions can be anything if they are promises then the next function will not execute until the promise has resolved. 
+
 
 </p>
-<pre class='prettyprint linenums lang-js'><code>var logger = comb.logger(&quot;logger&quot;);
+<pre class='prettyprint linenums lang-js'><code>var asyncAction = function(item, timeout){                                
+   var ret = new comb.Promise(); 
+   //bind the callback to the promise ignoring any other arguments passed in                                      
+   setTimeout(ret.callback.bind(ret, item), timeout);
+   return ret.promise();                                                            
+};                                                                        
 
-logger.debug(&quot;%s message&quot;, &quot;debug&quot;);
-logger.trace(&quot;trace message %d&quot;, 1);
-logger.info(&quot;info message %D&quot;, new Date());
-logger.warn(&quot;%[ 10]s message&quot;, warn);
-logger.error(&quot;%+d, %+d, %10d, %-10d, %-+#10d, %10d&quot;, 1,-2, 1, 2, 3, 100000000000);
-logger.info(&quot;{name} DIED!&quot;, {name : &quot;FRED&quot;});</code></pre>
+comb.serial([   
+    //comb.partial returns a function that will execute asyncAction with the specified arguments
+    comb.partial(asyncAction, 1, 1000),                                       
+    comb.partial(asyncAction, 2, 900),                                  
+    comb.partial(asyncAction, 3, 800),                                    
+    comb.partial(asyncAction, 4, 700),                                    
+    comb.partial(asyncAction, 5, 600),                                    
+    comb.partial(asyncAction, 6, 500)                                     
+]).then(function(results){                                                
+    console.log(results); // [1,2,3,4,5,6];                               
+});</code></pre>
+<h2><a href="./comb.html#.wrap">comb.wrap</a></h2>
+<p>The <code>comb.wrap</code> method is used to wrap a function that is defined with a node style callback in a promise.
+
+</p>
+<p>Suppose we wanted to wrap all async fs methods in a promise we could do the following.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var fsFunctions = [&quot;rename&quot;,&quot;truncate&quot;,&quot;chown&quot;,&quot;fchown&quot;, &quot;lchown&quot;,&quot;chmod&quot;,&quot;fchmod&quot;,&quot;lchmod&quot;, &quot;stat&quot;,
+    &quot;lstat&quot;,&quot;fstat&quot;, &quot;link&quot;,&quot;symlink&quot;, &quot;readlink&quot;,&quot;realpath&quot;,&quot;unlink&quot;, &quot;rmdir&quot;,&quot;mkdir&quot;,
+    &quot;readdir&quot;,&quot;close&quot;, &quot;open&quot;,&quot;utimes&quot;, &quot;futimes&quot;,&quot;fsync&quot;, &quot;write&quot;,&quot;read&quot;, &quot;readFile&quot;,
+    &quot;writeFile&quot;,&quot;appendFile&quot;];
+
+var fsp = {};
+
+fsFunctions.forEach(function(method){
+    fsp[method] = comb.wrap(fs[method], fs);
+});</code></pre>
+<p>We could then use each <code>fsp</code> method as promise returning function.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>fsp.rename(&quot;myFile.txt&quot;, &quot;myFile.txt.bak&quot;).then(function(){
+    //do something.
+});</code></pre>
 
 <hr>
 
