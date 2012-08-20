@@ -527,7 +527,7 @@ it.describe("comb#serial", function (it) {
     var asyncAction = function (item, timeout, error) {
         var ret = new comb.Promise();
         setTimeout(comb.hitchIgnore(ret, error ? "errback" : "callback", item), timeout);
-        return ret;
+        return ret.promise();
     };
 
     var syncAction = function (item, error) {
@@ -615,4 +615,3 @@ it.describe("comb#serial", function (it) {
 
 
 });
-
