@@ -1,3 +1,12 @@
+
+#0.1.4/2012-08-20
+* added new short cut for configuring loggers
+* Added changed logger.addAppender to accept a string and options to use Appender.createAppender method.
+* comb.argsToArray now takes a slice argument to remove arguments.
+* Added a resolve function to comb.Promise to handle node style callback resolution.
+* Added a "promise" method to comb.Promise to allow for the return of an object that will not allow calling function to resolve the promise.
+* Cleaned up promise using code to return the "promise" wrapper.
+
 #0.1.3/2012-08-16
 * new array methods
   * sort

@@ -134,6 +134,60 @@ it.describe("comb.logging", function (it) {
     };
 
     var logger = Logger.getLogger();
+
+    it.describe("comb.logger.configure", function (it) {
+
+        it.beforeAll(setupFS);
+
+        it.should("configure the root logger with a console logger", function () {
+            comb.logger.configure();
+            assert.isTrue(logger.isAppenderAttached("consoleAppender"));
+        });
+
+        it.should(" configure the root logger with the specified logger", function () {
+            comb.logger.configure(new appenders.ConsoleAppender({name:"myConsoleAppender"}));
+            assert.isTrue(logger.isAppenderAttached("myConsoleAppender"));
+            logger.removeAllAppenders();
+        });
+
+        it.should("configure with an object", function () {
+            //override default fs functionality
+            comb.logger.configure(config);
+            var combLogger = Logger.getLogger("combConfigTest");
+            assert.instanceOf(combLogger, Logger);
+            assert.isTrue(combLogger.isAppenderAttached("consoleAppender"));
+            assert.isTrue(combLogger.isAppenderAttached("rollingFileAppender"));
+            assert.isTrue(combLogger.isAppenderAttached("fileAppender"));
+            var appender = combLogger.getAppender("fileAppender");
+            assert.equal(appender.__file, __dirname + "/myApp.log");
+
+            assert.isTrue(combLogger.isAppenderAttached("JSONAppender"));
+            appender = combLogger.getAppender("JSONAppender");
+            assert.equal(appender.__file, __dirname + "/myApp.json");
+        });
+
+        it.should("configure with a file", function () {
+            //override default fs functionality
+            comb.logger.configure("./myProps.json");
+            var combLogger = Logger.getLogger("combConfigTest.other");
+            assert.instanceOf(combLogger, Logger);
+
+            assert.isTrue(combLogger.isAppenderAttached("errorFileAppender"));
+            var appender = combLogger.getAppender("errorFileAppender");
+            assert.equal(appender.__file, __dirname + "/myApp-errors.log");
+            assert.isTrue(appender.__overwrite);
+            assert.equal("{[EEEE, MMMM dd, yyyy h:m a]timeStamp} {[5]level} {[- 5]levelName} {[-20]name} : {message}\n", appender.pattern);
+            assert.equal(appender.level, Level.ERROR);
+
+            assert.isTrue(combLogger.isAppenderAttached("JSONErrorAppender"));
+            appender = combLogger.getAppender("JSONErrorAppender");
+            assert.equal(appender.__file, __dirname + "/myApp-error.json");
+            assert.equal(appender.level, Level.ERROR);
+        });
+        it.afterAll(resetFS);
+
+    });
+
     it.describe("BasicConfigurator", function (it) {
         var topic = new BasicConfigurator();
 

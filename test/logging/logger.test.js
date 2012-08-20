@@ -16,13 +16,13 @@ it.describe("comb.logging.Logger", function (it) {
             var logger = Logger.getRootLogger();
             assert.isTrue(comb.isInstanceOf(logger, Logger));
             assert.equal(Logger.getLogger(), logger);
-        })
+        });
 
         it.should("retrieve a logger", function () {
             var logger = Logger.getLogger("comb");
             assert.isTrue(comb.isInstanceOf(logger, Logger));
 
-        })
+        });
     });
 
     it.describe("instance methods", function (it) {
@@ -179,7 +179,114 @@ it.describe("comb.logging.Logger", function (it) {
                 assert.deepEqual(logger.categories, ['comb', 'comb.test']);
             });
         });
-    })
+
+        it.context(function (it) {
+
+            var MyAppender = comb.define(logging.appenders.Appender, {
+
+                instance:{
+
+                    name:"myAppender",
+
+                    append:function (event) {
+                        if (this._canAppend(event)) {
+                            this._static.messages.push({message:event.message, levelName:event.levelName});
+                        }
+                    }
+                },
+
+                "static":{
+                    messages:[]
+                }
+
+            });
+            var logger;
+            it.beforeAll(function () {
+                logger = comb.logger("comb.logger.logTests").addAppender(new MyAppender());
+            });
+
+            it.beforeEach(function () {
+                logger.level = "ALL";
+                MyAppender.messages.length = 0;
+            });
 
 
+            it.should("log debug messages", function () {
+                logger.debug("hello");
+                logger.debug("Hello %s", "world");
+                logger.log("debug", "Hello %s", "world");
+                logger.level = "INFO";
+                logger.debug("Hello %s", "world");
+                assert.deepEqual(MyAppender.messages, [
+                    {message:"hello", levelName:"DEBUG"},
+                    {message:"Hello world", levelName:"DEBUG"},
+                    {message:"Hello world", levelName:"DEBUG"}
+                ]);
+            });
+
+            it.should("log trace messages", function () {
+                logger.trace("hello");
+                logger.trace("Hello %s", "world");
+                logger.log("trace", "Hello %s", "world");
+                logger.level = "INFO";
+                logger.trace("Hello %s", "world");
+                var messageMatchers = [/^Trace: hello/, /^Trace: Hello world/,/^Trace: Hello world/];
+                assert.isTrue(MyAppender.messages.every(function (message, i) {
+                    return messageMatchers[i].test(message.message) && message.levelName === "TRACE";
+                }));
+            });
+
+            it.should("log info messages", function () {
+                logger.info("hello");
+                logger.info("Hello %s", "world");
+                logger.log("info", "Hello %s", "world");
+                logger.level = "WARN";
+                logger.info("Hello %s", "world");
+                assert.deepEqual(MyAppender.messages, [
+                    {message:"hello", levelName:"INFO"},
+                    {message:"Hello world", levelName:"INFO"},
+                    {message:"Hello world", levelName:"INFO"}
+                ]);
+
+            });
+            it.should("log warn messages", function () {
+                logger.warn("hello");
+                logger.warn("Hello %s", "world");
+                logger.log("warn", "Hello %s", "world");
+                logger.level = "ERROR";
+                logger.warn("Hello %s", "world");
+                assert.deepEqual(MyAppender.messages, [
+                    {message:"hello", levelName:"WARN"},
+                    {message:"Hello world", levelName:"WARN"},
+                    {message:"Hello world", levelName:"WARN"}
+                ]);
+
+            });
+            it.should("log error messages", function () {
+                logger.error("hello");
+                logger.error("Hello %s", "world");
+                logger.log("error", "Hello %s", "world");
+                logger.level = "FATAL";
+                logger.error("Hello %s", "world");
+                assert.deepEqual(MyAppender.messages, [
+                    {message:"hello", levelName:"ERROR"},
+                    {message:"Hello world", levelName:"ERROR"},
+                    {message:"Hello world", levelName:"ERROR"}
+                ]);
+
+            });
+            it.should("log fatal messages", function () {
+                logger.fatal("hello");
+                logger.fatal("Hello %s", "world");
+                logger.log("fatal", "Hello %s", "world");
+                logger.level = "OFF";
+                logger.fatal("Hello %s", "world");
+                assert.deepEqual(MyAppender.messages, [
+                    {message:"hello", levelName:"FATAL"},
+                    {message:"Hello world", levelName:"FATAL"},
+                    {message:"Hello world", levelName:"FATAL"}
+                ]);
+            });
+        });
+    });
 });
