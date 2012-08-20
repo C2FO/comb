@@ -243,422 +243,247 @@
 
 
 
-    <a name=""></a>
-    <div class="navbar subnav">
-    <div class="navbar-inner  subnav-inner">
-          <div class="container">
-            <a href="#" class="brand">
-            comb.collections.Iterable
-            
-                    
-             <span class="label label-success">Public</span>
-                    
-            
-            </a>
-           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </a>
-                    <div class="nav-collapse">
+<h1><a href="./comb_Promise.html">Promises</a></h1>
+<p><code>comb</code> provides an async wrapper called a <a href="http://en.wikipedia.org/wiki/Futures_and_promises">promise</a>. Promises are a way of handling async and sync behavior by encapsulating it in a wrapper. One of the benefits of promises is that it encourages the separation of success and failure logic, and provides a value that can be passed around rather than providing callbacks for every async action. 
 
-            <ul class="nav pull-right">
-             <li><a href="#constructor">Constructor</a></li>
-                        
-                        
-                        
-                        
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instance Methods<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                
-                                <li><a href="./comb_collections_Iterable.html#every">
-                                
-                                
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                                every
+</p>
+<h2><a href="./comb_Promise.html">comb.Promise</a></h2>
+<p>The <a href="./comb_Promise.html">comb.Promise</a> is the backbone for <code>comb</code>s async utilities. 
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Iterable.html#filter">
-                                
-                                
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                                filter
+</p>
+<p>To create a promise
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Iterable.html#forEach">
-                                
-                                
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                                forEach
+</p>
+<pre class='prettyprint linenums lang-js'><code>var promise = new comb.Promise();</code></pre>
+<h3>Resolving Promises</h3>
+<p>When working with a promise you must resolve the promise in order to callbacks/errbacks to be invoked. Resolution can happen before for after callbacks/errbacks have been registered. The methods to resolve a promise are <code>callback</code>, <code>errback</code>, and <code>resolve</code>.
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Iterable.html#map">
-                                
-                                
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                                map
+</p>
+<h3>callback  and errback</h3>
+<p>The callback method is used to resolve a promise as a success.
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Iterable.html#reduce">
-                                
-                                
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                                reduce
-
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Iterable.html#reduceRight">
-                                
-                                
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                                reduceRight
-
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Iterable.html#some">
-                                
-                                
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                                some
-
-                                </a></li>
-                                
-                            </ul>
-                        </li>
-                        
-            </ul>
-            </div>
-            </div>
-     </div>
-</div>
-
-
-
-    <p>
-Base class for all collections</p>
-    
-
-    
-
-    
-    
-
-    <a name="constructor"></a>
-    <h3>Constructor</h3>
-
-    <em>Defined collections/Iterable.js</em>
-    
-    
-    
-
-  
-  
-    <a name="every"></a>
-    <h3>
-        every
-        
-        
-        <span class="label label-label">Function</span>
-        
-        
-                
-         <span class="label label-success">Public</span>
-                
-        
-   </h3>
-
-<hr/>
-<em>Defined collections/Iterable.js</em>
-
-<p>
-Determine if every item in a collection meets the criteria
-         </p>
-
-
-
-
-
-    
-    <em>Source</em>
-    <pre class="prettyprint linenums lang-js">
-function (){
-   throw new Error(&quot;Not Implemented&quot;);
-           
+</p>
+<pre class='prettyprint linenums lang-js'><code>
+function readFile(file, encoding){
+    var ret = new comb.Promise();
+    fs.readFile(file, encoding || &quot;utf8&quot;, function(err){
+        if(err){
+            //there was an error so errback
+            ret.errback(err);
+        }else{
+            //resolve the promise removing the first argument
+            ret.callback(comb.argsToArray(arguments, 1));
+        }
+    });
+    //return the promise object which removes the &#39;callback&#39;, &#39;errback&#39; and &#39;resolve&#39; functions.
+    return ret.promise();
 }
-    </pre>
-    
 
+readFile(&quot;myFile.txt&quot;).then(function(text){
+    console.log(text);
+}, errorHandler);</code></pre>
+<p>As you can see from above we can easily wrap the <code>fs.readFile</code> function with a promise. The advantage of this is that you can now seperate the success and error resolution paths with the <code>then</code> function. The above example just passes the error to a global error handler and your success callback does not have to worry about the error condition.
 
-  
-    <a name="filter"></a>
-    <h3>
-        filter
-        
-        
-        <span class="label label-label">Function</span>
-        
-        
-                
-         <span class="label label-success">Public</span>
-                
-        
-   </h3>
+</p>
+<h3>resolve</h3>
+<p><code>callback</code> and <code>errback</code> are great if you are working with other promise methods but as you can see from above you still have to handle the error and success path when working with node style callback. This is where the <code>resolve</code> method comes in handy.
 
-<hr/>
-<em>Defined collections/Iterable.js</em>
+</p>
+<p>Resolve wraps <code>callback</code> and <code>errback</code> in a single method that accepts an <code>error</code> as the first argument. If the error is undefined or null then the rest of the arguments are used to resolve the promise.
 
-<p>
-Filter items from a collection
-         </p>
+</p>
+<p>Lets rewrite the <code>readFile</code> funciton with resolve.
 
-
-
-
-
-    
-    <em>Source</em>
-    <pre class="prettyprint linenums lang-js">
-function (){
-   throw new Error(&quot;Not Implemented&quot;);
-           
+</p>
+<pre class='prettyprint linenums lang-js'><code>
+function readFile(file, encoding){
+    var ret = new comb.Promise();
+    fs.readFile(file, encoding || &quot;utf8&quot;, ret.resolve.bind(ret));
+    //return the promise object which removes the &#39;callback&#39;, &#39;errback&#39; and &#39;resolve&#39; functions.
+    return ret.promise();
 }
-    </pre>
-    
+
+readFile(&quot;myFile.txt&quot;).then(function(text){
+    console.log(text);
+}, errorHandler);</code></pre>
+<p>After rewriting the <code>readFile()</code> method with resolve the code is a lot cleaner with only three lines and you still get the same promise API.
 
 
-  
-    <a name="forEach"></a>
-    <h3>
-        forEach
-        
-        
-        <span class="label label-label">Function</span>
-        
-        
-                
-         <span class="label label-success">Public</span>
-                
-        
-   </h3>
+</p>
+<h3>Listening for Promise Resolutions.</h3>
+<p>To listen for the resolution of promises there are the following methods. For the following examples we will use the <code>readFile</code> method defined above.
 
-<hr/>
-<em>Defined collections/Iterable.js</em>
+</p>
+<h3>then</h3>
+<p>The <code>then</code> methods accepts two arugments a <code>callback</code> and an optional <code>errback</code>.
 
-<p>
-Loop through the items in a collection
-         </p>
+</p>
+<pre class='prettyprint linenums lang-js'><code>var readFilePromise = readFile(&quot;myFile.txt&quot;);
 
+//with two callbacks
+readFilePromise.then(
+    function(file){
+        console.log(&quot;file&quot;)
+    }, 
+    function(err){
+        console.log(err);
+    }
+);
 
+//reusing the same promise Ignoring the error case
+readFilePromise.then(function(file){
+    console.log(file);
+});</code></pre>
+<p>You may also pass in a new promise into the <code>then</code> method.
 
+</p>
+<pre class='prettyprint linenums lang-js'><code>
+var readAndConvertToUppercase = function(file, encoding){
+    var ret = new comb.Promise();
+    readFile(&quot;myFile.txt&quot;).then(
+        function(data){
+            ret.callback(data.toUpperCase());
+        }, 
+        //pass in the return promise as the second argument. 
+        //this is the same as setting the errback to ret.errback.bind(ret);
+        ret
+    );
+    return ret.promise();
+};
 
+//with two callbacks
+readAndConvertToUppercase(&quot;myFile.txt&quot;).then(
+    function(file){
+        console.log(&quot;file&quot;)
+    }, 
+    function(err){
+        console.log(err);
+    }
+);</code></pre>
+<h3>classic</h3>
+<p>The <code>classic</code> method can be used to register a callback with a node style callback
 
-    
-    <em>Source</em>
-    <pre class="prettyprint linenums lang-js">
-function (){
-   throw new Error(&quot;Not Implemented&quot;);
-           
+</p>
+<pre class='prettyprint linenums lang-js'><code>
+readFile(&quot;myFile.txt&quot;).classic(function(err, file){
+    if(err){
+        console.log(err);
+    }else{
+        console.log(file);
+    }
+});</code></pre>
+<h3>chain</h3>
+<p>The chain method is used to chain promises together so they execute ir order. The chain method is different from the <a href="./comb.html#.serial">comb.serial</a> method in that it pipes the results from one promise into the next.
+
+</p>
+<p>In the following example we chain the results of different promise actions into a single result.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncString(str){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, str));
+    return ret.promise();
 }
-    </pre>
-    
 
+asyncString(&quot;hello&quot;)
+    .chain(function(results){
+        return asyncString(results + &quot; world&quot;);
+    })
+    .chain(function(results){
+        return asyncString(results + &quot;!&quot;);
+    })
+    .then(function(str){
+        console.log(str); //&quot;hello world!&quot;
+    });</code></pre>
+<h2><a href="./comb_PromiseList.html">comb.PromiseList</a></h2>
+<p>A promise list is used to listen for the completion of an array of promises. 
 
-  
-    <a name="map"></a>
-    <h3>
-        map
-        
-        
-        <span class="label label-label">Function</span>
-        
-        
-                
-         <span class="label label-success">Public</span>
-                
-        
-   </h3>
+</p>
+<pre class='prettyprint linenums lang-js'><code>var files = [readFile(&quot;myFile.txt&quot;),readFile(&quot;myFile2.txt&quot;),readFile(&quot;myFile3.txt&quot;)];
 
-<hr/>
-<em>Defined collections/Iterable.js</em>
+function readFiles(){
+    var files = comb.argsToArray(arguments).map(function(file){
+        return readFile(file);
+    });
+    return new comb.PromiseList(files, true).promise();
 
-<p>
-Map every item in a collection
-         </p>
-
-
-
-
-
-    
-    <em>Source</em>
-    <pre class="prettyprint linenums lang-js">
-function (){
-   throw new Error(&quot;Not Implemented&quot;);
-           
 }
-    </pre>
-    
 
+readFiles(&quot;myFile.txt&quot;, &quot;myFile2.txt&quot;, &quot;myFile3.txt&quot;).then(function(files){
+    files.forEach(function(data){
+        console.log(data);
+    });
+}, errorHandler);</code></pre>
+<h2><a href="./comb.html#.when">comb.when</a></h2>
+<p>The <code>comb.when</code> function allows one to wrap a sync or async call or calls with the same API.
 
-  
-    <a name="reduce"></a>
-    <h3>
-        reduce
-        
-        
-        <span class="label label-label">Function</span>
-        
-        
-                
-         <span class="label label-success">Public</span>
-                
-        
-   </h3>
+</p>
+<p>In the following example we created a new function that reads the files synchronoulsly. We then use the <code>comb.when</code> function to wrap both the async and sync calls in a promise.
 
-<hr/>
-<em>Defined collections/Iterable.js</em>
-
-<p>
-Reduce a collection
-         </p>
-
-
-
-
-
-    
-    <em>Source</em>
-    <pre class="prettyprint linenums lang-js">
-function (){
-   throw new Error(&quot;Not Implemented&quot;);
-           
+</p>
+<pre class='prettyprint linenums lang-js'><code>function readFileSync(){
+    return fs.readFileSync.apply(fs, arguments);
 }
-    </pre>
-    
+
+comb.when(
+    readFile(&quot;myFile.txt&quot;),
+    readFileSync(&quot;myFile.txt&quot;),
+    readFile(&quot;myFile1.txt&quot;),
+    readFileSync(&quot;myFile1.txt&quot;),
+    readFile(&quot;myFile2.txt&quot;),
+    readFileSync(&quot;myFile2.txt&quot;),
+).then(function(files){
+    files.forEach(function(data){
+        console.log(data);
+    });
+}, errorHandler);</code></pre>
+<h2><a href="./comb.html#.serial">comb.serial</a></h2>
+<p>The <code>comb.serial</code> function is useful if you need to perform a set of actions in order. The serial method takes a list of function that need to be executed in order. The return value of the functions can be anything if they are promises then the next function will not execute until the promise has resolved. 
 
 
-  
-    <a name="reduceRight"></a>
-    <h3>
-        reduceRight
-        
-        
-        <span class="label label-label">Function</span>
-        
-        
-                
-         <span class="label label-success">Public</span>
-                
-        
-   </h3>
+</p>
+<pre class='prettyprint linenums lang-js'><code>var asyncAction = function(item, timeout){                                
+   var ret = new comb.Promise(); 
+   //bind the callback to the promise ignoring any other arguments passed in                                      
+   setTimeout(ret.callback.bind(ret, item), timeout);
+   return ret.promise();                                                            
+};                                                                        
 
-<hr/>
-<em>Defined collections/Iterable.js</em>
+comb.serial([   
+    //comb.partial returns a function that will execute asyncAction with the specified arguments
+    comb.partial(asyncAction, 1, 1000),                                       
+    comb.partial(asyncAction, 2, 900),                                  
+    comb.partial(asyncAction, 3, 800),                                    
+    comb.partial(asyncAction, 4, 700),                                    
+    comb.partial(asyncAction, 5, 600),                                    
+    comb.partial(asyncAction, 6, 500)                                     
+]).then(function(results){                                                
+    console.log(results); // [1,2,3,4,5,6];                               
+});</code></pre>
+<h2><a href="./comb.html#.wrap">comb.wrap</a></h2>
+<p>The <code>comb.wrap</code> method is used to wrap a function that is defined with a node style callback in a promise.
 
-<p>
-Reduce a collection starting from the right most position
-         </p>
+</p>
+<p>Suppose we wanted to wrap all async fs methods in a promise we could do the following.
 
+</p>
+<pre class='prettyprint linenums lang-js'><code>var fsFunctions = [&quot;rename&quot;,&quot;truncate&quot;,&quot;chown&quot;,&quot;fchown&quot;, &quot;lchown&quot;,&quot;chmod&quot;,&quot;fchmod&quot;,&quot;lchmod&quot;, &quot;stat&quot;,
+    &quot;lstat&quot;,&quot;fstat&quot;, &quot;link&quot;,&quot;symlink&quot;, &quot;readlink&quot;,&quot;realpath&quot;,&quot;unlink&quot;, &quot;rmdir&quot;,&quot;mkdir&quot;,
+    &quot;readdir&quot;,&quot;close&quot;, &quot;open&quot;,&quot;utimes&quot;, &quot;futimes&quot;,&quot;fsync&quot;, &quot;write&quot;,&quot;read&quot;, &quot;readFile&quot;,
+    &quot;writeFile&quot;,&quot;appendFile&quot;];
 
+var fsp = {};
 
+fsFunctions.forEach(function(method){
+    fsp[method] = comb.wrap(fs[method], fs);
+});</code></pre>
+<p>We could then use each <code>fsp</code> method as promise returning function.
 
+</p>
+<pre class='prettyprint linenums lang-js'><code>fsp.rename(&quot;myFile.txt&quot;, &quot;myFile.txt.bak&quot;).then(function(){
+    //do something.
+});</code></pre>
 
-    
-    <em>Source</em>
-    <pre class="prettyprint linenums lang-js">
-function (){
-   throw new Error(&quot;Not Implemented&quot;);
-           
-}
-    </pre>
-    
-
-
-  
-    <a name="some"></a>
-    <h3>
-        some
-        
-        
-        <span class="label label-label">Function</span>
-        
-        
-                
-         <span class="label label-success">Public</span>
-                
-        
-   </h3>
-
-<hr/>
-<em>Defined collections/Iterable.js</em>
-
-<p>
-Determing if some items in a colleciton meet the criteria
-         </p>
-
-
-
-
-
-    
-    <em>Source</em>
-    <pre class="prettyprint linenums lang-js">
-function (){
-   throw new Error(&quot;Not Implemented&quot;);
-           
-}
-    </pre>
-    
-
-
-  
 <hr>
 
 Documentation gennerated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
