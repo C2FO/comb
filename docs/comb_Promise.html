@@ -1102,7 +1102,7 @@ function (){
            return ret;
        }
    };
-   [&quot;addCallback&quot;, &quot;addErrback&quot;, &quot;then&quot;, &quot;both&quot;].forEach(function (action) {
+   [&quot;addCallback&quot;, &quot;addErrback&quot;, &quot;then&quot;, &quot;both&quot;, &quot;classic&quot;].forEach(function (action) {
        ret[action] = function () {
            this[action].apply(this, arguments);
            return ret;
@@ -1247,7 +1247,7 @@ function (callback,errback){
   
 <hr>
 
-Documentation gennerated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
+Documentation generated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
 
 
 </div>
