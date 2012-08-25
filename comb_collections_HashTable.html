@@ -5,70 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
     <link rel="stylesheet" href="./assets/css/bootstrap.css">
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
-    <link rel="stylesheet" href="./assets/js/google-code-prettify/prettify.css">
+    <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
 
-.subnav-inner {
-    width: 100%;
-    height: 36px;
-    background-color: #EEE;
-    background-repeat: repeat-x;
-    background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));
-    background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);
-    background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-}
+/*.subnav-inner {*/
+    /*width: 100%;*/
+    /*height: 36px;*/
+    /*background-color: #EEE;*/
+    /*background-repeat: repeat-x;*/
+    /*background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));*/
+    /*background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);*/
+    /*background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*-webkit-border-radius: 4px;*/
+    /*-moz-border-radius: 4px;*/
+    /*border-radius: 4px;*/
+/*}*/
 
-.subnav .nav > li > a:hover {
-    color: black !important;
-}
+/*.subnav .nav > li > a:hover {*/
+    /*color: black !important;*/
+/*}*/
 
-.subnav .nav li.dropdown .dropdown-toggle .caret,
-.subnav .nav li.dropdown.open .caret {
-    border-top-color: #999 !important;
-    border-bottom-color: #999 !important;
-}
+/*.subnav .nav li.dropdown .dropdown-toggle .caret,*/
+/*.subnav .nav li.dropdown.open .caret {*/
+    /*border-top-color: #999 !important;*/
+    /*border-bottom-color: #999 !important;*/
+/*}*/
 
-.subnav-fixed {
-    position: fixed;
-    width : 90%;
-    margin-right: auto;
-    margin-left: auto;
-    top: 40px;
-    left: 0;
-    right: 0;
-    z-index: 1020;
-    border-color: #D5D5D5;
-    border-width: 0 0 1px;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-    box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-}
+/*.subnav-fixed {*/
+    /*position: fixed;*/
+    /*width : 90%;*/
+    /*margin-right: auto;*/
+    /*margin-left: auto;*/
+    /*top: 40px;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*z-index: 1020;*/
+    /*border-color: #D5D5D5;*/
+    /*border-width: 0 0 1px;*/
+    /*-webkit-border-radius: 0;*/
+    /*-moz-border-radius: 0;*/
+    /*border-radius: 0;*/
+    /*-webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*-moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);*/
+/*}*/
 
-.navbar .nav  .dropdown-menu {
-    max-height: 500px;
-    overflow: auto;
-}​
+/*.navbar .nav  .dropdown-menu {*/
+    /*max-height: 500px;*/
+    /*overflow: auto;*/
+/*}​*/
 
     </style>
     <style type="text/css">
         body {
-            padding-top: 60px;
-            padding-bottom: 40px;
+            padding: 90px;
+        }
+
+        .subnav{
+            margin-top: 40px;
+            margin-right: auto;
+            margin-left: auto;
+            z-index: 1000;
+        }
+
+        @media (max-width:979px) {
+            .subnav{
+                margin-top: auto;
+            }
         }
     </style>
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -79,7 +91,8 @@
                     var $win = $(window);
                     $('.subnav').each(function () {
                         var nav = $(this);
-                        var navTop = nav.offset().top - 40;
+                        var navTop = $win.width() < 980 ? 0 : nav.offset().top - 40;
+
                         var scrollTop = $win.scrollTop();
                         if (scrollTop >= navTop && curr != nav) {
                             if(curr){
@@ -102,139 +115,148 @@
             return function () {
                 window.prettyPrint && prettyPrint();
                 $(".collapse").collapse();
+                var $window = $(window);
+                //$(".subnav").affix ();
                 // fix sub nav on scroll
-                processScroll();
-                $(window).on('scroll', processScroll)
+//                processScroll();
+//                $(window).on('scroll', processScroll)
             }
         })();
     </script>
 </head>
 <body onload="init()">
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-      
-          <a href="./index.html" class="brand">comb</a>
-      
-      <div class="nav-collapse">
-      <ul class="nav nav-pills">
-      
-      
-                 <li><a href="./define.html">OO</a></li>
-                 
-                 <li><a href="./promise.html">Promises</a></li>
-                 
-                 <li><a href="./logging.html">Logging</a></li>
-                 
-                 <li><a href="./utilities.html">Utilities</a></li>
-                 
+<div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"> </span>
+            </a>
             
+            <a href="./index.html" class="brand">comb</a>
+            
+            <div class="nav-collapse">
+                <ul class="nav">
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./define.html">OO</a></li>
+                            
+                            <li><a href="./promise.html">Promises</a></li>
+                            
+                            <li><a href="./logging.html">Logging</a></li>
+                            
+                            <li><a href="./utilities.html">Utilities</a></li>
+                            
+                        </ul>
+                        
 
-      
-        <li class="dropdown">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
-           <ul class="dropdown-menu">
-             
-                         <li><a href="comb.html">comb</a></li>
-               
-                         <li><a href="comb_array.html">comb.array</a></li>
-               
-                         <li><a href="comb_characters.html">comb.characters</a></li>
-               
-                         <li><a href="comb_date.html">comb.date</a></li>
-               
-                         <li><a href="comb_logger.html">comb.logger</a></li>
-               
-                         <li><a href="comb_number.html">comb.number</a></li>
-               
-                         <li><a href="comb_plugins.html">comb.plugins</a></li>
-               
-                         <li><a href="comb_regexp.html">comb.regexp</a></li>
-               
-                         <li><a href="comb_string.html">comb.string</a></li>
-               
-           </ul>
-           </li>
-        
-        
-           <li class="dropdown">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
-           <ul class="dropdown-menu">
-             
-                         <li><a href="./comb_Promise.html">comb.Promise</a></li>
-               
-                         <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
-               
-                         <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
-               
-                         <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
-               
-                         <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
-               
-                         <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
-               
-                         <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
-               
-                         <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
-               
-                         <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
-               
-                         <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
-               
-                         <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
-               
-                         <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
-               
-                         <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
-               
-                         <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
-               
-                         <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
-               
-                         <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
-               
-                         <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
-               
-                         <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
-               
-                         <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
-               
-                         <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
-               
-                         <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
-               
-                         <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
-               
-                         <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
-               
-                         <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
-               
-                         <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
-               
-                         <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
-               
-                         <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
-               
-                         <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
-               
-           </ul>
-        </li>
-       
-      </ul>
-      
-      <ul class="nav pull-right">
-                  <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
-        </ul>
-        
-      </div>
+                        
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="comb.html">comb</a></li>
+                            
+                            <li><a href="comb_array.html">comb.array</a></li>
+                            
+                            <li><a href="comb_characters.html">comb.characters</a></li>
+                            
+                            <li><a href="comb_date.html">comb.date</a></li>
+                            
+                            <li><a href="comb_logger.html">comb.logger</a></li>
+                            
+                            <li><a href="comb_number.html">comb.number</a></li>
+                            
+                            <li><a href="comb_plugins.html">comb.plugins</a></li>
+                            
+                            <li><a href="comb_regexp.html">comb.regexp</a></li>
+                            
+                            <li><a href="comb_string.html">comb.string</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./comb_Promise.html">comb.Promise</a></li>
+                            
+                            <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
+                            
+                            <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
+                            
+                            <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
+                            
+                            <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
+                            
+                            <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
+                            
+                            <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
+                            
+                            <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
+                            
+                            <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
+                            
+                            <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
+                            
+                            <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
+                            
+                            <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
+                            
+                            <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
+                            
+                            <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
+                            
+                            <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
+                            
+                            <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
+                            
+                            <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+                            
+                            <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
+                            
+                            <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
+                            
+                            <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+                            
+                            <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
+                            
+                            <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                </ul>
+                
+                <ul class="nav pull-right">
+
+                    <li class="divider-vertical"></li>
+                    <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
+                </ul>
+                
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
 
 
 <div class="container-fluid">
@@ -244,245 +266,247 @@
 
 
     <a name=""></a>
-    <div class="navbar subnav">
-    <div class="navbar-inner  subnav-inner">
-          <div class="container">
+    <div class="navbar subnav navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
             <a href="#" class="brand">
-            comb.collections.HashTable
-            
-                    
-             <span class="label label-success">Public</span>
-                    
-            
+                comb.collections.HashTable
+                
+                
+                <span class="label label-success">Public</span>
+                
+                
             </a>
-           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </a>
-                    <div class="nav-collapse">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".sub-nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
 
-            <ul class="nav pull-right">
-             <li><a href="#constructor">Constructor</a></li>
-                        
-                        <li><a href="#instanceProperties">Instance Properties</a></li>
-                        
-                        
-                        
-                        
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instance Methods<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                
-                                <li><a href="./comb_collections_HashTable.html#clear">
+            <div class="nav-collapse sub-nav-collapse">
+
+                <ul class="nav pull-right">
+                    <li><a href="#constructor">Constructor</a></li>
+                    
+                    <li><a href="#instanceProperties">Instance Properties</a></li>
+                    
+                    
+                    
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instance Methods<b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./comb_collections_HashTable.html#clear">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 clear
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_HashTable.html#concat">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html#concat">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 concat
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_HashTable.html#contains">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html#contains">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 contains
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_HashTable.html#every">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html#every">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 every
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_HashTable.html#filter">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html#filter">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 filter
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_HashTable.html#forEach">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html#forEach">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 forEach
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_HashTable.html#get">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html#get">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 get
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_HashTable.html#map">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html#map">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 map
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_HashTable.html#put">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html#put">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 put
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_HashTable.html#reduce">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html#reduce">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 reduce
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_HashTable.html#reduceRight">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html#reduceRight">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 reduceRight
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_HashTable.html#remove">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html#remove">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 remove
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_HashTable.html#set">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html#set">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 set
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_HashTable.html#some">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html#some">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 some
 
-                                </a></li>
-                                
-                            </ul>
-                        </li>
-                        
-            </ul>
+                            </a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                </ul>
             </div>
-            </div>
-     </div>
+        </div>
+    </div>
 </div>
 
 
 
-    <p>
-<p>Implementation of a HashTable for javascript.
+
+    <p><p>Implementation of a HashTable for javascript.
    This HashTable implementation allows one to use anything as a key.
    </p>
 <b>NOTE: THIS IS ~ 3 times slower than javascript native objects</b>
@@ -503,7 +527,10 @@
     
         <a name="instanceProperties"></a>
         <em>Instance Properties</em>
-        <table class='table table-bordered table-striped'><tr><td>Property</td><td>Type</td><td>Default Value</td><td>Description</td></tr><tr><td>entrySet</td><td>Array</td><td></td><td>an array of objects. Each object contains a key, and value property.</td><tr><tr><td>keys</td><td>Array</td><td></td><td>all keys contained in the table</td><tr><tr><td>values</td><td>Array</td><td></td><td>all values contained in the table</td><tr></table>
+        <table class='table table-bordered table-striped'><tr><td>Property</td><td>Type</td><td>Default Value</td><td>Description</td></tr><tr><td>entrySet</td><td>Array</td><td></td><td><p>an array of objects. Each object contains a key, and value property.</p>
+</td><tr><tr><td>keys</td><td>Array</td><td></td><td><p>all keys contained in the table</p>
+</td><tr><tr><td>values</td><td>Array</td><td></td><td><p>all values contained in the table</p>
+</td><tr></table>
     
 
     <a name="constructor"></a>
@@ -533,9 +560,9 @@
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p>
-Clears out all items from the table.
-         </p>
+<p><p>Clears out all items from the table.
+</p>
+</p>
 
 
 
@@ -570,17 +597,18 @@ function (){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p>
-Returns a new HashTable containing the values of this HashTable, and the other table.
+<p><p>Returns a new HashTable containing the values of this HashTable, and the other table.
 </br>
 <b> DOES NOT CHANGE THE ORIGINAL!</b>
+</p>
 </p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>hashTable</em>  : the hash table to concat with this.</li>
+        <li> <em>hashTable</em>  : <p>the hash table to concat with this.</p>
+</li>
     
      </ul>
 
@@ -588,7 +616,8 @@ Returns a new HashTable containing the values of this HashTable, and the other t
     <em>Returns</em>
     <ul>
     
-        <li> <code>comb.collections.HashTable</code> a new HashTable containing all values from both tables.</li>
+        <li> <code>comb.collections.HashTable</code> <p>a new HashTable containing all values from both tables.</p>
+</li>
     
     </ul>
 
@@ -633,15 +662,16 @@ function (hashTable){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p>
-Tests if the table contains a particular key
+<p><p>Tests if the table contains a particular key
+</p>
 </p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>key</em>  : the key to test</li>
+        <li> <em>key</em>  : <p>the key to test</p>
+</li>
     
      </ul>
 
@@ -649,7 +679,8 @@ Tests if the table contains a particular key
     <em>Returns</em>
     <ul>
     
-        <li> <code>Boolean</code> true if it exitsts false otherwise.</li>
+        <li> <code>Boolean</code> <p>true if it exitsts false otherwise.</p>
+</li>
     
     </ul>
 
@@ -689,18 +720,20 @@ function (key){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p>
-Determines if every item meets the condition returned by the callback.
+<p><p>Determines if every item meets the condition returned by the callback.
 
+</p>
 </p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>cb</em> <code>Function</code> : Function to callback with each item, the first aruguments is an object containing a key and value field</li>
+        <li> <em>cb</em> <code>Function</code> : <p>Function to callback with each item, the first aruguments is an object containing a key and value field</p>
+</li>
     
-        <li> <em>[scope= <code>this</code>]</em> <code>Object</code> : scope to call the function in</li>
+        <li> <em>[scope= <code>this</code>]</em> <code>Object</code> : <p>scope to call the function in</p>
+</li>
     
      </ul>
 
@@ -708,7 +741,8 @@ Determines if every item meets the condition returned by the callback.
     <em>Returns</em>
     <ul>
     
-        <li> <code>Boolean</code> True if every item passed false otherwise</li>
+        <li> <code>Boolean</code> <p>True if every item passed false otherwise</p>
+</li>
     
     </ul>
 
@@ -744,18 +778,20 @@ function (){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p>
-Creates a new HashTable containg values that passed the filtering function.
+<p><p>Creates a new HashTable containg values that passed the filtering function.
 
+</p>
 </p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>cb</em>  : Function to callback with each item, the first aruguments is an object containing a key and value field</li>
+        <li> <em>cb</em>  : <p>Function to callback with each item, the first aruguments is an object containing a key and value field</p>
+</li>
     
-        <li> <em>scope</em>  : the scope to call the function.</li>
+        <li> <em>scope</em>  : <p>the scope to call the function.</p>
+</li>
     
      </ul>
 
@@ -763,7 +799,8 @@ Creates a new HashTable containg values that passed the filtering function.
     <em>Returns</em>
     <ul>
     
-        <li> <code>comb.collections.HashTable</code> the HashTable containing the values that passed the filter.</li>
+        <li> <code>comb.collections.HashTable</code> <p>the HashTable containing the values that passed the filter.</p>
+</li>
     
     </ul>
 
@@ -804,18 +841,20 @@ function (cb,scope){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p>
- Loop through each value in the hashtable
+<p><p> Loop through each value in the hashtable
 
- </p>
+</p>
+</p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>cb</em>  : the function to call with an object containing a key and value field</li>
+        <li> <em>cb</em>  : <p>the function to call with an object containing a key and value field</p>
+</li>
     
-        <li> <em>scope</em>  : the scope to call the funciton in</li>
+        <li> <em>scope</em>  : <p>the scope to call the funciton in</p>
+</li>
     
      </ul>
 
@@ -852,16 +891,17 @@ function (cb,scope){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p>
-Get the value corresponding to the key.
+<p><p>Get the value corresponding to the key.
 
+</p>
 </p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>key</em>  : the key used to look up the value</li>
+        <li> <em>key</em>  : <p>the key used to look up the value</p>
+</li>
     
      </ul>
 
@@ -869,7 +909,8 @@ Get the value corresponding to the key.
     <em>Returns</em>
     <ul>
     
-        <li>  null if not found, or the value.</li>
+        <li>  <p>null if not found, or the value.</p>
+</li>
     
     </ul>
 
@@ -909,17 +950,19 @@ function (key){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p>
-Loop through each value in the hashtable, collecting the value returned by the callback function.
+<p><p>Loop through each value in the hashtable, collecting the value returned by the callback function.
+</p>
 </p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>cb</em> <code>Function</code> : Function to callback with each item, the first aruguments is an object containing a key and value field</li>
+        <li> <em>cb</em> <code>Function</code> : <p>Function to callback with each item, the first aruguments is an object containing a key and value field</p>
+</li>
     
-        <li> <em>[scope= <code>this</code>]</em> <code>Object</code> : scope to call the function in</li>
+        <li> <em>[scope= <code>this</code>]</em> <code>Object</code> : <p>scope to call the function in</p>
+</li>
     
      </ul>
 
@@ -927,7 +970,8 @@ Loop through each value in the hashtable, collecting the value returned by the c
     <em>Returns</em>
     <ul>
     
-        <li> <code>Array</code> an array containing the mapped values.</li>
+        <li> <code>Array</code> <p>an array containing the mapped values.</p>
+</li>
     
     </ul>
 
@@ -963,20 +1007,23 @@ function (){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p>
-Put a key, value pair into the table
+<p><p>Put a key, value pair into the table
 
-<b>NOTE :</b> the collection will not check if the key previously existed.
+</p>
+<p><b>NOTE :</b> the collection will not check if the key previously existed.
 
+</p>
 </p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>key</em>  : the key to look up the object.</li>
+        <li> <em>key</em>  : <p>the key to look up the object.</p>
+</li>
     
-        <li> <em>value</em>  : the value that corresponds to the key.</li>
+        <li> <em>value</em>  : <p>the value that corresponds to the key.</p>
+</li>
     
      </ul>
 
@@ -984,7 +1031,8 @@ Put a key, value pair into the table
     <em>Returns</em>
     <ul>
     
-        <li>  the value</li>
+        <li>  <p>the value</p>
+</li>
     
     </ul>
 
@@ -1025,18 +1073,20 @@ function (key,value){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p>
-Apply a function against an accumulator and each value of the array (from left-to-right) as to reduce it to a single value.
+<p><p>Apply a function against an accumulator and each value of the array (from left-to-right) as to reduce it to a single value.
 
+</p>
 </p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>callback</em> <code>Function</code> : Function to execute on each value in the array.</li>
+        <li> <em>callback</em> <code>Function</code> : <p>Function to execute on each value in the array.</p>
+</li>
     
-        <li> <em>initialValue</em>  : Value to use as the first argument to the first call of the callback..</li>
+        <li> <em>initialValue</em>  : <p>Value to use as the first argument to the first call of the callback..</p>
+</li>
     
      </ul>
 
@@ -1073,18 +1123,20 @@ function (){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p>
-Apply a function against an accumulator and each value of the array (from right-to-left) as to reduce it to a single value.
+<p><p>Apply a function against an accumulator and each value of the array (from right-to-left) as to reduce it to a single value.
 
+</p>
 </p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>callback</em> <code>Function</code> : Function to execute on each value in the array.</li>
+        <li> <em>callback</em> <code>Function</code> : <p>Function to execute on each value in the array.</p>
+</li>
     
-        <li> <em>initialValue</em>  : Value to use as the first argument to the first call of the callback..</li>
+        <li> <em>initialValue</em>  : <p>Value to use as the first argument to the first call of the callback..</p>
+</li>
     
      </ul>
 
@@ -1121,16 +1173,17 @@ function (){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p>
-Remove a key value pair from the table.
+<p><p>Remove a key value pair from the table.
 
+</p>
 </p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>key</em>  : the key of the key value pair to remove.</li>
+        <li> <em>key</em>  : <p>the key of the key value pair to remove.</p>
+</li>
     
      </ul>
 
@@ -1138,7 +1191,8 @@ Remove a key value pair from the table.
     <em>Returns</em>
     <ul>
     
-        <li>  the removed value.</li>
+        <li>  <p>the removed value.</p>
+</li>
     
     </ul>
 
@@ -1178,18 +1232,20 @@ function (key){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p>
-Set the value of a previously existing key,value pair or create a new entry.
+<p><p>Set the value of a previously existing key,value pair or create a new entry.
 
+</p>
 </p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>key</em>  : the key to be be used</li>
+        <li> <em>key</em>  : <p>the key to be be used</p>
+</li>
     
-        <li> <em>value</em>  : the value to be set</li>
+        <li> <em>value</em>  : <p>the value to be set</p>
+</li>
     
      </ul>
 
@@ -1197,7 +1253,8 @@ Set the value of a previously existing key,value pair or create a new entry.
     <em>Returns</em>
     <ul>
     
-        <li>  the value.</li>
+        <li>  <p>the value.</p>
+</li>
     
     </ul>
 
@@ -1238,18 +1295,20 @@ function (key,value){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p>
-Determines if some items meet the condition returned by the callback.
+<p><p>Determines if some items meet the condition returned by the callback.
 
+</p>
 </p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>cb</em> <code>Function</code> : Function to callback with each item, the first aruguments is an object containing a key and value field</li>
+        <li> <em>cb</em> <code>Function</code> : <p>Function to callback with each item, the first aruguments is an object containing a key and value field</p>
+</li>
     
-        <li> <em>[scope= <code>this</code>]</em> <code>Object</code> : scope to call the function in</li>
+        <li> <em>[scope= <code>this</code>]</em> <code>Object</code> : <p>scope to call the function in</p>
+</li>
     
      </ul>
 
@@ -1257,7 +1316,8 @@ Determines if some items meet the condition returned by the callback.
     <em>Returns</em>
     <ul>
     
-        <li> <code>Boolean</code> True if some items passed false otherwise</li>
+        <li> <code>Boolean</code> <p>True if some items passed false otherwise</p>
+</li>
     
     </ul>
 
@@ -1278,22 +1338,26 @@ function (){
   
 <hr>
 
-Documentation generated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
+    
+  <h2>License</h2>
+<p>MIT <a href="https://github.com/Pollenware/comb/raw/master/LICENSE">https://github.com/Pollenware/comb/raw/master/LICENSE</a>
+
+</p>
+<h2>Meta</h2>
+<ul>
+<li>Code: <code>git clone git://github.com/Pollenware/comb.git</code></li>
+<li>Website: <a href="http://pollenware.com">http://pollenware.com</a></li>
+<li>Twitter: <a href="http://twitter.com/pollenware"><a href="http://twitter.com/pollenware">http://twitter.com/pollenware</a></a> - 877.465.4045</li>
+</ul>
+
+
 
 
 </div>
 </div>
 <script type="text/javascript" src="./assets/js/jquery.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-transition.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-dropdown.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-tooltip.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-popover.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-button.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-collapse.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-carousel.js"></script>
-<script type="text/javascript"
-        src="./assets/js/google-code-prettify/prettify.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./assets/js/prettify.js"></script>
 
 </body>
 </html>

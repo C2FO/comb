@@ -5,70 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
     <link rel="stylesheet" href="./assets/css/bootstrap.css">
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
-    <link rel="stylesheet" href="./assets/js/google-code-prettify/prettify.css">
+    <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
 
-.subnav-inner {
-    width: 100%;
-    height: 36px;
-    background-color: #EEE;
-    background-repeat: repeat-x;
-    background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));
-    background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);
-    background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-}
+/*.subnav-inner {*/
+    /*width: 100%;*/
+    /*height: 36px;*/
+    /*background-color: #EEE;*/
+    /*background-repeat: repeat-x;*/
+    /*background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));*/
+    /*background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);*/
+    /*background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*-webkit-border-radius: 4px;*/
+    /*-moz-border-radius: 4px;*/
+    /*border-radius: 4px;*/
+/*}*/
 
-.subnav .nav > li > a:hover {
-    color: black !important;
-}
+/*.subnav .nav > li > a:hover {*/
+    /*color: black !important;*/
+/*}*/
 
-.subnav .nav li.dropdown .dropdown-toggle .caret,
-.subnav .nav li.dropdown.open .caret {
-    border-top-color: #999 !important;
-    border-bottom-color: #999 !important;
-}
+/*.subnav .nav li.dropdown .dropdown-toggle .caret,*/
+/*.subnav .nav li.dropdown.open .caret {*/
+    /*border-top-color: #999 !important;*/
+    /*border-bottom-color: #999 !important;*/
+/*}*/
 
-.subnav-fixed {
-    position: fixed;
-    width : 90%;
-    margin-right: auto;
-    margin-left: auto;
-    top: 40px;
-    left: 0;
-    right: 0;
-    z-index: 1020;
-    border-color: #D5D5D5;
-    border-width: 0 0 1px;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-    box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-}
+/*.subnav-fixed {*/
+    /*position: fixed;*/
+    /*width : 90%;*/
+    /*margin-right: auto;*/
+    /*margin-left: auto;*/
+    /*top: 40px;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*z-index: 1020;*/
+    /*border-color: #D5D5D5;*/
+    /*border-width: 0 0 1px;*/
+    /*-webkit-border-radius: 0;*/
+    /*-moz-border-radius: 0;*/
+    /*border-radius: 0;*/
+    /*-webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*-moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);*/
+/*}*/
 
-.navbar .nav  .dropdown-menu {
-    max-height: 500px;
-    overflow: auto;
-}​
+/*.navbar .nav  .dropdown-menu {*/
+    /*max-height: 500px;*/
+    /*overflow: auto;*/
+/*}​*/
 
     </style>
     <style type="text/css">
         body {
-            padding-top: 60px;
-            padding-bottom: 40px;
+            padding: 90px;
+        }
+
+        .subnav{
+            margin-top: 40px;
+            margin-right: auto;
+            margin-left: auto;
+            z-index: 1000;
+        }
+
+        @media (max-width:979px) {
+            .subnav{
+                margin-top: auto;
+            }
         }
     </style>
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -79,7 +91,8 @@
                     var $win = $(window);
                     $('.subnav').each(function () {
                         var nav = $(this);
-                        var navTop = nav.offset().top - 40;
+                        var navTop = $win.width() < 980 ? 0 : nav.offset().top - 40;
+
                         var scrollTop = $win.scrollTop();
                         if (scrollTop >= navTop && curr != nav) {
                             if(curr){
@@ -102,139 +115,148 @@
             return function () {
                 window.prettyPrint && prettyPrint();
                 $(".collapse").collapse();
+                var $window = $(window);
+                //$(".subnav").affix ();
                 // fix sub nav on scroll
-                processScroll();
-                $(window).on('scroll', processScroll)
+//                processScroll();
+//                $(window).on('scroll', processScroll)
             }
         })();
     </script>
 </head>
 <body onload="init()">
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-      
-          <a href="./index.html" class="brand">comb</a>
-      
-      <div class="nav-collapse">
-      <ul class="nav nav-pills">
-      
-      
-                 <li><a href="./define.html">OO</a></li>
-                 
-                 <li><a href="./promise.html">Promises</a></li>
-                 
-                 <li><a href="./logging.html">Logging</a></li>
-                 
-                 <li><a href="./utilities.html">Utilities</a></li>
-                 
+<div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"> </span>
+            </a>
             
+            <a href="./index.html" class="brand">comb</a>
+            
+            <div class="nav-collapse">
+                <ul class="nav">
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./define.html">OO</a></li>
+                            
+                            <li><a href="./promise.html">Promises</a></li>
+                            
+                            <li><a href="./logging.html">Logging</a></li>
+                            
+                            <li><a href="./utilities.html">Utilities</a></li>
+                            
+                        </ul>
+                        
 
-      
-        <li class="dropdown">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
-           <ul class="dropdown-menu">
-             
-                         <li><a href="comb.html">comb</a></li>
-               
-                         <li><a href="comb_array.html">comb.array</a></li>
-               
-                         <li><a href="comb_characters.html">comb.characters</a></li>
-               
-                         <li><a href="comb_date.html">comb.date</a></li>
-               
-                         <li><a href="comb_logger.html">comb.logger</a></li>
-               
-                         <li><a href="comb_number.html">comb.number</a></li>
-               
-                         <li><a href="comb_plugins.html">comb.plugins</a></li>
-               
-                         <li><a href="comb_regexp.html">comb.regexp</a></li>
-               
-                         <li><a href="comb_string.html">comb.string</a></li>
-               
-           </ul>
-           </li>
-        
-        
-           <li class="dropdown">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
-           <ul class="dropdown-menu">
-             
-                         <li><a href="./comb_Promise.html">comb.Promise</a></li>
-               
-                         <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
-               
-                         <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
-               
-                         <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
-               
-                         <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
-               
-                         <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
-               
-                         <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
-               
-                         <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
-               
-                         <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
-               
-                         <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
-               
-                         <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
-               
-                         <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
-               
-                         <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
-               
-                         <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
-               
-                         <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
-               
-                         <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
-               
-                         <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
-               
-                         <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
-               
-                         <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
-               
-                         <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
-               
-                         <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
-               
-                         <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
-               
-                         <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
-               
-                         <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
-               
-                         <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
-               
-                         <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
-               
-                         <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
-               
-                         <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
-               
-           </ul>
-        </li>
-       
-      </ul>
-      
-      <ul class="nav pull-right">
-                  <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
-        </ul>
-        
-      </div>
+                        
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="comb.html">comb</a></li>
+                            
+                            <li><a href="comb_array.html">comb.array</a></li>
+                            
+                            <li><a href="comb_characters.html">comb.characters</a></li>
+                            
+                            <li><a href="comb_date.html">comb.date</a></li>
+                            
+                            <li><a href="comb_logger.html">comb.logger</a></li>
+                            
+                            <li><a href="comb_number.html">comb.number</a></li>
+                            
+                            <li><a href="comb_plugins.html">comb.plugins</a></li>
+                            
+                            <li><a href="comb_regexp.html">comb.regexp</a></li>
+                            
+                            <li><a href="comb_string.html">comb.string</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./comb_Promise.html">comb.Promise</a></li>
+                            
+                            <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
+                            
+                            <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
+                            
+                            <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
+                            
+                            <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
+                            
+                            <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
+                            
+                            <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
+                            
+                            <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
+                            
+                            <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
+                            
+                            <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
+                            
+                            <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
+                            
+                            <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
+                            
+                            <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
+                            
+                            <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
+                            
+                            <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
+                            
+                            <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
+                            
+                            <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+                            
+                            <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
+                            
+                            <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
+                            
+                            <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+                            
+                            <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
+                            
+                            <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                </ul>
+                
+                <ul class="nav pull-right">
+
+                    <li class="divider-vertical"></li>
+                    <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
+                </ul>
+                
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
 
 
 <div class="container-fluid">
@@ -244,32 +266,32 @@
 
 
     <a name=".date"></a>
-    <div class="navbar subnav">
-    <div class="navbar-inner  subnav-inner">
-                  <div class="container">
-                    <a href="#" class="brand">
-                                comb.date
-                                
-                                
-                                        
-                                 <span class="label label-success">Public</span>
-                                        
-                                
-                    </a>
-                   <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span>
-                            </a>
+    <div class="navbar subnav navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a href="#" class="brand">
+                comb.date
+                
+                
+                
+                <span class="label label-success">Public</span>
+                
+                
+            </a>
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".sub-nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
 
-                            <div class="nav-collapse">
-            
-            <ul class="nav pull-right">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methods<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    
-                    <li><a href="./comb_date.html#.add">
+            <div class="nav-collapse sub-nav-collapse">
+                
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methods<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./comb_date.html#.add">
                                 
                                 <span class="label label-info">S</span>
                                 
@@ -277,29 +299,14 @@
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
                                 
-                        add
-                     </a></li>
-                    
-                    <li><a href="./comb_date.html#.compare">
-                                
-                                <span class="label label-info">S</span>
+                                <span class="label label-success">P</span>
                                 
                                 
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                        compare
-                     </a></li>
-                    
-                    <li><a href="./comb_date.html#.difference">
+                                add
+                            </a></li>
+                            
+                            <li><a href="./comb_date.html#.compare">
                                 
                                 <span class="label label-info">S</span>
                                 
@@ -307,29 +314,14 @@
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
                                 
-                        difference
-                     </a></li>
-                    
-                    <li><a href="./comb_date.html#.format">
-                                
-                                <span class="label label-info">S</span>
+                                <span class="label label-success">P</span>
                                 
                                 
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                        format
-                     </a></li>
-                    
-                    <li><a href="./comb_date.html#.getDaysInMonth">
+                                compare
+                            </a></li>
+                            
+                            <li><a href="./comb_date.html#.difference">
                                 
                                 <span class="label label-info">S</span>
                                 
@@ -337,29 +329,14 @@
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
                                 
-                        getDaysInMonth
-                     </a></li>
-                    
-                    <li><a href="./comb_date.html#.getTimezoneName">
-                                
-                                <span class="label label-info">S</span>
+                                <span class="label label-success">P</span>
                                 
                                 
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                        getTimezoneName
-                     </a></li>
-                    
-                    <li><a href="./comb_date.html#.isLeapYear">
+                                difference
+                            </a></li>
+                            
+                            <li><a href="./comb_date.html#.format">
                                 
                                 <span class="label label-info">S</span>
                                 
@@ -367,29 +344,14 @@
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
                                 
-                        isLeapYear
-                     </a></li>
-                    
-                    <li><a href="./comb_date.html#.isWeekend">
-                                
-                                <span class="label label-info">S</span>
+                                <span class="label label-success">P</span>
                                 
                                 
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                        isWeekend
-                     </a></li>
-                    
-                    <li><a href="./comb_date.html#.parse">
+                                format
+                            </a></li>
+                            
+                            <li><a href="./comb_date.html#.getDaysInMonth">
                                 
                                 <span class="label label-info">S</span>
                                 
@@ -397,25 +359,85 @@
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
                                 
-                        parse
-                     </a></li>
-                    
+                                <span class="label label-success">P</span>
+                                
+                                
+                                getDaysInMonth
+                            </a></li>
+                            
+                            <li><a href="./comb_date.html#.getTimezoneName">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                getTimezoneName
+                            </a></li>
+                            
+                            <li><a href="./comb_date.html#.isLeapYear">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                isLeapYear
+                            </a></li>
+                            
+                            <li><a href="./comb_date.html#.isWeekend">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                isWeekend
+                            </a></li>
+                            
+                            <li><a href="./comb_date.html#.parse">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                parse
+                            </a></li>
+                            
+                        </ul>
+                    </li>
                 </ul>
-            </li>
-            </ul>
-            
+                
             </div>
-            </div>
-     </div>
+        </div>
+    </div>
 </div>
 <em>Defined base/date.js</em>
 
-<p>
-Utilities for Dates</p>
+<p><p>Utilities for Dates</p>
+</p>
 
 
 
@@ -1231,9 +1253,9 @@ Utilities for Dates</p>
 <hr/>
 <em>Defined base/date.js</em>
 
-<p>
-Adds a specified interval and amount to a date
+<p><p>Adds a specified interval and amount to a date
 
+</p>
 </p>
 
     <em>Example</em>
@@ -1289,9 +1311,11 @@ var dtA = new Date(2005, 11, 27);
     
         <li> <em>date</em> <code>Date</code> : </li>
     
-        <li> <em>interval</em> <code>String</code> : the interval to add  <ul>      <li>day | days</li>      <li>weekday | weekdays</li>      <li>year | years</li>      <li>week | weeks</li>      <li>quarter | quarters</li>      <li>months | months</li>      <li>hour | hours</li>      <li>minute | minutes</li>      <li>second | seconds</li>      <li>millisecond | milliseconds</li>  </ul></li>
+        <li> <em>interval</em> <code>String</code> : <p>the interval to add  <ul>      <li>day | days</li>      <li>weekday | weekdays</li>      <li>year | years</li>      <li>week | weeks</li>      <li>quarter | quarters</li>      <li>months | months</li>      <li>hour | hours</li>      <li>minute | minutes</li>      <li>second | seconds</li>      <li>millisecond | milliseconds</li>  </ul></p>
+</li>
     
-        <li> <em>[amount= <code>0</code>]</em> <code>Number</code> : the amount to add</li>
+        <li> <em>[amount= <code>0</code>]</em> <code>Number</code> : <p>the amount to add</p>
+</li>
     
      </ul>
 
@@ -1398,9 +1422,9 @@ function (/*Date*/date,/*String*/interval,/*int*/amount){
 <hr/>
 <em>Defined base/date.js</em>
 
-<p>
-Compares two dates
+<p><p>Compares two dates
 
+</p>
 </p>
 
     <em>Example</em>
@@ -1436,11 +1460,14 @@ comb.date.compare(d1, d1); // 0
     
         <li> <em>/*String*/portion</em>  : </li>
     
-        <li> <em>date1</em> <code>Date|String</code> : the date to comapare</li>
+        <li> <em>date1</em> <code>Date|String</code> : <p>the date to comapare</p>
+</li>
     
-        <li> <em>[date2= <code>new Date()</code>]</em> <code>Date|String</code> : the date to compare date1 againse</li>
+        <li> <em>[date2= <code>new Date()</code>]</em> <code>Date|String</code> : <p>the date to compare date1 againse</p>
+</li>
     
-        <li> <em>portion</em> <code>"date"|"time"|"datetime"</code> : compares the portion specified</li>
+        <li> <em>portion</em> <code>"date"|"time"|"datetime"</code> : <p>compares the portion specified</p>
+</li>
     
      </ul>
 
@@ -1448,7 +1475,8 @@ comb.date.compare(d1, d1); // 0
     <em>Returns</em>
     <ul>
     
-        <li>  -1 if date1 is < date2 0 if date1 === date2  1 if date1 > date2</li>
+        <li>  <p>-1 if date1 is &lt; date2 0 if date1 === date2  1 if date1 &gt; date2</p>
+</li>
     
     </ul>
 
@@ -1499,9 +1527,9 @@ function (/*Date*/date1,/*Date*/date2,/*String*/portion){
 <hr/>
 <em>Defined base/date.js</em>
 
-<p>
-Finds the difference between two dates based on the specified interval
+<p><p>Finds the difference between two dates based on the specified interval
 
+</p>
 </p>
 
     <em>Example</em>
@@ -1562,7 +1590,7 @@ comb.date.difference(dtA, dtB, &quot;millisecond&quot;); //1
     
         <li> <em>[date2 = <code> new Date()</code>]</em> <code>Date</code> : </li>
     
-        <li> <em>[interval = <code> "day"</code>]</em> <code>String</code> : the intercal to find the difference of.
+        <li> <em>[interval = <code> "day"</code>]</em> <code>String</code> : <p>the intercal to find the difference of.
   <ul>
      <li>day | days</li>
      <li>weekday | weekdays</li>
@@ -1574,7 +1602,8 @@ comb.date.difference(dtA, dtB, &quot;millisecond&quot;); //1
      <li>minute | minutes</li>
      <li>second | seconds</li>
      <li>millisecond | milliseconds</li>
- </ul></li>
+ </ul></p>
+</li>
     
      </ul>
 
@@ -1726,9 +1755,9 @@ function (/*Date*/date1,/*Date?*/date2,/*String*/interval,utc){
 <hr/>
 <em>Defined base/date.js</em>
 
-<p>
-Formats a date to the specidifed format string
+<p><p>Formats a date to the specidifed format string
 
+</p>
 </p>
 
     <em>Example</em>
@@ -1749,9 +1778,11 @@ comb.date.format(date, &quot;ddMMyyyy&quot;); //&quot;11082006&quot;
     <em>Arguments</em>
     <ul>
     
-        <li> <em>date</em>  : the date to format</li>
+        <li> <em>date</em>  : <p>the date to format</p>
+</li>
     
-        <li> <em>format</em>  : the format of the date composed of the following options <ul>                  <li> G    Era designator    Text    AD</li>                  <li> y    Year    Year    1996; 96</li>                  <li> M    Month in year    Month    July; Jul; 07</li>                  <li> w    Week in year    Number    27</li>                  <li> W    Week in month    Number    2</li>                  <li> D    Day in year    Number    189</li>                  <li> d    Day in month    Number    10</li>                  <li> E    Day in week    Text    Tuesday; Tue</li>                  <li> a    Am/pm marker    Text    PM</li>                  <li> H    Hour in day (0-23)    Number    0</li>                  <li> k    Hour in day (1-24)    Number    24</li>                  <li> K    Hour in am/pm (0-11)    Number    0</li>                  <li> h    Hour in am/pm (1-12)    Number    12</li>                  <li> m    Minute in hour    Number    30</li>                  <li> s    Second in minute    Number    55</li>                  <li> S    Millisecond    Number    978</li>                  <li> z    Time zone    General time zone    Pacific Standard Time; PST; GMT-08:00</li>                  <li> Z    Time zone    RFC 822 time zone    -0800 </li> </ul></li>
+        <li> <em>format</em>  : <p>the format of the date composed of the following options <ul>                  <li> G    Era designator    Text    AD</li>                  <li> y    Year    Year    1996; 96</li>                  <li> M    Month in year    Month    July; Jul; 07</li>                  <li> w    Week in year    Number    27</li>                  <li> W    Week in month    Number    2</li>                  <li> D    Day in year    Number    189</li>                  <li> d    Day in month    Number    10</li>                  <li> E    Day in week    Text    Tuesday; Tue</li>                  <li> a    Am/pm marker    Text    PM</li>                  <li> H    Hour in day (0-23)    Number    0</li>                  <li> k    Hour in day (1-24)    Number    24</li>                  <li> K    Hour in am/pm (0-11)    Number    0</li>                  <li> h    Hour in am/pm (1-12)    Number    12</li>                  <li> m    Minute in hour    Number    30</li>                  <li> s    Second in minute    Number    55</li>                  <li> S    Millisecond    Number    978</li>                  <li> z    Time zone    General time zone    Pacific Standard Time; PST; GMT-08:00</li>                  <li> Z    Time zone    RFC 822 time zone    -0800 </li> </ul></p>
+</li>
     
         <li> <em>utc</em>  : </li>
     
@@ -1909,9 +1940,9 @@ function (date,format,utc){
 <hr/>
 <em>Defined base/date.js</em>
 
-<p>
-Returns the number of days in the month of a date
+<p><p>Returns the number of days in the month of a date
 
+</p>
 </p>
 
     <em>Example</em>
@@ -1931,7 +1962,8 @@ comb.date.getDaysInMonth(new Date(2006, 1, 1)); //28
     
         <li> <em>/*Date*/dateObject</em>  : </li>
     
-        <li> <em>dateObject</em> <code>Date</code> : the date containing the month</li>
+        <li> <em>dateObject</em> <code>Date</code> : <p>the date containing the month</p>
+</li>
     
      </ul>
 
@@ -1939,7 +1971,8 @@ comb.date.getDaysInMonth(new Date(2006, 1, 1)); //28
     <em>Returns</em>
     <ul>
     
-        <li> <code>Number</code> the number of days in the month</li>
+        <li> <code>Number</code> <p>the number of days in the month</p>
+</li>
     
     </ul>
 
@@ -1983,9 +2016,9 @@ function (/*Date*/dateObject){
 <hr/>
 <em>Defined base/date.js</em>
 
-<p>
-Get the timezone of a date
+<p><p>Get the timezone of a date
 
+</p>
 </p>
 
     <em>Example</em>
@@ -2006,7 +2039,8 @@ Get the timezone of a date
     
         <li> <em>/*Date*/dateObject</em>  : </li>
     
-        <li> <em>dateObject</em>  : the date to get the timezone from</li>
+        <li> <em>dateObject</em>  : <p>the date to get the timezone from</p>
+</li>
     
      </ul>
 
@@ -2014,7 +2048,8 @@ Get the timezone of a date
     <em>Returns</em>
     <ul>
     
-        <li> <code>String</code> the timezone of the date</li>
+        <li> <code>String</code> <p>the timezone of the date</p>
+</li>
     
     </ul>
 
@@ -2057,9 +2092,9 @@ function (/*Date*/dateObject){
 <hr/>
 <em>Defined base/date.js</em>
 
-<p>
-Determines if a date is a leap year
+<p><p>Determines if a date is a leap year
 
+</p>
 </p>
 
     <em>Example</em>
@@ -2089,7 +2124,8 @@ comb.date.isLeapYear(new Date(1600, 0, 1)); //true
     <em>Returns</em>
     <ul>
     
-        <li> <code>Boolean</code> true if it is a leap year false otherwise</li>
+        <li> <code>Boolean</code> <p>true if it is a leap year false otherwise</p>
+</li>
     
     </ul>
 
@@ -2127,9 +2163,9 @@ function (/*Date*/dateObject,utc){
 <hr/>
 <em>Defined base/date.js</em>
 
-<p>
-Determines if a date is on a weekend
+<p><p>Determines if a date is on a weekend
 
+</p>
 </p>
 
     <em>Example</em>
@@ -2152,7 +2188,8 @@ comb.date.isWeekend(monday)); //false
     
         <li> <em>utc</em>  : </li>
     
-        <li> <em>dateObject</em> <code>Date</code> : the date to test</li>
+        <li> <em>dateObject</em> <code>Date</code> : <p>the date to test</p>
+</li>
     
      </ul>
 
@@ -2160,7 +2197,8 @@ comb.date.isWeekend(monday)); //false
     <em>Returns</em>
     <ul>
     
-        <li> <code>Boolean</code> true if the date is a weekend</li>
+        <li> <code>Boolean</code> <p>true if the date is a weekend</p>
+</li>
     
     </ul>
 
@@ -2200,9 +2238,9 @@ function (/*Date?*/dateObject,utc){
 <hr/>
 <em>Defined base/date.js</em>
 
-<p>
-Parses a date string into a date object
+<p><p>Parses a date string into a date object
 
+</p>
 </p>
 
     <em>Example</em>
@@ -2220,9 +2258,11 @@ var aug_11_2006 = new Date(2006, 7, 11, 0);
     <em>Arguments</em>
     <ul>
     
-        <li> <em>dateStr</em>  : The string to parse</li>
+        <li> <em>dateStr</em>  : <p>The string to parse</p>
+</li>
     
-        <li> <em>format</em>  : the format of the date composed of the following options <ul>                  <li> G    Era designator    Text    AD</li>                  <li> y    Year    Year    1996; 96</li>                  <li> M    Month in year    Month    July; Jul; 07</li>                  <li> w    Week in year    Number    27</li>                  <li> W    Week in month    Number    2</li>                  <li> D    Day in year    Number    189</li>                  <li> d    Day in month    Number    10</li>                  <li> E    Day in week    Text    Tuesday; Tue</li>                  <li> a    Am/pm marker    Text    PM</li>                  <li> H    Hour in day (0-23)    Number    0</li>                  <li> k    Hour in day (1-24)    Number    24</li>                  <li> K    Hour in am/pm (0-11)    Number    0</li>                  <li> h    Hour in am/pm (1-12)    Number    12</li>                  <li> m    Minute in hour    Number    30</li>                  <li> s    Second in minute    Number    55</li>                  <li> S    Millisecond    Number    978</li>                  <li> z    Time zone    General time zone    Pacific Standard Time; PST; GMT-08:00</li>                  <li> Z    Time zone    RFC 822 time zone    -0800 </li> </ul></li>
+        <li> <em>format</em>  : <p>the format of the date composed of the following options <ul>                  <li> G    Era designator    Text    AD</li>                  <li> y    Year    Year    1996; 96</li>                  <li> M    Month in year    Month    July; Jul; 07</li>                  <li> w    Week in year    Number    27</li>                  <li> W    Week in month    Number    2</li>                  <li> D    Day in year    Number    189</li>                  <li> d    Day in month    Number    10</li>                  <li> E    Day in week    Text    Tuesday; Tue</li>                  <li> a    Am/pm marker    Text    PM</li>                  <li> H    Hour in day (0-23)    Number    0</li>                  <li> k    Hour in day (1-24)    Number    24</li>                  <li> K    Hour in am/pm (0-11)    Number    0</li>                  <li> h    Hour in am/pm (1-12)    Number    12</li>                  <li> m    Minute in hour    Number    30</li>                  <li> s    Second in minute    Number    55</li>                  <li> S    Millisecond    Number    978</li>                  <li> z    Time zone    General time zone    Pacific Standard Time; PST; GMT-08:00</li>                  <li> Z    Time zone    RFC 822 time zone    -0800 </li> </ul></p>
+</li>
     
      </ul>
 
@@ -2230,7 +2270,8 @@ var aug_11_2006 = new Date(2006, 7, 11, 0);
     <em>Returns</em>
     <ul>
     
-        <li> <code>Date</code> the parsed date</li>
+        <li> <code>Date</code> <p>the parsed date</p>
+</li>
     
     </ul>
 
@@ -2378,22 +2419,26 @@ function (dateStr,format){
     
 <hr>
 
-Documentation generated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
+    
+  <h2>License</h2>
+<p>MIT <a href="https://github.com/Pollenware/comb/raw/master/LICENSE">https://github.com/Pollenware/comb/raw/master/LICENSE</a>
+
+</p>
+<h2>Meta</h2>
+<ul>
+<li>Code: <code>git clone git://github.com/Pollenware/comb.git</code></li>
+<li>Website: <a href="http://pollenware.com">http://pollenware.com</a></li>
+<li>Twitter: <a href="http://twitter.com/pollenware"><a href="http://twitter.com/pollenware">http://twitter.com/pollenware</a></a> - 877.465.4045</li>
+</ul>
+
+
 
 
 </div>
 </div>
 <script type="text/javascript" src="./assets/js/jquery.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-transition.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-dropdown.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-tooltip.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-popover.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-button.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-collapse.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-carousel.js"></script>
-<script type="text/javascript"
-        src="./assets/js/google-code-prettify/prettify.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./assets/js/prettify.js"></script>
 
 </body>
 </html>

@@ -5,70 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
     <link rel="stylesheet" href="./assets/css/bootstrap.css">
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
-    <link rel="stylesheet" href="./assets/js/google-code-prettify/prettify.css">
+    <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
 
-.subnav-inner {
-    width: 100%;
-    height: 36px;
-    background-color: #EEE;
-    background-repeat: repeat-x;
-    background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));
-    background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);
-    background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-}
+/*.subnav-inner {*/
+    /*width: 100%;*/
+    /*height: 36px;*/
+    /*background-color: #EEE;*/
+    /*background-repeat: repeat-x;*/
+    /*background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));*/
+    /*background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);*/
+    /*background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*-webkit-border-radius: 4px;*/
+    /*-moz-border-radius: 4px;*/
+    /*border-radius: 4px;*/
+/*}*/
 
-.subnav .nav > li > a:hover {
-    color: black !important;
-}
+/*.subnav .nav > li > a:hover {*/
+    /*color: black !important;*/
+/*}*/
 
-.subnav .nav li.dropdown .dropdown-toggle .caret,
-.subnav .nav li.dropdown.open .caret {
-    border-top-color: #999 !important;
-    border-bottom-color: #999 !important;
-}
+/*.subnav .nav li.dropdown .dropdown-toggle .caret,*/
+/*.subnav .nav li.dropdown.open .caret {*/
+    /*border-top-color: #999 !important;*/
+    /*border-bottom-color: #999 !important;*/
+/*}*/
 
-.subnav-fixed {
-    position: fixed;
-    width : 90%;
-    margin-right: auto;
-    margin-left: auto;
-    top: 40px;
-    left: 0;
-    right: 0;
-    z-index: 1020;
-    border-color: #D5D5D5;
-    border-width: 0 0 1px;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-    box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-}
+/*.subnav-fixed {*/
+    /*position: fixed;*/
+    /*width : 90%;*/
+    /*margin-right: auto;*/
+    /*margin-left: auto;*/
+    /*top: 40px;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*z-index: 1020;*/
+    /*border-color: #D5D5D5;*/
+    /*border-width: 0 0 1px;*/
+    /*-webkit-border-radius: 0;*/
+    /*-moz-border-radius: 0;*/
+    /*border-radius: 0;*/
+    /*-webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*-moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);*/
+/*}*/
 
-.navbar .nav  .dropdown-menu {
-    max-height: 500px;
-    overflow: auto;
-}​
+/*.navbar .nav  .dropdown-menu {*/
+    /*max-height: 500px;*/
+    /*overflow: auto;*/
+/*}​*/
 
     </style>
     <style type="text/css">
         body {
-            padding-top: 60px;
-            padding-bottom: 40px;
+            padding: 90px;
+        }
+
+        .subnav{
+            margin-top: 40px;
+            margin-right: auto;
+            margin-left: auto;
+            z-index: 1000;
+        }
+
+        @media (max-width:979px) {
+            .subnav{
+                margin-top: auto;
+            }
         }
     </style>
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -79,7 +91,8 @@
                     var $win = $(window);
                     $('.subnav').each(function () {
                         var nav = $(this);
-                        var navTop = nav.offset().top - 40;
+                        var navTop = $win.width() < 980 ? 0 : nav.offset().top - 40;
+
                         var scrollTop = $win.scrollTop();
                         if (scrollTop >= navTop && curr != nav) {
                             if(curr){
@@ -102,139 +115,148 @@
             return function () {
                 window.prettyPrint && prettyPrint();
                 $(".collapse").collapse();
+                var $window = $(window);
+                //$(".subnav").affix ();
                 // fix sub nav on scroll
-                processScroll();
-                $(window).on('scroll', processScroll)
+//                processScroll();
+//                $(window).on('scroll', processScroll)
             }
         })();
     </script>
 </head>
 <body onload="init()">
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-      
-          <a href="./index.html" class="brand">comb</a>
-      
-      <div class="nav-collapse">
-      <ul class="nav nav-pills">
-      
-      
-                 <li><a href="./define.html">OO</a></li>
-                 
-                 <li><a href="./promise.html">Promises</a></li>
-                 
-                 <li><a href="./logging.html">Logging</a></li>
-                 
-                 <li><a href="./utilities.html">Utilities</a></li>
-                 
+<div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"> </span>
+            </a>
             
+            <a href="./index.html" class="brand">comb</a>
+            
+            <div class="nav-collapse">
+                <ul class="nav">
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./define.html">OO</a></li>
+                            
+                            <li><a href="./promise.html">Promises</a></li>
+                            
+                            <li><a href="./logging.html">Logging</a></li>
+                            
+                            <li><a href="./utilities.html">Utilities</a></li>
+                            
+                        </ul>
+                        
 
-      
-        <li class="dropdown">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
-           <ul class="dropdown-menu">
-             
-                         <li><a href="comb.html">comb</a></li>
-               
-                         <li><a href="comb_array.html">comb.array</a></li>
-               
-                         <li><a href="comb_characters.html">comb.characters</a></li>
-               
-                         <li><a href="comb_date.html">comb.date</a></li>
-               
-                         <li><a href="comb_logger.html">comb.logger</a></li>
-               
-                         <li><a href="comb_number.html">comb.number</a></li>
-               
-                         <li><a href="comb_plugins.html">comb.plugins</a></li>
-               
-                         <li><a href="comb_regexp.html">comb.regexp</a></li>
-               
-                         <li><a href="comb_string.html">comb.string</a></li>
-               
-           </ul>
-           </li>
-        
-        
-           <li class="dropdown">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
-           <ul class="dropdown-menu">
-             
-                         <li><a href="./comb_Promise.html">comb.Promise</a></li>
-               
-                         <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
-               
-                         <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
-               
-                         <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
-               
-                         <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
-               
-                         <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
-               
-                         <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
-               
-                         <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
-               
-                         <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
-               
-                         <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
-               
-                         <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
-               
-                         <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
-               
-                         <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
-               
-                         <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
-               
-                         <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
-               
-                         <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
-               
-                         <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
-               
-                         <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
-               
-                         <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
-               
-                         <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
-               
-                         <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
-               
-                         <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
-               
-                         <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
-               
-                         <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
-               
-                         <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
-               
-                         <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
-               
-                         <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
-               
-                         <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
-               
-           </ul>
-        </li>
-       
-      </ul>
-      
-      <ul class="nav pull-right">
-                  <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
-        </ul>
-        
-      </div>
+                        
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="comb.html">comb</a></li>
+                            
+                            <li><a href="comb_array.html">comb.array</a></li>
+                            
+                            <li><a href="comb_characters.html">comb.characters</a></li>
+                            
+                            <li><a href="comb_date.html">comb.date</a></li>
+                            
+                            <li><a href="comb_logger.html">comb.logger</a></li>
+                            
+                            <li><a href="comb_number.html">comb.number</a></li>
+                            
+                            <li><a href="comb_plugins.html">comb.plugins</a></li>
+                            
+                            <li><a href="comb_regexp.html">comb.regexp</a></li>
+                            
+                            <li><a href="comb_string.html">comb.string</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./comb_Promise.html">comb.Promise</a></li>
+                            
+                            <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
+                            
+                            <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
+                            
+                            <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
+                            
+                            <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
+                            
+                            <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
+                            
+                            <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
+                            
+                            <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
+                            
+                            <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
+                            
+                            <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
+                            
+                            <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
+                            
+                            <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
+                            
+                            <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
+                            
+                            <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
+                            
+                            <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
+                            
+                            <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
+                            
+                            <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+                            
+                            <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
+                            
+                            <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
+                            
+                            <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+                            
+                            <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
+                            
+                            <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                </ul>
+                
+                <ul class="nav pull-right">
+
+                    <li class="divider-vertical"></li>
+                    <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
+                </ul>
+                
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
 
 
 <div class="container-fluid">
@@ -244,32 +266,32 @@
 
 
     <a name=".array"></a>
-    <div class="navbar subnav">
-    <div class="navbar-inner  subnav-inner">
-                  <div class="container">
-                    <a href="#" class="brand">
-                                comb.array
-                                
-                                
-                                        
-                                 <span class="label label-success">Public</span>
-                                        
-                                
-                    </a>
-                   <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span>
-                            </a>
+    <div class="navbar subnav navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a href="#" class="brand">
+                comb.array
+                
+                
+                
+                <span class="label label-success">Public</span>
+                
+                
+            </a>
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".sub-nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
 
-                            <div class="nav-collapse">
-            
-            <ul class="nav pull-right">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methods<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    
-                    <li><a href="./comb_array.html#.avg">
+            <div class="nav-collapse sub-nav-collapse">
+                
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methods<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./comb_array.html#.avg">
                                 
                                 <span class="label label-info">S</span>
                                 
@@ -277,29 +299,14 @@
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
                                 
-                        avg
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.cartesian">
-                                
-                                <span class="label label-info">S</span>
+                                <span class="label label-success">P</span>
                                 
                                 
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                        cartesian
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.compact">
+                                avg
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.cartesian">
                                 
                                 <span class="label label-info">S</span>
                                 
@@ -307,29 +314,14 @@
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
                                 
-                        compact
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.difference">
-                                
-                                <span class="label label-info">S</span>
+                                <span class="label label-success">P</span>
                                 
                                 
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                        difference
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.flatten">
+                                cartesian
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.compact">
                                 
                                 <span class="label label-info">S</span>
                                 
@@ -337,29 +329,14 @@
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
                                 
-                        flatten
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.intersect">
-                                
-                                <span class="label label-info">S</span>
+                                <span class="label label-success">P</span>
                                 
                                 
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                        intersect
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.max">
+                                compact
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.difference">
                                 
                                 <span class="label label-info">S</span>
                                 
@@ -367,29 +344,14 @@
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
                                 
-                        max
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.min">
-                                
-                                <span class="label label-info">S</span>
+                                <span class="label label-success">P</span>
                                 
                                 
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                        min
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.multiply">
+                                difference
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.flatten">
                                 
                                 <span class="label label-info">S</span>
                                 
@@ -397,29 +359,14 @@
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
                                 
-                        multiply
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.permutations">
-                                
-                                <span class="label label-info">S</span>
+                                <span class="label label-success">P</span>
                                 
                                 
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                        permutations
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.powerSet">
+                                flatten
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.intersect">
                                 
                                 <span class="label label-info">S</span>
                                 
@@ -427,29 +374,14 @@
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
                                 
-                        powerSet
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.removeDuplicates">
-                                
-                                <span class="label label-info">S</span>
+                                <span class="label label-success">P</span>
                                 
                                 
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                        removeDuplicates
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.rotate">
+                                intersect
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.max">
                                 
                                 <span class="label label-info">S</span>
                                 
@@ -457,29 +389,14 @@
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
                                 
-                        rotate
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.sort">
-                                
-                                <span class="label label-info">S</span>
+                                <span class="label label-success">P</span>
                                 
                                 
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                        sort
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.sum">
+                                max
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.min">
                                 
                                 <span class="label label-info">S</span>
                                 
@@ -487,29 +404,14 @@
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
                                 
-                        sum
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.toArray">
-                                
-                                <span class="label label-info">S</span>
+                                <span class="label label-success">P</span>
                                 
                                 
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                        toArray
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.transpose">
+                                min
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.multiply">
                                 
                                 <span class="label label-info">S</span>
                                 
@@ -517,29 +419,14 @@
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
                                 
-                        transpose
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.union">
-                                
-                                <span class="label label-info">S</span>
+                                <span class="label label-success">P</span>
                                 
                                 
-                                <span class="label label-label">F</span>
-                                
-                                
-                                        
-                                 <span class="label label-success">P</span>
-                                        
-                                
-                        union
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.valuesAt">
+                                multiply
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.permutations">
                                 
                                 <span class="label label-info">S</span>
                                 
@@ -547,14 +434,14 @@
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
                                 
-                        valuesAt
-                     </a></li>
-                    
-                    <li><a href="./comb_array.html#.zip">
+                                <span class="label label-success">P</span>
+                                
+                                
+                                permutations
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.powerSet">
                                 
                                 <span class="label label-info">S</span>
                                 
@@ -562,25 +449,160 @@
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
                                 
-                        zip
-                     </a></li>
-                    
+                                <span class="label label-success">P</span>
+                                
+                                
+                                powerSet
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.removeDuplicates">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                removeDuplicates
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.rotate">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                rotate
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.sort">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                sort
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.sum">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                sum
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.toArray">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                toArray
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.transpose">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                transpose
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.union">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                union
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.valuesAt">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                valuesAt
+                            </a></li>
+                            
+                            <li><a href="./comb_array.html#.zip">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                zip
+                            </a></li>
+                            
+                        </ul>
+                    </li>
                 </ul>
-            </li>
-            </ul>
-            
+                
             </div>
-            </div>
-     </div>
+        </div>
+    </div>
 </div>
 <em>Defined base/array.js</em>
 
-<p>
-Utilities for Arrays</p>
+<p><p>Utilities for Arrays</p>
+</p>
 
 
 
@@ -1167,8 +1189,8 @@ Utilities for Arrays</p>
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Averages an array of numbers.
+<p><p>Averages an array of numbers.
+</p>
 </p>
 
     <em>Example</em>
@@ -1182,7 +1204,10 @@ comb.array.avg([1,2,3]); //2
     
         <li> <em>arr</em>  : </li>
     
-        <li> <em>array</em> <code>Number[]</code> : - an array of numbers</li>
+        <li> <em>array</em> <code>Number[]</code> : <ul>
+<li>an array of numbers</li>
+</ul>
+</li>
     
      </ul>
 
@@ -1190,7 +1215,8 @@ comb.array.avg([1,2,3]); //2
     <em>Returns</em>
     <ul>
     
-        <li> <code>Number</code> the average of all the numbers in the array.</li>
+        <li> <code>Number</code> <p>the average of all the numbers in the array.</p>
+</li>
     
     </ul>
 
@@ -1198,7 +1224,8 @@ comb.array.avg([1,2,3]); //2
     <em>Throws</em>
     <ul>
     
-        <li> <code>Error</code> if the array is not all numbers.</li>
+        <li> <code>Error</code> <p>if the array is not all numbers.</p>
+</li>
     
     </ul>
 
@@ -1244,9 +1271,9 @@ function (arr){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Find the cartesian product of two arrays
+<p><p>Find the cartesian product of two arrays
 
+</p>
 </p>
 
     <em>Example</em>
@@ -1325,9 +1352,9 @@ function (a,b){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Compacts an array removing null or undefined objects from the array.
+<p><p>Compacts an array removing null or undefined objects from the array.
 
+</p>
 </p>
 
     <em>Example</em>
@@ -1385,9 +1412,9 @@ function (arr){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Finds the difference of the two arrays.
+<p><p>Finds the difference of the two arrays.
 
+</p>
 </p>
 
     <em>Example</em>
@@ -1400,9 +1427,11 @@ comb.array.difference([&quot;a&quot;,&quot;b&quot;,3], [3]); //[&quot;a&quot;,&q
     <em>Arguments</em>
     <ul>
     
-        <li> <em>arr1</em>  : the array we are subtracting from</li>
+        <li> <em>arr1</em>  : <p>the array we are subtracting from</p>
+</li>
     
-        <li> <em>arr2</em>  : the array we are subtracting from arr1</li>
+        <li> <em>arr2</em>  : <p>the array we are subtracting from arr1</p>
+</li>
     
      </ul>
 
@@ -1410,7 +1439,8 @@ comb.array.difference([&quot;a&quot;,&quot;b&quot;,3], [3]); //[&quot;a&quot;,&q
     <em>Returns</em>
     <ul>
     
-        <li> <code>*</code> the difference of the arrays.</li>
+        <li> <code>*</code> <p>the difference of the arrays.</p>
+</li>
     
     </ul>
 
@@ -1453,9 +1483,9 @@ function (arr1,arr2){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Flatten multiple arrays into a single array
+<p><p>Flatten multiple arrays into a single array
 
+</p>
 </p>
 
     <em>Example</em>
@@ -1518,10 +1548,10 @@ function (arr){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Finds the intersection of arrays
+<p><p>Finds the intersection of arrays
 NOTE : this function accepts an arbitrary number of arrays
 
+</p>
 </p>
 
     <em>Example</em>
@@ -1591,11 +1621,11 @@ function (a,b){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Finds that max value of an array. If a second argument is provided and it is a function
+<p><p>Finds that max value of an array. If a second argument is provided and it is a function
 it will be used as a comparator function. If the second argument is a string then it will be used
 as a property look up on each item.
 
+</p>
 </p>
 
     <em>Example</em>
@@ -1610,9 +1640,11 @@ comb.array.max([{a : 1}, {a : 2}, {a : -2}], function(a,b){
     <em>Arguments</em>
     <ul>
     
-        <li> <em>arr</em>  : the array to find the max value on</li>
+        <li> <em>arr</em>  : <p>the array to find the max value on</p>
+</li>
     
-        <li> <em>cmp</em>  : the property to sort on. Or a function used to compare.</li>
+        <li> <em>cmp</em>  : <p>the property to sort on. Or a function used to compare.</p>
+</li>
     
      </ul>
 
@@ -1620,7 +1652,8 @@ comb.array.max([{a : 1}, {a : 2}, {a : -2}], function(a,b){
     <em>Returns</em>
     <ul>
     
-        <li> <code>*</code> the maximum value of the array based on the provided cmp.</li>
+        <li> <code>*</code> <p>the maximum value of the array based on the provided cmp.</p>
+</li>
     
     </ul>
 
@@ -1657,11 +1690,11 @@ function (arr,cmp){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Finds that min value of an array. If a second argument is provided and it is a function
+<p><p>Finds that min value of an array. If a second argument is provided and it is a function
 it will be used as a comparator function. If the second argument is a string then it will be used
 as a property look up on each item.
 
+</p>
 </p>
 
     <em>Example</em>
@@ -1676,9 +1709,11 @@ comb.array.min([{a : 1}, {a : 2}, {a : -2}], function(a,b){
     <em>Arguments</em>
     <ul>
     
-        <li> <em>arr</em>  : the array to find the min value on</li>
+        <li> <em>arr</em>  : <p>the array to find the min value on</p>
+</li>
     
-        <li> <em>cmp</em>  : the property to sort on. Or a function used to compare.</li>
+        <li> <em>cmp</em>  : <p>the property to sort on. Or a function used to compare.</p>
+</li>
     
      </ul>
 
@@ -1723,18 +1758,20 @@ function (arr,cmp){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Creates a new array that is the result of the array concated the number of
+<p><p>Creates a new array that is the result of the array concated the number of
 times. If times is not specified or it equals 0 then it defaults to 1.
+</p>
 </p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>arr</em>  : the array to multiply.</li>
+        <li> <em>arr</em>  : <p>the array to multiply.</p>
+</li>
     
-        <li> <em>[times= <code>1</code>]</em>  : the number of times to multiple the array.</li>
+        <li> <em>[times= <code>1</code>]</em>  : <p>the number of times to multiple the array.</p>
+</li>
     
      </ul>
 
@@ -1742,7 +1779,8 @@ times. If times is not specified or it equals 0 then it defaults to 1.
     <em>Returns</em>
     <ul>
     
-        <li> <code>Array</code> a new array that is the result of the array multiplied the number of times specified.</li>
+        <li> <code>Array</code> <p>a new array that is the result of the array multiplied the number of times specified.</p>
+</li>
     
     </ul>
 
@@ -1789,9 +1827,9 @@ function (arr,times){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Finds all permutations of an array
+<p><p>Finds all permutations of an array
 
+</p>
 </p>
 
     <em>Example</em>
@@ -1809,9 +1847,11 @@ comb.array.permutations(arr, 4) =&gt; []
     <em>Arguments</em>
     <ul>
     
-        <li> <em>arr</em>  : the array to permute.</li>
+        <li> <em>arr</em>  : <p>the array to permute.</p>
+</li>
     
-        <li> <em>length</em>  : the number of elements to permute.</li>
+        <li> <em>length</em>  : <p>the number of elements to permute.</p>
+</li>
     
      </ul>
 
@@ -1872,9 +1912,9 @@ function (arr,length){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Finds the powerset of an array
+<p><p>Finds the powerset of an array
 
+</p>
 </p>
 
     <em>Example</em>
@@ -1919,7 +1959,8 @@ comb.array.powerSet([1,2]) =&gt; [
     <em>Arguments</em>
     <ul>
     
-        <li> <em>arr</em>  : the array to find the powerset of</li>
+        <li> <em>arr</em>  : <p>the array to find the powerset of</p>
+</li>
     
      </ul>
 
@@ -1968,9 +2009,9 @@ function (arr){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Removes duplicates from an array
+<p><p>Removes duplicates from an array
 
+</p>
 </p>
 
     <em>Example</em>
@@ -1985,7 +2026,8 @@ comb.array.removeDuplicates([1,2,3,2]) =&gt; [1,2,3]
     
         <li> <em>arr</em>  : </li>
     
-        <li> <em>array</em> <code>Aray</code> : the array of elements to remove duplicates from</li>
+        <li> <em>array</em> <code>Aray</code> : <p>the array of elements to remove duplicates from</p>
+</li>
     
      </ul>
 
@@ -2032,9 +2074,9 @@ function (arr){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Rotates an array the number of specified positions
+<p><p>Rotates an array the number of specified positions
 
+</p>
 </p>
 
     <em>Example</em>
@@ -2056,9 +2098,11 @@ comb.array.rotate(arr, -4) =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &
     
         <li> <em>arr</em>  : </li>
     
-        <li> <em>numberOfTimes</em>  : the number of times to rotate the array</li>
+        <li> <em>numberOfTimes</em>  : <p>the number of times to rotate the array</p>
+</li>
     
-        <li> <em>array</em> <code>Array</code> : the array of elements to remove duplicates from</li>
+        <li> <em>array</em> <code>Array</code> : <p>the array of elements to remove duplicates from</p>
+</li>
     
      </ul>
 
@@ -2111,12 +2155,13 @@ function (arr,numberOfTimes){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Allows the sorting of an array based on a property name instead. This can also
+<p><p>Allows the sorting of an array based on a property name instead. This can also
 act as a sort that does not change the original array.
 
-<b>NOTE:</b> this does not change the original array!
+</p>
+<p><b>NOTE:</b> this does not change the original array!
 
+</p>
 </p>
 
     <em>Example</em>
@@ -2128,9 +2173,11 @@ comb.array.sort([{a : 1}, {a : 2}, {a : -2}], &quot;a&quot;); //[{a : -2}, {a : 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>arr</em>  : the array to sort</li>
+        <li> <em>arr</em>  : <p>the array to sort</p>
+</li>
     
-        <li> <em>cmp</em>  : the property to sort on. Or a function used to compare.</li>
+        <li> <em>cmp</em>  : <p>the property to sort on. Or a function used to compare.</p>
+</li>
     
      </ul>
 
@@ -2138,7 +2185,8 @@ comb.array.sort([{a : 1}, {a : 2}, {a : -2}], &quot;a&quot;); //[{a : -2}, {a : 
     <em>Returns</em>
     <ul>
     
-        <li> <code>Array</code> a copy of the original array that is sorted.</li>
+        <li> <code>Array</code> <p>a copy of the original array that is sorted.</p>
+</li>
     
     </ul>
 
@@ -2175,9 +2223,9 @@ function (arr,cmp){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Sums all items in an array
+<p><p>Sums all items in an array
 
+</p>
 </p>
 
     <em>Example</em>
@@ -2195,7 +2243,8 @@ comb.array.sum([1,2,3]) =&gt; 6
     <em>Arguments</em>
     <ul>
     
-        <li> <em>array</em>  : the array of numbers to sum</li>
+        <li> <em>array</em>  : <p>the array of numbers to sum</p>
+</li>
     
      </ul>
 
@@ -2240,9 +2289,9 @@ function (array){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-converts anything to an array
+<p><p>converts anything to an array
 
+</p>
 </p>
 
     <em>Example</em>
@@ -2317,8 +2366,8 @@ function (o){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Transposes an array of arrays
+<p><p>Transposes an array of arrays
+</p>
 </p>
 
     <em>Example</em>
@@ -2334,7 +2383,8 @@ comb.array.transpose([[1], [3,4], [5,6]]) =&gt; [[1]])
     
         <li> <em>arr</em>  : </li>
     
-        <li> <em>Array[Array[]]?</em>  : arr Array of arrays</li>
+        <li> <em>Array[Array[]]?</em>  : <p>arr Array of arrays</p>
+</li>
     
      </ul>
 
@@ -2385,9 +2435,9 @@ function (arr){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Union a variable number of arrays together
+<p><p>Union a variable number of arrays together
 
+</p>
 </p>
 
     <em>Example</em>
@@ -2400,7 +2450,8 @@ comb.array.union([&quot;a&quot;], [&quot;b&quot;], [&quot;c&quot;], [&quot;d&quo
     <em>Arguments</em>
     <ul>
     
-        <li> <em>arrs</em>  : variable number of arrays to union</li>
+        <li> <em>arrs</em>  : <p>variable number of arrays to union</p>
+</li>
     
      </ul>
 
@@ -2445,9 +2496,9 @@ function (){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Retrieves values at specified indexes in the array
+<p><p>Retrieves values at specified indexes in the array
 
+</p>
 </p>
 
     <em>Example</em>
@@ -2462,7 +2513,8 @@ var arr =[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
     <em>Arguments</em>
     <ul>
     
-        <li> <em>arr</em>  : the array to retrieve values from   @index {Number} index variable number of indexes to retrieve</li>
+        <li> <em>arr</em>  : <p>the array to retrieve values from   @index {Number} index variable number of indexes to retrieve</p>
+</li>
     
         <li> <em>indexes</em>  : </li>
     
@@ -2510,9 +2562,9 @@ function (arr,indexes){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p>
-Zips to arrays together
+<p><p>Zips to arrays together
 
+</p>
 </p>
 
     <em>Example</em>
@@ -2529,7 +2581,8 @@ var a = [ 4, 5, 6 ], b = [ 7, 8, 9 ]
     <em>Arguments</em>
     <ul>
     
-        <li> <em>arrays</em>  : variable number of arrays to zip together</li>
+        <li> <em>arrays</em>  : <p>variable number of arrays to zip together</p>
+</li>
     
      </ul>
 
@@ -2570,22 +2623,26 @@ function (){
     
 <hr>
 
-Documentation generated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
+    
+  <h2>License</h2>
+<p>MIT <a href="https://github.com/Pollenware/comb/raw/master/LICENSE">https://github.com/Pollenware/comb/raw/master/LICENSE</a>
+
+</p>
+<h2>Meta</h2>
+<ul>
+<li>Code: <code>git clone git://github.com/Pollenware/comb.git</code></li>
+<li>Website: <a href="http://pollenware.com">http://pollenware.com</a></li>
+<li>Twitter: <a href="http://twitter.com/pollenware"><a href="http://twitter.com/pollenware">http://twitter.com/pollenware</a></a> - 877.465.4045</li>
+</ul>
+
+
 
 
 </div>
 </div>
 <script type="text/javascript" src="./assets/js/jquery.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-transition.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-dropdown.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-tooltip.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-popover.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-button.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-collapse.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-carousel.js"></script>
-<script type="text/javascript"
-        src="./assets/js/google-code-prettify/prettify.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./assets/js/prettify.js"></script>
 
 </body>
 </html>
