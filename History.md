@@ -1,3 +1,5 @@
+#0.1.5/2012-08-26
+* Changed middleware plugin to error properly
 
 #0.1.4/2012-08-20
 * added new short cut for configuring loggers
