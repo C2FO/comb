@@ -5,70 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
     <link rel="stylesheet" href="./assets/css/bootstrap.css">
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
-    <link rel="stylesheet" href="./assets/js/google-code-prettify/prettify.css">
+    <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
 
-.subnav-inner {
-    width: 100%;
-    height: 36px;
-    background-color: #EEE;
-    background-repeat: repeat-x;
-    background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));
-    background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);
-    background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-}
+/*.subnav-inner {*/
+    /*width: 100%;*/
+    /*height: 36px;*/
+    /*background-color: #EEE;*/
+    /*background-repeat: repeat-x;*/
+    /*background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));*/
+    /*background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);*/
+    /*background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*-webkit-border-radius: 4px;*/
+    /*-moz-border-radius: 4px;*/
+    /*border-radius: 4px;*/
+/*}*/
 
-.subnav .nav > li > a:hover {
-    color: black !important;
-}
+/*.subnav .nav > li > a:hover {*/
+    /*color: black !important;*/
+/*}*/
 
-.subnav .nav li.dropdown .dropdown-toggle .caret,
-.subnav .nav li.dropdown.open .caret {
-    border-top-color: #999 !important;
-    border-bottom-color: #999 !important;
-}
+/*.subnav .nav li.dropdown .dropdown-toggle .caret,*/
+/*.subnav .nav li.dropdown.open .caret {*/
+    /*border-top-color: #999 !important;*/
+    /*border-bottom-color: #999 !important;*/
+/*}*/
 
-.subnav-fixed {
-    position: fixed;
-    width : 90%;
-    margin-right: auto;
-    margin-left: auto;
-    top: 40px;
-    left: 0;
-    right: 0;
-    z-index: 1020;
-    border-color: #D5D5D5;
-    border-width: 0 0 1px;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-    box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-}
+/*.subnav-fixed {*/
+    /*position: fixed;*/
+    /*width : 90%;*/
+    /*margin-right: auto;*/
+    /*margin-left: auto;*/
+    /*top: 40px;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*z-index: 1020;*/
+    /*border-color: #D5D5D5;*/
+    /*border-width: 0 0 1px;*/
+    /*-webkit-border-radius: 0;*/
+    /*-moz-border-radius: 0;*/
+    /*border-radius: 0;*/
+    /*-webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*-moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);*/
+/*}*/
 
-.navbar .nav  .dropdown-menu {
-    max-height: 500px;
-    overflow: auto;
-}​
+/*.navbar .nav  .dropdown-menu {*/
+    /*max-height: 500px;*/
+    /*overflow: auto;*/
+/*}​*/
 
     </style>
     <style type="text/css">
         body {
-            padding-top: 60px;
-            padding-bottom: 40px;
+            padding: 90px;
+        }
+
+        .subnav{
+            margin-top: 40px;
+            margin-right: auto;
+            margin-left: auto;
+            z-index: 1000;
+        }
+
+        @media (max-width:979px) {
+            .subnav{
+                margin-top: auto;
+            }
         }
     </style>
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -79,7 +91,8 @@
                     var $win = $(window);
                     $('.subnav').each(function () {
                         var nav = $(this);
-                        var navTop = nav.offset().top - 40;
+                        var navTop = $win.width() < 980 ? 0 : nav.offset().top - 40;
+
                         var scrollTop = $win.scrollTop();
                         if (scrollTop >= navTop && curr != nav) {
                             if(curr){
@@ -102,139 +115,148 @@
             return function () {
                 window.prettyPrint && prettyPrint();
                 $(".collapse").collapse();
+                var $window = $(window);
+                //$(".subnav").affix ();
                 // fix sub nav on scroll
-                processScroll();
-                $(window).on('scroll', processScroll)
+//                processScroll();
+//                $(window).on('scroll', processScroll)
             }
         })();
     </script>
 </head>
 <body onload="init()">
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-      
-          <a href="./index.html" class="brand">comb</a>
-      
-      <div class="nav-collapse">
-      <ul class="nav nav-pills">
-      
-      
-                 <li><a href="./define.html">OO</a></li>
-                 
-                 <li><a href="./promise.html">Promises</a></li>
-                 
-                 <li><a href="./logging.html">Logging</a></li>
-                 
-                 <li><a href="./utilities.html">Utilities</a></li>
-                 
+<div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"> </span>
+            </a>
             
+            <a href="./index.html" class="brand">comb</a>
+            
+            <div class="nav-collapse">
+                <ul class="nav">
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./define.html">OO</a></li>
+                            
+                            <li><a href="./promise.html">Promises</a></li>
+                            
+                            <li><a href="./logging.html">Logging</a></li>
+                            
+                            <li><a href="./utilities.html">Utilities</a></li>
+                            
+                        </ul>
+                        
 
-      
-        <li class="dropdown">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
-           <ul class="dropdown-menu">
-             
-                         <li><a href="comb.html">comb</a></li>
-               
-                         <li><a href="comb_array.html">comb.array</a></li>
-               
-                         <li><a href="comb_characters.html">comb.characters</a></li>
-               
-                         <li><a href="comb_date.html">comb.date</a></li>
-               
-                         <li><a href="comb_logger.html">comb.logger</a></li>
-               
-                         <li><a href="comb_number.html">comb.number</a></li>
-               
-                         <li><a href="comb_plugins.html">comb.plugins</a></li>
-               
-                         <li><a href="comb_regexp.html">comb.regexp</a></li>
-               
-                         <li><a href="comb_string.html">comb.string</a></li>
-               
-           </ul>
-           </li>
-        
-        
-           <li class="dropdown">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
-           <ul class="dropdown-menu">
-             
-                         <li><a href="./comb_Promise.html">comb.Promise</a></li>
-               
-                         <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
-               
-                         <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
-               
-                         <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
-               
-                         <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
-               
-                         <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
-               
-                         <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
-               
-                         <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
-               
-                         <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
-               
-                         <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
-               
-                         <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
-               
-                         <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
-               
-                         <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
-               
-                         <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
-               
-                         <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
-               
-                         <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
-               
-                         <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
-               
-                         <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
-               
-                         <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
-               
-                         <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
-               
-                         <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
-               
-                         <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
-               
-                         <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
-               
-                         <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
-               
-                         <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
-               
-                         <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
-               
-                         <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
-               
-                         <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
-               
-           </ul>
-        </li>
-       
-      </ul>
-      
-      <ul class="nav pull-right">
-                  <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
-        </ul>
-        
-      </div>
+                        
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="comb.html">comb</a></li>
+                            
+                            <li><a href="comb_array.html">comb.array</a></li>
+                            
+                            <li><a href="comb_characters.html">comb.characters</a></li>
+                            
+                            <li><a href="comb_date.html">comb.date</a></li>
+                            
+                            <li><a href="comb_logger.html">comb.logger</a></li>
+                            
+                            <li><a href="comb_number.html">comb.number</a></li>
+                            
+                            <li><a href="comb_plugins.html">comb.plugins</a></li>
+                            
+                            <li><a href="comb_regexp.html">comb.regexp</a></li>
+                            
+                            <li><a href="comb_string.html">comb.string</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./comb_Promise.html">comb.Promise</a></li>
+                            
+                            <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
+                            
+                            <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
+                            
+                            <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
+                            
+                            <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
+                            
+                            <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
+                            
+                            <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
+                            
+                            <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
+                            
+                            <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
+                            
+                            <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
+                            
+                            <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
+                            
+                            <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
+                            
+                            <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
+                            
+                            <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
+                            
+                            <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
+                            
+                            <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
+                            
+                            <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+                            
+                            <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
+                            
+                            <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
+                            
+                            <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+                            
+                            <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
+                            
+                            <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                </ul>
+                
+                <ul class="nav pull-right">
+
+                    <li class="divider-vertical"></li>
+                    <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
+                </ul>
+                
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
 
 
 <div class="container-fluid">
@@ -244,37 +266,39 @@
 
 
     <a name=""></a>
-    <div class="navbar subnav">
-    <div class="navbar-inner  subnav-inner">
-          <div class="container">
+    <div class="navbar subnav navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
             <a href="#" class="brand">
-            comb.collections.Heap
-            
-                    
-             <span class="label label-success">Public</span>
-                    
-            
+                comb.collections.Heap
+                
+                
+                <span class="label label-success">Public</span>
+                
+                
             </a>
-           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </a>
-                    <div class="nav-collapse">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".sub-nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
 
-            <ul class="nav pull-right">
-             <li><a href="#constructor">Constructor</a></li>
-                        
-                        <li><a href="#instanceProperties">Instance Properties</a></li>
-                        
-                        
-                        
-                        
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instance Methods<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                
-                                <li><a href="./comb_collections_Heap.html#__downHeap">
+            <div class="nav-collapse sub-nav-collapse">
+
+                <ul class="nav pull-right">
+                    <li><a href="#constructor">Constructor</a></li>
+                    
+                    <li><a href="#instanceProperties">Instance Properties</a></li>
+                    
+                    
+                    
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Instance Methods<b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./comb_collections_Heap.html#__downHeap">
                                 
                                 
                                 <span class="label label-label">F</span>
@@ -284,9 +308,9 @@
                                 
                                 __downHeap
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Heap.html#__upHeap">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_Heap.html#__upHeap">
                                 
                                 
                                 <span class="label label-label">F</span>
@@ -296,135 +320,136 @@
                                 
                                 __upHeap
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Heap.html#clear">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_Heap.html#clear">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 clear
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Heap.html#containsKey">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_Heap.html#containsKey">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 containsKey
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Heap.html#containsValue">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_Heap.html#containsValue">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 containsValue
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Heap.html#insert">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_Heap.html#insert">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 insert
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Heap.html#peek">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_Heap.html#peek">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 peek
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Heap.html#peekKey">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_Heap.html#peekKey">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 peekKey
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Heap.html#print">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_Heap.html#print">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 print
 
-                                </a></li>
-                                
-                                <li><a href="./comb_collections_Heap.html#remove">
+                            </a></li>
+                            
+                            <li><a href="./comb_collections_Heap.html#remove">
                                 
                                 
                                 <span class="label label-label">F</span>
                                 
                                 
-                                        
-                                 <span class="label label-success">P</span>
-                                        
+                                
+                                <span class="label label-success">P</span>
+                                
                                 
                                 remove
 
-                                </a></li>
-                                
-                            </ul>
-                        </li>
-                        
-            </ul>
+                            </a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                </ul>
             </div>
-            </div>
-     </div>
+        </div>
+    </div>
 </div>
 
 
 
-    <p>
-Base class for Heap Implementations.
+
+    <p><p>Base class for Heap Implementations.
 
 
+</p>
 </p>
     
 
@@ -441,7 +466,11 @@ Base class for Heap Implementations.
     
         <a name="instanceProperties"></a>
         <em>Instance Properties</em>
-        <table class='table table-bordered table-striped'><tr><td>Property</td><td>Type</td><td>Default Value</td><td>Description</td></tr><tr><td>count</td><td>Number</td><td></td><td>the current number of elements.</td><tr><tr><td>isEmpty</td><td>Boolean</td><td></td><td>true if the Heap is empty.</td><tr><tr><td>keys</td><td>Array</td><td></td><td>the keys of all items in the heap.</td><tr><tr><td>values</td><td>Array</td><td></td><td>the values contained in the heap.</td><tr></table>
+        <table class='table table-bordered table-striped'><tr><td>Property</td><td>Type</td><td>Default Value</td><td>Description</td></tr><tr><td>count</td><td>Number</td><td></td><td><p>the current number of elements.</p>
+</td><tr><tr><td>isEmpty</td><td>Boolean</td><td></td><td><p>true if the Heap is empty.</p>
+</td><tr><tr><td>keys</td><td>Array</td><td></td><td><p>the keys of all items in the heap.</p>
+</td><tr><tr><td>values</td><td>Array</td><td></td><td><p>the values contained in the heap.</p>
+</td><tr></table>
     
 
     <a name="constructor"></a>
@@ -479,16 +508,17 @@ function (){
 <hr/>
 <em>Defined collections/Heap.js</em>
 
-<p>
-Heapify the heap after the root has been removed
+<p><p>Heapify the heap after the root has been removed
 
+</p>
 </p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>index</em>  : the index of the root</li>
+        <li> <em>index</em>  : <p>the index of the root</p>
+</li>
     
      </ul>
 
@@ -522,17 +552,18 @@ function (index){
 <hr/>
 <em>Defined collections/Heap.js</em>
 
-<p>
-Perform the heapify operation after the an
+<p><p>Perform the heapify operation after the an
 item as been added to the bottom of the heap.
 
+</p>
 </p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>index</em>  : the index in which the new item was added</li>
+        <li> <em>index</em>  : <p>the index in which the new item was added</p>
+</li>
     
      </ul>
 
@@ -568,9 +599,9 @@ function (index){
 <hr/>
 <em>Defined collections/Heap.js</em>
 
-<p>
-Empty the heap.
-         </p>
+<p><p>Empty the heap.
+</p>
+</p>
 
 
 
@@ -605,17 +636,17 @@ function (){
 <hr/>
 <em>Defined collections/Heap.js</em>
 
-<p>
+<p><p>Determine if the heap contains a particular key.
 
-Determine if the heap contains a particular key.
-
+</p>
 </p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>key</em>  : key to test.</li>
+        <li> <em>key</em>  : <p>key to test.</p>
+</li>
     
      </ul>
 
@@ -623,7 +654,8 @@ Determine if the heap contains a particular key.
     <em>Returns</em>
     <ul>
     
-        <li> <code>Boolean</code> true if the key is contained in this heap.</li>
+        <li> <code>Boolean</code> <p>true if the key is contained in this heap.</p>
+</li>
     
     </ul>
 
@@ -664,17 +696,17 @@ function (key){
 <hr/>
 <em>Defined collections/Heap.js</em>
 
-<p>
+<p><p>Determine if the heap contains a particular value.
 
-Determine if the heap contains a particular value.
-
+</p>
 </p>
 
 
     <em>Arguments</em>
     <ul>
     
-        <li> <em>value</em>  : value to test.</li>
+        <li> <em>value</em>  : <p>value to test.</p>
+</li>
     
      </ul>
 
@@ -682,7 +714,8 @@ Determine if the heap contains a particular value.
     <em>Returns</em>
     <ul>
     
-        <li> <code>Boolean</code> true if the value is contained in this heap.</li>
+        <li> <code>Boolean</code> <p>true if the value is contained in this heap.</p>
+</li>
     
     </ul>
 
@@ -723,8 +756,8 @@ function (value){
 <hr/>
 <em>Defined collections/Heap.js</em>
 
-<p>
-Insert a key value into the key
+<p><p>Insert a key value into the key
+</p>
 </p>
 
 
@@ -774,9 +807,9 @@ function (key,value){
 <hr/>
 <em>Defined collections/Heap.js</em>
 
-<p>
-Gets he value of the root node with out removing it.
+<p><p>Gets he value of the root node with out removing it.
 
+</p>
 </p>
 
 
@@ -784,7 +817,8 @@ Gets he value of the root node with out removing it.
     <em>Returns</em>
     <ul>
     
-        <li>  the value of the root</li>
+        <li>  <p>the value of the root</p>
+</li>
     
     </ul>
 
@@ -823,9 +857,9 @@ function (){
 <hr/>
 <em>Defined collections/Heap.js</em>
 
-<p>
-Gets the key of the root node without removing it.
+<p><p>Gets the key of the root node without removing it.
 
+</p>
 </p>
 
 
@@ -833,7 +867,8 @@ Gets the key of the root node without removing it.
     <em>Returns</em>
     <ul>
     
-        <li>  the key of the root</li>
+        <li>  <p>the key of the root</p>
+</li>
     
     </ul>
 
@@ -872,9 +907,9 @@ function (){
 <hr/>
 <em>Defined collections/Heap.js</em>
 
-<p>
-Print the heap.
-         </p>
+<p><p>Print the heap.
+</p>
+</p>
 
 
 
@@ -909,9 +944,9 @@ function (){
 <hr/>
 <em>Defined collections/Heap.js</em>
 
-<p>
-Removes the root from the heap
+<p><p>Removes the root from the heap
 
+</p>
 </p>
 
 
@@ -919,7 +954,8 @@ Removes the root from the heap
     <em>Returns</em>
     <ul>
     
-        <li>  the value of the root</li>
+        <li>  <p>the value of the root</p>
+</li>
     
     </ul>
 
@@ -949,22 +985,26 @@ function (){
   
 <hr>
 
-Documentation generated using <a href="https://github.com/doug-martin/coddoc">coddoc</a>.
+    
+  <h2>License</h2>
+<p>MIT <a href="https://github.com/Pollenware/comb/raw/master/LICENSE">https://github.com/Pollenware/comb/raw/master/LICENSE</a>
+
+</p>
+<h2>Meta</h2>
+<ul>
+<li>Code: <code>git clone git://github.com/Pollenware/comb.git</code></li>
+<li>Website: <a href="http://pollenware.com">http://pollenware.com</a></li>
+<li>Twitter: <a href="http://twitter.com/pollenware"><a href="http://twitter.com/pollenware">http://twitter.com/pollenware</a></a> - 877.465.4045</li>
+</ul>
+
+
 
 
 </div>
 </div>
 <script type="text/javascript" src="./assets/js/jquery.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-transition.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-dropdown.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-tab.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-tooltip.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-popover.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-button.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-collapse.js"></script>
-<script type="text/javascript" src="./assets/js/bootstrap-carousel.js"></script>
-<script type="text/javascript"
-        src="./assets/js/google-code-prettify/prettify.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./assets/js/prettify.js"></script>
 
 </body>
 </html>
