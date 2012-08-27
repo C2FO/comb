@@ -75,4 +75,4 @@ it.describe("comb.collections.Queue", function (it) {
     });
 
 
-});
+}).as(module);

@@ -145,6 +145,6 @@ it.describe("comb.collections.PriorityQueue", function (it) {
         assert.equal(q.peek(), 'a');
     });
 
-});
+}).as(module);
 
 

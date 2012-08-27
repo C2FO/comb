@@ -53,7 +53,7 @@ it.describe("comb.plugins.Broadcaster", function (it) {
     });
 
 
-});
+}).as(module);
 
 
 

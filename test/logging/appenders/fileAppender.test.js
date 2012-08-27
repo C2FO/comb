@@ -59,4 +59,4 @@ it.describe("comb.logging.appenders.FileAppender", function (it) {
     });
 
 
-});
+}).as(module);

@@ -24,4 +24,4 @@ it.describe("comb.collections.Iterable", function (it) {
         });
     });
 
-});
+}).as(module);

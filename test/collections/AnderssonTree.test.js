@@ -84,4 +84,4 @@ it.describe("comb.collections.AnderssonTree", function (it) {
             "~\nd:4\n\n\t\t\t\t~\n\t\t\tca:1\n\n\t\t\t\t~\n\t\tc:2\n\n\t\t\t\t~\n\t\t\tbb:1\n\n\t\t\t\t" +
             "~\n\tba:3\n\n\t\t\t\t\t~\n\t\t\t\tb:1\n\n\t\t\t\t\t~\n\t\t\tajk:2\n\n\t\t\t\t\t~\n\t\t\t\t" +
             "ab:1\n\n\t\t\t\t\t~\n\t\taa:2\n\n\t\t\t\t~\n\t\t\ta:1\n\n\t\t\t\t~");
-});
+}).as(module);

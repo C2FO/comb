@@ -8,7 +8,7 @@ test:
 	export NODE_PATH=lib:$(NODE_PATH) && export NODE_ENV=test && ./node_modules/it/bin/it -r dotmatrix
 
 test-coverage:
-	rm -rf ./lib-cov && node-jscoverage ./lib ./lib-cov && export NODE_PATH=lib-cov:$(NODE_PATH) && export NODE_ENV=test && ./node_modules/it/bin/it -r dotmatrix
+	rm -rf ./lib-cov && node-jscoverage ./lib ./lib-cov && export NODE_PATH=lib-cov:$(NODE_PATH) && export NODE_ENV=test && ./node_modules/it/bin/it -r dotmatrix --cov-html ./docs-md/coverage.html
 
 docs: docclean
 	$(DOC_COMMAND)

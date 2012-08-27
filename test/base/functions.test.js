@@ -147,7 +147,6 @@ it.describe("comb/base/functions.js", function (it) {
             curried("a")("b")("c")("d");
         });
     });
-     ;
-});
+}).as(module);
 
 

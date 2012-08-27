@@ -137,4 +137,4 @@ it.describe("comb.PromiseList", function (it) {
         new PromiseList([promise, promise2, promise3], true).addCallback(next).addErrback(p2);
     });
 
-});
+}).as(module);

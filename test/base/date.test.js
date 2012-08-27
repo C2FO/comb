@@ -1200,7 +1200,7 @@ it.describe("comb.date", function (it) {
             assert.deepEqual(comb.secondsAgo(2), comb.date.add(new Date(), "seconds", -2));
         });
     });
-});
+}).as(module);
 
 
 
