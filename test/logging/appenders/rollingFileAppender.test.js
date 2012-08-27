@@ -170,5 +170,5 @@ it.describe("comb.logging.appenders.RollingFileAppender", function (it) {
     it.afterAll(resetFs);
 
 
-});
+}).as(module);
 

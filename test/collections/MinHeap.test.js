@@ -148,5 +148,5 @@ it.describe("comb.collections.MinHeap", function (it) {
     });
 
 
-});
+}).as(module);
 

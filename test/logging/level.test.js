@@ -195,4 +195,4 @@ it.describe("comb.logging.Level", function(it){
 
 
 
-});
+}).as(module);

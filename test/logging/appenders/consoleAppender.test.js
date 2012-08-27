@@ -50,4 +50,4 @@ it.describe("comb.logging.appenders.ConsoleAppender", function (it) {
 
     });
 
-});
+}).as(module);

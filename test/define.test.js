@@ -406,6 +406,6 @@ it.describe("comb.define", function (it) {
         })
     });
 
-});
+}).as(module);
 
 

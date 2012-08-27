@@ -126,4 +126,4 @@ it.describe("comb/base/string.js", function (it) {
             assert.equal(comb.string.truncate(123, 1), "1");
         });
     });
-});
+}).as(module);

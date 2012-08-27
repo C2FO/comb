@@ -19,5 +19,5 @@ it.describe("A Tree interface", function (it) {
         })
     });
 
-});
+}).as(module);
 

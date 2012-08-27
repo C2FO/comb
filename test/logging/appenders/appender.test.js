@@ -124,7 +124,7 @@ it.describe("comb.logging.appenders.Appender", function (it) {
         });
     });
 
-});
+}).as(module);
 
 
 

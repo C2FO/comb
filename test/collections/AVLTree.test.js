@@ -89,4 +89,4 @@ it.describe("comb.collections.AVLTree", function (it) {
         orderedMammals,
         expectedOutput);
 
-});
+}).as(module);

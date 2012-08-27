@@ -87,4 +87,4 @@ it.describe("comb.collections.RedBlackTree", function (it) {
         orderedMammals,
         expectedOutput);
 
-});
+}).as(module);

@@ -97,4 +97,4 @@ it.describe("comb.collections.Stack", function (it) {
         assert.isUndefined(stack.pop());
     });
 
-});
+}).as(module);

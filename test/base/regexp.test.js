@@ -29,4 +29,4 @@ it.describe("comb/base/regexp.js", function (it) {
     });
 
 
-});
+}).as(module);
