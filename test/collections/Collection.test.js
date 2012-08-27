@@ -23,4 +23,4 @@ it.describe("comb.collections.Collection", function (it) {
         })
     });
 
-});
+}).as(module);

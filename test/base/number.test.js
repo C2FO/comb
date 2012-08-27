@@ -37,5 +37,5 @@ it.describe("comb/base/number.js", function (it) {
     });
 
 
-});
+}).as(module);
 

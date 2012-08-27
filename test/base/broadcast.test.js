@@ -7,7 +7,7 @@ var it = require('it'),
     Broadcaster = comb;
 
 
-it.describe("comb/base/broadcast.js", function (it) {
+it.describe("comb/base/broadcast.js",function (it) {
 
     //Super of other classes
     var Mammal = define(null, {
@@ -91,8 +91,7 @@ it.describe("comb/base/broadcast.js", function (it) {
         });
     });
 
-    ;
-});
+}).as(module);
 
 
 

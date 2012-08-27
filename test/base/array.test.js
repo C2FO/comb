@@ -3,7 +3,7 @@ var it = require('it'),
     assert = require('assert'),
     comb = require("index");
 
-it.describe("comb.array", function (it) {
+it.describe("comb.array",function (it) {
 
     it.should("convert values to arrays", function () {
         assert.deepEqual(comb.array.toArray(), []);
@@ -446,5 +446,5 @@ it.describe("comb.array", function (it) {
         assert.deepEqual(remove([1, 2, 2, 3, 3, 3, 4, 4, 4]), [1, 2, 3, 4]);
         assert.deepEqual(remove(["a", "b", "b"]), ["a", "b"]);
     });
-});
+}).as(module);
 

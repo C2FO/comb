@@ -131,6 +131,6 @@ it.describe("comb/base/object.js", function (it) {
         })(["a"])
 
     });
-});
+}).as(module);
 
 

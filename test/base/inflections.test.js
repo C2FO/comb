@@ -102,5 +102,5 @@ it.describe("comb/base/inflections.js", function (it) {
     });
 
 
-});
+}).as(module);
 

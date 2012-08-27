@@ -168,6 +168,6 @@ it.describe("comb.collections.MaxHeap", function (it) {
     })
 
 
-});
+}).as(module);
 
 

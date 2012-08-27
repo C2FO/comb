@@ -73,5 +73,5 @@ it.describe("comb/base/misc.js", function (it) {
         assert.isFalse(comb.isInstanceOf(undefined, String));
         assert.isFalse(comb.isInstanceOf(undefined, 1));
     });
-});
+}).as(module);
 

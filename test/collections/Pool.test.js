@@ -148,6 +148,6 @@ it.describe("comb.collections.Pool", function (it) {
             assert.equal(p.count, 3);
         });
     });
-});
+}).as(module);
 
 

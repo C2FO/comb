@@ -85,7 +85,7 @@ it.describe("comb.collections.BinaryTree", function (it) {
         expectedOutput);
 
 
-});
+}).as(module);
 
 
 

@@ -293,4 +293,4 @@ it.describe("comb.logging", function (it) {
 
         it.afterAll(resetFS);
     });
-});
+}).as(module);

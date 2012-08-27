@@ -252,5 +252,5 @@ it.describe("comb.collections.HashTable", function (it) {
 
     });
 
-});
+}).as(module);
 

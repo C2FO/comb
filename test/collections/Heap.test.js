@@ -24,5 +24,5 @@ it.describe("comb.collections.Heap", function (it) {
     });
 
 
-});
+}).as(module);
 

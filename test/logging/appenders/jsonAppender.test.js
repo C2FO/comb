@@ -57,6 +57,6 @@ it.describe("comb.logging.appenders.JSONAppender", function (it) {
         comb.disconnect(conn);
     });
 
-});
+}).as(module);
 
 
