@@ -3349,11 +3349,7 @@ function (obj){
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-function (obj){
-   return !isUndefinedOrNull(obj) &amp;&amp; (isInstanceOf(obj, Promise) || (isFunction(obj.then)
-       &amp;&amp; isFunction(obj.addCallback) &amp;&amp; isFunction(obj.addErrback)));
-       
-}
+isPromiseLike
     </pre>
     
 
@@ -4345,14 +4341,11 @@ comb.serial([
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (list,callback,errback){
-   var ret = new Promise();
    if (base.isArray(list)) {
-       callNext(list, 0, [], false, ret)
+       return callNext(list, 0, [], false, new Promise().then(callback, errback), false)
    } else {
        throw new Error(&quot;When calling comb.serial the first argument must be an array&quot;);
    }
-   ret.then(callback, errback);
-   return ret.promise();
        
 }
     </pre>
@@ -4705,9 +4698,15 @@ function (args,cb,eb){
        p = new Promise().callback(args);
    } else if (args.length == 1) {
        args = args.pop();
-       p = exports.isPromiseLike(args) ? args : new Promise().callback(args);
+       if (isPromiseLike(args)) {
+           p = args;
+       } else if (isArray(args) &amp;&amp; args.every(isPromiseLike)) {
+           p = new PromiseList(args, true);
+       } else {
+           p = new Promise().callback(args);
+       }
    } else {
-       var p = new PromiseList(args.map(function (a) {
+       p = new PromiseList(args.map(function (a) {
            return exports.isPromiseLike(a) ? a : new Promise().callback(a);
        }), true);
    }
