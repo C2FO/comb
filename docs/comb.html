@@ -368,6 +368,21 @@
                                 camelize
                             </a></li>
                             
+                            <li><a href="./comb.html#.chain">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                chain
+                            </a></li>
+                            
                             <li><a href="./comb.html#.classify">
                                 
                                 <span class="label label-info">S</span>
@@ -1469,6 +1484,92 @@ function (str){
        });
    }
    return ret;
+}
+    </pre>
+    
+
+
+    
+        <a name=".chain"></a>
+    <h3>
+        chain
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p><p>Works just like <a href='./comb_Promise.html#chain'> comb.Promise#chain</a> method, allowing you to propogate results from one funciton to another.
+This is different than <a href='./comb.html#.serial'> comb.serial</a> in that it propogates results from one promise to the next, where
+<a href='./comb.html#.serial'> comb.serial</a> does not.
+
+</p>
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+function asyncAction(add, timeout) {
+     return function (num) {
+         num = num || 0;
+         var ret = new comb.Promise();
+         setTimeout(function () {
+              ret.callback(num + add);
+         }, timeout);
+         return ret;
+     }
+}
+
+comb.chain([
+     asyncAction(1, 100),
+     asyncAction(2, 100),
+     asyncAction(3, 100),
+     asyncAction(4, 100),
+     asyncAction(5, 100),
+]).then(function(results){
+     console.log(results); //15
+});
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>list</em>  : <p>an array of function to call.</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> <p>a promise that will resolve with the results of the last function in the list.</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (list){
+   if (base.isArray(list)) {
+       return callNext(list, 0, null, false, new Promise(), true);
+   } else {
+       throw new Error(&quot;When calling comb.serial the first argument must be an array&quot;);
+   }
+       
 }
     </pre>
     
@@ -4645,7 +4746,8 @@ function (str){
 <hr/>
 <em>Defined promise.js</em>
 
-<p><p>Waits for promise and non promise values to resolve and fires callback or errback appropriately.
+<p><p>Waits for promise and non promise values to resolve and fires callback or errback appropriately. If you pass in an array of promises
+then it will wait for all promises in the list to resolve.
 
 </p>
 </p>
@@ -4661,7 +4763,7 @@ var a = &quot;hello&quot;;
     <em>Arguments</em>
     <ul>
     
-        <li> <em>args</em>  : <p>variable number of arguments to wait for</p>
+        <li> <em>args</em>  : <p>variable number of arguments to wait for.</p>
 </li>
     
         <li> <em>cb</em>  : <p>the callback function</p>

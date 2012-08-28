@@ -217,7 +217,7 @@ comb.when(
 
 ##[comb.serial](./comb.html#.serial)
 
-The `comb.serial` function is useful if you need to perform a set of actions in order. The serial method takes a list of function that need to be executed in order. The return value of the functions can be anything if they are promises then the next function will not execute until the promise has resolved. 
+The `comb.serial` function is useful if you need to perform a set of actions in order. The serial method takes a list of function that need to be executed in order. The return value of the functions can be anything if they are promises then the next function will not execute until the promise has resolved. The results from each function are will be the result of the returned promise. **NOTE** the results from each function are not propogated to the next.
 
 
 ```
@@ -239,6 +239,35 @@ comb.serial([
 ]).then(function(results){                                                
     console.log(results); // [1,2,3,4,5,6];                               
 });                                                                       
+```
+
+##[comb.chain](./comb.html#.chain)
+
+The `comb.chain` method is similar to the `comb.serial` method except that it **does** propogate results from one function to the next. The promise returned from `comb.chain` will resolve with the result of the last action in the list.
+
+```
+function asyncAction(add, timeout) {   
+	//number gathered from the previous function
+     return function (num) {           
+     	//will be undefined if the first function in the list.
+         num = num || 0;               
+         var ret = new comb.Promise(); 
+         setTimeout(function () {      
+              ret.callback(num + add); 
+         }, timeout);                  
+         return ret;                   
+     }                                 
+}                                      
+                                       
+comb.chain([                           
+     asyncAction(1, 100),              
+     asyncAction(2, 100),              
+     asyncAction(3, 100),              
+     asyncAction(4, 100),              
+     asyncAction(5, 100),              
+]).then(function(results){             
+     console.log(results); //15        
+});                                    
 ```
 
 ##[comb.wrap](./comb.html#.wrap)
