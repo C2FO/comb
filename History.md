@@ -1,3 +1,9 @@
+#0.1.6/2012-08-29
+* Changed comb.when to accept an array of promises as well as multi args
+* Added comb.chain to pipe results from one item to another
+* Updated docs and tests
+
+
 #0.1.5/2012-08-26
 * Changed middleware plugin to error properly
 
