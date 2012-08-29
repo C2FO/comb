@@ -419,13 +419,35 @@ asyncString(&quot;hello&quot;)
     .then(function(str){
         console.log(str); //&quot;hello world!&quot;
     });</code></pre>
-<h2><a href="./comb_PromiseList.html">comb.PromiseList</a></h2>
-<p>A promise list is used to listen for the completion of an array of promises. 
+<p>You can also use static values
 
 </p>
-<pre class='prettyprint linenums lang-js'><code>var files = [readFile(&quot;myFile.txt&quot;),readFile(&quot;myFile2.txt&quot;),readFile(&quot;myFile3.txt&quot;)];
+<pre class='prettyprint linenums lang-js'><code>new Promise().callback()
+    .chain(&quot;hello&quot;)
+    .chain(function(prev){
+        return prev + &quot; world!&quot;
+    }).then(function(str){
+        console.log(str); //&quot;hello world!&quot;
+    });</code></pre>
+<p>If you do not provide an <code>errback</code> for each chain then it will be propogated to the final promise
 
-function readFiles(){
+</p>
+<pre class='prettyprint linenums lang-js'><code>new Promise()
+    .chain(function(){
+        return new comb.Promise().errback(new Error(&quot;error&quot;));
+    })
+    .chain(function(){
+        return prev + &quot; world!&quot;
+    })
+    .classic(function(err, str){
+        console.log(err.message); //&quot;error&quot;
+    });</code></pre>
+<h2><a href="./comb_PromiseList.html">comb.PromiseList</a></h2>
+<p>A promise list is used to listen for the completion of an array of promises. You may also use <a href="./comb.html#.when">comb.when</a>
+with an array of promises.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function readFiles(){
     var files = comb.argsToArray(arguments).map(function(file){
         return readFile(file);
     });
@@ -457,6 +479,22 @@ comb.when(
     readFile(&quot;myFile2.txt&quot;),
     readFileSync(&quot;myFile2.txt&quot;),
 ).then(function(files){
+    files.forEach(function(data){
+        console.log(data);
+    });
+}, errorHandler);</code></pre>
+<p>You can also use <code>comb.when</code> with an array of promises
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function readFiles(){
+    var files = comb.argsToArray(arguments).map(function(file){
+        return readFile(file);
+    });
+    return comb.when(files);
+
+}
+
+readFiles(&quot;myFile.txt&quot;, &quot;myFile2.txt&quot;, &quot;myFile3.txt&quot;).then(function(files){
     files.forEach(function(data){
         console.log(data);
     });

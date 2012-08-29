@@ -216,7 +216,7 @@ it.describe("The promise API",function (it) {
 
         });
 
-        it.describe("Promise#chain", function (it) {
+        it.describe("Promise#chain",function (it) {
 
             it.should("callback after all are done ", function (next) {
                 var promise = new Promise();
@@ -249,6 +249,18 @@ it.describe("The promise API",function (it) {
                         assert.equal(res, "hello world!");
                         next();
                     }, next);
+                process.nextTick(comb.hitch(promise, "callback", "hello"), 1000);
+            });
+
+            it.should("work with values", function (next) {
+                var promise = new Promise();
+                promise
+                    .chain("hello")
+                    .chain(function (res) {
+                        return res + "!";
+                    }).then(function (res) {
+                        assert.equal(res, "hello!");
+                    }).classic(next);
                 process.nextTick(comb.hitch(promise, "callback", "hello"), 1000);
             });
 
@@ -299,7 +311,7 @@ it.describe("The promise API",function (it) {
 
             });
 
-        });
+        }).run();
 
         it.describe("Promise#chainBoth", function (it) {
 
