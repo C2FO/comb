@@ -902,8 +902,12 @@ errback method will be used.</p>
     <pre class="prettyprint linenums lang-js">
 function (callback,errback){
    var promise = new Promise();
-   this.addCallback(function (results) {
-       when(isFunction(callback) ? callback.call(this, results) : callback).then(promise);
+   this.addCallback(function () {
+       try {
+           when(isFunction(callback) ? callback.apply(this, arguments) : callback).then(promise);
+       } catch (e) {
+           promise.errback(e);
+       }
    });
    // If no errback passed, then invoke our promise&#x27;s errback to pass
    // on to next link in the chain.
@@ -963,11 +967,19 @@ function (callback,errback){
     <pre class="prettyprint linenums lang-js">
 function (callback){
    var promise = new Promise();
-   this.addCallback(function (results) {
-       when(isFunction(callback) ? callback.call(this, results) : callback).then(promise);
+   this.addCallback(function () {
+       try {
+           when(isFunction(callback) ? callback.apply(this, arguments) : callback).then(promise);
+       } catch (e) {
+           promise.errback(e);
+       }
    });
-   this.addErrback(function (results) {
-       when(isFunction(callback) ? callback.call(this, results) : callback).then(promise);
+   this.addErrback(function () {
+       try {
+           when(isFunction(callback) ? callback.apply(this, arguments) : callback).then(promise);
+       } catch (e) {
+           promise.errback(e);
+       }
    });
    return promise.promise();
            

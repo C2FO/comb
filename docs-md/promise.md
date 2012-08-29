@@ -343,6 +343,175 @@ fsp.rename("myFile.txt", "myFile.txt.bak").then(function(){
 });
 ```
 
+##[comb.asyncForEach](./comb.html#.asyncForEach)
 
+Loops through the results of an promise. The promise can return an array or just a single item.   
+                                                                                                  
+```                                                                                               
+function asyncArr(){                                                                              
+    var ret = new comb.Promise();                                                                 
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);                                         
+    return ret.promise;                                                                           
+}                                                                                                 
+                                                                                                  
+comb.asyncForEach(asyncArr(), function(){                                                         
+     //do something with it                                                                       
+}).then(function(arr){                                                                            
+     console.log(arr); //[1,2,3,4,5];                                                             
+});                                                                                               
+                                                                                                  
+```                                                                                               
+                                                                                                  
+You may also return a promise from the iterator block.                                                                                                                                                                                                                          
+                                                                                                  
+```                                                                                               
+var myNewArr = [];   
+
+comb.asyncForEach(asyncArr(), function(item, index){                                              
+    var ret = new comb.Promise();                                                                 
+    process.nextTick(function(){                                                                  
+        myNewArr.push([item, index]);                                                             
+        ret.callback();                                                                           
+    });                                                                                           
+    return ret.promise();                                                                         
+}).then(function(){                                                                               
+    console.log(myNewArr) //[[1,0], [2,1], [3,2], [4,3], [5,4]]                                   
+});                                                                                               
+```                                                                                                                                                                                                     
+
+##[comb.asyncMap](./comb.html#.asyncMap)
+
+ Loops through the results of an promise resolving with the return value of the iterator function.     
+ The promise can return an array or just a single item.                                                
+                                                                                                       
+ ```                                                                                                   
+ function asyncArr(){                                                                                  
+     var ret = new comb.Promise();                                                                     
+     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);                                             
+     return ret.promise;                                                                               
+ }                                                                                                     
+                                                                                                       
+ comb.asyncMap(asyncArr(), function(item){                                                             
+      return item * 2;                                                                                 
+ }).then(function(arr){                                                                                
+      console.log(arr); //[2,4,6,8,10];                                                                
+ });                                                                                                   
+                                                                                                       
+ ```                                                                                                   
+                                                                                                       
+ You may also return a promise from the iterator block.                                                
+                                                                                                       
+ ```                                                                                                   
+ comb.asyncMap(asyncArr(), function(item, index){                                                      
+     var ret = new comb.Promise();                                                                     
+     process.nextTick(function(){                                                                      
+         ret.callback(item * 2);                                                                       
+     });                                                                                               
+     return ret.promise();                                                                             
+ }).then(function(){                                                                                   
+     console.log(myNewArr) //[2,4,6,8,10];                                                             
+ });                                                                                                   
+ ```                                                                                                                                                                                                                                                                                                                             
+
+##[comb.asyncFilter](./comb.html#.asyncFilter)
+
+Loops through the results of an promise resolving with the filtered array.
+The promise can return an array or just a single item.                    
+                                                                          
+```                                                                       
+function asyncArr(){                                                      
+    var ret = new comb.Promise();                                         
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);                 
+    return ret.promise;                                                   
+}                                                                         
+                                                                          
+comb.asyncFilter(asyncArr(), function(item){                              
+     return item % 2;                                                     
+}).then(function(arr){                                                    
+     console.log(arr); //[1,3,5];                                         
+});                                                                       
+                                                                          
+```                                                                       
+                                                                          
+You may also return a promise from the iterator block.                    
+                                                                          
+```                                                                       
+comb.asyncFilter(asyncArr(), function(item, index){                       
+    var ret = new comb.Promise();                                         
+    process.nextTick(function(){                                          
+        ret.callback(item % 2);                                           
+    });                                                                   
+    return ret.promise();                                                 
+}).then(function(){                                                       
+    console.log(myNewArr) //[1,3,5];                                      
+})                                                                        
+```                                                                       
+##[comb.asyncEvery](./comb.html#.asyncEvery)
+
+Loops through the results of an promise resolving with true if every item passed, false otherwise.   
+The promise can return an array or just a single item.                                               
+                                                                                                     
+```                                                                                                  
+function asyncArr(){                                                                                 
+    var ret = new comb.Promise();                                                                    
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);                                            
+    return ret.promise;                                                                              
+}                                                                                                    
+                                                                                                     
+comb.asyncEvery(asyncArr(), function(item){                                                          
+     return item <= 5;                                                                               
+}).then(function(every){                                                                             
+     console.log(every); //true                                                                      
+});                                                                                                  
+                                                                                                     
+```                                                                                                  
+                                                                                                     
+You may also return a promise from the iterator block.                                               
+                                                                                                     
+```                                                                                                  
+comb.asyncEvery(asyncArr(), function(item, index){                                                   
+    var ret = new comb.Promise();                                                                    
+    process.nextTick(function(){                                                                     
+        ret.callback(item == 1);                                                                     
+    });                                                                                              
+    return ret.promise();                                                                            
+}).then(function(){                                                                                  
+    console.log(myNewArr) //false;                                                                   
+})                                                                                                   
+```                                                                                                  
+
+##[comb.asyncSome](./comb.html#.asyncSome)
+
+Loops through the results of an promise resolving with true if some items passed, false otherwise.      
+The promise can return an array or just a single item.                                                  
+                                                                                                        
+```                                                                                                     
+function asyncArr(){                                                                                    
+    var ret = new comb.Promise();                                                                       
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);                                               
+    return ret.promise;                                                                                 
+}                                                                                                       
+                                                                                                        
+comb.asyncSome(asyncArr(), function(item){                                                              
+     return item == 1;                                                                                  
+}).then(function(every){                                                                                
+     console.log(every); //true                                                                         
+});                                                                                                     
+                                                                                                        
+```                                                                                                     
+                                                                                                        
+You may also return a promise from the iterator block.                                                  
+                                                                                                        
+```                                                                                                     
+comb.asyncSome(asyncArr(), function(item, index){                                                       
+    var ret = new comb.Promise();                                                                       
+    process.nextTick(function(){                                                                        
+        ret.callback(item > 5);                                                                         
+    });                                                                                                 
+    return ret.promise();                                                                               
+}).then(function(){                                                                                     
+    console.log(myNewArr) //false;                                                                      
+})                                                                                                      
+```                                                                                                     
 
 
