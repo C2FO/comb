@@ -167,13 +167,40 @@ asyncString("hello")
     });
 ```
 
-##[comb.PromiseList](./comb_PromiseList.html)
-
-A promise list is used to listen for the completion of an array of promises. 
+You can also use static values
 
 ```
-var files = [readFile("myFile.txt"),readFile("myFile2.txt"),readFile("myFile3.txt")];
+new Promise().callback()
+    .chain("hello")
+    .chain(function(prev){
+        return prev + " world!"
+    }).then(function(str){
+        console.log(str); //"hello world!"
+    });
+```
 
+If you do not provide an `errback` for each chain then it will be propogated to the final promise
+
+```
+new Promise()
+    .chain(function(){
+        return new comb.Promise().errback(new Error("error"));
+    })
+    .chain(function(){
+        return prev + " world!"
+    })
+    .classic(function(err, str){
+        console.log(err.message); //"error"
+    });
+```
+
+
+##[comb.PromiseList](./comb_PromiseList.html)
+
+A promise list is used to listen for the completion of an array of promises. You may also use [comb.when](./comb.html#.when)
+with an array of promises.
+
+```
 function readFiles(){
 	var files = comb.argsToArray(arguments).map(function(file){
 		return readFile(file);
@@ -188,6 +215,7 @@ readFiles("myFile.txt", "myFile2.txt", "myFile3.txt").then(function(files){
 	});
 }, errorHandler);
 ```
+
 
 ##[comb.when](./comb.html#.when)
 
@@ -213,6 +241,24 @@ comb.when(
 	});
 }, errorHandler);
 
+```
+
+You can also use `comb.when` with an array of promises
+
+```
+function readFiles(){
+	var files = comb.argsToArray(arguments).map(function(file){
+		return readFile(file);
+	});
+	return comb.when(files);
+
+}
+
+readFiles("myFile.txt", "myFile2.txt", "myFile3.txt").then(function(files){
+	files.forEach(function(data){
+		console.log(data);
+	});
+}, errorHandler);
 ```
 
 ##[comb.serial](./comb.html#.serial)

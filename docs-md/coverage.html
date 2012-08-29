@@ -257,7 +257,7 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>9814</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>9846</span>
                     <span class='cov-label'>LOC</span><span class='cov-value'>2708</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
@@ -2291,7 +2291,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Boolean} true if the obj is a function false otherwise</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>comb.isFunction = function (obj) {</code></li>
-<li class='green'><span class='hits'>859</span><code>    return typeof obj == "function";</code></li>
+<li class='green'><span class='hits'>885</span><code>    return typeof obj == "function";</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -2866,14 +2866,14 @@ td.cov-stats {
 <li class='green'><span class='hits'>13</span><code>        if (!setup) {</code></li>
 <li class='green'><span class='hits'>1</span><code>            var orig = process.emit;</code></li>
 <li class='green'><span class='hits'>1</span><code>            process.emit = function (event) {</code></li>
-<li class='green'><span class='hits'>678</span><code>                try {</code></li>
-<li class='green'><span class='hits'>678</span><code>                    if (event === 'exit') {</code></li>
+<li class='green'><span class='hits'>680</span><code>                try {</code></li>
+<li class='green'><span class='hits'>680</span><code>                    if (event === 'exit') {</code></li>
 <li class='green'><span class='hits'>1</span><code>                        listeners.forEach(function (cb) {</code></li>
 <li class='green'><span class='hits'>13</span><code>                            cb();</code></li>
 <li class='green'><span class=''> </span><code>                        });</code></li>
 <li class='green'><span class=''> </span><code>                    }</code></li>
 <li class='green'><span class=''> </span><code>                } finally {</code></li>
-<li class='green'><span class='hits'>678</span><code>                    orig.apply(this, arguments);</code></li>
+<li class='green'><span class='hits'>680</span><code>                    orig.apply(this, arguments);</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
 <li class='green'><span class='hits'>1</span><code>            setup = true;</code></li>
@@ -4294,12 +4294,12 @@ td.cov-stats {
 <li class='green'><span class='hits'>318</span><code>        ch = ch || " ";</code></li>
 <li class='green'><span class='hits'>318</span><code>        var strLen = string.length;</code></li>
 <li class='green'><span class='hits'>318</span><code>        while (strLen &lt; length) {</code></li>
-<li class='green'><span class='hits'>179</span><code>            if (end) {</code></li>
+<li class='green'><span class='hits'>204</span><code>            if (end) {</code></li>
 <li class='green'><span class='hits'>117</span><code>                string += ch;</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>62</span><code>                string = ch + string;</code></li>
+<li class='green'><span class='hits'>87</span><code>                string = ch + string;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>179</span><code>            strLen++;</code></li>
+<li class='green'><span class='hits'>204</span><code>            strLen++;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class='hits'>318</span><code>        return string;</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
@@ -10124,7 +10124,7 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>704</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>736</span>
                     <span class='cov-label'>LOC</span><span class='cov-value'>192</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
@@ -10405,7 +10405,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        chain:function (callback, errback) {</code></li>
 <li class='green'><span class='hits'>23</span><code>            var promise = new Promise();</code></li>
 <li class='green'><span class='hits'>23</span><code>            this.addCallback(function (results) {</code></li>
-<li class='green'><span class='hits'>20</span><code>                when(callback.call(this, results)).then(promise);</code></li>
+<li class='green'><span class='hits'>20</span><code>                when(isFunction(callback) ? callback.call(this, results) : callback).then(promise);</code></li>
 <li class='green'><span class=''> </span><code>            });</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            // If no errback passed, then invoke our promise's errback to pass</code></li>
@@ -10425,11 +10425,11 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        chainBoth:function (callback) {</code></li>
 <li class='green'><span class='hits'>6</span><code>            var promise = new Promise();</code></li>
 <li class='green'><span class='hits'>6</span><code>            this.addCallback(function (results) {</code></li>
-<li class='green'><span class='hits'>4</span><code>                when(callback.call(this, results)).then(promise);</code></li>
+<li class='green'><span class='hits'>4</span><code>                when(isFunction(callback) ? callback.call(this, results) : callback).then(promise);</code></li>
 <li class='green'><span class=''> </span><code>            });</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>6</span><code>            this.addErrback(function (results) {</code></li>
-<li class='green'><span class='hits'>2</span><code>                when(callback.call(this, results)).then(promise);</code></li>
+<li class='green'><span class='hits'>2</span><code>                when(isFunction(callback) ? callback.call(this, results) : callback).then(promise);</code></li>
 <li class='green'><span class=''> </span><code>            });</code></li>
 <li class='green'><span class='hits'>6</span><code>            return promise.promise();</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
@@ -10666,14 +10666,15 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    isPromiseLike:isPromiseLike,</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>    /**</code></li>
-<li class='green'><span class=''> </span><code>     * Waits for promise and non promise values to resolve and fires callback or errback appropriately.</code></li>
+<li class='green'><span class=''> </span><code>     * Waits for promise and non promise values to resolve and fires callback or errback appropriately. If you pass in an array of promises</code></li>
+<li class='green'><span class=''> </span><code>     * then it will wait for all promises in the list to resolve.</code></li>
 <li class='green'><span class=''> </span><code>     *</code></li>
 <li class='green'><span class=''> </span><code>     * @example</code></li>
 <li class='green'><span class=''> </span><code>     *  var a = "hello";</code></li>
 <li class='green'><span class=''> </span><code>     *  var b = new comb.Promise().callback(world);</code></li>
 <li class='green'><span class=''> </span><code>     *  comb.when(a, b) =&gt; called back with ["hello", "world"];</code></li>
 <li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @param {Anything...} args variable number of arguments to wait for</code></li>
+<li class='green'><span class=''> </span><code>     * @param {Anything...} args variable number of arguments to wait for.</code></li>
 <li class='green'><span class=''> </span><code>     * @param {Function} cb the callback function</code></li>
 <li class='green'><span class=''> </span><code>     * @param {Function} eb the errback function</code></li>
 <li class='green'><span class=''> </span><code>     * @returns {comb.Promise} a promise that is fired when all values have resolved</code></li>
@@ -10781,6 +10782,37 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>    /**</code></li>
+<li class='green'><span class=''> </span><code>     * Works just like {@link comb.Promise#chain} method, allowing you to propogate results from one funciton to another.</code></li>
+<li class='green'><span class=''> </span><code>     * This is different than {@link comb.serial} in that it propogates results from one promise to the next, where</code></li>
+<li class='green'><span class=''> </span><code>     * {@link comb.serial} does not.</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @example</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * function asyncAction(add, timeout) {</code></li>
+<li class='green'><span class=''> </span><code>     *      return function (num) {</code></li>
+<li class='green'><span class=''> </span><code>     *          num = num || 0;</code></li>
+<li class='green'><span class=''> </span><code>     *          var ret = new comb.Promise();</code></li>
+<li class='green'><span class=''> </span><code>     *          setTimeout(function () {</code></li>
+<li class='green'><span class=''> </span><code>     *               ret.callback(num + add);</code></li>
+<li class='green'><span class=''> </span><code>     *          }, timeout);</code></li>
+<li class='green'><span class=''> </span><code>     *          return ret;</code></li>
+<li class='green'><span class=''> </span><code>     *      }</code></li>
+<li class='green'><span class=''> </span><code>     * }</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * comb.chain([</code></li>
+<li class='green'><span class=''> </span><code>     *      asyncAction(1, 100),</code></li>
+<li class='green'><span class=''> </span><code>     *      asyncAction(2, 100),</code></li>
+<li class='green'><span class=''> </span><code>     *      asyncAction(3, 100),</code></li>
+<li class='green'><span class=''> </span><code>     *      asyncAction(4, 100),</code></li>
+<li class='green'><span class=''> </span><code>     *      asyncAction(5, 100),</code></li>
+<li class='green'><span class=''> </span><code>     * ]).then(function(results){</code></li>
+<li class='green'><span class=''> </span><code>     *      console.log(results); //15</code></li>
+<li class='green'><span class=''> </span><code>     * });</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @param {function[]} list an array of function to call.</code></li>
+<li class='green'><span class=''> </span><code>     * @return {comb.Promise} a promise that will resolve with the results of the last function in the list.</code></li>
+<li class='green'><span class=''> </span><code>     */</code></li>
 <li class='green'><span class=''> </span><code>    chain:function (list) {</code></li>
 <li class='green'><span class='hits'>5</span><code>        if (base.isArray(list)) {</code></li>
 <li class='green'><span class='hits'>4</span><code>            return callNext(list, 0, null, false, new Promise(), true);</code></li>
@@ -10797,9 +10829,9 @@ td.cov-stats {
 <li class='green'><span class='hits'>1</span><code>function callNextSuccess(list, index, results, isErrored, ret, propogate) {</code></li>
 <li class='green'><span class=''> </span><code>    //store results</code></li>
 <li class='green'><span class='hits'>51</span><code>    var args = argsToArray(arguments, 6);</code></li>
-<li class='green'><span class='hits'>51</span><code>    if(propogate){</code></li>
+<li class='green'><span class='hits'>51</span><code>    if (propogate) {</code></li>
 <li class='green'><span class='hits'>31</span><code>        process.nextTick(base.partial(callNext, list, index + 1, args, isErrored, ret, propogate));</code></li>
-<li class='green'><span class=''> </span><code>    }else{</code></li>
+<li class='green'><span class=''> </span><code>    } else {</code></li>
 <li class='green'><span class='hits'>20</span><code>        results.push(args.length == 1 ? args[0] : args);</code></li>
 <li class='green'><span class='hits'>20</span><code>        process.nextTick(base.partial(callNext, list, index + 1, results, isErrored, ret, propogate));</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>

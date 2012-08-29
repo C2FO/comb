@@ -837,13 +837,8 @@ function (args){
 <p><p>Call to chaining of promises
 
 </p>
-</p>
-
-    <em>Example</em>
-        <pre class="prettyprint linenums lang-js">
-var p = new Promise();
-
-p
+<pre class='prettyprint linenums lang-js'><code>new Promise()
+ .callback(&quot;hello&quot;)
  .chain(function(previousPromiseResults){
      return previousPromiseResults + &quot; world&quot;;
 }, errorHandler)
@@ -851,10 +846,32 @@ p
    return when(dbCall());
  }).classic(function(err, results){
      //all promises are done
- });
+ });</code></pre>
+<p> You can also use static values
 
- p.callback(&quot;Hello&quot;);
-        </pre>
+</p>
+<pre class='prettyprint linenums lang-js'><code>new Promise().callback()
+    .chain(&quot;hello&quot;)
+    .chain(function(prev){
+        return prev + &quot; world!&quot;
+    }).then(function(str){
+        console.log(str); //&quot;hello world!&quot;
+    });</code></pre>
+<p>If you do not provide an <code>errback</code> for each chain then it will be propogated to the final promise
+
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>new Promise()
+    .chain(function(){
+        return new comb.Promise().errback(new Error(&quot;error&quot;));
+    })
+    .chain(function(){
+        return prev + &quot; world!&quot;
+    })
+    .classic(function(err, str){
+        console.log(err.message); //&quot;error&quot;
+    });</code></pre>
+</p>
 
 
     <em>Arguments</em>
@@ -886,7 +903,7 @@ errback method will be used.</p>
 function (callback,errback){
    var promise = new Promise();
    this.addCallback(function (results) {
-       when(callback.call(this, results)).then(promise);
+       when(isFunction(callback) ? callback.call(this, results) : callback).then(promise);
    });
    // If no errback passed, then invoke our promise&#x27;s errback to pass
    // on to next link in the chain.
@@ -947,10 +964,10 @@ function (callback,errback){
 function (callback){
    var promise = new Promise();
    this.addCallback(function (results) {
-       when(callback.call(this, results)).then(promise);
+       when(isFunction(callback) ? callback.call(this, results) : callback).then(promise);
    });
    this.addErrback(function (results) {
-       when(callback.call(this, results)).then(promise);
+       when(isFunction(callback) ? callback.call(this, results) : callback).then(promise);
    });
    return promise.promise();
            
