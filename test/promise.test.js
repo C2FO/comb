@@ -6,7 +6,7 @@ var it = require('it'),
     PromiseList = comb.PromiseList;
 
 
-it.describe("The promise API", function (it) {
+it.describe("The promise API",function (it) {
 
     it.describe("comb.Promise", function (it) {
 
@@ -17,7 +17,8 @@ it.describe("The promise API", function (it) {
                     assert.equal(res, "hello");
                     next();
                 });
-                setTimeout(comb.hitch(promise, "callback", "hello"), 1000);
+
+                process.nextTick(comb.hitch(promise, "callback", "hello"));
             });
 
             it.should("callback after callback has already been called", function (next) {
@@ -268,7 +269,7 @@ it.describe("The promise API", function (it) {
                         assert.equal(res, "error");
                         next();
                     });
-                setTimeout(comb.hitch(promise, "callback", "hello"), 1000);
+                process.nextTick(comb.hitch(promise, "callback", "hello"));
 
             });
 
@@ -287,14 +288,14 @@ it.describe("The promise API", function (it) {
                     }).chain(
                     function (res) {
                         var promise4 = new Promise();
-                        process.nextTick(comb.hitch(promise4, "callback", res + " not called"), 1000);
+                        process.nextTick(comb.hitch(promise4, "callback", res + " not called"));
                         return promise4;
                     })
                     .then(next, function (res) {
                         assert.equal(res, "error in 3");
                         next();
                     });
-                setTimeout(comb.hitch(promise, "callback", "hello"), 1000);
+                process.nextTick(comb.hitch(promise, "callback", "hello"));
 
             });
 
@@ -307,18 +308,18 @@ it.describe("The promise API", function (it) {
                 promise.chainBoth(
                     function (res) {
                         var promise2 = new Promise();
-                        setTimeout(comb.hitch(promise2, "callback", res + " world"), 1000);
+                        process.nextTick(comb.hitch(promise2, "callback", res + " world"));
                         return promise2;
                     }, next).chainBoth(
                     function (res) {
                         var promise3 = new Promise();
-                        setTimeout(comb.hitch(promise3, "callback", res + "!"), 1000);
+                        process.nextTick(comb.hitch(promise3, "callback", res + "!"));
                         return promise3;
                     }, next).then(function (res) {
                         assert.equal(res, "hello world!");
                         next();
                     }, next);
-                setTimeout(comb.hitch(promise, "callback", "hello"), 1000);
+                process.nextTick(comb.hitch(promise, "callback", "hello"));
 
             });
 
@@ -330,13 +331,13 @@ it.describe("The promise API", function (it) {
                     }, next).chainBoth(
                     function (res) {
                         var promise3 = new Promise();
-                        setTimeout(comb.hitch(promise3, "callback", res + "!"), 1000);
+                        process.nextTick(comb.hitch(promise3, "callback", res + "!"));
                         return promise3;
                     }, next).then(function (res) {
                         assert.equal(res, "hello world!");
                         next();
                     }, next);
-                setTimeout(comb.hitch(promise, "callback", "hello"), 1000);
+                process.nextTick(comb.hitch(promise, "callback", "hello"));
 
             });
 
@@ -345,18 +346,18 @@ it.describe("The promise API", function (it) {
                 promise.chainBoth(
                     function (res) {
                         var promise2 = new Promise();
-                        setTimeout(comb.hitch(promise2, "errback", res + " error"), 1000);
+                        process.nextTick(comb.hitch(promise2, "errback", res + " error"));
                         return promise2;
                     }).chainBoth(
                     function (res) {
                         var promise3 = new Promise();
-                        setTimeout(comb.hitch(promise3, "callback", res + " error"), 1000);
+                        process.nextTick(comb.hitch(promise3, "callback", res + " error"));
                         return promise3;
                     }).then(function (res) {
                         assert.equal(res, "error error error");
                         next();
                     }, next);
-                setTimeout(comb.hitch(promise, "errback", "error"), 1000);
+                process.nextTick(comb.hitch(promise, "errback", "error"));
 
             });
         });
@@ -370,7 +371,7 @@ it.describe("The promise API", function (it) {
                 assert.equal(res, "hello");
                 next();
             }, next);
-            setTimeout(comb.hitch(promise, "callback", "hello"), 1000);
+            process.nextTick(comb.hitch(promise, "callback", "hello"));
         });
 
         it.should("honor the promise api with no callback or errback and erroring", function (next) {
@@ -379,17 +380,16 @@ it.describe("The promise API", function (it) {
                 assert.equal(res, "error");
                 next();
             });
-            setTimeout(comb.hitch(promise, "errback", "error"), 1000);
+            process.nextTick(comb.hitch(promise, "errback", "error"));
         });
 
         it.should("honor the promise api when callback and no errback", function (next) {
             var promise = new Promise();
-            comb.when(promise,
-                function (res) {
-                    assert.equal(res, "hello");
-                    next();
-                }).addErrback(next);
-            setTimeout(comb.hitch(promise, "callback", "hello"), 1000);
+            comb.when(promise,function (res) {
+                assert.equal(res, "hello");
+                next();
+            }).addErrback(next);
+            process.nextTick(comb.hitch(promise, "callback", "hello"));
         });
 
         it.should("honor the promise api with callback and errback", function (next) {
@@ -398,7 +398,7 @@ it.describe("The promise API", function (it) {
                 assert.equal(res, "hello");
                 next();
             }, next);
-            setTimeout(comb.hitch(promise, "callback", "hello"), 1000);
+            process.nextTick(comb.hitch(promise, "callback", "hello"));
         });
 
         it.should("honor the promise api with callback and errback erroring", function (next) {
@@ -407,7 +407,7 @@ it.describe("The promise API", function (it) {
                 assert.equal(res, "error");
                 next();
             });
-            setTimeout(comb.hitch(promise, "errback", "error"), 1000);
+            process.nextTick(comb.hitch(promise, "errback", "error"));
         });
 
         it.should("honor the promise api with value", function (next) {
@@ -491,6 +491,16 @@ it.describe("The promise API", function (it) {
 
         it.should("honor the promise api with just a callback and errback", function (next) {
             comb.when(comb.partial(next, null), next);
+        });
+
+        it.should("accept an array of promises", function (next) {
+            comb.when([
+                new comb.Promise().callback("hello"),
+                new comb.Promise().callback("world"),
+                new comb.Promise().callback("!")
+            ]).chain(function (res) {
+                    assert.deepEqual(res, ["hello", "world", "!"]);
+                }).classic(next);
         });
 
     });
@@ -614,10 +624,138 @@ it.describe("The promise API", function (it) {
                 );
             });
         });
-
-
     });
 
+    it.describe("#comb.chain", function (it) {
+        function asyncAction(add, timeout, error) {
+            return function (num) {
+                num = num || 0;
+                var ret = new comb.Promise();
+                setTimeout(function () {
+                    !error ? ret.callback(num + add) : ret.errback("ERROR");
+                }, timeout);
+                return ret;
+            }
+        }
+
+        function asyncActionMulti(add, timeout, error) {
+            return function (num, prev) {
+                num = num || 0;
+                prev = prev || 0;
+                var ret = new comb.Promise();
+                setTimeout(function () {
+                    !error ? ret.callback(num + add, num + prev) : ret.errback("ERROR");
+                }, timeout || 0);
+                return ret;
+            }
+        }
+
+        function syncAction(add, error) {
+            return function (num) {
+                if (error) {
+                    throw "ERROR";
+                } else {
+                    return num + add;
+                }
+            }
+        }
+
+        it.should("execute the items serially", function (next) {
+            comb.chain([
+                asyncAction(1, 1000),
+                syncAction(1.5),
+                asyncAction(2, 900),
+                syncAction(2.5),
+                asyncAction(3, 800),
+                syncAction(3.5),
+                asyncAction(4, 700),
+                syncAction(4.5),
+                asyncAction(5, 600),
+                syncAction(5.5),
+                asyncAction(6, 500)
+            ]).then(function (results, prev) {
+                    assert.deepEqual(results, 38.5);
+                    assert.isUndefined(prev);
+                    next();
+                }, next);
+        });
+
+        it.should("catch errors", function (next) {
+            comb.chain([
+                asyncAction(1, 1000),
+                syncAction(1.5),
+                asyncAction(2, 900),
+                syncAction(2.5),
+                asyncAction(3, 800),
+                syncAction(3.5),
+                asyncAction(4, 700),
+                syncAction(4.5),
+                asyncAction(5, 600),
+                syncAction(5.5, true),
+                asyncAction(6, 500)
+            ]).then(next, function (res) {
+                    assert.deepEqual(res, "ERROR");
+                    next();
+                });
+        });
+
+        it.should("catch async errors", function (next) {
+            comb.chain([
+                asyncAction(1, 1000, true),
+                syncAction(1.5),
+                asyncAction(2, 900),
+                syncAction(2.5),
+                asyncAction(3, 800),
+                syncAction(3.5),
+                asyncAction(4, 700),
+                syncAction(4.5),
+                asyncAction(5, 600),
+                syncAction(5.5, true),
+                asyncAction(6, 500)
+            ]).then(next, function (res) {
+                    assert.deepEqual(res, "ERROR");
+                    next();
+                });
+        });
+
+        it.should("throw an error if not called with an array", function () {
+            assert.throws(function () {
+                comb.chain(
+                    asyncAction(1, 1000, true),
+                    syncAction(1.5),
+                    asyncAction(2, 900),
+                    syncAction(2.5),
+                    asyncAction(3, 800),
+                    syncAction(3.5),
+                    asyncAction(4, 700),
+                    syncAction(4.5),
+                    asyncAction(5, 600),
+                    syncAction(5.5, true),
+                    asyncAction(6, 500)
+                );
+            });
+        });
+
+        it.should("return multiple arguments if function callback with multiple args", function (next) {
+            comb.chain([
+                asyncActionMulti(1, 1000),
+                asyncActionMulti(1.5),
+                asyncActionMulti(2, 900),
+                asyncActionMulti(2.5),
+                asyncActionMulti(3, 800),
+                asyncActionMulti(3.5),
+                asyncActionMulti(4, 700),
+                asyncActionMulti(4.5),
+                asyncActionMulti(5, 600),
+                asyncActionMulti(5.5),
+                asyncActionMulti(6, 500)
+            ]).then(function (num, prev) {
+                    assert.equal(num, 38.5);
+                    assert.equal(prev, 137.5);
+                    next();
+                }, next);
+        });
+    });
 }).as(module);
 
 
