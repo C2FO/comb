@@ -257,8 +257,8 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>10146</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>2732</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>10237</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>2778</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
             </td>
@@ -2275,27 +2275,30 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>157</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>44</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>248</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>90</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
             </td>
         </tr>
     </table>
-    <div class='source' id="base/functions.js-source"><pre class='prettyprint linenums'><ol class='linenums'><li class='green'><span class='hits'>1</span><code>var comb = exports;</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
+    <div class='source' id="base/functions.js-source"><pre class='prettyprint linenums'><ol class='linenums'><li class='green'><span class=''> </span><code>/**</code></li>
 <li class='green'><span class=''> </span><code> * Determines if something is a function</code></li>
 <li class='green'><span class=''> </span><code> * @param {Anything} obj the thing to test if it is a function</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * @returns {Boolean} true if the obj is a function false otherwise</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
+<li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.isFunction = function (obj) {</code></li>
-<li class='green'><span class='hits'>3230</span><code>    return typeof obj == "function";</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class='hits'>1</span><code>function isFunction(obj) {</code></li>
+<li class='green'><span class='hits'>4828</span><code>    return typeof obj === "function";</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
 <li class='green'><span class=''> </span><code> * Binds a method to a particular scope</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
+<li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * @param {Object} scope the scope to bind the callback to</code></li>
 <li class='green'><span class=''> </span><code> * @param {String|Function} method the method to callback</code></li>
@@ -2303,103 +2306,182 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * @returns {Function} the hitched function</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.hitch = function (scope, method, args) {</code></li>
-<li class='green'><span class='hits'>1657</span><code>    var args = Array.prototype.slice.call(arguments).slice(2);</code></li>
-<li class='green'><span class='hits'>1657</span><code>    if (typeof method == "string") {</code></li>
-<li class='green'><span class='hits'>818</span><code>        method = scope[method];</code></li>
+<li class='green'><span class='hits'>1</span><code>function hitch(scope, method, args) {</code></li>
+<li class='green'><span class='hits'>1659</span><code>    args = Array.prototype.slice.call(arguments).slice(2);</code></li>
+<li class='green'><span class='hits'>1659</span><code>    if ((typeof method === "string" &amp;&amp; !(method in scope))) {</code></li>
+<li class='green'><span class='hits'>2</span><code>        throw new Error(method + " property not defined in scope");</code></li>
+<li class='green'><span class='hits'>1657</span><code>    } else if (typeof method !== "string" &amp;&amp; !isFunction(method)) {</code></li>
+<li class='green'><span class='hits'>1</span><code>        throw new Error(method + " is not a function");</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1657</span><code>    if (method) {</code></li>
-<li class='green'><span class='hits'>1655</span><code>        return function () {</code></li>
-<li class='green'><span class='hits'>1291</span><code>            var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
-<li class='green'><span class='hits'>1291</span><code>            return method.apply(scope, scopeArgs);</code></li>
+<li class='green'><span class='hits'>1656</span><code>    if (typeof method === "string") {</code></li>
+<li class='green'><span class='hits'>817</span><code>        return function () {</code></li>
+<li class='green'><span class='hits'>642</span><code>            var func = scope[method];</code></li>
+<li class='green'><span class='hits'>642</span><code>            if (isFunction(func)) {</code></li>
+<li class='green'><span class='hits'>639</span><code>                var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
+<li class='green'><span class='hits'>639</span><code>                return func.apply(scope, scopeArgs);</code></li>
+<li class='green'><span class=''> </span><code>            } else {</code></li>
+<li class='green'><span class='hits'>3</span><code>                return func;</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        };</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
-<li class='green'><span class='hits'>2</span><code>        throw new Error(method + "Method not defined");</code></li>
+<li class='green'><span class='hits'>839</span><code>        return function () {</code></li>
+<li class='green'><span class='hits'>652</span><code>            var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
+<li class='green'><span class='hits'>652</span><code>            return method.apply(scope, scopeArgs);</code></li>
+<li class='green'><span class=''> </span><code>        };</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Binds a method to the scope of the first argument.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * This is useful if you have async actions and you just want to run a method or retrieve a property on the object.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> *  var arr = [], push = comb.applyFirst("push"), length = comb.applyFirst("length");</code></li>
+<li class='green'><span class=''> </span><code> *  push(arr, 1, 2,3,4);</code></li>
+<li class='green'><span class=''> </span><code> *  console.log(length(arr)); //4</code></li>
+<li class='green'><span class=''> </span><code> *  console.log(arr); //1,2,3,4</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
+<li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
+<li class='green'><span class=''> </span><code> * @param {String|Function} method the method to invoke in the scope of the first arument.</code></li>
+<li class='green'><span class=''> </span><code> * @param [args] optional args to pass to the callback</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @returns {Function} a function that will execute the method in the scope of the first argument.</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>function applyFirst(method, args) {</code></li>
+<li class='green'><span class='hits'>6</span><code>    args = Array.prototype.slice.call(arguments).slice(1);</code></li>
+<li class='green'><span class='hits'>6</span><code>    if (typeof method !== "string" &amp;&amp; !isFunction(method)) {</code></li>
+<li class='green'><span class='hits'>2</span><code>        throw new Error(method + " must be the name of a property or function to execute");</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>4</span><code>    if (typeof method === "string") {</code></li>
+<li class='green'><span class='hits'>2</span><code>        return function () {</code></li>
+<li class='green'><span class='hits'>6</span><code>            var scopeArgs = Array.prototype.slice.call(arguments), scope = scopeArgs.shift();</code></li>
+<li class='green'><span class='hits'>6</span><code>            var func = scope[method];</code></li>
+<li class='green'><span class='hits'>6</span><code>            if (isFunction(func)) {</code></li>
+<li class='green'><span class='hits'>3</span><code>                scopeArgs = args.concat(scopeArgs);</code></li>
+<li class='green'><span class='hits'>3</span><code>                return func.apply(scope, scopeArgs);</code></li>
+<li class='green'><span class=''> </span><code>            } else {</code></li>
+<li class='green'><span class='hits'>3</span><code>                return func;</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class=''> </span><code>        };</code></li>
+<li class='green'><span class=''> </span><code>    } else {</code></li>
+<li class='green'><span class='hits'>2</span><code>        return function () {</code></li>
+<li class='green'><span class='hits'>2</span><code>            var scopeArgs = Array.prototype.slice.call(arguments), scope = scopeArgs.shift();</code></li>
+<li class='green'><span class='hits'>2</span><code>            scopeArgs = args.concat(scopeArgs);</code></li>
+<li class='green'><span class='hits'>2</span><code>            return method.apply(scope, scopeArgs);</code></li>
+<li class='green'><span class=''> </span><code>        };</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>1</span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
 <li class='green'><span class=''> </span><code> * @function</code></li>
 <li class='green'><span class=''> </span><code> * Binds a method to a particular scope</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
+<li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> * @param {Object} scope the scope to bind the callback to</code></li>
 <li class='green'><span class=''> </span><code> * @param {String|Function} method the method to callback</code></li>
 <li class='green'><span class=''> </span><code> * @param [args] optional args to pass to the callback</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * @returns {Function} the hitched function</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.bind = comb.hitch;</code></li>
+<li class='green'><span class='hits'>1</span><code>exports.bind = hitch;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
 <li class='green'><span class=''> </span><code> * Binds a method to a particular scope ignoring any new arguments passed</code></li>
 <li class='green'><span class=''> </span><code> * into the function. This is useful if you want to force particular arguments and</code></li>
 <li class='green'><span class=''> </span><code> * ignore any new ones</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
+<li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> * @param {Object} scope the scope to bind the callback to</code></li>
 <li class='green'><span class=''> </span><code> * @param {String|Function} method the method to callback</code></li>
 <li class='green'><span class=''> </span><code> * @param [args] optional args to pass to the callback</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * @returns {Function} the hitched function</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.hitchIgnore = function (scope, method, args) {</code></li>
-<li class='green'><span class='hits'>49</span><code>    var args = Array.prototype.slice.call(arguments).slice(2);</code></li>
-<li class='green'><span class='hits'>49</span><code>    if (typeof method == "string") {</code></li>
-<li class='green'><span class='hits'>14</span><code>        method = scope[method];</code></li>
+<li class='green'><span class='hits'>1</span><code>function hitchIgnore(scope, method, args) {</code></li>
+<li class='green'><span class='hits'>51</span><code>    args = Array.prototype.slice.call(arguments).slice(2);</code></li>
+<li class='green'><span class='hits'>51</span><code>    if ((typeof method === "string" &amp;&amp; !(method in scope))) {</code></li>
+<li class='green'><span class='hits'>2</span><code>        throw new Error(method + " property not defined in scope");</code></li>
+<li class='green'><span class='hits'>49</span><code>    } else if (typeof method !== "string" &amp;&amp; !isFunction(method)) {</code></li>
+<li class='green'><span class='hits'>1</span><code>        throw new Error(method + " is not a function");</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>49</span><code>    if (method) {</code></li>
-<li class='green'><span class='hits'>47</span><code>        return function () {</code></li>
-<li class='green'><span class='hits'>36</span><code>            return method.apply(scope, args);</code></li>
+<li class='green'><span class='hits'>48</span><code>    if (typeof method === "string") {</code></li>
+<li class='green'><span class='hits'>13</span><code>        return function () {</code></li>
+<li class='green'><span class='hits'>15</span><code>            var func = scope[method];</code></li>
+<li class='green'><span class='hits'>15</span><code>            if (isFunction(func)) {</code></li>
+<li class='green'><span class='hits'>12</span><code>                return func.apply(scope, args);</code></li>
+<li class='green'><span class=''> </span><code>            } else {</code></li>
+<li class='green'><span class='hits'>3</span><code>                return func;</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        };</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
-<li class='green'><span class='hits'>2</span><code>        throw new Error(method + "Method not defined");</code></li>
+<li class='green'><span class='hits'>35</span><code>        return function () {</code></li>
+<li class='green'><span class='hits'>24</span><code>            return method.apply(scope, args);</code></li>
+<li class='green'><span class=''> </span><code>        };</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class='hits'>1</span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
 <li class='green'><span class=''> </span><code> * @function</code></li>
 <li class='green'><span class=''> </span><code> * Binds a method to a particular scope ignoring any new arguments passed</code></li>
 <li class='green'><span class=''> </span><code> * into the function. This is useful if you want to force particular arguments and</code></li>
 <li class='green'><span class=''> </span><code> * ignore any new ones</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
+<li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> * @param {Object} scope the scope to bind the callback to</code></li>
 <li class='green'><span class=''> </span><code> * @param {String|Function} method the method to callback</code></li>
 <li class='green'><span class=''> </span><code> * @param [args] optional args to pass to the callback</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * @returns {Function} the hitched function</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.bindIgnore = comb.hitchIgnore;</code></li>
+<li class='green'><span class='hits'>1</span><code>exports.bindIgnore = hitchIgnore;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
 <li class='green'><span class=''> </span><code> * Allows the passing of additional arguments to a function when it is called</code></li>
 <li class='green'><span class=''> </span><code> * especially useful for callbacks that you want to provide additional parameters to</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
+<li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> * @param {String|Function} method the method to callback</code></li>
 <li class='green'><span class=''> </span><code> * @param {Anything} [args] variable number of arguments to pass</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * @returns {Function} partially hitched function</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.partial = function (method, args) {</code></li>
-<li class='green'><span class='hits'>52</span><code>    var args = Array.prototype.slice.call(arguments).slice(1);</code></li>
-<li class='green'><span class='hits'>52</span><code>    if (typeof method == "function") {</code></li>
+<li class='green'><span class='hits'>1</span><code>function partial(method, args) {</code></li>
+<li class='green'><span class='hits'>55</span><code>    args = Array.prototype.slice.call(arguments).slice(1);</code></li>
+<li class='green'><span class='hits'>55</span><code>    if (typeof method !== "string" &amp;&amp; !isFunction(method)) {</code></li>
+<li class='green'><span class='hits'>2</span><code>        throw new Error(method + " must be the name of a property or function to execute");</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>53</span><code>    if (typeof method === "string") {</code></li>
+<li class='green'><span class='hits'>2</span><code>        return function () {</code></li>
+<li class='green'><span class='hits'>2</span><code>            var func = this[method];</code></li>
+<li class='green'><span class='hits'>2</span><code>            if (isFunction(func)) {</code></li>
+<li class='green'><span class='hits'>1</span><code>                var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
+<li class='green'><span class='hits'>1</span><code>                return func.apply(this, scopeArgs);</code></li>
+<li class='green'><span class=''> </span><code>            } else {</code></li>
+<li class='green'><span class='hits'>1</span><code>                return func;</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class=''> </span><code>        };</code></li>
+<li class='green'><span class=''> </span><code>    } else {</code></li>
 <li class='green'><span class='hits'>51</span><code>        return function () {</code></li>
 <li class='green'><span class='hits'>30</span><code>            var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
 <li class='green'><span class='hits'>30</span><code>            return method.apply(this, scopeArgs);</code></li>
 <li class='green'><span class=''> </span><code>        };</code></li>
-<li class='green'><span class=''> </span><code>    } else {</code></li>
-<li class='green'><span class='hits'>1</span><code>        throw new Error(method + "Method not defined");</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class='hits'>1</span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>var curry = function (f, execute) {</code></li>
+<li class='green'><span class='hits'>1</span><code>function curryFunc(f, execute) {</code></li>
 <li class='green'><span class='hits'>8</span><code>    return function (arg) {</code></li>
 <li class='green'><span class='hits'>8</span><code>        var args = Array.prototype.slice.call(arguments);</code></li>
 <li class='green'><span class='hits'>8</span><code>        return execute ? f.apply(this, arguments) : function (arg) {</code></li>
 <li class='green'><span class='hits'>6</span><code>            return f.apply(this, args.concat(Array.prototype.slice.call(arguments)));</code></li>
 <li class='green'><span class=''> </span><code>        };</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class=''> </span><code>    };</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
 <li class='green'><span class=''> </span><code> * Curries a function</code></li>
@@ -2416,28 +2498,37 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> *  curried("a")("b")("c")("d") =&gt; "a,b,c,d"</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
+<li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> * @param {Number} depth the number of args you expect</code></li>
 <li class='green'><span class=''> </span><code> * @param {Function} cb the function to call once all args are gathered</code></li>
 <li class='green'><span class=''> </span><code> * @param {Object} [scope] what scope to call the function in</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * @returns {Function} the curried version of the function</code></li>
 <li class='green'><span class=''> </span><code> * */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.curry = function (depth, cb, scope) {</code></li>
+<li class='green'><span class='hits'>1</span><code>function curry(depth, cb, scope) {</code></li>
 <li class='green'><span class='hits'>2</span><code>    var f;</code></li>
 <li class='green'><span class='hits'>2</span><code>    if (scope) {</code></li>
-<li class='green'><span class='hits'>1</span><code>        f = comb.hitch(scope, cb);</code></li>
+<li class='green'><span class='hits'>1</span><code>        f = hitch(scope, cb);</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
 <li class='green'><span class='hits'>1</span><code>        f = cb;</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class='hits'>2</span><code>    if (depth) {</code></li>
 <li class='green'><span class='hits'>2</span><code>        var len = depth - 1;</code></li>
 <li class='green'><span class='hits'>2</span><code>        for (var i = len; i &gt;= 0; i--) {</code></li>
-<li class='green'><span class='hits'>8</span><code>            f = curry(f, i == len);</code></li>
+<li class='green'><span class='hits'>8</span><code>            f = curryFunc(f, i === len);</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class='hits'>2</span><code>    return f;</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class='hits'>1</span><code>};</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>exports.isFunction = isFunction;</code></li>
+<li class='green'><span class='hits'>1</span><code>exports.hitch = hitch;</code></li>
+<li class='green'><span class='hits'>1</span><code>exports.hitchIgnore = hitchIgnore;</code></li>
+<li class='green'><span class='hits'>1</span><code>exports.partial = partial;</code></li>
+<li class='green'><span class='hits'>1</span><code>exports.applyFirst = applyFirst;</code></li>
+<li class='green'><span class='hits'>1</span><code>exports.bindFirst = applyFirst;</code></li>
+<li class='green'><span class='hits'>1</span><code>exports.curry = curry;</code></li>
 <li class='green'><span class=''> </span><code></code></li></ol></pre></div>
 </div>
 
@@ -2866,14 +2957,14 @@ td.cov-stats {
 <li class='green'><span class='hits'>13</span><code>        if (!setup) {</code></li>
 <li class='green'><span class='hits'>1</span><code>            var orig = process.emit;</code></li>
 <li class='green'><span class='hits'>1</span><code>            process.emit = function (event) {</code></li>
-<li class='green'><span class='hits'>720</span><code>                try {</code></li>
-<li class='green'><span class='hits'>720</span><code>                    if (event === 'exit') {</code></li>
+<li class='green'><span class='hits'>725</span><code>                try {</code></li>
+<li class='green'><span class='hits'>725</span><code>                    if (event === 'exit') {</code></li>
 <li class='green'><span class='hits'>1</span><code>                        listeners.forEach(function (cb) {</code></li>
 <li class='green'><span class='hits'>13</span><code>                            cb();</code></li>
 <li class='green'><span class=''> </span><code>                        });</code></li>
 <li class='green'><span class=''> </span><code>                    }</code></li>
 <li class='green'><span class=''> </span><code>                } finally {</code></li>
-<li class='green'><span class='hits'>720</span><code>                    orig.apply(this, arguments);</code></li>
+<li class='green'><span class='hits'>725</span><code>                    orig.apply(this, arguments);</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
 <li class='green'><span class='hits'>1</span><code>            setup = true;</code></li>
@@ -3109,9 +3200,9 @@ td.cov-stats {
 <li class='green'><span class='hits'>1</span><code>var merge = function (target, source) {</code></li>
 <li class='green'><span class='hits'>49</span><code>    var name, s;</code></li>
 <li class='green'><span class='hits'>49</span><code>    for (name in source) {</code></li>
-<li class='green'><span class='hits'>219</span><code>        s = source[name];</code></li>
-<li class='green'><span class='hits'>219</span><code>        if (!(name in target) || (target[name] !== s)) {</code></li>
-<li class='green'><span class='hits'>218</span><code>            target[name] = s;</code></li>
+<li class='green'><span class='hits'>223</span><code>        s = source[name];</code></li>
+<li class='green'><span class='hits'>223</span><code>        if (!(name in target) || (target[name] !== s)) {</code></li>
+<li class='green'><span class='hits'>222</span><code>            target[name] = s;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class='hits'>49</span><code>    return target;</code></li>
@@ -4294,12 +4385,12 @@ td.cov-stats {
 <li class='green'><span class='hits'>318</span><code>        ch = ch || " ";</code></li>
 <li class='green'><span class='hits'>318</span><code>        var strLen = string.length;</code></li>
 <li class='green'><span class='hits'>318</span><code>        while (strLen &lt; length) {</code></li>
-<li class='green'><span class='hits'>204</span><code>            if (end) {</code></li>
+<li class='green'><span class='hits'>179</span><code>            if (end) {</code></li>
 <li class='green'><span class='hits'>117</span><code>                string += ch;</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>87</span><code>                string = ch + string;</code></li>
+<li class='green'><span class='hits'>62</span><code>                string = ch + string;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>204</span><code>            strLen++;</code></li>
+<li class='green'><span class='hits'>179</span><code>            strLen++;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class='hits'>318</span><code>        return string;</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
@@ -7801,7 +7892,7 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>101</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>102</span>
                     <span class='cov-label'>LOC</span><span class='cov-value'>7</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
@@ -7893,6 +7984,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * @namespace</code></li>
+<li class='green'><span class=''> </span><code> * @ignoreCode</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>var comb = exports;</code></li>
 <li class='green'><span class='hits'>1</span><code>base.merge(exports, base, require("./define"), require("./promise"), require("./plugins"), require("./collections"), require("./logging"));</code></li>
@@ -10124,7 +10216,7 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>1036</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>1035</span>
                     <span class='cov-label'>LOC</span><span class='cov-value'>216</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
@@ -10917,9 +11009,9 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * You may also return a promise from the iterator block.</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
 <li class='green'><span class=''> </span><code> * var myNewArr = [];</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * ```</code></li>
 <li class='green'><span class=''> </span><code> * comb.asyncForEach(asyncArr(), function(item, index){</code></li>
 <li class='green'><span class=''> </span><code> *     var ret = new comb.Promise();</code></li>
 <li class='green'><span class=''> </span><code> *     process.nextTick(function(){</code></li>
@@ -11143,7 +11235,6 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        });</code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>base.merge(exports, {</code></li>
 <li class='green'><span class=''> </span><code>    isPromiseLike:isPromiseLike,</code></li>

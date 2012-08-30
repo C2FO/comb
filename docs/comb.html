@@ -293,6 +293,21 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methods<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
+                            <li><a href="./comb.html#.applyFirst">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                applyFirst
+                            </a></li>
+                            
                             <li><a href="./comb.html#.argsToArray">
                                 
                                 <span class="label label-info">S</span>
@@ -1230,6 +1245,92 @@
 
     
     
+        <a name=".applyFirst"></a>
+    <h3>
+        applyFirst
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/functions.js</em>
+
+<p><p>Binds a method to the scope of the first argument.
+
+</p>
+<p>This is useful if you have async actions and you just want to run a method or retrieve a property on the object.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code> var arr = [], push = comb.applyFirst(&quot;push&quot;), length = comb.applyFirst(&quot;length&quot;);
+ push(arr, 1, 2,3,4);
+ console.log(length(arr)); //4
+ console.log(arr); //1,2,3,4</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>method</em>  : <p>the method to invoke in the scope of the first arument.</p>
+</li>
+    
+        <li> <em>args?</em>  : <p>optional args to pass to the callback</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Function</code> <p>a function that will execute the method in the scope of the first argument.</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (method,args){
+   args = Array.prototype.slice.call(arguments).slice(1);
+   if (typeof method !== &quot;string&quot; &amp;&amp; !isFunction(method)) {
+       throw new Error(method + &quot; must be the name of a property or function to execute&quot;);
+   }
+   if (typeof method === &quot;string&quot;) {
+       return function () {
+           var scopeArgs = Array.prototype.slice.call(arguments), scope = scopeArgs.shift();
+           var func = scope[method];
+           if (isFunction(func)) {
+               scopeArgs = args.concat(scopeArgs);
+               return func.apply(scope, scopeArgs);
+           } else {
+               return func;
+           }
+       };
+   } else {
+       return function () {
+           var scopeArgs = Array.prototype.slice.call(arguments), scope = scopeArgs.shift();
+           scopeArgs = args.concat(scopeArgs);
+           return method.apply(scope, scopeArgs);
+       };
+   }
+}
+    </pre>
+    
+
+
+    
         <a name=".argsToArray"></a>
     <h3>
         argsToArray
@@ -1797,7 +1898,7 @@ function (promise,iterator,scope){
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-comb.hitch
+hitch
     </pre>
     
 
@@ -1853,7 +1954,7 @@ comb.hitch
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-comb.hitchIgnore
+hitchIgnore
     </pre>
     
 
@@ -2311,14 +2412,14 @@ var curried = comb.curry(4, function(a,b,c,d){
 function (depth,cb,scope){
    var f;
    if (scope) {
-       f = comb.hitch(scope, cb);
+       f = hitch(scope, cb);
    } else {
        f = cb;
    }
    if (depth) {
        var len = depth - 1;
        for (var i = len; i &gt;= 0; i--) {
-           f = curry(f, i == len);
+           f = curryFunc(f, i === len);
        }
    }
    return f;
@@ -3075,17 +3176,27 @@ function (parent,extend){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (scope,method,args){
-   var args = Array.prototype.slice.call(arguments).slice(2);
-   if (typeof method == &quot;string&quot;) {
-       method = scope[method];
+   args = Array.prototype.slice.call(arguments).slice(2);
+   if ((typeof method === &quot;string&quot; &amp;&amp; !(method in scope))) {
+       throw new Error(method + &quot; property not defined in scope&quot;);
+   } else if (typeof method !== &quot;string&quot; &amp;&amp; !isFunction(method)) {
+       throw new Error(method + &quot; is not a function&quot;);
    }
-   if (method) {
+   if (typeof method === &quot;string&quot;) {
+       return function () {
+           var func = scope[method];
+           if (isFunction(func)) {
+               var scopeArgs = args.concat(Array.prototype.slice.call(arguments));
+               return func.apply(scope, scopeArgs);
+           } else {
+               return func;
+           }
+       };
+   } else {
        return function () {
            var scopeArgs = args.concat(Array.prototype.slice.call(arguments));
            return method.apply(scope, scopeArgs);
        };
-   } else {
-       throw new Error(method + &quot;Method not defined&quot;);
    }
 }
     </pre>
@@ -3115,7 +3226,6 @@ function (scope,method,args){
 <p><p>Binds a method to a particular scope ignoring any new arguments passed
 into the function. This is useful if you want to force particular arguments and
 ignore any new ones
-
 </p>
 </p>
 
@@ -3149,16 +3259,25 @@ ignore any new ones
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (scope,method,args){
-   var args = Array.prototype.slice.call(arguments).slice(2);
-   if (typeof method == &quot;string&quot;) {
-       method = scope[method];
+   args = Array.prototype.slice.call(arguments).slice(2);
+   if ((typeof method === &quot;string&quot; &amp;&amp; !(method in scope))) {
+       throw new Error(method + &quot; property not defined in scope&quot;);
+   } else if (typeof method !== &quot;string&quot; &amp;&amp; !isFunction(method)) {
+       throw new Error(method + &quot; is not a function&quot;);
    }
-   if (method) {
+   if (typeof method === &quot;string&quot;) {
+       return function () {
+           var func = scope[method];
+           if (isFunction(func)) {
+               return func.apply(scope, args);
+           } else {
+               return func;
+           }
+       };
+   } else {
        return function () {
            return method.apply(scope, args);
        };
-   } else {
-       throw new Error(method + &quot;Method not defined&quot;);
    }
 }
     </pre>
@@ -3615,7 +3734,7 @@ function (object){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (obj){
-   return typeof obj == &quot;function&quot;;
+   return typeof obj === &quot;function&quot;;
 }
     </pre>
     
@@ -4690,14 +4809,25 @@ especially useful for callbacks that you want to provide additional parameters t
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (method,args){
-   var args = Array.prototype.slice.call(arguments).slice(1);
-   if (typeof method == &quot;function&quot;) {
+   args = Array.prototype.slice.call(arguments).slice(1);
+   if (typeof method !== &quot;string&quot; &amp;&amp; !isFunction(method)) {
+       throw new Error(method + &quot; must be the name of a property or function to execute&quot;);
+   }
+   if (typeof method === &quot;string&quot;) {
+       return function () {
+           var func = this[method];
+           if (isFunction(func)) {
+               var scopeArgs = args.concat(Array.prototype.slice.call(arguments));
+               return func.apply(this, scopeArgs);
+           } else {
+               return func;
+           }
+       };
+   } else {
        return function () {
            var scopeArgs = args.concat(Array.prototype.slice.call(arguments));
            return method.apply(this, scopeArgs);
        };
-   } else {
-       throw new Error(method + &quot;Method not defined&quot;);
    }
 }
     </pre>
