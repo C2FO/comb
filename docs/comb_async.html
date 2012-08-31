@@ -1,0 +1,2478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comb</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/prettify.css">
+    <style type="text/css">
+        
+
+/*.subnav-inner {*/
+    /*width: 100%;*/
+    /*height: 36px;*/
+    /*background-color: #EEE;*/
+    /*background-repeat: repeat-x;*/
+    /*background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));*/
+    /*background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);*/
+    /*background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*-webkit-border-radius: 4px;*/
+    /*-moz-border-radius: 4px;*/
+    /*border-radius: 4px;*/
+/*}*/
+
+/*.subnav .nav > li > a:hover {*/
+    /*color: black !important;*/
+/*}*/
+
+/*.subnav .nav li.dropdown .dropdown-toggle .caret,*/
+/*.subnav .nav li.dropdown.open .caret {*/
+    /*border-top-color: #999 !important;*/
+    /*border-bottom-color: #999 !important;*/
+/*}*/
+
+/*.subnav-fixed {*/
+    /*position: fixed;*/
+    /*width : 90%;*/
+    /*margin-right: auto;*/
+    /*margin-left: auto;*/
+    /*top: 40px;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*z-index: 1020;*/
+    /*border-color: #D5D5D5;*/
+    /*border-width: 0 0 1px;*/
+    /*-webkit-border-radius: 0;*/
+    /*-moz-border-radius: 0;*/
+    /*border-radius: 0;*/
+    /*-webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*-moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);*/
+/*}*/
+
+/*.navbar .nav  .dropdown-menu {*/
+    /*max-height: 500px;*/
+    /*overflow: auto;*/
+/*}​*/
+
+    </style>
+    <style type="text/css">
+        body {
+            padding: 90px;
+        }
+
+        .subnav{
+            margin-top: 40px;
+            margin-right: auto;
+            margin-left: auto;
+            z-index: 1000;
+        }
+
+        @media (max-width:979px) {
+            .subnav{
+                margin-top: auto;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <script type="text/javascript">
+        var init = (function () {
+            "use strict";
+
+            var processScroll = (function () {
+                var curr = null, prev = null;
+                return function (nav) {
+                    var $win = $(window);
+                    $('.subnav').each(function () {
+                        var nav = $(this);
+                        var navTop = $win.width() < 980 ? 0 : nav.offset().top - 40;
+
+                        var scrollTop = $win.scrollTop();
+                        if (scrollTop >= navTop && curr != nav) {
+                            if(curr){
+                                curr.removeClass('subnav-fixed')
+                                prev = curr;
+                            }
+                            curr = nav;
+                            curr.addClass('subnav-fixed')
+                        } else if (curr == nav && scrollTop <= navTop) {
+                            curr.removeClass('subnav-fixed');
+                            prev.addClass('subnav-fixed');
+                            curr = prev;
+                        }else{
+                            nav.removeClass('subnav-fixed');
+                        }
+                    });
+                };
+            })();
+
+            return function () {
+                window.prettyPrint && prettyPrint();
+                $(".collapse").collapse();
+                var $window = $(window);
+                //$(".subnav").affix ();
+                // fix sub nav on scroll
+//                processScroll();
+//                $(window).on('scroll', processScroll)
+            }
+        })();
+    </script>
+</head>
+<body onload="init()">
+<div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"> </span>
+            </a>
+            
+            <a href="./index.html" class="brand">comb</a>
+            
+            <div class="nav-collapse">
+                <ul class="nav">
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./define.html">OO</a></li>
+                            
+                            <li><a href="./promise.html">Promises</a></li>
+                            
+                            <li><a href="./logging.html">Logging</a></li>
+                            
+                            <li><a href="./utilities.html">Utilities</a></li>
+                            
+                            <li><a href="./coverage.html">Test Coverage</a></li>
+                            
+                        </ul>
+                        
+
+                        
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="comb.html">comb</a></li>
+                            
+                            <li><a href="comb_array.html">comb.array</a></li>
+                            
+                            <li><a href="comb_async.html">comb.async</a></li>
+                            
+                            <li><a href="comb_characters.html">comb.characters</a></li>
+                            
+                            <li><a href="comb_date.html">comb.date</a></li>
+                            
+                            <li><a href="comb_logger.html">comb.logger</a></li>
+                            
+                            <li><a href="comb_number.html">comb.number</a></li>
+                            
+                            <li><a href="comb_plugins.html">comb.plugins</a></li>
+                            
+                            <li><a href="comb_regexp.html">comb.regexp</a></li>
+                            
+                            <li><a href="comb_string.html">comb.string</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./comb_Promise.html">comb.Promise</a></li>
+                            
+                            <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
+                            
+                            <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
+                            
+                            <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
+                            
+                            <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
+                            
+                            <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
+                            
+                            <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
+                            
+                            <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
+                            
+                            <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
+                            
+                            <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
+                            
+                            <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
+                            
+                            <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
+                            
+                            <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
+                            
+                            <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
+                            
+                            <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
+                            
+                            <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
+                            
+                            <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+                            
+                            <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
+                            
+                            <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
+                            
+                            <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+                            
+                            <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
+                            
+                            <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                </ul>
+                
+                <ul class="nav pull-right">
+
+                    <li class="divider-vertical"></li>
+                    <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <a name="top"></a>
+    <div class="container">
+
+
+
+    <a name=".async"></a>
+    <div class="navbar subnav navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a href="#" class="brand">
+                comb.async
+                
+                
+                
+                <span class="label label-success">Public</span>
+                
+                
+            </a>
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".sub-nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            <div class="nav-collapse sub-nav-collapse">
+                
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methods<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./comb_async.html#.array">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                array
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.avg">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                avg
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.cartesian">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                cartesian
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.compact">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                compact
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.difference">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                difference
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.every">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                every
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.filter">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                filter
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.flatten">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                flatten
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.forEach">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                forEach
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.intersect">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                intersect
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.map">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                map
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.max">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                max
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.min">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                min
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.multiply">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                multiply
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.permutations">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                permutations
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.powerSet">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                powerSet
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.removeDuplicates">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                removeDuplicates
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.rotate">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                rotate
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.some">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                some
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.sort">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                sort
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.sum">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                sum
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.transpose">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                transpose
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.union">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                union
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.unique">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                unique
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.valuesAt">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                valuesAt
+                            </a></li>
+                            
+                            <li><a href="./comb_async.html#.zip">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                zip
+                            </a></li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<em>Defined async.js</em>
+
+<p><p>utilities for working with promises.</p>
+</p>
+
+
+
+
+
+    
+    
+        <a name=".array"></a>
+    <h3>
+        array
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Exposes array methods on a <a href='./comb_Promise.html#'> comb.Promise</a>.
+
+</p>
+<p>The methods added are.
+
+</p>
+<ul>
+<li>forEach : See <a href='./comb_async.html#.forEach'> comb.async.forEach</a>.</li>
+<li>map : See <a href='./comb_async.html#.map'> comb.async.map</a>.</li>
+<li>filter : See <a href='./comb_async.html#.filter'> comb.async.filter</a>.</li>
+<li>some : See <a href='./comb_async.html#.some'> comb.async.some</a>.</li>
+<li>every : See <a href='./comb_async.html#.every'> comb.async.every</a>.</li>
+<li>zip : See <a href='./comb_async.html#.zip'> comb.async.zip</a>.</li>
+<li>sum : See <a href='./comb_async.html#.sum'> comb.async.sum</a>.</li>
+<li>avg : See <a href='./comb_async.html#.avg'> comb.async.avg</a>.</li>
+<li>sort : See <a href='./comb_async.html#.sort'> comb.async.sort</a>.</li>
+<li>min : See <a href='./comb_async.html#.min'> comb.async.min</a>.</li>
+<li>max : See <a href='./comb_async.html#.max'> comb.async.max</a>.</li>
+<li>difference : See <a href='./comb_async.html#.difference'> comb.async.difference</a>.</li>
+<li>removeDuplicates : See <a href='./comb_async.html#.removeDuplicates'> comb.async.removeDuplicates</a>.</li>
+<li>unique : See <a href='./comb_async.html#.unique'> comb.async.unique</a>.</li>
+<li>rotate : See <a href='./comb_async.html#.rotate'> comb.async.rotate</a>.</li>
+<li>permutations : See <a href='./comb_async.html#.permutations'> comb.async.permutations</a>.</li>
+<li>transpose : See <a href='./comb_async.html#.transpose'> comb.async.transpose</a>.</li>
+<li>valuesAt : See <a href='./comb_async.html#.valuesAt'> comb.async.valuesAt</a>.</li>
+<li>union : See <a href='./comb_async.html#.union'> comb.async.union</a>.</li>
+<li>intersect : See <a href='./comb_async.html#.intersect'> comb.async.intersect</a>.</li>
+<li>powerSet : See <a href='./comb_async.html#.powerSet'> comb.async.powerSet</a>.</li>
+<li>cartesian : See <a href='./comb_async.html#.cartesian'> comb.async.cartesian</a>.</li>
+<li>compact : See <a href='./comb_async.html#.compact'> comb.async.compact</a>.</li>
+<li>multiply : See <a href='./comb_async.html#.multiply'> comb.async.multiply</a>.</li>
+<li>flatten : See <a href='./comb_async.html#.flatten'> comb.async.flatten</a>.</li>
+</ul>
+<p>When using this method each of the methods are chainable so you can combine actions.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var array = comb.async.array;
+function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+array(asyncArr())
+     .map(function (num, i) {
+         return num * (i + 1);
+     }).filter(function (num) {
+         return num % 2;
+     }).avg().then(function(avg){
+         console.log(avg); //11.666666666666666
+     });</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>p</em>  : <p>the promise or array to use.</p>
+</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (p){
+   var ret = merge(when(p), {
+       promise:asyncArray.bind(null, p)
+   });
+   methods.forEach(function (m) {
+       ret[m] = function () {
+           var args = argsToArray(arguments), mRet = new Promise();
+           process.nextTick(function () {
+               asyncExports[m].apply(null, [ret].concat(args)).then(mRet);
+           });
+           return asyncArray(mRet);
+       };
+   });
+   return ret;
+}
+    </pre>
+    
+
+
+    
+        <a name=".avg"></a>
+    <h3>
+        avg
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.avg'> comb.array.avg</a>.
+
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).avg().then(function(avg){
+    console.log(avg); //3
+})
+
+comb.async.avg(asyncArr()).then(function(avg){
+    console.log(avg); //3
+})</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>avgPromise</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (avgPromise){
+   return when(avgPromise).chain(function (result) {
+       return avg.call(array, normalizeResult(result));
+   });
+}
+    </pre>
+    
+
+
+    
+        <a name=".cartesian"></a>
+    <h3>
+        cartesian
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.cartesian'> comb.array.cartesian</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).cartesian([1,2,3]).then(function(avg){
+    console.log(avg); //[ [ 1, 1 ], [ 1, 2 ], [ 1, 3 ], [ 2, 1 ], [ 2, 2 ], [ 2, 3 ] ]
+})
+
+ comb.async.cartesian(asyncArr(), [1,2,3]).then(function(avg){
+    console.log(avg); //[ [ 1, 1 ], [ 1, 2 ], [ 1, 3 ], [ 2, 1 ], [ 2, 2 ], [ 2, 3 ] ]
+})</code></pre>
+</p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   return asyncArray(when.apply(null, argsToArray(arguments)).chain(function (result) {
+       return cartesian.apply(array, normalizeResult(result).map(function (arg) {
+           return isArray(arg) ? arg : [arg];
+       }));
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".compact"></a>
+    <h3>
+        compact
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.compact'> comb.array.compact</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,null,2,null,3,null,4,null,5]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).compact().then(function(compacted){
+    console.log(compacted); //[1,2,3,4,5]
+})
+
+comb.async.compact(asyncArr()).then(function(compacted){
+    console.log(compacted); //[1,2,3,4,5]
+})</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr){
+   return asyncArray(when(arr).chain(function (result) {
+       return compact.call(array, normalizeResult(result));
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".difference"></a>
+    <h3>
+        difference
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.difference'> comb.array.difference</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).difference([3,4,5]).then(function(diff){
+    console.log(diff); //[1,2]
+})
+
+comb.async.difference(asyncArr(), [3,4,5]).then(function(diff){
+    console.log(diff); //[1,2]
+})</code></pre>
+</p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   return asyncArray(when.apply(null, argsToArray(arguments)).chain(function (result) {
+       return difference.apply(array, normalizeResult(result).map(function (arg) {
+           return isArray(arg) ? arg : [arg];
+       }));
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".every"></a>
+    <h3>
+        every
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Loops through the results of an promise resolving with true if every item passed, false otherwise.
+The promise can return an array or just a single item.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+comb.async.every(asyncArr(), function(item){
+     return item &lt;= 5;
+}).then(function(every){
+     console.log(every); //true
+});</code></pre>
+<p>You may also return a promise from the iterator block.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb.async.every(asyncArr(), function(item, index){
+    var ret = new comb.Promise();
+    process.nextTick(function(){
+        ret.callback(item == 1);
+    });
+    return ret.promise();
+}).then(function(){
+    console.log(myNewArr) //false;
+})</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>promise</em>  : <p>the promise or array to loop through</p>
+</li>
+    
+        <li> <em>iterator</em>  : <p>a function to invoke for each item</p>
+</li>
+    
+        <li> <em>scope?</em>  : <p>optional scope to execute the function in.</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> <p>a promise that is resolved true if every item passed false otherwise.</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (promise,iterator,scope){
+   return asyncArray(asyncLoop(promise, iterator, scope).chain(function (results) {
+       return results.loopResults.every(function (res) {
+           return !!res;
+       });
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".filter"></a>
+    <h3>
+        filter
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Loops through the results of an promise resolving with the filtered array.
+The promise can return an array or just a single item.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+comb.async.filter(asyncArr(), function(item){
+     return item % 2;
+}).then(function(arr){
+     console.log(arr); //[1,3,5];
+});</code></pre>
+<p>You may also return a promise from the iterator block.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb.async.filter(asyncArr(), function(item, index){
+    var ret = new comb.Promise();
+    process.nextTick(function(){
+        ret.callback(item % 2);
+    });
+    return ret.promise();
+}).then(function(){
+    console.log(myNewArr) //[1,3,5];
+})</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>promise</em>  : <p>the promise or array to loop through</p>
+</li>
+    
+        <li> <em>iterator</em>  : <p>a function to invoke for each item</p>
+</li>
+    
+        <li> <em>scope?</em>  : <p>optional scope to execute the function in.</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> <p>a promise that is resolved with the filtered array.</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (promise,iterator,scope){
+   return asyncArray(asyncLoop(promise, iterator, scope).chain(function (results) {
+       var loopResults = results.loopResults, resultArr = results.arr;
+       return (isArray(resultArr) ? resultArr : [resultArr]).filter(function (res, i) {
+           return loopResults[i];
+       });
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".flatten"></a>
+    <h3>
+        flatten
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.flatten'> comb.array.flatten</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [[1],[2],[3],[4],[5]]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).flatten().then(function(flat){
+    console.log(flat); //[1,2,3,4,5]
+});
+
+comb.async.flatten(asyncArr()).then(function(flat){
+    console.log(flat); //[1,2,3,4,5]
+});</code></pre>
+</p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   return asyncArray(when.apply(null, argsToArray(arguments)).chain(function (result) {
+       return flatten.apply(array, normalizeResult(result).map(function (arg) {
+           return isArray(arg) ? arg : [arg];
+       }));
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".forEach"></a>
+    <h3>
+        forEach
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Loops through the results of an promise. The promise can return an array or just a single item.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+comb.async.forEach(asyncArr(), function(){
+     //do something with it
+}).then(function(arr){
+     console.log(arr); //[1,2,3,4,5];
+});</code></pre>
+<p>You may also return a promise from the iterator block.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var myNewArr = [];
+
+comb.async.forEach(asyncArr(), function(item, index){
+    var ret = new comb.Promise();
+    process.nextTick(function(){
+        myNewArr.push([item, index]);
+        ret.callback();
+    });
+    return ret.promise();
+}).then(function(){
+    console.log(myNewArr) //[[1,0], [2,1], [3,2], [4,3], [5,4]]
+});</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>promise</em>  : <p>the promise or array to loop through</p>
+</li>
+    
+        <li> <em>iterator</em>  : <p>a function to invoke for each item</p>
+</li>
+    
+        <li> <em>scope?</em>  : <p>optional scope to execute the function in.</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> <p>a promise that is resolved with the original array.</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (promise,iterator,scope){
+   return asyncArray(asyncLoop(promise, iterator, scope).chain(function (results) {
+       return results.arr;
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".intersect"></a>
+    <h3>
+        intersect
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.intersect'> comb.array.intersect</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).intersect([3,4], [3]).then(function(intersection){
+    console.log(intersection); //[3]
+});
+
+comb.async.intersect(asyncArr(), [3,4]).then(function(intersection){
+    console.log(intersection); //[3,4]
+});</code></pre>
+</p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   return asyncArray(when.apply(null, argsToArray(arguments)).chain(function (result) {
+       return intersect.apply(array, normalizeResult(result).map(function (arg) {
+           return isArray(arg) ? arg : [arg];
+       }));
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".map"></a>
+    <h3>
+        map
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Loops through the results of an promise resolving with the return value of the iterator function.
+The promise can return an array or just a single item.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+comb.async.map(asyncArr(), function(item){
+     return item * 2;
+}).then(function(arr){
+     console.log(arr); //[2,4,6,8,10];
+});</code></pre>
+<p>You may also return a promise from the iterator block.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb.async.map(asyncArr(), function(item, index){
+    var ret = new comb.Promise();
+    process.nextTick(function(){
+        ret.callback(item * 2);
+    });
+    return ret.promise();
+}).then(function(){
+    console.log(myNewArr) //[2,4,6,8,10];
+});</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>promise</em>  : <p>the promise or array to loop through</p>
+</li>
+    
+        <li> <em>iterator</em>  : <p>a function to invoke for each item</p>
+</li>
+    
+        <li> <em>scope?</em>  : <p>optional scope to execute the function in.</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> <p>a promise that is resolved with the mapped array.</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (promise,iterator,scope){
+   return asyncArray(asyncLoop(promise, iterator, scope).chain(function (results) {
+       return results.loopResults;
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".max"></a>
+    <h3>
+        max
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.max'> comb.array.max</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).max().then(function(max){
+    console.log(max); //5
+})
+
+comb.async.max(asyncArr()).then(function(max){
+    console.log(max); //5
+})</code></pre>
+</p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   var args = argsToArray(arguments), last = args.pop(), cmp = null;
+   if (isFunction(last) || isString(last)) {
+       cmp = last;
+   } else {
+       args.push(last);
+   }
+   return when.apply(null, args).chain(function (result) {
+       return max.call(array, normalizeResult(result), cmp);
+   });
+}
+    </pre>
+    
+
+
+    
+        <a name=".min"></a>
+    <h3>
+        min
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.min'> comb.array.min</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).min().then(function(min){
+    console.log(min) //3
+});
+
+comb.async.min(asyncArr()).then(function(min){
+    console.log(min) //3
+});</code></pre>
+</p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   var args = argsToArray(arguments), last = args.pop(), cmp = null;
+   if (isFunction(last) || isString(last)) {
+       cmp = last;
+   } else {
+       args.push(last);
+   }
+   return when.apply(null, args).chain(function (result) {
+       return min.call(array, normalizeResult(result), cmp);
+   });
+}
+    </pre>
+    
+
+
+    
+        <a name=".multiply"></a>
+    <h3>
+        multiply
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.multiply'> comb.array.multiply</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).multiply(2).then(function(mult){
+   console.log(mult); //[1,2,3,4,5,1,2,3,4,5]
+});
+
+comb.async.multiply(asyncArr(),2 ).then(function(mult){
+   console.log(mult); //[1,2,3,4,5,1,2,3,4,5]
+});</code></pre>
+</p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   var args = argsToArray(arguments), last = args.pop(), times = null;
+   if (isNumber(last)) {
+       times = last;
+   } else {
+       args.push(last);
+   }
+   return asyncArray(when.apply(null, args).chain(function (result) {
+       return multiply.call(array, normalizeResult(result), times);
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".permutations"></a>
+    <h3>
+        permutations
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.permutations'> comb.array.permutations</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).permutations().then(function(permutations){
+     console.log(permutations) //[ [ 1, 2, 3 ],
+                               //  [ 1, 3, 2 ],
+                               //  [ 2, 3, 1 ],
+                               //  [ 2, 1, 3 ],
+                               //  [ 3, 1, 2 ],
+                               //  [ 3, 2, 1 ] ]
+});
+
+comb.async.permutations(asyncArr()).then(function(permutations){
+     console.log(permutations) //[ [ 1, 2, 3 ],
+                               //  [ 1, 3, 2 ],
+                               //  [ 2, 3, 1 ],
+                               //  [ 2, 1, 3 ],
+                               //  [ 3, 1, 2 ],
+                               //  [ 3, 2, 1 ] ]
+});</code></pre>
+</p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   var args = argsToArray(arguments), last = args.pop(), times = null;
+   if (isNumber(last)) {
+       times = last;
+   } else {
+       args.push(last);
+   }
+   return asyncArray(when.apply(null, args).chain(function (result) {
+       return permutations.call(array, normalizeResult(result), times);
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".powerSet"></a>
+    <h3>
+        powerSet
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.powerSet'> comb.array.powerSet</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).powerSet().then(function(set){
+     console.log(set); //[ [], [ 1 ], [ 2 ], [ 1, 2 ], [ 3 ], [ 1, 3 ], [ 2, 3 ], [ 1, 2, 3 ] ]
+});
+
+comb.async.powerSet(asyncArr()).then(function(set){
+     console.log(set); //[ [], [ 1 ], [ 2 ], [ 1, 2 ], [ 3 ], [ 1, 3 ], [ 2, 3 ], [ 1, 2, 3 ] ]
+});</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr){
+   return asyncArray(when(arr).chain(function (result) {
+       return powerSet.call(array, normalizeResult(result));
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".removeDuplicates"></a>
+    <h3>
+        removeDuplicates
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.removeDuplicates'> comb.array.removeDuplicates</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,2,3,3,3,4,4,4]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).removeDuplicates().then(function(unique){
+     console.log(unique); // [1, 2, 3, 4]
+});
+
+comb.async.removeDuplicates(asyncArray()).then(function(unique){
+     console.log(unique); // [1, 2, 3, 4]
+});</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr){
+   return asyncArray(when(arr).chain(function (result) {
+       return removeDuplicates.call(array, normalizeResult(result));
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".rotate"></a>
+    <h3>
+        rotate
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.rotate'> comb.array.rotate</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).rotate(2).then(function(rotated){
+    console.log(rotated); // [ 3, 4, 5, 1, 2 ]
+});
+
+comb.async.rotate(asyncArr(), 2).then(function(rotated){
+    console.log(rotated); // [ 3, 4, 5, 1, 2 ]
+});</code></pre>
+</p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   var args = argsToArray(arguments), last = args.pop(), times = null;
+   if (isNumber(last)) {
+       times = last;
+   } else {
+       args.push(last);
+   }
+   return asyncArray(when.apply(null, args).chain(function (result) {
+       return rotate.call(array, normalizeResult(result), times);
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".some"></a>
+    <h3>
+        some
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Loops through the results of an promise resolving with true if some items passed, false otherwise.
+The promise can return an array or just a single item.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+comb.async.some(asyncArr(), function(item){
+     return item == 1;
+}).then(function(every){
+     console.log(every); //true
+});</code></pre>
+<p>You may also return a promise from the iterator block.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb.async.some(asyncArr(), function(item, index){
+    var ret = new comb.Promise();
+    process.nextTick(function(){
+        ret.callback(item &gt; 5);
+    });
+    return ret.promise();
+}).then(function(){
+    console.log(myNewArr) //false;
+})</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>promise</em>  : <p>the promise or array to loop through</p>
+</li>
+    
+        <li> <em>iterator</em>  : <p>a function to invoke for each item</p>
+</li>
+    
+        <li> <em>scope?</em>  : <p>optional scope to execute the function in.</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> <p>a promise that is resolved with true if some items passed false otherwise.</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (promise,iterator,scope){
+   return asyncArray(asyncLoop(promise, iterator, scope).chain(function (results) {
+       return results.loopResults.some(function (res) {
+           return !!res;
+       });
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".sort"></a>
+    <h3>
+        sort
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.sort'> comb.array.sort</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,3,2,5,4]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).sort().then(function(sorted){
+   console.log(sorted); //[1,2,3,4,5]
+});
+
+comb.async.sort(asyncArr()).then(function(sorted){
+   console.log(sorted); //[1,2,3,4,5]
+});</code></pre>
+</p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   var args = argsToArray(arguments), last = args.pop(), cmp = null;
+   if (isFunction(last) || isString(last)) {
+       cmp = last;
+   } else {
+       args.push(last);
+   }
+   return asyncArray(when.apply(null, args).chain(function (result) {
+       return sort.call(array, normalizeResult(result), cmp);
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".sum"></a>
+    <h3>
+        sum
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.sum'> comb.array.sum</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).sum().then(function(sum){
+    console.log(sum) //15
+})
+
+comb.async.sum(asyncArr()).then(function(sum){
+    console.log(sum) //15
+})</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr){
+   return when(arr).chain(function (result) {
+       return sum.call(array, normalizeResult(result));
+   });
+}
+    </pre>
+    
+
+
+    
+        <a name=".transpose"></a>
+    <h3>
+        transpose
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.transpose'> comb.array.transpose</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [[1, 2, 3], [4, 5, 6]]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).transpose().then(function(transposed){
+    console.log(transposed); //[ [ 1, 4 ], [ 2, 5 ], [ 3, 6 ] ]
+});
+
+comb.async.transpose(asyncArr()).then(function(transposed){
+    console.log(transposed); //[ [ 1, 4 ], [ 2, 5 ], [ 3, 6 ] ]
+});</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr){
+   return asyncArray(when(arr).chain(function (result) {
+       return transpose.call(array, normalizeResult(result));
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".union"></a>
+    <h3>
+        union
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.union'> comb.array.union</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).union([3],[7], [9,10]).then(function(union){
+     console.log(union); //[1,2,3,4,5,7,9,10]
+});
+
+comb.async.union(asyncArr(), [3],[7], [9,10]).then(function(union){
+     console.log(union); //[1,2,3,4,5,7,9,10]
+});</code></pre>
+</p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   return asyncArray(when.apply(null, argsToArray(arguments)).chain(function (result) {
+       return union.apply(array, (normalizeResult(result)).map(function (arg) {
+           return isArray(arg) ? arg : [arg];
+       }));
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".unique"></a>
+    <h3>
+        unique
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.unique'> comb.array.unique</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,2,3,3,4,4,5]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).unique().then(function(unique){
+    console.log(unique); //[1,2,3,4,5]
+});
+
+comb.async.unique(asyncArr()).then(function(unique){
+    console.log(unique); //[1,2,3,4,5]
+});</code></pre>
+</p>
+
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   return asyncRemoveDuplicates.apply(null, arguments);
+}
+    </pre>
+    
+
+
+    
+        <a name=".valuesAt"></a>
+    <h3>
+        valuesAt
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.valuesAt'> comb.array.valuesAt</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+comb.async.array(asyncArr()).valuesAt(2,3,4).then(function(values){
+    console.log(values); //[3,4,5]
+});
+
+comb.async.valuesAt(asyncArr(), 2,3,4).then(function(values){
+    console.log(values); //[3,4,5]
+});</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arrPromise</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arrPromise){
+   var args = argsToArray(arguments, 1);
+   return asyncArray(when(arrPromise).chain(function (result) {
+       return valuesAt.apply(array, [normalizeResult(result)].concat(args));
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".zip"></a>
+    <h3>
+        zip
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Zips results from promises into an array.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
+    return ret.promise;
+}
+
+comb.async.zip(asyncArr(), asyncArr()).then(function(zipped){
+     console.log(zipped); //[[1,1],[2,2],[3,3], [4,4], [5,5]]
+});
+
+comb.async.array(asyncArr()).zip(asyncArr()).then(function(zipped){
+     console.log(zipped); //[[1,1],[2,2],[3,3], [4,4], [5,5]]
+});</code></pre>
+</p>
+
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> <p>an array with all the arrays zipped together.</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (){
+   return asyncArray(when.apply(null, argsToArray(arguments)).chain(function (result) {
+       return zip.apply(array, normalizeResult(result).map(function (arg) {
+           return isArray(arg) ? arg : [arg];
+       }));
+   }));
+}
+    </pre>
+    
+
+
+    
+<hr>
+
+    
+  <h2>License</h2>
+<p>MIT <a href="https://github.com/Pollenware/comb/raw/master/LICENSE">https://github.com/Pollenware/comb/raw/master/LICENSE</a>
+
+</p>
+<h2>Meta</h2>
+<ul>
+<li>Code: <code>git clone git://github.com/Pollenware/comb.git</code></li>
+<li>Website: <a href="http://pollenware.com">http://pollenware.com</a></li>
+<li>Twitter: <a href="http://twitter.com/pollenware"><a href="http://twitter.com/pollenware">http://twitter.com/pollenware</a></a> - 877.465.4045</li>
+</ul>
+
+
+
+
+</div>
+</div>
+<script type="text/javascript" src="./assets/js/jquery.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./assets/js/prettify.js"></script>
+
+</body>
+</html>
+
