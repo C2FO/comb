@@ -1852,8 +1852,9 @@ function (arrPromise,property){
        var prop = property.split(&quot;.&quot;);
        result = normalizeResult(result);
        return asyncArray(prop).forEach(function (prop) {
+           var exec = prop.match(/(\w+)\(\)$/);
            return asyncArray(result).map(function (item) {
-               return item[prop];
+               return exec ? item[exec[1]]() : item[prop];
            }).chain(function (res) {
                    result = res;
                });

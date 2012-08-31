@@ -276,6 +276,8 @@
             <a href="#" class="brand">
                 comb.array
                 
+                <span class="label label-label">Function</span>
+                
                 
                 
                 <span class="label label-success">Public</span>
@@ -635,42 +637,23 @@
 </div>
 <em>Defined base/array.js</em>
 
-<p><p>Utilities for Arrays</p>
+<p><p>Utilities for working with arrays.
+
+</p>
+<p>The <code>comb.array</code> namespace can be used to decorate arrays with additional chainable funcitonality.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>
+var arr = comb.array([1,3,2,5,4,6]);
+console.log(arr.sum()) //21
+console.log(arr.sort()) //[1,2,3,4,5,6]
+console.log(arr.min()) //[1]
+console.log(arr.max()) [6]</code></pre>
 </p>
 
 
 
 
-
-    
-    <em>Source</em>
-    <pre class="prettyprint linenums lang-js">
-{
-    toArray:toArray,
-    sum:sum,
-    avg:avg,
-    sort:sort,
-    min:min,
-    max:max,
-    difference:difference,
-    removeDuplicates:removeDuplicates,
-    unique:unique,
-    rotate:rotate,
-    permutations:permutations,
-    zip:zip,
-    transpose:transpose,
-    valuesAt:valuesAt,
-    union:union,
-    intersect:intersect,
-    powerSet:powerSet,
-    cartesian:cartesian,
-    compact:compact,
-    multiply:multiply,
-    flatten:flatten,
-    pluck:pluck
-}
-    </pre>
-    
 
     
     
@@ -1455,8 +1438,9 @@ console.log(comb.array.pluck(arr, &quot;roles.0&quot;)); //[&quot;a&quot;, &quot
 function (arr,prop){
    var prop = prop.split(&quot;.&quot;), result = arr.slice(0);
    prop.forEach(function (prop) {
+       var exec = prop.match(/(\w+)\(\)$/);
        result = result.map(function (item) {
-           return item[prop];
+           return exec ? item[exec[1]]() : item[prop];
        });
    });
    return result;

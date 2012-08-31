@@ -257,8 +257,8 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>11256</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>2931</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>11303</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>2940</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
             </td>
@@ -276,8 +276,8 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>1155</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>147</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>1156</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>148</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
             </td>
@@ -1308,8 +1308,9 @@ td.cov-stats {
 <li class='green'><span class='hits'>4</span><code>        var prop = property.split(".");</code></li>
 <li class='green'><span class='hits'>4</span><code>        result = normalizeResult(result);</code></li>
 <li class='green'><span class='hits'>4</span><code>        return asyncArray(prop).forEach(function (prop) {</code></li>
+<li class='green'><span class='hits'>7</span><code>            var exec = prop.match(/(\w+)\(\)$/);</code></li>
 <li class='green'><span class='hits'>7</span><code>            return asyncArray(result).map(function (item) {</code></li>
-<li class='green'><span class='hits'>28</span><code>                return item[prop];</code></li>
+<li class='green'><span class='hits'>28</span><code>                return exec ? item[exec[1]]() : item[prop];</code></li>
 <li class='green'><span class=''> </span><code>            }).chain(function (res) {</code></li>
 <li class='green'><span class='hits'>7</span><code>                    result = res;</code></li>
 <li class='green'><span class=''> </span><code>                });</code></li>
@@ -1449,20 +1450,24 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>790</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>222</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>836</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>230</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
             </td>
         </tr>
     </table>
-    <div class='source' id="base/array.js-source"><pre class='prettyprint linenums'><ol class='linenums'><li class='green'><span class='hits'>1</span><code>var obj = require("./object"), misc = require("./misc"), string = require("./string"), isString = string.isString, number = require("./number.js");</code></li>
+    <div class='source' id="base/array.js-source"><pre class='prettyprint linenums'><ol class='linenums'><li class='green'><span class='hits'>1</span><code>var obj = require("./object"),</code></li>
+<li class='green'><span class=''> </span><code>    merge = obj.merge,</code></li>
+<li class='green'><span class=''> </span><code>    misc = require("./misc"),</code></li>
+<li class='green'><span class=''> </span><code>    argsToArray = misc.argsToArray,</code></li>
+<li class='green'><span class=''> </span><code>    string = require("./string"),</code></li>
+<li class='green'><span class=''> </span><code>    isString = string.isString,</code></li>
+<li class='green'><span class=''> </span><code>    number = require("./number.js");</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>var argsToArray = misc.argsToArray;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>var isArray = exports.isArray = function isArray(obj) {</code></li>
-<li class='green'><span class='hits'>1418</span><code>    return Array.isArray(obj);</code></li>
+<li class='green'><span class='hits'>1645</span><code>    return Array.isArray(obj);</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function cross(num, cross) {</code></li>
@@ -2208,19 +2213,58 @@ td.cov-stats {
 <li class='green'><span class='hits'>1</span><code>function pluck(arr, prop) {</code></li>
 <li class='green'><span class='hits'>4</span><code>    var prop = prop.split("."), result = arr.slice(0);</code></li>
 <li class='green'><span class='hits'>4</span><code>    prop.forEach(function (prop) {</code></li>
+<li class='green'><span class='hits'>7</span><code>        var exec = prop.match(/(\w+)\(\)$/);</code></li>
 <li class='green'><span class='hits'>7</span><code>        result = result.map(function (item) {</code></li>
-<li class='green'><span class='hits'>28</span><code>            return item[prop];</code></li>
+<li class='green'><span class='hits'>28</span><code>            return exec ? item[exec[1]]() : item[prop];</code></li>
 <li class='green'><span class=''> </span><code>        });</code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
 <li class='green'><span class='hits'>4</span><code>    return result;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function arrayWrapper(arr) {</code></li>
+<li class='green'><span class='hits'>139</span><code>    arr = isArray(arr) ? arr : [];</code></li>
+<li class='green'><span class='hits'>139</span><code>    methods.forEach(function (m) {</code></li>
+<li class='green'><span class='hits'>2919</span><code>        var func = array[m];</code></li>
+<li class='green'><span class='hits'>2919</span><code>        Object.defineProperty(arr, m, {</code></li>
+<li class='green'><span class=''> </span><code>            value:function () {</code></li>
+<li class='green'><span class='hits'>88</span><code>                var ret = func.apply(null, [this].concat(argsToArray(arguments)));</code></li>
+<li class='green'><span class='hits'>88</span><code>                return isArray(ret) ? arrayWrapper(ret) : ret;</code></li>
+<li class='green'><span class=''> </span><code>            },</code></li>
+<li class='green'><span class=''> </span><code>            writable:false,</code></li>
+<li class='green'><span class=''> </span><code>            enumerable:false,</code></li>
+<li class='green'><span class=''> </span><code>            configurable:false</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>var comb = exports, array;</code></li>
+<li class='green'><span class=''> </span><code>        });</code></li>
+<li class='green'><span class=''> </span><code>    });</code></li>
+<li class='green'><span class='hits'>139</span><code>    return arr;</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>var comb = exports, array, methods = ["zip", "sum", "avg", "sort", "min", "max", "difference", "removeDuplicates", "unique", "rotate",</code></li>
+<li class='green'><span class=''> </span><code>    "permutations", "transpose", "valuesAt", "union", "intersect", "powerSet", "cartesian", "compact",</code></li>
+<li class='green'><span class=''> </span><code>    "multiply", "flatten", "pluck"];</code></li>
+<li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * @namespace Utilities for Arrays</code></li>
+<li class='green'><span class=''> </span><code> * @namespace Utilities for working with arrays.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * The `comb.array` namespace can be used to decorate arrays with additional chainable funcitonality.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * var arr = comb.array([1,3,2,5,4,6]);</code></li>
+<li class='green'><span class=''> </span><code> * console.log(arr.sum()) //21</code></li>
+<li class='green'><span class=''> </span><code> * console.log(arr.sort()) //[1,2,3,4,5,6]</code></li>
+<li class='green'><span class=''> </span><code> * console.log(arr.min()) //[1]</code></li>
+<li class='green'><span class=''> </span><code> * console.log(arr.max()) [6]</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @function</code></li>
+<li class='green'><span class=''> </span><code> * @ignoreCode</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.array = {</code></li>
+<li class='green'><span class='hits'>1</span><code>comb.array = arrayWrapper;</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>array = merge(comb.array, {</code></li>
 <li class='green'><span class=''> </span><code>    toArray:toArray,</code></li>
 <li class='green'><span class=''> </span><code>    sum:sum,</code></li>
 <li class='green'><span class=''> </span><code>    avg:avg,</code></li>
@@ -2243,9 +2287,12 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    multiply:multiply,</code></li>
 <li class='green'><span class=''> </span><code>    flatten:flatten,</code></li>
 <li class='green'><span class=''> </span><code>    pluck:pluck</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code>});</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>array = comb.array;</code></li></ol></pre></div>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li></ol></pre></div>
 </div>
 
 <div class="cov-section cov-section-hover cov-section-all" id="base/broadcast.js">
@@ -4134,8 +4181,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Array} array version of the arguments object</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function argsToArray(args, slice) {</code></li>
-<li class='green'><span class='hits'>10999</span><code>    slice = slice || 0;</code></li>
-<li class='green'><span class='hits'>10999</span><code>    return arraySlice.call(args, slice);</code></li>
+<li class='green'><span class='hits'>11087</span><code>    slice = slice || 0;</code></li>
+<li class='green'><span class='hits'>11087</span><code>    return arraySlice.call(args, slice);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -4493,14 +4540,14 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function merge(target, source) {</code></li>
-<li class='green'><span class='hits'>448</span><code>    var name, s;</code></li>
-<li class='green'><span class='hits'>448</span><code>    for (name in source) {</code></li>
-<li class='green'><span class='hits'>612</span><code>        s = source[name];</code></li>
-<li class='green'><span class='hits'>612</span><code>        if (!(name in target) || (target[name] !== s)) {</code></li>
-<li class='green'><span class='hits'>611</span><code>            target[name] = s;</code></li>
+<li class='green'><span class='hits'>449</span><code>    var name, s;</code></li>
+<li class='green'><span class='hits'>449</span><code>    for (name in source) {</code></li>
+<li class='green'><span class='hits'>634</span><code>        s = source[name];</code></li>
+<li class='green'><span class='hits'>634</span><code>        if (!(name in target) || (target[name] !== s)) {</code></li>
+<li class='green'><span class='hits'>633</span><code>            target[name] = s;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>448</span><code>    return target;</code></li>
+<li class='green'><span class='hits'>449</span><code>    return target;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function deepMerge(target, source) {</code></li>
@@ -4545,13 +4592,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Object} the merged object</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>comb.merge = function (obj, props) {</code></li>
-<li class='green'><span class='hits'>427</span><code>    if (!obj) {</code></li>
+<li class='green'><span class='hits'>428</span><code>    if (!obj) {</code></li>
 <li class='green'><span class='hits'>1</span><code>        obj = {};</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>427</span><code>    for (var i = 1, l = arguments.length; i &lt; l; i++) {</code></li>
-<li class='green'><span class='hits'>446</span><code>        merge(obj, arguments[i]);</code></li>
+<li class='green'><span class='hits'>428</span><code>    for (var i = 1, l = arguments.length; i &lt; l; i++) {</code></li>
+<li class='green'><span class='hits'>447</span><code>        merge(obj, arguments[i]);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>427</span><code>    return obj; // Object</code></li>
+<li class='green'><span class='hits'>428</span><code>    return obj; // Object</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -5682,12 +5729,12 @@ td.cov-stats {
 <li class='green'><span class='hits'>318</span><code>        ch = ch || " ";</code></li>
 <li class='green'><span class='hits'>318</span><code>        var strLen = string.length;</code></li>
 <li class='green'><span class='hits'>318</span><code>        while (strLen &lt; length) {</code></li>
-<li class='green'><span class='hits'>204</span><code>            if (end) {</code></li>
+<li class='green'><span class='hits'>179</span><code>            if (end) {</code></li>
 <li class='green'><span class='hits'>117</span><code>                string += ch;</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>87</span><code>                string = ch + string;</code></li>
+<li class='green'><span class='hits'>62</span><code>                string = ch + string;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>204</span><code>            strLen++;</code></li>
+<li class='green'><span class='hits'>179</span><code>            strLen++;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class='hits'>318</span><code>        return string;</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>

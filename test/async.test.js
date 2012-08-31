@@ -937,4 +937,4 @@ it.describe("comb.async",function (it) {
     });
 
 
-}).as(module).run();
+}).as(module);
