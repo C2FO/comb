@@ -65,7 +65,7 @@ it.describe("comb.async",function (it) {
                     throw new Error("error");
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results[4].message, "error");
+                    assert.deepEqual(results.message, "error");
                     next();
                 });
         });
@@ -76,7 +76,7 @@ it.describe("comb.async",function (it) {
                     return new comb.Promise().errback(new Error("error"));
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results[4].message, "error");
+                    assert.deepEqual(results.message, "error");
                     next();
                 });
         });
@@ -138,7 +138,7 @@ it.describe("comb.async",function (it) {
                     throw new Error("error");
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results[4].message, "error");
+                    assert.deepEqual(results.message, "error");
                     next();
                 });
         });
@@ -149,7 +149,7 @@ it.describe("comb.async",function (it) {
                     return new comb.Promise().errback(new Error("error"));
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results[4].message, "error");
+                    assert.deepEqual(results.message, "error");
                     next();
                 });
         });
@@ -206,7 +206,7 @@ it.describe("comb.async",function (it) {
                     throw new Error("error");
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results[4].message, "error");
+                    assert.deepEqual(results.message, "error");
                     next();
                 });
         });
@@ -217,7 +217,7 @@ it.describe("comb.async",function (it) {
                     return new comb.Promise().errback(new Error("error"));
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results[4].message, "error");
+                    assert.deepEqual(results.message, "error");
                     next();
                 });
         });
@@ -305,7 +305,7 @@ it.describe("comb.async",function (it) {
                     throw new Error("error");
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results[4].message, "error");
+                    assert.deepEqual(results.message, "error");
                     next();
                 });
         });
@@ -316,7 +316,7 @@ it.describe("comb.async",function (it) {
                     return new comb.Promise().errback(new Error("error"));
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results[4].message, "error");
+                    assert.deepEqual(results.message, "error");
                     next();
                 });
         });
@@ -414,7 +414,7 @@ it.describe("comb.async",function (it) {
                     throw new Error("error");
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results[4].message, "error");
+                    assert.deepEqual(results.message, "error");
                     next();
                 });
         });
@@ -425,7 +425,7 @@ it.describe("comb.async",function (it) {
                     return new comb.Promise().errback(new Error("error"));
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results[4].message, "error");
+                    assert.deepEqual(results.message, "error");
                     next();
                 });
         });
@@ -909,6 +909,24 @@ it.describe("comb.async",function (it) {
         });
     });
 
+    it.describe("pluck", function (it) {
+        it.should("pluck properties", function (it) {
+            var arr = [
+                {name:{first:"Fred", last:"Jones"}, age:50, roles:["a", "b", "c"]},
+                {name:{first:when("Bob"), last:"Yukon"}, age:when(40), roles:when(["b", "c"])},
+                {name:{first:"Alice", last:"Palace"}, age:35, roles:["c"]},
+                {name:{first:when("Johnny"), last:"P."}, age:56, roles:when([])}
+            ];
+            return when(
+                asyncDeepEqual(array(arr).pluck("name.first"), ["Fred", "Bob", "Alice", "Johnny"]),
+                asyncDeepEqual(array(arr).pluck("age"), [50, 40, 35, 56]),
+                asyncDeepEqual(array(arr).pluck("roles.length"), [3, 2, 1, 0]),
+                asyncDeepEqual(array(arr).pluck("roles.0"), ["a", "b", "c", undefined])
+            );
+
+        });
+    });
+
     it.should("allow chaining of operations", function () {
         return asyncDeepEqual(array(asyncArr())
             .map(function (num, i) {
@@ -918,4 +936,5 @@ it.describe("comb.async",function (it) {
             }).avg(), 11.666666666666666);
     });
 
-}).as(module);
+
+}).as(module).run();

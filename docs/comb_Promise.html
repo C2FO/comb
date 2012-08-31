@@ -629,7 +629,7 @@ function (cb){
            cb = hitch(cb, &quot;callback&quot;);
        }
        if (this.__fired &amp;&amp; this.__results) {
-           cb.apply(this, this.__results);
+           this.__callNextTick(cb, this.__results);
        } else {
            this.__cbs.push(cb);
        }
@@ -693,7 +693,7 @@ function (cb){
            cb = hitch(cb, &quot;errback&quot;);
        }
        if (this.__fired &amp;&amp; this.__error) {
-           cb.apply(this, this.__error);
+           this.__callNextTick(cb, this.__error);
        } else {
            this.__errorCbs.push(cb);
        }
@@ -905,11 +905,14 @@ errback method will be used.</p>
 function (callback,errback){
    var promise = new Promise();
    this.addCallback(function () {
-       try {
-           when(isFunction(callback) ? callback.apply(this, arguments) : callback).then(promise);
-       } catch (e) {
-           promise.errback(e);
-       }
+       var args = arguments;
+       process.nextTick(function () {
+           try {
+               when(isFunction(callback) ? callback.apply(this, args) : callback).then(promise);
+           } catch (e) {
+               promise.errback(e);
+           }
+       });
    });
    // If no errback passed, then invoke our promise&#x27;s errback to pass
    // on to next link in the chain.

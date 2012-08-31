@@ -512,6 +512,34 @@ comb.async.some(asyncArr(), function(item, index){
 }).then(function(){                                                                                     
     console.log(myNewArr) //false;                                                                      
 })                                                                                                      
-```                                                                                                     
+```  
+
+##[comb.async.pluck](./comb_async.html#.pluck)
+
+Async version of [comb.array.pluck](./comb_array.html#.pluck)
+                                                                                                                             
+```                                                                                                                          
+var when = comb.when,                                                                                                        
+    array = comb.async.array;                                                                                                
+function asyncArr(){                                                                                                         
+    var ret = new comb.Promise();                                                                                            
+    process.nextTick(ret.callback.bind(ret, [                                                                                
+                                             {name:{first:when("Fred"), last:"Jones"}, age:when(50), roles:["a", "b", "c"]}, 
+                                             {name:{first:"Bob", last:"Yukon"}, age:40, roles:when(["b", "c"])},             
+                                             {name:{first:"Alice", last:"Palace"}, age:when(35), roles:["c"]},               
+                                             {name:{first:when("Johnny"), last:"P."}, age:56, roles:when([])}                
+                                            ]);                                                                              
+    return ret.promise;                                                                                                      
+}                                                                                                                            
+                                                                                                                             
+array(asyncArr()).pluck("name.first").then(function(values){                                                                 
+    console.log(values); //["Fred", "Bob", "Alice", "Johnny"]                                                                
+});                                                                                                                          
+                                                                                                                             
+pluck(asyncArr(), "age").then(function(values){                                                                              
+    console.log(values); //[50, 40, 35, 56]                                                                                  
+});                                                                                                                          
+                                                                                                                             
+```                                                                                                                                                                                                                             
 
 

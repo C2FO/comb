@@ -712,6 +712,30 @@ comb.async.some(asyncArr(), function(item){
 }).then(function(){                                                                                     
     console.log(myNewArr) //false;                                                                      
 })</code></pre>
+<h2><a href="./comb_async.html#.pluck">comb.async.pluck</a></h2>
+<p>Async version of <a href="./comb_array.html#.pluck">comb.array.pluck</a>
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var when = comb.when,                                                                                                        
+    array = comb.async.array;                                                                                                
+function asyncArr(){                                                                                                         
+    var ret = new comb.Promise();                                                                                            
+    process.nextTick(ret.callback.bind(ret, [                                                                                
+                                             {name:{first:when(&quot;Fred&quot;), last:&quot;Jones&quot;}, age:when(50), roles:[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]}, 
+                                             {name:{first:&quot;Bob&quot;, last:&quot;Yukon&quot;}, age:40, roles:when([&quot;b&quot;, &quot;c&quot;])},             
+                                             {name:{first:&quot;Alice&quot;, last:&quot;Palace&quot;}, age:when(35), roles:[&quot;c&quot;]},               
+                                             {name:{first:when(&quot;Johnny&quot;), last:&quot;P.&quot;}, age:56, roles:when([])}                
+                                            ]);                                                                              
+    return ret.promise;                                                                                                      
+}                                                                                                                            
+
+array(asyncArr()).pluck(&quot;name.first&quot;).then(function(values){                                                                 
+    console.log(values); //[&quot;Fred&quot;, &quot;Bob&quot;, &quot;Alice&quot;, &quot;Johnny&quot;]                                                                
+});                                                                                                                          
+
+pluck(asyncArr(), &quot;age&quot;).then(function(values){                                                                              
+    console.log(values); //[50, 40, 35, 56]                                                                                  
+});</code></pre>
 
 <hr>
 

@@ -600,17 +600,17 @@ it.describe("The promise API",function (it) {
 
         it.should("execute the items serially", function (next) {
             comb.serial([
-                comb.partial(asyncAction, 1, 1000),
+                comb.partial(asyncAction, 1, 100),
                 comb.partial(syncAction, 1.5),
-                comb.partial(asyncAction, 2, 900),
+                comb.partial(asyncAction, 2, 90),
                 comb.partial(syncAction, 2.5),
-                comb.partial(asyncAction, 3, 800),
+                comb.partial(asyncAction, 3, 80),
                 comb.partial(syncAction, 3.5),
-                comb.partial(asyncAction, 4, 700),
+                comb.partial(asyncAction, 4, 70),
                 comb.partial(syncAction, 4.5),
-                comb.partial(asyncAction, 5, 600),
+                comb.partial(asyncAction, 5, 60),
                 comb.partial(syncAction, 5.5),
-                comb.partial(asyncAction, 6, 500)
+                comb.partial(asyncAction, 6, 50)
             ]).then(function (res) {
                     assert.deepEqual(res, [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6]);
                     next();
@@ -619,17 +619,17 @@ it.describe("The promise API",function (it) {
 
         it.should("catch errors", function (next) {
             comb.serial([
-                comb.partial(asyncAction, 1, 1000),
+                comb.partial(asyncAction, 1, 100),
                 comb.partial(syncAction, 1.5),
-                comb.partial(asyncAction, 2, 900),
+                comb.partial(asyncAction, 2, 90),
                 comb.partial(syncAction, 2.5),
-                comb.partial(asyncAction, 3, 800),
+                comb.partial(asyncAction, 3, 80),
                 comb.partial(syncAction, 3.5),
-                comb.partial(asyncAction, 4, 700),
+                comb.partial(asyncAction, 4, 70),
                 comb.partial(syncAction, 4.5),
-                comb.partial(asyncAction, 5, 600),
+                comb.partial(asyncAction, 5, 60),
                 comb.partial(syncAction, 5.5, true),
-                comb.partial(asyncAction, 6, 500)
+                comb.partial(asyncAction, 6, 50)
             ]).then(next, function (res) {
                     assert.deepEqual(res, "ERROR");
                     next();
@@ -638,17 +638,17 @@ it.describe("The promise API",function (it) {
 
         it.should("catch async errors", function (next) {
             comb.serial([
-                comb.partial(asyncAction, 1, 1000, true),
+                comb.partial(asyncAction, 1, 100, true),
                 comb.partial(syncAction, 1.5),
-                comb.partial(asyncAction, 2, 900),
+                comb.partial(asyncAction, 2, 90),
                 comb.partial(syncAction, 2.5),
-                comb.partial(asyncAction, 3, 800),
+                comb.partial(asyncAction, 3, 80),
                 comb.partial(syncAction, 3.5),
-                comb.partial(asyncAction, 4, 700),
+                comb.partial(asyncAction, 4, 70),
                 comb.partial(syncAction, 4.5),
-                comb.partial(asyncAction, 5, 600),
+                comb.partial(asyncAction, 5, 60),
                 comb.partial(syncAction, 5.5, true),
-                comb.partial(asyncAction, 6, 500)
+                comb.partial(asyncAction, 6, 50)
             ]).then(next, function (res) {
                     assert.deepEqual(res, 1);
                     next();
@@ -658,17 +658,17 @@ it.describe("The promise API",function (it) {
         it.should("throw an error if not called with an array", function () {
             assert.throws(function () {
                 comb.serial(
-                    comb.partial(asyncAction, 1, 1000, true),
+                    comb.partial(asyncAction, 1, 100, true),
                     comb.partial(syncAction, 1.5),
-                    comb.partial(asyncAction, 2, 900),
+                    comb.partial(asyncAction, 2, 90),
                     comb.partial(syncAction, 2.5),
-                    comb.partial(asyncAction, 3, 800),
+                    comb.partial(asyncAction, 3, 80),
                     comb.partial(syncAction, 3.5),
-                    comb.partial(asyncAction, 4, 700),
+                    comb.partial(asyncAction, 4, 70),
                     comb.partial(syncAction, 4.5),
-                    comb.partial(asyncAction, 5, 600),
+                    comb.partial(asyncAction, 5, 60),
                     comb.partial(syncAction, 5.5, true),
-                    comb.partial(asyncAction, 6, 500)
+                    comb.partial(asyncAction, 6, 50)
                 );
             });
         });
@@ -710,17 +710,17 @@ it.describe("The promise API",function (it) {
 
         it.should("execute the items serially", function (next) {
             comb.chain([
-                asyncAction(1, 1000),
+                asyncAction(1, 100),
                 syncAction(1.5),
-                asyncAction(2, 900),
+                asyncAction(2, 90),
                 syncAction(2.5),
-                asyncAction(3, 800),
+                asyncAction(3, 80),
                 syncAction(3.5),
-                asyncAction(4, 700),
+                asyncAction(4, 70),
                 syncAction(4.5),
-                asyncAction(5, 600),
+                asyncAction(5, 60),
                 syncAction(5.5),
-                asyncAction(6, 500)
+                asyncAction(6, 50)
             ]).then(function (results, prev) {
                     assert.deepEqual(results, 38.5);
                     assert.isUndefined(prev);
@@ -730,17 +730,17 @@ it.describe("The promise API",function (it) {
 
         it.should("catch errors", function (next) {
             comb.chain([
-                asyncAction(1, 1000),
+                asyncAction(1, 100),
                 syncAction(1.5),
-                asyncAction(2, 900),
+                asyncAction(2, 90),
                 syncAction(2.5),
-                asyncAction(3, 800),
+                asyncAction(3, 80),
                 syncAction(3.5),
-                asyncAction(4, 700),
+                asyncAction(4, 70),
                 syncAction(4.5),
-                asyncAction(5, 600),
+                asyncAction(5, 60),
                 syncAction(5.5, true),
-                asyncAction(6, 500)
+                asyncAction(6, 50)
             ]).then(next, function (res) {
                     assert.deepEqual(res, "ERROR");
                     next();
@@ -749,15 +749,15 @@ it.describe("The promise API",function (it) {
 
         it.should("catch async errors", function (next) {
             comb.chain([
-                asyncAction(1, 1000, true),
+                asyncAction(1, 100, true),
                 syncAction(1.5),
-                asyncAction(2, 900),
+                asyncAction(2, 90),
                 syncAction(2.5),
-                asyncAction(3, 800),
+                asyncAction(3, 80),
                 syncAction(3.5),
-                asyncAction(4, 700),
+                asyncAction(4, 70),
                 syncAction(4.5),
-                asyncAction(5, 600),
+                asyncAction(5, 60),
                 syncAction(5.5, true),
                 asyncAction(6, 500)
             ]).then(next, function (res) {
@@ -769,34 +769,34 @@ it.describe("The promise API",function (it) {
         it.should("throw an error if not called with an array", function () {
             assert.throws(function () {
                 comb.chain(
-                    asyncAction(1, 1000, true),
+                    asyncAction(1, 100, true),
                     syncAction(1.5),
-                    asyncAction(2, 900),
+                    asyncAction(2, 90),
                     syncAction(2.5),
-                    asyncAction(3, 800),
+                    asyncAction(3, 80),
                     syncAction(3.5),
-                    asyncAction(4, 700),
+                    asyncAction(4, 70),
                     syncAction(4.5),
-                    asyncAction(5, 600),
+                    asyncAction(5, 60),
                     syncAction(5.5, true),
-                    asyncAction(6, 500)
+                    asyncAction(6, 50)
                 );
             });
         });
 
         it.should("return multiple arguments if function callback with multiple args", function (next) {
             comb.chain([
-                asyncActionMulti(1, 1000),
+                asyncActionMulti(1, 100),
                 asyncActionMulti(1.5),
-                asyncActionMulti(2, 900),
+                asyncActionMulti(2, 90),
                 asyncActionMulti(2.5),
-                asyncActionMulti(3, 800),
+                asyncActionMulti(3, 80),
                 asyncActionMulti(3.5),
-                asyncActionMulti(4, 700),
+                asyncActionMulti(4, 70),
                 asyncActionMulti(4.5),
-                asyncActionMulti(5, 600),
+                asyncActionMulti(5, 60),
                 asyncActionMulti(5.5),
-                asyncActionMulti(6, 500)
+                asyncActionMulti(6, 50)
             ]).then(function (num, prev) {
                     assert.equal(num, 38.5);
                     assert.equal(prev, 137.5);

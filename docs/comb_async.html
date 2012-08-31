@@ -520,6 +520,21 @@
                                 permutations
                             </a></li>
                             
+                            <li><a href="./comb_async.html#.pluck">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                pluck
+                            </a></li>
+                            
                             <li><a href="./comb_async.html#.powerSet">
                                 
                                 <span class="label label-info">S</span>
@@ -792,18 +807,26 @@ array(asyncArr())
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (p){
-   var ret = merge(when(p), {
-       promise:asyncArray.bind(null, p)
-   });
-   methods.forEach(function (m) {
-       ret[m] = function () {
-           var args = argsToArray(arguments), mRet = new Promise();
-           process.nextTick(function () {
-               asyncExports[m].apply(null, [ret].concat(args)).then(mRet);
-           });
-           return asyncArray(mRet);
-       };
-   });
+   var ret;
+   if (!p || !p.__isArrayAsync__) {
+       ret = merge(when(p), {
+           promise:function () {
+               return asyncArray(this)
+           }
+       });
+       methods.forEach(function (m) {
+           ret[m] = function () {
+               var args = argsToArray(arguments), mRet = new Promise();
+               process.nextTick(function () {
+                   asyncExports[m].apply(null, [ret].concat(args)).then(mRet);
+               });
+               return asyncArray(mRet);
+           };
+       });
+       ret.__isArrayAsync__ = true;
+   } else {
+       ret = p;
+   }
    return ret;
 }
     </pre>
@@ -1756,6 +1779,87 @@ function (){
    }
    return asyncArray(when.apply(null, args).chain(function (result) {
        return permutations.call(array, normalizeResult(result), times);
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".pluck"></a>
+    <h3>
+        pluck
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.pluck'> comb.array.pluck</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var when = comb.when,
+    array = comb.async.array;
+function asyncArr(){
+    var ret = new comb.Promise();
+    process.nextTick(ret.callback.bind(ret, [
+                                             {name:{first:when(&quot;Fred&quot;), last:&quot;Jones&quot;}, age:when(50), roles:[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]},
+                                             {name:{first:&quot;Bob&quot;, last:&quot;Yukon&quot;}, age:40, roles:when([&quot;b&quot;, &quot;c&quot;])},
+                                             {name:{first:&quot;Alice&quot;, last:&quot;Palace&quot;}, age:when(35), roles:[&quot;c&quot;]},
+                                             {name:{first:when(&quot;Johnny&quot;), last:&quot;P.&quot;}, age:56, roles:when([])}
+                                            ]);
+    return ret.promise;
+}
+
+array(asyncArr()).pluck(&quot;name.first&quot;).then(function(values){
+    console.log(values); //[&quot;Fred&quot;, &quot;Bob&quot;, &quot;Alice&quot;, &quot;Johnny&quot;]
+});
+
+pluck(asyncArr(), &quot;age&quot;).then(function(values){
+    console.log(values); //[50, 40, 35, 56]
+});</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arrPromise</em>  : </li>
+    
+        <li> <em>property</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arrPromise,property){
+   var args = argsToArray(arguments, 1);
+   return asyncArray(when(arrPromise).chain(function (result) {
+       var prop = property.split(&quot;.&quot;);
+       result = normalizeResult(result);
+       return asyncArray(prop).forEach(function (prop) {
+           return asyncArray(result).map(function (item) {
+               return item[prop];
+           }).chain(function (res) {
+                   result = res;
+               });
+       }).chain(function () {
+               return result;
+           });
    }));
 }
     </pre>

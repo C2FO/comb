@@ -446,5 +446,21 @@ it.describe("comb.array",function (it) {
         assert.deepEqual(remove([1, 2, 2, 3, 3, 3, 4, 4, 4]), [1, 2, 3, 4]);
         assert.deepEqual(remove(["a", "b", "b"]), ["a", "b"]);
     });
-}).as(module);
+
+    it.should("support pluck", function () {
+
+        var arr = [
+            {name:{first:"Fred", last:"Jones"}, age:50, roles:["a", "b", "c"]},
+            {name:{first:"Bob", last:"Yukon"}, age:40, roles:["b", "c"]},
+            {name:{first:"Alice", last:"Palace"}, age:35, roles:["c"]},
+            {name:{first:"Johnny", last:"P."}, age:56, roles:[]}
+        ];
+
+        assert.deepEqual(comb.array.pluck(arr, "name.first"), ["Fred", "Bob", "Alice", "Johnny"]);
+        assert.deepEqual(comb.array.pluck(arr, "age"), [50, 40, 35, 56]);
+        assert.deepEqual(comb.array.pluck(arr, "roles.length"), [3, 2, 1, 0]);
+        assert.deepEqual(comb.array.pluck(arr, "roles.0"), ["a", "b", "c", undefined]);
+
+    });
+}).as(module).run();
 
