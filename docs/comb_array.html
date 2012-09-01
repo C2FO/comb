@@ -387,6 +387,21 @@
                                 intersect
                             </a></li>
                             
+                            <li><a href="./comb_array.html#.invoke">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                invoke
+                            </a></li>
+                            
                             <li><a href="./comb_array.html#.max">
                                 
                                 <span class="label label-info">S</span>
@@ -1077,6 +1092,98 @@ function (a,b){
        }, x);
    }
    return removeDuplicates(collect);
+}
+    </pre>
+    
+
+
+    
+        <a name=".invoke"></a>
+    <h3>
+        invoke
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p><p>Invokes the method specified in the scope of each item in the array. If you supply addional arguments they will
+be applied to the function.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>
+function person(name, age){
+    return {
+        getName : function(){
+            return name;
+        },
+        setName : function(newName){
+            name = newName;
+        },
+
+        getOlder : function(){
+            age++;
+            return this;
+        },
+
+        getAge : function(){
+            return age;
+        }
+    };
+}
+
+var arr = [person(&quot;Bob&quot;, 40), person(&quot;Alice&quot;, 35), person(&quot;Fred&quot;, 50), person(&quot;Johnny&quot;, 56)];
+
+console.log(comb.array.invoke(arr, &quot;getName&quot;)); //[&quot;Bob&quot;, &quot;Alice&quot;, &quot;Fred&quot;, &quot;Johnny&quot;]
+
+console.log(comb.array(arr).invoke(&quot;getOlder&quot;).invoke(&quot;getAge&quot;)); //[41, 36, 51, 57];</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arr</em>  : <p>the array to iterate and invoke the functions on</p>
+</li>
+    
+        <li> <em>func</em>  : <p>the function to invoke, if it is a string then the function will be looked up on the each item in the array and invoked</p>
+</li>
+    
+        <li> <em>[args= <code>null</code>]</em>  : <p>variable number of arguments to apply to the function</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Array</code> <p>the return values of the functions invoked.</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arr,func,args){
+   var args = argsToArray(arguments, 2);
+   return arr.map(function (item) {
+       var exec = isString(func) ? item[func] : func;
+       return exec.apply(item, args);
+   });
 }
     </pre>
     

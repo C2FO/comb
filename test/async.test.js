@@ -927,6 +927,32 @@ it.describe("comb.async",function (it) {
         });
     });
 
+    it.describe("#invoke", function (it) {
+        it.should("support invoke", function () {
+            function person(name, age) {
+                return {
+                    getName:function () {
+                        return when(name);
+                    },
+
+                    getOlder:function () {
+                        age++;
+                        return when(this);
+                    },
+
+                    getAge:function () {
+                        return when(age);
+                    }
+                };
+            }
+
+            var arr = [when(person("Bob", 40)), when(person("Alice", 35)), when(person("Fred", 50)), when(person("Johnny", 56))];
+            asyncDeepEqual(comb.async.invoke(arr, "getName"), ["Bob", "Alice", "Fred", "Johnny"]);
+            asyncDeepEqual(array(arr).invoke("getOlder").pluck("getAge"), [41, 36, 51, 57]);
+
+        });
+    });
+
     it.should("allow chaining of operations", function () {
         return asyncDeepEqual(array(asyncArr())
             .map(function (num, i) {

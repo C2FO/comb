@@ -460,5 +460,29 @@ it.describe("array",function (it) {
         assert.deepEqual(arr.pluck("roles.0"), ["a", "b", "c", undefined]);
 
     });
+
+    it.should("support invoke", function () {
+        function person(name, age) {
+            return {
+                getName:function () {
+                    return name;
+                },
+
+                getOlder:function () {
+                    age++;
+                    return this;
+                },
+
+                getAge:function () {
+                    return age;
+                }
+            };
+        }
+
+        var arr = [person("Bob", 40), person("Alice", 35), person("Fred", 50), person("Johnny", 56)];
+        assert.deepEqual(comb.array.invoke(arr, "getName"), ["Bob", "Alice", "Fred", "Johnny"]);
+        assert.deepEqual(comb.array(arr).invoke("getOlder").invoke("getAge"), [41, 36, 51, 57]);
+
+    });
 }).as(module);
 

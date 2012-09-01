@@ -445,6 +445,21 @@
                                 intersect
                             </a></li>
                             
+                            <li><a href="./comb_async.html#.invoke">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                invoke
+                            </a></li>
+                            
                             <li><a href="./comb_async.html#.map">
                                 
                                 <span class="label label-info">S</span>
@@ -770,6 +785,8 @@
 <li>compact : See <a href='./comb_async.html#.compact'> comb.async.compact</a>.</li>
 <li>multiply : See <a href='./comb_async.html#.multiply'> comb.async.multiply</a>.</li>
 <li>flatten : See <a href='./comb_async.html#.flatten'> comb.async.flatten</a>.</li>
+<li>pluck : See <a href='./comb_async.html#.pluck'> comb.async.pluck</a>.</li>
+<li>invoke : See <a href='./comb_async.html#.invoke'> comb.async.invoke</a>.</li>
 </ul>
 <p>When using this method each of the methods are chainable so you can combine actions.
 
@@ -1442,6 +1459,73 @@ function (){
        return intersect.apply(array, normalizeResult(result).map(function (arg) {
            return isArray(arg) ? arg : [arg];
        }));
+   }));
+}
+    </pre>
+    
+
+
+    
+        <a name=".invoke"></a>
+    <h3>
+        invoke
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined async.js</em>
+
+<p><p>Async version of <a href='./comb_array.html#.invoke'> comb.array.invoke</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function person(name, age) {
+     return {
+         getName:function () {
+             return when(name);
+         },
+         getOlder:function () {
+             age++;
+             return when(this);
+         },
+         getAge:function () {
+             return when(age);
+         }
+     };
+}
+
+var arr = [when(person(&quot;Bob&quot;, 40)), when(person(&quot;Alice&quot;, 35)), when(person(&quot;Fred&quot;, 50)), when(person(&quot;Johnny&quot;, 56))];
+console.log(comb.async.invoke(arr, &quot;getName&quot;)); //[&quot;Bob&quot;, &quot;Alice&quot;, &quot;Fred&quot;, &quot;Johnny&quot;]
+console.log(array(arr).invoke(&quot;getOlder&quot;).pluck(&quot;getAge&quot;)) //[41, 36, 51, 57]</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>arrPromise</em>  : </li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (arrPromise){
+   var args = argsToArray(arguments, 1);
+   return asyncArray(when(arrPromise).chain(function (result) {
+       return when(invoke.apply(array, [normalizeResult(result)].concat(args)));
    }));
 }
     </pre>
@@ -2483,7 +2567,7 @@ comb.async.valuesAt(asyncArr(), 2,3,4).then(function(values){
 function (arrPromise){
    var args = argsToArray(arguments, 1);
    return asyncArray(when(arrPromise).chain(function (result) {
-       return valuesAt.apply(array, [normalizeResult(result)].concat(args));
+       return when(valuesAt.apply(array, [normalizeResult(result)].concat(args)));
    }));
 }
     </pre>
