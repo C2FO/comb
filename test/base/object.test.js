@@ -3,7 +3,8 @@ var it = require('it'),
     assert = require('assert'),
     comb = require("index");
 
-it.describe("comb/base/object.js", function (it) {
+
+it.describe("comb/base/object.js",function (it) {
 
     it.should("determine if someting is an objecct", function () {
         assert.isTrue(comb.isObject(new Date()));
@@ -16,6 +17,16 @@ it.describe("comb/base/object.js", function (it) {
         assert.isFalse(comb.isObject(1));
         assert.isFalse(comb.isObject(false));
         assert.isFalse(comb.isObject(true));
+
+        assert.isTrue(comb(new Date()).isObject());
+        assert.isTrue(comb(new String()).isObject());
+        assert.isTrue(comb(new Number()).isObject());
+        assert.isTrue(comb(new Boolean()).isObject());
+        assert.isTrue(comb({}).isObject());
+        assert.isFalse(comb("").isObject());
+        assert.isFalse(comb(1).isObject());
+        assert.isFalse(comb(false).isObject());
+        assert.isFalse(comb(true).isObject());
     });
 
     it.should("determine if something is a hash", function () {
@@ -30,6 +41,17 @@ it.describe("comb/base/object.js", function (it) {
         assert.isFalse(comb.isHash(1));
         assert.isFalse(comb.isHash(false));
         assert.isFalse(comb.isHash(true));
+
+        assert.isTrue(comb({}).isHash());
+        assert.isTrue(comb({1:2, a:"b"}).isHash());
+        assert.isFalse(comb(new Date()).isHash());
+        assert.isFalse(comb(new String()).isHash());
+        assert.isFalse(comb(new Number()).isHash());
+        assert.isFalse(comb(new Boolean()).isHash());
+        assert.isFalse(comb("").isHash());
+        assert.isFalse(comb(1).isHash());
+        assert.isFalse(comb(false).isHash());
+        assert.isFalse(comb(true).isHash());
     });
 
     it.should("determine in an object is empty", function () {
@@ -40,6 +62,13 @@ it.describe("comb/base/object.js", function (it) {
         assert.isFalse(comb.isEmpty([
             {A:"b"}
         ]));
+
+        assert.isTrue(comb({}).isEmpty());
+        assert.isTrue(comb([]).isEmpty());
+        assert.isFalse(comb({A:"b"}).isEmpty());
+        assert.isFalse(comb([
+            {A:"b"}
+        ]).isEmpty());
     });
 
     it.describe("#merge", function (it) {
@@ -53,6 +82,14 @@ it.describe("comb/base/object.js", function (it) {
             assert.isFalse(ret.test2);
             assert.equal(ret.test3, "hello");
             assert.equal(ret.test4, "world");
+
+
+            var ret2 = comb({});
+            ret2.merge({test:true}, {test2:false}, {test3:"hello", test4:"world"});
+            assert.isTrue(ret2.test);
+            assert.isFalse(ret2.test2);
+            assert.equal(ret2.test3, "hello");
+            assert.equal(ret2.test4, "world");
         });
 
         it.should("merge objects if a start object is not provided", function () {
@@ -76,20 +113,40 @@ it.describe("comb/base/object.js", function (it) {
             assert.equal(ret.test3, "hello");
             assert.equal(ret.test4, "world");
             assert.deepEqual(ret.a, {b:4, c:3, d:{e:2, f:{g:1}}});
+
+            var ret2 = comb({}).deepMerge({test:true, a:{b:4}},
+                {test2:false, a:{c:3}},
+                {test3:"hello", test4:"world", a:{d:{e:2}}},
+                {a:{d:{f:{g:1}}}});
+            assert.isTrue(ret2.test);
+            assert.isFalse(ret2.test2);
+            assert.equal(ret2.test3, "hello");
+            assert.equal(ret2.test4, "world");
+            assert.deepEqual(ret2.a, {b:4, c:3, d:{e:2, f:{g:1}}});
         });
     });
 
     it.describe("#extend", function (it) {
         it.should("extend a class properly", function () {
-            var myObj = function () {
+            var MyObj = function () {
             };
-            myObj.prototype.test = true;
-            comb.extend(myObj, {test2:false, test3:"hello", test4:"world"});
-            var m = new myObj();
+            MyObj.prototype.test = true;
+            comb.extend(MyObj, {test2:false, test3:"hello", test4:"world"});
+            var m = new MyObj();
             assert.isTrue(m.test);
             assert.isFalse(m.test2);
             assert.equal(m.test3, "hello");
             assert.equal(m.test4, "world");
+
+            var MyObj2 = function () {
+            };
+            MyObj2.prototype.test = true;
+            comb(MyObj2).extend({test2:false, test3:"hello", test4:"world"});
+            var m2 = new MyObj2();
+            assert.isTrue(m2.test);
+            assert.isFalse(m2.test2);
+            assert.equal(m2.test3, "hello");
+            assert.equal(m2.test4, "world");
         });
 
         it.should("extend a objects properly", function () {
@@ -100,6 +157,12 @@ it.describe("comb/base/object.js", function (it) {
             assert.isFalse(m.test2);
             assert.equal(m.test3, "hello");
             assert.equal(m.test4, "world");
+
+            var m2 = comb({test:true}).extend({test2:false, test3:"hello", test4:"world"});
+            assert.isTrue(m2.test);
+            assert.isFalse(m2.test2);
+            assert.equal(m2.test3, "hello");
+            assert.equal(m2.test4, "world");
         })
     });
 
@@ -116,19 +179,46 @@ it.describe("comb/base/object.js", function (it) {
         ], [
             {a:"a"}
         ]));
-        assert.isTrue(comb.deepEqual(new Buffer("abc"), new Buffer("abc")))
-        assert.isFalse(comb.deepEqual([
+        assert.isTrue(comb(new Buffer("abc")).deepEqual(new Buffer("abc")))
+        assert.isFalse(comb([
             {a:"b"}
-        ], [
+        ]).deepEqual([
             {a:"a"}
         ]));
         (function () {
             var argsA = arguments;
             (function () {
-                assert.isTrue(comb.deepEqual(argsA, arguments));
-                assert.isFalse(comb.deepEqual(argsA, 'a'));
-            })(["a"])
-        })(["a"])
+                assert.isTrue(comb(argsA).deepEqual(arguments));
+                assert.isFalse(comb(argsA).deepEqual('a'));
+            })(["a"]);
+        })(["a"]);
+
+
+        assert.isTrue(comb({a:"a"}).deepEqual({a:"a"}));
+        assert.isFalse(comb({a:"b"}).deepEqual({a:"a"}));
+        assert.isFalse(comb("a").deepEqual(new String("a")));
+        assert.isTrue(comb(/a|b/ig).deepEqual(/a|b/ig));
+        assert.isFalse(comb(/a|b/ig).deepEqual(/a|b/g));
+        assert.isTrue(comb(new Date(2000, 2, 2, 2, 2, 2)).deepEqual(new Date(2000, 2, 2, 2, 2, 2)));
+        assert.isFalse(comb(new Date(2000, 2, 2, 2, 2, 2)).deepEqual(new Date(2000, 2, 2, 2, 2, 1)));
+        assert.isTrue(comb([
+            {a:"a"}
+        ]).deepEqual([
+            {a:"a"}
+        ]));
+        assert.isTrue(comb(new Buffer("abc")).deepEqual(new Buffer("abc")))
+        assert.isFalse(comb([
+            {a:"b"}
+        ]).deepEqual([
+            {a:"a"}
+        ]));
+        (function () {
+            var argsA = arguments;
+            (function () {
+                assert.isTrue(comb(argsA).deepEqual(arguments));
+                assert.isFalse(comb(argsA).deepEqual('a'));
+            })(["a"]);
+        })(["a"]);
 
     });
 }).as(module);

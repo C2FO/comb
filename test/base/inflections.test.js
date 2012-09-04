@@ -3,7 +3,7 @@ var it = require('it'),
     assert = require('assert'),
     comb = require("index");
 
-it.describe("comb/base/inflections.js", function (it) {
+it.describe("comb/base/inflections.js",function (it) {
     var INFLECTIONS = {
         test:"tests",
         ax:"axes",
@@ -63,6 +63,10 @@ it.describe("comb/base/inflections.js", function (it) {
         assert.equal(comb.camelize("hello_world"), "helloWorld");
         assert.equal(comb.camelize("column_name"), "columnName");
         assert.equal(comb.camelize("columnName"), "columnName");
+
+        assert.equal(comb("hello_world").camelize(), "helloWorld");
+        assert.equal(comb("column_name").camelize(), "columnName");
+        assert.equal(comb("columnName").camelize(), "columnName");
     });
 
 
@@ -74,6 +78,12 @@ it.describe("comb/base/inflections.js", function (it) {
         assert.equal(comb.underscore("1HelloWorld"), "1_hello_world");
         assert.equal(comb.underscore("column_name"), "column_name");
         assert.equal(comb.underscore("columnName"), "column_name");
+
+        assert.equal(comb("helloWorld").underscore(), "hello_world");
+        assert.equal(comb("helloWorld1").underscore(), "hello_world_1");
+        assert.equal(comb("1HelloWorld").underscore(), "1_hello_world");
+        assert.equal(comb("column_name").underscore(), "column_name");
+        assert.equal(comb("columnName").underscore(), "column_name");
     });
 
     it.should("classify correctly", function () {
@@ -82,6 +92,10 @@ it.describe("comb/base/inflections.js", function (it) {
         assert.equal(comb.classify('egg_and_hams'), "eggAndHam");
         assert.equal(comb.classify('post'), "post");
         assert.equal(comb.classify('schema.post'), "post");
+
+        assert.equal(comb('egg_and_hams').classify(), "eggAndHam");
+        assert.equal(comb('post').classify(), "post");
+        assert.equal(comb('schema.post').classify(), "post");
     });
 
 
@@ -90,6 +104,7 @@ it.describe("comb/base/inflections.js", function (it) {
         assert.isUndefined(comb.singularize());
         for (var i in INFLECTIONS) {
             assert.equal(comb.singularize(INFLECTIONS[i]), i);
+            assert.equal(comb(INFLECTIONS[i]).singularize(), i);
         }
     });
 
@@ -98,6 +113,7 @@ it.describe("comb/base/inflections.js", function (it) {
         assert.isUndefined(comb.pluralize());
         for (var i in INFLECTIONS) {
             assert.equal(comb.pluralize(i), INFLECTIONS[i]);
+            assert.equal(comb(i).pluralize(), INFLECTIONS[i]);
         }
     });
 
