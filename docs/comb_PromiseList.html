@@ -143,6 +143,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
+                            <li><a href="./introduction.html">Getting Started</a></li>
+                            
                             <li><a href="./define.html">OO</a></li>
                             
                             <li><a href="./promise.html">Promises</a></li>
@@ -397,7 +399,7 @@ function (defs,normalizeResults){
    this._super(arguments);
    if (defs &amp;&amp; defs.length) {
        this.__defLength = defs.length;
-       defs.forEach(this.__addPromise, this);
+       forEach(defs, this.__addPromise, this);
    } else {
        this.__resolve();
    }

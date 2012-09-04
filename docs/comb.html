@@ -143,6 +143,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
+                            <li><a href="./introduction.html">Getting Started</a></li>
+                            
                             <li><a href="./define.html">OO</a></li>
                             
                             <li><a href="./promise.html">Promises</a></li>
@@ -1231,10 +1233,10 @@
     <pre class="prettyprint linenums lang-js">
 function (method,args){
    args = Array.prototype.slice.call(arguments).slice(1);
-   if (typeof method !== &quot;string&quot; &amp;&amp; !isFunction(method)) {
+   if (!isString(method) &amp;&amp; !isFunction(method)) {
        throw new Error(method + &quot; must be the name of a property or function to execute&quot;);
    }
-   if (typeof method === &quot;string&quot;) {
+   if (isString(method)) {
        return function () {
            var scopeArgs = Array.prototype.slice.call(arguments), scope = scopeArgs.shift();
            var func = scope[method];
@@ -2598,7 +2600,8 @@ var MyObj = function(){};
     <pre class="prettyprint linenums lang-js">
 function (parent,extend){
    var proto = parent.prototype || parent;
-   return merge(proto, extend);
+   merge(proto, extend);
+   return parent;
 }
     </pre>
     
@@ -2660,12 +2663,12 @@ function (parent,extend){
     <pre class="prettyprint linenums lang-js">
 function (scope,method,args){
    args = Array.prototype.slice.call(arguments).slice(2);
-   if ((typeof method === &quot;string&quot; &amp;&amp; !(method in scope))) {
+   if ((isString(method) &amp;&amp; !(method in scope))) {
        throw new Error(method + &quot; property not defined in scope&quot;);
-   } else if (typeof method !== &quot;string&quot; &amp;&amp; !isFunction(method)) {
+   } else if (!isString(method) &amp;&amp; !isFunction(method)) {
        throw new Error(method + &quot; is not a function&quot;);
    }
-   if (typeof method === &quot;string&quot;) {
+   if (isString(method)) {
        return function () {
            var func = scope[method];
            if (isFunction(func)) {
@@ -2743,12 +2746,12 @@ ignore any new ones
     <pre class="prettyprint linenums lang-js">
 function (scope,method,args){
    args = Array.prototype.slice.call(arguments).slice(2);
-   if ((typeof method === &quot;string&quot; &amp;&amp; !(method in scope))) {
+   if ((isString(method) &amp;&amp; !(method in scope))) {
        throw new Error(method + &quot; property not defined in scope&quot;);
-   } else if (typeof method !== &quot;string&quot; &amp;&amp; !isFunction(method)) {
+   } else if (!isString(method) &amp;&amp; !isFunction(method)) {
        throw new Error(method + &quot; is not a function&quot;);
    }
-   if (typeof method === &quot;string&quot;) {
+   if (isString(method)) {
        return function () {
            var func = scope[method];
            if (isFunction(func)) {
@@ -4293,10 +4296,10 @@ especially useful for callbacks that you want to provide additional parameters t
     <pre class="prettyprint linenums lang-js">
 function (method,args){
    args = Array.prototype.slice.call(arguments).slice(1);
-   if (typeof method !== &quot;string&quot; &amp;&amp; !isFunction(method)) {
+   if (!isString(method) &amp;&amp; !isFunction(method)) {
        throw new Error(method + &quot; must be the name of a property or function to execute&quot;);
    }
-   if (typeof method === &quot;string&quot;) {
+   if (isString(method)) {
        return function () {
            var func = this[method];
            if (isFunction(func)) {
@@ -4928,7 +4931,7 @@ function (args,cb,eb){
        args = args.pop();
        if (isPromiseLike(args)) {
            p = args;
-       } else if (isArray(args) &amp;&amp; args.every(isPromiseLike)) {
+       } else if (isArray(args) &amp;&amp; array.every(args, isPromiseLike)) {
            p = new PromiseList(args, true);
        } else {
            p = new Promise().callback(args);

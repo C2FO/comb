@@ -143,6 +143,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
+                            <li><a href="./introduction.html">Getting Started</a></li>
+                            
                             <li><a href="./define.html">OO</a></li>
                             
                             <li><a href="./promise.html">Promises</a></li>
@@ -1176,7 +1178,7 @@ function (){
            return ret;
        }
    };
-   [&quot;addCallback&quot;, &quot;addErrback&quot;, &quot;then&quot;, &quot;both&quot;, &quot;classic&quot;].forEach(function (action) {
+   forEach([&quot;addCallback&quot;, &quot;addErrback&quot;, &quot;then&quot;, &quot;both&quot;, &quot;classic&quot;], function (action) {
        ret[action] = function () {
            this[action].apply(this, arguments);
            return ret;

@@ -143,6 +143,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
+                            <li><a href="./introduction.html">Getting Started</a></li>
+                            
                             <li><a href="./define.html">OO</a></li>
                             
                             <li><a href="./promise.html">Promises</a></li>
@@ -831,11 +833,12 @@ function (p){
                return asyncArray(this)
            }
        });
-       methods.forEach(function (m) {
+       forEach(methods, function (m) {
+           var func = asyncExports[m];
            ret[m] = function () {
                var args = argsToArray(arguments), mRet = new Promise();
                process.nextTick(function () {
-                   asyncExports[m].apply(null, [ret].concat(args)).then(mRet);
+                   func.apply(null, [ret].concat(args)).then(mRet);
                });
                return asyncArray(mRet);
            };

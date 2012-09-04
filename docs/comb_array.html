@@ -143,6 +143,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
+                            <li><a href="./introduction.html">Getting Started</a></li>
+                            
                             <li><a href="./define.html">OO</a></li>
                             
                             <li><a href="./promise.html">Promises</a></li>
@@ -824,8 +826,9 @@ comb.array.cartesian([1,2,3], [2,3,4]) =&gt; [
     <pre class="prettyprint linenums lang-js">
 function (a,b){
    var ret = [];
-   if (isArray(a) &amp;&amp; isArray(b) &amp;&amp; a.length &amp;&amp; b.length)
+   if (isArray(a) &amp;&amp; isArray(b) &amp;&amp; a.length &amp;&amp; b.length) {
        ret = cross(a[0], b).concat(cartesian(a.slice(1), b));
+   }
    return ret;
 }
     </pre>
@@ -881,7 +884,7 @@ comb.array.compact([1,2]) =&gt; [1,2]
 function (arr){
    var ret = [];
    if (isArray(arr) &amp;&amp; arr.length) {
-       ret = arr.filter(function (item) {
+       ret = filter(arr, function (item) {
            return !misc.isUndefinedOrNull(item);
        });
    }
@@ -951,8 +954,8 @@ comb.array.difference([&quot;a&quot;,&quot;b&quot;,3], [3]); //[&quot;a&quot;,&q
 function (arr1,arr2){
    var ret = arr1, args = flatten(argsToArray(arguments, 1));
    if (isArray(arr1)) {
-       ret = arr1.filter(function (a) {
-           return args.indexOf(a) === -1;
+       ret = filter(arr1, function (a) {
+           return indexOf(args, a) === -1;
        });
    }
    return ret;
@@ -1017,7 +1020,7 @@ function (arr){
    } else {
        set = toArray(arr);
    }
-   return set.reduce(function (a, b) {
+   return reduce(set, function (a, b) {
        return a.concat(b);
    }, []);
 }
@@ -1087,7 +1090,7 @@ function (a,b){
    }
    if (isArray(set)) {
        var x = set.shift();
-       var collect = set.reduce(function (a, b) {
+       collect = reduce(set, function (a, b) {
            return intersection(a, b);
        }, x);
    }
@@ -1179,8 +1182,8 @@ console.log(comb.array(arr).invoke(&quot;getOlder&quot;).invoke(&quot;getAge&quo
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (arr,func,args){
-   var args = argsToArray(arguments, 2);
-   return arr.map(function (item) {
+   args = argsToArray(arguments, 2);
+   return map(arr, function (item) {
        var exec = isString(func) ? item[func] : func;
        return exec.apply(item, args);
    });
@@ -1450,7 +1453,7 @@ function (arr,length){
    var ret = [];
    if (isArray(arr)) {
        var copy = arr.slice(0);
-       if (typeof length != &quot;number&quot;) {
+       if (typeof length !== &quot;number&quot;) {
            length = arr.length;
        }
        if (!length) {
@@ -1458,16 +1461,17 @@ function (arr,length){
                []
            ];
        } else if (length &lt;= arr.length) {
-           ret = arr.reduce(function (a, b, i) {
+           ret = reduce(arr, function (a, b, i) {
+               var ret;
                if (length &gt; 1) {
-                   var ret = permute(b, rotate(copy, i).slice(1), length);
+                   ret = permute(b, rotate(copy, i).slice(1), length);
                } else {
                    ret = [
                        [b]
                    ];
                }
                return a.concat(ret);
-           }, [])
+           }, []);
        }
    }
    return ret;
@@ -1543,10 +1547,11 @@ console.log(comb.array.pluck(arr, &quot;roles.0&quot;)); //[&quot;a&quot;, &quot
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (arr,prop){
-   var prop = prop.split(&quot;.&quot;), result = arr.slice(0);
-   prop.forEach(function (prop) {
+   prop = prop.split(&quot;.&quot;);
+   var result = arr.slice(0);
+   forEach(prop, function (prop) {
        var exec = prop.match(/(\w+)\(\)$/);
-       result = result.map(function (item) {
+       result = map(result, function (item) {
            return exec ? item[exec[1]]() : item[prop];
        });
    });
@@ -1637,10 +1642,10 @@ comb.array.powerSet([1,2]) =&gt; [
 function (arr){
    var ret = [];
    if (isArray(arr) &amp;&amp; arr.length) {
-       var ret = arr.reduce(function (a, b) {
-           var ret = a.map(function (c) {
+       ret = reduce(arr, function (a, b) {
+           var ret = map(a, function (c) {
                return c.concat(b);
-           })
+           });
            return a.concat(ret);
        }, [
            []
@@ -1702,14 +1707,13 @@ comb.array.removeDuplicates([1,2,3,2]) =&gt; [1,2,3]
     <pre class="prettyprint linenums lang-js">
 function (arr){
    if (isArray(arr)) {
-       var ret = arr.reduce(function (a, b) {
-           if (a.indexOf(b) === -1) {
+       return reduce(arr, function (a, b) {
+           if (indexOf(a, b) === -1) {
                return a.concat(b);
            } else {
                return a;
            }
        }, []);
-       return ret;
    }
 }
     </pre>
@@ -1776,7 +1780,7 @@ comb.array.rotate(arr, -4) =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &
     <pre class="prettyprint linenums lang-js">
 function (arr,numberOfTimes){
    var ret = arr.slice();
-   if (typeof numberOfTimes != &quot;number&quot;) {
+   if (typeof numberOfTimes !== &quot;number&quot;) {
        numberOfTimes = 1;
    }
    if (numberOfTimes &amp;&amp; isArray(arr)) {
@@ -1917,7 +1921,7 @@ comb.array.sum([1,2,3]) =&gt; 6
 function (array){
    array = array || [];
    if (array.length) {
-       return array.reduce(function (a, b) {
+       return reduce(array, function (a, b) {
            return a + b;
        });
    } else {
@@ -1980,7 +1984,7 @@ function (o){
    var ret = [];
    if (o != null) {
        var args = argsToArray(arguments);
-       if (args.length == 1) {
+       if (args.length === 1) {
            if (isArray(o)) {
                ret = o;
            } else if (obj.isHash(o)) {
@@ -1993,9 +1997,9 @@ function (o){
                ret.push(o);
            }
        } else {
-           args.forEach(function (a) {
+           forEach(args, function (a) {
                ret = ret.concat(toArray(a));
-           })
+           });
        }
    }
    return ret;
@@ -2056,10 +2060,12 @@ function (arr){
    var ret = [];
    if (isArray(arr) &amp;&amp; arr.length) {
        var last;
-       arr.forEach(function (a) {
-           if (isArray(a) &amp;&amp; (!last || a.length == last.length)) {
-               a.forEach(function (b, i) {
-                   !ret[i] &amp;&amp; (ret[i] = []);
+       forEach(arr, function (a) {
+           if (isArray(a) &amp;&amp; (!last || a.length === last.length)) {
+               forEach(a, function (b, i) {
+                   if (!ret[i]) {
+                       ret[i] = [];
+                   }
                    ret[i].push(b);
                });
                last = a;
@@ -2122,7 +2128,7 @@ function (){
    var ret = [];
    var arrs = argsToArray(arguments);
    if (arrs.length &gt; 1) {
-       ret = removeDuplicates(arrs.reduce(function (a, b) {
+       ret = removeDuplicates(reduce(arrs, function (a, b) {
            return a.concat(b);
        }, []));
    }
@@ -2231,8 +2237,9 @@ var arr =[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
     <pre class="prettyprint linenums lang-js">
 function (arr,indexes){
    var ret = [];
-   var indexes = argsToArray(arguments);
-   var arr = indexes.shift(), l = arr.length;
+   indexes = argsToArray(arguments);
+   arr = indexes.shift();
+   var l = arr.length;
    if (isArray(arr) &amp;&amp; indexes.length) {
        for (var i = 0; i &lt; indexes.length; i++) {
            ret.push(arr[indexes[i]] || null);
@@ -2300,7 +2307,7 @@ function (){
    if (arrs.length &gt; 1) {
        var arr1 = arrs.shift();
        if (isArray(arr1)) {
-           ret = arr1.reduce(function (a, b, i) {
+           ret = reduce(arr1, function (a, b, i) {
                var curr = [b];
                for (var j = 0; j &lt; arrs.length; j++) {
                    var currArr = arrs[j];

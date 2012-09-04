@@ -143,6 +143,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
+                            <li><a href="./introduction.html">Getting Started</a></li>
+                            
                             <li><a href="./define.html">OO</a></li>
                             
                             <li><a href="./promise.html">Promises</a></li>
@@ -553,7 +555,7 @@
                 }
                 if (m == &quot;%s&quot; || m == &quot;%d&quot; || m == &quot;%D&quot;) {
                     //fast path!
-                    ret = replacer;
+                    ret = replacer + &quot;&quot;;
                 } else if (m == &quot;%Z&quot;) {
                     ret = replacer.toUTCString();
                 } else if (m == &quot;%j&quot;) {
@@ -808,7 +810,7 @@ function (str,obj){
            }
            if (m == &quot;%s&quot; || m == &quot;%d&quot; || m == &quot;%D&quot;) {
                //fast path!
-               ret = replacer;
+               ret = replacer + &quot;&quot;;
            } else if (m == &quot;%Z&quot;) {
                ret = replacer.toUTCString();
            } else if (m == &quot;%j&quot;) {
