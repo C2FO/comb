@@ -436,7 +436,7 @@ arr.invoke("getOlder").invoke("getAge"); //[41, 36, 51, 57];
 
 ###`style`
 
-Styles a string. See [comb.string.format](./comb_string.html#.format) for style types. 
+Styles a string. See [comb.string.style](./comb_string.html#.style) for style types. 
 ```
 //prints a red string
 comb("string").style("red"))
