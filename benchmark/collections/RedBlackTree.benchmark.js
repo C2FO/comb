@@ -1,110 +1,79 @@
 var comb = require("../../lib"),
-        RedBlackTree = comb.collections.RedBlackTree;
+    Tree = comb.collections.RedBlackTree,
+    Benchmark = require("benchmark");
 
-console.log("CREATING TEST DATA....");
-var words = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"].reverse();
-var permuttedWords = comb.array.powerSet(words).map(
-        function(w) {
-            var ret = [];
-            return ret.concat.apply(ret, w).join("");
-        }).filter(function(a) {
-    return a != ''
-});
+var suite = new Benchmark.Suite();
 
-var sortedPermuttedWords = permuttedWords.slice(0).sort(function(a, b) {
-    var ret = 0;
-    if (a > b) {
-        return 1;
-    } else if (a < b) {
-        return -1;
-    }
-    return ret;
-});
+var words = comb(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"].reverse())
+    .powerSet()
+    .map(function (w) {
+        return w.join("");
+    }).filter(function (a) {
+        return a;
+    });
+console.log("RedBlackTree Benchmark");
 
-words = permuttedWords.map(function(word) {
-    return {word : word, index : sortedPermuttedWords.indexOf(word)};
-});
-
-
-var printStats = function(name, op, start, end) {
-    console.log(name + " " + op + " TIME = %dms", (+end) - (+start));
-};
-
-var testInserts = function(arr, tree) {
-    var l = words.length;
-    console.log("\nTESTING INSERTING %d WORDS....", l);
-    var start = new Date();
-    for (var i = 0; i < l; i++) {
-        var word = words[i];
-        arr.splice(word.index, 0, word.word);
-    }
-    var end = new Date();
-    printStats("ARRAY", "INSERTION", start, end);
-
-    start = new Date();
-    for (var i = 0; i < l; i++) {
-        var word = words[i];
-        //done need index and its not used just look it up so as to not skew actual insert time
-        tree.insert(word.word, word.index);
-    }
-    end = new Date();
-    printStats("REDBLACKTREE", "INSERTION", start, end);
-};
-
-var testLookUps = function(arr, tree) {
-    var l = words.length;
-    console.log("\nTESTING LOOKING UP %d WORDS....", l);
-    var start = new Date();
-    for (var i = 0; i < l; i++) {
-        var word = words[i];
-        var index = arr.indexOf(word.word);
-        if (index == -1) {
-            console.log("INDEX ERROR");
+suite
+    .add("insert words in order in array", function () {
+        var arr = [];
+        for (var i = 0, l = words.length; i < l; i++) {
+            arr.push(words[i]);
+            arr.sort();
         }
-    }
-    var end = new Date();
-    printStats("ARRAY", "LOOK UP", start, end);
-
-    start = new Date();
-    for (var i = 0; i < l; i++) {
-        var word = words[i];
-        if (!tree.contains(word.word)) {
-            console.log("INDEX ERROR");
+    })
+    .add("insert words into RedBlackTree", function () {
+        var tree = new Tree();
+        for (var i = 0, l = words.length; i < l; i++) {
+            tree.insert(words[i]);
         }
-    }
-    end = new Date();
-    printStats("REDBLACKTREE", "LOOK UP", start, end);
-};
+    })
+    .on('cycle', function (event) {
+        console.log(String(event.target));
+    })
+    .on('complete', function () {
+        console.log('Fastest is ' + this.filter('fastest').pluck('name'));
+        console.log('Slowest is ' + this.filter('slowest').pluck('name'));
+    })
+    .run();
 
-var testDeletion = function(arr, tree) {
-    var l = words.length;
-    console.log("\nTESTING DELETING %d WORDS....", l);
-    var start = new Date();
-    for (var i = 0; i < l; i++) {
+(function () {
+    var arr = [], tree = new Tree();
+    for (var i = 0, l = words.length; i < l; i++) {
         var word = words[i];
-        arr.splice(word.index, 1);
+        arr.push(word);
+        tree.insert(word);
     }
-    var end = new Date();
-    printStats("ARRAY", "DELETION", start, end);
+    arr.sort();
 
-    start = new Date();
-    for (var i = 0; i < l; i++) {
-        var word = words[i];
-        //done need index and its not used just look it up so as to not skew actual insert time
-        tree.remove(word.word);
-    }
-    end = new Date();
-    printStats("REDBLACKTREE", "DELETION", start, end);
-};
+    new Benchmark.Suite()
+        .add("look up words in array", function () {
+            for (var i = 0, l = words.length; i < l; i++) {
+                var index = arr.indexOf(words[i]);
+                if (index === -1) {
+                    console.log("INDEX ERROR");
+                }
+            }
+        })
+        .add("look up words in RedBlackTree", function () {
+            for (var i = 0, l = words.length; i < l; i++) {
+                if (!tree.contains(words[i])) {
+                    console.log("INDEX ERROR");
+                }
+            }
+        })
+        .on('cycle', function (event) {
+            console.log(String(event.target));
+        })
+        .on('complete', function () {
+            console.log('Fastest is ' + this.filter('fastest').pluck('name'));
+            console.log('Slowest is ' + this.filter('slowest').pluck('name'));
+        })
+        .run();
 
-var test = function() {
-     var testArr = [], testTree = new RedBlackTree();
+    new Benchmark.Suite()
+        .add("remove words from array", function () {
 
-    console.log("STARTING TEST....");
-    testInserts(testArr, testTree);
-    testLookUps(testArr, testTree);
-    testDeletion(testArr, testTree);
-};
+        });
 
-test();
+})();
 

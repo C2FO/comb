@@ -1,14 +1,14 @@
 {
     "name":"comb",
     "description":"A framework for node",
-    "version":"0.1.6",
+    "version":"0.1.7",
     "keywords":["OO", "Object Oriented", "Collections", "Tree", "HashTable", "Pool", "Logging", "Promise", "Promises", "Proxy"],
     "repository":{
         "type":"git",
-        "url":"git@github.com:Pollenware/comb.git"
+        "url":"git@github.com:C2FO/comb.git"
     },
-    "homepage":"http://pollenware.github.com/comb/",
-    "author":"Pollenware (http://pollenware.github.com)",
+    "homepage":"http://c2fo.github.com/comb/",
+    "author":"C2FO (http://c2fo.github.com)",
     "main":"index.js",
     "directories":{
         "lib":"lib"

@@ -5,15 +5,15 @@ var it = require('it'),
     Promise = comb.Promise,
     PromiseList = comb.PromiseList;
 
-it.describe("comb.PromiseList", function (it) {
+it.describe("comb.PromiseList",function (it) {
 
 
     it.should("should callback after all have fired ", function (next) {
 
         var promise = new Promise(), promise2 = new Promise(), promise3 = new Promise();
-        setTimeout(comb.hitch(promise, "callback", "hello"), 1000);
-        setTimeout(comb.hitch(promise2, "callback", "world"), 1500);
-        setTimeout(comb.hitch(promise3, "callback", "!"), 2000);
+        setTimeout(comb.hitch(promise, "callback", "hello"), 100);
+        setTimeout(comb.hitch(promise2, "callback", "world"), 150);
+        setTimeout(comb.hitch(promise3, "callback", "!"), 200);
         new PromiseList([promise, promise2, promise3]).then(function (res) {
             var expected = ["hello", "world", "!"];
             res.forEach(function (r, i) {
@@ -56,11 +56,14 @@ it.describe("comb.PromiseList", function (it) {
         promise.callback("hello");
         promise2.callback("world");
         promise3.errback("error");
-        new PromiseList([promise, promise2, promise3]).then(next, function (res) {
-            res.forEach(function (res) {
-                assert.equal(res[1], "error");
+        var pl = new PromiseList([promise, promise2, promise3]);
+        process.nextTick(function () {
+            pl.then(next, function (res) {
+                res.forEach(function (res) {
+                    assert.equal(res[1], "error");
+                });
+                next();
             });
-            next();
         });
     });
 
@@ -70,10 +73,12 @@ it.describe("comb.PromiseList", function (it) {
         promise2.callback("world");
         promise3.callback("!");
         var pl = new PromiseList([promise, promise2, promise3]);
-        assert.throws(function () {
-            pl.callback();
+        process.nextTick(function () {
+            assert.throws(function () {
+                pl.callback();
+            });
+            next();
         });
-        next();
     });
 
     it.should("throw an error if errback is called after firing", function (next) {
@@ -82,17 +87,19 @@ it.describe("comb.PromiseList", function (it) {
         promise2.callback("world");
         promise3.callback("!");
         var pl = new PromiseList([promise, promise2, promise3]);
-        assert.throws(function () {
-            pl.errback();
+        process.nextTick(function () {
+            assert.throws(function () {
+                pl.errback();
+            });
+            next();
         });
-        next();
     });
 
     it.should("handle the ordering of results if resolved out of order", function (next) {
         var promise = new Promise(), promise2 = new Promise(), promise3 = new Promise();
-        setTimeout(comb.hitch(promise, "callback", "hello"), 2000);
-        setTimeout(comb.hitch(promise2, "callback", "world"), 1500);
-        setTimeout(comb.hitch(promise3, "callback", "!"), 1000);
+        setTimeout(comb.hitch(promise, "callback", "hello"), 200);
+        setTimeout(comb.hitch(promise2, "callback", "world"), 150);
+        setTimeout(comb.hitch(promise3, "callback", "!"), 100);
         new PromiseList([promise, promise2, promise3]).then(function (res) {
             var expected = ["hello", "world", "!"];
             res.forEach(function (res, i) {
@@ -104,9 +111,9 @@ it.describe("comb.PromiseList", function (it) {
 
     it.should("normalize results", function (next) {
         var promise = new Promise(), promise2 = new Promise(), promise3 = new Promise();
-        setTimeout(comb.hitch(promise, "callback", "hello"), 2000);
-        setTimeout(comb.hitch(promise2, "callback", "world"), 1500);
-        setTimeout(comb.hitch(promise3, "callback", "!"), 1000);
+        setTimeout(comb.hitch(promise, "callback", "hello"), 200);
+        setTimeout(comb.hitch(promise2, "callback", "world"), 150);
+        setTimeout(comb.hitch(promise3, "callback", "!"), 100);
         new PromiseList([promise, promise2, promise3], true).then(function (res) {
             assert.deepEqual(res, ["hello", "world", "!"]);
             next();

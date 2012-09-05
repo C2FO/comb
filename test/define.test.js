@@ -5,7 +5,7 @@ var it = require('it'),
     define = comb.define,
     singleton = comb.singleton;
 
-it.describe("comb.define", function (it) {
+it.describe("comb.define",function (it) {
 
 
 //Super of other classes
@@ -403,7 +403,7 @@ it.describe("comb.define", function (it) {
         it.should("export as module", function () {
             Mammal.as(module);
             assert.equal(module.exports, Mammal);
-        })
+        });
     });
 
 }).as(module);
