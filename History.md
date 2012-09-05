@@ -1,3 +1,40 @@
+#0.1.7/2012-09-05
+* comb.async
+ * forEach
+ * map
+ * filter
+ * some
+ * every
+ * zip
+ * sum
+ * avg
+ * sort
+ * min
+ * max
+ * difference
+ * removeDuplicates
+ * unique
+ * rotate
+ * permutations
+ * transpose
+ * valuesAt
+ * union
+ * intersect
+ * powerSet
+ * cartesian
+ * compact
+ * multiply
+ * flatten
+ * pluck
+ * invoke
+* new function features …
+  * hitch and partial now accept property names to access
+  * New method applyFirst
+* Changed comb to be a function see [here](http://c2fo.github.com/comb/introduction.html)
+* More tests
+* Updated docs
+
+
 #0.1.6/2012-08-29
 * Changed comb.when to accept an array of promises as well as multi args
 * Added comb.chain to pipe results from one item to another

@@ -3,7 +3,7 @@ var it = require('it'),
     assert = require('assert'),
     comb = require("index");
 
-it.describe("comb/base/string.js", function (it) {
+it.describe("comb/base/string.js",function (it) {
 //Super of other classes
     it.should("determine if something is a String", function () {
         assert.isTrue(comb.isString(""));
@@ -15,6 +15,15 @@ it.describe("comb/base/string.js", function (it) {
         assert.isFalse(comb.isString(false));
         assert.isFalse(comb.isString());
         assert.isFalse(comb.isString(null));
+
+
+        assert.isTrue(comb("").isString());
+        assert.isTrue(comb(new String("")).isString());
+        assert.isTrue(comb(String(1)).isString());
+        assert.isFalse(comb(1).isString());
+        assert.isFalse(comb(new Date()).isString());
+        assert.isFalse(comb(true).isString());
+        assert.isFalse(comb(false).isString());
     });
 
     it.describe("comb.string", function (it) {
@@ -25,7 +34,12 @@ it.describe("comb/base/string.js", function (it) {
             assert.equal(comb.string.pad("STR", 5, " ", true), "STR  ");
             assert.equal(comb.string.pad("STR", 5, "$"), "$$STR");
             assert.equal(comb.string.pad("STR", 5, "$", true), "STR$$");
-        })
+
+            assert.equal(comb("STR").pad(5, " "), "  STR");
+            assert.equal(comb("STR").pad(5, " ", true), "STR  ");
+            assert.equal(comb("STR").pad(5, "$"), "$$STR");
+            assert.equal(comb("STR").pad(5, "$", true), "STR$$");
+        });
 
 
         it.should("format strings properly", function () {
@@ -62,12 +76,50 @@ it.describe("comb/base/string.js", function (it) {
                 {a:"b"}
             ]), '{\n "a": "b"\n},\n{\n    "a": "b"\n}');
 
+
+            assert.equal(comb("{apple}, {orange}, {notthere} and {number}").format({apple:"apple", orange:"orange", number:10}), "apple, orange, {notthere} and 10");
+            assert.equal(comb("{[-s10]apple}, {[%#10]orange}, {[10]banana} and {[-10]watermelons}").format({apple:"apple", orange:"orange", banana:"bananas", watermelons:"watermelons"}), "applesssss, ####orange,    bananas and watermelon");
+            assert.equal(comb("{[- 10]number}, {[yyyy]date}, and {[4]object}").format({number:1, date:new Date(1970, 1, 1), object:{a:"b"}}), '1         , 1970, and {\n    "a": "b"\n}');
+            assert.equal(comb("%s and %s").format(["apple", "orange"]), "apple and orange");
+            assert.equal(comb("%s and %s and %s").format(["apple", "orange"]), "apple and orange and %s");
+            assert.equal(comb("%s and %s").format("apple", "orange"), "apple and orange");
+            assert.equal(comb("%-s10s, %#10s, %10s and %-10s").format("apple", "orange", "bananas", "watermelons"), "applesssss, ####orange,    bananas and watermelon");
+            assert.equal(comb("%d and %d").format(1, 2), "1 and 2");
+            assert.throws(function () {
+                comb("%-10d").format("a");
+            });
+            assert.equal(comb("%+d, %+d, %10d, %-10d, %-+#10d, %10d").format(1, -2, 1, 2, 3, 100000000000), "+1, -2, 0000000001, 2000000000, +3########, 1000000000");
+            assert.equal(comb("%j").format([
+                {a:"b"}
+            ]), '{"a":"b"}');
+
+            var test = {};
+            assert.throws(function () {
+                comb("%j").format([comb.merge(test, {a:test})]);
+            });
+            assert.throws(function () {
+                comb("%4j").format([comb.merge(test, {a:test})]);
+            });
+            assert.equal(comb("%D").format([new Date(-1)]), 'Wed Dec 31 1969 17:59:59 GMT-0600 (CST)');
+            var date = new Date(2006, 7, 11, 0, 55, 12, 345);
+            assert.equal(comb("%[yyyy]D %[EEEE, MMMM dd, yyyy]D %[M/dd/yy]D %[H:m:s.SS]D").format([date, date, date, date]), '2006 Friday, August 11, 2006 8/11/06 0:55:12.35');
+            assert.equal(comb("%[yyyy]Z %[EEEE, MMMM dd, yyyy]Z %[M/dd/yy]Z %[H:m:s.SS]Z").format([date, date, date, date]), '2006 Friday, August 11, 2006 8/11/06 5:55:12.35');
+            assert.equal(comb("%Z").format([new Date(-1)]), 'Wed, 31 Dec 1969 23:59:59 GMT');
+            assert.equal(comb("%1j,\n%4j").format([
+                {a:"b"},
+                {a:"b"}
+            ]), '{\n "a": "b"\n},\n{\n    "a": "b"\n}');
+
         });
 
         it.should("convert strings to arrays", function () {
             assert.deepEqual(comb.string.toArray("a|b|c|d", "|"), ["a", "b", "c", "d"]);
             assert.deepEqual(comb.string.toArray("a", "|"), ["a"]);
             assert.deepEqual(comb.string.toArray("", "|"), []);
+
+            assert.deepEqual(comb("a|b|c|d").toArray("|"), ["a", "b", "c", "d"]);
+            assert.deepEqual(comb("a").toArray("|"), ["a"]);
+            assert.deepEqual(comb("").toArray("|"), []);
         });
 
         it.should("style strings properly", function () {
@@ -102,9 +154,18 @@ it.describe("comb/base/string.js", function (it) {
                 black:90  };
             for (var i in styles) {
                 assert.equal(comb.string.style(i, i), '\x1B[' + styles[i] + 'm' + i + '\x1B[0m');
+                assert.equal(comb(i).style(i), '\x1B[' + styles[i] + 'm' + i + '\x1B[0m');
             }
             assert.equal(comb.string.style("string", ["bold", "red", "redBackground"]), '\x1B[41m\x1B[31m\x1B[1mstring\x1B[0m\x1B[0m\x1B[0m');
+            assert.equal(comb("string").style(["bold", "red", "redBackground"]), '\x1B[41m\x1B[31m\x1B[1mstring\x1B[0m\x1B[0m\x1B[0m');
             assert.deepEqual(comb.string.style(["string1", "string2", "string3"], ["bold", "red", "redBackground"]),
+                [
+                    '\x1B[41m\x1B[31m\x1B[1mstring1\x1B[0m\x1B[0m\x1B[0m',
+                    '\x1B[41m\x1B[31m\x1B[1mstring2\x1B[0m\x1B[0m\x1B[0m',
+                    '\x1B[41m\x1B[31m\x1B[1mstring3\x1B[0m\x1B[0m\x1B[0m']
+            );
+
+            assert.deepEqual(comb(["string1", "string2", "string3"]).style(["bold", "red", "redBackground"]),
                 [
                     '\x1B[41m\x1B[31m\x1B[1mstring1\x1B[0m\x1B[0m\x1B[0m',
                     '\x1B[41m\x1B[31m\x1B[1mstring2\x1B[0m\x1B[0m\x1B[0m',
@@ -117,6 +178,11 @@ it.describe("comb/base/string.js", function (it) {
             assert.equal(comb.string.multiply("a", 1), "a");
             assert.equal(comb.string.multiply("a", 2), "aa");
             assert.equal(comb.string.multiply("a", 3), "aaa");
+
+            assert.equal(comb("a").multiply(), "");
+            assert.equal(comb("a").multiply(1), "a");
+            assert.equal(comb("a").multiply(2), "aa");
+            assert.equal(comb("a").multiply(3), "aaa");
         });
 
         it.should("truncate strings properly", function () {
@@ -124,6 +190,9 @@ it.describe("comb/base/string.js", function (it) {
             assert.equal(comb.string.truncate("abcdefg", 3, true), "efg");
             assert.equal(comb.string.truncate(new Date(1970, 1, 1), 3), "Sun");
             assert.equal(comb.string.truncate(123, 1), "1");
+
+            assert.equal(comb("abcdefg").truncate(3), "abc");
+            assert.equal(comb("abcdefg").truncate(3, true), "efg");
         });
     });
 }).as(module);

@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comb</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/prettify.css">
+    <style type="text/css">
+        
+
+/*.subnav-inner {*/
+    /*width: 100%;*/
+    /*height: 36px;*/
+    /*background-color: #EEE;*/
+    /*background-repeat: repeat-x;*/
+    /*background-image: -moz-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(100%, #EEE));*/
+    /*background-image: -webkit-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -ms-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*background-image: -o-linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);*/
+    /*background-image: linear-gradient(top, whiteSmoke 0%, #EEE 100%);*/
+    /*-webkit-border-radius: 4px;*/
+    /*-moz-border-radius: 4px;*/
+    /*border-radius: 4px;*/
+/*}*/
+
+/*.subnav .nav > li > a:hover {*/
+    /*color: black !important;*/
+/*}*/
+
+/*.subnav .nav li.dropdown .dropdown-toggle .caret,*/
+/*.subnav .nav li.dropdown.open .caret {*/
+    /*border-top-color: #999 !important;*/
+    /*border-bottom-color: #999 !important;*/
+/*}*/
+
+/*.subnav-fixed {*/
+    /*position: fixed;*/
+    /*width : 90%;*/
+    /*margin-right: auto;*/
+    /*margin-left: auto;*/
+    /*top: 40px;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*z-index: 1020;*/
+    /*border-color: #D5D5D5;*/
+    /*border-width: 0 0 1px;*/
+    /*-webkit-border-radius: 0;*/
+    /*-moz-border-radius: 0;*/
+    /*border-radius: 0;*/
+    /*-webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*-moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);*/
+/*}*/
+
+/*.navbar .nav  .dropdown-menu {*/
+    /*max-height: 500px;*/
+    /*overflow: auto;*/
+/*}​*/
+
+    </style>
+    <style type="text/css">
+        body {
+            padding: 90px;
+        }
+
+        .subnav{
+            margin-top: 40px;
+            margin-right: auto;
+            margin-left: auto;
+            z-index: 1000;
+        }
+
+        @media (max-width:979px) {
+            .subnav{
+                margin-top: auto;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <script type="text/javascript">
+        var init = (function () {
+            "use strict";
+
+            var processScroll = (function () {
+                var curr = null, prev = null;
+                return function (nav) {
+                    var $win = $(window);
+                    $('.subnav').each(function () {
+                        var nav = $(this);
+                        var navTop = $win.width() < 980 ? 0 : nav.offset().top - 40;
+
+                        var scrollTop = $win.scrollTop();
+                        if (scrollTop >= navTop && curr != nav) {
+                            if(curr){
+                                curr.removeClass('subnav-fixed')
+                                prev = curr;
+                            }
+                            curr = nav;
+                            curr.addClass('subnav-fixed')
+                        } else if (curr == nav && scrollTop <= navTop) {
+                            curr.removeClass('subnav-fixed');
+                            prev.addClass('subnav-fixed');
+                            curr = prev;
+                        }else{
+                            nav.removeClass('subnav-fixed');
+                        }
+                    });
+                };
+            })();
+
+            return function () {
+                window.prettyPrint && prettyPrint();
+                $(".collapse").collapse();
+                var $window = $(window);
+                //$(".subnav").affix ();
+                // fix sub nav on scroll
+//                processScroll();
+//                $(window).on('scroll', processScroll)
+            }
+        })();
+    </script>
+</head>
+<body onload="init()">
+<div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"> </span>
+            </a>
+            
+            <a href="./index.html" class="brand">comb</a>
+            
+            <div class="nav-collapse">
+                <ul class="nav">
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./introduction.html">Getting Started</a></li>
+                            
+                            <li><a href="./define.html">OO</a></li>
+                            
+                            <li><a href="./promise.html">Promises</a></li>
+                            
+                            <li><a href="./logging.html">Logging</a></li>
+                            
+                            <li><a href="./utilities.html">Utilities</a></li>
+                            
+                            <li><a href="./coverage.html">Test Coverage</a></li>
+                            
+                        </ul>
+                        
+
+                        
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="comb.html">comb</a></li>
+                            
+                            <li><a href="comb_array.html">comb.array</a></li>
+                            
+                            <li><a href="comb_async.html">comb.async</a></li>
+                            
+                            <li><a href="comb_characters.html">comb.characters</a></li>
+                            
+                            <li><a href="comb_date.html">comb.date</a></li>
+                            
+                            <li><a href="comb_hash.html">comb.hash</a></li>
+                            
+                            <li><a href="comb_logger.html">comb.logger</a></li>
+                            
+                            <li><a href="comb_number.html">comb.number</a></li>
+                            
+                            <li><a href="comb_plugins.html">comb.plugins</a></li>
+                            
+                            <li><a href="comb_regexp.html">comb.regexp</a></li>
+                            
+                            <li><a href="comb_string.html">comb.string</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./comb_Promise.html">comb.Promise</a></li>
+                            
+                            <li><a href="./comb_PromiseList.html">comb.PromiseList</a></li>
+                            
+                            <li><a href="./comb_collections_AVLTree.html">comb.collections.AVLTree</a></li>
+                            
+                            <li><a href="./comb_collections_AnderssonTree.html">comb.collections.AnderssonTree</a></li>
+                            
+                            <li><a href="./comb_collections_BinaryTree.html">comb.collections.BinaryTree</a></li>
+                            
+                            <li><a href="./comb_collections_Collection.html">comb.collections.Collection</a></li>
+                            
+                            <li><a href="./comb_collections_HashTable.html">comb.collections.HashTable</a></li>
+                            
+                            <li><a href="./comb_collections_Heap.html">comb.collections.Heap</a></li>
+                            
+                            <li><a href="./comb_collections_Iterable.html">comb.collections.Iterable</a></li>
+                            
+                            <li><a href="./comb_collections_MaxHeap.html">comb.collections.MaxHeap</a></li>
+                            
+                            <li><a href="./comb_collections_MinHeap.html">comb.collections.MinHeap</a></li>
+                            
+                            <li><a href="./comb_collections_Pool.html">comb.collections.Pool</a></li>
+                            
+                            <li><a href="./comb_collections_PriorityQueue.html">comb.collections.PriorityQueue</a></li>
+                            
+                            <li><a href="./comb_collections_Queue.html">comb.collections.Queue</a></li>
+                            
+                            <li><a href="./comb_collections_RedBlackTree.html">comb.collections.RedBlackTree</a></li>
+                            
+                            <li><a href="./comb_collections_Stack.html">comb.collections.Stack</a></li>
+                            
+                            <li><a href="./comb_collections_Tree.html">comb.collections.Tree</a></li>
+                            
+                            <li><a href="./comb_logging_BasicConfigurator.html">comb.logging.BasicConfigurator</a></li>
+                            
+                            <li><a href="./comb_logging_Level.html">comb.logging.Level</a></li>
+                            
+                            <li><a href="./comb_logging_Logger.html">comb.logging.Logger</a></li>
+                            
+                            <li><a href="./comb_logging_PropertyConfigurator.html">comb.logging.PropertyConfigurator</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_Appender.html">comb.logging.appenders.Appender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_ConsoleAppender.html">comb.logging.appenders.ConsoleAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_JSONAppender.html">comb.logging.appenders.JSONAppender</a></li>
+                            
+                            <li><a href="./comb_logging_appenders_RollingFileAppender.html">comb.logging.appenders.RollingFileAppender</a></li>
+                            
+                            <li><a href="./comb_plugins_Broadcaster.html">comb.plugins.Broadcaster</a></li>
+                            
+                            <li><a href="./comb_plugins_Middleware.html">comb.plugins.Middleware</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                </ul>
+                
+                <ul class="nav pull-right">
+
+                    <li class="divider-vertical"></li>
+                    <li><a href="https://github.com/C2FO/comb" target="#github" class="pull-right">github</a></li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <a name="top"></a>
+    <div class="container">
+
+
+
+<h1>Comb</h1>
+<p><code>comb</code> can be used as a namespace or a <code>function</code> when using comb as a <code>function</code> it decorates the passed in value with methods that can be chained togther or used stand alone. The following types are supported.
+
+</p>
+<ul>
+<li><code>Boolean</code></li>
+<li><a href="#strings">String</a></li>
+<li><a href="#numbers">Number</a></li>
+<li><a href="#arrays">Array</a></li>
+<li><a href="#dates">Date</a></li>
+<li><a href="#objects">Object</a></li>
+<li><a href="#functions">Function</a></li>
+<li><a href="#arguments">Argument</a></li>
+<li><code>RegExp</code></li>
+</ul>
+<h2>Notes</h2>
+<h3>Strict Equalities</h3>
+<p>When comparing primitives you should use the <code>eq</code> and <code>neq</code> methods as primitives are coverted to their Object counter parts.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var one = 1, 
+    //converted to new Number(1)
+    combOne = comb(1);
+
+console.log(one === combOne); //false
+console.log(combOne.eq(one)); //true
+
+console.log(one !== combOne); //true
+console.log(combOne.neq(one)); //false</code></pre>
+<h3>Printing values.</h3>
+<p>When using <code>console.log</code> you should convert primitive values to strings either trough the toString method or `&quot;&quot; + value&#39; otherwise you will end up with the object printed instead of the expected value.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>console.log(comb(&quot;hello&quot;)); //{ &#39;0&#39;: &#39;h&#39;, &#39;1&#39;: &#39;e&#39;, &#39;2&#39;: &#39;l&#39;, &#39;3&#39;: &#39;l&#39;, &#39;4&#39;: &#39;o&#39; }
+console.log(&quot;%s&quot;, comb(&quot;hello&quot;)); //&quot;hello&quot;
+comb(&quot;hello&quot;).print(); //&quot;hello&quot;</code></pre>
+<h2>Common Methods</h2>
+<p>Comb will be default decorate any value passed in with the following methods.
+
+</p>
+<ul>
+<li><code>isDefined</code> : returns true if value <code>!== undefined</code>.</li>
+<li><code>isUndefined</code> : returns true if value <code>=== undefined</code>.</li>
+<li><code>isNull</code> : returns true if value <code>=== undefined</code>.</li>
+<li><code>isUndefinedOrNull</code> : returns true if value <code>!== undefined</code> and <code>!== null</code>.</li>
+<li><code>isArguments</code> : returns true if the value is an <code>Arguments</code> object.</li>
+<li><code>isObject</code> : returns true if the value is an <code>Object</code>.</li>
+<li><code>isHash</code> : returns true if the value is only and instance of <code>Object</code> (i.e. <code>{}</code>).</li>
+<li><code>isBoolean</code> : retuns true if the value is a <code>Boolean</code>.</li>
+<li><code>isDate</code> : returns true if the value is a <code>Date</code>.</li>
+<li><code>isEmpty</code> : returns true if the value is empty (i.e. <code>{} || [] || &quot;&quot; &quot;</code>).</li>
+<li><code>isArray</code> : returns true if the value is an <code>Array</code>.</li>
+<li><code>isFunction</code> : returns true if the value is a <code>function</code>.</li>
+<li><code>isInstanceOf</code> : returns true if the value is an istance of the passed in constructor.</li>
+</ul>
+<pre class='prettyprint linenums lang-js'><code>comb(new String(&quot;hello&quot;)).isInstanceOf(String)); //true
+comb(new String(&quot;hello&quot;)).isInstanceOf(Number)); //false</code></pre>
+<ul>
+<li><code>print</code> : logs the actual value.</li>
+<li><code>eq</code> : checks strict equality. Use this for primitives as they are casted to Objects.</li>
+<li><code>neq</code> : checks strict in-equality. Use this for primitives as they are casted to Objects.</li>
+<li><code>date</code> : expose date methods on the object.</li>
+<li><code>string</code> : expose string methods on the object.</li>
+<li><code>array</code> : expose array methods on the object.</li>
+<li><code>args</code> : expose arguments methods on the object.</li>
+<li><code>func</code> : expose function methods on the object.</li>
+<li><code>number</code> : expose number methods on the object.</li>
+<li><code>object</code> : expose object methods on the object.</li>
+<li><code>isNumber</code> : returns true if the value is a number.</li>
+<li><code>isPromiseLike</code> : returns true if the value is promise like. See <a href="./comb.html#.isPromiseLike">comb.isPromiseLike</a></li>
+<li><code>isRegExp</code> : returns true if the value is a <code>RegExp</code></li>
+<li><code>isString</code> : returns true if the value is a <code>String</code></li>
+<li><code>deepEqual</code> : returns true if the value is deeply equal to the passed in value</li>
+</ul>
+<pre class='prettyprint linenums lang-js'><code>var value = comb({a : &quot;b&quot;, b : &quot;c&quot;});
+value.deepEqual({a : &quot;b&quot;, b : &quot;c&quot;})); //true
+value.deepEqual({a : &quot;b&quot;, c : &quot;b&quot;})); //false</code></pre>
+<p><a name="arrays"></a>
+</p>
+<h2>Arrays</h2>
+<p><code>Array</code>s will be decorated with the following functions.
+
+</p>
+<h3><code>style</code></h3>
+<p>Styles each string in the array.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>//prints red green and blue in red to the terminal
+comb([&quot;red&quot;, &quot;green&quot;,&quot;blue&quot;]).style(&quot;red&quot;).join(&quot;\n&quot;));</code></pre>
+<h3><code>forEach</code></h3>
+<p>Chainable version of <code>Array.prototype.forEach</code> returning the original array
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb([1,2,3])
+    .forEach(function(num){
+        console.log(num);
+    })
+    .map(function(num){
+        return num * 2;
+    })
+    .forEach(function(num){
+        console.log(num);
+    });</code></pre>
+<h3><code>map</code></h3>
+<p>Same as <code>Array.prototype.map</code> but the return value is decorated with all the array methods.
+
+</p>
+<h3><code>filter</code></h3>
+<p>Same as <code>Array.prototype.filter</code> but the return value is decorated with all the array methods.
+
+</p>
+<h3><code>reduce</code></h3>
+<p>Same as <code>Array.prototype.filter</code> but the return value is decorated by <code>comb</code>.
+
+</p>
+<h3><code>reduceRight</code></h3>
+<p>Same as <code>Array.prototype.reduceRight</code> but the return value is decorated by <code>comb</code>.
+
+</p>
+<h3><code>indexOf</code></h3>
+<p>Same as <code>Array.prototype.indexOf</code> but with a decorated number.
+
+</p>
+<h3><code>lastIndexOf</code></h3>
+<p>Same as <code>Array.prototype.lastIndexOf</code> but with a decorated number.
+
+</p>
+<h3><code>zip</code></h3>
+<p>Zips array together.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb([1]).zip([2], [3]);    // [[ 1, 2, 3 ]]
+comb([1, 2]).zip([2], [3]); // [[ 1, 2, 3 ], [2, null, null]]
+comb([1, 2, 3]).zip(a, b);  //[[1, 4, 7],[2, 5, 8],[3, 6, 9]]</code></pre>
+<h3><code>sum</code></h3>
+<p>Sums an array
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb([1,2,3]).sum(); //6
+comb([1,2,3]).sum().isNumber(); //true</code></pre>
+<h3><code>avg</code></h3>
+<p>Finds the average of an array of numbers.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb([1,2,3]).avg(); //2
+comb([1,2,3]).avg().isNumber(); //true</code></pre>
+<h3><code>sort</code></h3>
+<p>Sorts an array. <strong>NOTE</strong> This does not change the original array.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var arr = [3,2,1];
+comb(arr).sort()); //[1,2,3]
+arr); //[3,2,1]
+
+var arr2 = [{a : 3}, {a : 2}, {a : 1}];
+comb(arr).sort(&quot;a&quot;).pluck(&quot;a&quot;); //[1,2,3]
+comb(arr).pluck(&quot;a&quot;);           //[3,2,1]</code></pre>
+<h3><code>min</code></h3>
+<p>Finds the minimum value in an array.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var arr = [3,2,1];
+comb(arr).min(); //1
+
+var arr2 = [{a : 3}, {a : 2}, {a : 1}];
+comb(arr).min(&quot;a&quot;); //{a : 1}</code></pre>
+<h3><code>max</code></h3>
+<p>Finds the maximum value in an array.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var arr = [3,2,1];
+comb(arr).max(); //3
+
+var arr2 = [{a : 3}, {a : 2}, {a : 1}];
+comb(arr).max(&quot;a&quot;); //{a : 3}</code></pre>
+<h3><code>difference</code></h3>
+<p>Finds the difference between two arrays.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb([true, false]).difference([false]); //[true]
+comb([1, 2, 3]).difference([2]);        //[1, 3]
+comb([1, 2, 3]).difference([2], [3]);   //[1]
+comb([&quot;a&quot;, &quot;b&quot;, 3]).difference([3]);    //[&quot;a&quot;, &quot;b&quot;]
+comb([a, b, c]).difference([b, c]);     //[a]</code></pre>
+<h3><code>removeDuplicates</code></h3>
+<p>Removes duplicates from an array.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb([1, 2, 2, 3, 3, 3, 4, 4, 4]).removeDuplicates(); //[1, 2, 3, 4]
+comb([&quot;a&quot;, &quot;b&quot;, &quot;b&quot;]).removeDuplicates();             // [&quot;a&quot;, &quot;b&quot;]</code></pre>
+<h3><code>unique</code></h3>
+<p>Alias to <code>removeDuplicates</code>
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb([1, 2, 2, 3, 3, 3, 4, 4, 4]).unique(); // [1, 2, 3, 4]);
+comb([&quot;a&quot;, &quot;b&quot;, &quot;b&quot;]).unique();            // [&quot;a&quot;, &quot;b&quot;]);</code></pre>
+<h3><code>rotate</code></h3>
+<p>Rotates an array by <code>1</code> or the specified number of places.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var arr = comb([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]);
+arr.rotate();   // [&quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;a&quot;]);
+arr.rotate(2);  // [&quot;c&quot;, &quot;d&quot;, &quot;a&quot;, &quot;b&quot;]);
+arr.rotate(3);  // [&quot;d&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;]);
+arr.rotate(4);  // [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]);
+arr.rotate(-1); // [&quot;d&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;]);
+arr.rotate(-2); // [&quot;c&quot;, &quot;d&quot;, &quot;a&quot;, &quot;b&quot;]);
+arr.rotate(-3); // [&quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;a&quot;]);
+arr.rotate(-4); // [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]);</code></pre>
+<h3><code>permutations</code></h3>
+<p>Finds all permutaions of the array.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var arr = comb([1, 2, 3]);
+arr.permutations();  //[
+                      //  [ 1, 2, 3 ],
+                     //  [ 1, 3, 2 ],
+                      //  [ 2, 3, 1 ],
+                      //  [ 2, 1, 3 ],
+                      //  [ 3, 1, 2 ],
+                      //  [ 3, 2, 1 ]
+                      // ]
+
+arr.permutations(2); //[
+                      //  [ 1, 2],
+                      //  [ 1, 3],
+                      //  [ 2, 3],
+                      //  [ 2, 1],
+                      //  [ 3, 1],
+                      //  [ 3, 2]
+                      //]
+
+arr.permutations(1); //[
+                      //  [1],
+                      //  [2],
+                      //  [3]
+                      //]</code></pre>
+<h3><code>transpose</code></h3>
+<p>Transposes a multidimensional array.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb([[1, 2, 3],[4, 5, 6]]).transpose(); //[
+                                          // [ 1, 4 ],
+                                          // [ 2, 5 ],
+                                          // [ 3, 6 ]
+                                          //]</code></pre>
+<h3><code>valuesAt</code></h3>
+<p>Retrieves the values at the specified locations.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var arr = comb([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]);
+arr.valuesAt(1, 2, 3);    //[&quot;b&quot;, &quot;c&quot;, &quot;d&quot;]);
+arr.valuesAt(1, 2, 3, 4); //[&quot;b&quot;, &quot;c&quot;, &quot;d&quot;, null]);
+arr.valuesAt(0, 3);       //[&quot;a&quot;, &quot;d&quot;]);</code></pre>
+<h3><code>union</code></h3>
+<p>Returns the union of the value with the passed in arrays.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]).union([&quot;b&quot;, &quot;c&quot;, &quot;d&quot;]);  //[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]);
+comb([&quot;a&quot;]).union([&quot;b&quot;], [&quot;c&quot;], [&quot;d&quot;], [&quot;c&quot;]); //[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]);</code></pre>
+<h3><code>intersect</code></h3>
+<p>Finds the intersection of arrays.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb([1, 2]).intersect([2, 3], [2, 3, 5]);                   //[2]
+comb([1, 2, 3]).intersect([2, 3, 4, 5], [2, 3, 5]);          //[2, 3]
+comb([1, 2, 3, 4]).intersect([2, 3, 4, 5], [2, 3, 4, 5]);    //[2, 3, 4]
+comb([1, 2, 3, 4, 5]).intersect([1, 2, 3, 4, 5], [1, 2, 3]); //[1, 2, 3]</code></pre>
+<h3><code>powerSet</code></h3>
+<p>Finds the powerset of an array.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb([1, 2]).powerSet()); //[
+                           //  [],
+                           //  [ 1 ],
+                           //  [ 2 ],
+                           //  [ 1, 2 ]
+                           //]</code></pre>
+<h3><code>cartesian</code></h3>
+<p>Finds the cartesian product of arrays.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb([1, 2]).cartesian([2, 3]); //[
+                                 // [1, 2],
+                                 // [1, 3],
+                                 // [2, 2],
+                                 // [2, 3]
+                                 //]</code></pre>
+<h3><code>compact</code></h3>
+<p>Compacts an array removing <code>undefined</code> or <code>null</code>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb([1, null, undefined, x, 2]).compact(); //[1, 2]</code></pre>
+<h3><code>multiply</code></h3>
+<p>Duplicates the elements in an array the specified number of times.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb([1, 2, 3]).multiply(2); //[1, 2, 3, 1, 2, 3]</code></pre>
+<h3><code>flatten</code></h3>
+<p>Flattens arrays.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb([1, 2]).flatten([2, 3], [3, 4]);     //[1, 2, 2, 3, 3, 4]
+comb([[1], [2], [3]]).flatten();          //[1, 2, 3]
+comb([[1, 2],2]).flatten([2, 3], [3, 4]); //[[1, 2],2,2,3,3,4]</code></pre>
+<h3><code>pluck</code></h3>
+<p>Plucks values from each item in the array.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var arr = comb([                                                                          
+    {name:{first:&quot;Fred&quot;, last:&quot;Jones&quot;}, age:50, roles:[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]},   
+    {name:{first:&quot;Bob&quot;, last:&quot;Yukon&quot;}, age:40, roles:[&quot;b&quot;, &quot;c&quot;]},         
+    {name:{first:&quot;Alice&quot;, last:&quot;Palace&quot;}, age:35, roles:[&quot;c&quot;]},           
+    {name:{first:&quot;Johnny&quot;, last:&quot;P.&quot;}, age:56, roles:[]}                  
+]);                                                                         
+
+arr.pluck(&quot;name.first&quot;); //[&quot;Fred&quot;, &quot;Bob&quot;, &quot;Alice&quot;, &quot;Johnny&quot;] 
+arr.pluck(&quot;age&quot;); //[50, 40, 35, 56]                          
+arr.pluck(&quot;roles.length&quot;); //[3, 2, 1, 0]                     
+arr.pluck(&quot;roles.0&quot;); //[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, undefined]</code></pre>
+<h3><code>invoke</code></h3>
+<p>Invokes the specified method on each item in the array.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function person(name, age){                                                                  
+    return {                                                                                 
+        getName : function(){                                                                
+            return name;                                                                     
+        },                                                                                   
+        setName : function(newName){                                                         
+            name = newName;                                                                  
+        },                                                                                   
+
+        getOlder : function(){                                                               
+            age++;                                                                           
+            return this;                                                                     
+        },                                                                                   
+
+        getAge : function(){                                                                 
+            return age;                                                                      
+        }                                                                                    
+    };                                                                                       
+}                                                                                            
+
+var arr = comb([person(&quot;Bob&quot;, 40), person(&quot;Alice&quot;, 35), person(&quot;Fred&quot;, 50), person(&quot;Johnny&quot;, 56)]);
+
+arr.invoke(&quot;getName&quot;); //[&quot;Bob&quot;, &quot;Alice&quot;, &quot;Fred&quot;, &quot;Johnny&quot;]                                                                                                      
+arr.invoke(&quot;getOlder&quot;).invoke(&quot;getAge&quot;); //[41, 36, 51, 57];</code></pre>
+<p><a name="strings"></a>
+</p>
+<h2>Strings</h2>
+<h3><code>style</code></h3>
+<p>Styles a string. See <a href="./comb_string.html#.style">comb.string.style</a> for style types. 
+</p>
+<pre class='prettyprint linenums lang-js'><code>//prints a red string
+comb(&quot;string&quot;).style(&quot;red&quot;))
+//prints a bold green string
+comb(&quot;string&quot;).style([&quot;green&quot;, &quot;bold&quot;])</code></pre>
+<h3><code>multiply</code></h3>
+<p>Repeats the string the specified number of times.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb(&quot;HELLO &quot;).multitply(5)); ///&quot;HELLO HELLO HELLO HELLO HELLO&quot;</code></pre>
+<h3><code>toArray</code></h3>
+<pre class='prettyprint linenums lang-js'><code>comb(&quot;a|b|c|d&quot;).toArray(&quot;|&quot;); //[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;]
+comb(&quot;a&quot;).toArray(&quot;|&quot;);       //[&quot;a&quot;]
+comb(&quot;&quot;).toArray(&quot;|&quot;);        //[]</code></pre>
+<h3><code>format</code></h3>
+<p>Formats a string. See <a href="./comb_string.html#.format">comb.string.format</a> for formatting flags.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>
+comb(&quot;%s, %s&quot;).format([&quot;Hello&quot;, &quot;World&quot;]); //&quot;Hello, World&quot;
+
+comb(&quot;%[ 10]s, %[- 10]s&quot;).format([&quot;Hello&quot;, &quot;World&quot;]); //&quot;     Hello, World     &quot;;
+
+comb(&quot;%-!10s, %#10s, %10s and %-10s&quot;).format(&quot;apple&quot;, &quot;orange&quot;, &quot;bananas&quot;, &quot;watermelons&quot;));
+     //&quot;apple!!!!!, ####orange,    bananas and watermelon&quot;
+
+comb(&quot;%+d, %+d, %10d, %-10d, %-+#10d, %10d&quot;).format(1,-2, 1, 2, 3, 100000000000);
+     //&quot;+1, -2, 0000000001, 2000000000, +3########, 1000000000&quot;
+
+comb(&quot;%[h:mm a]D&quot;).format([date])); //7:32 PM - local -
+
+comb(&quot;%[h:mm a]Z&quot;).format([date])); //12:32 PM - UTC
+
+//When using object formats they must be in an array otherwise
+//format will try to interpolate the properties into the string.
+comb(&quot;%j&quot;).format([{a : &quot;b&quot;}]); //&#39;{&quot;a&quot;:&quot;b&quot;}&#39;
+
+comb(&quot;%1j, %4j&quot;).format([{a : &quot;b&quot;}, {a : &quot;b&quot;}]); //&#39;{\n &quot;a&quot;: &quot;b&quot;\n},\n{\n    &quot;a&quot;: &quot;b&quot;\n}&#39;
+
+comb(&quot;{hello}, {world}&quot;).format({hello : &quot;Hello&quot;, world : &quot;World&quot;); //&quot;Hello, World&quot;;
+
+comb(&quot;{[-s10]apple}, {[%#10]orange}, {[10]banana} and {[-10]watermelons}&quot;).format({
+    apple : &quot;apple&quot;,
+    orange : &quot;orange&quot;,
+    banana : &quot;bananas&quot;,
+    watermelons : &quot;watermelons&quot;
+}); //applesssss, ####orange,    bananas and watermelon</code></pre>
+<h3><code>truncate</code></h3>
+<p>Truncates a string.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>//from the beginning
+comb(&quot;abcdefg&quot;).truncate(3);      //&quot;abc&quot;;
+//from the end
+comb(&quot;abcdefg&quot;).truncate(3,true); // &quot;efg&quot;
+//omit the length
+comb(&quot;abcdefg&quot;).truncate();       //&quot;abcdefg&quot;</code></pre>
+<h3><code>pad</code></h3>
+<p>Pads a string with.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var str = comb(&quot;STR&quot;);
+str.pad(5); //&quot;  STR&quot;
+str.pad(5, &quot; &quot;, true); //&quot;STR  &quot;
+str.pad(5, &quot;$&quot;, true); //&quot;$$STR&quot;</code></pre>
+<h3><code>camelize</code></h3>
+<p>Camelize an underscored string.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb(&#39;hello_world&#39;).camelize(); // &quot;helloWorld&quot;
+comb(&#39;column_name&#39;).camelize(); // &quot;columnName&quot;
+comb(&#39;columnName&#39;).camelize();  // &quot;columnName&quot;</code></pre>
+<h3><code>underscore</code></h3>
+<p>Underscore a camelcased string.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb(&#39;helloWorld&#39;).underscore(); // &quot;hello_world&quot;
+comb(&#39;column_name&#39;).underscore(); // &quot;column_name&quot;
+comb(&#39;columnName&#39;).underscore();  // &quot;column_name&quot;</code></pre>
+<h3><code>classify</code></h3>
+<p>Singularizes and camelizes the string. Also strips out all characters preceding and including a period (&quot;.&quot;).
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb(&#39;egg_and_hams&#39;).classify(); //&quot;eggAndHam&quot;
+comb(&#39;post&#39;).classify();         //&quot;post&quot;
+comb(&#39;schema.post&#39;).classify();  //&quot;post&quot;</code></pre>
+<h3><code>pluralize</code></h3>
+<p>Returns the plural form of the string.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb(&quot;post&quot;).pluralize();               //&quot;posts&quot;
+comb(&quot;octopus&quot;).pluralize();          //&quot;octopi&quot;
+comb(&quot;sheep&quot;).pluralize();            //&quot;sheep&quot;
+comb(&quot;word&quot;).pluralize();                //&quot;words&quot;
+comb(&quot;the blue mailman&quot;).pluralize(); //&quot;the blue mailmen&quot;
+comb(&quot;CamelOctopus&quot;).pluralize();     //&quot;CamelOctopi&quot;</code></pre>
+<h3><code>singularize</code></h3>
+<p>The reverse of <code>pluralize</code> returns the singluar version of a string.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb(&quot;posts&quot;).singularize()&quot;);               //&quot;post&quot;
+comb(&quot;octopi&quot;).singularize());           //&quot;octopus&quot;
+comb(&quot;sheep&quot;).singularize());            //&quot;sheep&quot;
+comb(&quot;words&quot;).singularize());            //&quot;word&quot;
+comb(&quot;the blue mailmen&quot;).singularize()); //&quot;the blue mailman&quot;
+comb(&quot;CamelOctopi&quot;).singularize());      //&quot;CamelOctopus&quot;</code></pre>
+<h3><code>applyFirst</code></h3>
+<p>Creates a function that will invoke the method with the strings name on the first argument passed in.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var arr = [], push = comb(&quot;push&quot;).applyFirst(), length = comb(&quot;length&quot;).applyFirst(); 
+push(arr, 1, 2,3,4);                                                              
+length(arr); //4                                                     
+console.log(arr); //1,2,3,4</code></pre>
+<h3><code>bindFirst</code></h3>
+<p>Alias to apply first.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var arr = [], push = comb(&quot;push&quot;).bindFirst(), length = comb(&quot;length&quot;).bindFirst(); 
+push(arr, 1, 2,3,4);                                                              
+length(arr); //4                                                     
+console.log(arr); //1,2,3,4</code></pre>
+<h3><code>partial</code></h3>
+<p>Creates a function that curries arguments but does not change the scope.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var func = comb(&quot;test2&quot;).partial(&quot;hello&quot;);
+var scope = {
+    test2:function (arg) {
+        arg); //&quot;hello&quot;
+        return true;
+    }
+};
+func.call(scope); //true</code></pre>
+<h3><code>parseDate</code></h3>
+<p>Parses a date string. See <a href="./comb_date.html#.parse">comb.date.parse</a> for formatting options.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var aug_11_2006 = new Date(2006, 7, 11, 0);
+comb(&quot;08/11/06&quot;).parseDate(&quot;MM/dd/yy&quot;);                        //aug_11_2006
+comb(&quot;11Aug2006&quot;)parse(&#39;ddMMMyyyy&#39;);                            //aug_11_2006
+comb(&quot;Aug2006&quot;).parse(&#39;MMMyyyy&#39;);                                //new Date(2006, 7, 1)
+comb(&quot;Aug 11, 2006&quot;).date.parse(&quot;MMM dd, yyyy&quot;);              //aug_11_2006
+comb(&quot;August 11, 2006&quot;).date.parse(&quot;MMMM dd, yyyy&quot;);          //aug_11_2006
+comb(&quot;Friday, August 11, 2006&quot;).parse(&quot;EEEE, MMMM dd, yyyy&quot;); //aug_11_2006</code></pre>
+<h3><code>escape</code></h3>
+<p>Escapes a string.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb(&quot;.$?*|{}()[]\/+^&quot;).escape() + &quot;&quot;); //^&quot;</code></pre>
+<h3><code>pluck</code></h3>
+<p>Inverted form of <code>comb.array.pluck</code>. 
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var arr = [                                                                          
+    {name:{first:&quot;Fred&quot;, last:&quot;Jones&quot;}, age:50, roles:[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]},   
+    {name:{first:&quot;Bob&quot;, last:&quot;Yukon&quot;}, age:40, roles:[&quot;b&quot;, &quot;c&quot;]},         
+    {name:{first:&quot;Alice&quot;, last:&quot;Palace&quot;}, age:35, roles:[&quot;c&quot;]},           
+    {name:{first:&quot;Johnny&quot;, last:&quot;P.&quot;}, age:56, roles:[]}                  
+];                                                                         
+
+comb(&quot;name.first&quot;).pluck(arr); //[&quot;Fred&quot;, &quot;Bob&quot;, &quot;Alice&quot;, &quot;Johnny&quot;] 
+comb(&quot;age&quot;).pluck(arr); //[50, 40, 35, 56]                          
+comb(&quot;roles.length&quot;).pluck(arr); //[3, 2, 1, 0]                     
+comb(&quot;roles.0&quot;).pluck(arr); //[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, undefined]</code></pre>
+<h3><code>invoke</code></h3>
+<p>Inverted of <code>comb.array.invoke</code>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function person(name, age){                                                                  
+    return {                                                                                 
+        getName : function(){                                                                
+            return name;                                                                     
+        },                                                                                   
+        setName : function(newName){                                                         
+            name = newName;                                                                  
+        },                                                                                   
+
+        getOlder : function(){                                                               
+            age++;                                                                           
+            return this;                                                                     
+        },                                                                                   
+
+        getAge : function(){                                                                 
+            return age;                                                                      
+        }                                                                                    
+    };                                                                                       
+}                                                                                            
+
+var arr = [person(&quot;Bob&quot;, 40), person(&quot;Alice&quot;, 35), person(&quot;Fred&quot;, 50), person(&quot;Johnny&quot;, 56)];
+
+comb(&quot;getName&quot;).invoke(arr); //[&quot;Bob&quot;, &quot;Alice&quot;, &quot;Fred&quot;, &quot;Johnny&quot;]                                                                                                      
+comb(&quot;getOlder&quot;).invoke(arr).invoke(&quot;getAge&quot;); //[41, 36, 51, 57];</code></pre>
+<h3><code>hitch</code></h3>
+<p>Hitches a named method on an object.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {
+    str : &quot;hello&quot;,
+    test : function(){
+        return this.str;
+    },
+    curried : function(){
+        return [this.str].concat(comb(arguments).toArray());
+    }
+};
+
+var test = comb(&quot;test&quot;).hitch(obj);
+var curried = comb(&quot;curried&quot;).hitch(obj, &quot;world&quot;);
+test(); // &quot;hello&quot;
+curried(&quot;!&quot;); //[&quot;hello&quot;, &quot;world&quot;, &quot;!&quot;]</code></pre>
+<h3><code>bind</code></h3>
+<p>Binds a named method on an object.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {
+    str : &quot;hello&quot;,
+    test : function(){
+        return this.str;
+    },
+    curried : function(){
+        return [this.str].concat(comb(arguments).toArray());
+    }
+};
+
+var test = comb(&quot;test&quot;).bind(obj);
+var curried = comb(&quot;curried&quot;).bind(obj, &quot;world&quot;);
+test(); // &quot;hello&quot;
+curried(&quot;!&quot;); //[&quot;hello&quot;, &quot;world&quot;, &quot;!&quot;]</code></pre>
+<h3><code>hitchIgnore</code></h3>
+<p>Hitches a named method on an object ignoring passed in arguments.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {
+    str : &quot;hello&quot;,
+    curried : function(){
+        return [this.str].concat(comb(arguments).toArray());
+    }
+};
+
+var curried = comb(&quot;curried&quot;).hitchIgnore(obj, &quot;world&quot;);
+curried(&quot;!&quot;); //[&quot;hello&quot;, &quot;world&quot;]</code></pre>
+<h3><code>bindIgnore</code></h3>
+<p>Binds a named method on an object ignoring passed in arguments.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {
+    str : &quot;hello&quot;,
+    curried : function(){
+        return [this.str].concat(comb(arguments).toArray());
+    }
+};
+
+var curried = comb(&quot;curried&quot;).bindIgnore(obj, &quot;world&quot;);
+curried(&quot;!&quot;); //[&quot;hello&quot;, &quot;world&quot;]</code></pre>
+<h3><code>curry</code></h3>
+<p>Curries arguments the specified number of times in the specified scope.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var scope = {
+                test:true,
+                curried:function (a, b, c, d) {
+                    return [this.test, a, b, c, d];
+                }
+            };
+
+var curriedFunc = comb(&quot;curried&quot;).curry(4, scope);
+
+curriedFunc(&quot;a&quot;)(&quot;b&quot;)(&quot;c&quot;)(&quot;d&quot;); //[true, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]</code></pre>
+<p><a name="dates"></a>
+</p>
+<h2>Dates</h2>
+<h3><code>add</code></h3>
+<p>Add the specified interval the specified number of times. See <a href="./comb_date.html#.add">comb.date.add</a> for more arugment types.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>
+var dt = comb(new Date(2009, 1, 1, 1, 1, 1, 111)),
+    dateFormat = comb(&quot;format&quot;).applyFirst(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;);
+dateFormat(dt.add(&quot;years&quot;, 2));        //2011-02-01 01:01:01.111
+dateFormat(dt.add(&quot;months&quot;, 2));       //2009-04-01 01:01:01.111
+dateFormat(dt.add(&quot;days&quot;, 2));         //2009-02-03 01:01:01.111
+dateFormat(dt.add(&quot;hours&quot;, 2));        //2009-02-01 03:01:01.111
+dateFormat(dt.add(&quot;minutes&quot;, 2));      //2009-02-01 01:03:01.111
+dateFormat(dt.add(&quot;seconds&quot;, 2));      //2009-02-01 01:01:03.111
+dateFormat(dt.add(&quot;milliseconds&quot;, 2)); //2009-02-01 01:01:01.113</code></pre>
+<h3><code>compare</code></h3>
+<p>compares this date to another.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>
+var d1 = new Date();
+d1.setHours(0);
+comb(d1).compare(d1); //0
+
+var d2 = new Date();
+d2.setFullYear(2005);
+d2.setHours(12);
+comb(d1).compare(d2, &quot;date&quot;) //1
+comb(d1).compare(d2, &quot;datetime&quot;) //1
+
+comb(d2).compare(d1, &quot;date&quot;) //-1
+comb(d2).compare(d1, &quot;datetime&quot;) //-1</code></pre>
+<h3><code>difference</code></h3>
+<p>Finds the difference between two dates. See <a href="./comb_date.html#.difference">comb.date.difference</a>.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>
+comb(new Date(2005, 11, 27)).difference(new Date(2006, 11, 27), &quot;year&quot;); //1</code></pre>
+<h3><code>format</code></h3>
+<p>Formats a date with the specified formatting flags. See <a href="./comb_date.html#.format">comb.date.format</a>. 
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var date = comb(new Date(2009, 1, 1, 1, 1, 1, 111))
+date.format(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;); //2011-02-01 01:01:01.111
+date.format(&quot;yyyy-MM-dd&quot;); //2011-02-01
+date.format(&quot;HH:mm:ss.SSS&quot;); //01:01:01.111</code></pre>
+<h3><code>getDaysInMonth</code></h3>
+<p>Returns the days in the dates month.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb(new Date(2006, 1, 1)).getDaysInMonth() //28
+comb(new Date(2004, 1, 1)).getDaysInMonth() //29
+comb(new Date(2000, 1, 1)).getDaysInMonth() //29
+comb(new Date(1900, 1, 1)).getDaysInMonth() //28
+comb(new Date(1800, 1, 1)).getDaysInMonth() //28
+comb(new Date(1700, 1, 1)).getDaysInMonth() //28
+comb(new Date(1600, 1, 1)).getDaysInMonth() //29</code></pre>
+<h3><code>getTimezoneName</code></h3>
+<p>Returns the name of the timezone for the date.
+
+</p>
+<h3><code>isLeapYear</code></h3>
+<p>Returns a boolean indicating if the year is leap year.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb(new Date(1600, 0, 1)).isLeapYear(); //true
+comb(new Date(2004, 0, 1)).isLeapYear(); //true
+comb(new Date(2000, 0, 1)).isLeapYear(); //true
+comb(new Date(2006, 0, 1)).isLeapYear(); //false
+comb(new Date(1900, 0, 1)).isLeapYear(); //false
+comb(new Date(1800, 0, 1)).isLeapYear(); //false
+comb(new Date(1700, 0, 1)).isLeapYear(); //false</code></pre>
+<h3><code>isWeekend</code></h3>
+<p>Returns if the date falls on a weekend.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var thursday = comb(new Date(2006, 8, 21));
+var saturday = comb(new Date(2006, 8, 23));
+var sunday = comb(new Date(2006, 8, 24));
+var monday = comb(new Date(2006, 8, 25));
+thursday.isWeekend(); //false
+saturday.isWeekend(); //true
+sunday.isWeekend(); //true
+monday.isWeekend(); //false</code></pre>
+<p><a name="functions"></a>
+</p>
+<h2>Functions</h2>
+<h3><code>hitch</code></h3>
+<p>Hitches a function to the specified scope, currying any extra arguments.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var add = comb(function(arg1, arg2){
+    return arg1 + arg2 * this.multiplier;
+}).hitch({multiplier : 2}, 2);
+
+add(10); //24
+add(11); //26
+add(12); //28</code></pre>
+<h3><code>bind</code></h3>
+<p>Hitches a function to the specified scope, currying any extra arguments.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var add = comb(function(arg1, arg2){
+    return arg1 + arg2 * this.multiplier;
+}).bind({multiplier : 2}, 2);
+
+add(10); //24
+add(11); //26
+add(12); //28</code></pre>
+<h3><code>hitchIgnore</code></h3>
+<p>Hitches a function to the specified scope, ignoring any extra arguments.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var add = comb(function(arg1, arg2){
+    //arg two will always be undefined.
+    return arg1 + (arg2 || 0) * this.multiplier;
+}).hitchIgnore({multiplier : 2}, 2);
+
+add(10); //4
+add(11); //4
+add(12); //4</code></pre>
+<h3><code>bindIgnore</code></h3>
+<p>Hitches a function to the specified scope, ignoring any extra arguments.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var add = comb(function(arg1, arg2){
+    //arg two will always be undefined.
+    return arg1 + (arg2 || 0) * this.multiplier;
+}).bindIgnore({multiplier : 2}, 2);
+
+add(10); //4
+add(11); //4
+add(12); //4</code></pre>
+<h3><code>partial</code></h3>
+<p>Returns a function that does not change execution scope but curries arguments.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var arr = [];
+Object.defineProperty(arr, &quot;pushTwo&quot;, {
+    value : comb(function(arg1){
+        this.push(comb(arguments).toArray());
+    }).partial(2),
+    enumerable : false
+});
+
+arr.pushTwo(1);
+arr.pushTwo(3);
+console.log(arr); //[[2,1], [2,3]]</code></pre>
+<h3><code>applyFirst</code></h3>
+<p>Creates a function that runs in the scope of the first arugment, and applies the rest.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var arr = [];
+
+var pushTwo = comb(function(val){
+    this.push(comb(arguments).toArray());
+}).applyFirst(2); 
+
+pushTwo(arr, 1);
+pushTwo(arr, 2);
+pushTwo(arr, 3);
+console.log(arr); //[ [ 2, 1 ], [ 2, 2 ], [ 2, 3 ] ]</code></pre>
+<h3><code>bindFirst</code></h3>
+<p>Same as apply first.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var arr = [];
+
+var pushTwo = comb(function(val){
+    this.push(comb(arguments).toArray());
+}).bindFirst(2); 
+
+pushTwo(arr, 1);
+pushTwo(arr, 2);
+pushTwo(arr, 3);
+console.log(arr); //[ [ 2, 1 ], [ 2, 2 ], [ 2, 3 ] ]</code></pre>
+<h3><code>curry</code></h3>
+<p>Curries a function the specified number of times.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var func = comb(function (a, b, c, d) {
+    return [this.test, a,b,c,d];
+});
+var curried = func.curry(4, {test:true});
+console.log(curried(&quot;a&quot;)(&quot;b&quot;)(&quot;c&quot;)(&quot;d&quot;));</code></pre>
+<h3><code>extend</code></h3>
+<p>Extends the prototype of a function.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var MyObj2 = comb(function (str) {
+    this.str = str || &quot;hello&quot;;
+});
+
+MyObj2.extend({
+    getStr:function () {
+        return this.str;
+    }
+});
+
+var m2 = new MyObj2();
+console.log(m2.getStr()); //&quot;hello&quot;
+m2.str = &quot;world&quot;;
+console.log(m2.getStr()); //&quot;world&quot;</code></pre>
+<p><a name="numbers"></a>
+
+</p>
+<h2>Number</h2>
+<h3><code>round</code></h3>
+<p>Rounds a number. See <a href="./comb_number.html#.round">comb.number.round</a>
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb(10.000009).round(2).print();  //10
+comb(10.000009).round(5).print();  //10.00001
+comb(10.0009).round(3).print();    //10.001
+comb(10.0009).round(2).print();    //10
+comb(10.0009).round(3).print();    //10.001
+comb(10.0009).round(2, 1).print(); //11</code></pre>
+<h3><code>roundCeil</code></h3>
+<p>Rounds a number up. See <a href="./comb_number.html#.roundCeil">comb.number.roundCeil</a>
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>comb(10.000004).roundCeil(2).print();  //10.01
+comb(10.000004).roundCeil(5).print();  //10.00001
+comb(10.0004).roundCeil(3).print();    //10.001
+comb(10.0004).roundCeil(2).print();    //10
+comb(10.0004).roundCeil(3).print();    //10.001
+comb(10.0004).roundCeil(2).print();    //10.01</code></pre>
+<p><a name="objects"></a>
+</p>
+<h2>Objects</h2>
+<h3><code>hitch</code></h3>
+<p>Hitches a function to run in the scope of this object.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var scope = comb({test : &quot;test&quot;});
+
+var func = scope.hitch(function(){
+    return this.test;
+});
+
+func(); //&quot;test&quot;;</code></pre>
+<h3><code>hitchIgnore</code></h3>
+<p>Hitches a function to run in the scope of this object, ignoring extra arguments.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var scope = comb({test : &quot;test&quot;});
+
+var func = scope.hitchIgnore(function(){
+    return [this.test].concat(comb(arguments).toArray());
+});
+
+func(&quot;hello&quot;); //[&quot;test&quot;];</code></pre>
+<h3><code>bind</code></h3>
+<p>Binds a function to run in the scope of this object.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var scope = comb({test : &quot;test&quot;});
+
+var func = scope.bind(function(){
+    return this.test;
+});
+
+func(); //&quot;test&quot;;</code></pre>
+<h3><code>bindIgnore</code></h3>
+<p>Binds a function to run in the scope of this object, ignoring extra arguments.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var scope = comb({test : &quot;test&quot;});
+
+var func = scope.bindIgnore(function(){
+    return [this.test].concat(comb(arguments).toArray());
+});
+
+func(&quot;hello&quot;); //[&quot;test&quot;];</code></pre>
+<h3><code>merge</code></h3>
+<p>Merges another object into this object.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = comb({a : &quot;b&quot;});
+console.log(obj.merge({b : &quot;c&quot;})); //{a : &quot;b&quot;, b : &quot;c&quot;}
+console.log(obj.merge({a : &quot;d&quot;})); //{a : &quot;d&quot;, b : &quot;c&quot;}</code></pre>
+<h3><code>extend</code></h3>
+<p>Merges another object into this object.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = comb({a : &quot;b&quot;});
+console.log(obj.extend({b : &quot;c&quot;})); //{a : &quot;b&quot;, b : &quot;c&quot;}
+console.log(obj.extend({a : &quot;d&quot;})); //{a : &quot;d&quot;, b : &quot;c&quot;}</code></pre>
+<h3><code>deepMerge</code></h3>
+<p>Deeply merges another object into this object, meaning that merges in nested objects.
+
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = comb({test:true, a:{b:4}}), format = comb(&quot;%4j&quot;);
+
+format.format([obj.deepMerge({test2:false, a:{c:3}})]).print();
+/*
+ * {
+ *   &quot;test&quot;: true,
+ *   &quot;a&quot;: {
+ *       &quot;b&quot;: 4,
+ *       &quot;c&quot;: 3
+ *   },
+ *   &quot;test2&quot;: false
+ * }
+ */
+
+
+format.format([obj.deepMerge({test3:&quot;hello&quot;, test4:&quot;world&quot;, a:{d:{e:2}}})]).print();
+/*
+ * {
+ *   &quot;test&quot;: true,
+ *   &quot;a&quot;: {
+ *       &quot;b&quot;: 4,
+ *       &quot;c&quot;: 3,
+ *       &quot;d&quot;: {
+ *           &quot;e&quot;: 2
+ *       }
+ *   },
+ *   &quot;test2&quot;: false,
+ *   &quot;test3&quot;: &quot;hello&quot;,
+ *   &quot;test4&quot;: &quot;world&quot;
+ * }
+ */ 
+
+format.format([obj.merge({a:{d:{f:{g:1}}}})]).print();
+/*
+ * {
+ *   &quot;test&quot;: true,
+ *   &quot;a&quot;: {
+ *       &quot;d&quot;: {
+ *           &quot;f&quot;: {
+ *               &quot;g&quot;: 1
+ *           }
+ *       }
+ *   },
+ *   &quot;test2&quot;: false,
+ *   &quot;test3&quot;: &quot;hello&quot;,
+ *   &quot;test4&quot;: &quot;world&quot;
+ * }
+ */</code></pre>
+<h3><code>forEach</code></h3>
+<p>Iterate through each key/value pair in an object.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};   
+comb(obj).forEach(function(value, key){  
+    console.log(value, key);             
+});</code></pre>
+<h3><code>filter</code></h3>
+<p>Filters out key/value pairs in an object. Filters out key/value pairs that return a falsey value from the iterator.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};                                                                             
+comb(obj).filter(function(value, key){                                                                             
+    return value == &quot;b&quot; || key === &quot;e&quot;;                                                                            
+}); //{a : &quot;b&quot;, e : &quot;f&quot;};</code></pre>
+<h3><code>invert</code></h3>
+<p> Returns a new hash that is the invert of the hash.   
+
+</p>
+<pre class='prettyprint linenums lang-js'><code> var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};               
+ comb(obj).invert(); //{b : &quot;a&quot;, d : &quot;c&quot;, f : &quot;e&quot;}</code></pre>
+<h3><code>values</code></h3>
+<p>Returns the values of a hash.             
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};    
+comb(obj).values(); //[&quot;b&quot;, &quot;d&quot;, &quot;f&quot;]</code></pre>
+<h3><code>toArray</code></h3>
+<p>Converts a hash to an array.                                    
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};                          
+comb(obj).toArray(); //[[&quot;a&quot;, &quot;b&quot;], [&quot;c&quot;, &quot;d&quot;], [&quot;e&quot;, &quot;f&quot;]]</code></pre>
+<p><a name="arguments"></a>
+</p>
+<h2>Arguments</h2>
+<h3><code>toArray</code></h3>
+<p>Converts an arugments object to an array.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>function getArgs(){
+    return comb(arguments).toArray();
+}
+
+function getArgsSlice(slice){
+    return comb(arguments).toArray(slice);
+}
+
+
+getArgs(1,2,3); [1,2,3]
+getArgsSlice(1,2,3); [2,3]
+getArgsSlice(2,2,3); [3]</code></pre>
+
+<hr>
+
+    
+  <h2>License</h2>
+<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a>
+
+</p>
+<h2>Meta</h2>
+<ul>
+<li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>
+<li>Website: <a href="http://c2fo.com">http://c2fo.com</a></li>
+<li>Twitter: <a href="http://twitter.com/c2fo"><a href="http://twitter.com/c2fo">http://twitter.com/c2fo</a></a> - 877.465.4045</li>
+</ul>
+
+
+
+
+</div>
+</div>
+<script type="text/javascript" src="./assets/js/jquery.js"></script>
+<script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./assets/js/prettify.js"></script>
+
+</body>
+</html>
