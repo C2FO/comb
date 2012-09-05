@@ -221,6 +221,104 @@ it.describe("comb/base/object.js",function (it) {
         })(["a"]);
 
     });
+
+    it.describe(".hash", function (it) {
+
+        it.should("loop through k/v pairs in a hash", function () {
+            var obj = {a:"b", c:"d", e:"f"}, keys = Object.keys(obj), i = 0;
+            assert.deepEqual(comb(obj).forEach(function (value, key) {
+                assert.equal(keys[i], key);
+                assert.equal(obj[keys[i++]], value);
+            }), obj);
+            i = 0;
+            assert.deepEqual(comb.hash.forEach(obj, function (value, key) {
+                assert.equal(keys[i], key);
+                assert.equal(obj[keys[i++]], value);
+            }), obj);
+            assert.throws(function () {
+                comb.hash.forEach();
+            });
+            assert.throws(function () {
+                comb.hash.forEach(1);
+            });
+            assert.throws(function () {
+                comb.hash.forEach({});
+            });
+            assert.throws(function () {
+                comb.hash.forEach({}, "hello");
+            });
+        });
+        it.should("filter k/v pairs in a hash", function () {
+
+            var obj = {a:"b", c:"d", e:"f"};
+            assert.deepEqual(comb(obj).filter(function (value, key) {
+                return value === "b" || key === "e";
+            }), {a:"b", e:"f"});
+            assert.deepEqual(comb.hash.filter(obj, function (value, key) {
+                return value === "b" || key === "e";
+            }), {a:"b", e:"f"});
+            assert.throws(function () {
+                comb.hash.filter();
+            });
+            assert.throws(function () {
+                comb.hash.filter(1);
+            });
+            assert.throws(function () {
+                comb.hash.filter({});
+            });
+            assert.throws(function () {
+                comb.hash.filter({}, "hello");
+            });
+
+        });
+        it.should("retrieve values", function () {
+            var obj = {a:"b", c:"d", e:"f"}, values = ["b", "d", "f"];
+            assert.deepEqual(comb(obj).values(), values);
+            assert.deepEqual(comb.hash.values(obj), values);
+            assert.throws(function () {
+                comb.hash.values();
+            });
+            assert.throws(function () {
+                comb.hash.values(1);
+            });
+            assert.throws(function () {
+                comb.hash.values("hello");
+            });
+        });
+        it.should("invert a hash", function () {
+            var obj = {a:"b", c:"d", e:"f"}, inverted = {b:"a", d:"c", f:"e"};
+            assert.deepEqual(comb(obj).invert(), inverted);
+            assert.deepEqual(comb.hash.invert(obj), inverted);
+            assert.throws(function () {
+                comb.hash.invert();
+            });
+            assert.throws(function () {
+                comb.hash.invert(1);
+            });
+            assert.throws(function () {
+                comb.hash.invert("hello");
+            });
+        });
+        it.should("convert a hash to an array", function () {
+            var obj = {a:"b", c:"d", e:"f"}, arr = [
+                ["a", "b"],
+                ["c", "d"],
+                ["e", "f"]
+            ];
+            assert.deepEqual(comb(obj).toArray(), arr);
+            assert.deepEqual(comb.hash.toArray(obj), arr);
+            assert.throws(function () {
+                comb.hash.toArray();
+            });
+            assert.throws(function () {
+                comb.hash.toArray(1);
+            });
+            assert.throws(function () {
+                comb.hash.toArray("hello");
+            });
+        });
+
+    });
 }).as(module);
 
 

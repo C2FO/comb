@@ -273,12 +273,13 @@
 
 
 
-    <a name=""></a>
+    <a name=".hash"></a>
     <div class="navbar subnav navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
             <a href="#" class="brand">
-                comb.logging.appenders.JSONAppender
+                comb.hash
+                
                 
                 
                 <span class="label label-success">Public</span>
@@ -292,62 +293,443 @@
             </a>
 
             <div class="nav-collapse sub-nav-collapse">
-
+                
                 <ul class="nav pull-right">
-                    <li><a href="#constructor">Constructor</a></li>
-                    
-                    
-                    
-                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methods<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="./comb_hash.html#.filter">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                filter
+                            </a></li>
+                            
+                            <li><a href="./comb_hash.html#.forEach">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                forEach
+                            </a></li>
+                            
+                            <li><a href="./comb_hash.html#.invert">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                invert
+                            </a></li>
+                            
+                            <li><a href="./comb_hash.html#.toArray">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                toArray
+                            </a></li>
+                            
+                            <li><a href="./comb_hash.html#.values">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                values
+                            </a></li>
+                            
+                        </ul>
+                    </li>
                 </ul>
+                
             </div>
         </div>
     </div>
 </div>
+<em>Defined base/object.js</em>
 
-
-
-
-    <p><p>Appends messages to a file in JSON format. The messages are logged to an array in a JSON file
-<b>The file is always overwritten</b></p>
+<p><p>utilities for working with hases i.e. {}</p>
 </p>
+
+
+
+
+
     
-        <em>Example</em>
-            <pre class="prettyprint linenums lang-js">
-//example log.json
-[
-   {
-     &quot;timestamp&quot; : &quot;Wed Jun 08 2011 11:16:20 GMT-0500 (CDT)&quot;,
-     &quot;level&quot; : &quot;INFO&quot;,
-     &quot;name&quot; : &quot;comb&quot;,
-     &quot;message&quot; :  &quot;INFO MESSAGE!!!!&quot;
+    
+        <a name=".filter"></a>
+    <h3>
+        filter
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/object.js</em>
+
+<p><p>Loops through each k/v in a hash.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};
+comb(obj).filter(function(value, key){
+    return value == &quot;b&quot; || key === &quot;e&quot;;
+}); //{a : &quot;b&quot;, e : &quot;f&quot;};
+
+comb.hash.filter(obj, function(){
+   return value == &quot;b&quot; || key === &quot;e&quot;;
+}); //{a : &quot;b&quot;, e : &quot;f&quot;};</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>hash</em>  : <p>the hash to filter.</p>
+</li>
+    
+        <li> <em>iterator</em>  : <p>the interator function. Called with (key, value, hash).</p>
+</li>
+    
+        <li> <em>[scope= <code>hash</code>]</em>  : <p>the scope to invoke the interator in.</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Object</code> <p>a new object with the values that returned true..</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (hash,iterator,scope){
+   if (!isHash(hash) || typeof iterator !== &quot;function&quot;) {
+       throw new TypeError();
    }
- ]
-            </pre>
+   var keys = Object.keys(hash), key, value, ret = {};
+   for (var i = 0, len = keys.length; i &lt; len; ++i) {
+       key = keys[i];
+       value = hash[key];
+       if (iterator.call(scope || hash, value, key, hash)) {
+           ret[key] = value;
+       }
+   }
+   return ret;
+}
+    </pre>
     
 
-    
-        <em>Extends</em>
-        <ul>
-            
-                <li> <a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
-            
-        </ul>
-    
 
     
+        <a name=".forEach"></a>
+    <h3>
+        forEach
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/object.js</em>
+
+<p><p>Loops through each k/v in a hash.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};
+comb(obj).forEach(function(value, key){
+    console.log(value, key);
+});
+
+comb.hash.forEach(obj, function(){
+   console.log(value, key);
+});</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>hash</em>  : <p>the hash to iterate</p>
+</li>
+    
+        <li> <em>iterator</em>  : <p>the interator function. Called with (key, value, hash).</p>
+</li>
+    
+        <li> <em>[scope= <code>hash</code>]</em>  : <p>the scope to invoke the interator in.</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Object</code> <p>the original hash.</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (hash,iterator,scope){
+   if (!isHash(hash) || typeof iterator !== &quot;function&quot;) {
+       throw new TypeError();
+   }
+   var keys = Object.keys(hash), key;
+   for (var i = 0, len = keys.length; i &lt; len; ++i) {
+       key = keys[i];
+       iterator.call(scope || hash, hash[key], key, hash);
+   }
+   return hash;
+}
+    </pre>
     
 
-    <a name="constructor"></a>
-    <h3>Constructor</h3>
 
-    <em>Defined logging/appenders/jsonAppender.js</em>
     
+        <a name=".invert"></a>
+    <h3>
+        invert
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/object.js</em>
+
+<p><p>Returns a new hash that is the invert of the hash.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};
+comb(obj).invert(); //{b : &quot;a&quot;, d : &quot;c&quot;, f : &quot;e&quot;}
+
+comb.hash.invert(obj); //{b : &quot;a&quot;, d : &quot;c&quot;, f : &quot;e&quot;}</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
     
+        <li> <em>hash</em>  : <p>the hash to invert.</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Object</code> <p>A new hash that is the invert of hash.</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (hash){
+   if (!isHash(hash)) {
+       throw new TypeError();
+   }
+   var keys = Object.keys(hash), key, ret = {};
+   for (var i = 0, len = keys.length; i &lt; len; ++i) {
+       key = keys[i];
+       ret[hash[key]] = key;
+   }
+   return ret;
+}
+    </pre>
     
 
-  
-  
+
+    
+        <a name=".toArray"></a>
+    <h3>
+        toArray
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/object.js</em>
+
+<p><p>Converts a hash to an array.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};
+comb(obj).toArray(); //[[&quot;a&quot;, &quot;b&quot;], [&quot;c&quot;, &quot;d&quot;], [&quot;e&quot;, &quot;f&quot;]]
+
+comb.hash.toArray(obj); //[[&quot;a&quot;, &quot;b&quot;], [&quot;c&quot;, &quot;d&quot;], [&quot;e&quot;, &quot;f&quot;]]</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>hash</em>  : <p>the hash to convert to an array.</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Array</code> <p>a two dimensional array representing the hash.</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (hash){
+   if (!isHash(hash)) {
+       throw new TypeError();
+   }
+   var keys = Object.keys(hash), key, ret = [];
+   for (var i = 0, len = keys.length; i &lt; len; ++i) {
+       key = keys[i];
+       ret.push([key, hash[key]]);
+   }
+   return ret;
+}
+    </pre>
+    
+
+
+    
+        <a name=".values"></a>
+    <h3>
+        values
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/object.js</em>
+
+<p><p>Returns the value of a hash.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};
+comb(obj).values(); //[&quot;b&quot;, &quot;d&quot;, &quot;f&quot;]
+
+comb.hash.values(obj); //[&quot;b&quot;, &quot;d&quot;, &quot;f&quot;]</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>hash</em>  : <p>the object to retrieve the values of.</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Array</code> <p>array of values.</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (hash){
+   if (!isHash(hash)) {
+       throw new TypeError();
+   }
+   var keys = Object.keys(hash), ret = [];
+   for (var i = 0, len = keys.length; i &lt; len; ++i) {
+       ret.push(hash[keys[i]]);
+   }
+   return ret;
+}
+    </pre>
+    
+
+
+    
 <hr>
 
     
@@ -373,3 +755,4 @@
 
 </body>
 </html>
+
