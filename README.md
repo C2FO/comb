@@ -14,8 +14,10 @@ Framework for node that provides a one stop shop for frequently needed utilities
                                                                                                                                                     
 ##Installation                                                                                                                                     
                                                                                                                                                     
-`npm install comb`                                                                                                                                 
-                                                                                                                                                    
+`npm install comb`
+
+###[Getting Started](http://c2fo.github.com/comb/introduction.html)
+
 ##Highlights                                                                                                                                       
                                                                                                                                                     
 * 100% test coverage!                                                                                                                              
