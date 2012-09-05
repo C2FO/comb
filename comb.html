@@ -143,6 +143,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
+                            <li><a href="./introduction.html">Getting Started</a></li>
+                            
                             <li><a href="./define.html">OO</a></li>
                             
                             <li><a href="./promise.html">Promises</a></li>
@@ -165,9 +167,13 @@
                             
                             <li><a href="comb_array.html">comb.array</a></li>
                             
+                            <li><a href="comb_async.html">comb.async</a></li>
+                            
                             <li><a href="comb_characters.html">comb.characters</a></li>
                             
                             <li><a href="comb_date.html">comb.date</a></li>
+                            
+                            <li><a href="comb_hash.html">comb.hash</a></li>
                             
                             <li><a href="comb_logger.html">comb.logger</a></li>
                             
@@ -251,7 +257,7 @@
                 <ul class="nav pull-right">
 
                     <li class="divider-vertical"></li>
-                    <li><a href="https://github.com/Pollenware/comb" target="#github" class="pull-right">github</a></li>
+                    <li><a href="https://github.com/C2FO/comb" target="#github" class="pull-right">github</a></li>
                 </ul>
                 
             </div>
@@ -292,6 +298,21 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methods<b class="caret"></b></a>
                         <ul class="dropdown-menu">
+                            
+                            <li><a href="./comb.html#.applyFirst">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                applyFirst
+                            </a></li>
                             
                             <li><a href="./comb.html#.argsToArray">
                                 
@@ -460,8 +481,6 @@
                             
                             <li><a href="./comb.html#.deepEqual">
                                 
-                                <span class="label label-info">S</span>
-                                
                                 
                                 <span class="label label-label">F</span>
                                 
@@ -474,8 +493,6 @@
                             </a></li>
                             
                             <li><a href="./comb.html#.deepMerge">
-                                
-                                <span class="label label-info">S</span>
                                 
                                 
                                 <span class="label label-label">F</span>
@@ -519,8 +536,6 @@
                             </a></li>
                             
                             <li><a href="./comb.html#.extend">
-                                
-                                <span class="label label-info">S</span>
                                 
                                 
                                 <span class="label label-label">F</span>
@@ -655,8 +670,6 @@
                             
                             <li><a href="./comb.html#.isEmpty">
                                 
-                                <span class="label label-info">S</span>
-                                
                                 
                                 <span class="label label-label">F</span>
                                 
@@ -684,8 +697,6 @@
                             </a></li>
                             
                             <li><a href="./comb.html#.isHash">
-                                
-                                <span class="label label-info">S</span>
                                 
                                 
                                 <span class="label label-label">F</span>
@@ -744,8 +755,6 @@
                             </a></li>
                             
                             <li><a href="./comb.html#.isObject">
-                                
-                                <span class="label label-info">S</span>
                                 
                                 
                                 <span class="label label-label">F</span>
@@ -864,8 +873,6 @@
                             </a></li>
                             
                             <li><a href="./comb.html#.merge">
-                                
-                                <span class="label label-info">S</span>
                                 
                                 
                                 <span class="label label-label">F</span>
@@ -1154,13 +1161,92 @@
 
 
     
+    
+        <a name=".applyFirst"></a>
+    <h3>
+        applyFirst
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/functions.js</em>
+
+<p><p>Binds a method to the scope of the first argument.
+
+</p>
+<p>This is useful if you have async actions and you just want to run a method or retrieve a property on the object.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code> var arr = [], push = comb.applyFirst(&quot;push&quot;), length = comb.applyFirst(&quot;length&quot;);
+ push(arr, 1, 2,3,4);
+ console.log(length(arr)); //4
+ console.log(arr); //1,2,3,4</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>method</em>  : <p>the method to invoke in the scope of the first arument.</p>
+</li>
+    
+        <li> <em>args?</em>  : <p>optional args to pass to the callback</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Function</code> <p>a function that will execute the method in the scope of the first argument.</p>
+</li>
+    
+    </ul>
+
+
+
+    
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-exports
+function (method,args){
+   args = Array.prototype.slice.call(arguments).slice(1);
+   if (!isString(method) &amp;&amp; !isFunction(method)) {
+       throw new Error(method + &quot; must be the name of a property or function to execute&quot;);
+   }
+   if (isString(method)) {
+       return function () {
+           var scopeArgs = Array.prototype.slice.call(arguments), scope = scopeArgs.shift();
+           var func = scope[method];
+           if (isFunction(func)) {
+               scopeArgs = args.concat(scopeArgs);
+               return func.apply(scope, scopeArgs);
+           } else {
+               return func;
+           }
+       };
+   } else {
+       return function () {
+           var scopeArgs = Array.prototype.slice.call(arguments), scope = scopeArgs.shift();
+           scopeArgs = args.concat(scopeArgs);
+           return method.apply(scope, scopeArgs);
+       };
+   }
+}
     </pre>
     
 
-    
+
     
         <a name=".argsToArray"></a>
     <h3>
@@ -1285,7 +1371,7 @@ function (args,slice){
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-comb.hitch
+hitch
     </pre>
     
 
@@ -1341,7 +1427,7 @@ comb.hitch
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-comb.hitchIgnore
+hitchIgnore
     </pre>
     
 
@@ -1565,11 +1651,10 @@ comb.chain([
     <pre class="prettyprint linenums lang-js">
 function (list){
    if (base.isArray(list)) {
-       return callNext(list, 0, null, false, new Promise(), true);
+       return callNext(list, [], true);
    } else {
        throw new Error(&quot;When calling comb.serial the first argument must be an array&quot;);
    }
-       
 }
     </pre>
     
@@ -1800,14 +1885,14 @@ var curried = comb.curry(4, function(a,b,c,d){
 function (depth,cb,scope){
    var f;
    if (scope) {
-       f = comb.hitch(scope, cb);
+       f = hitch(scope, cb);
    } else {
        f = cb;
    }
    if (depth) {
        var len = depth - 1;
        for (var i = len; i &gt;= 0; i--) {
-           f = curry(f, i == len);
+           f = curryFunc(f, i === len);
        }
    }
    return f;
@@ -1931,8 +2016,6 @@ function (val){
     <h3>
         deepEqual
         
-        <span class="label label-info">Static</span>
-        
         
         <span class="label label-label">Function</span>
         
@@ -1995,8 +2078,6 @@ function (o1,o2){
         <a name=".deepMerge"></a>
     <h3>
         deepMerge
-        
-        <span class="label label-info">Static</span>
         
         
         <span class="label label-label">Function</span>
@@ -2432,8 +2513,6 @@ function (handle){
     <h3>
         extend
         
-        <span class="label label-info">Static</span>
-        
         
         <span class="label label-label">Function</span>
         
@@ -2503,7 +2582,8 @@ var MyObj = function(){};
     <pre class="prettyprint linenums lang-js">
 function (parent,extend){
    var proto = parent.prototype || parent;
-   return exports.merge(proto, extend);
+   merge(proto, extend);
+   return parent;
 }
     </pre>
     
@@ -2564,17 +2644,27 @@ function (parent,extend){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (scope,method,args){
-   var args = Array.prototype.slice.call(arguments).slice(2);
-   if (typeof method == &quot;string&quot;) {
-       method = scope[method];
+   args = Array.prototype.slice.call(arguments).slice(2);
+   if ((isString(method) &amp;&amp; !(method in scope))) {
+       throw new Error(method + &quot; property not defined in scope&quot;);
+   } else if (!isString(method) &amp;&amp; !isFunction(method)) {
+       throw new Error(method + &quot; is not a function&quot;);
    }
-   if (method) {
+   if (isString(method)) {
+       return function () {
+           var func = scope[method];
+           if (isFunction(func)) {
+               var scopeArgs = args.concat(Array.prototype.slice.call(arguments));
+               return func.apply(scope, scopeArgs);
+           } else {
+               return func;
+           }
+       };
+   } else {
        return function () {
            var scopeArgs = args.concat(Array.prototype.slice.call(arguments));
            return method.apply(scope, scopeArgs);
        };
-   } else {
-       throw new Error(method + &quot;Method not defined&quot;);
    }
 }
     </pre>
@@ -2604,7 +2694,6 @@ function (scope,method,args){
 <p><p>Binds a method to a particular scope ignoring any new arguments passed
 into the function. This is useful if you want to force particular arguments and
 ignore any new ones
-
 </p>
 </p>
 
@@ -2638,16 +2727,25 @@ ignore any new ones
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (scope,method,args){
-   var args = Array.prototype.slice.call(arguments).slice(2);
-   if (typeof method == &quot;string&quot;) {
-       method = scope[method];
+   args = Array.prototype.slice.call(arguments).slice(2);
+   if ((isString(method) &amp;&amp; !(method in scope))) {
+       throw new Error(method + &quot; property not defined in scope&quot;);
+   } else if (!isString(method) &amp;&amp; !isFunction(method)) {
+       throw new Error(method + &quot; is not a function&quot;);
    }
-   if (method) {
+   if (isString(method)) {
+       return function () {
+           var func = scope[method];
+           if (isFunction(func)) {
+               return func.apply(scope, args);
+           } else {
+               return func;
+           }
+       };
+   } else {
        return function () {
            return method.apply(scope, args);
        };
-   } else {
-       throw new Error(method + &quot;Method not defined&quot;);
    }
 }
     </pre>
@@ -2993,8 +3091,6 @@ function (obj){
     <h3>
         isEmpty
         
-        <span class="label label-info">Static</span>
-        
         
         <span class="label label-label">Function</span>
         
@@ -3104,7 +3200,7 @@ function (object){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (obj){
-   return typeof obj == &quot;function&quot;;
+   return typeof obj === &quot;function&quot;;
 }
     </pre>
     
@@ -3114,8 +3210,6 @@ function (obj){
         <a name=".isHash"></a>
     <h3>
         isHash
-        
-        <span class="label label-info">Static</span>
         
         
         <span class="label label-label">Function</span>
@@ -3360,8 +3454,6 @@ function (obj){
     <h3>
         isObject
         
-        <span class="label label-info">Static</span>
-        
         
         <span class="label label-label">Function</span>
         
@@ -3405,7 +3497,7 @@ function (obj){
     <pre class="prettyprint linenums lang-js">
 function (obj){
    var undef;
-   return obj != null &amp;&amp; obj != undef &amp;&amp; typeof obj == &quot;object&quot;;
+   return obj !== null &amp;&amp; obj !== undef &amp;&amp; typeof obj === &quot;object&quot;;
 }
     </pre>
     
@@ -3450,7 +3542,10 @@ function (obj){
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-isPromiseLike
+function (obj){
+   return !isUndefinedOrNull(obj) &amp;&amp; (isInstanceOf(obj, Promise) || (isFunction(obj.then)
+       &amp;&amp; isFunction(obj.addCallback) &amp;&amp; isFunction(obj.addErrback)));
+}
     </pre>
     
 
@@ -3823,8 +3918,6 @@ function (cb){
     <h3>
         merge
         
-        <span class="label label-info">Static</span>
-        
         
         <span class="label label-label">Function</span>
         
@@ -4176,14 +4269,25 @@ especially useful for callbacks that you want to provide additional parameters t
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (method,args){
-   var args = Array.prototype.slice.call(arguments).slice(1);
-   if (typeof method == &quot;function&quot;) {
+   args = Array.prototype.slice.call(arguments).slice(1);
+   if (!isString(method) &amp;&amp; !isFunction(method)) {
+       throw new Error(method + &quot; must be the name of a property or function to execute&quot;);
+   }
+   if (isString(method)) {
+       return function () {
+           var func = this[method];
+           if (isFunction(func)) {
+               var scopeArgs = args.concat(Array.prototype.slice.call(arguments));
+               return func.apply(this, scopeArgs);
+           } else {
+               return func;
+           }
+       };
+   } else {
        return function () {
            var scopeArgs = args.concat(Array.prototype.slice.call(arguments));
            return method.apply(this, scopeArgs);
        };
-   } else {
-       throw new Error(method + &quot;Method not defined&quot;);
    }
 }
     </pre>
@@ -4443,11 +4547,10 @@ comb.serial([
     <pre class="prettyprint linenums lang-js">
 function (list,callback,errback){
    if (base.isArray(list)) {
-       return callNext(list, 0, [], false, new Promise().then(callback, errback), false)
+       return callNext(list, [], false);
    } else {
        throw new Error(&quot;When calling comb.serial the first argument must be an array&quot;);
    }
-       
 }
     </pre>
     
@@ -4802,7 +4905,7 @@ function (args,cb,eb){
        args = args.pop();
        if (isPromiseLike(args)) {
            p = args;
-       } else if (isArray(args) &amp;&amp; args.every(isPromiseLike)) {
+       } else if (isArray(args) &amp;&amp; array.every(args, isPromiseLike)) {
            p = new PromiseList(args, true);
        } else {
            p = new Promise().callback(args);
@@ -4819,7 +4922,6 @@ function (args,cb,eb){
        p.addErrback(eb);
    }
    return p.promise();
-       
 }
     </pre>
     
@@ -4897,7 +4999,6 @@ function (fn,scope){
        fn.apply(scope || this, args);
        return ret.promise();
    }
-       
 }
     </pre>
     
@@ -5024,14 +5125,14 @@ function (val){
 
     
   <h2>License</h2>
-<p>MIT <a href="https://github.com/Pollenware/comb/raw/master/LICENSE">https://github.com/Pollenware/comb/raw/master/LICENSE</a>
+<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a>
 
 </p>
 <h2>Meta</h2>
 <ul>
-<li>Code: <code>git clone git://github.com/Pollenware/comb.git</code></li>
-<li>Website: <a href="http://pollenware.com">http://pollenware.com</a></li>
-<li>Twitter: <a href="http://twitter.com/pollenware"><a href="http://twitter.com/pollenware">http://twitter.com/pollenware</a></a> - 877.465.4045</li>
+<li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>
+<li>Website: <a href="http://c2fo.com">http://c2fo.com</a></li>
+<li>Twitter: <a href="http://twitter.com/c2fo"><a href="http://twitter.com/c2fo">http://twitter.com/c2fo</a></a> - 877.465.4045</li>
 </ul>
 
 
