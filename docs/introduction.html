@@ -1238,6 +1238,40 @@ format.format([obj.merge({a:{d:{f:{g:1}}}})]).print();
  *   &quot;test4&quot;: &quot;world&quot;
  * }
  */</code></pre>
+<h3><code>forEach</code></h3>
+<p>Iterate through each key/value pair in an object.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};   
+comb(obj).forEach(function(value, key){  
+    console.log(value, key);             
+});</code></pre>
+<h3><code>filter</code></h3>
+<p>Filters out key/value pairs in an object. Filters out key/value pairs that return a falsey value from the iterator.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};                                                                             
+comb(obj).filter(function(value, key){                                                                             
+    return value == &quot;b&quot; || key === &quot;e&quot;;                                                                            
+}); //{a : &quot;b&quot;, e : &quot;f&quot;};</code></pre>
+<h3><code>invert</code></h3>
+<p> Returns a new hash that is the invert of the hash.   
+
+</p>
+<pre class='prettyprint linenums lang-js'><code> var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};               
+ comb(obj).invert(); //{b : &quot;a&quot;, d : &quot;c&quot;, f : &quot;e&quot;}</code></pre>
+<h3><code>values</code></h3>
+<p>Returns the values of a hash.             
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};    
+comb(obj).values(); //[&quot;b&quot;, &quot;d&quot;, &quot;f&quot;]</code></pre>
+<h3><code>toArray</code></h3>
+<p>Converts a hash to an array.                                    
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};                          
+comb(obj).toArray(); //[[&quot;a&quot;, &quot;b&quot;], [&quot;c&quot;, &quot;d&quot;], [&quot;e&quot;, &quot;f&quot;]]</code></pre>
 <p><a name="arguments"></a>
 </p>
 <h2>Arguments</h2>

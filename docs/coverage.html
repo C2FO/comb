@@ -1513,7 +1513,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>var isArray = exports.isArray = function isArray(obj) {</code></li>
-<li class='green'><span class='hits'>15326</span><code>    return Object.prototype.toString.call(obj) === "[object Array]";</code></li>
+<li class='green'><span class='hits'>15301</span><code>    return Object.prototype.toString.call(obj) === "[object Array]";</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function isDate(obj) {</code></li>
@@ -1688,13 +1688,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function forEach(arr, iterator, scope) {</code></li>
-<li class='green'><span class='hits'>11451</span><code>    if (!isArray(arr) || typeof iterator !== "function") {</code></li>
+<li class='green'><span class='hits'>11431</span><code>    if (!isArray(arr) || typeof iterator !== "function") {</code></li>
 <li class='green'><span class='hits'>1</span><code>        throw new TypeError();</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>11450</span><code>    for (var i = 0, len = arr.length; i &lt; len; ++i) {</code></li>
-<li class='green'><span class='hits'>83517</span><code>        iterator.call(scope || arr, arr[i], i, arr);</code></li>
+<li class='green'><span class='hits'>11430</span><code>    for (var i = 0, len = arr.length; i &lt; len; ++i) {</code></li>
+<li class='green'><span class='hits'>83362</span><code>        iterator.call(scope || arr, arr[i], i, arr);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>11450</span><code>    return arr;</code></li>
+<li class='green'><span class='hits'>11430</span><code>    return arr;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function every(arr, iterator, scope) {</code></li>
@@ -2836,8 +2836,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Boolean} true if it is a Date false otherwise</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>comb.isDate = function (obj) {</code></li>
-<li class='green'><span class='hits'>1238</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>1238</span><code>    return (obj !== undef &amp;&amp; typeof obj === "object" &amp;&amp; obj instanceof Date);</code></li>
+<li class='green'><span class='hits'>1233</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>1233</span><code>    return (obj !== undef &amp;&amp; typeof obj === "object" &amp;&amp; obj instanceof Date);</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function getDayOfYear(/*Date*/dateObject, utc) {</code></li>
@@ -3934,7 +3934,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isFunction(obj) {</code></li>
-<li class='green'><span class='hits'>22816</span><code>    return typeof obj === "function";</code></li>
+<li class='green'><span class='hits'>22776</span><code>    return typeof obj === "function";</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -4097,11 +4097,11 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Function} partially hitched function</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function partial(method, args) {</code></li>
-<li class='green'><span class='hits'>8451</span><code>    args = Array.prototype.slice.call(arguments).slice(1);</code></li>
-<li class='green'><span class='hits'>8451</span><code>    if (!isString(method) &amp;&amp; !isFunction(method)) {</code></li>
+<li class='green'><span class='hits'>8416</span><code>    args = Array.prototype.slice.call(arguments).slice(1);</code></li>
+<li class='green'><span class='hits'>8416</span><code>    if (!isString(method) &amp;&amp; !isFunction(method)) {</code></li>
 <li class='green'><span class='hits'>2</span><code>        throw new Error(method + " must be the name of a property or function to execute");</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>8449</span><code>    if (isString(method)) {</code></li>
+<li class='green'><span class='hits'>8414</span><code>    if (isString(method)) {</code></li>
 <li class='green'><span class='hits'>4</span><code>        return function () {</code></li>
 <li class='green'><span class='hits'>4</span><code>            var func = this[method];</code></li>
 <li class='green'><span class='hits'>4</span><code>            if (isFunction(func)) {</code></li>
@@ -4112,9 +4112,9 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        };</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
-<li class='green'><span class='hits'>8445</span><code>        return function () {</code></li>
-<li class='green'><span class='hits'>1702</span><code>            var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
-<li class='green'><span class='hits'>1702</span><code>            return method.apply(this, scopeArgs);</code></li>
+<li class='green'><span class='hits'>8410</span><code>        return function () {</code></li>
+<li class='green'><span class='hits'>1697</span><code>            var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
+<li class='green'><span class='hits'>1697</span><code>            return method.apply(this, scopeArgs);</code></li>
 <li class='green'><span class=''> </span><code>        };</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
@@ -4485,8 +4485,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Array} array version of the arguments object</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function argsToArray(args, slice) {</code></li>
-<li class='green'><span class='hits'>21767</span><code>    slice = slice || 0;</code></li>
-<li class='green'><span class='hits'>21767</span><code>    return arraySlice.call(args, slice);</code></li>
+<li class='green'><span class='hits'>21727</span><code>    slice = slice || 0;</code></li>
+<li class='green'><span class='hits'>21727</span><code>    return arraySlice.call(args, slice);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -4499,8 +4499,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isBoolean(obj) {</code></li>
-<li class='green'><span class='hits'>18846</span><code>    var undef, type = typeof obj;</code></li>
-<li class='green'><span class='hits'>18846</span><code>    return obj != undef &amp;&amp; type == "boolean" || type == "Boolean";</code></li>
+<li class='green'><span class='hits'>11999</span><code>    var undef, type = typeof obj;</code></li>
+<li class='green'><span class='hits'>11999</span><code>    return obj != undef &amp;&amp; type == "boolean" || type == "Boolean";</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -4512,8 +4512,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isUndefined(obj) {</code></li>
-<li class='green'><span class='hits'>10224</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>10224</span><code>    return obj !== null &amp;&amp; obj === undef;</code></li>
+<li class='green'><span class='hits'>10200</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>10200</span><code>    return obj !== null &amp;&amp; obj === undef;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -4539,7 +4539,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isUndefinedOrNull(obj) {</code></li>
-<li class='green'><span class='hits'>9932</span><code>    return isUndefined(obj) || isNull(obj);</code></li>
+<li class='green'><span class='hits'>9908</span><code>    return isUndefined(obj) || isNull(obj);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -4552,8 +4552,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isNull(obj) {</code></li>
-<li class='green'><span class='hits'>9748</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>9748</span><code>    return obj !== undef &amp;&amp; obj == null;</code></li>
+<li class='green'><span class='hits'>9724</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>9724</span><code>    return obj !== undef &amp;&amp; obj == null;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -4566,13 +4566,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isArguments(object) {</code></li>
-<li class='green'><span class='hits'>1242</span><code>    return !isUndefinedOrNull(object) &amp;&amp; Object.prototype.toString.call(object) == '[object Arguments]';</code></li>
+<li class='green'><span class='hits'>1237</span><code>    return !isUndefinedOrNull(object) &amp;&amp; Object.prototype.toString.call(object) == '[object Arguments]';</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function isInstance(obj, clazz) {</code></li>
-<li class='green'><span class='hits'>7983</span><code>    if (typeof clazz == "function") {</code></li>
-<li class='green'><span class='hits'>7982</span><code>        return obj instanceof clazz;</code></li>
+<li class='green'><span class='hits'>7978</span><code>    if (typeof clazz == "function") {</code></li>
+<li class='green'><span class='hits'>7977</span><code>        return obj instanceof clazz;</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
 <li class='green'><span class='hits'>1</span><code>        return false;</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
@@ -4589,8 +4589,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isInstanceOf(obj, clazz) {</code></li>
-<li class='green'><span class='hits'>7983</span><code>    return argsToArray(arguments, 1).some(function (c) {</code></li>
-<li class='green'><span class='hits'>7983</span><code>        return isInstance(obj, c);</code></li>
+<li class='green'><span class='hits'>7978</span><code>    return argsToArray(arguments, 1).some(function (c) {</code></li>
+<li class='green'><span class='hits'>7978</span><code>        return isInstance(obj, c);</code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -4603,14 +4603,14 @@ td.cov-stats {
 <li class='green'><span class='hits'>13</span><code>        if (!setup) {</code></li>
 <li class='green'><span class='hits'>1</span><code>            var orig = process.emit;</code></li>
 <li class='green'><span class='hits'>1</span><code>            process.emit = function (event) {</code></li>
-<li class='green'><span class='hits'>835</span><code>                try {</code></li>
-<li class='green'><span class='hits'>835</span><code>                    if (event === 'exit') {</code></li>
+<li class='green'><span class='hits'>836</span><code>                try {</code></li>
+<li class='green'><span class='hits'>836</span><code>                    if (event === 'exit') {</code></li>
 <li class='green'><span class='hits'>1</span><code>                        listeners.forEach(function (cb) {</code></li>
 <li class='green'><span class='hits'>13</span><code>                            cb();</code></li>
 <li class='green'><span class=''> </span><code>                        });</code></li>
 <li class='green'><span class=''> </span><code>                    }</code></li>
 <li class='green'><span class=''> </span><code>                } finally {</code></li>
-<li class='green'><span class='hits'>835</span><code>                    orig.apply(this, arguments);</code></li>
+<li class='green'><span class='hits'>836</span><code>                    orig.apply(this, arguments);</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
 <li class='green'><span class='hits'>1</span><code>            setup = true;</code></li>
@@ -4672,8 +4672,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Boolean} true if it is a number false otherwise</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>comb.isNumber = function(obj) {</code></li>
-<li class='green'><span class='hits'>2620</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>2620</span><code>    return obj !== undef &amp;&amp; obj != null &amp;&amp; (typeof obj == "number" || obj instanceof Number);</code></li>
+<li class='green'><span class='hits'>2610</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>2610</span><code>    return obj !== undef &amp;&amp; obj != null &amp;&amp; (typeof obj == "number" || obj instanceof Number);</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -5011,8 +5011,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isObject(obj) {</code></li>
-<li class='green'><span class='hits'>1437</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>1437</span><code>    return obj !== null &amp;&amp; obj !== undef &amp;&amp; typeof obj === "object";</code></li>
+<li class='green'><span class='hits'>1432</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>1432</span><code>    return obj !== null &amp;&amp; obj !== undef &amp;&amp; typeof obj === "object";</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -5098,7 +5098,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Loops through each k/v in a hash.</code></li>
+<li class='green'><span class=''> </span><code> * Filters out key/value pairs in an object. Filters out key/value pairs that return a falsey value from the iterator.</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * ```</code></li>
 <li class='green'><span class=''> </span><code> * var obj = {a : "b", c : "d", e : "f"};</code></li>
@@ -5133,7 +5133,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Returns the value of a hash.</code></li>
+<li class='green'><span class=''> </span><code> * Returns the values of a hash.</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * ```</code></li>
 <li class='green'><span class=''> </span><code> * var obj = {a : "b", c : "d", e : "f"};</code></li>
@@ -5334,8 +5334,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isString(obj) {</code></li>
-<li class='green'><span class='hits'>36000</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>36000</span><code>    return obj != undef &amp;&amp; (typeof obj == "string" || obj instanceof String);</code></li>
+<li class='green'><span class='hits'>35924</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>35924</span><code>    return obj != undef &amp;&amp; (typeof obj == "string" || obj instanceof String);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>comb.isString = isString;</code></li>
@@ -9831,11 +9831,11 @@ td.cov-stats {
 <li class='green'><span class='hits'>42</span><code>        return functionExtension(this);</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
 <li class='green'><span class=''> </span><code>    number:function () {</code></li>
-<li class='green'><span class='hits'>163</span><code>        return numberExtension(this);</code></li>
+<li class='green'><span class='hits'>159</span><code>        return numberExtension(this);</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>    string:function () {</code></li>
-<li class='green'><span class='hits'>486</span><code>        return stringExtension(this);</code></li>
+<li class='green'><span class='hits'>485</span><code>        return stringExtension(this);</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>    object:function () {</code></li>
@@ -9844,10 +9844,10 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>module.exports = function (o) {</code></li>
-<li class='green'><span class='hits'>1199</span><code>    extend(o, Object.keys(methods), methods, function (name, func) {</code></li>
-<li class='green'><span class='hits'>8393</span><code>        return base.partial(func);</code></li>
+<li class='green'><span class='hits'>1194</span><code>    extend(o, Object.keys(methods), methods, function (name, func) {</code></li>
+<li class='green'><span class='hits'>8358</span><code>        return base.partial(func);</code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
-<li class='green'><span class='hits'>1199</span><code>    return o;</code></li>
+<li class='green'><span class='hits'>1194</span><code>    return o;</code></li>
 <li class='green'><span class=''> </span><code>};</code></li></ol></pre></div>
 </div>
 
@@ -9986,35 +9986,35 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    FALSE = isExtension(false);</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function createExtension(obj) {</code></li>
-<li class='green'><span class='hits'>1287</span><code>    if (base.isBoolean(obj)) {</code></li>
+<li class='green'><span class='hits'>1268</span><code>    if (base.isBoolean(obj)) {</code></li>
 <li class='green'><span class='hits'>17</span><code>        return obj ? TRUE : FALSE;</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1270</span><code>    if (!base.isUndefinedOrNull(obj) &amp;&amp; !obj.__isExtended__) {</code></li>
-<li class='green'><span class='hits'>1199</span><code>        obj = isExtension(obj);</code></li>
-<li class='green'><span class='hits'>1199</span><code>        obj = castExtension(obj);</code></li>
-<li class='green'><span class='hits'>1199</span><code>        if (obj.isObject()) {</code></li>
+<li class='green'><span class='hits'>1251</span><code>    if (!base.isUndefinedOrNull(obj) &amp;&amp; !obj.__isExtended__) {</code></li>
+<li class='green'><span class='hits'>1194</span><code>        obj = isExtension(obj);</code></li>
+<li class='green'><span class='hits'>1194</span><code>        obj = castExtension(obj);</code></li>
+<li class='green'><span class='hits'>1194</span><code>        if (obj.isObject()) {</code></li>
 <li class='green'><span class='hits'>516</span><code>            obj.object();</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>1199</span><code>        if (obj.isArguments()) {</code></li>
+<li class='green'><span class='hits'>1194</span><code>        if (obj.isArguments()) {</code></li>
 <li class='green'><span class='hits'>4</span><code>            obj.args();</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>1199</span><code>        if (obj.isArray()) {</code></li>
+<li class='green'><span class='hits'>1194</span><code>        if (obj.isArray()) {</code></li>
 <li class='green'><span class='hits'>183</span><code>            obj.array();</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>1199</span><code>        if (obj.isFunction()) {</code></li>
+<li class='green'><span class='hits'>1194</span><code>        if (obj.isFunction()) {</code></li>
 <li class='green'><span class='hits'>42</span><code>            obj.func();</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>1199</span><code>        if (obj.isString()) {</code></li>
-<li class='green'><span class='hits'>486</span><code>            obj.string();</code></li>
+<li class='green'><span class='hits'>1194</span><code>        if (obj.isString()) {</code></li>
+<li class='green'><span class='hits'>485</span><code>            obj.string();</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>1199</span><code>        if (obj.isDate()) {</code></li>
+<li class='green'><span class='hits'>1194</span><code>        if (obj.isDate()) {</code></li>
 <li class='green'><span class='hits'>275</span><code>            obj.date();</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>1199</span><code>        if (obj.isNumber()) {</code></li>
-<li class='green'><span class='hits'>163</span><code>            obj.number();</code></li>
+<li class='green'><span class='hits'>1194</span><code>        if (obj.isNumber()) {</code></li>
+<li class='green'><span class='hits'>159</span><code>            obj.number();</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1270</span><code>    return obj;</code></li>
+<li class='green'><span class='hits'>1251</span><code>    return obj;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>exports.createExtension = createExtension;</code></li></ol></pre></div>
@@ -10063,33 +10063,33 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>];</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>module.exports = function (o) {</code></li>
-<li class='green'><span class='hits'>1201</span><code>    var valueOf = false, val;</code></li>
-<li class='green'><span class='hits'>1201</span><code>    if (!base.isInstanceOf(o, Object)) {</code></li>
-<li class='green'><span class='hits'>643</span><code>        if (base.isBoolean(o)) {</code></li>
+<li class='green'><span class='hits'>1196</span><code>    var valueOf = false, val;</code></li>
+<li class='green'><span class='hits'>1196</span><code>    if (!base.isInstanceOf(o, Object)) {</code></li>
+<li class='green'><span class='hits'>638</span><code>        if (base.isBoolean(o)) {</code></li>
 <li class='green'><span class='hits'>2</span><code>            val = new Boolean(o);</code></li>
 <li class='green'><span class='hits'>2</span><code>            valueOf = true;</code></li>
-<li class='green'><span class='hits'>641</span><code>        } else if (base.isNumber(o)) {</code></li>
-<li class='green'><span class='hits'>159</span><code>            val = new Number(o);</code></li>
-<li class='green'><span class='hits'>159</span><code>            valueOf = true;</code></li>
-<li class='green'><span class='hits'>482</span><code>        } else if (base.isString(o)) {</code></li>
-<li class='green'><span class='hits'>482</span><code>            val = new String(o);</code></li>
-<li class='green'><span class='hits'>482</span><code>            valueOf = true;</code></li>
+<li class='green'><span class='hits'>636</span><code>        } else if (base.isNumber(o)) {</code></li>
+<li class='green'><span class='hits'>155</span><code>            val = new Number(o);</code></li>
+<li class='green'><span class='hits'>155</span><code>            valueOf = true;</code></li>
+<li class='green'><span class='hits'>481</span><code>        } else if (base.isString(o)) {</code></li>
+<li class='green'><span class='hits'>481</span><code>            val = new String(o);</code></li>
+<li class='green'><span class='hits'>481</span><code>            valueOf = true;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
 <li class='green'><span class='hits'>558</span><code>        val = o;</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1201</span><code>    var ret = extend(val, methods, base, null, valueOf);</code></li>
-<li class='green'><span class='hits'>1201</span><code>    if (valueOf) {</code></li>
-<li class='green'><span class='hits'>643</span><code>        Object.defineProperty(ret, "valueOf", {</code></li>
+<li class='green'><span class='hits'>1196</span><code>    var ret = extend(val, methods, base, null, valueOf);</code></li>
+<li class='green'><span class='hits'>1196</span><code>    if (valueOf) {</code></li>
+<li class='green'><span class='hits'>638</span><code>        Object.defineProperty(ret, "valueOf", {</code></li>
 <li class='green'><span class=''> </span><code>            value:function () {</code></li>
-<li class='green'><span class='hits'>5134</span><code>                return o;</code></li>
+<li class='green'><span class='hits'>5094</span><code>                return o;</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code>            writable:false,</code></li>
 <li class='green'><span class=''> </span><code>            enumerable:false,</code></li>
 <li class='green'><span class=''> </span><code>            configurable:true</code></li>
 <li class='green'><span class=''> </span><code>        });</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1201</span><code>    Object.defineProperty(ret, "eq", {</code></li>
+<li class='green'><span class='hits'>1196</span><code>    Object.defineProperty(ret, "eq", {</code></li>
 <li class='green'><span class=''> </span><code>        value:function (other) {</code></li>
 <li class='green'><span class='hits'>6</span><code>            return o === other;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
@@ -10098,7 +10098,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        configurable:true</code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1201</span><code>    Object.defineProperty(ret, "neq", {</code></li>
+<li class='green'><span class='hits'>1196</span><code>    Object.defineProperty(ret, "neq", {</code></li>
 <li class='green'><span class=''> </span><code>        value:function (other) {</code></li>
 <li class='green'><span class='hits'>6</span><code>            return o !== other;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
@@ -10106,7 +10106,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        enumerable:false,</code></li>
 <li class='green'><span class=''> </span><code>        configurable:true</code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
-<li class='green'><span class='hits'>1201</span><code>    Object.defineProperty(ret, "print", {</code></li>
+<li class='green'><span class='hits'>1196</span><code>    Object.defineProperty(ret, "print", {</code></li>
 <li class='green'><span class=''> </span><code>        value:function () {</code></li>
 <li class='green'><span class='hits'>3</span><code>            console.log(o);</code></li>
 <li class='green'><span class='hits'>3</span><code>            return val;</code></li>
@@ -10115,13 +10115,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        enumerable:false,</code></li>
 <li class='green'><span class=''> </span><code>        configurable:true</code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
-<li class='green'><span class='hits'>1201</span><code>    Object.defineProperty(ret, "__isExtended__", {</code></li>
+<li class='green'><span class='hits'>1196</span><code>    Object.defineProperty(ret, "__isExtended__", {</code></li>
 <li class='green'><span class=''> </span><code>        value:true,</code></li>
 <li class='green'><span class=''> </span><code>        writable:false,</code></li>
 <li class='green'><span class=''> </span><code>        enumerable:false,</code></li>
 <li class='green'><span class=''> </span><code>        configurable:true</code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
-<li class='green'><span class='hits'>1201</span><code>    return ret;</code></li>
+<li class='green'><span class='hits'>1196</span><code>    return ret;</code></li>
 <li class='green'><span class=''> </span><code>};</code></li></ol></pre></div>
 </div>
 
@@ -10154,8 +10154,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>];</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>module.exports = function (o) {</code></li>
-<li class='green'><span class='hits'>163</span><code>    extend(o, methods, number, null, true);</code></li>
-<li class='green'><span class='hits'>163</span><code>    return o;</code></li>
+<li class='green'><span class='hits'>159</span><code>    extend(o, methods, number, null, true);</code></li>
+<li class='green'><span class='hits'>159</span><code>    return o;</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li></ol></pre></div>
 </div>
@@ -10255,24 +10255,24 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>];</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>module.exports = function (o) {</code></li>
-<li class='green'><span class='hits'>486</span><code>    comb = comb || (require("../index"));</code></li>
-<li class='green'><span class='hits'>486</span><code>    extend(o, methods, string, null, true);</code></li>
-<li class='green'><span class='hits'>486</span><code>    extend(o, baseMethods, base, null, true);</code></li>
-<li class='green'><span class='hits'>486</span><code>    extend(o, dateMethods, date, null, true);</code></li>
-<li class='green'><span class='hits'>486</span><code>    extend(o, regexpMethods, regexp, null, true);</code></li>
-<li class='green'><span class='hits'>486</span><code>    extend(o, arrayMethods, array, function (name, func) {</code></li>
-<li class='green'><span class='hits'>972</span><code>        return function () {</code></li>
+<li class='green'><span class='hits'>485</span><code>    comb = comb || (require("../index"));</code></li>
+<li class='green'><span class='hits'>485</span><code>    extend(o, methods, string, null, true);</code></li>
+<li class='green'><span class='hits'>485</span><code>    extend(o, baseMethods, base, null, true);</code></li>
+<li class='green'><span class='hits'>485</span><code>    extend(o, dateMethods, date, null, true);</code></li>
+<li class='green'><span class='hits'>485</span><code>    extend(o, regexpMethods, regexp, null, true);</code></li>
+<li class='green'><span class='hits'>485</span><code>    extend(o, arrayMethods, array, function (name, func) {</code></li>
+<li class='green'><span class='hits'>970</span><code>        return function () {</code></li>
 <li class='green'><span class='hits'>7</span><code>            return comb(func.apply(null, argsToArray(arguments).concat([this.valueOf()])));</code></li>
 <li class='green'><span class=''> </span><code>        };</code></li>
 <li class='green'><span class=''> </span><code>    }, true);</code></li>
-<li class='green'><span class='hits'>486</span><code>    extend(o, functionMethods, base, function (name, func) {</code></li>
-<li class='green'><span class='hits'>1944</span><code>        return function (arg1) {</code></li>
+<li class='green'><span class='hits'>485</span><code>    extend(o, functionMethods, base, function (name, func) {</code></li>
+<li class='green'><span class='hits'>1940</span><code>        return function (arg1) {</code></li>
 <li class='green'><span class='hits'>3</span><code>            var args = argsToArray(arguments, 1);</code></li>
 <li class='green'><span class='hits'>3</span><code>            return comb(func.apply(null, [arg1, this.valueOf()].concat(args)));</code></li>
 <li class='green'><span class=''> </span><code>        };</code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>486</span><code>    return o;</code></li>
+<li class='green'><span class='hits'>485</span><code>    return o;</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -10302,37 +10302,37 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    argsToArray = base.argsToArray,</code></li>
 <li class='green'><span class=''> </span><code>    comb;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>function proxyFunc(name, func, valueOf) {</code></li>
-<li class='green'><span class='hits'>44030</span><code>    return function proxy() {</code></li>
-<li class='green'><span class='hits'>9090</span><code>        comb || (comb = require("../index"));</code></li>
-<li class='green'><span class='hits'>9090</span><code>        var ret = func.apply(null, [valueOf ? this.valueOf() : this].concat(argsToArray(arguments)));</code></li>
-<li class='green'><span class='hits'>9087</span><code>        if (!base.isBoolean(ret)) {</code></li>
-<li class='green'><span class='hits'>588</span><code>            ret = comb(ret);</code></li>
+<li class='green'><span class='hits'>1</span><code>function proxyFunc(name, func, valueOf, scope) {</code></li>
+<li class='green'><span class='hits'>43916</span><code>    return function proxy() {</code></li>
+<li class='green'><span class='hits'>9055</span><code>        comb || (comb = require("../index"));</code></li>
+<li class='green'><span class='hits'>9055</span><code>        var ret = func.apply(scope, [valueOf ? this.valueOf() : this].concat(argsToArray(arguments)));</code></li>
+<li class='green'><span class='hits'>9052</span><code>        if (ret &amp;&amp; !base.isBoolean(ret) &amp;&amp; ret !== this &amp;&amp; !ret.__isExtended__) {</code></li>
+<li class='green'><span class='hits'>569</span><code>            ret = comb(ret);</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>9087</span><code>        return ret;</code></li>
+<li class='green'><span class='hits'>9052</span><code>        return ret;</code></li>
 <li class='green'><span class=''> </span><code>    };</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function extend(obj, methods, base, creator, valueOf) {</code></li>
-<li class='green'><span class='hits'>7758</span><code>    valueOf = isBoolean(valueOf) ? valueOf : false;</code></li>
-<li class='green'><span class='hits'>7758</span><code>    array.forEach(methods, function (method) {</code></li>
-<li class='green'><span class='hits'>56233</span><code>        var newFunc, func, m, name;</code></li>
-<li class='green'><span class='hits'>56233</span><code>        if (Array.isArray(method) &amp;&amp; method.length === 2) {</code></li>
-<li class='green'><span class='hits'>976</span><code>            m = method[0];</code></li>
-<li class='green'><span class='hits'>976</span><code>            name = method[1];</code></li>
+<li class='green'><span class='hits'>7738</span><code>    valueOf = isBoolean(valueOf) ? valueOf : false;</code></li>
+<li class='green'><span class='hits'>7738</span><code>    array.forEach(methods, function (method) {</code></li>
+<li class='green'><span class='hits'>56078</span><code>        var newFunc, func, m, name;</code></li>
+<li class='green'><span class='hits'>56078</span><code>        if (Array.isArray(method) &amp;&amp; method.length === 2) {</code></li>
+<li class='green'><span class='hits'>974</span><code>            m = method[0];</code></li>
+<li class='green'><span class='hits'>974</span><code>            name = method[1];</code></li>
 <li class='green'><span class=''> </span><code>        } else {</code></li>
-<li class='green'><span class='hits'>55257</span><code>            m = name = method;</code></li>
+<li class='green'><span class='hits'>55104</span><code>            m = name = method;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>56233</span><code>        Object.defineProperty(obj, name, {</code></li>
-<li class='green'><span class=''> </span><code>            value:(creator || proxyFunc)(name, base[m], valueOf),</code></li>
+<li class='green'><span class='hits'>56078</span><code>        Object.defineProperty(obj, name, {</code></li>
+<li class='green'><span class=''> </span><code>            value:(creator || proxyFunc)(name, base[m], valueOf, base),</code></li>
 <li class='green'><span class=''> </span><code>            writable:false,</code></li>
 <li class='green'><span class=''> </span><code>            enumerable:false,</code></li>
 <li class='green'><span class=''> </span><code>            configurable:true</code></li>
 <li class='green'><span class=''> </span><code>        });</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
-<li class='green'><span class='hits'>7758</span><code>    return obj;</code></li>
+<li class='green'><span class='hits'>7738</span><code>    return obj;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>

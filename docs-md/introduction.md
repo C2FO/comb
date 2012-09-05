@@ -1201,6 +1201,57 @@ format.format([obj.merge({a:{d:{f:{g:1}}}})]).print();
  */
 ```
 
+###`forEach`
+
+Iterate through each key/value pair in an object.
+
+```
+var obj = {a : "b", c : "d", e : "f"};   
+comb(obj).forEach(function(value, key){  
+    console.log(value, key);             
+});                                      
+                           
+```
+
+###`filter`
+
+Filters out key/value pairs in an object. Filters out key/value pairs that return a falsey value from the iterator.
+                                                                                                                   
+```                                                                                                                
+var obj = {a : "b", c : "d", e : "f"};                                                                             
+comb(obj).filter(function(value, key){                                                                             
+    return value == "b" || key === "e";                                                                            
+}); //{a : "b", e : "f"};                                                                                                                                                                                   
+                                                                                                                   
+```                                                                                                                
+
+###`invert`
+
+ Returns a new hash that is the invert of the hash.   
+                                                      
+ ```                                                  
+ var obj = {a : "b", c : "d", e : "f"};               
+ comb(obj).invert(); //{b : "a", d : "c", f : "e"}                                                         
+ ```                                                  
+
+###`values`
+
+Returns the values of a hash.             
+                                          
+```                                       
+var obj = {a : "b", c : "d", e : "f"};    
+comb(obj).values(); //["b", "d", "f"]                                                                                          
+```                                       
+
+###`toArray`
+
+Converts a hash to an array.                                    
+                                                                
+```                                                             
+var obj = {a : "b", c : "d", e : "f"};                          
+comb(obj).toArray(); //[["a", "b"], ["c", "d"], ["e", "f"]]     
+```
+
 <a name="arguments"></a>
 ##Arguments
 
