@@ -259,6 +259,15 @@ it.describe("comb.date",function (it) {
             assert.isNull(comb.date.parse("", "MM/dd/yy"));
         });
 
+        it.should("throw an error if format is not specified", function () {
+            assert.throws(function () {
+                comb.date.parse("", "");
+            });
+            assert.throws(function () {
+                comb.date.parse("");
+            });
+        });
+
         it.describe("namespaced", function (it) {
 
             it.should("parse 08/11/06", function () {
