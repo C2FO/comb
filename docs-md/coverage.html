@@ -257,8 +257,8 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>12175</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>3303</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>12178</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>3306</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
             </td>
@@ -2815,8 +2815,8 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>882</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>291</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>885</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>294</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
             </td>
@@ -3467,10 +3467,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>                l = match.length;</code></li>
 <li class='green'><span class='hits'>381</span><code>            if (c === 'd') {</code></li>
 <li class='green'><span class='hits'>43</span><code>                s = "" + d;</code></li>
+<li class='green'><span class='hits'>43</span><code>                pad = true;</code></li>
 <li class='green'><span class='hits'>338</span><code>            } else if (c === "H" &amp;&amp; !s) {</code></li>
 <li class='green'><span class='hits'>31</span><code>                s = "" + hour;</code></li>
+<li class='green'><span class='hits'>31</span><code>                pad = true;</code></li>
 <li class='green'><span class='hits'>307</span><code>            } else if (c === 'm' &amp;&amp; !s) {</code></li>
 <li class='green'><span class='hits'>41</span><code>                s = "" + minute;</code></li>
+<li class='green'><span class='hits'>41</span><code>                pad = true;</code></li>
 <li class='green'><span class='hits'>266</span><code>            } else if (c === 's') {</code></li>
 <li class='green'><span class='hits'>39</span><code>                if (!s) {</code></li>
 <li class='green'><span class='hits'>39</span><code>                    s = "" + second;</code></li>
@@ -3546,7 +3549,7 @@ td.cov-stats {
 <li class='green'><span class='hits'>27</span><code>                s = match;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class='hits'>381</span><code>            if (pad) {</code></li>
-<li class='green'><span class='hits'>176</span><code>                s = string.pad(s, l, '0');</code></li>
+<li class='green'><span class='hits'>291</span><code>                s = string.pad(s, l, '0');</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class='hits'>381</span><code>            return s;</code></li>
 <li class='green'><span class=''> </span><code>        });</code></li>
@@ -6180,18 +6183,18 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>     * @returns {String} the padded string</code></li>
 <li class='green'><span class=''> </span><code>     */</code></li>
 <li class='green'><span class=''> </span><code>    pad:function (string, length, ch, end) {</code></li>
-<li class='green'><span class='hits'>236</span><code>        string = "" + string; //check for numbers</code></li>
-<li class='green'><span class='hits'>236</span><code>        ch = ch || " ";</code></li>
-<li class='green'><span class='hits'>236</span><code>        var strLen = string.length;</code></li>
-<li class='green'><span class='hits'>236</span><code>        while (strLen &lt; length) {</code></li>
-<li class='green'><span class='hits'>246</span><code>            if (end) {</code></li>
+<li class='green'><span class='hits'>351</span><code>        string = "" + string; //check for numbers</code></li>
+<li class='green'><span class='hits'>351</span><code>        ch = ch || " ";</code></li>
+<li class='green'><span class='hits'>351</span><code>        var strLen = string.length;</code></li>
+<li class='green'><span class='hits'>351</span><code>        while (strLen &lt; length) {</code></li>
+<li class='green'><span class='hits'>271</span><code>            if (end) {</code></li>
 <li class='green'><span class='hits'>157</span><code>                string += ch;</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>89</span><code>                string = ch + string;</code></li>
+<li class='green'><span class='hits'>114</span><code>                string = ch + string;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>246</span><code>            strLen++;</code></li>
+<li class='green'><span class='hits'>271</span><code>            strLen++;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>236</span><code>        return string;</code></li>
+<li class='green'><span class='hits'>351</span><code>        return string;</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>    /**</code></li>

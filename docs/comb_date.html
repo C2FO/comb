@@ -932,10 +932,13 @@
                 l = match.length;
             if (c === &#x27;d&#x27;) {
                 s = &quot;&quot; + d;
+                pad = true;
             } else if (c === &quot;H&quot; &amp;&amp; !s) {
                 s = &quot;&quot; + hour;
+                pad = true;
             } else if (c === &#x27;m&#x27; &amp;&amp; !s) {
                 s = &quot;&quot; + minute;
+                pad = true;
             } else if (c === &#x27;s&#x27;) {
                 if (!s) {
                     s = &quot;&quot; + second;
@@ -1440,10 +1443,13 @@ function (date,format,utc){
            l = match.length;
        if (c === &#x27;d&#x27;) {
            s = &quot;&quot; + d;
+           pad = true;
        } else if (c === &quot;H&quot; &amp;&amp; !s) {
            s = &quot;&quot; + hour;
+           pad = true;
        } else if (c === &#x27;m&#x27; &amp;&amp; !s) {
            s = &quot;&quot; + minute;
+           pad = true;
        } else if (c === &#x27;s&#x27;) {
            if (!s) {
                s = &quot;&quot; + second;
