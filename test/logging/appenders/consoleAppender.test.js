@@ -22,7 +22,6 @@ it.describe("comb.logging.appenders.ConsoleAppender", function (it) {
         var count = 0;
         var levels = ["debug", "trace", "info", "warn", "error", "fatal"];
         console.log = function (str) {
-            orig.call(console, str);
             assert.isTrue(str.match(levels[count]) != null);
             count++;
         };
