@@ -8,9 +8,11 @@ var it = require('it'),
 
 it.describe("comb.logging.appenders.ConsoleAppender",function (it) {
 
-    var logger = logging.Logger.getLogger("ConsoleLoggerTest"),
-        appender = new ConsoleAppender();
-    logger.addAppender(appender);
+    var logger = comb.logger("ConsoleLoggerTest");
+    it.beforeAll(function () {
+        var appender = new ConsoleAppender();
+        logger.addAppender(appender);
+    });
     it.should("be added to the logger", function () {
         assert.isTrue(logger.isAppenderAttached("consoleAppender"));
         assert.deepEqual(logger.appenders, [appender]);
