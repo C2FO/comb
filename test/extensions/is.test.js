@@ -25,7 +25,7 @@ it.describe("is extension",function (it) {
     it.should("expose value of properly", function () {
         var date = new Date(2001, 1, 1, 1, 1, 1, 111),
             date2 = new Date(2001, 1, 1, 1, 1, 1, 111);
-        assert.deepEqual(comb(date).valueOf(), 981010861111);
+        assert.deepEqual(comb(date).valueOf(), date.valueOf());
         assert.strictEqual(comb("hello").valueOf(), "hello");
         assert.strictEqual(comb(true).valueOf(), true);
         assert.deepEqual(comb({}).valueOf(), {});
