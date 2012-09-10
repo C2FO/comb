@@ -6,11 +6,11 @@ var it = require('it'),
 var getTimeZoneOffset = function (date) {
     var offset = date.getTimezoneOffset();
     var tz = [
-        (offset >= 0 ? "-" : "+"),
+        (offset > 0 ? "-" : "+"),
         comb.string.pad(Math.floor(Math.abs(offset) / 60), 2, "0"),
         comb.string.pad(Math.abs(offset) % 60, 2, "0")
     ];
-    return [(offset >= 0  ? -1 : 1) * Math.floor(Math.abs(offset)) / 60, tz.join(""), comb.date.getTimezoneName(date)];
+    return [(offset >= 0 ? -1 : 1) * Math.floor(Math.abs(offset)) / 60, tz.join(""), comb.date.getTimezoneName(date)];
 };
 
 it.describe("comb/base/string.js",function (it) {
@@ -76,10 +76,11 @@ it.describe("comb/base/string.js",function (it) {
             assert.throws(function () {
                 comb.string.format("%4j", [comb.merge(test, {a:test})]);
             });
-            assert.equal(comb.string.format("%D", [new Date(-1)]), 'Wed Dec 31 1969 17:59:59 GMT-0600 (CST)');
-            var date = new Date(2006, 7, 11, 0, 55, 12, 345);
+            var tzInfo = getTimeZoneOffset(new Date(-1));
+            assert.equal(comb.string.format("%D", [new Date(-1)]), 'Wed Dec 31 1969 ' + (23 + tzInfo[0]) + ':59:59 GMT' + tzInfo[1] + " (" + tzInfo[2] + ")");
+            var date = new Date(2006, 7, 11, 0, 55, 12, 345), tzInfo = getTimeZoneOffset(date);
             assert.equal(comb.string.format("%[yyyy]D %[EEEE, MMMM dd, yyyy]D %[M/dd/yy]D %[H:m:s.SS]D", [date, date, date, date]), '2006 Friday, August 11, 2006 8/11/06 0:55:12.35');
-            assert.equal(comb.string.format("%[yyyy]Z %[EEEE, MMMM dd, yyyy]Z %[M/dd/yy]Z %[H:m:s.SS]Z", [date, date, date, date]), '2006 Friday, August 11, 2006 8/11/06 5:55:12.35');
+            assert.equal(comb.string.format("%[yyyy]Z %[EEEE, MMMM dd, yyyy]Z %[M/dd/yy]Z %[H:m:s.SS]Z", [date, date, date, date]), '2006 Friday, August 11, 2006 8/11/06 ' + date.getUTCHours() + ':55:12.35');
             assert.equal(comb.string.format("%Z", [new Date(-1)]), 'Wed, 31 Dec 1969 23:59:59 GMT');
             assert.equal(comb.string.format("%1j,\n%4j", [
                 {a:"b"},
@@ -114,7 +115,7 @@ it.describe("comb/base/string.js",function (it) {
             assert.equal(comb("%D").format([new Date(-1)]), 'Wed Dec 31 1969 ' + (23 + tzInfo[0]) + ':59:59 GMT' + tzInfo[1] + " (" + tzInfo[2] + ")");
             var date = new Date(2006, 7, 11, 0, 55, 12, 345);
             assert.equal(comb("%[yyyy]D %[EEEE, MMMM dd, yyyy]D %[M/dd/yy]D %[H:m:s.SS]D").format([date, date, date, date]), '2006 Friday, August 11, 2006 8/11/06 0:55:12.35');
-            assert.equal(comb("%[yyyy]Z %[EEEE, MMMM dd, yyyy]Z %[M/dd/yy]Z %[H:m:s.SS]Z").format([date, date, date, date]), '2006 Friday, August 11, 2006 8/11/06 5:55:12.35');
+            assert.equal(comb("%[yyyy]Z %[EEEE, MMMM dd, yyyy]Z %[M/dd/yy]Z %[H:m:s.SS]Z").format([date, date, date, date]), '2006 Friday, August 11, 2006 8/11/06 ' + date.getUTCHours() + ':55:12.35');
             assert.equal(comb("%Z").format([new Date(-1)]), 'Wed, 31 Dec 1969 23:59:59 GMT');
             assert.equal(comb("%1j,\n%4j").format([
                 {a:"b"},
