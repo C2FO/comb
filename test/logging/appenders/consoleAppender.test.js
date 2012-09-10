@@ -6,11 +6,13 @@ var it = require('it'),
     ConsoleAppender = logging.appenders.ConsoleAppender;
 
 
-it.describe("comb.logging.appenders.ConsoleAppender", function (it) {
+it.describe("comb.logging.appenders.ConsoleAppender",function (it) {
 
-    var logger = logging.Logger.getLogger("ConsoleLoggerTest"),
+    var logger = comb.logger("ConsoleLoggerTest"), appender;
+    it.beforeAll(function () {
         appender = new ConsoleAppender();
-    logger.addAppender(appender);
+        logger.addAppender(appender);
+    });
     it.should("be added to the logger", function () {
         assert.isTrue(logger.isAppenderAttached("consoleAppender"));
         assert.deepEqual(logger.appenders, [appender]);
@@ -19,35 +21,45 @@ it.describe("comb.logging.appenders.ConsoleAppender", function (it) {
 
     it.should("have then logged to the appender ", function () {
         var orig = console.log;
-        var count = 0;
-        var levels = ["debug", "trace", "info", "warn", "error", "fatal"];
-        console.log = function (str) {
-            assert.isTrue(str.match(levels[count]) != null);
-            count++;
-        };
-        levels.forEach(function (l) {
-            logger[l](l);
-        });
-        assert.equal(count, 6);
-        console.log = orig;
+        try {
+            var count = 0;
+            var levels = ["debug", "trace", "info", "warn", "error", "fatal"];
+            console.log = function (str) {
+                assert.isTrue(str.match(levels[count]) != null);
+                count++;
+            };
+            levels.forEach(function (l) {
+                logger[l](l);
+            });
+            assert.equal(count, 6);
+        } catch (e) {
+            throw e;
+        } finally {
+            console.log = orig;
+        }
 
     });
 
     it.should("the logger should log no events to the appender ", function () {
-        var orig = console.log;
-        logger.level = logging.Level.OFF;
-        var count = 0;
-        var levels = ["debug", "trace", "info", "warn", "error", "fatal"];
-        console.log = function (str) {
-            assert.isTrue(str.match(levels[count]) != null);
-            count++;
-        };
-        levels.forEach(function (l) {
-            logger[l](l);
-        });
-        assert.equal(count, 0);
-        console.log = orig;
 
+        var orig = console.log;
+        try {
+            logger.level = logging.Level.OFF;
+            var count = 0;
+            var levels = ["debug", "trace", "info", "warn", "error", "fatal"];
+            console.log = function (str) {
+                assert.isTrue(str.match(levels[count]) != null);
+                count++;
+            };
+            levels.forEach(function (l) {
+                logger[l](l);
+            });
+            assert.equal(count, 0);
+        } catch (e) {
+            throw e;
+        } finally {
+            console.log = orig;
+        }
     });
 
 }).as(module);

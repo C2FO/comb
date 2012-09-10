@@ -7,6 +7,9 @@ DOC_COMMAND=coddoc -f multi-html -d ./lib --dir ./docs
 test:
 	export NODE_PATH=lib:$(NODE_PATH) && export NODE_ENV=test && ./node_modules/it/bin/it -r dotmatrix
 
+test-travis:
+	export NODE_PATH=lib:$(NODE_PATH) && export NODE_ENV=test && ./node_modules/it/bin/it
+
 test-coverage:
 	rm -rf ./lib-cov && node-jscoverage ./lib ./lib-cov && export NODE_PATH=lib-cov:$(NODE_PATH) && export NODE_ENV=test && ./node_modules/it/bin/it -r dotmatrix --cov-html ./docs-md/coverage.html
 

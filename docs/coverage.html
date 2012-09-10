@@ -2888,13 +2888,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function getTimezoneName(/*Date*/dateObject) {</code></li>
-<li class='green'><span class='hits'>35</span><code>    var str = dateObject.toString();</code></li>
-<li class='green'><span class='hits'>35</span><code>    var tz = '';</code></li>
-<li class='green'><span class='hits'>35</span><code>    var pos = str.indexOf('(');</code></li>
-<li class='green'><span class='hits'>35</span><code>    if (pos &gt; -1) {</code></li>
-<li class='green'><span class='hits'>31</span><code>        tz = str.substring(++pos, str.indexOf(')'));</code></li>
+<li class='green'><span class='hits'>38</span><code>    var str = dateObject.toString();</code></li>
+<li class='green'><span class='hits'>38</span><code>    var tz = '';</code></li>
+<li class='green'><span class='hits'>38</span><code>    var pos = str.indexOf('(');</code></li>
+<li class='green'><span class='hits'>38</span><code>    if (pos &gt; -1) {</code></li>
+<li class='green'><span class='hits'>34</span><code>        tz = str.substring(++pos, str.indexOf(')'));</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>35</span><code>    return tz; // String</code></li>
+<li class='green'><span class='hits'>38</span><code>    return tz; // String</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -4571,14 +4571,14 @@ td.cov-stats {
 <li class='green'><span class='hits'>13</span><code>        if (!setup) {</code></li>
 <li class='green'><span class='hits'>1</span><code>            var orig = process.emit;</code></li>
 <li class='green'><span class='hits'>1</span><code>            process.emit = function (event) {</code></li>
-<li class='green'><span class='hits'>836</span><code>                try {</code></li>
-<li class='green'><span class='hits'>836</span><code>                    if (event === 'exit') {</code></li>
+<li class='green'><span class='hits'>837</span><code>                try {</code></li>
+<li class='green'><span class='hits'>837</span><code>                    if (event === 'exit') {</code></li>
 <li class='green'><span class='hits'>1</span><code>                        listeners.forEach(function (cb) {</code></li>
 <li class='green'><span class='hits'>13</span><code>                            cb();</code></li>
 <li class='green'><span class=''> </span><code>                        });</code></li>
 <li class='green'><span class=''> </span><code>                    }</code></li>
 <li class='green'><span class=''> </span><code>                } finally {</code></li>
-<li class='green'><span class='hits'>836</span><code>                    orig.apply(this, arguments);</code></li>
+<li class='green'><span class='hits'>837</span><code>                    orig.apply(this, arguments);</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
 <li class='green'><span class='hits'>1</span><code>            setup = true;</code></li>
@@ -6183,18 +6183,18 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>     * @returns {String} the padded string</code></li>
 <li class='green'><span class=''> </span><code>     */</code></li>
 <li class='green'><span class=''> </span><code>    pad:function (string, length, ch, end) {</code></li>
-<li class='green'><span class='hits'>351</span><code>        string = "" + string; //check for numbers</code></li>
-<li class='green'><span class='hits'>351</span><code>        ch = ch || " ";</code></li>
-<li class='green'><span class='hits'>351</span><code>        var strLen = string.length;</code></li>
-<li class='green'><span class='hits'>351</span><code>        while (strLen &lt; length) {</code></li>
-<li class='green'><span class='hits'>295</span><code>            if (end) {</code></li>
+<li class='green'><span class='hits'>357</span><code>        string = "" + string; //check for numbers</code></li>
+<li class='green'><span class='hits'>357</span><code>        ch = ch || " ";</code></li>
+<li class='green'><span class='hits'>357</span><code>        var strLen = string.length;</code></li>
+<li class='green'><span class='hits'>357</span><code>        while (strLen &lt; length) {</code></li>
+<li class='green'><span class='hits'>252</span><code>            if (end) {</code></li>
 <li class='green'><span class='hits'>157</span><code>                string += ch;</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>138</span><code>                string = ch + string;</code></li>
+<li class='green'><span class='hits'>95</span><code>                string = ch + string;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>295</span><code>            strLen++;</code></li>
+<li class='green'><span class='hits'>252</span><code>            strLen++;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>351</span><code>        return string;</code></li>
+<li class='green'><span class='hits'>357</span><code>        return string;</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>    /**</code></li>
