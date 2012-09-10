@@ -6,3 +6,4 @@ docs
 support
 lib-cov
 Makefile
+.travis.yml

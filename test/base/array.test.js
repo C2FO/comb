@@ -1028,5 +1028,5 @@ it.describe("array",function (it) {
             .sum(), 25);
         assert.isTrue(comb(true).valueOf());
     });
-}).as(module).run();
+}).as(module);
 

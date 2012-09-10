@@ -6,6 +6,8 @@ var it = require('it'),
     hitch = comb.hitch;
 
 
+
+
 it.describe("comb.date",function (it) {
 
 // Create a fake Date object with toString and toLocaleString
@@ -67,7 +69,7 @@ it.describe("comb.date",function (it) {
         assert.isFalse(comb.isDate(undef));
         assert.isFalse(comb.isDate(undefined));
         assert.isFalse(comb.isDate({}));
-        assert.isFalse(comb.isDate(new String("")));
+        assert.isFalse(comb.isDate(String("")));
         assert.isFalse(comb.isDate(""));
         assert.isFalse(comb.isDate(true));
         assert.isFalse(comb.isDate(false));
@@ -117,11 +119,11 @@ it.describe("comb.date",function (it) {
         });
 
         it.should("format h:m:s.SS  to 12:55:12.35 ", function () {
-            assert.equal(date.format('h:m:s.SS'), "12:55:12.35");
+            assert.equal(date.format('h:m:s.SS'), ((date.getHours() % 12) || 12) + ":55:12.35");
         });
 
         it.should("format k:m:s.SS to 24:55:12.35 ", function () {
-            assert.equal(date.format('k:m:s.SS'), "24:55:12.35");
+            assert.equal(date.format('k:m:s.SS'), (date.getHours() || 24) + ":55:12.35");
         });
 
         it.should("format K:m:s.SS to 0:55:12.35 ", function () {
@@ -191,27 +193,27 @@ it.describe("comb.date",function (it) {
         });
 
         it.should("h:m a to 5:55 AM ", function () {
-            assert.equal(date.format("h:m a", true), "5:55 AM");
+            assert.equal(date.format("h:m a", true), ((date.getUTCHours() % 12) || 12) + ":55 AM");
         });
 
         it.should("H:m:s to 6:55:12", function () {
-            assert.equal(date.format('h:m:s', true), "5:55:12");
+            assert.equal(date.format('h:m:s', true), ((date.getUTCHours() % 12) || 12) + ":55:12");
         });
 
         it.should("h:m:s.SS to 6:55:12.35 ", function () {
-            assert.equal(date.format('h:m:s.SS', true), "5:55:12.35");
+            assert.equal(date.format('h:m:s.SS', true), ((date.getUTCHours() % 12) || 12) + ":55:12.35");
         });
 
         it.should("k:m:s.SS to 6:55:12.35 ", function () {
-            assert.equal(date.format('k:m:s.SS', true), "5:55:12.35");
+            assert.equal(date.format('k:m:s.SS', true), (date.getUTCHours() || 24) + ":55:12.35");
         });
 
         it.should("K:m:s.SS to 5:55:12.35 ", function () {
-            assert.equal(date.format('K:m:s.SS', true), "5:55:12.35");
+            assert.equal(date.format('K:m:s.SS', true), date.getUTCHours() + ":55:12.35");
         });
 
         it.should("H:m:s.SS to 5:55:12.35 ", function () {
-            assert.equal(date.format('H:m:s.SS', true), "5:55:12.35");
+            assert.equal(date.format('H:m:s.SS', true), date.getUTCHours() + ":55:12.35");
         });
 
 
@@ -847,7 +849,7 @@ it.describe("comb.date",function (it) {
                     assert.deepEqual(comb.date.add(dtA, "quarter", 4), dtB);
                     assert.deepEqual(comb.date.add(dtA, "quarters", 4), dtB);
 
-                })
+                });
             });
 
             it.describe("when adding months to a date", function (it) {
@@ -1117,7 +1119,7 @@ it.describe("comb.date",function (it) {
                     assert.deepEqual(comb(dtA).add("quarter", 4), dtB);
                     assert.deepEqual(comb(dtA).add("quarters", 4), dtB);
 
-                })
+                });
             });
 
             it.describe("when adding months to a date", function (it) {
