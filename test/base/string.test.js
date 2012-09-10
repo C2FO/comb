@@ -3,6 +3,16 @@ var it = require('it'),
     assert = require('assert'),
     comb = require("index");
 
+var getTimeZoneOffset = function (date) {
+    var offset = date.getTimezoneOffset();
+    var tz = [
+        (offset >= 0 ? "-" : "+"),
+        comb.string.pad(Math.floor(Math.abs(offset) / 60), 2, "0"),
+        comb.string.pad(Math.abs(offset) % 60, 2, "0")
+    ];
+    return [(offset >= 0  ? -1 : 1) * Math.floor(Math.abs(offset)) / 60, tz.join(""), comb.date.getTimezoneName(date)];
+};
+
 it.describe("comb/base/string.js",function (it) {
 //Super of other classes
     it.should("determine if something is a String", function () {
@@ -100,7 +110,8 @@ it.describe("comb/base/string.js",function (it) {
             assert.throws(function () {
                 comb("%4j").format([comb.merge(test, {a:test})]);
             });
-            assert.equal(comb("%D").format([new Date(-1)]), 'Wed Dec 31 1969 17:59:59 GMT-0600 (CST)');
+            var tzInfo = getTimeZoneOffset(new Date(-1));
+            assert.equal(comb("%D").format([new Date(-1)]), 'Wed Dec 31 1969 ' + (23 + tzInfo[0]) + ':59:59 GMT' + tzInfo[1] + " (" + tzInfo[2] + ")");
             var date = new Date(2006, 7, 11, 0, 55, 12, 345);
             assert.equal(comb("%[yyyy]D %[EEEE, MMMM dd, yyyy]D %[M/dd/yy]D %[H:m:s.SS]D").format([date, date, date, date]), '2006 Friday, August 11, 2006 8/11/06 0:55:12.35');
             assert.equal(comb("%[yyyy]Z %[EEEE, MMMM dd, yyyy]Z %[M/dd/yy]Z %[H:m:s.SS]Z").format([date, date, date, date]), '2006 Friday, August 11, 2006 8/11/06 5:55:12.35');
@@ -195,4 +206,4 @@ it.describe("comb/base/string.js",function (it) {
             assert.equal(comb("abcdefg").truncate(3, true), "efg");
         });
     });
-}).as(module);
+}).as(module).run();
