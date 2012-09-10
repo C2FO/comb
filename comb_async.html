@@ -1152,6 +1152,8 @@ comb.async.every(asyncArr(), function(item){
         <li> <em>scope?</em>  : <p>optional scope to execute the function in.</p>
 </li>
     
+        <li> <em>limit</em>  : </li>
+    
      </ul>
 
 
@@ -1168,8 +1170,8 @@ comb.async.every(asyncArr(), function(item){
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-function (promise,iterator,scope){
-   return asyncArray(asyncLoop(promise, iterator, scope).chain(function (results) {
+function (promise,iterator,scope,limit){
+   return asyncArray(asyncLoop(promise, iterator, scope, limit).chain(function (results) {
        return results.loopResults.every(function (res) {
            return !!res;
        });
@@ -1241,6 +1243,8 @@ comb.async.filter(asyncArr(), function(item){
         <li> <em>scope?</em>  : <p>optional scope to execute the function in.</p>
 </li>
     
+        <li> <em>limit</em>  : </li>
+    
      </ul>
 
 
@@ -1257,8 +1261,8 @@ comb.async.filter(asyncArr(), function(item){
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-function (promise,iterator,scope){
-   return asyncArray(asyncLoop(promise, iterator, scope).chain(function (results) {
+function (promise,iterator,scope,limit){
+   return asyncArray(asyncLoop(promise, iterator, scope, limit).chain(function (results) {
        var loopResults = results.loopResults, resultArr = results.arr;
        return (isArray(resultArr) ? resultArr : [resultArr]).filter(function (res, i) {
            return loopResults[i];
@@ -1389,6 +1393,8 @@ comb.async.forEach(asyncArr(), function(item, index){
         <li> <em>scope?</em>  : <p>optional scope to execute the function in.</p>
 </li>
     
+        <li> <em>limit</em>  : </li>
+    
      </ul>
 
 
@@ -1405,8 +1411,8 @@ comb.async.forEach(asyncArr(), function(item, index){
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-function (promise,iterator,scope){
-   return asyncArray(asyncLoop(promise, iterator, scope).chain(function (results) {
+function (promise,iterator,scope,limit){
+   return asyncArray(asyncLoop(promise, iterator, scope, limit).chain(function (results) {
        return results.arr;
    }));
 }
@@ -1599,6 +1605,8 @@ comb.async.map(asyncArr(), function(item){
         <li> <em>scope?</em>  : <p>optional scope to execute the function in.</p>
 </li>
     
+        <li> <em>limit</em>  : </li>
+    
      </ul>
 
 
@@ -1615,8 +1623,8 @@ comb.async.map(asyncArr(), function(item){
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-function (promise,iterator,scope){
-   return asyncArray(asyncLoop(promise, iterator, scope).chain(function (results) {
+function (promise,iterator,scope,limit){
+   return asyncArray(asyncLoop(promise, iterator, scope, limit).chain(function (results) {
        return results.loopResults;
    }));
 }
@@ -1944,10 +1952,10 @@ function (arrPromise,property){
            var exec = prop.match(/(\w+)\(\)$/);
            return asyncArray(result).map(function (item) {
                return exec ? item[exec[1]]() : item[prop];
-           }).chain(function (res) {
+           }, 1).chain(function (res) {
                    result = res;
                });
-       }).chain(function () {
+       }, 1).chain(function () {
                return result;
            });
    }));
@@ -2200,6 +2208,8 @@ comb.async.some(asyncArr(), function(item){
         <li> <em>scope?</em>  : <p>optional scope to execute the function in.</p>
 </li>
     
+        <li> <em>limit</em>  : </li>
+    
      </ul>
 
 
@@ -2216,8 +2226,8 @@ comb.async.some(asyncArr(), function(item){
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-function (promise,iterator,scope){
-   return asyncArray(asyncLoop(promise, iterator, scope).chain(function (results) {
+function (promise,iterator,scope,limit){
+   return asyncArray(asyncLoop(promise, iterator, scope, limit).chain(function (results) {
        return results.loopResults.some(function (res) {
            return !!res;
        });
