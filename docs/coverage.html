@@ -3160,20 +3160,20 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>     * @param {Number} [amount=0] the amount to add</code></li>
 <li class='green'><span class=''> </span><code>     */</code></li>
 <li class='green'><span class=''> </span><code>    add:function (/*Date*/date, /*String*/interval, /*int*/amount) {</code></li>
-<li class='green'><span class='hits'>216</span><code>        var res = addTransform(interval, date, amount || 0);</code></li>
-<li class='green'><span class='hits'>216</span><code>        amount = res[0];</code></li>
-<li class='green'><span class='hits'>216</span><code>        var property = res[1];</code></li>
-<li class='green'><span class='hits'>216</span><code>        var sum = new Date(date);</code></li>
-<li class='green'><span class='hits'>216</span><code>        var fixOvershoot = res[2];</code></li>
-<li class='green'><span class='hits'>216</span><code>        if (property) {</code></li>
-<li class='green'><span class='hits'>216</span><code>            sum["set" + property](sum["get" + property]() + amount);</code></li>
+<li class='green'><span class='hits'>228</span><code>        var res = addTransform(interval, date, amount || 0);</code></li>
+<li class='green'><span class='hits'>228</span><code>        amount = res[0];</code></li>
+<li class='green'><span class='hits'>228</span><code>        var property = res[1];</code></li>
+<li class='green'><span class='hits'>228</span><code>        var sum = new Date(date);</code></li>
+<li class='green'><span class='hits'>228</span><code>        var fixOvershoot = res[2];</code></li>
+<li class='green'><span class='hits'>228</span><code>        if (property) {</code></li>
+<li class='green'><span class='hits'>228</span><code>            sum["set" + property](sum["get" + property]() + amount);</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>216</span><code>        if (fixOvershoot &amp;&amp; (sum.getDate() &lt; date.getDate())) {</code></li>
+<li class='green'><span class='hits'>228</span><code>        if (fixOvershoot &amp;&amp; (sum.getDate() &lt; date.getDate())) {</code></li>
 <li class='green'><span class='hits'>26</span><code>            sum.setDate(0);</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>216</span><code>        return sum; // Date</code></li>
+<li class='green'><span class='hits'>228</span><code>        return sum; // Date</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>    /**</code></li>
@@ -3729,7 +3729,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>var addMap = {</code></li>
 <li class='green'><span class=''> </span><code>    day:function addDay(date, amount) {</code></li>
-<li class='green'><span class='hits'>60</span><code>        return [amount, "Date", false];</code></li>
+<li class='green'><span class='hits'>62</span><code>        return [amount, "Date", false];</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
 <li class='green'><span class=''> </span><code>    weekday:function addWeekday(date, amount) {</code></li>
 <li class='green'><span class=''> </span><code>        // Divide the increment time span into weekspans plus leftover days</code></li>
@@ -3762,7 +3762,7 @@ td.cov-stats {
 <li class='green'><span class='hits'>32</span><code>        return [(7 * weeks) + days + adj, "Date", false];</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
 <li class='green'><span class=''> </span><code>    year:function addYear(date, amount) {</code></li>
-<li class='green'><span class='hits'>34</span><code>        return [amount, "FullYear", true];</code></li>
+<li class='green'><span class='hits'>36</span><code>        return [amount, "FullYear", true];</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
 <li class='green'><span class=''> </span><code>    week:function addWeek(date, amount) {</code></li>
 <li class='green'><span class='hits'>6</span><code>        return [amount * 7, "Date", false];</code></li>
@@ -3771,16 +3771,16 @@ td.cov-stats {
 <li class='green'><span class='hits'>18</span><code>        return [amount * 3, "Month", true];</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
 <li class='green'><span class=''> </span><code>    month:function addYear(date, amount) {</code></li>
-<li class='green'><span class='hits'>20</span><code>        return [amount, "Month", true];</code></li>
+<li class='green'><span class='hits'>22</span><code>        return [amount, "Month", true];</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function addTransform(interval, date, amount) {</code></li>
-<li class='green'><span class='hits'>216</span><code>    interval = interval.replace(/s$/, "");</code></li>
-<li class='green'><span class='hits'>216</span><code>    if (addMap.hasOwnProperty(interval)) {</code></li>
-<li class='green'><span class='hits'>170</span><code>        return addMap[interval](date, amount);</code></li>
+<li class='green'><span class='hits'>228</span><code>    interval = interval.replace(/s$/, "");</code></li>
+<li class='green'><span class='hits'>228</span><code>    if (addMap.hasOwnProperty(interval)) {</code></li>
+<li class='green'><span class='hits'>176</span><code>        return addMap[interval](date, amount);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>46</span><code>    return [amount, "UTC" + interval.charAt(0).toUpperCase() + interval.substring(1) + "s", false];</code></li>
+<li class='green'><span class='hits'>52</span><code>    return [amount, "UTC" + interval.charAt(0).toUpperCase() + interval.substring(1) + "s", false];</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -6187,12 +6187,12 @@ td.cov-stats {
 <li class='green'><span class='hits'>351</span><code>        ch = ch || " ";</code></li>
 <li class='green'><span class='hits'>351</span><code>        var strLen = string.length;</code></li>
 <li class='green'><span class='hits'>351</span><code>        while (strLen &lt; length) {</code></li>
-<li class='green'><span class='hits'>271</span><code>            if (end) {</code></li>
+<li class='green'><span class='hits'>295</span><code>            if (end) {</code></li>
 <li class='green'><span class='hits'>157</span><code>                string += ch;</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>114</span><code>                string = ch + string;</code></li>
+<li class='green'><span class='hits'>138</span><code>                string = ch + string;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>271</span><code>            strLen++;</code></li>
+<li class='green'><span class='hits'>295</span><code>            strLen++;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class='hits'>351</span><code>        return string;</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
@@ -10344,7 +10344,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * @header</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * [![build status](https://secure.travis-ci.org/C2FO/comb.png)](http://travis-ci.org/C2FO/comb)</code></li>
 <li class='green'><span class=''> </span><code> * #Comb</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * ##Overview</code></li>

@@ -1,3 +1,5 @@
+[![build status](https://secure.travis-ci.org/C2FO/comb.png)](http://travis-ci.org/C2FO/comb)
+
 #Comb
                                                                                                                                              
                                                                                                                                                     
