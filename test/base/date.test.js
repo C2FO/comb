@@ -259,6 +259,15 @@ it.describe("comb.date",function (it) {
             assert.isNull(comb.date.parse("", "MM/dd/yy"));
         });
 
+        it.should("throw an error if format is not specified", function () {
+            assert.throws(function () {
+                comb.date.parse("", "");
+            });
+            assert.throws(function () {
+                comb.date.parse("");
+            });
+        });
+
         it.describe("namespaced", function (it) {
 
             it.should("parse 08/11/06", function () {
@@ -2059,25 +2068,25 @@ it.describe("comb.date",function (it) {
     it.describe("when using convenice methods *fromNow *ago", function (it) {
 
         it.should("add/subtract", function () {
-            assert.deepEqual(comb.yearsFromNow(2).getFullYear(), new Date().getFullYear() + 2);
-            assert.deepEqual(comb(comb.yearsAgo(2)).getFullYear(), new Date().getFullYear() - 2);
+            assert.deepEqual(comb.yearsFromNow(2).getFullYear(), comb.date.add(new Date(), "year", 2).getFullYear());
+            assert.deepEqual(comb(comb.yearsAgo(2)).getFullYear(), comb.date.add(new Date(), "year", -2).getFullYear());
 
 
-            assert.deepEqual(comb.monthsFromNow(2).getMonth(), new Date().getMonth() + 2);
-            assert.deepEqual(comb.monthsAgo(2).getMonth(), new Date().getMonth() - 2);
+            assert.deepEqual(comb.monthsFromNow(2).getMonth(), comb.date.add(new Date(), "month", 2).getMonth());
+            assert.deepEqual(comb.monthsAgo(2).getMonth(), comb.date.add(new Date(), "month", -2).getMonth());
 
 
-            assert.deepEqual(comb.daysFromNow(2).getDate(), new Date().getDate() + 2);
-            assert.deepEqual(comb.daysAgo(2).getDate(), new Date().getDate() - 2);
+            assert.deepEqual(comb.daysFromNow(2).getDate(), comb.date.add(new Date(), "day", 2).getDate());
+            assert.deepEqual(comb.daysAgo(2).getDate(), comb.date.add(new Date(), "day", -2).getDate());
 
-            assert.deepEqual(comb.hoursFromNow(2).getHours(), new Date().getHours() + 2);
-            assert.deepEqual(comb.hoursAgo(2).getHours(), new Date().getHours() - 2);
+            assert.deepEqual(comb.hoursFromNow(2).getHours(), comb.date.add(new Date(), "hour", 2).getHours());
+            assert.deepEqual(comb.hoursAgo(2).getHours(), comb.date.add(new Date(), "hour", -2).getHours());
 
-            assert.deepEqual(comb.minutesFromNow(2).getMinutes(), (new Date().getMinutes() + 2) % 60);
-            assert.deepEqual(comb.minutesAgo(2).getMinutes(), new Date().getMinutes() - 2);
+            assert.deepEqual(comb.minutesFromNow(2).getMinutes(), comb.date.add(new Date(), "minute", 2).getMinutes());
+            assert.deepEqual(comb.minutesAgo(2).getMinutes(), comb.date.add(new Date(), "minute", -2).getMinutes());
 
-            assert.deepEqual(comb.secondsFromNow(2).getSeconds(), (new Date().getSeconds() + 2) % 60);
-            assert.deepEqual(comb.secondsAgo(2).getSeconds(), new Date().getSeconds() - 2);
+            assert.deepEqual(comb.secondsFromNow(2).getSeconds(), comb.date.add(new Date(), "second", 2).getSeconds());
+            assert.deepEqual(comb.secondsAgo(2).getSeconds(), comb.date.add(new Date(), "second", -2).getSeconds());
         });
     });
 }).as(module);
