@@ -8,9 +8,9 @@ var it = require('it'),
 
 it.describe("comb.logging.appenders.ConsoleAppender",function (it) {
 
-    var logger = comb.logger("ConsoleLoggerTest");
+    var logger = comb.logger("ConsoleLoggerTest"), appender;
     it.beforeAll(function () {
-        var appender = new ConsoleAppender();
+        appender = new ConsoleAppender();
         logger.addAppender(appender);
     });
     it.should("be added to the logger", function () {
