@@ -1,4 +1,4 @@
-#0.1.8/2012
+#0.1.8/2012-09-10
 * Added travis CI build
 * Updated comb.date to use maps where possible and removed switch statements to use else if
 * Updated tests to run as expected each time
