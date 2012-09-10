@@ -207,4 +207,4 @@ it.describe("comb/base/string.js",function (it) {
             assert.equal(comb("abcdefg").truncate(3, true), "efg");
         });
     });
-}).as(module).run();
+}).as(module);
