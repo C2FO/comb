@@ -1,3 +1,10 @@
+#0.1.8/2012
+* Added travis CI build
+* Updated comb.date to use maps where possible and removed switch statements to use else if
+* Updated tests to run as expected each time
+* Updated tests to be timezone agnostic
+* Fixed console appender test
+
 #0.1.7/2012-09-05
 * comb.async
  * forEach
