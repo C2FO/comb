@@ -804,6 +804,38 @@ it.describe("The promise API",function (it) {
                 }, next);
         });
     });
+
+    it.describe("comb.wait",function (it) {
+
+        it.should("wait for the promise to resolve", function (next) {
+            var p = new comb.Promise();
+            var waiter = comb.wait(p, function wait(arg) {
+                assert.isTrue(arg);
+                next();
+            });
+            waiter(true);
+            process.nextTick(function () {
+                p.resolve(null);
+            });
+        });
+
+        it.should("allow multiple executions", function (next) {
+            var p = new comb.Promise();
+            var waiter = comb.wait(p, function wait(arg) {
+                assert.isNumber(arg);
+                if (arg === 2) {
+                    next();
+                }else{
+                    waiter(2);
+                }
+            });
+            waiter(1);
+            process.nextTick(function () {
+                p.resolve(null);
+            });
+        });
+
+    });
 }).as(module);
 
 
