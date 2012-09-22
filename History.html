@@ -275,74 +275,215 @@
 
 
 
-    <a name=""></a>
-    <div class="navbar subnav navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a href="#" class="brand">
-                comb.logging.appenders.RollingFileAppender
-                
-                
-                <span class="label label-success">Public</span>
-                
-                
-            </a>
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".sub-nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
+<h1>0.1.9 / 2012-09-22</h1>
+<ul>
+<li>Change comb.array.intersection to not use recursion</li>
+<li>added <code>comb.wait</code></li>
+</ul>
+<h1>0.1.8/2012-09-10</h1>
+<ul>
+<li>Added travis CI build</li>
+<li>Updated comb.date to use maps where possible and removed switch statements to use else if</li>
+<li>Updated tests to run as expected each time</li>
+<li>Updated tests to be timezone agnostic</li>
+<li>Fixed console appender test</li>
+</ul>
+<h1>0.1.7/2012-09-05</h1>
+<ul>
+<li>comb.async<ul>
+<li>forEach</li>
+<li>map</li>
+<li>filter</li>
+<li>some</li>
+<li>every</li>
+<li>zip</li>
+<li>sum</li>
+<li>avg</li>
+<li>sort</li>
+<li>min</li>
+<li>max</li>
+<li>difference</li>
+<li>removeDuplicates</li>
+<li>unique</li>
+<li>rotate</li>
+<li>permutations</li>
+<li>transpose</li>
+<li>valuesAt</li>
+<li>union</li>
+<li>intersect</li>
+<li>powerSet</li>
+<li>cartesian</li>
+<li>compact</li>
+<li>multiply</li>
+<li>flatten</li>
+<li>pluck</li>
+<li>invoke</li>
+</ul>
+</li>
+<li>new function features …<ul>
+<li>hitch and partial now accept property names to access</li>
+<li>New method applyFirst</li>
+</ul>
+</li>
+<li>Changed comb to be a function see <a href="http://c2fo.github.com/comb/introduction.html">here</a></li>
+<li>More tests</li>
+<li>Updated docs</li>
+</ul>
+<h1>0.1.6/2012-08-29</h1>
+<ul>
+<li>Changed comb.when to accept an array of promises as well as multi args</li>
+<li>Added comb.chain to pipe results from one item to another</li>
+<li>Updated docs and tests</li>
+</ul>
+<h1>0.1.5/2012-08-26</h1>
+<ul>
+<li>Changed middleware plugin to error properly</li>
+</ul>
+<h1>0.1.4/2012-08-20</h1>
+<ul>
+<li>added new short cut for configuring loggers</li>
+<li>Added changed logger.addAppender to accept a string and options to use Appender.createAppender method.</li>
+<li>comb.argsToArray now takes a slice argument to remove arguments.</li>
+<li>Added a resolve function to comb.Promise to handle node style callback resolution.</li>
+<li>Added a &quot;promise&quot; method to comb.Promise to allow for the return of an object that will not allow calling function to resolve the promise.</li>
+<li>Cleaned up promise using code to return the &quot;promise&quot; wrapper.</li>
+</ul>
+<h1>0.1.3/2012-08-16</h1>
+<ul>
+<li>new array methods<ul>
+<li>sort</li>
+<li>min</li>
+<li>max</li>
+<li>difference</li>
+<li>avg</li>
+</ul>
+</li>
+<li>Logging changes<ul>
+<li>Added <code>comb.logger</code> as shortcut to get a logger</li>
+<li>Changed appenders to register themselves for dynamic appender creation</li>
+</ul>
+</li>
+<li>Updated docs       </li>
+</ul>
+<h1>0.1.2/2012-07-17</h1>
+<ul>
+<li>Bug fixes<ul>
+<li>Changed comb.logging.PropertyConfigurator to deep merge porperties (Clone to config object)</li>
+</ul>
+</li>
+<li>Added comb.array.multiply</li>
+<li>Updated docs to use <a href="https://github.comb/doug-martin/coddoc">coddoc</a>  </li>
+</ul>
+<h1>0.1.1/2012-04-20</h1>
+<ul>
+<li>Migrated all tests to use <a href="http://github.com/doug-martin/it">it</a></li>
+<li>More Tests</li>
+<li>Added functionality to comb.Promise/PromiseList (allowing promises as callbacks and node style callbacks for)</li>
+</ul>
+<h1>0.1.0/2012-03-02</h1>
+<ul>
+<li>comb.define performance increase</li>
+<li>Changed HashTable to use strict equal</li>
+<li>Doc fixes</li>
+</ul>
+<h1>0.0.9 /2012-02-16</h1>
+<ul>
+<li>Complete redesign of comb.define to be more flexible and efficient<ul>
+<li>this._super does not require and Arguments object any more to call super</li>
+</ul>
+</li>
+<li>added &quot;use strict&quot; to all tests</li>
+<li>New Features<ul>
+<li>comb.serial method for executing methods that return promises serially</li>
+<li>comb.wrap method for wrapping node methods that require a function callback, with a promise</li>
+<li>new date helper methods<ul>
+<li>comb.yearsFromNow</li>
+<li>comb.yearsAgo</li>
+<li>comb.daysFromNow</li>
+<li>comb.daysAgo</li>
+<li>comb.monthsFromNow</li>
+<li>comb.monthsAgo</li>
+<li>comb.hoursFromNow</li>
+<li>comb.hoursAgo</li>
+<li>comb.minutesFromNow</li>
+<li>comb.minutesAgo</li>
+<li>comb.secondsFromNow</li>
+<li>comb.secondsAgo</li>
+</ul>
+</li>
+<li>comb.hitchIgnore/bindIngore for binding a method to a certain scope but ignoring all passed in parameters</li>
+<li>comb.number.roundCeil for round numbers up always</li>
+</ul>
+</li>
+<li>Bug Fixes<ul>
+<li>Fixed logging appender level setting, before the appenders level would always be overriden on initialization</li>
+</ul>
+</li>
+</ul>
+<h1>0.0.8 / 2012-02-9</h1>
+<ul>
+<li>Added new MethodMissing plugin </li>
+<li>Bug fixes<ul>
+<li>Changed inflections to underscore between word boundaries and numbers and vice versa with camelize.</li>
+</ul>
+</li>
+</ul>
+<h1>0.0.7 / 2012-02-04</h1>
+<ul>
+<li>Bug Fixes</li>
+<li>Fixed issue with array.zip</li>
+<li>Fixed error with date.parse and alternate characters</li>
+<li>Fixed MaxCallStack exceeded error<ul>
+<li>Changed callback and errback to resolved listeners in a new stack using process.nextTick</li>
+<li>Changed the middle ware plugin to use process.nextTick when calling next.</li>
+</ul>
+</li>
+<li>Altered  logging.Level to allow the setting of levels from external APIs</li>
+<li>Fixed issue with runner.js where paths that contained spaces would not run</li>
+<li>Changed comb.when to test if the arguments are &quot;promiseLike&quot; so multiple versions of comb will work together</li>
+<li>Updated docs.</li>
+</ul>
+<h1>0.0.6 / 2011-12-29</h1>
+<ul>
+<li>Bug Fixes</li>
+<li>Added new Proxy methods</li>
+<li>comb.executeInOrder</li>
+<li>new test for isHash</li>
+<li>added listener or &quot;uncaughtException&quot; when using logging</li>
+<li>new inflections API</li>
+<li>comb.when</li>
+<li>new promise methods [both, chainBoth]</li>
+<li>static initialization block on objects using comb.define</li>
+<li>more tests</li>
+</ul>
+<h1>0.0.3 / 2011-06-23</h1>
+<ul>
+<li>100% test coverage</li>
+<li>Bug fixes</li>
+<li>Added Makefile<ul>
+<li>make install</li>
+<li>make test</li>
+<li>make test-coverage</li>
+<li>make docs</li>
+<li>make docclean</li>
+<li>make benchmarks</li>
+<li>make uninstall</li>
+</ul>
+</li>
+<li>Added jscoverage sub module</li>
+</ul>
+<h1>0.0.2 / 2011-06-11</h1>
+<ul>
+<li>Added Logging</li>
+<li>More robust String formatting</li>
+<li>String styling</li>
+<li>Updated Docs.</li>
+</ul>
+<h1>0.0.1 / 2011-05-19</h1>
+<ul>
+<li>Initial release</li>
+</ul>
 
-            <div class="nav-collapse sub-nav-collapse">
-
-                <ul class="nav pull-right">
-                    <li><a href="#constructor">Constructor</a></li>
-                    
-                    
-                    
-                    
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-    <p><p>Appends messages to a file. Rolls files over when a size limit has been reached. Once the max file size has
-been reached it is rolled over to a file called &lt;logName&gt;.log.n where n is a number.
-</br></br>
-</p>
-<p>Example. RollingFileAppender is current writing to myLog.log, the log reaches is max size to it is
-renamed to myLog.log.1 and a new myLog.log is created.</p>
-</br>
-If maxBackupIndex is reached then the log at that index is deleted. If maxBackupIndex is set to 0 then no log is
-rolled over.</p></p>
-    
-
-    
-        <em>Extends</em>
-        <ul>
-            
-                <li> <a href="./comb_logging_appenders_FileAppender.html">comb.logging.appenders.FileAppender</a></li>
-            
-        </ul>
-    
-
-    
-    
-
-    <a name="constructor"></a>
-    <h3>Constructor</h3>
-
-    <em>Defined logging/appenders/rollingFileAppender.js</em>
-    
-    
-    
-
-  
-  
 <hr>
 
     
