@@ -1,3 +1,7 @@
+#0.1.9 / 2012-09-22
+* Change comb.array.intersection to not use recursion
+* added `comb.wait`
+
 #0.1.8/2012-09-10
 * Added travis CI build
 * Updated comb.date to use maps where possible and removed switch statements to use else if
