@@ -1082,6 +1082,21 @@
                                 underscore
                             </a></li>
                             
+                            <li><a href="./comb.html#.wait">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                wait
+                            </a></li>
+                            
                             <li><a href="./comb.html#.when">
                                 
                                 <span class="label label-info">S</span>
@@ -4826,6 +4841,88 @@ function (str){
            .replace(DASH, UNDERSCORE).toLowerCase();
    }
    return ret;
+}
+    </pre>
+    
+
+
+    
+        <a name=".wait"></a>
+    <h3>
+        wait
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p><p>Ensures that a promise is resolved before a the function can be run.
+
+</p>
+<p>For example suppose you have to ensure that you are connected to a database before you execute a function.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>var findUser = comb.wait(connect(), function findUser(id){
+     //this wont execute until we are connected
+     return User.findById(id);
+});
+
+ comb.when(findUser(1), findUser(2)).then(function(users){
+     var user1 = users[0], user2 = users[1];
+ });</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>args</em>  : <p>variable number of arguments to wait on. See <a href='./comb.html#.when'> comb.when</a>.</p>
+</li>
+    
+        <li> <em>fn</em>  : <p>function that will wait.</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Function</code> <p>a function that will wait on the args to resolve.</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (args,fn){
+   var args = argsToArray(arguments), resolved = false;
+   fn = args.pop();
+   var p = when(args);
+   return function waiter() {
+       if (!resolved) {
+           args = arguments;
+           return p.chain(function doneWaiting() {
+               resolved = true;
+               return fn.apply(this, args);
+           }.bind(this));
+       } else {
+           return when(fn.apply(this, arguments));
+       }
+   }
 }
     </pre>
     
