@@ -1,3 +1,6 @@
+#0.1.91 / 2012-10-01
+* Added `_getSuper` to classes declared with comb.define
+
 #0.1.9 / 2012-09-22
 * Change comb.array.intersection to not use recursion
 * added `comb.wait`

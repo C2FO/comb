@@ -392,6 +392,22 @@ it.describe("comb.define",function (it) {
         assert.instanceOf(new WrappedClass.DogMammal(), Dog);
     });
 
+    it.describe("#_getSuper", function () {
+        var Mammal2 = define(Mammal, {
+            instance:{
+                speak:function () {
+                    return this._getSuper();
+                },
+
+                unspeak:function () {
+                    return this._getSuper();
+                }
+            }
+        });
+        assert.equal(new Mammal2().speak()(), "A mammal of type mammal sounds like");
+        assert.isNull(new Mammal2().unspeak());
+    });
+
 
     it.describe("#as", function (it) {
 

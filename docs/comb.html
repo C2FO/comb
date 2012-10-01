@@ -2451,11 +2451,11 @@ Lab.soundOff() =&gt; &quot;IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!&quot;
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (sup,proto){
-   var child = function () {
+   function defineConstructor() {
        this.constructor.apply(this, arguments);
-   };
-   __define(child, sup, proto);
-   return child.init() || child;
+   }
+   __define(defineConstructor, sup, proto);
+   return defineConstructor.init() || defineConstructor;
 }
     </pre>
     
@@ -4626,15 +4626,15 @@ var MyLab = comb.singleton([Mammal, Wolf, Dog, Breed]);
     <pre class="prettyprint linenums lang-js">
 function (sup,proto){
    var retInstance;
-   var child = function () {
+   function singletonConstructor() {
        if (!retInstance) {
            this.constructor.apply(this, arguments);
            retInstance = this;
        }
        return retInstance;
-   };
-   __define(child, sup, proto);
-   return  child.init() || child;
+   }
+   __define(singletonConstructor, sup, proto);
+   return  singletonConstructor.init() || singletonConstructor;
 }
     </pre>
     
