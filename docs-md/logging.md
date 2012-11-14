@@ -191,6 +191,10 @@ However you can override the format of the message by providing your own. The fi
 * `message` : the message being logged.
 * `timeStamp`: the timestamp of the log event
 * `name` : the name of the logger logging the event.
+* `pid` : the process pid.
+* `gid` : the group id of the process.
+* `hostname` : the hostname.
+* `processTitle` : the title of the process
 
 To override the default pattern just provide it in the options. 
 
