@@ -7,7 +7,7 @@ var it = require('it'),
     Level = logging.Level;
 
 
-it.describe("comb.logging.Logger", function (it) {
+it.describe("comb.logging.Logger",function (it) {
 
 
     it.describe("static methods", function (it) {
@@ -119,8 +119,20 @@ it.describe("comb.logging.Logger", function (it) {
 
         });
 
-        it.should("not have an appenders by default", function () {
+        it.should("have create log events", function () {
+            var event = logger.getLogEvent(Level.INFO, "hello");
+            assert.equal(event.hostname, require("os").hostname());
+            assert.equal(event.pid, process.pid);
+            assert.equal(event.gid, process.getgid());
+            assert.equal(event.processTitle, process.title);
+            assert.deepEqual(event.level, Level.INFO);
+            assert.equal(event.levelName, Level.INFO.name);
+            assert.equal(event.message, "hello");
+            assert.isDate(event.timeStamp);
+            assert.equal(event.name, "comb");
+        });
 
+        it.should("not have an appenders by default", function () {
             assert.isEmpty(logger.appenders);
         })
 
@@ -184,19 +196,19 @@ it.describe("comb.logging.Logger", function (it) {
 
             var MyAppender = comb.define(logging.appenders.Appender, {
 
-                instance:{
+                instance: {
 
-                    name:"myAppender",
+                    name: "myAppender",
 
-                    append:function (event) {
+                    append: function (event) {
                         if (this._canAppend(event)) {
-                            this._static.messages.push({message:event.message, levelName:event.levelName});
+                            this._static.messages.push({message: event.message, levelName: event.levelName});
                         }
                     }
                 },
 
-                "static":{
-                    messages:[]
+                "static": {
+                    messages: []
                 }
 
             });
@@ -218,9 +230,9 @@ it.describe("comb.logging.Logger", function (it) {
                 logger.level = "INFO";
                 logger.debug("Hello %s", "world");
                 assert.deepEqual(MyAppender.messages, [
-                    {message:"hello", levelName:"DEBUG"},
-                    {message:"Hello world", levelName:"DEBUG"},
-                    {message:"Hello world", levelName:"DEBUG"}
+                    {message: "hello", levelName: "DEBUG"},
+                    {message: "Hello world", levelName: "DEBUG"},
+                    {message: "Hello world", levelName: "DEBUG"}
                 ]);
             });
 
@@ -230,7 +242,7 @@ it.describe("comb.logging.Logger", function (it) {
                 logger.log("trace", "Hello %s", "world");
                 logger.level = "INFO";
                 logger.trace("Hello %s", "world");
-                var messageMatchers = [/^Trace: hello/, /^Trace: Hello world/,/^Trace: Hello world/];
+                var messageMatchers = [/^Trace: hello/, /^Trace: Hello world/, /^Trace: Hello world/];
                 assert.isTrue(MyAppender.messages.every(function (message, i) {
                     return messageMatchers[i].test(message.message) && message.levelName === "TRACE";
                 }));
@@ -243,9 +255,9 @@ it.describe("comb.logging.Logger", function (it) {
                 logger.level = "WARN";
                 logger.info("Hello %s", "world");
                 assert.deepEqual(MyAppender.messages, [
-                    {message:"hello", levelName:"INFO"},
-                    {message:"Hello world", levelName:"INFO"},
-                    {message:"Hello world", levelName:"INFO"}
+                    {message: "hello", levelName: "INFO"},
+                    {message: "Hello world", levelName: "INFO"},
+                    {message: "Hello world", levelName: "INFO"}
                 ]);
 
             });
@@ -256,9 +268,9 @@ it.describe("comb.logging.Logger", function (it) {
                 logger.level = "ERROR";
                 logger.warn("Hello %s", "world");
                 assert.deepEqual(MyAppender.messages, [
-                    {message:"hello", levelName:"WARN"},
-                    {message:"Hello world", levelName:"WARN"},
-                    {message:"Hello world", levelName:"WARN"}
+                    {message: "hello", levelName: "WARN"},
+                    {message: "Hello world", levelName: "WARN"},
+                    {message: "Hello world", levelName: "WARN"}
                 ]);
 
             });
@@ -269,9 +281,9 @@ it.describe("comb.logging.Logger", function (it) {
                 logger.level = "FATAL";
                 logger.error("Hello %s", "world");
                 assert.deepEqual(MyAppender.messages, [
-                    {message:"hello", levelName:"ERROR"},
-                    {message:"Hello world", levelName:"ERROR"},
-                    {message:"Hello world", levelName:"ERROR"}
+                    {message: "hello", levelName: "ERROR"},
+                    {message: "Hello world", levelName: "ERROR"},
+                    {message: "Hello world", levelName: "ERROR"}
                 ]);
 
             });
@@ -282,11 +294,11 @@ it.describe("comb.logging.Logger", function (it) {
                 logger.level = "OFF";
                 logger.fatal("Hello %s", "world");
                 assert.deepEqual(MyAppender.messages, [
-                    {message:"hello", levelName:"FATAL"},
-                    {message:"Hello world", levelName:"FATAL"},
-                    {message:"Hello world", levelName:"FATAL"}
+                    {message: "hello", levelName: "FATAL"},
+                    {message: "Hello world", levelName: "FATAL"},
+                    {message: "Hello world", levelName: "FATAL"}
                 ]);
             });
         });
     });
-}).as(module);
+}).as(module).run();
