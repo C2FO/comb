@@ -257,8 +257,8 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>12247</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>3335</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>12263</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>3336</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
             </td>
@@ -346,7 +346,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function asyncLoop(promise, cb, scope, limit) {</code></li>
-<li class='green'><span class='hits'>52</span><code>    if(isNumber(scope)){</code></li>
+<li class='green'><span class='hits'>52</span><code>    if (isNumber(scope)) {</code></li>
 <li class='green'><span class='hits'>13</span><code>        limit = scope;</code></li>
 <li class='green'><span class='hits'>13</span><code>        scope = null;</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
@@ -360,8 +360,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class='hits'>52</span><code>        var ret = new Promise();</code></li>
 <li class='green'><span class='hits'>52</span><code>        serial(list).then(function (loopResults) {</code></li>
-<li class='green'><span class='hits'>42</span><code>            ret.callback({loopResults:flatten(loopResults) || [], arr:results});</code></li>
-<li class='green'><span class=''> </span><code>        }, function(error){</code></li>
+<li class='green'><span class='hits'>42</span><code>            ret.callback({loopResults: flatten(loopResults) || [], arr: results});</code></li>
+<li class='green'><span class=''> </span><code>        }, function (error) {</code></li>
 <li class='green'><span class='hits'>10</span><code>            error = compact(error);</code></li>
 <li class='green'><span class='hits'>10</span><code>            ret.errback(error.length === 1 ? error[0] : error);</code></li>
 <li class='green'><span class=''> </span><code>        });</code></li>
@@ -1383,34 +1383,34 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>var asyncExports = (exports.async = {</code></li>
-<li class='green'><span class=''> </span><code>    array:asyncArray,</code></li>
-<li class='green'><span class=''> </span><code>    forEach:asyncForEach,</code></li>
-<li class='green'><span class=''> </span><code>    map:asyncMap,</code></li>
-<li class='green'><span class=''> </span><code>    filter:asyncFilter,</code></li>
-<li class='green'><span class=''> </span><code>    every:asyncEvery,</code></li>
-<li class='green'><span class=''> </span><code>    some:asyncSome,</code></li>
-<li class='green'><span class=''> </span><code>    zip:asyncZip,</code></li>
-<li class='green'><span class=''> </span><code>    sum:asyncSum,</code></li>
-<li class='green'><span class=''> </span><code>    avg:asyncAvg,</code></li>
-<li class='green'><span class=''> </span><code>    sort:asyncSort,</code></li>
-<li class='green'><span class=''> </span><code>    min:asyncMin,</code></li>
-<li class='green'><span class=''> </span><code>    max:asyncMax,</code></li>
-<li class='green'><span class=''> </span><code>    difference:asyncDifference,</code></li>
-<li class='green'><span class=''> </span><code>    removeDuplicates:asyncRemoveDuplicates,</code></li>
-<li class='green'><span class=''> </span><code>    unique:asyncUnique,</code></li>
-<li class='green'><span class=''> </span><code>    rotate:asyncRotate,</code></li>
-<li class='green'><span class=''> </span><code>    permutations:asyncPermutations,</code></li>
-<li class='green'><span class=''> </span><code>    transpose:asyncTranspose,</code></li>
-<li class='green'><span class=''> </span><code>    valuesAt:asyncValuesAt,</code></li>
-<li class='green'><span class=''> </span><code>    union:asyncUnion,</code></li>
-<li class='green'><span class=''> </span><code>    intersect:asyncIntersect,</code></li>
-<li class='green'><span class=''> </span><code>    powerSet:asyncPowerSet,</code></li>
-<li class='green'><span class=''> </span><code>    cartesian:asyncCartesian,</code></li>
-<li class='green'><span class=''> </span><code>    compact:asyncCompact,</code></li>
-<li class='green'><span class=''> </span><code>    multiply:asyncMultiply,</code></li>
-<li class='green'><span class=''> </span><code>    flatten:asyncFlatten,</code></li>
-<li class='green'><span class=''> </span><code>    pluck:asyncPluck,</code></li>
-<li class='green'><span class=''> </span><code>    invoke:asyncInvoke</code></li>
+<li class='green'><span class=''> </span><code>    array: asyncArray,</code></li>
+<li class='green'><span class=''> </span><code>    forEach: asyncForEach,</code></li>
+<li class='green'><span class=''> </span><code>    map: asyncMap,</code></li>
+<li class='green'><span class=''> </span><code>    filter: asyncFilter,</code></li>
+<li class='green'><span class=''> </span><code>    every: asyncEvery,</code></li>
+<li class='green'><span class=''> </span><code>    some: asyncSome,</code></li>
+<li class='green'><span class=''> </span><code>    zip: asyncZip,</code></li>
+<li class='green'><span class=''> </span><code>    sum: asyncSum,</code></li>
+<li class='green'><span class=''> </span><code>    avg: asyncAvg,</code></li>
+<li class='green'><span class=''> </span><code>    sort: asyncSort,</code></li>
+<li class='green'><span class=''> </span><code>    min: asyncMin,</code></li>
+<li class='green'><span class=''> </span><code>    max: asyncMax,</code></li>
+<li class='green'><span class=''> </span><code>    difference: asyncDifference,</code></li>
+<li class='green'><span class=''> </span><code>    removeDuplicates: asyncRemoveDuplicates,</code></li>
+<li class='green'><span class=''> </span><code>    unique: asyncUnique,</code></li>
+<li class='green'><span class=''> </span><code>    rotate: asyncRotate,</code></li>
+<li class='green'><span class=''> </span><code>    permutations: asyncPermutations,</code></li>
+<li class='green'><span class=''> </span><code>    transpose: asyncTranspose,</code></li>
+<li class='green'><span class=''> </span><code>    valuesAt: asyncValuesAt,</code></li>
+<li class='green'><span class=''> </span><code>    union: asyncUnion,</code></li>
+<li class='green'><span class=''> </span><code>    intersect: asyncIntersect,</code></li>
+<li class='green'><span class=''> </span><code>    powerSet: asyncPowerSet,</code></li>
+<li class='green'><span class=''> </span><code>    cartesian: asyncCartesian,</code></li>
+<li class='green'><span class=''> </span><code>    compact: asyncCompact,</code></li>
+<li class='green'><span class=''> </span><code>    multiply: asyncMultiply,</code></li>
+<li class='green'><span class=''> </span><code>    flatten: asyncFlatten,</code></li>
+<li class='green'><span class=''> </span><code>    pluck: asyncPluck,</code></li>
+<li class='green'><span class=''> </span><code>    invoke: asyncInvoke</code></li>
 <li class='green'><span class=''> </span><code>});</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>var methods = ["forEach", "map", "filter", "some", "every", "zip", "sum", "avg", "sort", "min", "max", "difference", "removeDuplicates", "unique", "rotate",</code></li>
@@ -1480,7 +1480,7 @@ td.cov-stats {
 <li class='green'><span class='hits'>626</span><code>    var ret;</code></li>
 <li class='green'><span class='hits'>626</span><code>    if (!p || !p.__isArrayAsync__) {</code></li>
 <li class='green'><span class='hits'>410</span><code>        ret = merge(when(p), {</code></li>
-<li class='green'><span class=''> </span><code>            promise:function () {</code></li>
+<li class='green'><span class=''> </span><code>            promise: function () {</code></li>
 <li class='green'><span class='hits'>216</span><code>                return asyncArray(this)</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        });</code></li>
@@ -4450,8 +4450,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Array} array version of the arguments object</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function argsToArray(args, slice) {</code></li>
-<li class='green'><span class='hits'>22536</span><code>    slice = slice || 0;</code></li>
-<li class='green'><span class='hits'>22536</span><code>    return arraySlice.call(args, slice);</code></li>
+<li class='green'><span class='hits'>22554</span><code>    slice = slice || 0;</code></li>
+<li class='green'><span class='hits'>22554</span><code>    return arraySlice.call(args, slice);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -4477,8 +4477,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isUndefined(obj) {</code></li>
-<li class='green'><span class='hits'>10541</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>10541</span><code>    return obj !== null &amp;&amp; obj === undef;</code></li>
+<li class='green'><span class='hits'>10559</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>10559</span><code>    return obj !== null &amp;&amp; obj === undef;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -4504,7 +4504,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isUndefinedOrNull(obj) {</code></li>
-<li class='green'><span class='hits'>10249</span><code>    return isUndefined(obj) || isNull(obj);</code></li>
+<li class='green'><span class='hits'>10267</span><code>    return isUndefined(obj) || isNull(obj);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -4517,8 +4517,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isNull(obj) {</code></li>
-<li class='green'><span class='hits'>10070</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>10070</span><code>    return obj !== undef &amp;&amp; obj == null;</code></li>
+<li class='green'><span class='hits'>10088</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>10088</span><code>    return obj !== undef &amp;&amp; obj == null;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -4568,14 +4568,14 @@ td.cov-stats {
 <li class='green'><span class='hits'>13</span><code>        if (!setup) {</code></li>
 <li class='green'><span class='hits'>1</span><code>            var orig = process.emit;</code></li>
 <li class='green'><span class='hits'>1</span><code>            process.emit = function (event) {</code></li>
-<li class='green'><span class='hits'>839</span><code>                try {</code></li>
-<li class='green'><span class='hits'>839</span><code>                    if (event === 'exit') {</code></li>
+<li class='green'><span class='hits'>840</span><code>                try {</code></li>
+<li class='green'><span class='hits'>840</span><code>                    if (event === 'exit') {</code></li>
 <li class='green'><span class='hits'>1</span><code>                        listeners.forEach(function (cb) {</code></li>
 <li class='green'><span class='hits'>13</span><code>                            cb();</code></li>
 <li class='green'><span class=''> </span><code>                        });</code></li>
 <li class='green'><span class=''> </span><code>                    }</code></li>
 <li class='green'><span class=''> </span><code>                } finally {</code></li>
-<li class='green'><span class='hits'>839</span><code>                    orig.apply(this, arguments);</code></li>
+<li class='green'><span class='hits'>840</span><code>                    orig.apply(this, arguments);</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
 <li class='green'><span class='hits'>1</span><code>            setup = true;</code></li>
@@ -5299,8 +5299,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isString(obj) {</code></li>
-<li class='green'><span class='hits'>36464</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>36464</span><code>    return obj != undef &amp;&amp; (typeof obj == "string" || obj instanceof String);</code></li>
+<li class='green'><span class='hits'>36482</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>36482</span><code>    return obj != undef &amp;&amp; (typeof obj == "string" || obj instanceof String);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>comb.isString = isString;</code></li>
@@ -6184,12 +6184,12 @@ td.cov-stats {
 <li class='green'><span class='hits'>357</span><code>        ch = ch || " ";</code></li>
 <li class='green'><span class='hits'>357</span><code>        var strLen = string.length;</code></li>
 <li class='green'><span class='hits'>357</span><code>        while (strLen &lt; length) {</code></li>
-<li class='green'><span class='hits'>271</span><code>            if (end) {</code></li>
+<li class='green'><span class='hits'>227</span><code>            if (end) {</code></li>
 <li class='green'><span class='hits'>157</span><code>                string += ch;</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>114</span><code>                string = ch + string;</code></li>
+<li class='green'><span class='hits'>70</span><code>                string = ch + string;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>271</span><code>            strLen++;</code></li>
+<li class='green'><span class='hits'>227</span><code>            strLen++;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class='hits'>357</span><code>        return string;</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
@@ -9237,16 +9237,16 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function functionWrapper(f, name) {</code></li>
-<li class='green'><span class='hits'>310</span><code>    var wrapper = function () {</code></li>
-<li class='green'><span class='hits'>29965</span><code>        var ret, meta = this.__meta || {};</code></li>
-<li class='green'><span class='hits'>29965</span><code>        var orig = meta.superMeta;</code></li>
-<li class='green'><span class='hits'>29965</span><code>        meta.superMeta = {f:f, pos:0, name:name};</code></li>
-<li class='green'><span class='hits'>29965</span><code>        ret = f.apply(this, arguments);</code></li>
-<li class='green'><span class='hits'>29916</span><code>        meta.superMeta = orig;</code></li>
-<li class='green'><span class='hits'>29916</span><code>        return ret;</code></li>
+<li class='green'><span class='hits'>311</span><code>    var wrapper = function () {</code></li>
+<li class='green'><span class='hits'>30102</span><code>        var ret, meta = this.__meta || {};</code></li>
+<li class='green'><span class='hits'>30102</span><code>        var orig = meta.superMeta;</code></li>
+<li class='green'><span class='hits'>30102</span><code>        meta.superMeta = {f:f, pos:0, name:name};</code></li>
+<li class='green'><span class='hits'>30102</span><code>        ret = f.apply(this, arguments);</code></li>
+<li class='green'><span class='hits'>30053</span><code>        meta.superMeta = orig;</code></li>
+<li class='green'><span class='hits'>30053</span><code>        return ret;</code></li>
 <li class='green'><span class=''> </span><code>    };</code></li>
-<li class='green'><span class='hits'>310</span><code>    wrapper._f = f;</code></li>
-<li class='green'><span class='hits'>310</span><code>    return wrapper;</code></li>
+<li class='green'><span class='hits'>311</span><code>    wrapper._f = f;</code></li>
+<li class='green'><span class='hits'>311</span><code>    return wrapper;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class='hits'>1</span><code>;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -9348,12 +9348,12 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class='hits'>90</span><code>    for (i in proto) {</code></li>
-<li class='green'><span class='hits'>351</span><code>        if (i != "getters" &amp;&amp; i != "setters") {</code></li>
-<li class='green'><span class='hits'>330</span><code>            var f = proto[i];</code></li>
-<li class='green'><span class='hits'>330</span><code>            if ("function" === typeof f) {</code></li>
-<li class='green'><span class='hits'>297</span><code>                var meta = f.__meta || {};</code></li>
-<li class='green'><span class='hits'>297</span><code>                if (!meta.isConstructor) {</code></li>
-<li class='green'><span class='hits'>296</span><code>                    child[i] = functionWrapper(f, i);</code></li>
+<li class='green'><span class='hits'>352</span><code>        if (i != "getters" &amp;&amp; i != "setters") {</code></li>
+<li class='green'><span class='hits'>331</span><code>            var f = proto[i];</code></li>
+<li class='green'><span class='hits'>331</span><code>            if ("function" === typeof f) {</code></li>
+<li class='green'><span class='hits'>298</span><code>                var meta = f.__meta || {};</code></li>
+<li class='green'><span class='hits'>298</span><code>                if (!meta.isConstructor) {</code></li>
+<li class='green'><span class='hits'>297</span><code>                    child[i] = functionWrapper(f, i);</code></li>
 <li class='green'><span class=''> </span><code>                } else {</code></li>
 <li class='green'><span class='hits'>1</span><code>                    child[i] = f;</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
@@ -10579,11 +10579,11 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            level:function () {</code></li>
-<li class='green'><span class='hits'>92</span><code>                return this.__level;</code></li>
+<li class='green'><span class='hits'>110</span><code>                return this.__level;</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            name:function () {</code></li>
-<li class='green'><span class='hits'>112</span><code>                return this.__name;</code></li>
+<li class='green'><span class='hits'>130</span><code>                return this.__name;</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            pattern:function () {</code></li>
@@ -11406,17 +11406,18 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>662</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>162</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>678</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>163</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
             </td>
         </tr>
     </table>
-    <div class='source' id="logging/index.js-source"><pre class='prettyprint linenums'><ol class='linenums'><li class='green'><span class='hits'>1</span><code>var define = require("../define.js"),</code></li>
+    <div class='source' id="logging/index.js-source"><pre class='prettyprint linenums'><ol class='linenums'><li class='green'><span class='hits'>1</span><code>var os = require("os"),</code></li>
+<li class='green'><span class=''> </span><code>    define = require("../define.js"),</code></li>
 <li class='green'><span class=''> </span><code>    base = require("../base"),</code></li>
 <li class='green'><span class=''> </span><code>    isString = base.isString,</code></li>
-<li class='green'><span class=''> </span><code>    merge =  base.merge,</code></li>
+<li class='green'><span class=''> </span><code>    merge = base.merge,</code></li>
 <li class='green'><span class=''> </span><code>    isUndefinedOrNull = base.isUndefinedOrNull,</code></li>
 <li class='green'><span class=''> </span><code>    isHash = base.isHash,</code></li>
 <li class='green'><span class=''> </span><code>    isInstanceOf = base.isInstanceOf,</code></li>
@@ -11428,9 +11429,9 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    configurators = require("./config");</code></li>
 <li class='green'><span class='hits'>1</span><code>var rootTree;</code></li>
 <li class='green'><span class='hits'>1</span><code>var LoggerTree = define.define(null, {</code></li>
-<li class='green'><span class=''> </span><code>    instance:{</code></li>
+<li class='green'><span class=''> </span><code>    instance: {</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        constructor:function (root) {</code></li>
+<li class='green'><span class=''> </span><code>        constructor: function (root) {</code></li>
 <li class='green'><span class='hits'>14</span><code>            this.__root = root;</code></li>
 <li class='green'><span class='hits'>14</span><code>            this.__name = root.name;</code></li>
 <li class='green'><span class='hits'>14</span><code>            this.__level = root.level;</code></li>
@@ -11438,7 +11439,7 @@ td.cov-stats {
 <li class='green'><span class='hits'>14</span><code>            this.__map = {};</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        __getSubLoggers:function () {</code></li>
+<li class='green'><span class=''> </span><code>        __getSubLoggers: function () {</code></li>
 <li class='green'><span class='hits'>6</span><code>            var map = this.__map, ret = [], n;</code></li>
 <li class='green'><span class='hits'>6</span><code>            for (var i in map) {</code></li>
 <li class='green'><span class='hits'>2</span><code>                n = map[i];</code></li>
@@ -11449,19 +11450,19 @@ td.cov-stats {
 <li class='green'><span class='hits'>6</span><code>            return ret;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        __getLoggers:function () {</code></li>
+<li class='green'><span class=''> </span><code>        __getLoggers: function () {</code></li>
 <li class='green'><span class='hits'>4</span><code>            return [this.__root].concat(this.__getSubLoggers())</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        getCurrentLoggers:function () {</code></li>
+<li class='green'><span class=''> </span><code>        getCurrentLoggers: function () {</code></li>
 <li class='green'><span class='hits'>4</span><code>            return this.__getLoggers();</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        getSubLoggers:function () {</code></li>
+<li class='green'><span class=''> </span><code>        getSubLoggers: function () {</code></li>
 <li class='green'><span class='hits'>2</span><code>            return this.__getSubLoggers();</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        getLogger:function (name) {</code></li>
+<li class='green'><span class=''> </span><code>        getLogger: function (name) {</code></li>
 <li class='green'><span class='hits'>31</span><code>            var ret;</code></li>
 <li class='green'><span class='hits'>31</span><code>            if (name) {</code></li>
 <li class='green'><span class='hits'>29</span><code>                var parts = name.split(".");</code></li>
@@ -11485,36 +11486,36 @@ td.cov-stats {
 <li class='green'><span class='hits'>31</span><code>            return ret;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        getRootLogger:function () {</code></li>
+<li class='green'><span class=''> </span><code>        getRootLogger: function () {</code></li>
 <li class='green'><span class='hits'>23</span><code>            return this.__root;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        isDisabled:function (level) {</code></li>
+<li class='green'><span class=''> </span><code>        isDisabled: function (level) {</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        resetConfiguration:function () {</code></li>
+<li class='green'><span class=''> </span><code>        resetConfiguration: function () {</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
 <li class='green'><span class=''> </span><code>         * level = string|Level</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        addAppender:function (appender) {</code></li>
-<li class='green'><span class='hits'>85</span><code>            var map = this.__map;</code></li>
-<li class='green'><span class='hits'>85</span><code>            for (var i in map) {</code></li>
-<li class='green'><span class='hits'>61</span><code>                map[i].addAppender(appender);</code></li>
+<li class='green'><span class=''> </span><code>        addAppender: function (appender) {</code></li>
+<li class='green'><span class='hits'>103</span><code>            var map = this.__map;</code></li>
+<li class='green'><span class='hits'>103</span><code>            for (var i in map) {</code></li>
+<li class='green'><span class='hits'>79</span><code>                map[i].addAppender(appender);</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        removeAppender:function (name) {</code></li>
-<li class='green'><span class='hits'>68</span><code>            var map = this.__map;</code></li>
-<li class='green'><span class='hits'>68</span><code>            for (var i in map) {</code></li>
-<li class='green'><span class='hits'>59</span><code>                map[i].removeAppender(name);</code></li>
+<li class='green'><span class=''> </span><code>        removeAppender: function (name) {</code></li>
+<li class='green'><span class='hits'>86</span><code>            var map = this.__map;</code></li>
+<li class='green'><span class='hits'>86</span><code>            for (var i in map) {</code></li>
+<li class='green'><span class='hits'>77</span><code>                map[i].removeAppender(name);</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        setters:{</code></li>
-<li class='green'><span class=''> </span><code>            level:function (level) {</code></li>
+<li class='green'><span class=''> </span><code>        setters: {</code></li>
+<li class='green'><span class=''> </span><code>            level: function (level) {</code></li>
 <li class='green'><span class='hits'>45</span><code>                this.__level = level;</code></li>
 <li class='green'><span class='hits'>45</span><code>                if (level &amp;&amp; level instanceof Level) {</code></li>
 <li class='green'><span class='hits'>45</span><code>                    var map = this.__map;</code></li>
@@ -11527,14 +11528,14 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        getters:{</code></li>
-<li class='green'><span class=''> </span><code>            categories:function () {</code></li>
+<li class='green'><span class=''> </span><code>        getters: {</code></li>
+<li class='green'><span class=''> </span><code>            categories: function () {</code></li>
 <li class='green'><span class='hits'>2</span><code>                return this.getCurrentLoggers().map(function (l) {</code></li>
 <li class='green'><span class='hits'>3</span><code>                    return l.fullName;</code></li>
 <li class='green'><span class=''> </span><code>                });</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>            name:function () {</code></li>
+<li class='green'><span class=''> </span><code>            name: function () {</code></li>
 <li class='green'><span class='hits'>35</span><code>                var ret = this.__name;</code></li>
 <li class='green'><span class='hits'>35</span><code>                if (this.__parent) {</code></li>
 <li class='green'><span class='hits'>21</span><code>                    var pName = this.__parent.name;</code></li>
@@ -11545,11 +11546,11 @@ td.cov-stats {
 <li class='green'><span class='hits'>35</span><code>                return ret;</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>            level:function () {</code></li>
+<li class='green'><span class=''> </span><code>            level: function () {</code></li>
 <li class='green'><span class='hits'>13</span><code>                return this.__level;</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>            additive:function () {</code></li>
+<li class='green'><span class=''> </span><code>            additive: function () {</code></li>
 <li class='green'><span class='hits'>13</span><code>                return this.__root.additive;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
@@ -11561,7 +11562,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @ignore</code></li>
 <li class='green'><span class=''> </span><code> * @namespace logging package*/</code></li>
 <li class='green'><span class='hits'>1</span><code>comb.logging = merge({</code></li>
-<li class='green'><span class=''> </span><code>    Level:Level</code></li>
+<li class='green'><span class=''> </span><code>    Level: Level</code></li>
 <li class='green'><span class=''> </span><code>}, configurators);</code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
 <li class='green'><span class=''> </span><code> * @ignore</code></li>
@@ -11647,10 +11648,10 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>var Logger = (logging.Logger = define.define(null, {</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>    instance:{</code></li>
+<li class='green'><span class=''> </span><code>    instance: {</code></li>
 <li class='green'><span class=''> </span><code>        /**@lends comb.logging.Logger.prototype*/</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        constructor:function (name, parent) {</code></li>
+<li class='green'><span class=''> </span><code>        constructor: function (name, parent) {</code></li>
 <li class='green'><span class='hits'>14</span><code>            this.__additive = true;</code></li>
 <li class='green'><span class='hits'>14</span><code>            this.__name = name;</code></li>
 <li class='green'><span class='hits'>14</span><code>            this._parent = parent;</code></li>
@@ -11671,7 +11672,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        info:function (message) {</code></li>
+<li class='green'><span class=''> </span><code>        info: function (message) {</code></li>
 <li class='green'><span class='hits'>17</span><code>            return this.log.apply(this, [Level.INFO].concat(argsToArray(arguments)));</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -11682,7 +11683,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        debug:function (message) {</code></li>
+<li class='green'><span class=''> </span><code>        debug: function (message) {</code></li>
 <li class='green'><span class='hits'>14</span><code>            return this.log.apply(this, [Level.DEBUG].concat(argsToArray(arguments)));</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -11693,7 +11694,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        error:function (message) {</code></li>
+<li class='green'><span class=''> </span><code>        error: function (message) {</code></li>
 <li class='green'><span class='hits'>15</span><code>            return this.log.apply(this, [Level.ERROR].concat(argsToArray(arguments)));</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -11704,7 +11705,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        warn:function (message) {</code></li>
+<li class='green'><span class=''> </span><code>        warn: function (message) {</code></li>
 <li class='green'><span class='hits'>14</span><code>            return this.log.apply(this, [Level.WARN].concat(argsToArray(arguments)));</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -11715,7 +11716,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        trace:function (message) {</code></li>
+<li class='green'><span class=''> </span><code>        trace: function (message) {</code></li>
 <li class='green'><span class='hits'>14</span><code>            return this.log.apply(this, [Level.TRACE].concat(argsToArray(arguments)));</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -11726,8 +11727,29 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        fatal:function (message) {</code></li>
+<li class='green'><span class=''> </span><code>        fatal: function (message) {</code></li>
 <li class='green'><span class='hits'>14</span><code>            return this.log.apply(this, [Level.FATAL].concat(argsToArray(arguments)));</code></li>
+<li class='green'><span class=''> </span><code>        },</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>        /**</code></li>
+<li class='green'><span class=''> </span><code>         * Creates a log event to be passed to appenders</code></li>
+<li class='green'><span class=''> </span><code>         *</code></li>
+<li class='green'><span class=''> </span><code>         * @param {comb.logging.Level} level the level of the logging event</code></li>
+<li class='green'><span class=''> </span><code>         * @param {String} message the message to be logged</code></li>
+<li class='green'><span class=''> </span><code>         * @return {Object} the logging event</code></li>
+<li class='green'><span class=''> </span><code>         */</code></li>
+<li class='green'><span class=''> </span><code>        getLogEvent: function getLogEvent(level, message) {</code></li>
+<li class='green'><span class='hits'>65</span><code>            return {</code></li>
+<li class='green'><span class=''> </span><code>                hostname: os.hostname(),</code></li>
+<li class='green'><span class=''> </span><code>                pid: process.pid,</code></li>
+<li class='green'><span class=''> </span><code>                gid: process.getgid(),</code></li>
+<li class='green'><span class=''> </span><code>                processTitle: process.title,</code></li>
+<li class='green'><span class=''> </span><code>                level: level,</code></li>
+<li class='green'><span class=''> </span><code>                levelName: level.name,</code></li>
+<li class='green'><span class=''> </span><code>                message: message,</code></li>
+<li class='green'><span class=''> </span><code>                timeStamp: new Date(),</code></li>
+<li class='green'><span class=''> </span><code>                name: this.fullName</code></li>
+<li class='green'><span class=''> </span><code>            };</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -11738,7 +11760,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        log:function (level, message) {</code></li>
+<li class='green'><span class=''> </span><code>        log: function (level, message) {</code></li>
 <li class='green'><span class='hits'>94</span><code>            var args = argsToArray(arguments, 1);</code></li>
 <li class='green'><span class='hits'>94</span><code>            level = Level.toLevel(level);</code></li>
 <li class='green'><span class='hits'>94</span><code>            if (args.length &gt; 1) {</code></li>
@@ -11755,13 +11777,7 @@ td.cov-stats {
 <li class='green'><span class='hits'>1</span><code>                    message = message.stack;</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class='hits'>64</span><code>                var type = level.name.toLowerCase(), appenders = this.__appenders;</code></li>
-<li class='green'><span class='hits'>64</span><code>                var event = {</code></li>
-<li class='green'><span class=''> </span><code>                    level:level,</code></li>
-<li class='green'><span class=''> </span><code>                    levelName:level.name,</code></li>
-<li class='green'><span class=''> </span><code>                    message:message,</code></li>
-<li class='green'><span class=''> </span><code>                    timeStamp:new Date(),</code></li>
-<li class='green'><span class=''> </span><code>                    name:this.fullName</code></li>
-<li class='green'><span class=''> </span><code>                };</code></li>
+<li class='green'><span class='hits'>64</span><code>                var event = this.getLogEvent(level, message);</code></li>
 <li class='green'><span class='hits'>64</span><code>                Object.keys(appenders).forEach(function (i) {</code></li>
 <li class='green'><span class='hits'>64</span><code>                    appenders[i].append(event);</code></li>
 <li class='green'><span class=''> </span><code>                });</code></li>
@@ -11787,24 +11803,24 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        addAppender:function (appender, opts) {</code></li>
-<li class='green'><span class='hits'>104</span><code>            var args = argsToArray(arguments);</code></li>
-<li class='green'><span class='hits'>104</span><code>            if (isString(appender)) {</code></li>
+<li class='green'><span class=''> </span><code>        addAppender: function (appender, opts) {</code></li>
+<li class='green'><span class='hits'>122</span><code>            var args = argsToArray(arguments);</code></li>
+<li class='green'><span class='hits'>122</span><code>            if (isString(appender)) {</code></li>
 <li class='green'><span class='hits'>12</span><code>                this.addAppender(Appender.createAppender(appender, opts));</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>92</span><code>                if (!isUndefinedOrNull(appender)) {</code></li>
+<li class='green'><span class='hits'>110</span><code>                if (!isUndefinedOrNull(appender)) {</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>92</span><code>                    var name = appender.name;</code></li>
-<li class='green'><span class='hits'>92</span><code>                    if (!(name in this.__appenders)) {</code></li>
-<li class='green'><span class='hits'>85</span><code>                        this.__appenders[name] = appender;</code></li>
-<li class='green'><span class='hits'>85</span><code>                        if (!appender.level) {</code></li>
+<li class='green'><span class='hits'>110</span><code>                    var name = appender.name;</code></li>
+<li class='green'><span class='hits'>110</span><code>                    if (!(name in this.__appenders)) {</code></li>
+<li class='green'><span class='hits'>103</span><code>                        this.__appenders[name] = appender;</code></li>
+<li class='green'><span class='hits'>103</span><code>                        if (!appender.level) {</code></li>
 <li class='green'><span class='hits'>17</span><code>                            appender.level = this.level;</code></li>
 <li class='green'><span class=''> </span><code>                        }</code></li>
-<li class='green'><span class='hits'>85</span><code>                        this._tree.addAppender(appender);</code></li>
+<li class='green'><span class='hits'>103</span><code>                        this._tree.addAppender(appender);</code></li>
 <li class='green'><span class=''> </span><code>                    }</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>104</span><code>            return this;</code></li>
+<li class='green'><span class='hits'>122</span><code>            return this;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -11813,7 +11829,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        addAppenders:function (appenders) {</code></li>
+<li class='green'><span class=''> </span><code>        addAppenders: function (appenders) {</code></li>
 <li class='green'><span class='hits'>14</span><code>            appenders.forEach(this.addAppender.bind(this));</code></li>
 <li class='green'><span class='hits'>14</span><code>            return this;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
@@ -11823,12 +11839,12 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @param {String} name the name of the appender</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        removeAppender:function (name) {</code></li>
-<li class='green'><span class='hits'>68</span><code>            if (name in this.__appenders) {</code></li>
-<li class='green'><span class='hits'>68</span><code>                delete this.__appenders[name];</code></li>
-<li class='green'><span class='hits'>68</span><code>                this._tree.removeAppender(name);</code></li>
+<li class='green'><span class=''> </span><code>        removeAppender: function (name) {</code></li>
+<li class='green'><span class='hits'>86</span><code>            if (name in this.__appenders) {</code></li>
+<li class='green'><span class='hits'>86</span><code>                delete this.__appenders[name];</code></li>
+<li class='green'><span class='hits'>86</span><code>                this._tree.removeAppender(name);</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>68</span><code>            return this;</code></li>
+<li class='green'><span class='hits'>86</span><code>            return this;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -11837,7 +11853,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @param {String[]} appenders a list of names of appenders to remove</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        removeAppenders:function (appenders) {</code></li>
+<li class='green'><span class=''> </span><code>        removeAppenders: function (appenders) {</code></li>
 <li class='green'><span class='hits'>1</span><code>            appenders.forEach(this.removeAppender, this);</code></li>
 <li class='green'><span class='hits'>1</span><code>            return this;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
@@ -11847,7 +11863,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        removeAllAppenders:function () {</code></li>
+<li class='green'><span class=''> </span><code>        removeAllAppenders: function () {</code></li>
 <li class='green'><span class='hits'>16</span><code>            Object.keys(this.__appenders).forEach(this.removeAppender.bind(this));</code></li>
 <li class='green'><span class='hits'>16</span><code>            return this;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
@@ -11857,7 +11873,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @param {String} name the name of the appender.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        isAppenderAttached:function (name) {</code></li>
+<li class='green'><span class=''> </span><code>        isAppenderAttached: function (name) {</code></li>
 <li class='green'><span class='hits'>38</span><code>            return (name in this.__appenders);</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -11869,7 +11885,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Appender|undefined} returns the appender with the specified name or</code></li>
 <li class='green'><span class=''> </span><code>         *                                          undefined if it is not found.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        getAppender:function (name) {</code></li>
+<li class='green'><span class=''> </span><code>        getAppender: function (name) {</code></li>
 <li class='green'><span class='hits'>8</span><code>            var ret;</code></li>
 <li class='green'><span class='hits'>8</span><code>            if (name in this.__appenders) {</code></li>
 <li class='green'><span class='hits'>8</span><code>                ret = this.__appenders[name];</code></li>
@@ -11880,9 +11896,9 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        /**</code></li>
 <li class='green'><span class=''> </span><code>         * @ignore</code></li>
 <li class='green'><span class=''> </span><code>         * */</code></li>
-<li class='green'><span class=''> </span><code>        setters:{</code></li>
+<li class='green'><span class=''> </span><code>        setters: {</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>            level:function (level) {</code></li>
+<li class='green'><span class=''> </span><code>            level: function (level) {</code></li>
 <li class='green'><span class='hits'>46</span><code>                level = Level.toLevel(level);</code></li>
 <li class='green'><span class='hits'>46</span><code>                if (this.__additive) {</code></li>
 <li class='green'><span class='hits'>45</span><code>                    this.__level = level;</code></li>
@@ -11896,81 +11912,81 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>            additive:function (additive) {</code></li>
+<li class='green'><span class=''> </span><code>            additive: function (additive) {</code></li>
 <li class='green'><span class='hits'>2</span><code>                this.__additive = additive;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**@ignore*/</code></li>
-<li class='green'><span class=''> </span><code>        getters:{</code></li>
+<li class='green'><span class=''> </span><code>        getters: {</code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
-<li class='green'><span class=''> </span><code>            subLoggers:function () {</code></li>
+<li class='green'><span class=''> </span><code>            subLoggers: function () {</code></li>
 <li class='green'><span class='hits'>2</span><code>                return this._tree.getSubLoggers();</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
-<li class='green'><span class=''> </span><code>            level:function () {</code></li>
+<li class='green'><span class=''> </span><code>            level: function () {</code></li>
 <li class='green'><span class='hits'>202</span><code>                return this.__level;</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
-<li class='green'><span class=''> </span><code>            additive:function () {</code></li>
+<li class='green'><span class=''> </span><code>            additive: function () {</code></li>
 <li class='green'><span class='hits'>15</span><code>                return this.__additive;</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>            isAll:function () {</code></li>
+<li class='green'><span class=''> </span><code>            isAll: function () {</code></li>
 <li class='green'><span class='hits'>8</span><code>                return Level.ALL.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
-<li class='green'><span class=''> </span><code>            isDebug:function () {</code></li>
+<li class='green'><span class=''> </span><code>            isDebug: function () {</code></li>
 <li class='green'><span class='hits'>8</span><code>                return Level.DEBUG.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
-<li class='green'><span class=''> </span><code>            isTrace:function () {</code></li>
+<li class='green'><span class=''> </span><code>            isTrace: function () {</code></li>
 <li class='green'><span class='hits'>8</span><code>                return Level.TRACE.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
-<li class='green'><span class=''> </span><code>            isInfo:function () {</code></li>
+<li class='green'><span class=''> </span><code>            isInfo: function () {</code></li>
 <li class='green'><span class='hits'>8</span><code>                return Level.INFO.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
-<li class='green'><span class=''> </span><code>            isWarn:function () {</code></li>
+<li class='green'><span class=''> </span><code>            isWarn: function () {</code></li>
 <li class='green'><span class='hits'>8</span><code>                return Level.WARN.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
-<li class='green'><span class=''> </span><code>            isError:function () {</code></li>
+<li class='green'><span class=''> </span><code>            isError: function () {</code></li>
 <li class='green'><span class='hits'>8</span><code>                return Level.ERROR.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
-<li class='green'><span class=''> </span><code>            isFatal:function () {</code></li>
+<li class='green'><span class=''> </span><code>            isFatal: function () {</code></li>
 <li class='green'><span class='hits'>8</span><code>                return Level.FATAL.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
-<li class='green'><span class=''> </span><code>            isOff:function () {</code></li>
+<li class='green'><span class=''> </span><code>            isOff: function () {</code></li>
 <li class='green'><span class='hits'>9</span><code>                return Level.OFF.equals(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
-<li class='green'><span class=''> </span><code>            name:function () {</code></li>
+<li class='green'><span class=''> </span><code>            name: function () {</code></li>
 <li class='green'><span class='hits'>14</span><code>                return this.__name;</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
-<li class='green'><span class=''> </span><code>            tree:function () {</code></li>
+<li class='green'><span class=''> </span><code>            tree: function () {</code></li>
 <li class='green'><span class='hits'>13</span><code>                return this._tree;</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
-<li class='green'><span class=''> </span><code>            appenders:function () {</code></li>
+<li class='green'><span class=''> </span><code>            appenders: function () {</code></li>
 <li class='green'><span class='hits'>20</span><code>                var ret = [];</code></li>
 <li class='green'><span class='hits'>20</span><code>                for (var i in this.__appenders) {</code></li>
 <li class='green'><span class='hits'>9</span><code>                    ret.push(this.__appenders[i]);</code></li>
@@ -11978,19 +11994,19 @@ td.cov-stats {
 <li class='green'><span class='hits'>20</span><code>                return ret;</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>            categories:function () {</code></li>
+<li class='green'><span class=''> </span><code>            categories: function () {</code></li>
 <li class='green'><span class='hits'>2</span><code>                return this._tree.categories;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>    static:{</code></li>
+<li class='green'><span class=''> </span><code>    static: {</code></li>
 <li class='green'><span class=''> </span><code>        /**@lends comb.logging.Logger*/</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
 <li class='green'><span class=''> </span><code>         * Return the root of all loggers</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        getRootLogger:function () {</code></li>
+<li class='green'><span class=''> </span><code>        getRootLogger: function () {</code></li>
 <li class='green'><span class='hits'>23</span><code>            return rootTree.getRootLogger();</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -11999,7 +12015,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @param {String} name the name of the logger</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        getLogger:function (name) {</code></li>
+<li class='green'><span class=''> </span><code>        getLogger: function (name) {</code></li>
 <li class='green'><span class='hits'>21</span><code>            return rootTree.getLogger(name);</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>

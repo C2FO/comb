@@ -833,7 +833,7 @@ function (p){
    var ret;
    if (!p || !p.__isArrayAsync__) {
        ret = merge(when(p), {
-           promise:function () {
+           promise: function () {
                return asyncArray(this)
            }
        });

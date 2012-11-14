@@ -430,6 +430,20 @@
 
                             </a></li>
                             
+                            <li><a href="./comb_logging_Logger.html#getLogEvent">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                getLogEvent
+
+                            </a></li>
+                            
                             <li><a href="./comb_logging_Logger.html#info">
                                 
                                 
@@ -1091,6 +1105,73 @@ function (name){
 
 
   
+    <a name="getLogEvent"></a>
+    <h3>
+        getLogEvent
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p><p>Creates a log event to be passed to appenders
+
+</p>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>level</em>  : <p>the level of the logging event</p>
+</li>
+    
+        <li> <em>message</em>  : <p>the message to be logged</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Object</code> <p>the logging event</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (level,message){
+   return {
+       hostname: os.hostname(),
+       pid: process.pid,
+       gid: process.getgid(),
+       processTitle: process.title,
+       level: level,
+       levelName: level.name,
+       message: message,
+       timeStamp: new Date(),
+       name: this.fullName
+   };
+           
+}
+    </pre>
+    
+
+
+  
     <a name="info"></a>
     <h3>
         info
@@ -1256,13 +1337,7 @@ function (level,message){
            message = message.stack;
        }
        var type = level.name.toLowerCase(), appenders = this.__appenders;
-       var event = {
-           level:level,
-           levelName:level.name,
-           message:message,
-           timeStamp:new Date(),
-           name:this.fullName
-       };
+       var event = this.getLogEvent(level, message);
        Object.keys(appenders).forEach(function (i) {
            appenders[i].append(event);
        });
