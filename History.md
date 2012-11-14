@@ -1,3 +1,11 @@
+#0.1.10 / 2012-11-14
+* Added new properites to logger events
+  * gid
+  * pid
+  * processTitle
+  * hostname
+
+
 #0.1.91 / 2012-10-01
 * Added `_getSuper` to classes declared with comb.define
 
