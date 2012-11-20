@@ -257,8 +257,8 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>12263</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>3336</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>12287</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>3341</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
             </td>
@@ -1537,7 +1537,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>var isArray = exports.isArray = function isArray(obj) {</code></li>
-<li class='green'><span class='hits'>15555</span><code>    return Object.prototype.toString.call(obj) === "[object Array]";</code></li>
+<li class='green'><span class='hits'>15610</span><code>    return Object.prototype.toString.call(obj) === "[object Array]";</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function isDate(obj) {</code></li>
@@ -4857,8 +4857,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isHash(obj) {</code></li>
-<li class='green'><span class='hits'>210</span><code>    var ret = comb.isObject(obj);</code></li>
-<li class='green'><span class='hits'>210</span><code>    return ret &amp;&amp; obj.constructor === Object;</code></li>
+<li class='green'><span class='hits'>272</span><code>    var ret = comb.isObject(obj);</code></li>
+<li class='green'><span class='hits'>272</span><code>    return ret &amp;&amp; obj.constructor === Object;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -4976,8 +4976,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isObject(obj) {</code></li>
-<li class='green'><span class='hits'>1432</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>1432</span><code>    return obj !== null &amp;&amp; obj !== undef &amp;&amp; typeof obj === "object";</code></li>
+<li class='green'><span class='hits'>1494</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>1494</span><code>    return obj !== null &amp;&amp; obj !== undef &amp;&amp; typeof obj === "object";</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -6184,12 +6184,12 @@ td.cov-stats {
 <li class='green'><span class='hits'>357</span><code>        ch = ch || " ";</code></li>
 <li class='green'><span class='hits'>357</span><code>        var strLen = string.length;</code></li>
 <li class='green'><span class='hits'>357</span><code>        while (strLen &lt; length) {</code></li>
-<li class='green'><span class='hits'>227</span><code>            if (end) {</code></li>
+<li class='green'><span class='hits'>252</span><code>            if (end) {</code></li>
 <li class='green'><span class='hits'>157</span><code>                string += ch;</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>70</span><code>                string = ch + string;</code></li>
+<li class='green'><span class='hits'>95</span><code>                string = ch + string;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>227</span><code>            strLen++;</code></li>
+<li class='green'><span class='hits'>252</span><code>            strLen++;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class='hits'>357</span><code>        return string;</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
@@ -9168,8 +9168,8 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>534</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>157</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>558</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>162</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
             </td>
@@ -9179,24 +9179,28 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * Used to keep track of classes and to create unique ids</code></li>
 <li class='green'><span class=''> </span><code> * @ignore</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>var classCounter = 0;</code></li>
+<li class='green'><span class='hits'>1</span><code>var classCounter = 0, Base,</code></li>
+<li class='green'><span class=''> </span><code>    _base = require("./base"),</code></li>
+<li class='green'><span class=''> </span><code>    isHash = _base.isHash,</code></li>
+<li class='green'><span class=''> </span><code>    isArray = _base.isArray;</code></li>
+<li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function callSuper(args, a) {</code></li>
 <li class='green'><span class='hits'>1247</span><code>    var meta = this.__meta,</code></li>
 <li class='green'><span class=''> </span><code>        supers = meta.supers,</code></li>
 <li class='green'><span class=''> </span><code>        l = supers.length, superMeta = meta.superMeta, pos = superMeta.pos;</code></li>
 <li class='green'><span class='hits'>1247</span><code>    if (l &gt; pos) {</code></li>
-<li class='green'><span class='hits'>1100</span><code>        a &amp;&amp; (args = a);</code></li>
-<li class='green'><span class='hits'>1100</span><code>        var name = superMeta.name, f = superMeta.f, m;</code></li>
-<li class='green'><span class='hits'>1100</span><code>        do {</code></li>
-<li class='green'><span class='hits'>1100</span><code>            m = supers[pos][name];</code></li>
-<li class='green'><span class='hits'>1100</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
-<li class='green'><span class='hits'>1100</span><code>                superMeta.pos = 1 + pos;</code></li>
-<li class='green'><span class='hits'>1100</span><code>                return m.apply(this, args);</code></li>
+<li class='green'><span class='hits'>1247</span><code>        a &amp;&amp; (args = a);</code></li>
+<li class='green'><span class='hits'>1247</span><code>        var name = superMeta.name, f = superMeta.f, m;</code></li>
+<li class='green'><span class='hits'>1247</span><code>        do {</code></li>
+<li class='green'><span class='hits'>1247</span><code>            m = supers[pos][name];</code></li>
+<li class='green'><span class='hits'>1247</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
+<li class='green'><span class='hits'>1243</span><code>                superMeta.pos = 1 + pos;</code></li>
+<li class='green'><span class='hits'>1243</span><code>                return m.apply(this, args);</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        } while (l &gt; ++pos);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>147</span><code>    return null;</code></li>
+<li class='green'><span class='hits'>4</span><code>    return null;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function getSuper() {</code></li>
@@ -9206,8 +9210,8 @@ td.cov-stats {
 <li class='green'><span class='hits'>2</span><code>    if (l &gt; pos) {</code></li>
 <li class='green'><span class='hits'>2</span><code>        var name = superMeta.name, f = superMeta.f, m;</code></li>
 <li class='green'><span class='hits'>2</span><code>        do {</code></li>
-<li class='green'><span class='hits'>2</span><code>            m = supers[pos][name];</code></li>
-<li class='green'><span class='hits'>2</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
+<li class='green'><span class='hits'>3</span><code>            m = supers[pos][name];</code></li>
+<li class='green'><span class='hits'>3</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
 <li class='green'><span class='hits'>1</span><code>                superMeta.pos = 1 + pos;</code></li>
 <li class='green'><span class='hits'>1</span><code>                return m.bind(this);</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
@@ -9218,35 +9222,35 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function defaultFunction() {</code></li>
-<li class='green'><span class='hits'>143</span><code>    var meta = this.__meta || {},</code></li>
+<li class='green'><span class='hits'>287</span><code>    var meta = this.__meta || {},</code></li>
 <li class='green'><span class=''> </span><code>        supers = meta.supers,</code></li>
 <li class='green'><span class=''> </span><code>        l = supers.length, superMeta = meta.superMeta, pos = superMeta.pos;</code></li>
-<li class='green'><span class='hits'>143</span><code>    if (l &gt; pos) {</code></li>
-<li class='green'><span class='hits'>126</span><code>        var name = superMeta.name, f = superMeta.f, m;</code></li>
-<li class='green'><span class='hits'>126</span><code>        do {</code></li>
-<li class='green'><span class='hits'>176</span><code>            m = supers[pos][name];</code></li>
-<li class='green'><span class='hits'>176</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
+<li class='green'><span class='hits'>287</span><code>    if (l &gt; pos) {</code></li>
+<li class='green'><span class='hits'>143</span><code>        var name = superMeta.name, f = superMeta.f, m;</code></li>
+<li class='green'><span class='hits'>143</span><code>        do {</code></li>
+<li class='green'><span class='hits'>223</span><code>            m = supers[pos][name];</code></li>
+<li class='green'><span class='hits'>223</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
 <li class='green'><span class='hits'>96</span><code>                superMeta.pos = 1 + pos;</code></li>
 <li class='green'><span class='hits'>96</span><code>                return m.apply(this, arguments);</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        } while (l &gt; ++pos);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>47</span><code>    return null;</code></li>
+<li class='green'><span class='hits'>191</span><code>    return null;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class='hits'>1</span><code>;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function functionWrapper(f, name) {</code></li>
-<li class='green'><span class='hits'>311</span><code>    var wrapper = function () {</code></li>
-<li class='green'><span class='hits'>30102</span><code>        var ret, meta = this.__meta || {};</code></li>
-<li class='green'><span class='hits'>30102</span><code>        var orig = meta.superMeta;</code></li>
-<li class='green'><span class='hits'>30102</span><code>        meta.superMeta = {f:f, pos:0, name:name};</code></li>
-<li class='green'><span class='hits'>30102</span><code>        ret = f.apply(this, arguments);</code></li>
-<li class='green'><span class='hits'>30053</span><code>        meta.superMeta = orig;</code></li>
-<li class='green'><span class='hits'>30053</span><code>        return ret;</code></li>
+<li class='green'><span class='hits'>316</span><code>    var wrapper = function () {</code></li>
+<li class='green'><span class='hits'>30117</span><code>        var ret, meta = this.__meta || {};</code></li>
+<li class='green'><span class='hits'>30117</span><code>        var orig = meta.superMeta;</code></li>
+<li class='green'><span class='hits'>30117</span><code>        meta.superMeta = {f: f, pos: 0, name: name};</code></li>
+<li class='green'><span class='hits'>30117</span><code>        ret = f.apply(this, arguments);</code></li>
+<li class='green'><span class='hits'>30068</span><code>        meta.superMeta = orig;</code></li>
+<li class='green'><span class='hits'>30068</span><code>        return ret;</code></li>
 <li class='green'><span class=''> </span><code>    };</code></li>
-<li class='green'><span class='hits'>311</span><code>    wrapper._f = f;</code></li>
-<li class='green'><span class='hits'>311</span><code>    return wrapper;</code></li>
+<li class='green'><span class='hits'>316</span><code>    wrapper._f = f;</code></li>
+<li class='green'><span class='hits'>316</span><code>    return wrapper;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class='hits'>1</span><code>;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -9295,8 +9299,8 @@ td.cov-stats {
 <li class='green'><span class='hits'>7</span><code>    for (var i = 0; i &lt; l; i++) {</code></li>
 <li class='green'><span class='hits'>17</span><code>        var m = args[i], mProto = m.prototype;</code></li>
 <li class='green'><span class='hits'>17</span><code>        var protoMeta = mProto.__meta, meta = m.__meta;</code></li>
-<li class='green'><span class='hits'>17</span><code>        !protoMeta &amp;&amp; (protoMeta = (mProto.__meta = {proto:mProto || {}}));</code></li>
-<li class='green'><span class='hits'>17</span><code>        !meta &amp;&amp; (meta = (m.__meta = {proto:m.__proto__ || {}}));</code></li>
+<li class='green'><span class='hits'>17</span><code>        !protoMeta &amp;&amp; (protoMeta = (mProto.__meta = {proto: mProto || {}}));</code></li>
+<li class='green'><span class='hits'>17</span><code>        !meta &amp;&amp; (meta = (m.__meta = {proto: m.__proto__ || {}}));</code></li>
 <li class='green'><span class='hits'>17</span><code>        defineMixinProps(child, protoMeta.proto || {});</code></li>
 <li class='green'><span class='hits'>17</span><code>        defineMixinProps(this, meta.proto || {});</code></li>
 <li class='green'><span class=''> </span><code>        //copy the bases for static,</code></li>
@@ -9312,20 +9316,20 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @ignore</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function mixinSupers(sup, arr, bases) {</code></li>
-<li class='green'><span class='hits'>216</span><code>    var meta = sup.__meta;</code></li>
-<li class='green'><span class='hits'>216</span><code>    !meta &amp;&amp; (meta = (sup.__meta = {}));</code></li>
-<li class='green'><span class='hits'>216</span><code>    var unique = sup.__meta.unique;</code></li>
-<li class='green'><span class='hits'>216</span><code>    !unique &amp;&amp; (meta.unique = "define" + ++classCounter);</code></li>
+<li class='green'><span class='hits'>386</span><code>    var meta = sup.__meta;</code></li>
+<li class='green'><span class='hits'>386</span><code>    !meta &amp;&amp; (meta = (sup.__meta = {}));</code></li>
+<li class='green'><span class='hits'>386</span><code>    var unique = sup.__meta.unique;</code></li>
+<li class='green'><span class='hits'>386</span><code>    !unique &amp;&amp; (meta.unique = "define" + ++classCounter);</code></li>
 <li class='green'><span class=''> </span><code>    //check it we already have this super mixed into our prototype chain</code></li>
 <li class='green'><span class=''> </span><code>    //if true then we have already looped their supers!</code></li>
-<li class='green'><span class='hits'>216</span><code>    if (bases.indexOf(unique) == -1) {</code></li>
+<li class='green'><span class='hits'>386</span><code>    if (bases.indexOf(unique) == -1) {</code></li>
 <li class='green'><span class=''> </span><code>        //add their id to our bases</code></li>
-<li class='green'><span class='hits'>140</span><code>        bases.push(unique);</code></li>
-<li class='green'><span class='hits'>140</span><code>        var supers = sup.__meta.supers || [], i = supers.length - 1 || 0;</code></li>
-<li class='green'><span class='hits'>140</span><code>        while (i &gt;= 0) {</code></li>
-<li class='green'><span class='hits'>118</span><code>            mixinSupers(supers[i--], arr, bases);</code></li>
+<li class='green'><span class='hits'>234</span><code>        bases.push(unique);</code></li>
+<li class='green'><span class='hits'>234</span><code>        var supers = sup.__meta.supers || [], i = supers.length - 1 || 0;</code></li>
+<li class='green'><span class='hits'>234</span><code>        while (i &gt;= 0) {</code></li>
+<li class='green'><span class='hits'>258</span><code>            mixinSupers(supers[i--], arr, bases);</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>140</span><code>        arr.unshift(sup);</code></li>
+<li class='green'><span class='hits'>234</span><code>        arr.unshift(sup);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class='hits'>1</span><code>;</code></li>
@@ -9335,25 +9339,25 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @ignore</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function defineProps(child, proto) {</code></li>
-<li class='green'><span class='hits'>90</span><code>    var operations = proto.setters;</code></li>
-<li class='green'><span class='hits'>90</span><code>    if (operations) {</code></li>
+<li class='green'><span class='hits'>92</span><code>    var operations = proto.setters;</code></li>
+<li class='green'><span class='hits'>92</span><code>    if (operations) {</code></li>
 <li class='green'><span class='hits'>8</span><code>        for (var i in operations) {</code></li>
 <li class='green'><span class='hits'>13</span><code>            child.__defineSetter__(i, operations[i]);</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>90</span><code>    operations = proto.getters || {};</code></li>
-<li class='green'><span class='hits'>90</span><code>    if (operations) {</code></li>
-<li class='green'><span class='hits'>90</span><code>        for (i in operations) {</code></li>
+<li class='green'><span class='hits'>92</span><code>    operations = proto.getters || {};</code></li>
+<li class='green'><span class='hits'>92</span><code>    if (operations) {</code></li>
+<li class='green'><span class='hits'>92</span><code>        for (i in operations) {</code></li>
 <li class='green'><span class='hits'>47</span><code>            child.__defineGetter__(i, operations[i]);</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>90</span><code>    for (i in proto) {</code></li>
-<li class='green'><span class='hits'>352</span><code>        if (i != "getters" &amp;&amp; i != "setters") {</code></li>
-<li class='green'><span class='hits'>331</span><code>            var f = proto[i];</code></li>
-<li class='green'><span class='hits'>331</span><code>            if ("function" === typeof f) {</code></li>
-<li class='green'><span class='hits'>298</span><code>                var meta = f.__meta || {};</code></li>
-<li class='green'><span class='hits'>298</span><code>                if (!meta.isConstructor) {</code></li>
-<li class='green'><span class='hits'>297</span><code>                    child[i] = functionWrapper(f, i);</code></li>
+<li class='green'><span class='hits'>92</span><code>    for (i in proto) {</code></li>
+<li class='green'><span class='hits'>357</span><code>        if (i != "getters" &amp;&amp; i != "setters") {</code></li>
+<li class='green'><span class='hits'>336</span><code>            var f = proto[i];</code></li>
+<li class='green'><span class='hits'>336</span><code>            if ("function" === typeof f) {</code></li>
+<li class='green'><span class='hits'>303</span><code>                var meta = f.__meta || {};</code></li>
+<li class='green'><span class='hits'>303</span><code>                if (!meta.isConstructor) {</code></li>
+<li class='green'><span class='hits'>302</span><code>                    child[i] = functionWrapper(f, i);</code></li>
 <li class='green'><span class=''> </span><code>                } else {</code></li>
 <li class='green'><span class='hits'>1</span><code>                    child[i] = f;</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
@@ -9364,7 +9368,6 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class='hits'>1</span><code>;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function _export(obj, name) {</code></li>
 <li class='green'><span class='hits'>11</span><code>    if (obj &amp;&amp; name) {</code></li>
@@ -9374,69 +9377,110 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class='hits'>11</span><code>    return this;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class='hits'>1</span><code>;</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function extend(proto) {</code></li>
+<li class='green'><span class='hits'>3</span><code>    return define(this, proto);</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
 <li class='green'><span class=''> </span><code> * @ignore</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function __define(child, sup, proto) {</code></li>
-<li class='green'><span class='hits'>47</span><code>    var childProto = child.prototype, supers = [];</code></li>
-<li class='green'><span class='hits'>47</span><code>    var unique = "define" + ++classCounter, bases = [], staticBases = [];</code></li>
-<li class='green'><span class='hits'>47</span><code>    var instanceSupers = [], staticSupers = [];</code></li>
-<li class='green'><span class='hits'>47</span><code>    var meta = childProto.__meta = {</code></li>
-<li class='green'><span class=''> </span><code>        supers:instanceSupers,</code></li>
-<li class='green'><span class=''> </span><code>        unique:unique,</code></li>
-<li class='green'><span class=''> </span><code>        bases:bases,</code></li>
-<li class='green'><span class=''> </span><code>        superMeta:{</code></li>
-<li class='green'><span class=''> </span><code>            f:null,</code></li>
-<li class='green'><span class=''> </span><code>            pos:0,</code></li>
-<li class='green'><span class=''> </span><code>            name:null</code></li>
+<li class='green'><span class='hits'>48</span><code>    var childProto = child.prototype, supers = [];</code></li>
+<li class='green'><span class='hits'>48</span><code>    var unique = "define" + ++classCounter, bases = [], staticBases = [];</code></li>
+<li class='green'><span class='hits'>48</span><code>    var instanceSupers = [], staticSupers = [];</code></li>
+<li class='green'><span class='hits'>48</span><code>    var meta = childProto.__meta = {</code></li>
+<li class='green'><span class=''> </span><code>        supers: instanceSupers,</code></li>
+<li class='green'><span class=''> </span><code>        unique: unique,</code></li>
+<li class='green'><span class=''> </span><code>        bases: bases,</code></li>
+<li class='green'><span class=''> </span><code>        superMeta: {</code></li>
+<li class='green'><span class=''> </span><code>            f: null,</code></li>
+<li class='green'><span class=''> </span><code>            pos: 0,</code></li>
+<li class='green'><span class=''> </span><code>            name: null</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    };</code></li>
-<li class='green'><span class='hits'>47</span><code>    var childMeta = child.__meta = {</code></li>
-<li class='green'><span class=''> </span><code>        supers:staticSupers,</code></li>
-<li class='green'><span class=''> </span><code>        unique:unique,</code></li>
-<li class='green'><span class=''> </span><code>        bases:staticBases,</code></li>
-<li class='green'><span class=''> </span><code>        isConstructor:true,</code></li>
-<li class='green'><span class=''> </span><code>        superMeta:{</code></li>
-<li class='green'><span class=''> </span><code>            f:null,</code></li>
-<li class='green'><span class=''> </span><code>            pos:0,</code></li>
-<li class='green'><span class=''> </span><code>            name:null</code></li>
+<li class='green'><span class='hits'>48</span><code>    var childMeta = child.__meta = {</code></li>
+<li class='green'><span class=''> </span><code>        supers: staticSupers,</code></li>
+<li class='green'><span class=''> </span><code>        unique: unique,</code></li>
+<li class='green'><span class=''> </span><code>        bases: staticBases,</code></li>
+<li class='green'><span class=''> </span><code>        isConstructor: true,</code></li>
+<li class='green'><span class=''> </span><code>        superMeta: {</code></li>
+<li class='green'><span class=''> </span><code>            f: null,</code></li>
+<li class='green'><span class=''> </span><code>            pos: 0,</code></li>
+<li class='green'><span class=''> </span><code>            name: null</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    };</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>47</span><code>    if (sup) {</code></li>
-<li class='green'><span class='hits'>32</span><code>        supers = Array.isArray(sup) ? sup : [sup];</code></li>
-<li class='green'><span class='hits'>32</span><code>        sup = supers.shift();</code></li>
-<li class='green'><span class='hits'>32</span><code>        child.__proto__ = sup;</code></li>
-<li class='green'><span class='hits'>32</span><code>        childProto.__proto__ = sup.prototype;</code></li>
-<li class='green'><span class='hits'>32</span><code>        mixinSupers(sup.prototype, instanceSupers, bases),</code></li>
+<li class='green'><span class='hits'>48</span><code>    if ((isHash(sup) &amp;&amp; !proto)) {</code></li>
+<li class='green'><span class='hits'>2</span><code>        proto = sup;</code></li>
+<li class='green'><span class='hits'>2</span><code>        sup = Base;</code></li>
+<li class='green'><span class='hits'>46</span><code>    } else if ((!sup &amp;&amp; isHash(proto))) {</code></li>
+<li class='green'><span class='hits'>14</span><code>        sup = Base;</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>48</span><code>    if ("function" === typeof sup || isArray(sup)) {</code></li>
+<li class='green'><span class='hits'>47</span><code>        supers = isArray(sup) ? sup : [sup];</code></li>
+<li class='green'><span class='hits'>47</span><code>        sup = supers.shift();</code></li>
+<li class='green'><span class='hits'>47</span><code>        child.__proto__ = sup;</code></li>
+<li class='green'><span class='hits'>47</span><code>        childProto.__proto__ = sup.prototype;</code></li>
+<li class='green'><span class='hits'>47</span><code>        mixinSupers(sup.prototype, instanceSupers, bases),</code></li>
 <li class='green'><span class=''> </span><code>            mixinSupers(sup, staticSupers, staticBases);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>47</span><code>    if (proto) {</code></li>
-<li class='green'><span class='hits'>45</span><code>        var instance = meta.proto = proto.instance || {};</code></li>
-<li class='green'><span class='hits'>45</span><code>        !instance.hasOwnProperty("constructor") &amp;&amp; (instance.constructor = defaultFunction);</code></li>
-<li class='green'><span class='hits'>45</span><code>        var stat = childMeta.proto = proto.static || {};</code></li>
-<li class='green'><span class='hits'>45</span><code>        stat.init = stat.init || defaultFunction;</code></li>
-<li class='green'><span class='hits'>45</span><code>        defineProps(childProto, instance, false);</code></li>
-<li class='green'><span class='hits'>45</span><code>        defineProps(child, stat, true);</code></li>
+<li class='green'><span class='hits'>48</span><code>    if (proto) {</code></li>
+<li class='green'><span class='hits'>46</span><code>        var instance = meta.proto = proto.instance || {};</code></li>
+<li class='green'><span class='hits'>46</span><code>        !instance.hasOwnProperty("constructor") &amp;&amp; (instance.constructor = defaultFunction);</code></li>
+<li class='green'><span class='hits'>46</span><code>        var stat = childMeta.proto = proto.static || {};</code></li>
+<li class='green'><span class='hits'>46</span><code>        stat.init = stat.init || defaultFunction;</code></li>
+<li class='green'><span class='hits'>46</span><code>        defineProps(childProto, instance, false);</code></li>
+<li class='green'><span class='hits'>46</span><code>        defineProps(child, stat, true);</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
 <li class='green'><span class='hits'>2</span><code>        meta.proto = {};</code></li>
 <li class='green'><span class='hits'>2</span><code>        childMeta.proto = {};</code></li>
 <li class='green'><span class='hits'>2</span><code>        child.init = functionWrapper(defaultFunction, "init");</code></li>
 <li class='green'><span class='hits'>2</span><code>        childProto.constructor = functionWrapper(defaultFunction, "constructor");</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>47</span><code>    if (supers.length) {</code></li>
+<li class='green'><span class='hits'>48</span><code>    if (supers.length) {</code></li>
 <li class='green'><span class='hits'>7</span><code>        mixin.apply(child, supers);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>47</span><code>    child.mixin = mixin;</code></li>
-<li class='green'><span class='hits'>47</span><code>    childProto._super = child._super = callSuper;</code></li>
-<li class='green'><span class='hits'>47</span><code>    childProto._getSuper = child._getSuper = getSuper;</code></li>
-<li class='green'><span class='hits'>47</span><code>    child.as = _export;</code></li>
-<li class='green'><span class='hits'>47</span><code>    childProto._static = child;</code></li>
+<li class='green'><span class='hits'>48</span><code>    childProto._super = child._super = callSuper;</code></li>
+<li class='green'><span class='hits'>48</span><code>    childProto._getSuper = child._getSuper = getSuper;</code></li>
+<li class='green'><span class='hits'>48</span><code>    childProto._static = child;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class='hits'>1</span><code>;</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function define(sup, proto) {</code></li>
+<li class='green'><span class='hits'>45</span><code>    function defineConstructor() {</code></li>
+<li class='green'><span class='hits'>2405</span><code>        this.constructor.apply(this, arguments);</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>45</span><code>    __define(defineConstructor, sup, proto);</code></li>
+<li class='green'><span class='hits'>45</span><code>    return defineConstructor.init() || defineConstructor;</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function singleton(sup, proto) {</code></li>
+<li class='green'><span class='hits'>3</span><code>    var retInstance;</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>3</span><code>    function singletonConstructor() {</code></li>
+<li class='green'><span class='hits'>6</span><code>        if (!retInstance) {</code></li>
+<li class='green'><span class='hits'>2</span><code>            this.constructor.apply(this, arguments);</code></li>
+<li class='green'><span class='hits'>2</span><code>            retInstance = this;</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class='hits'>6</span><code>        return retInstance;</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>3</span><code>    __define(singletonConstructor, sup, proto);</code></li>
+<li class='green'><span class='hits'>3</span><code>    return  singletonConstructor.init() || singletonConstructor;</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>Base = define({</code></li>
+<li class='green'><span class=''> </span><code>    instance: {},</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>    "static": {</code></li>
+<li class='green'><span class=''> </span><code>        mixin: mixin,</code></li>
+<li class='green'><span class=''> </span><code>        extend: extend,</code></li>
+<li class='green'><span class=''> </span><code>        as: _export</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code>});</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -9669,14 +9713,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * @returns {Object} the constructor of the class to be used with new keyword</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>exports.define = function define(sup, proto) {</code></li>
-<li class='green'><span class='hits'>44</span><code>    function defineConstructor() {</code></li>
-<li class='green'><span class='hits'>2405</span><code>        this.constructor.apply(this, arguments);</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>44</span><code>    __define(defineConstructor, sup, proto);</code></li>
-<li class='green'><span class='hits'>44</span><code>    return defineConstructor.init() || defineConstructor;</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class='hits'>1</span><code>exports.define = define;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
 <li class='green'><span class=''> </span><code> * Defines a singleton instance of a Class. See {@link define}</code></li>
@@ -9694,20 +9731,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>exports.singleton = function singleton(sup, proto) {</code></li>
-<li class='green'><span class='hits'>3</span><code>    var retInstance;</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>3</span><code>    function singletonConstructor() {</code></li>
-<li class='green'><span class='hits'>6</span><code>        if (!retInstance) {</code></li>
-<li class='green'><span class='hits'>2</span><code>            this.constructor.apply(this, arguments);</code></li>
-<li class='green'><span class='hits'>2</span><code>            retInstance = this;</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>6</span><code>        return retInstance;</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>3</span><code>    __define(singletonConstructor, sup, proto);</code></li>
-<li class='green'><span class='hits'>3</span><code>    return  singletonConstructor.init() || singletonConstructor;</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class='hits'>1</span><code>exports.singleton = singleton;</code></li>
 <li class='green'><span class=''> </span><code></code></li></ol></pre></div>
 </div>
 

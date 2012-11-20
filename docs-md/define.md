@@ -21,7 +21,7 @@ comb.define(null, {
 Lets start of by defining the class Mammal that will be used as the parent for other classes.
 
 ```
-var Mammal = comb.define(null, {
+var Mammal = comb.define({
     instance : {
  
         _type : "mammal",
@@ -45,7 +45,7 @@ var Mammal = comb.define(null, {
 Next lets define two implementing classes, Wolf and Dog. This example is a little contrived as Dog could inherit from Wolf. 
 
 ```
-var Wolf = comb.define(Mammal, {
+var Wolf = Mammal.extend({
     instance: {
  
         _type : "wolf",
@@ -62,7 +62,7 @@ var Wolf = comb.define(Mammal, {
     }
 });
  
-var Dog = comb.define(Mammal, {
+var Dog = Mammal.extend({
     instance: {
  
         _type : "dog",
@@ -152,7 +152,7 @@ So when `myDogWolf` speaks it invokes the speak functionality of `Wolf`->`Dog`->
 So lets add some public properties to `Wolf` and `Dog`.
 
 ```
-var Wolf = comb.define(Mammal, {
+var Wolf = Mammal.extend({
     instance:{
  
         _type:"wolf",
@@ -190,7 +190,7 @@ var Wolf = comb.define(Mammal, {
     }
 });
  
-var Dog = comb.define(Mammal, {
+var Dog = Mammal.extend({
     instance:{
  
         _type:"dog",
@@ -269,7 +269,7 @@ As stated above  `comb.define` looks for an optional static  property on the `pr
 Lets modify `Mammal` to include static properties. 
 
 ```
-var Mammal = comb.define(null, {
+var Mammal = comb.define({
     instance:{
  
         _type:"mammal",
@@ -336,7 +336,7 @@ console.log(myMammal.type); //prints whale
 One neat thing about defining classes in `comb` is that you not only get the advantages of inheritance in instance methods but static methods as well. So lets modify `Dog` and `Wolf` to take advantage of that.
   
 ```
-var Wolf = comb.define(Mammal, {
+var Wolf = Mammal.extend({
     instance:{
  
         _type:"wolf",
@@ -382,7 +382,7 @@ var Wolf = comb.define(Mammal, {
     }
 });
  
-var Dog = comb.define(Mammal, {
+var Dog = Mammal.extend({
     instance:{
  
         _type:"dog",
@@ -460,7 +460,7 @@ Getters and setters are declared the same way in a static declaration as they ar
 One nuance about prototypal inheritance is that the scope in which a function is called is not consistent. For example, lets add a reproduce method to `Mammal`.
 
 ```
-var Mammal = comb.define(null, {
+var Mammal = comb.define({
     instance:{
  
         _type:"mammal",
@@ -525,7 +525,7 @@ This comes in handy when dealing with multiple inheritance, and wanting to check
 `comb.define` also provides a mechanism for initializing when creating a class. `init` will be called on creation of any class.
 
 ```
-var Mammal = comb.define(null, {
+var Mammal = comb.define({
     instance:{
  
         _type:"mammal",
