@@ -1,3 +1,9 @@
+#0.1.11 / 2012-11-14
+* Added new features to comb.define
+  * extend - supports direct extension `Mammal.extend({})`
+  * define now accepts a hash directly istead of requiring null if there is not a super
+
+
 #0.1.10 / 2012-11-14
 * Added new properites to logger events
   * gid

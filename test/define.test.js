@@ -9,7 +9,7 @@ it.describe("comb.define",function (it) {
 
 
 //Super of other classes
-    var Mammal = define(null, {
+    var Mammal = define({
         instance:{
 
             constructor:function (options) {
@@ -48,7 +48,7 @@ it.describe("comb.define",function (it) {
     });
 
 //Show singular inheritance
-    var Wolf = define(Mammal, {
+    var Wolf = Mammal.extend({
         instance:{
             constructor:function (options) {
                 options = options || {};
@@ -95,7 +95,7 @@ it.describe("comb.define",function (it) {
 
 //Typical heirachical inheritance
 // Mammal->Wolf->Dog
-    var Dog = define(Wolf, {
+    var Dog = Wolf.extend({
         instance:{
             constructor:function (options) {
                 options = options || {};
@@ -117,7 +117,7 @@ it.describe("comb.define",function (it) {
     });
 
 // Mammal->Wolf->Dog->Breed
-    var Breed = define(Dog, {
+    var Breed = Dog.extend({
         instance:{
 
             _pitch:"high",
