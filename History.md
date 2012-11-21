@@ -7,6 +7,7 @@
   * allows the ability to catch errors and still be successful
   * allows one to rethrow errors
   * accepts a promise as a return value from an errback
+* updated docs
 
 
 
