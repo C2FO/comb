@@ -910,11 +910,25 @@ errback method will be used.</p>
     <pre class="prettyprint linenums lang-js">
 function (callback,errback){
    var promise = new Promise();
+   function errorHandler() {
+       var args = arguments;
+       if (errback) {
+           process.nextTick(function () {
+               try {
+                   when(isFunction(errback) ? errback.apply(this, args) : errback).then(promise);
+               } catch (e) {
+                   promise.errback(e);
+               }
+           });
+       } else {
+           promise.errback.apply(promise, args);
+       }
+   }
    this.addCallback(function () {
        var args = arguments;
        process.nextTick(function () {
            try {
-               when(isFunction(callback) ? callback.apply(this, args) : callback).then(promise);
+               when(isFunction(callback) ? callback.apply(this, args) : callback).then(promise.callback.bind(promise), errorHandler);
            } catch (e) {
                promise.errback(e);
            }
@@ -922,7 +936,7 @@ function (callback,errback){
    });
    // If no errback passed, then invoke our promise&#x27;s errback to pass
    // on to next link in the chain.
-   this.addErrback(errback || promise);
+   this.addErrback(errorHandler);
    return promise.promise();
            
 }
@@ -1176,9 +1190,9 @@ asyncMethod().callback() //throws error
     <pre class="prettyprint linenums lang-js">
 function (){
    var ret = {
-       chain:this.chain.bind(this),
-       chainBoth:this.chainBoth.bind(this),
-       promise:function () {
+       chain: this.chain.bind(this),
+       chainBoth: this.chainBoth.bind(this),
+       promise: function () {
            return ret;
        }
    };

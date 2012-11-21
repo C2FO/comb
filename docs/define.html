@@ -293,7 +293,7 @@
 <p>Lets start of by defining the class Mammal that will be used as the parent for other classes.
 
 </p>
-<pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define(null, {
+<pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define({
     instance : {
 
         _type : &quot;mammal&quot;,
@@ -315,7 +315,7 @@
 <p>Next lets define two implementing classes, Wolf and Dog. This example is a little contrived as Dog could inherit from Wolf. 
 
 </p>
-<pre class='prettyprint linenums lang-js'><code>var Wolf = comb.define(Mammal, {
+<pre class='prettyprint linenums lang-js'><code>var Wolf = Mammal.extend({
     instance: {
 
         _type : &quot;wolf&quot;,
@@ -332,7 +332,7 @@
     }
 });
 
-var Dog = comb.define(Mammal, {
+var Dog = Mammal.extend({
     instance: {
 
         _type : &quot;dog&quot;,
@@ -412,7 +412,7 @@ myWolfDog instanceof Wolf //=&gt; false</code></pre>
 <p>So lets add some public properties to <code>Wolf</code> and <code>Dog</code>.
 
 </p>
-<pre class='prettyprint linenums lang-js'><code>var Wolf = comb.define(Mammal, {
+<pre class='prettyprint linenums lang-js'><code>var Wolf = Mammal.extend({
     instance:{
 
         _type:&quot;wolf&quot;,
@@ -450,7 +450,7 @@ myWolfDog instanceof Wolf //=&gt; false</code></pre>
     }
 });
 
-var Dog = comb.define(Mammal, {
+var Dog = Mammal.extend({
     instance:{
 
         _type:&quot;dog&quot;,
@@ -524,7 +524,7 @@ try {
 <p>Lets modify <code>Mammal</code> to include static properties. 
 
 </p>
-<pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define(null, {
+<pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define({
     instance:{
 
         _type:&quot;mammal&quot;,
@@ -583,7 +583,7 @@ console.log(myMammal.type); //prints whale</code></pre>
 <p>One neat thing about defining classes in <code>comb</code> is that you not only get the advantages of inheritance in instance methods but static methods as well. So lets modify <code>Dog</code> and <code>Wolf</code> to take advantage of that.
 
 </p>
-<pre class='prettyprint linenums lang-js'><code>var Wolf = comb.define(Mammal, {
+<pre class='prettyprint linenums lang-js'><code>var Wolf = Mammal.extend({
     instance:{
 
         _type:&quot;wolf&quot;,
@@ -629,7 +629,7 @@ console.log(myMammal.type); //prints whale</code></pre>
     }
 });
 
-var Dog = comb.define(Mammal, {
+var Dog = Mammal.extend({
     instance:{
 
         _type:&quot;dog&quot;,
@@ -702,7 +702,7 @@ console.log(WolfDog.soundOff());</code></pre>
 <p>One nuance about prototypal inheritance is that the scope in which a function is called is not consistent. For example, lets add a reproduce method to <code>Mammal</code>.
 
 </p>
-<pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define(null, {
+<pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define({
     instance:{
 
         _type:&quot;mammal&quot;,
@@ -760,7 +760,7 @@ console.log(WolfDog.soundOff());</code></pre>
 <p><code>comb.define</code> also provides a mechanism for initializing when creating a class. <code>init</code> will be called on creation of any class.
 
 </p>
-<pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define(null, {
+<pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define({
     instance:{
 
         _type:&quot;mammal&quot;,
