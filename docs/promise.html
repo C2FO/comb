@@ -440,7 +440,7 @@ asyncString(&quot;hello&quot;)
 <p>If you do not provide an <code>errback</code> for each chain then it will be propogated to the final promise
 
 </p>
-<pre class='prettyprint linenums lang-js'><code>new Promise()
+<pre class='prettyprint linenums lang-js'><code>new Promise().callbac()
     .chain(function(){
         return new comb.Promise().errback(new Error(&quot;error&quot;));
     })
@@ -450,6 +450,46 @@ asyncString(&quot;hello&quot;)
     .classic(function(err, str){
         console.log(err.message); //&quot;error&quot;
     });</code></pre>
+<h3>Catching Errors</h3>
+<p>Chain also allows you to catch errors so you can handle them successfully
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>new Promise().callback()
+    .chain(function(){
+        throw new Error(&quot;error&quot;);
+    }, function(){
+        return &quot;caught error and handled&quot;;
+    })
+    .classic(function(err, str){
+        console.log(str); //&quot;caught error and handled&quot;
+    });</code></pre>
+<pre class='prettyprint linenums lang-js'><code>new Promise().callback()
+    .chain(function(){
+        throw new Error(&quot;error&quot;);
+    }, function(){
+        return new Promise().callback(&quot;caught error and handled&quot;);
+    })
+    .classic(function(err, str){
+        console.log(str); //&quot;caught error and handled&quot;</code></pre>
+<p>If you still cannot handle the error you can rethrow the error.
+
+</p>
+<pre class='prettyprint linenums lang-js'><code>new Promise().callback()
+    .chain(function(){
+        throw new Error(&quot;error&quot;);
+    }, function(){
+        return new Promise().errback(new Error(&quot;error not handled&quot;));
+    })
+    .classic(function(err, str){
+        console.log(err.message); //&quot;error not handled&quot;</code></pre>
+<pre class='prettyprint linenums lang-js'><code>new Promise()
+    .chain(function(){
+        throw new Error(&quot;error&quot;);
+    }, function(){
+        throw new Error(&quot;error not handled&quot;);
+    })
+    .classic(function(err, str){
+        console.log(err.message); //&quot;error not handled&quot;</code></pre>
 <h2><a href="./comb_PromiseList.html">comb.PromiseList</a></h2>
 <p>A promise list is used to listen for the completion of an array of promises. You may also use <a href="./comb.html#.when">comb.when</a>
 with an array of promises.

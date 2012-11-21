@@ -1,7 +1,13 @@
-#0.1.11 / 2012-11-14
+#0.2.0 / 2012-11-20
 * Added new features to comb.define
   * extend - supports direct extension `Mammal.extend({})`
   * define now accepts a hash directly istead of requiring null if there is not a super
+* Added the ability to catch errors with comb.Promise#chain
+  * will call nearest errback
+  * allows the ability to catch errors and still be successful
+  * allows one to rethrow errors
+  * accepts a promise as a return value from an errback
+
 
 
 #0.1.10 / 2012-11-14
