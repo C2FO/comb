@@ -271,12 +271,12 @@ it.describe("The promise API",function (it) {
                         var promise2 = new Promise();
                         process.nextTick(comb.hitch(promise2, "callback", res + " world"), 1000);
                         return promise2;
-                    }, comb.hitch(this, 'callback', null)).chain(
-                    function () {
+                    }, next)
+                    .chain(function () {
                         var promise3 = new Promise();
                         process.nextTick(comb.hitch(promise3, "errback", "error"), 1000);
                         return promise3;
-                    }, comb.hitch(this, "callback"))
+                    })
                     .then(next, function (res) {
                         assert.equal(res, "error");
                         next();
@@ -311,103 +311,240 @@ it.describe("The promise API",function (it) {
 
             });
 
+            it.should("call the nearest errback ", function (next) {
+                var promise = new Promise();
+                promise.chain(
+                    function (res) {
+                        var promise2 = new Promise();
+                        process.nextTick(comb.hitch(promise2, "callback", res + " world"), 1000);
+                        return promise2;
+                    }).chain(
+                    function (res) {
+                        var promise3 = new Promise();
+                        process.nextTick(comb.hitch(promise3, "errback", "error in 3"), 1000);
+                        return promise3;
+                    }, function () {
+                        return "error caught!";
+                    })
+                    .then(function (res) {
+                        assert.equal(res, "error caught!");
+                        next();
+                    }, next);
+                process.nextTick(comb.hitch(promise, "callback", "hello"));
+
+            });
+
+            it.should("allow the catching of errors if an errback is supplied ", function (next) {
+                var promise = new Promise();
+                promise.chain(
+                    function (res) {
+                        var promise2 = new Promise();
+                        process.nextTick(comb.hitch(promise2, "callback", res + " world"), 1000);
+                        return promise2;
+                    }).chain(
+                    function (res) {
+                        var promise3 = new Promise();
+                        process.nextTick(comb.hitch(promise3, "errback", "error in 3"), 1000);
+                        return promise3;
+                    }).chain(
+                    function (res) {
+                        var promise4 = new Promise();
+                        process.nextTick(comb.hitch(promise4, "callback", res + " not called"));
+                        return promise4;
+                    }, function () {
+                        return "error caught!";
+                    })
+                    .then(function (res) {
+                        assert.equal(res, "error caught!");
+                        next();
+                    }, next);
+                process.nextTick(comb.hitch(promise, "callback", "hello"));
+
+            });
+
         });
 
-        it.describe("Promise#chainBoth", function (it) {
+        it.should("allow the catching of errors if an errback is and returns a promise ", function (next) {
+            var promise = new Promise();
+            promise.chain(
+                function (res) {
+                    var promise2 = new Promise();
+                    process.nextTick(comb.hitch(promise2, "callback", res + " world"), 1000);
+                    return promise2;
+                }).chain(
+                function (res) {
+                    var promise3 = new Promise();
+                    process.nextTick(comb.hitch(promise3, "errback", "error in 3"), 1000);
+                    return promise3;
+                }).chain(
+                function (res) {
+                    var promise4 = new Promise();
+                    process.nextTick(comb.hitch(promise4, "callback", res + " not called"));
+                    return promise4;
+                }, function () {
+                    var promise4 = new Promise();
+                    process.nextTick(comb.hitch(promise4, "callback", "error caught!"));
+                    return promise4;
+                })
+                .then(function (res) {
+                    assert.equal(res, "error caught!");
+                    next();
+                }, next);
+            process.nextTick(comb.hitch(promise, "callback", "hello"));
+        });
 
-            it.should("callback after all are done ", function (next) {
-                var promise = new Promise();
-                promise.chainBoth(
-                    function (res) {
-                        var promise2 = new Promise();
-                        process.nextTick(comb.hitch(promise2, "callback", res + " world"));
-                        return promise2;
-                    }, next).chainBoth(
-                    function (res) {
-                        var promise3 = new Promise();
-                        process.nextTick(comb.hitch(promise3, "callback", res + "!"));
-                        return promise3;
-                    }, next).then(function (res) {
-                        assert.equal(res, "hello world!");
-                        next();
-                    }, next);
-                process.nextTick(comb.hitch(promise, "callback", "hello"));
+        it.should("allow the catching of errors if an errback is and returns a promise and re throwing ", function (next) {
+            var promise = new Promise();
+            promise.chain(
+                function (res) {
+                    var promise2 = new Promise();
+                    process.nextTick(comb.hitch(promise2, "callback", res + " world"), 1000);
+                    return promise2;
+                }).chain(
+                function (res) {
+                    var promise3 = new Promise();
+                    process.nextTick(comb.hitch(promise3, "errback", "error in 3"), 1000);
+                    return promise3;
+                }).chain(
+                function (res) {
+                    var promise4 = new Promise();
+                    process.nextTick(comb.hitch(promise4, "callback", res + " not called"));
+                    return promise4;
+                }, function () {
+                    throw new Error("error caught!");
+                })
+                .then(next, function (res) {
+                    assert.equal(res.message, "error caught!");
+                    next();
+                }, next);
+            process.nextTick(comb.hitch(promise, "callback", "hello"));
+        });
 
-            });
+        it.should("allow the catching of errors if an errback is and returns a promise and errback again ", function (next) {
+            var promise = new Promise();
+            promise.chain(
+                function (res) {
+                    var promise2 = new Promise();
+                    process.nextTick(comb.hitch(promise2, "callback", res + " world"), 1000);
+                    return promise2;
+                }).chain(
+                function (res) {
+                    var promise3 = new Promise();
+                    process.nextTick(comb.hitch(promise3, "errback", "error in 3"), 1000);
+                    return promise3;
+                }).chain(
+                function (res) {
+                    var promise4 = new Promise();
+                    process.nextTick(comb.hitch(promise4, "callback", res + " not called"));
+                    return promise4;
+                }, function () {
+                    var promise4 = new Promise();
+                    process.nextTick(comb.hitch(promise4, "errback", "error caught!"));
+                    return promise4;
+                })
+                .then(next, function (res) {
+                    assert.equal(res, "error caught!");
+                    next();
+                }, next);
+            process.nextTick(comb.hitch(promise, "callback", "hello"));
+        });
 
-            it.should("callback after all are done with sync actions", function (next) {
-                var promise = new Promise();
-                promise.chainBoth(
-                    function (res) {
-                        return res + " world";
-                    }, next).chainBoth(
-                    function (res) {
-                        var promise3 = new Promise();
-                        process.nextTick(comb.hitch(promise3, "callback", res + "!"));
-                        return promise3;
-                    }, next).then(function (res) {
-                        assert.equal(res, "hello world!");
-                        next();
-                    }, next);
-                process.nextTick(comb.hitch(promise, "callback", "hello"));
+    });
 
-            });
+    it.describe("Promise#chainBoth", function (it) {
 
-            it.should("errback after all are done ", function (next) {
-                var promise = new Promise();
-                promise.chainBoth(
-                    function (res) {
-                        var promise2 = new Promise();
-                        process.nextTick(comb.hitch(promise2, "errback", res + " error"));
-                        return promise2;
-                    }).chainBoth(
-                    function (res) {
-                        var promise3 = new Promise();
-                        process.nextTick(comb.hitch(promise3, "callback", res + " error"));
-                        return promise3;
-                    }).then(function (res) {
-                        assert.equal(res, "error error error");
-                        next();
-                    }, next);
-                process.nextTick(comb.hitch(promise, "errback", "error"));
+        it.should("callback after all are done ", function (next) {
+            var promise = new Promise();
+            promise.chainBoth(
+                function (res) {
+                    var promise2 = new Promise();
+                    process.nextTick(comb.hitch(promise2, "callback", res + " world"));
+                    return promise2;
+                }, next).chainBoth(
+                function (res) {
+                    var promise3 = new Promise();
+                    process.nextTick(comb.hitch(promise3, "callback", res + "!"));
+                    return promise3;
+                }, next).then(function (res) {
+                    assert.equal(res, "hello world!");
+                    next();
+                }, next);
+            process.nextTick(comb.hitch(promise, "callback", "hello"));
 
-            });
+        });
 
-            it.should("catch errors in callback ", function (next) {
-                var promise = new Promise();
-                promise.chainBoth(
-                    function (res) {
-                        throw res + " error";
-                    }).chainBoth(
-                    function (res) {
-                        var promise3 = new Promise();
-                        process.nextTick(comb.hitch(promise3, "callback", res + " error"));
-                        return promise3;
-                    }).then(function (res) {
-                        assert.equal(res, "error error error");
-                        next();
-                    }, next);
-                process.nextTick(comb.hitch(promise, "errback", "error"));
+        it.should("callback after all are done with sync actions", function (next) {
+            var promise = new Promise();
+            promise.chainBoth(
+                function (res) {
+                    return res + " world";
+                }, next).chainBoth(
+                function (res) {
+                    var promise3 = new Promise();
+                    process.nextTick(comb.hitch(promise3, "callback", res + "!"));
+                    return promise3;
+                }, next).then(function (res) {
+                    assert.equal(res, "hello world!");
+                    next();
+                }, next);
+            process.nextTick(comb.hitch(promise, "callback", "hello"));
 
-            });
+        });
 
-            it.should("catch errors ", function (next) {
-                var promise = new Promise();
-                promise.chainBoth(
-                    function (res) {
-                        throw res + " error";
-                    }).chainBoth(
-                    function (res) {
-                        var promise3 = new Promise();
-                        process.nextTick(comb.hitch(promise3, "callback", res + " error"));
-                        return promise3;
-                    }).then(function (res) {
-                        assert.equal(res, "error error error");
-                        next();
-                    }, next);
-                process.nextTick(comb.hitch(promise, "callback", "error"));
+        it.should("errback after all are done ", function (next) {
+            var promise = new Promise();
+            promise.chainBoth(
+                function (res) {
+                    var promise2 = new Promise();
+                    process.nextTick(comb.hitch(promise2, "errback", res + " error"));
+                    return promise2;
+                }).chainBoth(
+                function (res) {
+                    var promise3 = new Promise();
+                    process.nextTick(comb.hitch(promise3, "callback", res + " error"));
+                    return promise3;
+                }).then(function (res) {
+                    assert.equal(res, "error error error");
+                    next();
+                }, next);
+            process.nextTick(comb.hitch(promise, "errback", "error"));
 
-            });
+        });
+
+        it.should("catch errors in callback ", function (next) {
+            var promise = new Promise();
+            promise.chainBoth(
+                function (res) {
+                    throw res + " error";
+                }).chainBoth(
+                function (res) {
+                    var promise3 = new Promise();
+                    process.nextTick(comb.hitch(promise3, "callback", res + " error"));
+                    return promise3;
+                }).then(function (res) {
+                    assert.equal(res, "error error error");
+                    next();
+                }, next);
+            process.nextTick(comb.hitch(promise, "errback", "error"));
+
+        });
+
+        it.should("catch errors ", function (next) {
+            var promise = new Promise();
+            promise.chainBoth(
+                function (res) {
+                    throw res + " error";
+                }).chainBoth(
+                function (res) {
+                    var promise3 = new Promise();
+                    process.nextTick(comb.hitch(promise3, "callback", res + " error"));
+                    return promise3;
+                }).then(function (res) {
+                    assert.equal(res, "error error error");
+                    next();
+                }, next);
+            process.nextTick(comb.hitch(promise, "callback", "error"));
+
         });
 
     });
@@ -805,7 +942,7 @@ it.describe("The promise API",function (it) {
         });
     });
 
-    it.describe("comb.wait",function (it) {
+    it.describe("comb.wait", function (it) {
 
         it.should("wait for the promise to resolve", function (next) {
             var p = new comb.Promise();
@@ -825,7 +962,7 @@ it.describe("The promise API",function (it) {
                 assert.isNumber(arg);
                 if (arg === 2) {
                     next();
-                }else{
+                } else {
                     waiter(2);
                 }
             });

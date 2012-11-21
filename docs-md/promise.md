@@ -182,7 +182,7 @@ new Promise().callback()
 If you do not provide an `errback` for each chain then it will be propogated to the final promise
 
 ```
-new Promise()
+new Promise().callbac()
     .chain(function(){
         return new comb.Promise().errback(new Error("error"));
     })
@@ -194,6 +194,56 @@ new Promise()
     });
 ```
 
+###Catching Errors
+
+Chain also allows you to catch errors so you can handle them successfully
+
+```
+new Promise().callback()
+    .chain(function(){
+        throw new Error("error");
+    }, function(){
+        return "caught error and handled";
+    })
+    .classic(function(err, str){
+        console.log(str); //"caught error and handled"
+    });
+```
+
+```
+new Promise().callback()
+    .chain(function(){
+        throw new Error("error");
+    }, function(){
+        return new Promise().callback("caught error and handled");
+    })
+    .classic(function(err, str){
+        console.log(str); //"caught error and handled"
+```
+
+If you still cannot handle the error you can rethrow the error.
+
+```
+new Promise().callback()
+    .chain(function(){
+        throw new Error("error");
+    }, function(){
+        return new Promise().errback(new Error("error not handled"));
+    })
+    .classic(function(err, str){
+        console.log(err.message); //"error not handled"
+```
+
+```
+new Promise()
+    .chain(function(){
+        throw new Error("error");
+    }, function(){
+        throw new Error("error not handled");
+    })
+    .classic(function(err, str){
+        console.log(err.message); //"error not handled"
+```
 
 ##[comb.PromiseList](./comb_PromiseList.html)
 
