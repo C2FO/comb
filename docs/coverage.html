@@ -257,8 +257,8 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>12263</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>3336</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>12304</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>3349</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
             </td>
@@ -1537,7 +1537,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>var isArray = exports.isArray = function isArray(obj) {</code></li>
-<li class='green'><span class='hits'>15555</span><code>    return Object.prototype.toString.call(obj) === "[object Array]";</code></li>
+<li class='green'><span class='hits'>15671</span><code>    return Object.prototype.toString.call(obj) === "[object Array]";</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function isDate(obj) {</code></li>
@@ -1709,13 +1709,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function forEach(arr, iterator, scope) {</code></li>
-<li class='green'><span class='hits'>11720</span><code>    if (!isArray(arr) || typeof iterator !== "function") {</code></li>
+<li class='green'><span class='hits'>11779</span><code>    if (!isArray(arr) || typeof iterator !== "function") {</code></li>
 <li class='green'><span class='hits'>1</span><code>        throw new TypeError();</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>11719</span><code>    for (var i = 0, len = arr.length; i &lt; len; ++i) {</code></li>
-<li class='green'><span class='hits'>84968</span><code>        iterator.call(scope || arr, arr[i], i, arr);</code></li>
+<li class='green'><span class='hits'>11778</span><code>    for (var i = 0, len = arr.length; i &lt; len; ++i) {</code></li>
+<li class='green'><span class='hits'>85263</span><code>        iterator.call(scope || arr, arr[i], i, arr);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>11719</span><code>    return arr;</code></li>
+<li class='green'><span class='hits'>11778</span><code>    return arr;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function every(arr, iterator, scope) {</code></li>
@@ -3900,7 +3900,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isFunction(obj) {</code></li>
-<li class='green'><span class='hits'>22525</span><code>    return typeof obj === "function";</code></li>
+<li class='green'><span class='hits'>24231</span><code>    return typeof obj === "function";</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -3916,26 +3916,26 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Function} the hitched function</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function hitch(scope, method, args) {</code></li>
-<li class='green'><span class='hits'>5474</span><code>    args = Array.prototype.slice.call(arguments).slice(2);</code></li>
-<li class='green'><span class='hits'>5474</span><code>    if ((isString(method) &amp;&amp; !(method in scope))) {</code></li>
+<li class='green'><span class='hits'>3949</span><code>    args = Array.prototype.slice.call(arguments).slice(2);</code></li>
+<li class='green'><span class='hits'>3949</span><code>    if ((isString(method) &amp;&amp; !(method in scope))) {</code></li>
 <li class='green'><span class='hits'>2</span><code>        throw new Error(method + " property not defined in scope");</code></li>
-<li class='green'><span class='hits'>5472</span><code>    } else if (!isString(method) &amp;&amp; !isFunction(method)) {</code></li>
+<li class='green'><span class='hits'>3947</span><code>    } else if (!isString(method) &amp;&amp; !isFunction(method)) {</code></li>
 <li class='green'><span class='hits'>1</span><code>        throw new Error(method + " is not a function");</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>5471</span><code>    if (isString(method)) {</code></li>
-<li class='green'><span class='hits'>2514</span><code>        return function () {</code></li>
-<li class='green'><span class='hits'>1331</span><code>            var func = scope[method];</code></li>
-<li class='green'><span class='hits'>1331</span><code>            if (isFunction(func)) {</code></li>
-<li class='green'><span class='hits'>1328</span><code>                var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
-<li class='green'><span class='hits'>1328</span><code>                return func.apply(scope, scopeArgs);</code></li>
+<li class='green'><span class='hits'>3946</span><code>    if (isString(method)) {</code></li>
+<li class='green'><span class='hits'>956</span><code>        return function () {</code></li>
+<li class='green'><span class='hits'>793</span><code>            var func = scope[method];</code></li>
+<li class='green'><span class='hits'>793</span><code>            if (isFunction(func)) {</code></li>
+<li class='green'><span class='hits'>790</span><code>                var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
+<li class='green'><span class='hits'>790</span><code>                return func.apply(scope, scopeArgs);</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
 <li class='green'><span class='hits'>3</span><code>                return func;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        };</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
-<li class='green'><span class='hits'>2957</span><code>        return function () {</code></li>
-<li class='green'><span class='hits'>2579</span><code>            var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
-<li class='green'><span class='hits'>2579</span><code>            return method.apply(scope, scopeArgs);</code></li>
+<li class='green'><span class='hits'>2990</span><code>        return function () {</code></li>
+<li class='green'><span class='hits'>2612</span><code>            var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
+<li class='green'><span class='hits'>2612</span><code>            return method.apply(scope, scopeArgs);</code></li>
 <li class='green'><span class=''> </span><code>        };</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
@@ -4450,8 +4450,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Array} array version of the arguments object</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function argsToArray(args, slice) {</code></li>
-<li class='green'><span class='hits'>22554</span><code>    slice = slice || 0;</code></li>
-<li class='green'><span class='hits'>22554</span><code>    return arraySlice.call(args, slice);</code></li>
+<li class='green'><span class='hits'>22700</span><code>    slice = slice || 0;</code></li>
+<li class='green'><span class='hits'>22700</span><code>    return arraySlice.call(args, slice);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -4477,8 +4477,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isUndefined(obj) {</code></li>
-<li class='green'><span class='hits'>10559</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>10559</span><code>    return obj !== null &amp;&amp; obj === undef;</code></li>
+<li class='green'><span class='hits'>10658</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>10658</span><code>    return obj !== null &amp;&amp; obj === undef;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -4504,7 +4504,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isUndefinedOrNull(obj) {</code></li>
-<li class='green'><span class='hits'>10267</span><code>    return isUndefined(obj) || isNull(obj);</code></li>
+<li class='green'><span class='hits'>10366</span><code>    return isUndefined(obj) || isNull(obj);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -4517,8 +4517,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isNull(obj) {</code></li>
-<li class='green'><span class='hits'>10088</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>10088</span><code>    return obj !== undef &amp;&amp; obj == null;</code></li>
+<li class='green'><span class='hits'>10187</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>10187</span><code>    return obj !== undef &amp;&amp; obj == null;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -4536,8 +4536,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function isInstance(obj, clazz) {</code></li>
-<li class='green'><span class='hits'>8314</span><code>    if (typeof clazz == "function") {</code></li>
-<li class='green'><span class='hits'>8313</span><code>        return obj instanceof clazz;</code></li>
+<li class='green'><span class='hits'>8413</span><code>    if (typeof clazz == "function") {</code></li>
+<li class='green'><span class='hits'>8412</span><code>        return obj instanceof clazz;</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
 <li class='green'><span class='hits'>1</span><code>        return false;</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
@@ -4554,8 +4554,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isInstanceOf(obj, clazz) {</code></li>
-<li class='green'><span class='hits'>8314</span><code>    return argsToArray(arguments, 1).some(function (c) {</code></li>
-<li class='green'><span class='hits'>8314</span><code>        return isInstance(obj, c);</code></li>
+<li class='green'><span class='hits'>8413</span><code>    return argsToArray(arguments, 1).some(function (c) {</code></li>
+<li class='green'><span class='hits'>8413</span><code>        return isInstance(obj, c);</code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -4568,14 +4568,14 @@ td.cov-stats {
 <li class='green'><span class='hits'>13</span><code>        if (!setup) {</code></li>
 <li class='green'><span class='hits'>1</span><code>            var orig = process.emit;</code></li>
 <li class='green'><span class='hits'>1</span><code>            process.emit = function (event) {</code></li>
-<li class='green'><span class='hits'>840</span><code>                try {</code></li>
-<li class='green'><span class='hits'>840</span><code>                    if (event === 'exit') {</code></li>
+<li class='green'><span class='hits'>845</span><code>                try {</code></li>
+<li class='green'><span class='hits'>845</span><code>                    if (event === 'exit') {</code></li>
 <li class='green'><span class='hits'>1</span><code>                        listeners.forEach(function (cb) {</code></li>
 <li class='green'><span class='hits'>13</span><code>                            cb();</code></li>
 <li class='green'><span class=''> </span><code>                        });</code></li>
 <li class='green'><span class=''> </span><code>                    }</code></li>
 <li class='green'><span class=''> </span><code>                } finally {</code></li>
-<li class='green'><span class='hits'>840</span><code>                    orig.apply(this, arguments);</code></li>
+<li class='green'><span class='hits'>845</span><code>                    orig.apply(this, arguments);</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
 <li class='green'><span class='hits'>1</span><code>            setup = true;</code></li>
@@ -4857,8 +4857,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isHash(obj) {</code></li>
-<li class='green'><span class='hits'>210</span><code>    var ret = comb.isObject(obj);</code></li>
-<li class='green'><span class='hits'>210</span><code>    return ret &amp;&amp; obj.constructor === Object;</code></li>
+<li class='green'><span class='hits'>272</span><code>    var ret = comb.isObject(obj);</code></li>
+<li class='green'><span class='hits'>272</span><code>    return ret &amp;&amp; obj.constructor === Object;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -4976,8 +4976,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isObject(obj) {</code></li>
-<li class='green'><span class='hits'>1432</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>1432</span><code>    return obj !== null &amp;&amp; obj !== undef &amp;&amp; typeof obj === "object";</code></li>
+<li class='green'><span class='hits'>1494</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>1494</span><code>    return obj !== null &amp;&amp; obj !== undef &amp;&amp; typeof obj === "object";</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -5299,8 +5299,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isString(obj) {</code></li>
-<li class='green'><span class='hits'>36482</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>36482</span><code>    return obj != undef &amp;&amp; (typeof obj == "string" || obj instanceof String);</code></li>
+<li class='green'><span class='hits'>31907</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>31907</span><code>    return obj != undef &amp;&amp; (typeof obj == "string" || obj instanceof String);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>comb.isString = isString;</code></li>
@@ -9168,8 +9168,8 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>534</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>157</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>558</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>162</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
             </td>
@@ -9179,24 +9179,28 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * Used to keep track of classes and to create unique ids</code></li>
 <li class='green'><span class=''> </span><code> * @ignore</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>var classCounter = 0;</code></li>
+<li class='green'><span class='hits'>1</span><code>var classCounter = 0, Base,</code></li>
+<li class='green'><span class=''> </span><code>    _base = require("./base"),</code></li>
+<li class='green'><span class=''> </span><code>    isHash = _base.isHash,</code></li>
+<li class='green'><span class=''> </span><code>    isArray = _base.isArray;</code></li>
+<li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function callSuper(args, a) {</code></li>
 <li class='green'><span class='hits'>1247</span><code>    var meta = this.__meta,</code></li>
 <li class='green'><span class=''> </span><code>        supers = meta.supers,</code></li>
 <li class='green'><span class=''> </span><code>        l = supers.length, superMeta = meta.superMeta, pos = superMeta.pos;</code></li>
 <li class='green'><span class='hits'>1247</span><code>    if (l &gt; pos) {</code></li>
-<li class='green'><span class='hits'>1100</span><code>        a &amp;&amp; (args = a);</code></li>
-<li class='green'><span class='hits'>1100</span><code>        var name = superMeta.name, f = superMeta.f, m;</code></li>
-<li class='green'><span class='hits'>1100</span><code>        do {</code></li>
-<li class='green'><span class='hits'>1100</span><code>            m = supers[pos][name];</code></li>
-<li class='green'><span class='hits'>1100</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
-<li class='green'><span class='hits'>1100</span><code>                superMeta.pos = 1 + pos;</code></li>
-<li class='green'><span class='hits'>1100</span><code>                return m.apply(this, args);</code></li>
+<li class='green'><span class='hits'>1247</span><code>        a &amp;&amp; (args = a);</code></li>
+<li class='green'><span class='hits'>1247</span><code>        var name = superMeta.name, f = superMeta.f, m;</code></li>
+<li class='green'><span class='hits'>1247</span><code>        do {</code></li>
+<li class='green'><span class='hits'>1247</span><code>            m = supers[pos][name];</code></li>
+<li class='green'><span class='hits'>1247</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
+<li class='green'><span class='hits'>1243</span><code>                superMeta.pos = 1 + pos;</code></li>
+<li class='green'><span class='hits'>1243</span><code>                return m.apply(this, args);</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        } while (l &gt; ++pos);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>147</span><code>    return null;</code></li>
+<li class='green'><span class='hits'>4</span><code>    return null;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function getSuper() {</code></li>
@@ -9206,8 +9210,8 @@ td.cov-stats {
 <li class='green'><span class='hits'>2</span><code>    if (l &gt; pos) {</code></li>
 <li class='green'><span class='hits'>2</span><code>        var name = superMeta.name, f = superMeta.f, m;</code></li>
 <li class='green'><span class='hits'>2</span><code>        do {</code></li>
-<li class='green'><span class='hits'>2</span><code>            m = supers[pos][name];</code></li>
-<li class='green'><span class='hits'>2</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
+<li class='green'><span class='hits'>3</span><code>            m = supers[pos][name];</code></li>
+<li class='green'><span class='hits'>3</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
 <li class='green'><span class='hits'>1</span><code>                superMeta.pos = 1 + pos;</code></li>
 <li class='green'><span class='hits'>1</span><code>                return m.bind(this);</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
@@ -9218,35 +9222,35 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function defaultFunction() {</code></li>
-<li class='green'><span class='hits'>143</span><code>    var meta = this.__meta || {},</code></li>
+<li class='green'><span class='hits'>287</span><code>    var meta = this.__meta || {},</code></li>
 <li class='green'><span class=''> </span><code>        supers = meta.supers,</code></li>
 <li class='green'><span class=''> </span><code>        l = supers.length, superMeta = meta.superMeta, pos = superMeta.pos;</code></li>
-<li class='green'><span class='hits'>143</span><code>    if (l &gt; pos) {</code></li>
-<li class='green'><span class='hits'>126</span><code>        var name = superMeta.name, f = superMeta.f, m;</code></li>
-<li class='green'><span class='hits'>126</span><code>        do {</code></li>
-<li class='green'><span class='hits'>176</span><code>            m = supers[pos][name];</code></li>
-<li class='green'><span class='hits'>176</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
+<li class='green'><span class='hits'>287</span><code>    if (l &gt; pos) {</code></li>
+<li class='green'><span class='hits'>143</span><code>        var name = superMeta.name, f = superMeta.f, m;</code></li>
+<li class='green'><span class='hits'>143</span><code>        do {</code></li>
+<li class='green'><span class='hits'>223</span><code>            m = supers[pos][name];</code></li>
+<li class='green'><span class='hits'>223</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
 <li class='green'><span class='hits'>96</span><code>                superMeta.pos = 1 + pos;</code></li>
 <li class='green'><span class='hits'>96</span><code>                return m.apply(this, arguments);</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        } while (l &gt; ++pos);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>47</span><code>    return null;</code></li>
+<li class='green'><span class='hits'>191</span><code>    return null;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class='hits'>1</span><code>;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function functionWrapper(f, name) {</code></li>
-<li class='green'><span class='hits'>311</span><code>    var wrapper = function () {</code></li>
-<li class='green'><span class='hits'>30102</span><code>        var ret, meta = this.__meta || {};</code></li>
-<li class='green'><span class='hits'>30102</span><code>        var orig = meta.superMeta;</code></li>
-<li class='green'><span class='hits'>30102</span><code>        meta.superMeta = {f:f, pos:0, name:name};</code></li>
-<li class='green'><span class='hits'>30102</span><code>        ret = f.apply(this, arguments);</code></li>
-<li class='green'><span class='hits'>30053</span><code>        meta.superMeta = orig;</code></li>
-<li class='green'><span class='hits'>30053</span><code>        return ret;</code></li>
+<li class='green'><span class='hits'>316</span><code>    var wrapper = function () {</code></li>
+<li class='green'><span class='hits'>30407</span><code>        var ret, meta = this.__meta || {};</code></li>
+<li class='green'><span class='hits'>30407</span><code>        var orig = meta.superMeta;</code></li>
+<li class='green'><span class='hits'>30407</span><code>        meta.superMeta = {f: f, pos: 0, name: name};</code></li>
+<li class='green'><span class='hits'>30407</span><code>        ret = f.apply(this, arguments);</code></li>
+<li class='green'><span class='hits'>30358</span><code>        meta.superMeta = orig;</code></li>
+<li class='green'><span class='hits'>30358</span><code>        return ret;</code></li>
 <li class='green'><span class=''> </span><code>    };</code></li>
-<li class='green'><span class='hits'>311</span><code>    wrapper._f = f;</code></li>
-<li class='green'><span class='hits'>311</span><code>    return wrapper;</code></li>
+<li class='green'><span class='hits'>316</span><code>    wrapper._f = f;</code></li>
+<li class='green'><span class='hits'>316</span><code>    return wrapper;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class='hits'>1</span><code>;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -9295,8 +9299,8 @@ td.cov-stats {
 <li class='green'><span class='hits'>7</span><code>    for (var i = 0; i &lt; l; i++) {</code></li>
 <li class='green'><span class='hits'>17</span><code>        var m = args[i], mProto = m.prototype;</code></li>
 <li class='green'><span class='hits'>17</span><code>        var protoMeta = mProto.__meta, meta = m.__meta;</code></li>
-<li class='green'><span class='hits'>17</span><code>        !protoMeta &amp;&amp; (protoMeta = (mProto.__meta = {proto:mProto || {}}));</code></li>
-<li class='green'><span class='hits'>17</span><code>        !meta &amp;&amp; (meta = (m.__meta = {proto:m.__proto__ || {}}));</code></li>
+<li class='green'><span class='hits'>17</span><code>        !protoMeta &amp;&amp; (protoMeta = (mProto.__meta = {proto: mProto || {}}));</code></li>
+<li class='green'><span class='hits'>17</span><code>        !meta &amp;&amp; (meta = (m.__meta = {proto: m.__proto__ || {}}));</code></li>
 <li class='green'><span class='hits'>17</span><code>        defineMixinProps(child, protoMeta.proto || {});</code></li>
 <li class='green'><span class='hits'>17</span><code>        defineMixinProps(this, meta.proto || {});</code></li>
 <li class='green'><span class=''> </span><code>        //copy the bases for static,</code></li>
@@ -9312,20 +9316,20 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @ignore</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function mixinSupers(sup, arr, bases) {</code></li>
-<li class='green'><span class='hits'>216</span><code>    var meta = sup.__meta;</code></li>
-<li class='green'><span class='hits'>216</span><code>    !meta &amp;&amp; (meta = (sup.__meta = {}));</code></li>
-<li class='green'><span class='hits'>216</span><code>    var unique = sup.__meta.unique;</code></li>
-<li class='green'><span class='hits'>216</span><code>    !unique &amp;&amp; (meta.unique = "define" + ++classCounter);</code></li>
+<li class='green'><span class='hits'>386</span><code>    var meta = sup.__meta;</code></li>
+<li class='green'><span class='hits'>386</span><code>    !meta &amp;&amp; (meta = (sup.__meta = {}));</code></li>
+<li class='green'><span class='hits'>386</span><code>    var unique = sup.__meta.unique;</code></li>
+<li class='green'><span class='hits'>386</span><code>    !unique &amp;&amp; (meta.unique = "define" + ++classCounter);</code></li>
 <li class='green'><span class=''> </span><code>    //check it we already have this super mixed into our prototype chain</code></li>
 <li class='green'><span class=''> </span><code>    //if true then we have already looped their supers!</code></li>
-<li class='green'><span class='hits'>216</span><code>    if (bases.indexOf(unique) == -1) {</code></li>
+<li class='green'><span class='hits'>386</span><code>    if (bases.indexOf(unique) == -1) {</code></li>
 <li class='green'><span class=''> </span><code>        //add their id to our bases</code></li>
-<li class='green'><span class='hits'>140</span><code>        bases.push(unique);</code></li>
-<li class='green'><span class='hits'>140</span><code>        var supers = sup.__meta.supers || [], i = supers.length - 1 || 0;</code></li>
-<li class='green'><span class='hits'>140</span><code>        while (i &gt;= 0) {</code></li>
-<li class='green'><span class='hits'>118</span><code>            mixinSupers(supers[i--], arr, bases);</code></li>
+<li class='green'><span class='hits'>234</span><code>        bases.push(unique);</code></li>
+<li class='green'><span class='hits'>234</span><code>        var supers = sup.__meta.supers || [], i = supers.length - 1 || 0;</code></li>
+<li class='green'><span class='hits'>234</span><code>        while (i &gt;= 0) {</code></li>
+<li class='green'><span class='hits'>258</span><code>            mixinSupers(supers[i--], arr, bases);</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>140</span><code>        arr.unshift(sup);</code></li>
+<li class='green'><span class='hits'>234</span><code>        arr.unshift(sup);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class='hits'>1</span><code>;</code></li>
@@ -9335,25 +9339,25 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @ignore</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function defineProps(child, proto) {</code></li>
-<li class='green'><span class='hits'>90</span><code>    var operations = proto.setters;</code></li>
-<li class='green'><span class='hits'>90</span><code>    if (operations) {</code></li>
+<li class='green'><span class='hits'>92</span><code>    var operations = proto.setters;</code></li>
+<li class='green'><span class='hits'>92</span><code>    if (operations) {</code></li>
 <li class='green'><span class='hits'>8</span><code>        for (var i in operations) {</code></li>
 <li class='green'><span class='hits'>13</span><code>            child.__defineSetter__(i, operations[i]);</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>90</span><code>    operations = proto.getters || {};</code></li>
-<li class='green'><span class='hits'>90</span><code>    if (operations) {</code></li>
-<li class='green'><span class='hits'>90</span><code>        for (i in operations) {</code></li>
+<li class='green'><span class='hits'>92</span><code>    operations = proto.getters || {};</code></li>
+<li class='green'><span class='hits'>92</span><code>    if (operations) {</code></li>
+<li class='green'><span class='hits'>92</span><code>        for (i in operations) {</code></li>
 <li class='green'><span class='hits'>47</span><code>            child.__defineGetter__(i, operations[i]);</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>90</span><code>    for (i in proto) {</code></li>
-<li class='green'><span class='hits'>352</span><code>        if (i != "getters" &amp;&amp; i != "setters") {</code></li>
-<li class='green'><span class='hits'>331</span><code>            var f = proto[i];</code></li>
-<li class='green'><span class='hits'>331</span><code>            if ("function" === typeof f) {</code></li>
-<li class='green'><span class='hits'>298</span><code>                var meta = f.__meta || {};</code></li>
-<li class='green'><span class='hits'>298</span><code>                if (!meta.isConstructor) {</code></li>
-<li class='green'><span class='hits'>297</span><code>                    child[i] = functionWrapper(f, i);</code></li>
+<li class='green'><span class='hits'>92</span><code>    for (i in proto) {</code></li>
+<li class='green'><span class='hits'>357</span><code>        if (i != "getters" &amp;&amp; i != "setters") {</code></li>
+<li class='green'><span class='hits'>336</span><code>            var f = proto[i];</code></li>
+<li class='green'><span class='hits'>336</span><code>            if ("function" === typeof f) {</code></li>
+<li class='green'><span class='hits'>303</span><code>                var meta = f.__meta || {};</code></li>
+<li class='green'><span class='hits'>303</span><code>                if (!meta.isConstructor) {</code></li>
+<li class='green'><span class='hits'>302</span><code>                    child[i] = functionWrapper(f, i);</code></li>
 <li class='green'><span class=''> </span><code>                } else {</code></li>
 <li class='green'><span class='hits'>1</span><code>                    child[i] = f;</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
@@ -9364,7 +9368,6 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class='hits'>1</span><code>;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function _export(obj, name) {</code></li>
 <li class='green'><span class='hits'>11</span><code>    if (obj &amp;&amp; name) {</code></li>
@@ -9374,69 +9377,110 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class='hits'>11</span><code>    return this;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class='hits'>1</span><code>;</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function extend(proto) {</code></li>
+<li class='green'><span class='hits'>3</span><code>    return define(this, proto);</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
 <li class='green'><span class=''> </span><code> * @ignore</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function __define(child, sup, proto) {</code></li>
-<li class='green'><span class='hits'>47</span><code>    var childProto = child.prototype, supers = [];</code></li>
-<li class='green'><span class='hits'>47</span><code>    var unique = "define" + ++classCounter, bases = [], staticBases = [];</code></li>
-<li class='green'><span class='hits'>47</span><code>    var instanceSupers = [], staticSupers = [];</code></li>
-<li class='green'><span class='hits'>47</span><code>    var meta = childProto.__meta = {</code></li>
-<li class='green'><span class=''> </span><code>        supers:instanceSupers,</code></li>
-<li class='green'><span class=''> </span><code>        unique:unique,</code></li>
-<li class='green'><span class=''> </span><code>        bases:bases,</code></li>
-<li class='green'><span class=''> </span><code>        superMeta:{</code></li>
-<li class='green'><span class=''> </span><code>            f:null,</code></li>
-<li class='green'><span class=''> </span><code>            pos:0,</code></li>
-<li class='green'><span class=''> </span><code>            name:null</code></li>
+<li class='green'><span class='hits'>48</span><code>    var childProto = child.prototype, supers = [];</code></li>
+<li class='green'><span class='hits'>48</span><code>    var unique = "define" + ++classCounter, bases = [], staticBases = [];</code></li>
+<li class='green'><span class='hits'>48</span><code>    var instanceSupers = [], staticSupers = [];</code></li>
+<li class='green'><span class='hits'>48</span><code>    var meta = childProto.__meta = {</code></li>
+<li class='green'><span class=''> </span><code>        supers: instanceSupers,</code></li>
+<li class='green'><span class=''> </span><code>        unique: unique,</code></li>
+<li class='green'><span class=''> </span><code>        bases: bases,</code></li>
+<li class='green'><span class=''> </span><code>        superMeta: {</code></li>
+<li class='green'><span class=''> </span><code>            f: null,</code></li>
+<li class='green'><span class=''> </span><code>            pos: 0,</code></li>
+<li class='green'><span class=''> </span><code>            name: null</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    };</code></li>
-<li class='green'><span class='hits'>47</span><code>    var childMeta = child.__meta = {</code></li>
-<li class='green'><span class=''> </span><code>        supers:staticSupers,</code></li>
-<li class='green'><span class=''> </span><code>        unique:unique,</code></li>
-<li class='green'><span class=''> </span><code>        bases:staticBases,</code></li>
-<li class='green'><span class=''> </span><code>        isConstructor:true,</code></li>
-<li class='green'><span class=''> </span><code>        superMeta:{</code></li>
-<li class='green'><span class=''> </span><code>            f:null,</code></li>
-<li class='green'><span class=''> </span><code>            pos:0,</code></li>
-<li class='green'><span class=''> </span><code>            name:null</code></li>
+<li class='green'><span class='hits'>48</span><code>    var childMeta = child.__meta = {</code></li>
+<li class='green'><span class=''> </span><code>        supers: staticSupers,</code></li>
+<li class='green'><span class=''> </span><code>        unique: unique,</code></li>
+<li class='green'><span class=''> </span><code>        bases: staticBases,</code></li>
+<li class='green'><span class=''> </span><code>        isConstructor: true,</code></li>
+<li class='green'><span class=''> </span><code>        superMeta: {</code></li>
+<li class='green'><span class=''> </span><code>            f: null,</code></li>
+<li class='green'><span class=''> </span><code>            pos: 0,</code></li>
+<li class='green'><span class=''> </span><code>            name: null</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    };</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>47</span><code>    if (sup) {</code></li>
-<li class='green'><span class='hits'>32</span><code>        supers = Array.isArray(sup) ? sup : [sup];</code></li>
-<li class='green'><span class='hits'>32</span><code>        sup = supers.shift();</code></li>
-<li class='green'><span class='hits'>32</span><code>        child.__proto__ = sup;</code></li>
-<li class='green'><span class='hits'>32</span><code>        childProto.__proto__ = sup.prototype;</code></li>
-<li class='green'><span class='hits'>32</span><code>        mixinSupers(sup.prototype, instanceSupers, bases),</code></li>
+<li class='green'><span class='hits'>48</span><code>    if ((isHash(sup) &amp;&amp; !proto)) {</code></li>
+<li class='green'><span class='hits'>2</span><code>        proto = sup;</code></li>
+<li class='green'><span class='hits'>2</span><code>        sup = Base;</code></li>
+<li class='green'><span class='hits'>46</span><code>    } else if ((!sup &amp;&amp; isHash(proto))) {</code></li>
+<li class='green'><span class='hits'>14</span><code>        sup = Base;</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>48</span><code>    if ("function" === typeof sup || isArray(sup)) {</code></li>
+<li class='green'><span class='hits'>47</span><code>        supers = isArray(sup) ? sup : [sup];</code></li>
+<li class='green'><span class='hits'>47</span><code>        sup = supers.shift();</code></li>
+<li class='green'><span class='hits'>47</span><code>        child.__proto__ = sup;</code></li>
+<li class='green'><span class='hits'>47</span><code>        childProto.__proto__ = sup.prototype;</code></li>
+<li class='green'><span class='hits'>47</span><code>        mixinSupers(sup.prototype, instanceSupers, bases),</code></li>
 <li class='green'><span class=''> </span><code>            mixinSupers(sup, staticSupers, staticBases);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>47</span><code>    if (proto) {</code></li>
-<li class='green'><span class='hits'>45</span><code>        var instance = meta.proto = proto.instance || {};</code></li>
-<li class='green'><span class='hits'>45</span><code>        !instance.hasOwnProperty("constructor") &amp;&amp; (instance.constructor = defaultFunction);</code></li>
-<li class='green'><span class='hits'>45</span><code>        var stat = childMeta.proto = proto.static || {};</code></li>
-<li class='green'><span class='hits'>45</span><code>        stat.init = stat.init || defaultFunction;</code></li>
-<li class='green'><span class='hits'>45</span><code>        defineProps(childProto, instance, false);</code></li>
-<li class='green'><span class='hits'>45</span><code>        defineProps(child, stat, true);</code></li>
+<li class='green'><span class='hits'>48</span><code>    if (proto) {</code></li>
+<li class='green'><span class='hits'>46</span><code>        var instance = meta.proto = proto.instance || {};</code></li>
+<li class='green'><span class='hits'>46</span><code>        !instance.hasOwnProperty("constructor") &amp;&amp; (instance.constructor = defaultFunction);</code></li>
+<li class='green'><span class='hits'>46</span><code>        var stat = childMeta.proto = proto.static || {};</code></li>
+<li class='green'><span class='hits'>46</span><code>        stat.init = stat.init || defaultFunction;</code></li>
+<li class='green'><span class='hits'>46</span><code>        defineProps(childProto, instance, false);</code></li>
+<li class='green'><span class='hits'>46</span><code>        defineProps(child, stat, true);</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
 <li class='green'><span class='hits'>2</span><code>        meta.proto = {};</code></li>
 <li class='green'><span class='hits'>2</span><code>        childMeta.proto = {};</code></li>
 <li class='green'><span class='hits'>2</span><code>        child.init = functionWrapper(defaultFunction, "init");</code></li>
 <li class='green'><span class='hits'>2</span><code>        childProto.constructor = functionWrapper(defaultFunction, "constructor");</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>47</span><code>    if (supers.length) {</code></li>
+<li class='green'><span class='hits'>48</span><code>    if (supers.length) {</code></li>
 <li class='green'><span class='hits'>7</span><code>        mixin.apply(child, supers);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>47</span><code>    child.mixin = mixin;</code></li>
-<li class='green'><span class='hits'>47</span><code>    childProto._super = child._super = callSuper;</code></li>
-<li class='green'><span class='hits'>47</span><code>    childProto._getSuper = child._getSuper = getSuper;</code></li>
-<li class='green'><span class='hits'>47</span><code>    child.as = _export;</code></li>
-<li class='green'><span class='hits'>47</span><code>    childProto._static = child;</code></li>
+<li class='green'><span class='hits'>48</span><code>    childProto._super = child._super = callSuper;</code></li>
+<li class='green'><span class='hits'>48</span><code>    childProto._getSuper = child._getSuper = getSuper;</code></li>
+<li class='green'><span class='hits'>48</span><code>    childProto._static = child;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class='hits'>1</span><code>;</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function define(sup, proto) {</code></li>
+<li class='green'><span class='hits'>45</span><code>    function defineConstructor() {</code></li>
+<li class='green'><span class='hits'>2438</span><code>        this.constructor.apply(this, arguments);</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>45</span><code>    __define(defineConstructor, sup, proto);</code></li>
+<li class='green'><span class='hits'>45</span><code>    return defineConstructor.init() || defineConstructor;</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function singleton(sup, proto) {</code></li>
+<li class='green'><span class='hits'>3</span><code>    var retInstance;</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>3</span><code>    function singletonConstructor() {</code></li>
+<li class='green'><span class='hits'>6</span><code>        if (!retInstance) {</code></li>
+<li class='green'><span class='hits'>2</span><code>            this.constructor.apply(this, arguments);</code></li>
+<li class='green'><span class='hits'>2</span><code>            retInstance = this;</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class='hits'>6</span><code>        return retInstance;</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>3</span><code>    __define(singletonConstructor, sup, proto);</code></li>
+<li class='green'><span class='hits'>3</span><code>    return  singletonConstructor.init() || singletonConstructor;</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>Base = define({</code></li>
+<li class='green'><span class=''> </span><code>    instance: {},</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>    "static": {</code></li>
+<li class='green'><span class=''> </span><code>        mixin: mixin,</code></li>
+<li class='green'><span class=''> </span><code>        extend: extend,</code></li>
+<li class='green'><span class=''> </span><code>        as: _export</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code>});</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -9669,14 +9713,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * @returns {Object} the constructor of the class to be used with new keyword</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>exports.define = function define(sup, proto) {</code></li>
-<li class='green'><span class='hits'>44</span><code>    function defineConstructor() {</code></li>
-<li class='green'><span class='hits'>2405</span><code>        this.constructor.apply(this, arguments);</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>44</span><code>    __define(defineConstructor, sup, proto);</code></li>
-<li class='green'><span class='hits'>44</span><code>    return defineConstructor.init() || defineConstructor;</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class='hits'>1</span><code>exports.define = define;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
 <li class='green'><span class=''> </span><code> * Defines a singleton instance of a Class. See {@link define}</code></li>
@@ -9694,20 +9731,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>exports.singleton = function singleton(sup, proto) {</code></li>
-<li class='green'><span class='hits'>3</span><code>    var retInstance;</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>3</span><code>    function singletonConstructor() {</code></li>
-<li class='green'><span class='hits'>6</span><code>        if (!retInstance) {</code></li>
-<li class='green'><span class='hits'>2</span><code>            this.constructor.apply(this, arguments);</code></li>
-<li class='green'><span class='hits'>2</span><code>            retInstance = this;</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>6</span><code>        return retInstance;</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>3</span><code>    __define(singletonConstructor, sup, proto);</code></li>
-<li class='green'><span class='hits'>3</span><code>    return  singletonConstructor.init() || singletonConstructor;</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class='hits'>1</span><code>exports.singleton = singleton;</code></li>
 <li class='green'><span class=''> </span><code></code></li></ol></pre></div>
 </div>
 
@@ -11058,7 +11082,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        __checkFile:function (stats) {</code></li>
 <li class='green'><span class='hits'>5</span><code>            var ret = new Promise();</code></li>
 <li class='green'><span class='hits'>5</span><code>            if (!this.__inRollover) {</code></li>
-<li class='green'><span class='hits'>3</span><code>                if (stats.size &gt;= this.maxSize) {</code></li>
+<li class='green'><span class='hits'>4</span><code>                if (stats.size &gt;= this.maxSize) {</code></li>
 <li class='green'><span class='hits'>2</span><code>                    if (this.maxBackupIndex &gt; 0) {</code></li>
 <li class='green'><span class='hits'>1</span><code>                        this.__inRollover = true;</code></li>
 <li class='green'><span class='hits'>1</span><code>                        this.__onExit().chain(hitch(this, "__rollover")).then(hitch(this, function () {</code></li>
@@ -11075,10 +11099,10 @@ td.cov-stats {
 <li class='green'><span class='hits'>1</span><code>                        ret.callback();</code></li>
 <li class='green'><span class=''> </span><code>                    }</code></li>
 <li class='green'><span class=''> </span><code>                } else {</code></li>
-<li class='green'><span class='hits'>1</span><code>                    ret.callback();</code></li>
+<li class='green'><span class='hits'>2</span><code>                    ret.callback();</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>2</span><code>                ret.callback();</code></li>
+<li class='green'><span class='hits'>1</span><code>                ret.callback();</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class='hits'>5</span><code>            return ret.promise();</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
@@ -11153,7 +11177,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        getters:{</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            maxSize:function () {</code></li>
-<li class='green'><span class='hits'>3</span><code>                return this.__maxSize;</code></li>
+<li class='green'><span class='hits'>4</span><code>                return this.__maxSize;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -12693,8 +12717,8 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>818</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>203</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>835</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>211</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
             </td>
@@ -12716,17 +12740,17 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>var Promise = define(null, {</code></li>
-<li class='green'><span class=''> </span><code>    instance:{</code></li>
+<li class='green'><span class=''> </span><code>    instance: {</code></li>
 <li class='green'><span class=''> </span><code>        /** @lends comb.Promise.prototype */</code></li>
-<li class='green'><span class=''> </span><code>        __fired:false,</code></li>
+<li class='green'><span class=''> </span><code>        __fired: false,</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        __results:null,</code></li>
+<li class='green'><span class=''> </span><code>        __results: null,</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        __error:null,</code></li>
+<li class='green'><span class=''> </span><code>        __error: null,</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        __errorCbs:null,</code></li>
+<li class='green'><span class=''> </span><code>        __errorCbs: null,</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        __cbs:null,</code></li>
+<li class='green'><span class=''> </span><code>        __cbs: null,</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
 <li class='green'><span class=''> </span><code>         * Promise object used to provide seperation of success and error resolution paths for async operations.</code></li>
@@ -12756,28 +12780,28 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * myFunc2.chain(myfunc).then(function(success){}, function(error){})</code></li>
 <li class='green'><span class=''> </span><code>         * @constructs</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        constructor:function () {</code></li>
-<li class='green'><span class='hits'>2053</span><code>            this.__errorCbs = [];</code></li>
-<li class='green'><span class='hits'>2053</span><code>            this.__cbs = [];</code></li>
+<li class='green'><span class=''> </span><code>        constructor: function () {</code></li>
+<li class='green'><span class='hits'>2086</span><code>            this.__errorCbs = [];</code></li>
+<li class='green'><span class='hits'>2086</span><code>            this.__cbs = [];</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
 <li class='green'><span class=''> </span><code>         * @private</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        __resolve:function () {</code></li>
-<li class='green'><span class='hits'>1899</span><code>            if (!this.__fired) {</code></li>
-<li class='green'><span class='hits'>1899</span><code>                this.__fired = true;</code></li>
-<li class='green'><span class='hits'>1899</span><code>                var cbs = this.__error ? this.__errorCbs : this.__cbs,</code></li>
+<li class='green'><span class=''> </span><code>        __resolve: function () {</code></li>
+<li class='green'><span class='hits'>1932</span><code>            if (!this.__fired) {</code></li>
+<li class='green'><span class='hits'>1932</span><code>                this.__fired = true;</code></li>
+<li class='green'><span class='hits'>1932</span><code>                var cbs = this.__error ? this.__errorCbs : this.__cbs,</code></li>
 <li class='green'><span class=''> </span><code>                    len = cbs.length, i,</code></li>
 <li class='green'><span class=''> </span><code>                    results = this.__error || this.__results;</code></li>
-<li class='green'><span class='hits'>1899</span><code>                for (i = 0; i &lt; len; i++) {</code></li>
-<li class='green'><span class='hits'>1197</span><code>                    this.__callNextTick(cbs[i], results);</code></li>
+<li class='green'><span class='hits'>1932</span><code>                for (i = 0; i &lt; len; i++) {</code></li>
+<li class='green'><span class='hits'>1228</span><code>                    this.__callNextTick(cbs[i], results);</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        __callNextTick:function (cb, results) {</code></li>
-<li class='green'><span class='hits'>1977</span><code>            process.nextTick(hitch(this, function () {</code></li>
-<li class='green'><span class='hits'>1977</span><code>                cb.apply(this, results);</code></li>
+<li class='green'><span class=''> </span><code>        __callNextTick: function (cb, results) {</code></li>
+<li class='green'><span class='hits'>2010</span><code>            process.nextTick(hitch(this, function () {</code></li>
+<li class='green'><span class='hits'>2010</span><code>                cb.apply(this, results);</code></li>
 <li class='green'><span class=''> </span><code>            }));</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -12789,18 +12813,18 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.Promise} this promise for chaining</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        addCallback:function (cb) {</code></li>
-<li class='green'><span class='hits'>1998</span><code>            if (cb) {</code></li>
-<li class='green'><span class='hits'>1998</span><code>                if (exports.isPromiseLike(cb)) {</code></li>
-<li class='green'><span class='hits'>816</span><code>                    cb = hitch(cb, "callback");</code></li>
+<li class='green'><span class=''> </span><code>        addCallback: function (cb) {</code></li>
+<li class='green'><span class='hits'>2031</span><code>            if (cb) {</code></li>
+<li class='green'><span class='hits'>2031</span><code>                if (exports.isPromiseLike(cb)) {</code></li>
+<li class='green'><span class='hits'>391</span><code>                    cb = hitch(cb, "callback");</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
-<li class='green'><span class='hits'>1998</span><code>                if (this.__fired &amp;&amp; this.__results) {</code></li>
-<li class='green'><span class='hits'>766</span><code>                    this.__callNextTick(cb, this.__results);</code></li>
+<li class='green'><span class='hits'>2031</span><code>                if (this.__fired &amp;&amp; this.__results) {</code></li>
+<li class='green'><span class='hits'>768</span><code>                    this.__callNextTick(cb, this.__results);</code></li>
 <li class='green'><span class=''> </span><code>                } else {</code></li>
-<li class='green'><span class='hits'>1232</span><code>                    this.__cbs.push(cb);</code></li>
+<li class='green'><span class='hits'>1263</span><code>                    this.__cbs.push(cb);</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>1998</span><code>            return this;</code></li>
+<li class='green'><span class='hits'>2031</span><code>            return this;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -12811,18 +12835,18 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.Promise} this promise for chaining</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        addErrback:function (cb) {</code></li>
-<li class='green'><span class='hits'>1880</span><code>            if (cb) {</code></li>
-<li class='green'><span class='hits'>1872</span><code>                if (exports.isPromiseLike(cb)) {</code></li>
-<li class='green'><span class='hits'>1348</span><code>                    cb = hitch(cb, "errback");</code></li>
+<li class='green'><span class=''> </span><code>        addErrback: function (cb) {</code></li>
+<li class='green'><span class='hits'>1913</span><code>            if (cb) {</code></li>
+<li class='green'><span class='hits'>1905</span><code>                if (exports.isPromiseLike(cb)) {</code></li>
+<li class='green'><span class='hits'>389</span><code>                    cb = hitch(cb, "errback");</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
-<li class='green'><span class='hits'>1872</span><code>                if (this.__fired &amp;&amp; this.__error) {</code></li>
+<li class='green'><span class='hits'>1905</span><code>                if (this.__fired &amp;&amp; this.__error) {</code></li>
 <li class='green'><span class='hits'>14</span><code>                    this.__callNextTick(cb, this.__error);</code></li>
 <li class='green'><span class=''> </span><code>                } else {</code></li>
-<li class='green'><span class='hits'>1858</span><code>                    this.__errorCbs.push(cb);</code></li>
+<li class='green'><span class='hits'>1891</span><code>                    this.__errorCbs.push(cb);</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>1880</span><code>            return this;</code></li>
+<li class='green'><span class='hits'>1913</span><code>            return this;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -12834,7 +12858,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * and error.</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.Promise} this promise for chaining</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        both:function (cb) {</code></li>
+<li class='green'><span class=''> </span><code>        both: function (cb) {</code></li>
 <li class='green'><span class='hits'>6</span><code>            this.addCallback(cb);</code></li>
 <li class='green'><span class='hits'>6</span><code>            if (exports.isPromiseLike(cb)) {</code></li>
 <li class='green'><span class='hits'>2</span><code>                this.addErrback(hitch(cb, "callback"));</code></li>
@@ -12850,14 +12874,14 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @param {*} args variable number of results to pass back to listeners of the promise</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        callback:function (args) {</code></li>
-<li class='green'><span class='hits'>1758</span><code>            args = argsToArray(arguments);</code></li>
-<li class='green'><span class='hits'>1758</span><code>            if (this.__fired) {</code></li>
+<li class='green'><span class=''> </span><code>        callback: function (args) {</code></li>
+<li class='green'><span class='hits'>1779</span><code>            args = argsToArray(arguments);</code></li>
+<li class='green'><span class='hits'>1779</span><code>            if (this.__fired) {</code></li>
 <li class='green'><span class='hits'>1</span><code>                throw new Error("Already fired!");</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>1757</span><code>            this.__results = args;</code></li>
-<li class='green'><span class='hits'>1757</span><code>            this.__resolve();</code></li>
-<li class='green'><span class='hits'>1757</span><code>            return this.promise();</code></li>
+<li class='green'><span class='hits'>1778</span><code>            this.__results = args;</code></li>
+<li class='green'><span class='hits'>1778</span><code>            this.__resolve();</code></li>
+<li class='green'><span class='hits'>1778</span><code>            return this.promise();</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -12866,13 +12890,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @param {*} args  number of errors to pass back to listeners of the promise</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        errback:function (args) {</code></li>
-<li class='green'><span class='hits'>143</span><code>            if (this.__fired) {</code></li>
+<li class='green'><span class=''> </span><code>        errback: function (args) {</code></li>
+<li class='green'><span class='hits'>155</span><code>            if (this.__fired) {</code></li>
 <li class='green'><span class='hits'>1</span><code>                throw args || new Error("Already fired");</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>142</span><code>            this.__error = argsToArray(arguments);</code></li>
-<li class='green'><span class='hits'>142</span><code>            this.__resolve();</code></li>
-<li class='green'><span class='hits'>142</span><code>            return this.promise();</code></li>
+<li class='green'><span class='hits'>154</span><code>            this.__error = argsToArray(arguments);</code></li>
+<li class='green'><span class='hits'>154</span><code>            this.__resolve();</code></li>
+<li class='green'><span class='hits'>154</span><code>            return this.promise();</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -12891,7 +12915,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.Promise} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        resolve:function (err, args) {</code></li>
+<li class='green'><span class=''> </span><code>        resolve: function (err, args) {</code></li>
 <li class='green'><span class='hits'>4</span><code>            if (err) {</code></li>
 <li class='green'><span class='hits'>1</span><code>                this.errback(err);</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
@@ -12908,15 +12932,15 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.Promise} this promise for chaining</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        then:function (callback, errback) {</code></li>
-<li class='green'><span class='hits'>1028</span><code>            if (exports.isPromiseLike(callback)) {</code></li>
-<li class='green'><span class='hits'>917</span><code>                this.addCallback(callback);</code></li>
-<li class='green'><span class='hits'>917</span><code>                this.addErrback(callback);</code></li>
+<li class='green'><span class=''> </span><code>        then: function (callback, errback) {</code></li>
+<li class='green'><span class='hits'>1047</span><code>            if (exports.isPromiseLike(callback)) {</code></li>
+<li class='green'><span class='hits'>409</span><code>                this.addCallback(callback);</code></li>
+<li class='green'><span class='hits'>409</span><code>                this.addErrback(callback);</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>111</span><code>                this.addCallback(callback);</code></li>
-<li class='green'><span class='hits'>111</span><code>                this.addErrback(errback);</code></li>
+<li class='green'><span class='hits'>638</span><code>                this.addCallback(callback);</code></li>
+<li class='green'><span class='hits'>638</span><code>                this.addErrback(errback);</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>1028</span><code>            return this;</code></li>
+<li class='green'><span class='hits'>1047</span><code>            return this;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -12939,7 +12963,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * be the result from the promise.</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.Promise} the promise to chain</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        classic:function (cb) {</code></li>
+<li class='green'><span class=''> </span><code>        classic: function (cb) {</code></li>
 <li class='green'><span class='hits'>5</span><code>            if ("function" === typeof cb) {</code></li>
 <li class='green'><span class='hits'>5</span><code>                this.addErrback(function (err) {</code></li>
 <li class='green'><span class='hits'>1</span><code>                    cb(err);</code></li>
@@ -13003,13 +13027,30 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @return {comb.Promise} A new that wraps the promise for chaining</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        chain:function (callback, errback) {</code></li>
-<li class='green'><span class='hits'>563</span><code>            var promise = new Promise();</code></li>
-<li class='green'><span class='hits'>563</span><code>            this.addCallback(function () {</code></li>
-<li class='green'><span class='hits'>516</span><code>                var args = arguments;</code></li>
-<li class='green'><span class='hits'>516</span><code>                process.nextTick(function () {</code></li>
-<li class='green'><span class='hits'>516</span><code>                    try {</code></li>
-<li class='green'><span class='hits'>516</span><code>                        when(isFunction(callback) ? callback.apply(this, args) : callback).then(promise);</code></li>
+<li class='green'><span class=''> </span><code>        chain: function (callback, errback) {</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>577</span><code>            var promise = new Promise();</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>577</span><code>            function errorHandler() {</code></li>
+<li class='green'><span class='hits'>80</span><code>                var args = arguments;</code></li>
+<li class='green'><span class='hits'>80</span><code>                if (errback) {</code></li>
+<li class='green'><span class='hits'>5</span><code>                    process.nextTick(function () {</code></li>
+<li class='green'><span class='hits'>5</span><code>                        try {</code></li>
+<li class='green'><span class='hits'>5</span><code>                            when(isFunction(errback) ? errback.apply(this, args) : errback).then(promise);</code></li>
+<li class='green'><span class=''> </span><code>                        } catch (e) {</code></li>
+<li class='green'><span class='hits'>1</span><code>                            promise.errback(e);</code></li>
+<li class='green'><span class=''> </span><code>                        }</code></li>
+<li class='green'><span class=''> </span><code>                    });</code></li>
+<li class='green'><span class=''> </span><code>                } else {</code></li>
+<li class='green'><span class='hits'>75</span><code>                    promise.errback.apply(promise, args);</code></li>
+<li class='green'><span class=''> </span><code>                }</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>577</span><code>            this.addCallback(function () {</code></li>
+<li class='green'><span class='hits'>526</span><code>                var args = arguments;</code></li>
+<li class='green'><span class='hits'>526</span><code>                process.nextTick(function () {</code></li>
+<li class='green'><span class='hits'>526</span><code>                    try {</code></li>
+<li class='green'><span class='hits'>526</span><code>                        when(isFunction(callback) ? callback.apply(this, args) : callback).then(promise.callback.bind(promise), errorHandler);</code></li>
 <li class='green'><span class=''> </span><code>                    } catch (e) {</code></li>
 <li class='green'><span class='hits'>4</span><code>                        promise.errback(e);</code></li>
 <li class='green'><span class=''> </span><code>                    }</code></li>
@@ -13018,8 +13059,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            // If no errback passed, then invoke our promise's errback to pass</code></li>
 <li class='green'><span class=''> </span><code>            // on to next link in the chain.</code></li>
-<li class='green'><span class='hits'>563</span><code>            this.addErrback(errback || promise);</code></li>
-<li class='green'><span class='hits'>563</span><code>            return promise.promise();</code></li>
+<li class='green'><span class='hits'>577</span><code>            this.addErrback(errorHandler);</code></li>
+<li class='green'><span class='hits'>577</span><code>            return promise.promise();</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -13030,7 +13071,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.Promise} a promise to continue chaining or to resolve with.</code></li>
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        chainBoth:function (callback) {</code></li>
+<li class='green'><span class=''> </span><code>        chainBoth: function (callback) {</code></li>
 <li class='green'><span class='hits'>10</span><code>            var promise = new Promise();</code></li>
 <li class='green'><span class='hits'>10</span><code>            this.addCallback(function () {</code></li>
 <li class='green'><span class='hits'>5</span><code>                try {</code></li>
@@ -13065,22 +13106,22 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         *</code></li>
 <li class='green'><span class=''> </span><code>         * @return {Object} an object containing "chain", "chainBoth", "promise", "addCallback", "addErrback", "then", "both".</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        promise:function () {</code></li>
-<li class='green'><span class='hits'>3338</span><code>            var ret = {</code></li>
-<li class='green'><span class=''> </span><code>                chain:this.chain.bind(this),</code></li>
-<li class='green'><span class=''> </span><code>                chainBoth:this.chainBoth.bind(this),</code></li>
-<li class='green'><span class=''> </span><code>                promise:function () {</code></li>
-<li class='green'><span class='hits'>880</span><code>                    return ret;</code></li>
+<li class='green'><span class=''> </span><code>        promise: function () {</code></li>
+<li class='green'><span class='hits'>3397</span><code>            var ret = {</code></li>
+<li class='green'><span class=''> </span><code>                chain: this.chain.bind(this),</code></li>
+<li class='green'><span class=''> </span><code>                chainBoth: this.chainBoth.bind(this),</code></li>
+<li class='green'><span class=''> </span><code>                promise: function () {</code></li>
+<li class='green'><span class='hits'>882</span><code>                    return ret;</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>3338</span><code>            forEach(["addCallback", "addErrback", "then", "both", "classic"], function (action) {</code></li>
-<li class='green'><span class='hits'>16690</span><code>                ret[action] = function () {</code></li>
-<li class='green'><span class='hits'>1445</span><code>                    this[action].apply(this, arguments);</code></li>
-<li class='green'><span class='hits'>1445</span><code>                    return ret;</code></li>
+<li class='green'><span class='hits'>3397</span><code>            forEach(["addCallback", "addErrback", "then", "both", "classic"], function (action) {</code></li>
+<li class='green'><span class='hits'>16985</span><code>                ret[action] = function () {</code></li>
+<li class='green'><span class='hits'>1464</span><code>                    this[action].apply(this, arguments);</code></li>
+<li class='green'><span class='hits'>1464</span><code>                    return ret;</code></li>
 <li class='green'><span class=''> </span><code>                }.bind(this);</code></li>
 <li class='green'><span class=''> </span><code>            }, this);</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>3338</span><code>            return ret;</code></li>
+<li class='green'><span class='hits'>3397</span><code>            return ret;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -13089,25 +13130,25 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>var PromiseList = define(Promise, {</code></li>
-<li class='green'><span class=''> </span><code>    instance:{</code></li>
+<li class='green'><span class=''> </span><code>    instance: {</code></li>
 <li class='green'><span class=''> </span><code>        /** @lends comb.PromiseList.prototype */</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /*@private*/</code></li>
-<li class='green'><span class=''> </span><code>        __results:null,</code></li>
+<li class='green'><span class=''> </span><code>        __results: null,</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /*@private*/</code></li>
-<li class='green'><span class=''> </span><code>        __errors:null,</code></li>
+<li class='green'><span class=''> </span><code>        __errors: null,</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /*@private*/</code></li>
-<li class='green'><span class=''> </span><code>        __promiseLength:0,</code></li>
+<li class='green'><span class=''> </span><code>        __promiseLength: 0,</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /*@private*/</code></li>
-<li class='green'><span class=''> </span><code>        __defLength:0,</code></li>
+<li class='green'><span class=''> </span><code>        __defLength: 0,</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /*@private*/</code></li>
-<li class='green'><span class=''> </span><code>        __firedLength:0,</code></li>
+<li class='green'><span class=''> </span><code>        __firedLength: 0,</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        normalizeResults:false,</code></li>
+<li class='green'><span class=''> </span><code>        normalizeResults: false,</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
 <li class='green'><span class=''> </span><code>         * PromiseList object used for handling a list of Promises</code></li>
@@ -13141,7 +13182,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @augments comb.Promise</code></li>
 <li class='green'><span class=''> </span><code>         * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code>         * */</code></li>
-<li class='green'><span class=''> </span><code>        constructor:function (defs, normalizeResults) {</code></li>
+<li class='green'><span class=''> </span><code>        constructor: function (defs, normalizeResults) {</code></li>
 <li class='green'><span class='hits'>142</span><code>            this.__errors = [];</code></li>
 <li class='green'><span class='hits'>142</span><code>            this.__results = [];</code></li>
 <li class='green'><span class='hits'>142</span><code>            this.normalizeResults = base.isBoolean(normalizeResults) ? normalizeResults : false;</code></li>
@@ -13160,7 +13201,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @param promise the promise to add to our chain</code></li>
 <li class='green'><span class=''> </span><code>         * @param i the index of the promise in our chain</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        __addPromise:function (promise, i) {</code></li>
+<li class='green'><span class=''> </span><code>        __addPromise: function (promise, i) {</code></li>
 <li class='green'><span class='hits'>394</span><code>            promise.addCallback(hitch(this, function () {</code></li>
 <li class='green'><span class='hits'>379</span><code>                var args = argsToArray(arguments);</code></li>
 <li class='green'><span class='hits'>379</span><code>                args.unshift(i);</code></li>
@@ -13177,7 +13218,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * Resolves the promise</code></li>
 <li class='green'><span class=''> </span><code>         * @private</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
-<li class='green'><span class=''> </span><code>        __resolve:function () {</code></li>
+<li class='green'><span class=''> </span><code>        __resolve: function () {</code></li>
 <li class='green'><span class='hits'>142</span><code>            if (!this.__fired) {</code></li>
 <li class='green'><span class='hits'>142</span><code>                this.__fired = true;</code></li>
 <li class='green'><span class='hits'>142</span><code>                var cbs = this.__errors.length ? this.__errorCbs : this.__cbs,</code></li>
@@ -13189,16 +13230,16 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        __callNextTick:function (cb, results) {</code></li>
+<li class='green'><span class=''> </span><code>        __callNextTick: function (cb, results) {</code></li>
 <li class='green'><span class='hits'>141</span><code>            process.nextTick(hitch(this, function () {</code></li>
 <li class='green'><span class='hits'>141</span><code>                cb.apply(this, [results]);</code></li>
 <li class='green'><span class=''> </span><code>            }));</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        addCallback:function (cb) {</code></li>
+<li class='green'><span class=''> </span><code>        addCallback: function (cb) {</code></li>
 <li class='green'><span class='hits'>141</span><code>            if (cb) {</code></li>
 <li class='green'><span class='hits'>141</span><code>                if (exports.isPromiseLike(cb)) {</code></li>
-<li class='green'><span class='hits'>104</span><code>                    cb = hitch(cb, "callback");</code></li>
+<li class='green'><span class='hits'>21</span><code>                    cb = hitch(cb, "callback");</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class='hits'>141</span><code>                if (this.__fired &amp;&amp; !this.__errors.length) {</code></li>
 <li class='green'><span class='hits'>9</span><code>                    this.__callNextTick(cb, this.__results);</code></li>
@@ -13209,10 +13250,10 @@ td.cov-stats {
 <li class='green'><span class='hits'>141</span><code>            return this;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        addErrback:function (cb) {</code></li>
+<li class='green'><span class=''> </span><code>        addErrback: function (cb) {</code></li>
 <li class='green'><span class='hits'>141</span><code>            if (cb) {</code></li>
 <li class='green'><span class='hits'>141</span><code>                if (exports.isPromiseLike(cb)) {</code></li>
-<li class='green'><span class='hits'>127</span><code>                    cb = hitch(cb, "errback");</code></li>
+<li class='green'><span class='hits'>21</span><code>                    cb = hitch(cb, "errback");</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class='hits'>141</span><code>                if (this.__fired &amp;&amp; this.__errors.length) {</code></li>
 <li class='green'><span class='hits'>1</span><code>                    this.__callNextTick(cb, this.__errors);</code></li>
@@ -13224,7 +13265,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        callback:function (i) {</code></li>
+<li class='green'><span class=''> </span><code>        callback: function (i) {</code></li>
 <li class='green'><span class='hits'>380</span><code>            if (this.__fired) {</code></li>
 <li class='green'><span class='hits'>1</span><code>                throw new Error("Already fired!");</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
@@ -13242,7 +13283,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        errback:function (i) {</code></li>
+<li class='green'><span class=''> </span><code>        errback: function (i) {</code></li>
 <li class='green'><span class='hits'>16</span><code>            if (this.__fired) {</code></li>
 <li class='green'><span class='hits'>1</span><code>                throw new Error("Already fired!");</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
@@ -13289,7 +13330,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isPromiseLike(obj) {</code></li>
-<li class='green'><span class='hits'>7274</span><code>    return !isUndefinedOrNull(obj) &amp;&amp; (isInstanceOf(obj, Promise) || (isFunction(obj.then)</code></li>
+<li class='green'><span class='hits'>7373</span><code>    return !isUndefinedOrNull(obj) &amp;&amp; (isInstanceOf(obj, Promise) || (isFunction(obj.then)</code></li>
 <li class='green'><span class=''> </span><code>        &amp;&amp; isFunction(obj.addCallback) &amp;&amp; isFunction(obj.addErrback)));</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -13310,36 +13351,36 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function when(args, cb, eb) {</code></li>
-<li class='green'><span class='hits'>1513</span><code>    var args = argsToArray(arguments), p;</code></li>
-<li class='green'><span class='hits'>1513</span><code>    eb = base.isFunction(args[args.length - 1]) ? args.pop() : null;</code></li>
-<li class='green'><span class='hits'>1513</span><code>    cb = base.isFunction(args[args.length - 1]) ? args.pop() : null;</code></li>
-<li class='green'><span class='hits'>1513</span><code>    if (eb &amp;&amp; !cb) {</code></li>
+<li class='green'><span class='hits'>1527</span><code>    var args = argsToArray(arguments), p;</code></li>
+<li class='green'><span class='hits'>1527</span><code>    eb = base.isFunction(args[args.length - 1]) ? args.pop() : null;</code></li>
+<li class='green'><span class='hits'>1527</span><code>    cb = base.isFunction(args[args.length - 1]) ? args.pop() : null;</code></li>
+<li class='green'><span class='hits'>1527</span><code>    if (eb &amp;&amp; !cb) {</code></li>
 <li class='green'><span class='hits'>9</span><code>        cb = eb;</code></li>
 <li class='green'><span class='hits'>9</span><code>        eb = null;</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1513</span><code>    if (!args.length) {</code></li>
+<li class='green'><span class='hits'>1527</span><code>    if (!args.length) {</code></li>
 <li class='green'><span class='hits'>7</span><code>        p = new Promise().callback(args);</code></li>
-<li class='green'><span class='hits'>1506</span><code>    } else if (args.length == 1) {</code></li>
-<li class='green'><span class='hits'>1466</span><code>        args = args.pop();</code></li>
-<li class='green'><span class='hits'>1466</span><code>        if (isPromiseLike(args)) {</code></li>
-<li class='green'><span class='hits'>758</span><code>            p = args;</code></li>
-<li class='green'><span class='hits'>708</span><code>        } else if (isArray(args) &amp;&amp; array.every(args, isPromiseLike)) {</code></li>
+<li class='green'><span class='hits'>1520</span><code>    } else if (args.length == 1) {</code></li>
+<li class='green'><span class='hits'>1480</span><code>        args = args.pop();</code></li>
+<li class='green'><span class='hits'>1480</span><code>        if (isPromiseLike(args)) {</code></li>
+<li class='green'><span class='hits'>770</span><code>            p = args;</code></li>
+<li class='green'><span class='hits'>710</span><code>        } else if (isArray(args) &amp;&amp; array.every(args, isPromiseLike)) {</code></li>
 <li class='green'><span class='hits'>91</span><code>            p = new PromiseList(args, true);</code></li>
 <li class='green'><span class=''> </span><code>        } else {</code></li>
-<li class='green'><span class='hits'>617</span><code>            p = new Promise().callback(args);</code></li>
+<li class='green'><span class='hits'>619</span><code>            p = new Promise().callback(args);</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
 <li class='green'><span class='hits'>40</span><code>        p = new PromiseList(args.map(function (a) {</code></li>
 <li class='green'><span class='hits'>135</span><code>            return exports.isPromiseLike(a) ? a : new Promise().callback(a);</code></li>
 <li class='green'><span class=''> </span><code>        }), true);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1513</span><code>    if (cb) {</code></li>
+<li class='green'><span class='hits'>1527</span><code>    if (cb) {</code></li>
 <li class='green'><span class='hits'>15</span><code>        p.addCallback(cb);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1513</span><code>    if (eb) {</code></li>
+<li class='green'><span class='hits'>1527</span><code>    if (eb) {</code></li>
 <li class='green'><span class='hits'>6</span><code>        p.addErrback(eb);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1513</span><code>    return p.promise();</code></li>
+<li class='green'><span class='hits'>1527</span><code>    return p.promise();</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -13501,14 +13542,14 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>base.merge(exports, {</code></li>
-<li class='green'><span class=''> </span><code>    isPromiseLike:isPromiseLike,</code></li>
-<li class='green'><span class=''> </span><code>    when:when,</code></li>
-<li class='green'><span class=''> </span><code>    wrap:wrap,</code></li>
-<li class='green'><span class=''> </span><code>    wait:wait,</code></li>
-<li class='green'><span class=''> </span><code>    serial:serial,</code></li>
-<li class='green'><span class=''> </span><code>    chain:chain,</code></li>
-<li class='green'><span class=''> </span><code>    Promise:Promise,</code></li>
-<li class='green'><span class=''> </span><code>    PromiseList:PromiseList</code></li>
+<li class='green'><span class=''> </span><code>    isPromiseLike: isPromiseLike,</code></li>
+<li class='green'><span class=''> </span><code>    when: when,</code></li>
+<li class='green'><span class=''> </span><code>    wrap: wrap,</code></li>
+<li class='green'><span class=''> </span><code>    wait: wait,</code></li>
+<li class='green'><span class=''> </span><code>    serial: serial,</code></li>
+<li class='green'><span class=''> </span><code>    chain: chain,</code></li>
+<li class='green'><span class=''> </span><code>    Promise: Promise,</code></li>
+<li class='green'><span class=''> </span><code>    PromiseList: PromiseList</code></li>
 <li class='green'><span class=''> </span><code>});</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>

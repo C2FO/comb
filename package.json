@@ -1,25 +1,25 @@
 {
-    "name":"comb",
-    "description":"A framework for node",
-    "version":"0.1.10",
-    "keywords":["OO", "Object Oriented", "Collections", "Tree", "HashTable", "Pool", "Logging", "Promise", "Promises", "Proxy"],
-    "repository":{
-        "type":"git",
-        "url":"git@github.com:C2FO/comb.git"
+    "name": "comb",
+    "description": "A framework for node",
+    "version": "0.2.0",
+    "keywords": ["OO", "Object Oriented", "Collections", "Tree", "HashTable", "Pool", "Logging", "Promise", "Promises", "Proxy"],
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:C2FO/comb.git"
     },
-    "homepage":"http://c2fo.github.com/comb/",
-    "author":"C2FO (http://c2fo.github.com)",
-    "main":"index.js",
-    "directories":{
-        "lib":"lib"
+    "homepage": "http://c2fo.github.com/comb/",
+    "author": "C2FO (http://c2fo.github.com)",
+    "main": "index.js",
+    "directories": {
+        "lib": "lib"
     },
-    "devDependencies":{
-        "it":"0.0.5"
+    "devDependencies": {
+        "it": "0.0.5"
     },
-    "scripts":{
-        "test":"make test-travis"
+    "scripts": {
+        "test": "export NODE_PATH=lib:$(NODE_PATH) && export NODE_ENV=test && ./node_modules/it/bin/it"
     },
-    "engines":{
-        "node":">= 0.6.1"
+    "engines": {
+        "node": ">= 0.6.1"
     }
 }
