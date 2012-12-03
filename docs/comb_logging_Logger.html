@@ -1157,7 +1157,7 @@ function (level,message){
    return {
        hostname: os.hostname(),
        pid: process.pid,
-       gid: process.getgid(),
+       gid: hasGetGid ? process.getgid() : null,
        processTitle: process.title,
        level: level,
        levelName: level.name,
