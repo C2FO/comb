@@ -1,3 +1,6 @@
+#0.2.1
+* Added check for `getgid` when logging on non posix systems
+
 #0.2.0 / 2012-11-20
 * Added new features to comb.define
   * extend - supports direct extension `Mammal.extend({})`

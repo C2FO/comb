@@ -301,4 +301,4 @@ it.describe("comb.logging.Logger",function (it) {
             });
         });
     });
-}).as(module).run();
+}).as(module);
