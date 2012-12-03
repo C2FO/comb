@@ -7,7 +7,6 @@ var it = require('it'),
     Broadcaster = comb;
 
 
-
 it.describe("comb/base/functions.js",function (it) {
 
 
@@ -26,16 +25,16 @@ it.describe("comb/base/functions.js",function (it) {
 
     it.describe("#hitch", function (it) {
         it.should("execute in the right scope", function () {
-            var a = comb.hitch({test:true}, function () {
+            var a = comb.hitch({test: true}, function () {
                 assert.isTrue(this.test);
             });
             a();
             var b = comb(function () {
                 assert.isTrue(this.test);
-            }).hitch({test:true});
+            }).hitch({test: true});
             b();
 
-            var c = comb({test:true}).hitch(function () {
+            var c = comb({test: true}).hitch(function () {
                 assert.isTrue(this.test);
             });
             c();
@@ -47,7 +46,7 @@ it.describe("comb/base/functions.js",function (it) {
                 assert.equal(testStr, "HELLO");
                 assert.equal(testStr2, "test");
             });
-            var obj = comb({test:true});
+            var obj = comb({test: true});
             comb.hitch(obj, func, "HELLO")("test");
             func.hitch(obj, "HELLO")("test");
             obj.hitch(func, "HELLO")("test");
@@ -89,7 +88,7 @@ it.describe("comb/base/functions.js",function (it) {
                     assert.lengthOf(args, 1);
                     assert.equal(args[0], "hello");
                 }),
-                obj = comb({test:true});
+                obj = comb({test: true});
 
             comb.hitchIgnore(obj, func, "hello")("world");
             func.hitchIgnore(obj, "hello")("world");
@@ -124,7 +123,7 @@ it.describe("comb/base/functions.js",function (it) {
 
     it.describe("#bind", function (it) {
         it.should("execute in the right scope", function () {
-            var obj = comb({test:true}),
+            var obj = comb({test: true}),
                 func = comb(function () {
                     assert.isTrue(this.test);
                 });
@@ -142,7 +141,7 @@ it.describe("comb/base/functions.js",function (it) {
 
     it.describe("#bindIgnore", function (it) {
         it.should("execute in the right scope ignoring extra arguments", function () {
-            var obj = comb({test:true}),
+            var obj = comb({test: true}),
                 func = comb(function () {
                     var args = comb.argsToArray(arguments);
                     assert.lengthOf(args, 1);
@@ -161,6 +160,54 @@ it.describe("comb/base/functions.js",function (it) {
         });
     });
 
+    it.describe("#hitchAll",function (it) {
+
+        var obj;
+        it.beforeEach(function () {
+            obj = {
+                a: "a",
+                b: "b",
+                c: "c",
+                aFunc: function () {
+                    return this.a;
+                },
+                bFunc: function () {
+                    return this.b;
+                },
+                cFunc: function () {
+                    return this.c;
+                }
+            };
+        });
+
+        it.should("hitch all functions in the object", function () {
+            var newScope = {};
+            comb.bindAll(obj);
+            assert.equal(obj.aFunc.call(newScope), "a");
+            assert.equal(obj.bFunc.call(newScope), "b");
+            assert.equal(obj.cFunc.call(newScope), "c");
+
+        });
+
+        it.should("hitch only functions specified in an array", function () {
+            var newScope = {};
+            comb.bindAll(obj, ["aFunc"]);
+            assert.equal(obj.aFunc.call(newScope), "a");
+            assert.isUndefined(obj.bFunc.call(newScope));
+            assert.isUndefined(obj.cFunc.call(newScope));
+        });
+
+        it.should("hitch only functions specified as the rest of the arguments", function () {
+            var newScope = {};
+            comb.bindAll(obj, "aFunc", "bFunc");
+            assert.equal(obj.aFunc.call(newScope), "a");
+            assert.equal(obj.bFunc.call(newScope), "b");
+            assert.isUndefined(obj.cFunc.call(newScope));
+        });
+
+    });
+
+
     it.describe("#partial", function (it) {
         it.should("not change the execution scope", function () {
             var func = comb(function (test) {
@@ -169,21 +216,21 @@ it.describe("comb/base/functions.js",function (it) {
             var c = comb.partial(func);
             c();
             func.partial()();
-            c.call({test:true}, true);
-            func.call({test:true}, true);
+            c.call({test: true}, true);
+            func.call({test: true}, true);
         });
 
         it.should("should work with strings", function () {
             var str = comb("test2");
             var c = comb.partial("test"), c2 = comb.partial("test2"), c3 = str.partial();
-            assert.equal(c.call({test:true}), true);
+            assert.equal(c.call({test: true}), true);
             assert.equal(c2.call({
-                test2:function () {
+                test2: function () {
                     return true;
                 }
             }), true);
             assert.equal(c3.call({
-                test2:function () {
+                test2: function () {
                     return true;
                 }
             }), true);
@@ -197,7 +244,7 @@ it.describe("comb/base/functions.js",function (it) {
             }, "hello");
             c("world");
 
-            comb("test2").partial("test").call({test:function (val1, val2) {
+            comb("test2").partial("test").call({test: function (val1, val2) {
                 assert.equal(val1, "test");
                 assert.equal(val2, "test2");
             }}, "test2");
@@ -220,8 +267,8 @@ it.describe("comb/base/functions.js",function (it) {
             var func = comb(function () {
                 assert.isTrue(this.test);
             });
-            comb.applyFirst(func)({test:true});
-            func.applyFirst()({test:true});
+            comb.applyFirst(func)({test: true});
+            func.applyFirst()({test: true});
         });
 
         it.should("curry arguments", function () {
@@ -230,8 +277,8 @@ it.describe("comb/base/functions.js",function (it) {
                 assert.equal(testStr, "HELLO");
                 assert.equal(testStr2, "test");
             });
-            comb.applyFirst(func, "HELLO")({test:true}, "test");
-            func.applyFirst("HELLO")({test:true}, "test");
+            comb.applyFirst(func, "HELLO")({test: true}, "test");
+            func.applyFirst("HELLO")({test: true}, "test");
         });
 
         it.should("throw an error with an invalid function", function () {
@@ -271,6 +318,7 @@ it.describe("comb/base/functions.js",function (it) {
         });
     });
 
+
     it.describe("#curry", function (it) {
         it.should("force invocation for the specified number of times", function () {
 
@@ -294,16 +342,16 @@ it.describe("comb/base/functions.js",function (it) {
                 assert.equal(c, "c");
                 assert.equal(d, "d");
             });
-            var curried = comb.curry(4, func, {test:true}),
-                curried2 = func.curry(4, {test:true});
+            var curried = comb.curry(4, func, {test: true}),
+                curried2 = func.curry(4, {test: true});
             curried("a")("b")("c")("d");
             curried2("a")("b")("c")("d");
         });
 
         it.should("accept an a string and execution scope", function () {
             var scope = comb({
-                test:true,
-                curried:function (a, b, c, d) {
+                test: true,
+                curried: function (a, b, c, d) {
                     assert.isTrue(this.test);
                     assert.equal(a, "a");
                     assert.equal(b, "b");
