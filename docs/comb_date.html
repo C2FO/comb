@@ -928,7 +928,7 @@
             second = date.getSeconds();
             millisecond = date.getMilliseconds();
         }
-        return format.replace(/([a-z])\1*/ig, function (match, options) {
+        return format.replace(/([A-Za-z])\1*/g, function (match, options) {
             var s, pad, h,
                 c = match.charAt(0),
                 l = match.length;
@@ -1439,7 +1439,7 @@ function (date,format,utc){
        second = date.getSeconds();
        millisecond = date.getMilliseconds();
    }
-   return format.replace(/([a-z])\1*/ig, function (match, options) {
+   return format.replace(/([A-Za-z])\1*/g, function (match, options) {
        var s, pad, h,
            c = match.charAt(0),
            l = match.length;
