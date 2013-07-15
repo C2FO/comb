@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
@@ -74,13 +74,18 @@
             z-index: 1000;
         }
 
+        .dropdown-menu{
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
         @media (max-width:979px) {
             .subnav{
                 margin-top: auto;
             }
         }
     </style>
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.min.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -1137,19 +1142,14 @@
 </div>
 <em>Defined index.js</em>
 
-<p><p>Utilities for javascript, optimized for the server environment.
-
-
-</p>
+<p><p>Utilities for javascript, optimized for the server environment.</p>
 </p>
 
 
 
 
 
-    <table class='table table-bordered table-striped'><tr><td>Property</td><td>Type</td><td>Default Value</td><td>Description</td></tr><tr><td><em>define</em></td><td>property</td><td><code>define</code></td><td><p>Defines a new class to be used
-
-</p>
+    <table class='table table-bordered table-striped'><tr><td>Property</td><td>Type</td><td>Default Value</td><td>Description</td></tr><tr><td><em>define</em></td><td>property</td><td><code>define</code></td><td><p>Defines a new class to be used</p>
 <p>
     Class methods
     <ul>
@@ -1171,8 +1171,7 @@
 </p>
 
 
-</td><tr><tr><td><em>singleton</em></td><td>property</td><td><code>singleton</code></td><td><p>Defines a singleton instance of a Class. See <a href='./define.html#'> define</a>
-</p>
+</td><tr><tr><td><em>singleton</em></td><td>property</td><td><code>singleton</code></td><td><p>Defines a singleton instance of a Class. See <a href='./define.html#'> define</a></p>
 </td><tr></table>
     
         <a name=".applyFirst"></a>
@@ -1194,12 +1193,8 @@
 <hr/>
 <em>Defined base/functions.js</em>
 
-<p><p>Binds a method to the scope of the first argument.
-
-</p>
-<p>This is useful if you have async actions and you just want to run a method or retrieve a property on the object.
-
-</p>
+<p><p>Binds a method to the scope of the first argument.</p>
+<p>This is useful if you have async actions and you just want to run a method or retrieve a property on the object.</p>
 <pre class='prettyprint linenums lang-js'><code> var arr = [], push = comb.applyFirst(&quot;push&quot;), length = comb.applyFirst(&quot;length&quot;);
  push(arr, 1, 2,3,4);
  console.log(length(arr)); //4
@@ -1280,9 +1275,7 @@ function (method,args){
 <hr/>
 <em>Defined base/misc.js</em>
 
-<p><p>Converts an arguments object to an array
-
-</p>
+<p><p>Converts an arguments object to an array</p>
 </p>
 
     <em>Example</em>
@@ -1467,9 +1460,7 @@ hitchIgnore
 
 <p><p>Broadcasts an event to all listeners
 NOTE : the function takes a variable number of arguments
-       i.e. all arguments after the topic will be passed to the listeners
-
-</p>
+       i.e. all arguments after the topic will be passed to the listeners</p>
 </p>
 
     <em>Example</em>
@@ -1538,9 +1529,7 @@ function (){
 <hr/>
 <em>Defined base/inflections.js</em>
 
-<p><p>Converts a string to camelcase
-
-</p>
+<p><p>Converts a string to camelcase</p>
 </p>
 
     <em>Example</em>
@@ -1610,9 +1599,7 @@ function (str){
 
 <p><p>Works just like <a href='./comb_Promise.html#chain'> comb.Promise#chain</a> method, allowing you to propogate results from one funciton to another.
 This is different than <a href='./comb.html#.serial'> comb.serial</a> in that it propogates results from one promise to the next, where
-<a href='./comb.html#.serial'> comb.serial</a> does not.
-
-</p>
+<a href='./comb.html#.serial'> comb.serial</a> does not.</p>
 </p>
 
     <em>Example</em>
@@ -1694,9 +1681,7 @@ function (list){
 <em>Defined base/inflections.js</em>
 
 <p><p>Singularizes and camelizes the string.  Also strips out all characters preceding
-and including a period (&quot;.&quot;).
-
-</p>
+and including a period (&quot;.&quot;).</p>
 </p>
 
     <em>Example</em>
@@ -1760,9 +1745,7 @@ function (str){
 <hr/>
 <em>Defined base/broadcast.js</em>
 
-<p><p>Function to listen when other functions are called
-
-</p>
+<p><p>Function to listen when other functions are called</p>
 </p>
 
     <em>Example</em>
@@ -1847,8 +1830,7 @@ function (obj,method,cb,scope){
 <hr/>
 <em>Defined base/functions.js</em>
 
-<p><p>Curries a function
-</p>
+<p><p>Curries a function</p>
 </p>
 
     <em>Example</em>
@@ -1934,9 +1916,7 @@ function (depth,cb,scope){
 <hr/>
 <em>Defined base/date/index.js</em>
 
-<p><p>Subtracts the specified day/s from the current date.
-
-</p>
+<p><p>Subtracts the specified day/s from the current date.</p>
 </p>
 
 
@@ -1989,9 +1969,7 @@ function (val){
 <hr/>
 <em>Defined base/date/index.js</em>
 
-<p><p>Adds the specified day/s to the current date.
-
-</p>
+<p><p>Adds the specified day/s to the current date.</p>
 </p>
 
 
@@ -2042,9 +2020,7 @@ function (val){
 <hr/>
 <em>Defined base/object.js</em>
 
-<p><p>Determines if two things are deep equal.
-
-</p>
+<p><p>Determines if two things are deep equal.</p>
 </p>
 
     <em>Example</em>
@@ -2106,9 +2082,7 @@ function (o1,o2){
 <em>Defined base/object.js</em>
 
 <p><p>Merges objects together only overriding properties that are different.
-NOTE: this function takes a variable number of objects to merge
-
-</p>
+NOTE: this function takes a variable number of objects to merge</p>
 </p>
 
     <em>Example</em>
@@ -2151,7 +2125,7 @@ function (obj,props){
    if (!obj) {
        obj = {};
    }
-   for (var i = 1, l = arguments.length; i &lt; l; i++) {
+   for (var i = 1, l = arguments.length; i &amp;lt; l; i++) {
        deepMerge(obj, arguments[i]);
    }
    return obj; // Object
@@ -2180,8 +2154,7 @@ function (obj,props){
 <hr/>
 <em>Defined base/broadcast.js</em>
 
-<p><p>Disconnects a listener to a function
-</p>
+<p><p>Disconnects a listener to a function</p>
 </p>
 
 
@@ -2242,9 +2215,7 @@ function (handle){
 <hr/>
 <em>Defined base/object.js</em>
 
-<p><p>Extends the prototype of an object if it exists otherwise it extends the object.
-
-</p>
+<p><p>Extends the prototype of an object if it exists otherwise it extends the object.</p>
 </p>
 
     <em>Example</em>
@@ -2325,9 +2296,7 @@ function (parent,extend){
 <hr/>
 <em>Defined base/functions.js</em>
 
-<p><p>Binds a method to a particular scope
-
-</p>
+<p><p>Binds a method to a particular scope</p>
 </p>
 
 
@@ -2409,8 +2378,7 @@ function (scope,method,args){
 
 <p><p>Binds a method to a particular scope ignoring any new arguments passed
 into the function. This is useful if you want to force particular arguments and
-ignore any new ones
-</p>
+ignore any new ones</p>
 </p>
 
 
@@ -2488,9 +2456,7 @@ function (scope,method,args){
 <hr/>
 <em>Defined base/date/index.js</em>
 
-<p><p>Subtracts the specified hour/s from the current date.
-
-</p>
+<p><p>Subtracts the specified hour/s from the current date.</p>
 </p>
 
 
@@ -2543,9 +2509,7 @@ function (val){
 <hr/>
 <em>Defined base/date/index.js</em>
 
-<p><p>Adds the specified hour/s to the current date.
-
-</p>
+<p><p>Adds the specified hour/s to the current date.</p>
 </p>
 
 
@@ -2598,9 +2562,7 @@ function (val){
 <hr/>
 <em>Defined base/misc.js</em>
 
-<p><p>Determines if obj is an Arguments object;
-
-</p>
+<p><p>Determines if obj is an Arguments object;</p>
 </p>
 
 
@@ -2655,9 +2617,7 @@ function (object){
 <hr/>
 <em>Defined base/misc.js</em>
 
-<p><p>Determines if obj is a boolean
-
-</p>
+<p><p>Determines if obj is a boolean</p>
 </p>
 
 
@@ -2711,9 +2671,7 @@ function (obj){
 <hr/>
 <em>Defined base/date/index.js</em>
 
-<p><p>Determines if obj is a Date
-
-</p>
+<p><p>Determines if obj is a Date</p>
 </p>
 
 
@@ -2767,9 +2725,7 @@ function (obj){
 <hr/>
 <em>Defined base/misc.js</em>
 
-<p><p>Determins if the obj is not undefined
-
-</p>
+<p><p>Determins if the obj is not undefined</p>
 </p>
 
 
@@ -2820,9 +2776,7 @@ function (obj){
 <hr/>
 <em>Defined base/object.js</em>
 
-<p><p>Determines if an object is empty
-
-</p>
+<p><p>Determines if an object is empty</p>
 </p>
 
     <em>Example</em>
@@ -2888,8 +2842,7 @@ function (object){
 <hr/>
 <em>Defined base/functions.js</em>
 
-<p><p>Determines if something is a function
-</p>
+<p><p>Determines if something is a function</p>
 </p>
 
 
@@ -2940,9 +2893,7 @@ function (obj){
 <hr/>
 <em>Defined base/object.js</em>
 
-<p><p>Determines if an object is just a hash and not a qualified Object such as Number
-
-</p>
+<p><p>Determines if an object is just a hash and not a qualified Object such as Number</p>
 </p>
 
     <em>Example</em>
@@ -3011,9 +2962,7 @@ function (obj){
 <hr/>
 <em>Defined base/misc.js</em>
 
-<p><p>Determines if obj is an instance of a particular class
-
-</p>
+<p><p>Determines if obj is an instance of a particular class</p>
 </p>
 
 
@@ -3073,9 +3022,7 @@ function (obj,clazz){
 <hr/>
 <em>Defined base/misc.js</em>
 
-<p><p>Determines if obj is null
-
-</p>
+<p><p>Determines if obj is null</p>
 </p>
 
 
@@ -3129,9 +3076,7 @@ function (obj){
 <hr/>
 <em>Defined base/number.js</em>
 
-<p><p>Determines if obj is a number
-
-</p>
+<p><p>Determines if obj is a number</p>
 </p>
 
 
@@ -3183,9 +3128,7 @@ function (obj){
 <hr/>
 <em>Defined base/object.js</em>
 
-<p><p>Determines if obj is an object
-
-</p>
+<p><p>Determines if obj is an object</p>
 </p>
 
 
@@ -3239,8 +3182,7 @@ function (obj){
 <hr/>
 <em>Defined promise.js</em>
 
-<p><p>Tests if an object is like a promise (i.e. it contains then, addCallback, addErrback)
-</p>
+<p><p>Tests if an object is like a promise (i.e. it contains then, addCallback, addErrback)</p>
 </p>
 
 
@@ -3286,9 +3228,7 @@ function (obj){
 <hr/>
 <em>Defined base/regexp.js</em>
 
-<p><p>Tests if something is a regular expression.
-
-</p>
+<p><p>Tests if something is a regular expression.</p>
 </p>
 
     <em>Example</em>
@@ -3347,9 +3287,7 @@ function (obj){
 <hr/>
 <em>Defined base/string.js</em>
 
-<p><p>Tests if something is a string.
-
-</p>
+<p><p>Tests if something is a string.</p>
 </p>
 
     <em>Example</em>
@@ -3409,9 +3347,7 @@ function (obj){
 <hr/>
 <em>Defined base/misc.js</em>
 
-<p><p>Determines if obj is undefined
-
-</p>
+<p><p>Determines if obj is undefined</p>
 </p>
 
 
@@ -3465,9 +3401,7 @@ function (obj){
 <hr/>
 <em>Defined base/misc.js</em>
 
-<p><p>Determines if obj is undefined or null
-
-</p>
+<p><p>Determines if obj is undefined or null</p>
 </p>
 
 
@@ -3520,9 +3454,7 @@ function (obj){
 <hr/>
 <em>Defined base/broadcast.js</em>
 
-<p><p>Listen for the broadcast of certain events
-
-</p>
+<p><p>Listen for the broadcast of certain events</p>
 </p>
 
     <em>Example</em>
@@ -3600,9 +3532,7 @@ function (topic,callback){
 <em>Defined base/misc.js</em>
 
 <p><p>Adds listeners to process.exit without having to change setMaxListeners useful if you
-are writing a library and do not want to change core setting.
-
-</p>
+are writing a library and do not want to change core setting.</p>
 </p>
 
 
@@ -3648,9 +3578,7 @@ function (cb){
 <em>Defined base/object.js</em>
 
 <p><p>Merges objects together
-NOTE: this function takes a variable number of objects to merge
-
-</p>
+NOTE: this function takes a variable number of objects to merge</p>
 </p>
 
     <em>Example</em>
@@ -3697,7 +3625,7 @@ function (obj,props){
    if (!obj) {
        obj = {};
    }
-   for (var i = 1, l = arguments.length; i &lt; l; i++) {
+   for (var i = 1, l = arguments.length; i &amp;lt; l; i++) {
        merge(obj, arguments[i]);
    }
    return obj; // Object
@@ -3726,9 +3654,7 @@ function (obj,props){
 <hr/>
 <em>Defined base/date/index.js</em>
 
-<p><p>Subtracts the specified minute/s from the current date.
-
-</p>
+<p><p>Subtracts the specified minute/s from the current date.</p>
 </p>
 
 
@@ -3781,9 +3707,7 @@ function (val){
 <hr/>
 <em>Defined base/date/index.js</em>
 
-<p><p>Adds the specified minute/s to the current date.
-
-</p>
+<p><p>Adds the specified minute/s to the current date.</p>
 </p>
 
 
@@ -3836,9 +3760,7 @@ function (val){
 <hr/>
 <em>Defined base/date/index.js</em>
 
-<p><p>Subtracts the specified month/s from the current date.
-
-</p>
+<p><p>Subtracts the specified month/s from the current date.</p>
 </p>
 
 
@@ -3891,9 +3813,7 @@ function (val){
 <hr/>
 <em>Defined base/date/index.js</em>
 
-<p><p>Adds the specified month/s to the current date.
-
-</p>
+<p><p>Adds the specified month/s to the current date.</p>
 </p>
 
     <em>Example</em>
@@ -3953,9 +3873,7 @@ function (val){
 <em>Defined base/functions.js</em>
 
 <p><p>Allows the passing of additional arguments to a function when it is called
-especially useful for callbacks that you want to provide additional parameters to
-
-</p>
+especially useful for callbacks that you want to provide additional parameters to</p>
 </p>
 
 
@@ -4030,9 +3948,7 @@ function (method,args){
 <hr/>
 <em>Defined base/inflections.js</em>
 
-<p><p>Returns the plural form of the word in the string.
-
-</p>
+<p><p>Returns the plural form of the word in the string.</p>
 </p>
 
     <em>Example</em>
@@ -4106,9 +4022,7 @@ function (str){
 <hr/>
 <em>Defined base/date/index.js</em>
 
-<p><p>Subtracts the specified second/s from the current date.
-
-</p>
+<p><p>Subtracts the specified second/s from the current date.</p>
 </p>
 
 
@@ -4161,9 +4075,7 @@ function (val){
 <hr/>
 <em>Defined base/date/index.js</em>
 
-<p><p>Adds the specified second/s to the current date.
-
-</p>
+<p><p>Adds the specified second/s to the current date.</p>
 </p>
 
 
@@ -4218,9 +4130,7 @@ function (val){
 
 <p><p>Executes a list of items in a serial manner. If the list contains promises then each promise
 will be executed in a serial manner, if the list contains non async items then the next item in the list
-is called.
-
-</p>
+is called.</p>
 </p>
 
     <em>Example</em>
@@ -4292,9 +4202,7 @@ function (list,callback,errback){
 <hr/>
 <em>Defined base/inflections.js</em>
 
-<p><p>The reverse of pluralize, returns the singular form of a word in a string.
-
-</p>
+<p><p>The reverse of pluralize, returns the singular form of a word in a string.</p>
 </p>
 
     <em>Example</em>
@@ -4368,9 +4276,7 @@ function (str){
 <hr/>
 <em>Defined base/broadcast.js</em>
 
-<p><p>Disconnects a listener
-
-</p>
+<p><p>Disconnects a listener</p>
 </p>
 
 
@@ -4428,9 +4334,7 @@ function (handle){
 <hr/>
 <em>Defined base/inflections.js</em>
 
-<p><p>The reverse of camelize. Makes an underscored form from the expression in the string.
-
-</p>
+<p><p>The reverse of camelize. Makes an underscored form from the expression in the string.</p>
 </p>
 
     <em>Example</em>
@@ -4498,12 +4402,8 @@ function (str){
 <hr/>
 <em>Defined promise.js</em>
 
-<p><p>Ensures that a promise is resolved before a the function can be run.
-
-</p>
-<p>For example suppose you have to ensure that you are connected to a database before you execute a function.
-
-</p>
+<p><p>Ensures that a promise is resolved before a the function can be run.</p>
+<p>For example suppose you have to ensure that you are connected to a database before you execute a function.</p>
 <pre class='prettyprint linenums lang-js'><code>var findUser = comb.wait(connect(), function findUser(id){
      //this wont execute until we are connected
      return User.findById(id);
@@ -4546,9 +4446,10 @@ function (args,fn){
    var p = when(args);
    return function waiter() {
        if (!resolved) {
-           args = arguments;
-           return p.chain(function doneWaiting() {
+           var args = arguments;
+           return p.chain(function () {
                resolved = true;
+               p = null;
                return fn.apply(this, args);
            }.bind(this));
        } else {
@@ -4581,9 +4482,7 @@ function (args,fn){
 <em>Defined promise.js</em>
 
 <p><p>Waits for promise and non promise values to resolve and fires callback or errback appropriately. If you pass in an array of promises
-then it will wait for all promises in the list to resolve.
-
-</p>
+then it will wait for all promises in the list to resolve.</p>
 </p>
 
     <em>Example</em>
@@ -4678,8 +4577,7 @@ function (args,cb,eb){
 <hr/>
 <em>Defined promise.js</em>
 
-<p><p>Wraps traditional node style functions with a promise.
-</p>
+<p><p>Wraps traditional node style functions with a promise.</p>
 </p>
 
     <em>Example</em>
@@ -4755,9 +4653,7 @@ function (fn,scope){
 <hr/>
 <em>Defined base/date/index.js</em>
 
-<p><p>Subtracts the specified year/s from the current date.
-
-</p>
+<p><p>Subtracts the specified year/s from the current date.</p>
 </p>
 
 
@@ -4810,9 +4706,7 @@ function (val){
 <hr/>
 <em>Defined base/date/index.js</em>
 
-<p><p>Adds the specified year/s to the current date.
-
-</p>
+<p><p>Adds the specified year/s to the current date.</p>
 </p>
 
     <em>Example</em>
@@ -4856,9 +4750,7 @@ function (val){
 
     
   <h2>License</h2>
-<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a>
-
-</p>
+<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
 <h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>

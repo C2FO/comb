@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
@@ -74,13 +74,18 @@
             z-index: 1000;
         }
 
+        .dropdown-menu{
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
         @media (max-width:979px) {
             .subnav{
                 margin-top: auto;
             }
         }
     </style>
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.min.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -477,8 +482,7 @@ function (){
 
 <p><p>Use to listen to after an event has occurred i.e. post save</p>
 
-<p><b>NOTE:</b></br>
-</p>
+<p><b>NOTE:</b></br></p>
 <ul>
     <li>You must call next in order for the middleware chain to complete</li>
      <li>This connects to events on ALL instances of an object</li>
@@ -547,8 +551,7 @@ function (name,cb){
 
 <p><p> Use to listen to after an event has occurred i.e. post save</p>
 
-<p><b>NOTE:</b></br>
-</p>
+<p><b>NOTE:</b></br></p>
 <ul>
     <li>You must call next in order for the middleware chain to complete</li>
      <li>This connects to events on ALL instances of an object</li>
@@ -664,7 +667,7 @@ function (state,op,args){
            if (err) {
                promise.errback(err);
            } else {
-               process.nextTick(func.hitch(this, function () {
+               setImmediate(func.hitch(this, function () {
                    //if Ive looped through all of them callback
                    if (count == length) {
                        promise.callback();
@@ -707,8 +710,7 @@ function (state,op,args){
 <em>Defined plugins/Middleware.js</em>
 
 <p><p><p>Use to listen to after an event has occurred i.e. post save</p>
-<b>NOTE:</b></br>
-</p>
+<b>NOTE:</b></br></p>
 <ul>
     <li>You must call next in order for the middleware chain to complete</li>
      <li>This connects to events on the instance of an object, NOT all instances!</li>
@@ -773,11 +775,8 @@ function (fun,callback){
 <hr/>
 <em>Defined plugins/Middleware.js</em>
 
-<p><p>Use to listen to before an event occurred i.e. pre save
-
-</p>
-<p><b>NOTE:</b></br>
-</p>
+<p><p>Use to listen to before an event occurred i.e. pre save</p>
+<p><b>NOTE:</b></br></p>
 <ul>
     <li>You must call next in order for the middleware chain to complete</li>
      <li>This connects to events on the instance of an object, not all instances!</li>
@@ -829,9 +828,7 @@ function (fun,callback){
 
     
   <h2>License</h2>
-<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a>
-
-</p>
+<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
 <h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>

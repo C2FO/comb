@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
@@ -74,13 +74,18 @@
             z-index: 1000;
         }
 
+        .dropdown-menu{
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
         @media (max-width:979px) {
             .subnav{
                 margin-top: auto;
             }
         }
     </style>
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.min.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -276,13 +281,9 @@
 
 
 <h1>Common Utilities</h1>
-<p><code>comb</code> includes a lot of function that are used commonly when developing application. Here we&#39;ll go over a few of the most commonly used ones.
-
-</p>
+<p><code>comb</code> includes a lot of function that are used commonly when developing application. Here we&#39;ll go over a few of the most commonly used ones.</p>
 <h2>is* functions</h2>
-<p><code>comb</code> includes a number of <code>is</code> function to test if something is of the type.
-
-</p>
+<p><code>comb</code> includes a number of <code>is</code> function to test if something is of the type.</p>
 <ul>
 <li><a href="./comb.html#.isDefined">isDefined</a> : test if the arguments is defined.</li>
 <li><a href="./comb.html#.isUndefined">isUndefined</a></li>
@@ -303,9 +304,7 @@
 </ul>
 <h2><a href="./comb_string.html">String utilities</a></h2>
 <h3><a href="./comb_string.html#.format">format</a></h3>
-<p>Formats a string with the specified format.                                  
-
-</p>
+<p>Formats a string with the specified format.                                  </p>
 <pre class='prettyprint linenums lang-js'><code>// &quot;Hello, World&quot;;                                                                                                     
 comb.string.format(&quot;%s, %s&quot;, [&quot;Hello&quot;, &quot;World&quot;]);
 
@@ -367,16 +366,12 @@ comb.string.format(&quot;{[-s10]apple}, {[%#10]orange}, {[10]banana} and {[-10]w
 <li>Date Options <code>%[format]D</code> or <code>%[format]Z</code>. See <a href="./comb_date.html#.format">comb.date.format</a> for formatting options.   </li>
 </ul>
 <h3><a href="./comb_string.html#.style">style</a></h3>
-<p>Styles a string for terminal output.
-
-</p>
+<p>Styles a string for terminal output.</p>
 <pre class='prettyprint linenums lang-js'><code>//style a string red                      
 comb.string.style(&#39;myStr&#39;, &#39;red&#39;);        
 //style a string red and bold             
 comb.string.style(&#39;myStr&#39;, [&#39;red&#39;, bold]);</code></pre>
-<p>The style options include
-
-</p>
+<p>The style options include</p>
 <ul>
 <li>bold</li>
 <li>bright</li>
@@ -411,89 +406,63 @@ comb.string.style(&#39;myStr&#39;, [&#39;red&#39;, bold]);</code></pre>
 </ul>
 <h2><a href="./comb_array.html">Array utilities</a></h2>
 <h3><a href="./comb_array.html#.avg">avg</a></h3>
-<p>Averages an array of numbers.
-
-</p>
+<p>Averages an array of numbers.</p>
 <pre class='prettyprint linenums lang-js'><code>comb.array.avg([1,2,3]); //2</code></pre>
 <h3><a href="./comb_array.html#.compact">compact</a></h3>
-<p>Compacts an array removing <code>null</code> or <code>undefined</code> objects from the array.
-
-</p>
+<p>Compacts an array removing <code>null</code> or <code>undefined</code> objects from the array.</p>
 <pre class='prettyprint linenums lang-js'><code>var x;
 comb.array.compact([1,null,null,x,2]) =&gt; [1,2]
 comb.array.compact([1,2]) =&gt; [1,2]</code></pre>
 <h3><a href="./comb_array.html#.difference">difference</a></h3>
-<p>Finds the difference of the two arrays.
-
-</p>
+<p>Finds the difference of the two arrays.</p>
 <pre class='prettyprint linenums lang-js'><code>comb.array.difference([1,2,3], [2,3]); //[1]
 comb.array.difference([&quot;a&quot;,&quot;b&quot;,3], [3]); //[&quot;a&quot;,&quot;b&quot;]</code></pre>
 <h3><a href="./comb_array.html#.flatten">flatten</a></h3>
-<p>Flatten multiple arrays into a single array
-
-</p>
+<p>Flatten multiple arrays into a single array</p>
 <pre class='prettyprint linenums lang-js'><code>comb.array.flatten([1,2], [2,3], [3,4]) =&gt; [1,2,2,3,3,4]
 comb.array.flatten([1,&quot;A&quot;], [2,&quot;B&quot;], [3,&quot;C&quot;]) =&gt; [1,&quot;A&quot;,2,&quot;B&quot;,3,&quot;C&quot;]</code></pre>
 <h3><a href="./comb_array.html#.compact">intersect</a></h3>
-<p>Finds the intersection of arrays.
-
-</p>
+<p>Finds the intersection of arrays.</p>
 <pre class='prettyprint linenums lang-js'><code>comb.array.intersect([1,2], [2,3], [2,3,5]) =&gt; [2]
 comb.array.intersect([1,2,3], [2,3,4,5], [2,3,5]) =&gt; [2,3]
 comb.array.intersect([1,2,3,4], [2,3,4,5], [2,3,4,5]) =&gt; [2,3,4]
 comb.array.intersect([1,2,3,4,5], [1,2,3,4,5], [1,2,3]) =&gt; [1,2,3]
 comb.array.intersect([[1,2,3,4,5],[1,2,3,4,5],[1,2,3]]) =&gt; [1,2,3]</code></pre>
 <h3><a href="./comb_array.html#.compact">max</a></h3>
-<p>Finds that max value of an array. If a second argument is provided and it is a function it will be used as a comparator function. If the second argument is a string then it will be used as a property look up on each item.
-
-</p>
+<p>Finds that max value of an array. If a second argument is provided and it is a function it will be used as a comparator function. If the second argument is a string then it will be used as a property look up on each item.</p>
 <pre class='prettyprint linenums lang-js'><code>comb.array.max([{a : 1}, {a : 2}, {a : -2}], &quot;a&quot;); //{a : 2}
 comb.array.max([{a : 1}, {a : 2}, {a : -2}], function(a,b){
      return a.a - b.a
 }); //{a : 2}</code></pre>
 <h3><a href="./comb_array.html#.compact">min</a></h3>
-<p>Finds that min value of an array. If a second argument is provided and it is a function it will be used as a comparator function. If the second argument is a string then it will be used as a property look up on each item.
-
-</p>
+<p>Finds that min value of an array. If a second argument is provided and it is a function it will be used as a comparator function. If the second argument is a string then it will be used as a property look up on each item.</p>
 <pre class='prettyprint linenums lang-js'><code>comb.array.min([{a : 1}, {a : 2}, {a : -2}], &quot;a&quot;); //{a : -2}
 comb.array.min([{a : 1}, {a : 2}, {a : -2}], function(a,b){
      return a.a - b.a
 }); //{a : -2}</code></pre>
 <h3><a href="./comb_array.html#.compact">sort</a></h3>
-<p>Allows the sorting of an array based on a property name instead. This can also act as a sort that does not change the original array. <strong>NOTE: this does not change the original array!</strong>
-
-</p>
+<p>Allows the sorting of an array based on a property name instead. This can also act as a sort that does not change the original array. <strong>NOTE: this does not change the original array!</strong></p>
 <pre class='prettyprint linenums lang-js'><code>comb.array.sort([{a : 1}, {a : 2}, {a : -2}], &quot;a&quot;); //[{a : -2}, {a : 1}, {a : 2}];</code></pre>
 <h3><a href="./comb_array.html#.removeDuplicates">removeDuplicates</a></h3>
-<p>Removes duplicates from an array.
-
-</p>
+<p>Removes duplicates from an array.</p>
 <pre class='prettyprint linenums lang-js'><code>comb.array.removeDuplicates([1,1,1]) =&gt; [1]
 comb.array.removeDuplicates([1,2,3,2]) =&gt; [1,2,3]</code></pre>
 <h3><a href="./comb_array.html#.sum">sum</a></h3>
-<p>Finds the sum of an array
-
-</p>
+<p>Finds the sum of an array</p>
 <pre class='prettyprint linenums lang-js'><code>comb.array.sum([1,2,3]) =&gt; 6</code></pre>
 <h3><a href="./comb_array.html#.toArray">toArray</a></h3>
-<p>Converts anything to an array. Useful if you want to covert a hash into an array.
-
-</p>
+<p>Converts anything to an array. Useful if you want to covert a hash into an array.</p>
 <pre class='prettyprint linenums lang-js'><code>comb.array.toArray({a : &quot;b&quot;, b : &quot;c&quot;}) =&gt; [[&quot;a&quot;,&quot;b&quot;], [&quot;b&quot;,&quot;c&quot;]];
 comb.array.toArray(&quot;a&quot;) =&gt; [&quot;a&quot;]
 comb.array.toArray([&quot;a&quot;]) =&gt;  [&quot;a&quot;];
 comb.array.toArray() =&gt; [];
 comb.array.toArray(&quot;a&quot;, {a : &quot;b&quot;}) =&gt; [&quot;a&quot;, [&quot;a&quot;, &quot;b&quot;]];</code></pre>
 <h3><a href="./comb_array.html#.union">union</a></h3>
-<p>Finds the union of two arrays
-
-</p>
+<p>Finds the union of two arrays</p>
 <pre class='prettyprint linenums lang-js'><code>comb.array.union([&#39;a&#39;,&#39;b&#39;,&#39;c&#39;], [&#39;b&#39;,&#39;c&#39;, &#39;d&#39;]) =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
 comb.array.union([&quot;a&quot;], [&quot;b&quot;], [&quot;c&quot;], [&quot;d&quot;], [&quot;c&quot;]) =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]</code></pre>
 <h3><a href="./comb_array.html#.zip">zip</a></h3>
-<p>Zips multiple arrays into a single array.
-
-</p>
+<p>Zips multiple arrays into a single array.</p>
 <pre class='prettyprint linenums lang-js'><code>var a = [ 4, 5, 6 ], b = [ 7, 8, 9 ]
 
 comb.array.zip([1], [2], [3]) =&gt; [[ 1, 2, 3 ]]);
@@ -503,18 +472,14 @@ comb.array.zip([1,2], a, b) =&gt; [[1, 4, 7],[2, 5, 8]]
 comb.array.zip(a, [1,2], [8]) =&gt; [[4,1,8],[5,2,null],[6,null,null]]</code></pre>
 <h2><a href="./comb_number.html">Number utilities</a></h2>
 <h3><a href="./comb_number.html#.round">round</a></h3>
-<p>Rounds a number to the specified places.
-
-</p>
+<p>Rounds a number to the specified places.</p>
 <pre class='prettyprint linenums lang-js'><code>comb.number.round(10.000009, 2); //10
 comb.number.round(10.000009, 5); //10.00001
 comb.number.round(10.0009, 3); //10.001
 comb.number.round(10.0009, 2); //10
 comb.number.round(10.0009, 3); //10.001</code></pre>
 <h3><a href="./comb_number.html#.roundCel">roundCeil</a></h3>
-<p>Rounds a number to the specified places, rounding up.
-
-</p>
+<p>Rounds a number to the specified places, rounding up.</p>
 <pre class='prettyprint linenums lang-js'><code>comb.number.roundCeil(10.000001, 2); //10.01
 comb.number.roundCeil(10.000002, 5); //10.00001
 comb.number.roundCeil(10.0003, 3); //10.001
@@ -523,9 +488,7 @@ comb.number.roundCeil(10.0005, 3); //10.001
 comb.number.roundCeil(10.0002, 2); //10.01</code></pre>
 <h2><a href="./comb_date.html">Date utilities</a></h2>
 <h3><a href="./comb_date.html#.add">add</a></h3>
-<p>Adds a specified interval and amount to a date
-
-</p>
+<p>Adds a specified interval and amount to a date</p>
 <pre class='prettyprint linenums lang-js'><code>var dtA = new Date(2005, 11, 27);
 comb.date.add(dtA, &quot;year&quot;, 1); //new Date(2006, 11, 27);
 comb.date.add(dtA, &quot;years&quot;, 1) //new Date(2006, 11, 27);
@@ -564,9 +527,7 @@ comb.date.add(dtA, &quot;second&quot;, 1); //new Date(2001, 0, 1, 0, 0, 0);
 dtA = new Date(2000, 11, 31, 23, 59, 59, 999);
 comb.date.add(dtA, &quot;millisecond&quot;, 1); //new Date(2001, 0, 1, 0, 0, 0, 0);</code></pre>
 <h3><a href="./comb_date.html#.compare">compare</a></h3>
-<p>Compares two dates
-
-</p>
+<p>Compares two dates</p>
 <pre class='prettyprint linenums lang-js'><code>var d1 = new Date();
 d1.setHours(0);
 comb.date.compare(d1, d1); //0
@@ -587,9 +548,7 @@ d2.setHours(12);
 comb.date.compare(d2, d1, &quot;date&quot;); //-1
 comb.date.compare(d1, d2, &quot;time&quot;); //-1</code></pre>
 <h3><a href=".comb_date.html#.difference">difference</a></h3>
-<p>Finds the difference between two dates based on the specified interval
-
-</p>
+<p>Finds the difference between two dates based on the specified interval</p>
 <pre class='prettyprint linenums lang-js'><code>var dtA, dtB;
 
 dtA = new Date(2005, 11, 27);
@@ -629,9 +588,7 @@ dtA = new Date(2000, 11, 31, 23, 59, 59, 999);
 dtB = new Date(2001, 0, 1, 0, 0, 0, 0);
 comb.date.difference(dtA, dtB, &quot;millisecond&quot;) =&gt; 1</code></pre>
 <h3><a href="./comb_date.html#.format">format</a></h3>
-<p>Formats a date to the specidifed format string
-
-</p>
+<p>Formats a date to the specidifed format string</p>
 <pre class='prettyprint linenums lang-js'><code>var date = new Date(2006, 7, 11, 0, 55, 12, 345);
 
 //&quot;Friday, August 11, 2006&quot;
@@ -660,9 +617,7 @@ comb.date.format(date, &#39;H:m:s.SS&#39;);
 
 //&quot;11082006&quot;
 comb.date.format(date, &quot;ddMMyyyy&quot;);</code></pre>
-<p>Format specifiers include
-
-</p>
+<p>Format specifiers include</p>
 <ul>
 <li><code>G</code> Era designator Text AD</li>
 <li><code>y</code> Year Year 1996; 96</li>
@@ -684,9 +639,7 @@ comb.date.format(date, &quot;ddMMyyyy&quot;);</code></pre>
 <li><code>Z</code> Time zone RFC 822 time zone -0800</li>
 </ul>
 <h3><a href="./comb_date.html#.parse">parse</a></h3>
-<p>Parses a date string into a date object
-
-</p>
+<p>Parses a date string into a date object</p>
 <pre class='prettyprint linenums lang-js'><code>var aug_11_2006 = new Date(2006, 7, 11, 0);
 //all of the following will parse to aug_11_2006
  comb.date.parse(&quot;08/11/06&quot;, &quot;MM/dd/yy&quot;);
@@ -694,9 +647,7 @@ comb.date.format(date, &quot;ddMMyyyy&quot;);</code></pre>
  comb.date.parse(&quot;Aug 11, 2006&quot;, &quot;MMM dd, yyyy&quot;); //aug_11_2006 
  comb.date.parse(&quot;August 11, 2006&quot;, &quot;MMMM dd, yyyy&quot;); //aug_11_2006
  comb.date.parse(&quot;Friday, August 11, 2006&quot;, &quot;EEEE, MMMM dd, yyyy&quot;); //aug_11_2006</code></pre>
-<p>Format specifiers include
-
-</p>
+<p>Format specifiers include</p>
 <ul>
 <li><code>G</code> Era designator Text AD</li>
 <li><code>y</code> Year Year 1996; 96</li>
@@ -718,9 +669,7 @@ comb.date.format(date, &quot;ddMMyyyy&quot;);</code></pre>
 <li><code>Z</code> Time zone RFC 822 time zone -0800 </li>
 </ul>
 <h3><em>ago and </em>FromNow</h3>
-<p><code>comb</code> also has the following methods as a convenience to adding time to <code>Date.now()</code>
-
-</p>
+<p><code>comb</code> also has the following methods as a convenience to adding time to <code>Date.now()</code></p>
 <ul>
 <li><a href="./comb.html#.daysFromNow">comb.secondsFromNow</a></li>
 <li><a href="./comb.html#.daysFromNow">comb.secondsAgo</a></li>
@@ -737,9 +686,7 @@ comb.date.format(date, &quot;ddMMyyyy&quot;);</code></pre>
 </ul>
 <h2><a href="./comb.html">Object utilities</a></h2>
 <h3><a href=".comb.html#.merge">merge</a></h3>
-<p>Merges objects together. This method will only change the frist object passed in.
-
-</p>
+<p>Merges objects together. This method will only change the frist object passed in.</p>
 <pre class='prettyprint linenums lang-js'><code>var myObj = {};
 comb.merge(myObj, {test : true});
 
@@ -751,9 +698,7 @@ myObj.test2; //false
 myObj.test3; //&quot;hello&quot;
 myObj.test4; //&quot;world&quot;</code></pre>
 <h3><a href=".comb.html#.deepMerge">deepMerge</a></h3>
-<p>Merges objects together only overriding properties that are different. 
-
-</p>
+<p>Merges objects together only overriding properties that are different. </p>
 <pre class='prettyprint linenums lang-js'><code>var myObj = {my : {cool : {property1 : 1, property2 : 2}}};
 comb.deepMerge(myObj, {my : {cool : {property3 : 3}}});
 
@@ -761,9 +706,7 @@ myObj.my.cool.property1; \\1
 myObj.my.cool.property2; \\2
 myObj.my.cool.property3; \\3</code></pre>
 <h3><a href=".comb.html#.deepEqual">deepEqual</a></h3>
-<p>Determines if an two things are deep equal. This is a reimplementation of <code>assert.deepEqual</code> so you do not have to use a try/catch.
-
-</p>
+<p>Determines if an two things are deep equal. This is a reimplementation of <code>assert.deepEqual</code> so you do not have to use a try/catch.</p>
 <pre class='prettyprint linenums lang-js'><code>comb.deepEqual({a : 1, b : 2}, {a : 1, b : 2}); \\ true
 comb.deepEqual({a : 1}, {a : 1, b : 2}); \\false</code></pre>
 
@@ -771,9 +714,7 @@ comb.deepEqual({a : 1}, {a : 1, b : 2}); \\false</code></pre>
 
     
   <h2>License</h2>
-<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a>
-
-</p>
+<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
 <h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>

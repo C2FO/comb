@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
@@ -74,13 +74,18 @@
             z-index: 1000;
         }
 
+        .dropdown-menu{
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
         @media (max-width:979px) {
             .subnav{
                 margin-top: auto;
             }
         }
     </style>
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.min.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -360,9 +365,7 @@
 
 
 
-    <p><p>Plugin to allow a class to easily broadcast events
-
-</p>
+    <p><p>Plugin to allow a class to easily broadcast events</p>
 </p>
     
         <em>Example</em>
@@ -439,9 +442,7 @@ function (){
 <hr/>
 <em>Defined plugins/Broadcaster.js</em>
 
-<p><p>Broadcasts an event from an object
-
-</p>
+<p><p>Broadcasts an event from an object</p>
 </p>
 
 
@@ -497,9 +498,7 @@ function (topic,args){
 <em>Defined plugins/Broadcaster.js</em>
 
 <p><p>Listens to a broadcasted event
-Simimlar to <a href='./comb.html#.listen'> comb.listen</a>
-
-</p>
+Simimlar to <a href='./comb.html#.listen'> comb.listen</a></p>
 </p>
 
 
@@ -567,9 +566,7 @@ function (topic,callback){
 <em>Defined plugins/Broadcaster.js</em>
 
 <p><p>Disconnects a listener
-Similar to <a href='./comb.html#.unListen'> comb.unListen</a>
-
-</p>
+Similar to <a href='./comb.html#.unListen'> comb.unListen</a></p>
 </p>
 
 
@@ -613,9 +610,7 @@ function (handle){
 
     
   <h2>License</h2>
-<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a>
-
-</p>
+<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
 <h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>

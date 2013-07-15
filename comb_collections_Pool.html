@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
@@ -74,13 +74,18 @@
             z-index: 1000;
         }
 
+        .dropdown-menu{
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
         @media (max-width:979px) {
             .subnav{
                 margin-top: auto;
             }
         }
     </style>
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.min.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -437,9 +442,7 @@
 
 <p><p>Creates a new object for this pool.
 * </br>
-<b>THIS SHOULD BE OVERRIDDEN TO ADD THE CORRECT TYPE OF OBJECT</b>
-
-</p>
+<b>THIS SHOULD BE OVERRIDDEN TO ADD THE CORRECT TYPE OF OBJECT</b></p>
 </p>
 
 
@@ -484,8 +487,7 @@ function (){
 <em>Defined collections/Pool.js</em>
 
 <p><p>Retrieves an object from this pool.
-`
-</p>
+`</p>
 </p>
 
 
@@ -538,9 +540,7 @@ function (){
 <em>Defined collections/Pool.js</em>
 
 <p><p>Removes an object from the pool, this can be overriden to provide any
-teardown of objects that needs to take place.
-
-</p>
+teardown of objects that needs to take place.</p>
 </p>
 
 
@@ -600,8 +600,7 @@ function (obj){
 <em>Defined collections/Pool.js</em>
 
 <p><p>Returns an object to this pool. The object is validated before it is returned to the pool,
-if the validation fails then it is removed from the pool;
-</p>
+if the validation fails then it is removed from the pool;</p>
 </p>
 
 
@@ -620,7 +619,7 @@ if the validation fails then it is removed from the pool;
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (obj){
-   if (this.validate(obj) &amp;&amp; this.count &lt;= this.__maxObjects) {
+   if (this.validate(obj) &amp;&amp; this.count &amp;lt;= this.__maxObjects) {
        this.__freeObjects.enqueue(obj);
        var index;
        if ((index = this.__inUseObjects.indexOf(obj)) &gt; -1)
@@ -654,9 +653,7 @@ function (obj){
 
 <p><p>Validates an object in this pool.
 </br>
-<b>THIS SHOULD BE OVERRIDDEN TO VALIDATE</b>
-
-</p>
+<b>THIS SHOULD BE OVERRIDDEN TO VALIDATE</b></p>
 </p>
 
 
@@ -687,9 +684,7 @@ function (obj){
 
     
   <h2>License</h2>
-<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a>
-
-</p>
+<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
 <h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>

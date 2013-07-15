@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
@@ -74,13 +74,18 @@
             z-index: 1000;
         }
 
+        .dropdown-menu{
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
         @media (max-width:979px) {
             .subnav{
                 margin-top: auto;
             }
         }
     </style>
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.min.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -570,8 +575,7 @@
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p><p>Clears out all items from the table.
-</p>
+<p><p>Clears out all items from the table.</p>
 </p>
 
 
@@ -609,8 +613,7 @@ function (){
 
 <p><p>Returns a new HashTable containing the values of this HashTable, and the other table.
 </br>
-<b> DOES NOT CHANGE THE ORIGINAL!</b>
-</p>
+<b> DOES NOT CHANGE THE ORIGINAL!</b></p>
 </p>
 
 
@@ -672,8 +675,7 @@ function (hashTable){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p><p>Tests if the table contains a particular key
-</p>
+<p><p>Tests if the table contains a particular key</p>
 </p>
 
 
@@ -730,9 +732,7 @@ function (key){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p><p>Determines if every item meets the condition returned by the callback.
-
-</p>
+<p><p>Determines if every item meets the condition returned by the callback.</p>
 </p>
 
 
@@ -788,9 +788,7 @@ function (){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p><p>Creates a new HashTable containg values that passed the filtering function.
-
-</p>
+<p><p>Creates a new HashTable containg values that passed the filtering function.</p>
 </p>
 
 
@@ -851,9 +849,7 @@ function (cb,scope){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p><p> Loop through each value in the hashtable
-
-</p>
+<p><p> Loop through each value in the hashtable</p>
 </p>
 
 
@@ -901,9 +897,7 @@ function (cb,scope){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p><p>Get the value corresponding to the key.
-
-</p>
+<p><p>Get the value corresponding to the key.</p>
 </p>
 
 
@@ -960,8 +954,7 @@ function (key){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p><p>Loop through each value in the hashtable, collecting the value returned by the callback function.
-</p>
+<p><p>Loop through each value in the hashtable, collecting the value returned by the callback function.</p>
 </p>
 
 
@@ -1017,12 +1010,8 @@ function (){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p><p>Put a key, value pair into the table
-
-</p>
-<p><b>NOTE :</b> the collection will not check if the key previously existed.
-
-</p>
+<p><p>Put a key, value pair into the table</p>
+<p><b>NOTE :</b> the collection will not check if the key previously existed.</p>
 </p>
 
 
@@ -1083,9 +1072,7 @@ function (key,value){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p><p>Apply a function against an accumulator and each value of the array (from left-to-right) as to reduce it to a single value.
-
-</p>
+<p><p>Apply a function against an accumulator and each value of the array (from left-to-right) as to reduce it to a single value.</p>
 </p>
 
 
@@ -1133,9 +1120,7 @@ function (){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p><p>Apply a function against an accumulator and each value of the array (from right-to-left) as to reduce it to a single value.
-
-</p>
+<p><p>Apply a function against an accumulator and each value of the array (from right-to-left) as to reduce it to a single value.</p>
 </p>
 
 
@@ -1183,9 +1168,7 @@ function (){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p><p>Remove a key value pair from the table.
-
-</p>
+<p><p>Remove a key value pair from the table.</p>
 </p>
 
 
@@ -1242,9 +1225,7 @@ function (key){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p><p>Set the value of a previously existing key,value pair or create a new entry.
-
-</p>
+<p><p>Set the value of a previously existing key,value pair or create a new entry.</p>
 </p>
 
 
@@ -1305,9 +1286,7 @@ function (key,value){
 <hr/>
 <em>Defined collections/HashTable.js</em>
 
-<p><p>Determines if some items meet the condition returned by the callback.
-
-</p>
+<p><p>Determines if some items meet the condition returned by the callback.</p>
 </p>
 
 
@@ -1350,9 +1329,7 @@ function (){
 
     
   <h2>License</h2>
-<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a>
-
-</p>
+<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
 <h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>
