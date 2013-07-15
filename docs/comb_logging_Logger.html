@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
@@ -74,13 +74,18 @@
             z-index: 1000;
         }
 
+        .dropdown-menu{
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
         @media (max-width:979px) {
             .subnav{
                 margin-top: auto;
             }
         }
     </style>
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.min.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -568,8 +573,7 @@
 
 
 
-    <p><p>This class is the entry point for all logging actions in comb.
-</p>
+    <p><p>This class is the entry point for all logging actions in comb.</p>
 <p><b>Logger should be retrieved by calling Logger.getLogger() NOT through the new keyword</b><p>
 <p>
     All loggers in comb follow a heirarchy of inheritance based on a dot notation.
@@ -676,9 +680,7 @@ treeLogger.level = &quot;DEBUG&quot;;
 <hr/>
 <em>Defined logging/index.js</em>
 
-<p><p>Retrieves/Creates a logger based on the name passed in
-
-</p>
+<p><p>Retrieves/Creates a logger based on the name passed in</p>
 </p>
 
 
@@ -724,8 +726,7 @@ function (name){
 <hr/>
 <em>Defined logging/index.js</em>
 
-<p><p>Return the root of all loggers
-</p>
+<p><p>Return the root of all loggers</p>
 </p>
 
 
@@ -762,9 +763,7 @@ function (){
 <hr/>
 <em>Defined logging/index.js</em>
 
-<p><p>Add an appender to this logger. If this is additive then the appender is added to all subloggers.
-
-</p>
+<p><p>Add an appender to this logger. If this is additive then the appender is added to all subloggers.</p>
 </p>
 
     <em>Example</em>
@@ -848,8 +847,7 @@ function (appender,opts){
 <hr/>
 <em>Defined logging/index.js</em>
 
-<p><p>Short cut to add a list of appenders to this Logger
-</p>
+<p><p>Short cut to add a list of appenders to this Logger</p>
 </p>
 
 
@@ -901,9 +899,7 @@ function (appenders){
 <hr/>
 <em>Defined logging/index.js</em>
 
-<p><p>Log an debug level message
-
-</p>
+<p><p>Log an debug level message</p>
 </p>
 
 
@@ -955,9 +951,7 @@ function (message){
 <hr/>
 <em>Defined logging/index.js</em>
 
-<p><p>Log an error level message
-
-</p>
+<p><p>Log an error level message</p>
 </p>
 
 
@@ -1009,9 +1003,7 @@ function (message){
 <hr/>
 <em>Defined logging/index.js</em>
 
-<p><p>Log an fatal level message
-
-</p>
+<p><p>Log an fatal level message</p>
 </p>
 
 
@@ -1063,9 +1055,7 @@ function (message){
 <hr/>
 <em>Defined logging/index.js</em>
 
-<p><p>Gets an appender from this logger
-
-</p>
+<p><p>Gets an appender from this logger</p>
 </p>
 
 
@@ -1122,9 +1112,7 @@ function (name){
 <hr/>
 <em>Defined logging/index.js</em>
 
-<p><p>Creates a log event to be passed to appenders
-
-</p>
+<p><p>Creates a log event to be passed to appenders</p>
 </p>
 
 
@@ -1189,9 +1177,7 @@ function (level,message){
 <hr/>
 <em>Defined logging/index.js</em>
 
-<p><p>Log an info level message
-
-</p>
+<p><p>Log an info level message</p>
 </p>
 
 
@@ -1243,9 +1229,7 @@ function (message){
 <hr/>
 <em>Defined logging/index.js</em>
 
-<p><p>Determines if an appender is attached.
-
-</p>
+<p><p>Determines if an appender is attached.</p>
 </p>
 
 
@@ -1289,9 +1273,7 @@ function (name){
 <hr/>
 <em>Defined logging/index.js</em>
 
-<p><p>Log a message
-
-</p>
+<p><p>Log a message</p>
 </p>
 
 
@@ -1367,9 +1349,7 @@ function (level,message){
 <hr/>
 <em>Defined logging/index.js</em>
 
-<p><p>Removes all appenders from this logger and sub loggers if this Logger is additive.
-
-</p>
+<p><p>Removes all appenders from this logger and sub loggers if this Logger is additive.</p>
 </p>
 
 
@@ -1414,8 +1394,7 @@ function (){
 <hr/>
 <em>Defined logging/index.js</em>
 
-<p><p>Removes and appender from this logger.
-</p>
+<p><p>Removes and appender from this logger.</p>
 </p>
 
 
@@ -1471,9 +1450,7 @@ function (name){
 <hr/>
 <em>Defined logging/index.js</em>
 
-<p><p>Removes a list of appenders from this logger.
-
-</p>
+<p><p>Removes a list of appenders from this logger.</p>
 </p>
 
 
@@ -1526,9 +1503,7 @@ function (appenders){
 <hr/>
 <em>Defined logging/index.js</em>
 
-<p><p>Log an trace level message
-
-</p>
+<p><p>Log an trace level message</p>
 </p>
 
 
@@ -1580,9 +1555,7 @@ function (message){
 <hr/>
 <em>Defined logging/index.js</em>
 
-<p><p>Log an warn level message
-
-</p>
+<p><p>Log an warn level message</p>
 </p>
 
 
@@ -1621,9 +1594,7 @@ function (message){
 
     
   <h2>License</h2>
-<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a>
-
-</p>
+<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
 <h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>

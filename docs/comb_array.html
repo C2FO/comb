@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
@@ -74,13 +74,18 @@
             z-index: 1000;
         }
 
+        .dropdown-menu{
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
         @media (max-width:979px) {
             .subnav{
                 margin-top: auto;
             }
         }
     </style>
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.min.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -658,12 +663,8 @@
 </div>
 <em>Defined base/array.js</em>
 
-<p><p>Utilities for working with arrays.
-
-</p>
-<p>The <code>comb.array</code> namespace can be used to decorate arrays with additional chainable funcitonality.
-
-</p>
+<p><p>Utilities for working with arrays.</p>
+<p>The <code>comb.array</code> namespace can be used to decorate arrays with additional chainable funcitonality.</p>
 <pre class='prettyprint linenums lang-js'><code>
 var arr = comb.array([1,3,2,5,4,6]);
 console.log(arr.sum()) //21
@@ -697,8 +698,7 @@ console.log(arr.max()) [6]</code></pre>
 <hr/>
 <em>Defined base/array.js</em>
 
-<p><p>Averages an array of numbers.
-</p>
+<p><p>Averages an array of numbers.</p>
 </p>
 
     <em>Example</em>
@@ -778,9 +778,7 @@ function (arr){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p><p>Find the cartesian product of two arrays
-
-</p>
+<p><p>Find the cartesian product of two arrays</p>
 </p>
 
     <em>Example</em>
@@ -859,9 +857,7 @@ function (a,b){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p><p>Compacts an array removing null or undefined objects from the array.
-
-</p>
+<p><p>Compacts an array removing null or undefined objects from the array.</p>
 </p>
 
     <em>Example</em>
@@ -918,9 +914,7 @@ function (arr){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p><p>Finds the difference of the two arrays.
-
-</p>
+<p><p>Finds the difference of the two arrays.</p>
 </p>
 
     <em>Example</em>
@@ -988,9 +982,7 @@ function (arr1,arr2){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p><p>Flatten multiple arrays into a single array
-
-</p>
+<p><p>Flatten multiple arrays into a single array</p>
 </p>
 
     <em>Example</em>
@@ -1053,9 +1045,7 @@ function (arr){
 <em>Defined base/array.js</em>
 
 <p><p>Finds the intersection of arrays
-NOTE : this function accepts an arbitrary number of arrays
-
-</p>
+NOTE : this function accepts an arbitrary number of arrays</p>
 </p>
 
     <em>Example</em>
@@ -1125,9 +1115,7 @@ function (a,b){
 <em>Defined base/array.js</em>
 
 <p><p>Invokes the method specified in the scope of each item in the array. If you supply addional arguments they will
-be applied to the function.
-
-</p>
+be applied to the function.</p>
 <pre class='prettyprint linenums lang-js'><code>
 function person(name, age){
     return {
@@ -1218,9 +1206,7 @@ function (arr,func,args){
 
 <p><p>Finds that max value of an array. If a second argument is provided and it is a function
 it will be used as a comparator function. If the second argument is a string then it will be used
-as a property look up on each item.
-
-</p>
+as a property look up on each item.</p>
 </p>
 
     <em>Example</em>
@@ -1286,9 +1272,7 @@ function (arr,cmp){
 
 <p><p>Finds that min value of an array. If a second argument is provided and it is a function
 it will be used as a comparator function. If the second argument is a string then it will be used
-as a property look up on each item.
-
-</p>
+as a property look up on each item.</p>
 </p>
 
     <em>Example</em>
@@ -1352,8 +1336,7 @@ function (arr,cmp){
 <em>Defined base/array.js</em>
 
 <p><p>Creates a new array that is the result of the array concated the number of
-times. If times is not specified or it equals 0 then it defaults to 1.
-</p>
+times. If times is not specified or it equals 0 then it defaults to 1.</p>
 </p>
 
 
@@ -1390,7 +1373,7 @@ function (arr,times){
    }
    arr = toArray(arr || []);
    var ret = [], i = 0;
-   while (++i &lt;= times) {
+   while (++i &amp;lt;= times) {
        ret = ret.concat(arr);
    }
    return ret;
@@ -1419,9 +1402,7 @@ function (arr,times){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p><p>Finds all permutations of an array
-
-</p>
+<p><p>Finds all permutations of an array</p>
 </p>
 
     <em>Example</em>
@@ -1464,7 +1445,7 @@ function (arr,length){
            ret = [
                []
            ];
-       } else if (length &lt;= arr.length) {
+       } else if (length &amp;lt;= arr.length) {
            ret = reduce(arr, function (a, b, i) {
                var ret;
                if (length &gt; 1) {
@@ -1505,9 +1486,7 @@ function (arr,length){
 <em>Defined base/array.js</em>
 
 <p><p>Plucks values from an array. Effectevily the same as using a array.map implementation. However the porperty specified supports
-a &quot;dot&quot; notation to access nested properties.
-
-</p>
+a &quot;dot&quot; notation to access nested properties.</p>
 </p>
 
     <em>Example</em>
@@ -1585,9 +1564,7 @@ function (arr,prop){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p><p>Finds the powerset of an array
-
-</p>
+<p><p>Finds the powerset of an array</p>
 </p>
 
     <em>Example</em>
@@ -1681,9 +1658,7 @@ function (arr){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p><p>Removes duplicates from an array
-
-</p>
+<p><p>Removes duplicates from an array</p>
 </p>
 
     <em>Example</em>
@@ -1744,9 +1719,7 @@ function (arr){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p><p>Rotates an array the number of specified positions
-
-</p>
+<p><p>Rotates an array the number of specified positions</p>
 </p>
 
     <em>Example</em>
@@ -1825,12 +1798,8 @@ function (arr,numberOfTimes){
 <em>Defined base/array.js</em>
 
 <p><p>Allows the sorting of an array based on a property name instead. This can also
-act as a sort that does not change the original array.
-
-</p>
-<p><b>NOTE:</b> this does not change the original array!
-
-</p>
+act as a sort that does not change the original array.</p>
+<p><b>NOTE:</b> this does not change the original array!</p>
 </p>
 
     <em>Example</em>
@@ -1891,9 +1860,7 @@ function (arr,cmp){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p><p>Sums all items in an array
-
-</p>
+<p><p>Sums all items in an array</p>
 </p>
 
     <em>Example</em>
@@ -1956,9 +1923,7 @@ function (array){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p><p>converts anything to an array
-
-</p>
+<p><p>converts anything to an array</p>
 </p>
 
     <em>Example</em>
@@ -2032,8 +1997,7 @@ function (o){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p><p>Transposes an array of arrays
-</p>
+<p><p>Transposes an array of arrays</p>
 </p>
 
     <em>Example</em>
@@ -2102,9 +2066,7 @@ function (arr){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p><p>Union a variable number of arrays together
-
-</p>
+<p><p>Union a variable number of arrays together</p>
 </p>
 
     <em>Example</em>
@@ -2162,9 +2124,7 @@ function (){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p><p>See <a href='./comb_array.html#.removeDuplicates'> comb.array.removeDuplicates</a>
-
-</p>
+<p><p>See <a href='./comb_array.html#.removeDuplicates'> comb.array.removeDuplicates</a></p>
 </p>
 
 
@@ -2208,9 +2168,7 @@ function (arr){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p><p>Retrieves values at specified indexes in the array
-
-</p>
+<p><p>Retrieves values at specified indexes in the array</p>
 </p>
 
     <em>Example</em>
@@ -2245,7 +2203,7 @@ function (arr,indexes){
    arr = indexes.shift();
    var l = arr.length;
    if (isArray(arr) &amp;&amp; indexes.length) {
-       for (var i = 0; i &lt; indexes.length; i++) {
+       for (var i = 0; i &amp;lt; indexes.length; i++) {
            ret.push(arr[indexes[i]] || null);
        }
    }
@@ -2275,9 +2233,7 @@ function (arr,indexes){
 <hr/>
 <em>Defined base/array.js</em>
 
-<p><p>Zips to arrays together
-
-</p>
+<p><p>Zips to arrays together</p>
 </p>
 
     <em>Example</em>
@@ -2313,7 +2269,7 @@ function (){
        if (isArray(arr1)) {
            ret = reduce(arr1, function (a, b, i) {
                var curr = [b];
-               for (var j = 0; j &lt; arrs.length; j++) {
+               for (var j = 0; j &amp;lt; arrs.length; j++) {
                    var currArr = arrs[j];
                    if (isArray(currArr) &amp;&amp; !misc.isUndefined(currArr[i])) {
                        curr.push(currArr[i]);
@@ -2337,9 +2293,7 @@ function (){
 
     
   <h2>License</h2>
-<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a>
-
-</p>
+<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
 <h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>

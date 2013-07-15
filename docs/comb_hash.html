@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
@@ -74,13 +74,18 @@
             z-index: 1000;
         }
 
+        .dropdown-menu{
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
         @media (max-width:979px) {
             .subnav{
                 margin-top: auto;
             }
         }
     </style>
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.min.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -402,9 +407,7 @@
 <hr/>
 <em>Defined base/object.js</em>
 
-<p><p>Filters out key/value pairs in an object. Filters out key/value pairs that return a falsey value from the iterator.
-
-</p>
+<p><p>Filters out key/value pairs in an object. Filters out key/value pairs that return a falsey value from the iterator.</p>
 <pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};
 comb(obj).filter(function(value, key){
     return value == &quot;b&quot; || key === &quot;e&quot;;
@@ -449,7 +452,7 @@ function (hash,iterator,scope){
        throw new TypeError();
    }
    var keys = Object.keys(hash), key, value, ret = {};
-   for (var i = 0, len = keys.length; i &lt; len; ++i) {
+   for (var i = 0, len = keys.length; i &amp;lt; len; ++i) {
        key = keys[i];
        value = hash[key];
        if (iterator.call(scope || hash, value, key, hash)) {
@@ -480,9 +483,7 @@ function (hash,iterator,scope){
 <hr/>
 <em>Defined base/object.js</em>
 
-<p><p>Loops through each k/v in a hash.
-
-</p>
+<p><p>Loops through each k/v in a hash.</p>
 <pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};
 comb(obj).forEach(function(value, key){
     console.log(value, key);
@@ -527,7 +528,7 @@ function (hash,iterator,scope){
        throw new TypeError();
    }
    var keys = Object.keys(hash), key;
-   for (var i = 0, len = keys.length; i &lt; len; ++i) {
+   for (var i = 0, len = keys.length; i &amp;lt; len; ++i) {
        key = keys[i];
        iterator.call(scope || hash, hash[key], key, hash);
    }
@@ -555,9 +556,7 @@ function (hash,iterator,scope){
 <hr/>
 <em>Defined base/object.js</em>
 
-<p><p>Returns a new hash that is the invert of the hash.
-
-</p>
+<p><p>Returns a new hash that is the invert of the hash.</p>
 <pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};
 comb(obj).invert(); //{b : &quot;a&quot;, d : &quot;c&quot;, f : &quot;e&quot;}
 
@@ -592,7 +591,7 @@ function (hash){
        throw new TypeError();
    }
    var keys = Object.keys(hash), key, ret = {};
-   for (var i = 0, len = keys.length; i &lt; len; ++i) {
+   for (var i = 0, len = keys.length; i &amp;lt; len; ++i) {
        key = keys[i];
        ret[hash[key]] = key;
    }
@@ -620,9 +619,7 @@ function (hash){
 <hr/>
 <em>Defined base/object.js</em>
 
-<p><p>Converts a hash to an array.
-
-</p>
+<p><p>Converts a hash to an array.</p>
 <pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};
 comb(obj).toArray(); //[[&quot;a&quot;, &quot;b&quot;], [&quot;c&quot;, &quot;d&quot;], [&quot;e&quot;, &quot;f&quot;]]
 
@@ -657,7 +654,7 @@ function (hash){
        throw new TypeError();
    }
    var keys = Object.keys(hash), key, ret = [];
-   for (var i = 0, len = keys.length; i &lt; len; ++i) {
+   for (var i = 0, len = keys.length; i &amp;lt; len; ++i) {
        key = keys[i];
        ret.push([key, hash[key]]);
    }
@@ -685,9 +682,7 @@ function (hash){
 <hr/>
 <em>Defined base/object.js</em>
 
-<p><p>Returns the values of a hash.
-
-</p>
+<p><p>Returns the values of a hash.</p>
 <pre class='prettyprint linenums lang-js'><code>var obj = {a : &quot;b&quot;, c : &quot;d&quot;, e : &quot;f&quot;};
 comb(obj).values(); //[&quot;b&quot;, &quot;d&quot;, &quot;f&quot;]
 
@@ -722,7 +717,7 @@ function (hash){
        throw new TypeError();
    }
    var keys = Object.keys(hash), ret = [];
-   for (var i = 0, len = keys.length; i &lt; len; ++i) {
+   for (var i = 0, len = keys.length; i &amp;lt; len; ++i) {
        ret.push(hash[keys[i]]);
    }
    return ret;
@@ -736,9 +731,7 @@ function (hash){
 
     
   <h2>License</h2>
-<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a>
-
-</p>
+<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
 <h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>
