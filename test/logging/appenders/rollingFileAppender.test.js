@@ -22,7 +22,7 @@ it.describe("comb.logging.appenders.RollingFileAppender",function (it) {
         };
 
         fs.stat = function (name, cb) {
-            setTimeout(comb.partial(cb, null, {size:size++ % 2 ? 1024 : 0}), 10);
+            setTimeout(comb.partial(cb, null, {size: size++ % 2 ? 1024 : 0}), 10);
         };
 
         fs.createWriteStream = function () {
@@ -53,13 +53,13 @@ it.describe("comb.logging.appenders.RollingFileAppender",function (it) {
     };
 
     var MockWriteStream = {
-        writable:true,
-        on:function (str, cb) {
+        writable: true,
+        on: function (str, cb) {
             cb();
         },
-        destroySoon:function () {
+        destroySoon: function () {
         },
-        write:function (str) {
+        write: function (str) {
             return str;
         }
     };
@@ -67,7 +67,7 @@ it.describe("comb.logging.appenders.RollingFileAppender",function (it) {
     it.beforeAll(function () {
         logger = logging.Logger.getLogger("RollingFileAppenderTest")
         setUpFS();
-        appender = new RollingFileAppender({writeStream:MockWriteStream, maxSize:"1KB", maxBackupIndex:3});
+        appender = new RollingFileAppender({writeStream: MockWriteStream, maxSize: "1KB", maxBackupIndex: 3});
         logger.addAppender(appender);
     });
 
@@ -108,9 +108,9 @@ it.describe("comb.logging.appenders.RollingFileAppender",function (it) {
 
         logger.level = logging.Level.INFO;
         var renameLogs = [
-            {name:"./log.log.2", newName:"./log.log.3"},
-            {name:"./log.log.1", newName:"./log.log.2"},
-            {name:"./log.log", newName:"./log.log.1"}
+            {name: "./log.log.2", newName: "./log.log.3"},
+            {name: "./log.log.1", newName: "./log.log.2"},
+            {name: "./log.log", newName: "./log.log.1"}
         ];
         var unlinkCount = 0, renameCount = 0, logCount = 0;
         var unlinkConn = comb.connect(fs, "unlink", comb.hitch(this, function (name) {
@@ -128,49 +128,50 @@ it.describe("comb.logging.appenders.RollingFileAppender",function (it) {
         }));
         var called = false;
         //max sure that the callback is called right away
-        appender.__checkFile({size:1023}).then(comb.hitch(this, function () {
-            called = true;
-        }));
-        process.nextTick(function () {
-            assert.isTrue(called);
-            //set the next state
-            called = false;
-            appender.__inRollover = true;
-            appender.__checkFile({size:1025}).then(comb.hitch(this, function () {
+        appender.__checkFile({size: 1023})
+            .chain(function () {
                 called = true;
-            }));
+            })
+            .chain(function () {
 
-            process.nextTick(function () {
+                assert.isTrue(called);
+                //set the next state
+                called = false;
+                appender.__inRollover = true;
+                return appender.__checkFile({size: 1025}).chain(comb.hitch(this, function () {
+                    called = true;
+                }));
+
+            })
+            .chain(function () {
                 assert.isTrue(called);
                 appender.__inRollover = false;
                 called = false;
                 //now make sure it just creates a new write stream;
                 appender.maxBackupIndex = 0;
-                appender.__checkFile({size:1025}).then(comb.hitch(this, function () {
-                    called = true;
-                }));
-                process.nextTick(function () {
-                    assert.isTrue(called);
-                    appender.maxBackupIndex = 3;
-                    called = false;
-                    //now make sure it acutally rolls over
-                    appender.__checkFile({size:1025}).then(comb.hitch(this, function () {
+                appender.__checkFile({size: 1025}).then(comb.hitch(this, function () {
                         called = true;
+                    })).chain(function () {
 
-                        assert.equal(unlinkCount, 1);
-                        assert.equal(renameCount, 3);
-                        assert.equal(logCount, 3);
-                        next();
-                    }));
-                    process.nextTick(function () {
+                        assert.isTrue(called);
+                        appender.maxBackupIndex = 3;
+                        called = false;
+                        //now make sure it acutally rolls over
+                        appender.__checkFile({size: 1025}).then(comb.hitch(this, function () {
+                            called = true;
+                            assert.equal(unlinkCount, 1);
+                            assert.equal(renameCount, 3);
+                            assert.equal(logCount, 3);
+                            next();
+                        }));
+
                         assert.isFalse(called);
                         logger.info("hello");
                         logger.info("hello2");
                         logger.info("hello3");
+
                     });
-                });
             });
-        });
     });
 
 

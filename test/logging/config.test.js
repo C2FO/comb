@@ -11,60 +11,60 @@ var it = require('it'),
     fs = require("fs");
 
 
-it.describe("comb.logging", function (it) {
+it.describe("comb.logging",function (it) {
     var config = {
-        "combConfigTest":{
-            "level":"INFO",
-            "appenders":[
+        "combConfigTest": {
+            "level": "INFO",
+            "appenders": [
                 {
                     //default file appender
-                    "type":"FileAppender",
-                    "file":__dirname + "/myApp.log"
+                    "type": "FileAppender",
+                    "file": __dirname + "/myApp.log"
                 },
                 {
                     //default file appender
-                    "type":"ConsoleAppender"
+                    "type": "ConsoleAppender"
                 },
                 {
                     //default file appender
-                    "name":"myConsoleAppender"
+                    "name": "myConsoleAppender"
                 },
                 {
                     //default file appender
-                    "type":"RollingFileAppender"
+                    "type": "RollingFileAppender"
                 },
                 {
                     //default JSON appender
-                    "type":"JSONAppender",
-                    "file":__dirname + "/myApp.json"
+                    "type": "JSONAppender",
+                    "file": __dirname + "/myApp.json"
                 }
             ]
         }
     };
 
     var config2 = {
-        "combConfigTest.other":{
-            "level":"ERROR",
-            "appenders":[
+        "combConfigTest.other": {
+            "level": "ERROR",
+            "appenders": [
                 {
-                    "type":"FileAppender",
+                    "type": "FileAppender",
                     //override default patter
-                    "pattern":"{[EEEE, MMMM dd, yyyy h:m a]timeStamp} {[5]level} {[- 5]levelName} {[-20]name} : {message}",
+                    "pattern": "{[EEEE, MMMM dd, yyyy h:m a]timeStamp} {[5]level} {[- 5]levelName} {[-20]name} : {message}",
                     //location of my log file
-                    "file":__dirname + "/myApp-errors.log",
+                    "file": __dirname + "/myApp-errors.log",
                     //override name so it will get added to the log
-                    "name":"errorFileAppender",
+                    "name": "errorFileAppender",
                     //overwrite each time
-                    "overwrite":true,
+                    "overwrite": true,
                     //explicity set the appender to only accept errors
-                    "level":"ERROR"
+                    "level": "ERROR"
                 },
                 {
-                    "type":"JSONAppender",
-                    "name":"JSONErrorAppender",
-                    "file":__dirname + "/myApp-error.json",
+                    "type": "JSONAppender",
+                    "name": "JSONErrorAppender",
+                    "file": __dirname + "/myApp-error.json",
                     //explicity set the appender to only accept errors
-                    "level":"ERROR"
+                    "level": "ERROR"
                 }
             ]
         }
@@ -80,12 +80,12 @@ it.describe("comb.logging", function (it) {
     var interval, size = 0;
 
     var MockWriteStream = {
-        writable:true,
-        on:function () {
+        writable: true,
+        on: function () {
         },
-        destroySoon:function () {
+        destroySoon: function () {
         },
-        write:function (str) {
+        write: function (str) {
             return str;
         }
     };
@@ -145,7 +145,7 @@ it.describe("comb.logging", function (it) {
         });
 
         it.should(" configure the root logger with the specified logger", function () {
-            comb.logger.configure(new appenders.ConsoleAppender({name:"myConsoleAppender"}));
+            comb.logger.configure(new appenders.ConsoleAppender({name: "myConsoleAppender"}));
             assert.isTrue(logger.isAppenderAttached("myConsoleAppender"));
             logger.removeAllAppenders();
         });
@@ -198,41 +198,10 @@ it.describe("comb.logging", function (it) {
         });
 
         it.should(" configure the root logger with the specified logger", function () {
-            topic.configure(new appenders.ConsoleAppender({name:"myConsoleAppender"}));
+            topic.configure(new appenders.ConsoleAppender({name: "myConsoleAppender"}));
             assert.isTrue(logger.isAppenderAttached("myConsoleAppender"));
             logger.removeAllAppenders();
         });
-
-        it.describe("catching uncaughtExceptions", function (it) {
-
-
-            it.should("it append to root logger it the root logger has appenders", function (next) {
-                topic.configure();
-                var orig = console.log, count = 0;
-                console.log = comb.hitch(this, function (str) {
-                    next();
-                    console.log = orig;
-                });
-                setTimeout(function () {
-                    throw new Error("uncaught");
-                }, 10)
-
-            });
-            it.should("it use console.error if the root logger has no appenders", function (next) {
-                topic.configure();
-                var orig = console.error, count = 0;
-                console.error = comb.hitch(this, function (str) {
-                    next();
-                    console.error = orig;
-                });
-                setTimeout(function () {
-                    throw new Error("uncaught");
-                }, 10)
-
-                logger.removeAllAppenders();
-
-            });
-        })
     });
 
     it.describe("PropertyConfigurator", function (it) {

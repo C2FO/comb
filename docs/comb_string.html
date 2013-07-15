@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
@@ -74,13 +74,18 @@
             z-index: 1000;
         }
 
+        .dropdown-menu{
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
         @media (max-width:979px) {
             .subnav{
                 margin-top: auto;
             }
         }
     </style>
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.min.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -432,7 +437,7 @@
         string = &quot;&quot; + string; //check for numbers
         ch = ch || &quot; &quot;;
         var strLen = string.length;
-        while (strLen &lt; length) {
+        while (strLen &amp;lt; length) {
             if (end) {
                 string += ch;
             } else {
@@ -512,28 +517,28 @@
      *      =&gt; applesssss, ####orange,    bananas and watermelon
      *
      * @param {String} str the string to format, if you want to use a spacing character as padding (other than \\s) then put your format in brackets.
-     *  &lt;ol&gt;
-     *      &lt;li&gt;String Formats %[options]s&lt;/li&gt;
-     *          &lt;ul&gt;
-     *              &lt;li&gt;- : left justified&lt;/li&gt;
-     *              &lt;li&gt;Char : padding character &lt;b&gt;Excludes d,j,s&lt;/b&gt;&lt;/li&gt;
-     *              &lt;li&gt;Number : width&lt;/li&gt;
-     *          &lt;/ul&gt;
-     *      &lt;/li&gt;
-     *      &lt;li&gt;Number Formats %[options]d&lt;/li&gt;
-     *          &lt;ul&gt;
-     *              &lt;li&gt;- : left justified&lt;/li&gt;
-     *              &lt;li&gt;+ : signed number&lt;/li&gt;
-     *              &lt;li&gt;Char : padding character &lt;b&gt;Excludes d,j,s&lt;/b&gt;&lt;/li&gt;
-     *              &lt;li&gt;Number : width&lt;/li&gt;
-     *          &lt;/ul&gt;
-     *      &lt;/li&gt;
-     *      &lt;li&gt;Object Formats %[options]j&lt;/li&gt;
-     *          &lt;ul&gt;
-     *              &lt;li&gt;Number : spacing for object properties.&lt;/li&gt;
-     *          &lt;/ul&gt;
-     *      &lt;/li&gt;
-     *  &lt;/ol&gt;
+     *  &amp;lt;ol&gt;
+     *      &amp;lt;li&gt;String Formats %[options]s&amp;lt;/li&gt;
+     *          &amp;lt;ul&gt;
+     *              &amp;lt;li&gt;- : left justified&amp;lt;/li&gt;
+     *              &amp;lt;li&gt;Char : padding character &amp;lt;b&gt;Excludes d,j,s&amp;lt;/b&gt;&amp;lt;/li&gt;
+     *              &amp;lt;li&gt;Number : width&amp;lt;/li&gt;
+     *          &amp;lt;/ul&gt;
+     *      &amp;lt;/li&gt;
+     *      &amp;lt;li&gt;Number Formats %[options]d&amp;lt;/li&gt;
+     *          &amp;lt;ul&gt;
+     *              &amp;lt;li&gt;- : left justified&amp;lt;/li&gt;
+     *              &amp;lt;li&gt;+ : signed number&amp;lt;/li&gt;
+     *              &amp;lt;li&gt;Char : padding character &amp;lt;b&gt;Excludes d,j,s&amp;lt;/b&gt;&amp;lt;/li&gt;
+     *              &amp;lt;li&gt;Number : width&amp;lt;/li&gt;
+     *          &amp;lt;/ul&gt;
+     *      &amp;lt;/li&gt;
+     *      &amp;lt;li&gt;Object Formats %[options]j&amp;lt;/li&gt;
+     *          &amp;lt;ul&gt;
+     *              &amp;lt;li&gt;Number : spacing for object properties.&amp;lt;/li&gt;
+     *          &amp;lt;/ul&gt;
+     *      &amp;lt;/li&gt;
+     *  &amp;lt;/ol&gt;
      *
      *
      * @param {Object|Array|Arguments...} obj the parameters to replace in the string
@@ -550,7 +555,7 @@
             //find the matches
             return str.replace(FORMAT_REGEX, function (m, format, type) {
                 var replacer, ret;
-                if (i &lt; len) {
+                if (i &amp;lt; len) {
                     replacer = obj[i++];
                 } else {
                     //we are out of things to replace with so
@@ -647,7 +652,7 @@
     multiply:function (str, times) {
         var ret = [];
         if (times) {
-            for (var i = 0; i &lt; times; i++) {
+            for (var i = 0; i &amp;lt; times; i++) {
                 ret.push(str);
             }
         }
@@ -665,32 +670,32 @@
      * @param {String} str The string to style.
      * @param {String|Array} styles the style or styles to apply to a string.
      *          options include :
-     *          &lt;ul&gt;
-     *             &lt;li&gt;bold&lt;/li&gt;
-     *             &lt;li&gt;bright&lt;/li&gt;
-     *             &lt;li&gt;italic&lt;/li&gt;
-     *             &lt;li&gt;underline&lt;/li&gt;
-     *             &lt;li&gt;inverse&lt;/li&gt;
-     *             &lt;li&gt;crossedOut&lt;/li&gt;
-     *             &lt;li&gt;blink&lt;/li&gt;
-     *             &lt;li&gt;red&lt;/li&gt;
-     *             &lt;li&gt;green&lt;/li&gt;
-     *             &lt;li&gt;yellow&lt;/li&gt;
-     *             &lt;li&gt;blue&lt;/li&gt;
-     *             &lt;li&gt;magenta&lt;/li&gt;
-     *             &lt;li&gt;cyan&lt;/li&gt;
-     *             &lt;li&gt;white&lt;/li&gt;
-     *             &lt;li&gt;redBackground&lt;/li&gt;
-     *             &lt;li&gt;greenBackground&lt;/li&gt;
-     *             &lt;li&gt;yellowBackground&lt;/li&gt;
-     *             &lt;li&gt;blueBackground&lt;/li&gt;
-     *             &lt;li&gt;magentaBackground&lt;/li&gt;
-     *             &lt;li&gt;cyanBackground&lt;/li&gt;
-     *             &lt;li&gt;whiteBackground&lt;/li&gt;
-     *             &lt;li&gt;grey&lt;/li&gt;
-     *             &lt;li&gt;black&lt;/li&gt;
+     *          &amp;lt;ul&gt;
+     *             &amp;lt;li&gt;bold&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;bright&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;italic&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;underline&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;inverse&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;crossedOut&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;blink&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;red&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;green&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;yellow&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;blue&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;magenta&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;cyan&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;white&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;redBackground&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;greenBackground&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;yellowBackground&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;blueBackground&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;magentaBackground&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;cyanBackground&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;whiteBackground&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;grey&amp;lt;/li&gt;
+     *             &amp;lt;li&gt;black&amp;lt;/li&gt;
      *
-     *          &lt;/ul&gt;
+     *          &amp;lt;/ul&gt;
      */
     style:function (str, options) {
         var ret = str;
@@ -734,9 +739,7 @@
 <hr/>
 <em>Defined base/string.js</em>
 
-<p><p>Formats a string with the specified format
-
-</p>
+<p><p>Formats a string with the specified format</p>
 </p>
 
     <em>Example</em>
@@ -805,7 +808,7 @@ function (str,obj){
        //find the matches
        return str.replace(FORMAT_REGEX, function (m, format, type) {
            var replacer, ret;
-           if (i &lt; len) {
+           if (i &amp;lt; len) {
                replacer = obj[i++];
            } else {
                //we are out of things to replace with so
@@ -895,9 +898,7 @@ function (str,obj){
 <hr/>
 <em>Defined base/string.js</em>
 
-<p><p>Returns a string duplicated n times;
-
-</p>
+<p><p>Returns a string duplicated n times;</p>
 </p>
 
     <em>Example</em>
@@ -924,7 +925,7 @@ comb.string.multiply(&quot;HELLO&quot;, 5) =&gt; &quot;HELLOHELLOHELLOHELLOHELLO
 function (str,times){
    var ret = [];
    if (times) {
-       for (var i = 0; i &lt; times; i++) {
+       for (var i = 0; i &amp;lt; times; i++) {
            ret.push(str);
        }
    }
@@ -955,9 +956,7 @@ function (str,times){
 <hr/>
 <em>Defined base/string.js</em>
 
-<p><p>Pads a string
-
-</p>
+<p><p>Pads a string</p>
 </p>
 
     <em>Example</em>
@@ -1002,7 +1001,7 @@ function (string,length,ch,end){
    string = &quot;&quot; + string; //check for numbers
    ch = ch || &quot; &quot;;
    var strLen = string.length;
-   while (strLen &lt; length) {
+   while (strLen &amp;lt; length) {
        if (end) {
            string += ch;
        } else {
@@ -1037,9 +1036,7 @@ function (string,length,ch,end){
 <hr/>
 <em>Defined base/string.js</em>
 
-<p><p>Styles a string according to the specified styles.
-
-</p>
+<p><p>Styles a string according to the specified styles.</p>
 </p>
 
     <em>Example</em>
@@ -1112,9 +1109,7 @@ function (str,options){
 <hr/>
 <em>Defined base/string.js</em>
 
-<p><p>Converts a string to an array
-
-</p>
+<p><p>Converts a string to an array</p>
 </p>
 
     <em>Example</em>
@@ -1179,8 +1174,7 @@ function (testStr,delim){
 <hr/>
 <em>Defined base/string.js</em>
 
-<p><p>Truncates a string to the specified length.
-</p>
+<p><p>Truncates a string to the specified length.</p>
 </p>
 
     <em>Example</em>
@@ -1251,9 +1245,7 @@ function (string,length,end){
 
     
   <h2>License</h2>
-<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a>
-
-</p>
+<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
 <h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>

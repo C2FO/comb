@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
@@ -74,13 +74,18 @@
             z-index: 1000;
         }
 
+        .dropdown-menu{
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
         @media (max-width:979px) {
             .subnav{
                 margin-top: auto;
             }
         }
     </style>
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.min.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -598,8 +603,7 @@
 
 
 
-    <p><p>Base Class for all tree implementations
-</p>
+    <p><p>Base Class for all tree implementations</p>
 </p>
     
 
@@ -617,14 +621,10 @@
     
         <a name="staticProperties"></a>
         <em>Static Properties</em>
-        <table class='table table-bordered table-striped'><tr><td>Property</td><td>Type</td><td>Default Value</td><td>Description</td></tr><tr><td><em>IN_ORDER</em></td><td>property</td><td><code>"in_order"</code></td><td><p>In Order
-</p>
-</td><tr><tr><td><em>POST_ORDER</em></td><td>property</td><td><code>"post_order"</code></td><td><p>Post Order
-</p>
-</td><tr><tr><td><em>PRE_ORDER</em></td><td>property</td><td><code>"pre_order"</code></td><td><p>Pre Order
-</p>
-</td><tr><tr><td><em>REVERSE_ORDER</em></td><td>property</td><td><code>"reverse_order"</code></td><td><p>Reverse Order
-</p>
+        <table class='table table-bordered table-striped'><tr><td>Property</td><td>Type</td><td>Default Value</td><td>Description</td></tr><tr><td><em>IN_ORDER</em></td><td>property</td><td><code>"in_order"</code></td><td><p>In Order</p>
+</td><tr><tr><td><em>POST_ORDER</em></td><td>property</td><td><code>"post_order"</code></td><td><p>Post Order</p>
+</td><tr><tr><td><em>PRE_ORDER</em></td><td>property</td><td><code>"pre_order"</code></td><td><p>Pre Order</p>
+</td><tr><tr><td><em>REVERSE_ORDER</em></td><td>property</td><td><code>"reverse_order"</code></td><td><p>Reverse Order</p>
 </td><tr></table>
     
     
@@ -666,8 +666,7 @@ function (options){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Prints a node
-</p>
+<p><p>Prints a node</p>
 </p>
 
 
@@ -726,8 +725,7 @@ function (node,level){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Clear all items from a tree
-</p>
+<p><p>Clear all items from a tree</p>
 </p>
 
 
@@ -763,8 +761,7 @@ function (){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Determines if a value is contained in the tree
-</p>
+<p><p>Determines if a value is contained in the tree</p>
 </p>
 
 
@@ -827,9 +824,7 @@ function (value){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Determines if every item meets the condition returned by the callback.
-
-</p>
+<p><p>Determines if every item meets the condition returned by the callback.</p>
 </p>
 
 
@@ -895,9 +890,7 @@ function (cb,scope,order){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Filters a tree, only returning items that result in true being returned from the callback
-
-</p>
+<p><p>Filters a tree, only returning items that result in true being returned from the callback</p>
 </p>
 
 
@@ -964,8 +957,7 @@ function (cb,scope,order){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Finds a value in the tree
-</p>
+<p><p>Finds a value in the tree</p>
 </p>
 
 
@@ -1028,8 +1020,7 @@ function (value){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Find all greater than a value
-</p>
+<p><p>Find all greater than a value</p>
 </p>
 
 
@@ -1095,8 +1086,7 @@ function (value,exclusive){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Find all values less than a value
-</p>
+<p><p>Find all values less than a value</p>
 </p>
 
 
@@ -1162,8 +1152,7 @@ function (value,exclusive){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Loop through each item in the tree
-</p>
+<p><p>Loop through each item in the tree</p>
 </p>
 
 
@@ -1219,8 +1208,7 @@ function (cb,scope,order){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Inserts an item into the tree
-</p>
+<p><p>Inserts an item into the tree</p>
 </p>
 
 
@@ -1264,9 +1252,7 @@ function (data){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Test if a tree is empty
-
-</p>
+<p><p>Test if a tree is empty</p>
 </p>
 
 
@@ -1310,8 +1296,7 @@ function (){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Loop through each item in the tree, collecting the value returned by the callback funciton.
-</p>
+<p><p>Loop through each item in the tree, collecting the value returned by the callback funciton.</p>
 </p>
 
 
@@ -1378,8 +1363,7 @@ function (cb,scope,order){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Prints a tree to the console.
-</p>
+<p><p>Prints a tree to the console.</p>
 </p>
 
 
@@ -1415,9 +1399,7 @@ function (){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Reduces a tree
-
-</p>
+<p><p>Reduces a tree</p>
 </p>
 
 
@@ -1478,9 +1460,7 @@ function (fun,accumulator,order){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Reduces from right to left
-
-</p>
+<p><p>Reduces from right to left</p>
 </p>
 
 
@@ -1541,8 +1521,7 @@ function (fun,accumulator,order){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Removes an item from the tree
-</p>
+<p><p>Removes an item from the tree</p>
 </p>
 
 
@@ -1586,9 +1565,7 @@ function (data){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Determines if some item meet the condition returned by the callback. Traversal ends the first time true is found.
-
-</p>
+<p><p>Determines if some item meet the condition returned by the callback. Traversal ends the first time true is found.</p>
 </p>
 
 
@@ -1655,9 +1632,7 @@ function (cb,scope,order){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Converts a tree into an array based on the specified order
-
-</p>
+<p><p>Converts a tree into an array based on the specified order</p>
 </p>
 
 
@@ -1714,9 +1689,7 @@ function (order){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Traverse a tree
-
-</p>
+<p><p>Traverse a tree</p>
 <p><b>Not typically used directly</b></p>
 
 </p>
@@ -1787,9 +1760,7 @@ function (node,order,callback){
 <hr/>
 <em>Defined collections/Tree.js</em>
 
-<p><p>Traverse a tree until the callback function returns false
-
-</p>
+<p><p>Traverse a tree until the callback function returns false</p>
 <p><b>Not typically used directly</b></p>
 
 </p>
@@ -1857,9 +1828,7 @@ function (node,order,callback){
 
     
   <h2>License</h2>
-<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a>
-
-</p>
+<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
 <h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
@@ -74,13 +74,18 @@
             z-index: 1000;
         }
 
+        .dropdown-menu{
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
         @media (max-width:979px) {
             .subnav{
                 margin-top: auto;
             }
         }
     </style>
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.min.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -484,9 +489,7 @@
 
 
 
-    <p><p>Promise object used to provide seperation of success and error resolution paths for async operations.
-
-</p>
+    <p><p>Promise object used to provide seperation of success and error resolution paths for async operations.</p>
 </p>
     
         <em>Example</em>
@@ -572,7 +575,7 @@ function (){
        var cbs = this.__error ? this.__errorCbs : this.__cbs,
            len = cbs.length, i,
            results = this.__error || this.__results;
-       for (i = 0; i &lt; len; i++) {
+       for (i = 0; i &amp;lt; len; i++) {
            this.__callNextTick(cbs[i], results);
        }
    }
@@ -600,10 +603,7 @@ function (){
 <hr/>
 <em>Defined promise.js</em>
 
-<p><p>Add a callback to the callback chain of the promise
-
-
-</p>
+<p><p>Add a callback to the callback chain of the promise</p>
 </p>
 
 
@@ -665,9 +665,7 @@ function (cb){
 <hr/>
 <em>Defined promise.js</em>
 
-<p><p>Add a callback to the errback chain of the promise
-
-</p>
+<p><p>Add a callback to the errback chain of the promise</p>
 </p>
 
 
@@ -730,9 +728,7 @@ function (cb){
 <em>Defined promise.js</em>
 
 <p><p>Adds a callback or promise to be resolved for both success
-and error.
-
-</p>
+and error.</p>
 </p>
 
 
@@ -790,9 +786,7 @@ function (cb){
 <hr/>
 <em>Defined promise.js</em>
 
-<p><p>When called all functions registered as callbacks are called with the passed in results.
-
-</p>
+<p><p>When called all functions registered as callbacks are called with the passed in results.</p>
 </p>
 
 
@@ -842,9 +836,7 @@ function (args){
 <hr/>
 <em>Defined promise.js</em>
 
-<p><p>Call to chaining of promises
-
-</p>
+<p><p>Call to chaining of promises</p>
 <pre class='prettyprint linenums lang-js'><code>new Promise()
  .callback(&quot;hello&quot;)
  .chain(function(previousPromiseResults){
@@ -855,9 +847,7 @@ function (args){
  }).classic(function(err, results){
      //all promises are done
  });</code></pre>
-<p> You can also use static values
-
-</p>
+<p> You can also use static values</p>
 <pre class='prettyprint linenums lang-js'><code>new Promise().callback()
     .chain(&quot;hello&quot;)
     .chain(function(prev){
@@ -865,10 +855,7 @@ function (args){
     }).then(function(str){
         console.log(str); //&quot;hello world!&quot;
     });</code></pre>
-<p>If you do not provide an <code>errback</code> for each chain then it will be propogated to the final promise
-
-
-</p>
+<p>If you do not provide an <code>errback</code> for each chain then it will be propogated to the final promise</p>
 <pre class='prettyprint linenums lang-js'><code>new Promise()
     .chain(function(){
         return new comb.Promise().errback(new Error(&quot;error&quot;));
@@ -913,24 +900,29 @@ function (callback,errback){
    function errorHandler() {
        var args = arguments;
        if (errback) {
-           process.nextTick(function () {
+           nextTick(function () {
                try {
                    when(isFunction(errback) ? errback.apply(this, args) : errback).then(promise);
                } catch (e) {
                    promise.errback(e);
                }
+               promise = args = null;
            });
        } else {
            promise.errback.apply(promise, args);
+           promise = args = null;
        }
    }
    this.addCallback(function () {
        var args = arguments;
-       process.nextTick(function () {
+       nextTick(function () {
            try {
-               when(isFunction(callback) ? callback.apply(this, args) : callback).then(promise.callback.bind(promise), errorHandler);
+               when(isFunction(callback) ? callback.apply(this, args) : callback).then(function () {
+                   promise.callback.apply(promise, arguments);
+                   promise = args = null;
+               }, errorHandler);
            } catch (e) {
-               promise.errback(e);
+               errorHandler(e);
            }
        });
    });
@@ -962,9 +954,7 @@ function (callback,errback){
 <hr/>
 <em>Defined promise.js</em>
 
-<p><p>Applies the same function that returns a promise to both the callback and errback.
-
-</p>
+<p><p>Applies the same function that returns a promise to both the callback and errback.</p>
 </p>
 
 
@@ -1033,9 +1023,7 @@ function (callback){
 
 <p><p>Call this function as a classic node callback where the first argument
 will be an error, or null if no error occured. The other arugments will
-be the result from the promise.
-
-</p>
+be the result from the promise.</p>
 </p>
 
     <em>Example</em>
@@ -1106,9 +1094,7 @@ function (cb){
 <hr/>
 <em>Defined promise.js</em>
 
-<p><p>When called all functions registered as errbacks are called with the passed in error(s)
-
-</p>
+<p><p>When called all functions registered as errbacks are called with the passed in error(s)</p>
 </p>
 
 
@@ -1157,9 +1143,7 @@ function (args){
 <hr/>
 <em>Defined promise.js</em>
 
-<p><p>Creates an object to that contains methods to listen to resolution but not the &quot;callback&quot; or &quot;errback&quot; methods.
-
-</p>
+<p><p>Creates an object to that contains methods to listen to resolution but not the &quot;callback&quot; or &quot;errback&quot; methods.</p>
 </p>
 
     <em>Example</em>
@@ -1227,9 +1211,7 @@ function (){
 <hr/>
 <em>Defined promise.js</em>
 
-<p><p>Resolved a promise using the node style callback.
-
-</p>
+<p><p>Resolved a promise using the node style callback.</p>
 </p>
 
     <em>Example</em>
@@ -1298,9 +1280,7 @@ function (err,args){
 <hr/>
 <em>Defined promise.js</em>
 
-<p><p>Call to specify action to take after promise completes or errors
-
-</p>
+<p><p>Call to specify action to take after promise completes or errors</p>
 </p>
 
 
@@ -1349,9 +1329,7 @@ function (callback,errback){
 
     
   <h2>License</h2>
-<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a>
-
-</p>
+<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
 <h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
@@ -74,13 +74,18 @@
             z-index: 1000;
         }
 
+        .dropdown-menu{
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
         @media (max-width:979px) {
             .subnav{
                 margin-top: auto;
             }
         }
     </style>
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.min.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -277,22 +282,14 @@
 
 <h1><a href="./comb.html#.define">define</a></h1>
 <h2>Instance Methods</h2>
-<p>When defining classes in <code>comb</code> there are two root level properties you can define,  <code>instance</code> and  <code>static</code>. 
-
-</p>
-<p>The optional instance object is used to define properties and methods on an instance of a class. 
-
-</p>
-<p>The optional static property is used to define class level methods and properties than can be used without an instance of a class.
-
-</p>
+<p>When defining classes in <code>comb</code> there are two root level properties you can define,  <code>instance</code> and  <code>static</code>. </p>
+<p>The optional instance object is used to define properties and methods on an instance of a class. </p>
+<p>The optional static property is used to define class level methods and properties than can be used without an instance of a class.</p>
 <pre class='prettyprint linenums lang-js'><code>comb.define(null, {
     instance : {//Define your instance methods and properties}
     static : {//Define your static methods and properties}
 });</code></pre>
-<p>Lets start of by defining the class Mammal that will be used as the parent for other classes.
-
-</p>
+<p>Lets start of by defining the class Mammal that will be used as the parent for other classes.</p>
 <pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define({
     instance : {
 
@@ -312,9 +309,7 @@
         }
     }
 });</code></pre>
-<p>Next lets define two implementing classes, Wolf and Dog. This example is a little contrived as Dog could inherit from Wolf. 
-
-</p>
+<p>Next lets define two implementing classes, Wolf and Dog. This example is a little contrived as Dog could inherit from Wolf. </p>
 <pre class='prettyprint linenums lang-js'><code>var Wolf = Mammal.extend({
     instance: {
 
@@ -348,15 +343,11 @@ var Dog = Mammal.extend({
         }
     }
 });</code></pre>
-<p><code>Wolf</code> and <code>Dog</code> inherit from <code>Mammal</code>, which means that they are both an instanceof <code>Mammal</code>. Notice that both <code>Wolf</code> and <code>Dog</code> override the <code>Mammal</code> default values <code>type</code> and <code>sound</code> with their own values. 
-
-</p>
+<p><code>Wolf</code> and <code>Dog</code> inherit from <code>Mammal</code>, which means that they are both an instanceof <code>Mammal</code>. Notice that both <code>Wolf</code> and <code>Dog</code> override the <code>Mammal</code> default values <code>type</code> and <code>sound</code> with their own values. </p>
 <pre class='prettyprint linenums lang-js'><code>speak : function() {
      return this._super(arguments) + &quot; that &quot; + this._sound + &quot;s&quot;;
 }</code></pre>
-<p><code>Wolf</code> and <code>Dog</code> also override the <code>speak</code> method, in order to invoke the parents implementation the method <code>_super</code> is invoked. <code>_super</code> traverses the inheritance chain and returns the value.  So for both <code>Dog</code> and <code>Wolf</code> they called _super and appended their own message to their parents message.
-
-</p>
+<p><code>Wolf</code> and <code>Dog</code> also override the <code>speak</code> method, in order to invoke the parents implementation the method <code>_super</code> is invoked. <code>_super</code> traverses the inheritance chain and returns the value.  So for both <code>Dog</code> and <code>Wolf</code> they called _super and appended their own message to their parents message.</p>
 <pre class='prettyprint linenums lang-js'><code>//1. Create a dog and make him speak
 var myDog = new Dog();
 myDog.woof() //prints Wooooooof!
@@ -385,33 +376,18 @@ myWolfDog.woof() //prints Wooooooof!
 myWolfDog.howl() //prints &quot;Hoooooooooooowl!&quot;
 myWolfDog.speak();
     //=&gt; A mammal of type dog that barks, thats domesticated</code></pre>
-<p>1 and 2 : We created instances of <code>Dog</code> and <code>Wolf</code> and made them speak. Notice that the return value of the <code>speak()</code> method is the return value of <code>Mammal</code>&#39;s speak method concatenated  with the implementing classes own message.
-
-
-</p>
-<p>3 and 4 Ok, this is where it gets interesting, so lets break it down line by line.
-
-</p>
+<p>1 and 2 : We created instances of <code>Dog</code> and <code>Wolf</code> and made them speak. Notice that the return value of the <code>speak()</code> method is the return value of <code>Mammal</code>&#39;s speak method concatenated  with the implementing classes own message.</p>
+<p>3 and 4 Ok, this is where it gets interesting, so lets break it down line by line.</p>
 <pre class='prettyprint linenums lang-js'><code>var DogWolf = comb.define([Dog, Wolf]);</code></pre>
-<p>This line defines a new class aptly named <code>DogWolf</code>. The <code>DogWolf</code> class is an instanceof <code>Dog</code> but mixes in <code>Wolf</code>. What does that mean?
-
-</p>
+<p>This line defines a new class aptly named <code>DogWolf</code>. The <code>DogWolf</code> class is an instanceof <code>Dog</code> but mixes in <code>Wolf</code>. What does that mean?</p>
 <pre class='prettyprint linenums lang-js'><code>var myDogWolf = new DogWolf();
 myDogWolf instanceof Dog //=&gt; true
 myWolfDog instanceof Wolf //=&gt; false</code></pre>
-<p>So <code>Wolf</code> is mixed so we can get the <code>howl</code> method.  
-
-
-</p>
+<p>So <code>Wolf</code> is mixed so we can get the <code>howl</code> method.  </p>
 <pre class='prettyprint linenums lang-js'><code>myDogWolf.speak();
     //=&gt; A mammal of type wolf, thats domesticated that howls</code></pre>
-<p>So when <code>myDogWolf</code> speaks it invokes the speak functionality of <code>Wolf</code>-&gt;<code>Dog</code>-&gt;<code>Mammal</code>. The order of inheritance is important to keep in mind when designing your classes the inheritance chain will happen in reverse, starting with the last mixin traversing the inheritance chain until either <code>_super</code> is not invoked or the parent of the super class is reached, in this case <code>Mammal</code>. 
-
-
-</p>
-<p>So lets add some public properties to <code>Wolf</code> and <code>Dog</code>.
-
-</p>
+<p>So when <code>myDogWolf</code> speaks it invokes the speak functionality of <code>Wolf</code>-&gt;<code>Dog</code>-&gt;<code>Mammal</code>. The order of inheritance is important to keep in mind when designing your classes the inheritance chain will happen in reverse, starting with the last mixin traversing the inheritance chain until either <code>_super</code> is not invoked or the parent of the super class is reached, in this case <code>Mammal</code>. </p>
+<p>So lets add some public properties to <code>Wolf</code> and <code>Dog</code>.</p>
 <pre class='prettyprint linenums lang-js'><code>var Wolf = Mammal.extend({
     instance:{
 
@@ -495,10 +471,7 @@ var Dog = Mammal.extend({
         }
     }
 });</code></pre>
-<p>So we added a <code>setter</code> and <code>getter</code> for  <code>color</code> to the  <code>Wolf</code> class. The advantage of adding <code>setters</code> and <code>getters</code> is that it allows you to add logic when setting/getting properties. When setting the <code>color</code> property on <code>Wolf</code> we check that it is a string and we change our sound depending on the <code>color</code> of the <code>Wolf</code>. If you supply a <code>getter</code> for a property and not a corresponding <code>setter</code> it will be read only(e.g. the <code>Dog</code>s <code>foundOldManInWell</code> property is read only), the same applies for supplying only a <code>setter</code>. Lets try the getters and setters out.
-
-
-</p>
+<p>So we added a <code>setter</code> and <code>getter</code> for  <code>color</code> to the  <code>Wolf</code> class. The advantage of adding <code>setters</code> and <code>getters</code> is that it allows you to add logic when setting/getting properties. When setting the <code>color</code> property on <code>Wolf</code> we check that it is a string and we change our sound depending on the <code>color</code> of the <code>Wolf</code>. If you supply a <code>getter</code> for a property and not a corresponding <code>setter</code> it will be read only(e.g. the <code>Dog</code>s <code>foundOldManInWell</code> property is read only), the same applies for supplying only a <code>setter</code>. Lets try the getters and setters out.</p>
 <pre class='prettyprint linenums lang-js'><code>var myDog = new Dog({breed : &quot;beagle&quot;});
 console.log(myDog.breed); //prints beagle
 console.log(myDog.foundOldManInWell); //prints false
@@ -517,13 +490,8 @@ try {
     console.error(e); //prints [TypeError: Breed must be a String]
 }</code></pre>
 <h2>Static Methods</h2>
-<p>As stated above  <code>comb.define</code> looks for an optional static  property on the <code>prototype</code> declaration  of a class. 
-
-
-</p>
-<p>Lets modify <code>Mammal</code> to include static properties. 
-
-</p>
+<p>As stated above  <code>comb.define</code> looks for an optional static  property on the <code>prototype</code> declaration  of a class. </p>
+<p>Lets modify <code>Mammal</code> to include static properties. </p>
 <pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define({
     instance:{
 
@@ -559,10 +527,7 @@ try {
         }
     }
 });</code></pre>
-<p>So we added two static properties to <code>Mammal</code>, <code>DEFAULT_TYPE</code> and <code>DEFAULT_SOUND</code>. These properties can be accessed by instances through the <code>this._static</code> property.  
-
-
-</p>
+<p>So we added two static properties to <code>Mammal</code>, <code>DEFAULT_TYPE</code> and <code>DEFAULT_SOUND</code>. These properties can be accessed by instances through the <code>this._static</code> property.  </p>
 <pre class='prettyprint linenums lang-js'><code>constructor:function (options) {
      options = options || {};
      this._super(arguments);
@@ -570,19 +535,14 @@ try {
      this._type = options.type || myClass.DEFAULT_TYPE;
      this._type = options.sound || myClass.DEFAULT_SOUND;
 }</code></pre>
-<p>So we refactored the <code>constructor</code> function to leverage the new static properties when initializing itself. One example of using this initialization method is when you have properties that you want to be able to configure and apply to all instances of a class.
-
-
-</p>
+<p>So we refactored the <code>constructor</code> function to leverage the new static properties when initializing itself. One example of using this initialization method is when you have properties that you want to be able to configure and apply to all instances of a class.</p>
 <pre class='prettyprint linenums lang-js'><code>var myMammal = new Mammal();
 console.log(myMammal.type); //prints mammal
 Mammal.DEFAULT_TYPE = &quot;whale&quot;;
 myMammal = new Mammal();
 console.log(myMammal.type); //prints whale</code></pre>
 <h3>Inheritance In Static Functions.</h3>
-<p>One neat thing about defining classes in <code>comb</code> is that you not only get the advantages of inheritance in instance methods but static methods as well. So lets modify <code>Dog</code> and <code>Wolf</code> to take advantage of that.
-
-</p>
+<p>One neat thing about defining classes in <code>comb</code> is that you not only get the advantages of inheritance in instance methods but static methods as well. So lets modify <code>Dog</code> and <code>Wolf</code> to take advantage of that.</p>
 <pre class='prettyprint linenums lang-js'><code>var Wolf = Mammal.extend({
     instance:{
 
@@ -681,27 +641,17 @@ var Dog = Mammal.extend({
 
     }
 });</code></pre>
-<p>When executing soundOff. 
-
-</p>
+<p>When executing soundOff. </p>
 <pre class='prettyprint linenums lang-js'><code>console.log(Mammal.soundOff());
 console.log(Wolf.soundOff());
 console.log(Dog.soundOff());
 console.log(DogWolf.soundOff());
 console.log(WolfDog.soundOff());</code></pre>
-<p>As you can see inheritance within the static methods follows the same order as it does within  the instance methods.
-
-
-</p>
+<p>As you can see inheritance within the static methods follows the same order as it does within  the instance methods.</p>
 <h3>Static Getters and Setters</h3>
-<p>Getters and setters are declared the same way in a static declaration as they are in an instance declaration.
-
-
-</p>
+<p>Getters and setters are declared the same way in a static declaration as they are in an instance declaration.</p>
 <h3>Getting an Instance of my self.</h3>
-<p>One nuance about prototypal inheritance is that the scope in which a function is called is not consistent. For example, lets add a reproduce method to <code>Mammal</code>.
-
-</p>
+<p>One nuance about prototypal inheritance is that the scope in which a function is called is not consistent. For example, lets add a reproduce method to <code>Mammal</code>.</p>
 <pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define({
     instance:{
 
@@ -741,25 +691,17 @@ console.log(WolfDog.soundOff());</code></pre>
         }
     }
 });</code></pre>
-<p>This is great except that it will only work for instances of <code>Mammal</code> if we created a <code>Dog</code> and asked it to reproduce it would return a <code>Mammal</code> and <strong>not</strong> a<code>Dog</code>. Solution, change reproduce to:
-
-</p>
+<p>This is great except that it will only work for instances of <code>Mammal</code> if we created a <code>Dog</code> and asked it to reproduce it would return a <code>Mammal</code> and <strong>not</strong> a<code>Dog</code>. Solution, change reproduce to:</p>
 <pre class='prettyprint linenums lang-js'><code>reproduce : function(){
      return new this._static();
 }</code></pre>
-<p>This guarantees that you create an instance of your type. The same applies if you want to check if something is an instance of your current type. For example lets add a sameSpecies method to <code>Mammal</code>.
-
-</p>
+<p>This guarantees that you create an instance of your type. The same applies if you want to check if something is an instance of your current type. For example lets add a sameSpecies method to <code>Mammal</code>.</p>
 <pre class='prettyprint linenums lang-js'><code>sameSpecies : function(obj){
      return obj instanceof this._static; 
 }</code></pre>
-<p>This comes in handy when dealing with multiple inheritance, and wanting to check if an object is of the same concrete class.
-
-</p>
+<p>This comes in handy when dealing with multiple inheritance, and wanting to check if an object is of the same concrete class.</p>
 <h3>Static initialization</h3>
-<p><code>comb.define</code> also provides a mechanism for initializing when creating a class. <code>init</code> will be called on creation of any class.
-
-</p>
+<p><code>comb.define</code> also provides a mechanism for initializing when creating a class. <code>init</code> will be called on creation of any class.</p>
 <pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define({
     instance:{
 
@@ -801,17 +743,13 @@ console.log(WolfDog.soundOff());</code></pre>
         }
     }
 });</code></pre>
-<p>Here we moved the DEFAULT_TYPE and DEFAULT_SOUND initializtion to the <code>init</code> method. 
-
-</p>
+<p>Here we moved the DEFAULT_TYPE and DEFAULT_SOUND initializtion to the <code>init</code> method. </p>
 
 <hr>
 
     
   <h2>License</h2>
-<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a>
-
-</p>
+<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
 <h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>
