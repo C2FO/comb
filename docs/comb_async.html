@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comb</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/prettify.css">
     <style type="text/css">
         
@@ -74,13 +74,18 @@
             z-index: 1000;
         }
 
+        .dropdown-menu{
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
         @media (max-width:979px) {
             .subnav{
                 margin-top: auto;
             }
         }
     </style>
-    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap-responsive.min.css">
     <script type="text/javascript">
         var init = (function () {
             "use strict";
@@ -759,12 +764,8 @@
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Exposes array methods on a <a href='./comb_Promise.html#'> comb.Promise</a>.
-
-</p>
-<p>The methods added are.
-
-</p>
+<p><p>Exposes array methods on a <a href='./comb_Promise.html#'> comb.Promise</a>.</p>
+<p>The methods added are.</p>
 <ul>
 <li>forEach : See <a href='./comb_async.html#.forEach'> comb.async.forEach</a>.</li>
 <li>map : See <a href='./comb_async.html#.map'> comb.async.map</a>.</li>
@@ -794,9 +795,7 @@
 <li>pluck : See <a href='./comb_async.html#.pluck'> comb.async.pluck</a>.</li>
 <li>invoke : See <a href='./comb_async.html#.invoke'> comb.async.invoke</a>.</li>
 </ul>
-<p>When using this method each of the methods are chainable so you can combine actions.
-
-</p>
+<p>When using this method each of the methods are chainable so you can combine actions.</p>
 <pre class='prettyprint linenums lang-js'><code>var array = comb.async.array;
 function asyncArr(){
     var ret = new comb.Promise();
@@ -841,7 +840,7 @@ function (p){
            var func = asyncExports[m];
            ret[m] = function () {
                var args = argsToArray(arguments), mRet = new Promise();
-               process.nextTick(function () {
+               nextTick(function () {
                    func.apply(null, [ret].concat(args)).then(mRet);
                });
                return asyncArray(mRet);
@@ -851,6 +850,7 @@ function (p){
    } else {
        ret = p;
    }
+   p = null;
    return ret;
 }
     </pre>
@@ -877,10 +877,7 @@ function (p){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.avg'> comb.array.avg</a>.
-
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.avg'> comb.array.avg</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
@@ -939,9 +936,7 @@ function (avgPromise){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.cartesian'> comb.array.cartesian</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.cartesian'> comb.array.cartesian</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2]);
@@ -995,9 +990,7 @@ function (){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.compact'> comb.array.compact</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.compact'> comb.array.compact</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,null,2,null,3,null,4,null,5]);
@@ -1056,9 +1049,7 @@ function (arr){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.difference'> comb.array.difference</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.difference'> comb.array.difference</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
@@ -1113,9 +1104,7 @@ function (){
 <em>Defined async.js</em>
 
 <p><p>Loops through the results of an promise resolving with true if every item passed, false otherwise.
-The promise can return an array or just a single item.
-
-</p>
+The promise can return an array or just a single item.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
@@ -1127,9 +1116,7 @@ comb.async.every(asyncArr(), function(item){
 }).then(function(every){
      console.log(every); //true
 });</code></pre>
-<p>You may also return a promise from the iterator block.
-
-</p>
+<p>You may also return a promise from the iterator block.</p>
 <pre class='prettyprint linenums lang-js'><code>comb.async.every(asyncArr(), function(item, index){
     var ret = new comb.Promise();
     process.nextTick(function(){
@@ -1204,9 +1191,7 @@ function (promise,iterator,scope,limit){
 <em>Defined async.js</em>
 
 <p><p>Loops through the results of an promise resolving with the filtered array.
-The promise can return an array or just a single item.
-
-</p>
+The promise can return an array or just a single item.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
@@ -1218,9 +1203,7 @@ comb.async.filter(asyncArr(), function(item){
 }).then(function(arr){
      console.log(arr); //[1,3,5];
 });</code></pre>
-<p>You may also return a promise from the iterator block.
-
-</p>
+<p>You may also return a promise from the iterator block.</p>
 <pre class='prettyprint linenums lang-js'><code>comb.async.filter(asyncArr(), function(item, index){
     var ret = new comb.Promise();
     process.nextTick(function(){
@@ -1295,9 +1278,7 @@ function (promise,iterator,scope,limit){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.flatten'> comb.array.flatten</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.flatten'> comb.array.flatten</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [[1],[2],[3],[4],[5]]);
@@ -1351,9 +1332,7 @@ function (){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Loops through the results of an promise. The promise can return an array or just a single item.
-
-</p>
+<p><p>Loops through the results of an promise. The promise can return an array or just a single item.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
@@ -1365,9 +1344,7 @@ comb.async.forEach(asyncArr(), function(){
 }).then(function(arr){
      console.log(arr); //[1,2,3,4,5];
 });</code></pre>
-<p>You may also return a promise from the iterator block.
-
-</p>
+<p>You may also return a promise from the iterator block.</p>
 <pre class='prettyprint linenums lang-js'><code>var myNewArr = [];
 
 comb.async.forEach(asyncArr(), function(item, index){
@@ -1442,9 +1419,7 @@ function (promise,iterator,scope,limit){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.intersect'> comb.array.intersect</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.intersect'> comb.array.intersect</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
@@ -1498,9 +1473,7 @@ function (){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.invoke'> comb.array.invoke</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.invoke'> comb.array.invoke</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function person(name, age) {
      return {
          getName:function () {
@@ -1566,9 +1539,7 @@ function (arrPromise){
 <em>Defined async.js</em>
 
 <p><p>Loops through the results of an promise resolving with the return value of the iterator function.
-The promise can return an array or just a single item.
-
-</p>
+The promise can return an array or just a single item.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
@@ -1580,9 +1551,7 @@ comb.async.map(asyncArr(), function(item){
 }).then(function(arr){
      console.log(arr); //[2,4,6,8,10];
 });</code></pre>
-<p>You may also return a promise from the iterator block.
-
-</p>
+<p>You may also return a promise from the iterator block.</p>
 <pre class='prettyprint linenums lang-js'><code>comb.async.map(asyncArr(), function(item, index){
     var ret = new comb.Promise();
     process.nextTick(function(){
@@ -1654,9 +1623,7 @@ function (promise,iterator,scope,limit){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.max'> comb.array.max</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.max'> comb.array.max</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
@@ -1714,9 +1681,7 @@ function (){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.min'> comb.array.min</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.min'> comb.array.min</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
@@ -1774,9 +1739,7 @@ function (){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.multiply'> comb.array.multiply</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.multiply'> comb.array.multiply</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
@@ -1834,9 +1797,7 @@ function (){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.permutations'> comb.array.permutations</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.permutations'> comb.array.permutations</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3]);
@@ -1904,9 +1865,7 @@ function (){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.pluck'> comb.array.pluck</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.pluck'> comb.array.pluck</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>var when = comb.when,
     array = comb.async.array;
 function asyncArr(){
@@ -1986,9 +1945,7 @@ function (arrPromise,property){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.powerSet'> comb.array.powerSet</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.powerSet'> comb.array.powerSet</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
@@ -2047,9 +2004,7 @@ function (arr){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.removeDuplicates'> comb.array.removeDuplicates</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.removeDuplicates'> comb.array.removeDuplicates</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,2,3,3,3,4,4,4]);
@@ -2108,9 +2063,7 @@ function (arr){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.rotate'> comb.array.rotate</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.rotate'> comb.array.rotate</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
@@ -2169,9 +2122,7 @@ function (){
 <em>Defined async.js</em>
 
 <p><p>Loops through the results of an promise resolving with true if some items passed, false otherwise.
-The promise can return an array or just a single item.
-
-</p>
+The promise can return an array or just a single item.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
@@ -2183,9 +2134,7 @@ comb.async.some(asyncArr(), function(item){
 }).then(function(every){
      console.log(every); //true
 });</code></pre>
-<p>You may also return a promise from the iterator block.
-
-</p>
+<p>You may also return a promise from the iterator block.</p>
 <pre class='prettyprint linenums lang-js'><code>comb.async.some(asyncArr(), function(item, index){
     var ret = new comb.Promise();
     process.nextTick(function(){
@@ -2259,9 +2208,7 @@ function (promise,iterator,scope,limit){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.sort'> comb.array.sort</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.sort'> comb.array.sort</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,3,2,5,4]);
@@ -2319,9 +2266,7 @@ function (){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.sum'> comb.array.sum</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.sum'> comb.array.sum</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
@@ -2380,9 +2325,7 @@ function (arr){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.transpose'> comb.array.transpose</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.transpose'> comb.array.transpose</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [[1, 2, 3], [4, 5, 6]]);
@@ -2441,9 +2384,7 @@ function (arr){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.union'> comb.array.union</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.union'> comb.array.union</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
@@ -2497,9 +2438,7 @@ function (){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.unique'> comb.array.unique</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.unique'> comb.array.unique</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,2,3,3,4,4,5]);
@@ -2549,9 +2488,7 @@ function (){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Async version of <a href='./comb_array.html#.valuesAt'> comb.array.valuesAt</a>.
-
-</p>
+<p><p>Async version of <a href='./comb_array.html#.valuesAt'> comb.array.valuesAt</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
@@ -2611,9 +2548,7 @@ function (arrPromise){
 <hr/>
 <em>Defined async.js</em>
 
-<p><p>Zips results from promises into an array.
-
-</p>
+<p><p>Zips results from promises into an array.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){
     var ret = new comb.Promise();
     process.nextTick(ret.callback.bind(ret, [1,2,3,4,5]);
@@ -2660,9 +2595,7 @@ function (){
 
     
   <h2>License</h2>
-<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a>
-
-</p>
+<p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
 <h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>

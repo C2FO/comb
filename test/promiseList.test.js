@@ -72,13 +72,13 @@ it.describe("comb.PromiseList",function (it) {
         promise.callback("hello");
         promise2.callback("world");
         promise3.callback("!");
-        var pl = new PromiseList([promise, promise2, promise3]);
-        process.nextTick(function () {
+        var pl = new PromiseList([promise, promise2, promise3])
+        pl.addCallback(function () {
             assert.throws(function () {
                 pl.callback();
             });
-            next();
         });
+        return pl;
     });
 
     it.should("throw an error if errback is called after firing", function (next) {
@@ -86,13 +86,13 @@ it.describe("comb.PromiseList",function (it) {
         promise.callback("hello");
         promise2.callback("world");
         promise3.callback("!");
-        var pl = new PromiseList([promise, promise2, promise3]);
-        process.nextTick(function () {
+        var pl = new PromiseList([promise, promise2, promise3])
+        pl.addCallback(function () {
             assert.throws(function () {
                 pl.errback();
             });
-            next();
         });
+        return pl;
     });
 
     it.should("handle the ordering of results if resolved out of order", function (next) {
@@ -145,3 +145,4 @@ it.describe("comb.PromiseList",function (it) {
     });
 
 }).as(module);
+

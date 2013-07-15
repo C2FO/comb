@@ -4,7 +4,7 @@ var comb = require("index"),
     it = require("it");
 
 it.describe("comb.async",function (it) {
-    var arr = [1, 2, 3, 4, 5], array = comb.async.array;
+    var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], array = comb.async.array;
 
     function asyncArr() {
         var ret = new comb.Promise();
@@ -164,7 +164,7 @@ it.describe("comb.async",function (it) {
                 assert.equal(item, arr[index]);
                 return item % 2;
             }).chain(function (results) {
-                    assert.deepEqual(results, [1, 3, 5]);
+                    assert.deepEqual(results, [1, 3, 5, 7, 9, 11, 13, 15]);
                 });
         });
 
@@ -173,7 +173,7 @@ it.describe("comb.async",function (it) {
                 assert.equal(item, arr[index]);
                 return item % 2;
             }).chain(function (results) {
-                    assert.deepEqual(results, [1, 3, 5]);
+                    assert.deepEqual(results, [1, 3, 5, 7, 9, 11, 13, 15]);
                 });
         });
 
@@ -186,7 +186,7 @@ it.describe("comb.async",function (it) {
                 });
                 return ret;
             }).chain(function (results) {
-                    assert.deepEqual(results, [1, 3, 5]);
+                    assert.deepEqual(results, [1, 3, 5, 7, 9, 11, 13, 15]);
                 });
         });
 
@@ -338,7 +338,7 @@ it.describe("comb.async",function (it) {
         it.should("loop through results of a promise and return false if not items pass", function () {
             return array(asyncArr()).some(function (item, index) {
                 assert.equal(item, arr[index]);
-                return item > 5;
+                return item > 16;
             }).chain(function (results) {
                     assert.isFalse(results);
                 });
@@ -356,7 +356,7 @@ it.describe("comb.async",function (it) {
         it.should("Loop through each item in an array and return false if no items pass", function () {
             return array(arr).some(function (item, index) {
                 assert.equal(item, arr[index]);
-                return item > 5;
+                return item > 16;
             }).chain(function (results) {
                     assert.isFalse(results);
                 });
@@ -380,7 +380,7 @@ it.describe("comb.async",function (it) {
                 var ret = new comb.Promise();
                 process.nextTick(function () {
                     assert.equal(item, arr[index]);
-                    ret.callback(item > 5);
+                    ret.callback(item > 16);
                 });
                 return ret;
             }).chain(function (results) {
@@ -441,7 +441,18 @@ it.describe("comb.async",function (it) {
                     [2, 2, 2],
                     [3, 3, 3],
                     [4, 4, 4],
-                    [5, 5, 5]
+                    [5, 5, 5],
+                    [6, 6, 6],
+                    [7, 7, 7],
+                    [8, 8, 8],
+                    [9, 9, 9],
+                    [10, 10, 10],
+                    [11, 11, 11],
+                    [12, 12, 12],
+                    [13, 13, 13],
+                    [14, 14, 14],
+                    [15, 15, 15],
+                    [16, 16, 16]
                 ]);
             }).classic(next);
         });
@@ -725,14 +736,14 @@ it.describe("comb.async",function (it) {
             var arr1 = [ 3, -3, -2, -1, 1, 2],
                 arr2 = ["b", "c", "a"],
                 arr3 = [
-                    {a:1},
-                    {a:2},
-                    {a:-2}
+                    {a: 1},
+                    {a: 2},
+                    {a: -2}
                 ],
                 arr4 = [
-                    {a:"c"},
-                    {a:"b"},
-                    {a:"a"}
+                    {a: "c"},
+                    {a: "b"},
+                    {a: "a"}
                 ],
                 minDate = comb.daysFromNow(3),
                 arr5 = [
@@ -741,19 +752,19 @@ it.describe("comb.async",function (it) {
                     minDate
                 ],
                 arr6 = [
-                    {a:comb.daysFromNow(5)},
-                    {a:comb.daysFromNow(4)},
-                    {a:minDate}
+                    {a: comb.daysFromNow(5)},
+                    {a: comb.daysFromNow(4)},
+                    {a: minDate}
                 ],
                 arr7 = [true, false];
             return when(
                 asyncDeepEqual(array(arr1).min(), -3),
                 asyncDeepEqual(array(arr2).min(), "a"),
                 asyncDeepEqual(array(arr7).min(), false),
-                asyncDeepEqual(array(arr3).min("a"), {a:-2}),
-                asyncDeepEqual(array(arr4).min("a"), {a:"a"}),
+                asyncDeepEqual(array(arr3).min("a"), {a: -2}),
+                asyncDeepEqual(array(arr4).min("a"), {a: "a"}),
                 asyncDeepEqual(array(arr5).min(), minDate),
-                asyncDeepEqual(array(arr6).min("a"), {a:minDate})
+                asyncDeepEqual(array(arr6).min("a"), {a: minDate})
             );
 
         });
@@ -765,14 +776,14 @@ it.describe("comb.async",function (it) {
             var arr1 = [ 3, -3, -2, -1, 1, 2],
                 arr2 = ["b", "c", "a"],
                 arr3 = [
-                    {a:1},
-                    {a:2},
-                    {a:-2}
+                    {a: 1},
+                    {a: 2},
+                    {a: -2}
                 ],
                 arr4 = [
-                    {a:"c"},
-                    {a:"b"},
-                    {a:"a"}
+                    {a: "c"},
+                    {a: "b"},
+                    {a: "a"}
                 ],
                 maxDate = comb.daysFromNow(5),
                 arr5 = [
@@ -781,19 +792,19 @@ it.describe("comb.async",function (it) {
                     comb.daysFromNow(3)
                 ],
                 arr6 = [
-                    {a:maxDate},
-                    {a:comb.daysFromNow(4)},
-                    {a:comb.daysFromNow(3)}
+                    {a: maxDate},
+                    {a: comb.daysFromNow(4)},
+                    {a: comb.daysFromNow(3)}
                 ],
                 arr7 = [true, false];
             return when(
                 asyncDeepEqual(array(arr1).max(), 3),
                 asyncDeepEqual(array(arr2).max(), "c"),
                 asyncDeepEqual(array(arr7).max(), true),
-                asyncDeepEqual(array(arr3).max("a"), {a:2}),
-                asyncDeepEqual(array(arr4).max("a"), {a:"c"}),
+                asyncDeepEqual(array(arr3).max("a"), {a: 2}),
+                asyncDeepEqual(array(arr4).max("a"), {a: "c"}),
                 asyncDeepEqual(array(arr5).max(), maxDate),
-                asyncDeepEqual(array(arr6).max("a"), {a:maxDate})
+                asyncDeepEqual(array(arr6).max("a"), {a: maxDate})
             );
         });
 
@@ -805,14 +816,14 @@ it.describe("comb.async",function (it) {
                 arr2 = ["b", "c", "a"],
 
                 arr3 = [
-                    {a:1},
-                    {a:2},
-                    {a:-2}
+                    {a: 1},
+                    {a: 2},
+                    {a: -2}
                 ],
                 arr4 = [
-                    {a:"c"},
-                    {a:"b"},
-                    {a:"a"}
+                    {a: "c"},
+                    {a: "b"},
+                    {a: "a"}
                 ],
                 fiveDays = comb.daysFromNow(5),
                 fourDays = comb.daysFromNow(4),
@@ -823,9 +834,9 @@ it.describe("comb.async",function (it) {
                     threeDays
                 ],
                 arr6 = [
-                    {a:fiveDays},
-                    {a:fourDays},
-                    {a:threeDays}
+                    {a: fiveDays},
+                    {a: fourDays},
+                    {a: threeDays}
                 ],
                 arr7 = [true, false];
             return when(
@@ -835,15 +846,15 @@ it.describe("comb.async",function (it) {
                 asyncDeepEqual(array(arr7).sort(), [false, true]),
 
                 asyncDeepEqual(array(arr3).sort("a"), [
-                    {a:-2},
-                    {a:1},
-                    {a:2}
+                    {a: -2},
+                    {a: 1},
+                    {a: 2}
                 ]),
 
                 asyncDeepEqual(array(arr4).sort("a"), [
-                    {a:"a"},
-                    {a:"b"},
-                    {a:"c"}
+                    {a: "a"},
+                    {a: "b"},
+                    {a: "c"}
                 ]),
 
                 asyncDeepEqual(array(arr5).sort(), [
@@ -852,16 +863,16 @@ it.describe("comb.async",function (it) {
                     fiveDays
                 ]),
                 asyncDeepEqual(array(arr6).sort("a"), [
-                    {a:threeDays},
-                    {a:fourDays},
-                    {a:fiveDays}
+                    {a: threeDays},
+                    {a: fourDays},
+                    {a: fiveDays}
                 ]),
                 asyncDeepEqual(array(arr6).sort(function (a, b) {
                     return a.a - b.a;
                 }), [
-                    {a:threeDays},
-                    {a:fourDays},
-                    {a:fiveDays}
+                    {a: threeDays},
+                    {a: fourDays},
+                    {a: fiveDays}
                 ])
             );
         });
@@ -870,7 +881,7 @@ it.describe("comb.async",function (it) {
 
     it.describe(".difference", function (it) {
         it.should("find the difference between two arrays", function () {
-            var a = {a:1}, b = {a:2}, c = {a:3};
+            var a = {a: 1}, b = {a: 2}, c = {a: 3};
             asyncDeepEqual(array([true, false]).difference(array([false])), [true]);
             asyncDeepEqual(array([1, 2, 3]).difference([2]), [1, 3]);
             asyncDeepEqual(array([1, 2, 3]).difference([2], array([3])), [1]);
@@ -912,10 +923,10 @@ it.describe("comb.async",function (it) {
     it.describe("pluck", function (it) {
         it.should("pluck properties", function (it) {
             var arr = [
-                {name:{first:"Fred", last:"Jones"}, age:50, roles:["a", "b", "c"]},
-                {name:{first:when("Bob"), last:"Yukon"}, age:when(40), roles:when(["b", "c"])},
-                {name:{first:"Alice", last:"Palace"}, age:35, roles:["c"]},
-                {name:{first:when("Johnny"), last:"P."}, age:56, roles:when([])}
+                {name: {first: "Fred", last: "Jones"}, age: 50, roles: ["a", "b", "c"]},
+                {name: {first: when("Bob"), last: "Yukon"}, age: when(40), roles: when(["b", "c"])},
+                {name: {first: "Alice", last: "Palace"}, age: 35, roles: ["c"]},
+                {name: {first: when("Johnny"), last: "P."}, age: 56, roles: when([])}
             ];
             return when(
                 asyncDeepEqual(array(arr).pluck("name.first"), ["Fred", "Bob", "Alice", "Johnny"]),
@@ -931,16 +942,16 @@ it.describe("comb.async",function (it) {
         it.should("support invoke", function () {
             function person(name, age) {
                 return {
-                    getName:function () {
+                    getName: function () {
                         return when(name);
                     },
 
-                    getOlder:function () {
+                    getOlder: function () {
                         age++;
                         return when(this);
                     },
 
-                    getAge:function () {
+                    getAge: function () {
                         return when(age);
                     }
                 };
@@ -959,7 +970,7 @@ it.describe("comb.async",function (it) {
                 return num * (i + 1);
             }).filter(function (num) {
                 return num % 2;
-            }).avg(), 11.666666666666666);
+            }).avg(), 85);
     });
 
 
