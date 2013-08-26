@@ -1,3 +1,8 @@
+# 0.2.3
+
+* Updated define to be more performant
+* Rewrote Promise#chain
+
 #0.2.1
 * Added check for `getgid` when logging on non posix systems
 

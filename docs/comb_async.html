@@ -833,7 +833,7 @@ function (p){
    if (!p || !p.__isArrayAsync__) {
        ret = merge(when(p), {
            promise: function () {
-               return asyncArray(this)
+               return asyncArray(this);
            }
        });
        forEach(methods, function (m) {

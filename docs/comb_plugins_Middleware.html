@@ -667,7 +667,7 @@ function (state,op,args){
            if (err) {
                promise.errback(err);
            } else {
-               setImmediate(func.hitch(this, function () {
+               nextTick(func.hitch(this, function () {
                    //if Ive looped through all of them callback
                    if (count == length) {
                        promise.callback();

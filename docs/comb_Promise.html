@@ -537,6 +537,8 @@ myFunc2.chain(myfunc).then(function(success){}, function(error){})
 function (){
    this.__errorCbs = [];
    this.__cbs = [];
+   this.callback = hitch(this, this.callback);
+   this.errback = hitch(this, this.errback);
            
 }
             </pre>
@@ -570,14 +572,19 @@ function (){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (){
-   if (!this.__fired) {
-       this.__fired = true;
-       var cbs = this.__error ? this.__errorCbs : this.__cbs,
-           len = cbs.length, i,
-           results = this.__error || this.__results;
-       for (i = 0; i &amp;lt; len; i++) {
-           this.__callNextTick(cbs[i], results);
-       }
+   var self = this;
+   if (!self.__fired) {
+       self.__fired = true;
+       nextTick(function () {
+           var cbs = self.__error ? self.__errorCbs : self.__cbs,
+               res = self.__error || self.__results,
+               i = -1, l = cbs.length;
+           while (++i &amp;lt; l) {
+               spreadArgs(cbs[i], res);
+           }
+           self.__errorCbs.length = self.__cbs.length = 0;
+           self = null;
+       });
    }
            
 }
@@ -631,8 +638,8 @@ function (){
     <pre class="prettyprint linenums lang-js">
 function (cb){
    if (cb) {
-       if (exports.isPromiseLike(cb)) {
-           cb = hitch(cb, &quot;callback&quot;);
+       if (isPromise(cb)) {
+           cb = cb.callback;
        }
        if (this.__fired &amp;&amp; this.__results) {
            this.__callNextTick(cb, this.__results);
@@ -693,8 +700,8 @@ function (cb){
     <pre class="prettyprint linenums lang-js">
 function (cb){
    if (cb) {
-       if (exports.isPromiseLike(cb)) {
-           cb = hitch(cb, &quot;errback&quot;);
+       if (isPromise(cb)) {
+           cb = cb.errback;
        }
        if (this.__fired &amp;&amp; this.__error) {
            this.__callNextTick(cb, this.__error);
@@ -756,8 +763,8 @@ and error.</p>
     <pre class="prettyprint linenums lang-js">
 function (cb){
    this.addCallback(cb);
-   if (exports.isPromiseLike(cb)) {
-       this.addErrback(hitch(cb, &quot;callback&quot;));
+   if (isPromise(cb)) {
+       this.addErrback(cb.callback);
    } else {
        this.addErrback(cb);
    }
@@ -896,39 +903,30 @@ errback method will be used.</p>
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (callback,errback){
-   var promise = new Promise();
-   function errorHandler() {
-       var args = arguments;
-       if (errback) {
-           nextTick(function () {
-               try {
-                   when(isFunction(errback) ? errback.apply(this, args) : errback).then(promise);
-               } catch (e) {
-                   promise.errback(e);
-               }
-               promise = args = null;
-           });
+   var promise = new Promise(),
+       self = this;
+   function _errback(e) {
+       if (isFunction(errback)) {
+           try {
+               var res = spreadArgs(errback, [e]);
+               isPromiseLike(res) ? res.then(promise.callback, promise.errback) : promise.callback(res);
+           } catch (e) {
+               promise.errback(e);
+           }
        } else {
-           promise.errback.apply(promise, args);
-           promise = args = null;
+           promise.errback(e);
        }
    }
-   this.addCallback(function () {
-       var args = arguments;
-       nextTick(function () {
-           try {
-               when(isFunction(callback) ? callback.apply(this, args) : callback).then(function () {
-                   promise.callback.apply(promise, arguments);
-                   promise = args = null;
-               }, errorHandler);
-           } catch (e) {
-               errorHandler(e);
-           }
-       });
-   });
-   // If no errback passed, then invoke our promise&#x27;s errback to pass
-   // on to next link in the chain.
-   this.addErrback(errorHandler);
+   function _callback() {
+       try {
+           var res = isFunction(callback) ? spreadArgs(callback, arguments) : callback;
+           isPromiseLike(res) ? res.then(promise.callback, _errback) : promise.callback(res);
+       } catch (e) {
+           return _errback(e);
+       }
+   }
+   self.addCallback(_callback);
+   self.addErrback(_errback);
    return promise.promise();
            
 }
@@ -1062,12 +1060,8 @@ promise.classic(function(err, res){
     <pre class="prettyprint linenums lang-js">
 function (cb){
    if (&quot;function&quot; === typeof cb) {
-       this.addErrback(function (err) {
-           cb(err);
-       });
-       this.addCallback(function () {
-           cb.apply(this, [null].concat(argsToArray(arguments)));
-       });
+       this.addErrback(cb);
+       this.addCallback(partial(cb, null));
    }
    return this;
            
@@ -1182,7 +1176,7 @@ function (){
    };
    forEach([&quot;addCallback&quot;, &quot;addErrback&quot;, &quot;then&quot;, &quot;both&quot;, &quot;classic&quot;], function (action) {
        ret[action] = function () {
-           this[action].apply(this, arguments);
+           spreadArgs(this[action], arguments, this);
            return ret;
        }.bind(this);
    }, this);
@@ -1253,7 +1247,7 @@ function (err,args){
    if (err) {
        this.errback(err);
    } else {
-       this.callback.apply(this, argsToArray(arguments, 1));
+       spreadArgs(this.callback, argsToArray(arguments, 1), this);
    }
    return this;
            
@@ -1310,13 +1304,12 @@ function (err,args){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (callback,errback){
-   if (exports.isPromiseLike(callback)) {
-       this.addCallback(callback);
-       this.addErrback(callback);
-   } else {
-       this.addCallback(callback);
-       this.addErrback(errback);
+   if (isPromise(callback)) {
+       errback = callback.errback;
+       callback = callback.callback;
    }
+   this.addCallback(callback);
+   this.addErrback(errback);
    return this;
            
 }
