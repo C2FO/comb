@@ -455,16 +455,20 @@ function (defs,normalizeResults){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (promise,i){
-   promise.addCallback(hitch(this, function () {
-       var args = argsToArray(arguments);
-       args.unshift(i);
-       this.callback.apply(this, args);
-   }));
-   promise.addErrback(hitch(this, function () {
-       var args = argsToArray(arguments);
-       args.unshift(i);
-       this.errback.apply(this, args);
-   }));
+   var self = this;
+   promise.then(
+       function () {
+           var args = argsToArray(arguments);
+           args.unshift(i);
+           spreadArgs(self.callback, args, self);
+           promise = i = self = null;
+       },
+       function () {
+           var args = argsToArray(arguments);
+           args.unshift(i);
+           spreadArgs(self.errback, args, self);
+           promise = i = self = null;
+       });
            
 }
     </pre>
@@ -500,12 +504,15 @@ function (promise,i){
 function (){
    if (!this.__fired) {
        this.__fired = true;
-       var cbs = this.__errors.length ? this.__errorCbs : this.__cbs,
-           len = cbs.length, i,
-           results = this.__errors.length ? this.__errors : this.__results;
-       for (i = 0; i &amp;lt; len; i++) {
-           this.__callNextTick(cbs[i], results);
-       }
+       var self = this;
+       nextTick(function () {
+           var cbs = self.__errors.length ? self.__errorCbs : self.__cbs,
+               len = cbs.length, i,
+               results = self.__errors.length ? self.__errors : self.__results;
+           for (i = 0; i &amp;lt; len; i++) {
+               spreadArgs(cbs[i], [results]);
+           }
+       });
    }
            
 }

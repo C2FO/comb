@@ -9,7 +9,7 @@ it.describe("comb.async",function (it) {
     function asyncArr() {
         var ret = new comb.Promise();
         process.nextTick(ret.callback.bind(ret, arr));
-        return ret;
+        return ret.promise();
     }
 
     function asyncIndex(index) {
@@ -39,6 +39,7 @@ it.describe("comb.async",function (it) {
 
         it.should("wait for inner promises to complete and return the original array", function () {
             return array(arr).forEach(function (item, index) {
+                debugger;
                 var ret = new comb.Promise();
                 process.nextTick(function () {
                     assert.equal(item, arr[index]);
