@@ -1,4 +1,5 @@
 .DS_Store
+atlassian-ide-plugin.xml
 node_modules
 lib-cov
 *.iml

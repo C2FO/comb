@@ -125,7 +125,8 @@ it.describe("comb.PromiseList",function (it) {
         process.nextTick(comb.hitch(promise, "callback", "hello"));
         process.nextTick(comb.hitch(promise2, "callback", "world"));
         process.nextTick(comb.hitch(promise3, "callback", "!"));
-        var p2 = new Promise().then(function (res) {
+        var p2 = new Promise();
+        p2.then(function (res) {
             assert.deepEqual(res, ["hello", "world", "!"]);
             next();
         });
@@ -137,7 +138,8 @@ it.describe("comb.PromiseList",function (it) {
         process.nextTick(comb.hitch(promise, "callback", "hello"));
         process.nextTick(comb.hitch(promise2, "callback", "world"));
         process.nextTick(comb.hitch(promise3, "errback", "error"));
-        var p2 = new Promise().then(next, function (res) {
+        var p2 = new Promise();
+        p2.then(next, function (res) {
             assert.equal(res[2], "error");
             next();
         });
@@ -145,4 +147,3 @@ it.describe("comb.PromiseList",function (it) {
     });
 
 }).as(module);
-

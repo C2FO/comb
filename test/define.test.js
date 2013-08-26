@@ -5,43 +5,42 @@ var it = require('it'),
     define = comb.define,
     singleton = comb.singleton;
 
-it.describe("comb.define",function (it) {
-
+it.describe("comb.define", function (it) {
 
 //Super of other classes
     var Mammal = define({
-        instance:{
+        instance: {
 
-            constructor:function (options) {
+            constructor: function (options) {
                 options = options || {};
                 this._super(arguments);
                 this._type = options.type || "mammal";
             },
 
-            speak:function () {
+            speak: function () {
                 return  "A mammal of type " + this._type + " sounds like";
             },
 
             //Define your getters
-            getters:{
-                type:function () {
+            getters: {
+                type: function () {
                     return this._type;
                 }
             },
 
-            setters:{
-                type:function (type) {
+            setters: {
+                type: function (type) {
                     this._type = type;
                 }
             }
         },
 
         //Define your static methods
-        static:{
+        static: {
 
-            mammalInheritedProp:"mammalInheritedProp",
+            mammalInheritedProp: "mammalInheritedProp",
 
-            soundOff:function () {
+            soundOff: function () {
                 return "Im a mammal!!";
             }
         }
@@ -49,8 +48,8 @@ it.describe("comb.define",function (it) {
 
 //Show singular inheritance
     var Wolf = Mammal.extend({
-        instance:{
-            constructor:function (options) {
+        instance: {
+            constructor: function (options) {
                 options = options || {};
                 //call your super constructor you can call this after you initialize or not
                 //call it at all to prevent the supers from initilizing things
@@ -59,33 +58,33 @@ it.describe("comb.define",function (it) {
                 this._color = options.color || "grey";
             },
 
-            speak:function () {
+            speak: function () {
                 return this._super(arguments) + " a " + this._sound;
             },
 
-            getters:{
-                color:function () {
+            getters: {
+                color: function () {
                     return this._color;
                 },
 
-                sound:function () {
+                sound: function () {
                     return this._sound;
                 }
             },
 
-            setters:{
-                color:function (color) {
+            setters: {
+                color: function (color) {
                     this._color = color;
                 },
 
-                sound:function (sound) {
+                sound: function (sound) {
                     this._sound = sound;
                 }
             }
         },
 
-        static:{
-            soundOff:function () {
+        static: {
+            soundOff: function () {
                 //You can even call super in your statics!!!
                 return this._super(arguments) + " that growls";
             }
@@ -96,21 +95,21 @@ it.describe("comb.define",function (it) {
 //Typical heirachical inheritance
 // Mammal->Wolf->Dog
     var Dog = Wolf.extend({
-        instance:{
-            constructor:function (options) {
+        instance: {
+            constructor: function (options) {
                 options = options || {};
                 this._super(arguments);
                 this._sound = "woof";
 
             },
 
-            speak:function () {
+            speak: function () {
                 return this._super(arguments) + " thats domesticated";
             }
         },
 
-        static:{
-            soundOff:function () {
+        static: {
+            soundOff: function () {
                 return this._super(arguments) + " but now barks";
             }
         }
@@ -118,35 +117,35 @@ it.describe("comb.define",function (it) {
 
 // Mammal->Wolf->Dog->Breed
     var Breed = Dog.extend({
-        instance:{
+        instance: {
 
-            _pitch:"high",
+            _pitch: "high",
 
-            constructor:function (options) {
+            constructor: function (options) {
                 options = options || {};
                 this._super(arguments);
                 this.breed = options.breed || "lab";
             },
 
-            speak:function () {
+            speak: function () {
                 return this._super(arguments) + " with a " + this._pitch + " pitch!";
             },
 
-            getters:{
-                pitch:function () {
+            getters: {
+                pitch: function () {
                     return this._pitch;
                 }
             },
 
-            setters:{
-                pitch:function (pitch) {
+            setters: {
+                pitch: function (pitch) {
                     this._pitch = pitch;
                 }
             }
         },
 
-        static:{
-            soundOff:function () {
+        static: {
+            soundOff: function () {
                 return this._super(arguments).toUpperCase() + "!";
             }
         }
@@ -164,39 +163,39 @@ it.describe("comb.define",function (it) {
     var MyLab = singleton(Lab);
 
     var MyLabWithConstructor = singleton([Mammal, Wolf, Dog, Breed], {
-        instance:{
-            constructor:function () {
+        instance: {
+            constructor: function () {
                 this._super(arguments);
             }
         }
     });
 
     var StaticInitClass = define([Mammal, Wolf, Dog, Breed], {
-        static:{
-            initCalled:false,
-            init:function () {
+        static: {
+            initCalled: false,
+            init: function () {
                 this.initCalled = true;
             }
         }
     });
 
     var SingletonInit = singleton([Mammal, Wolf, Dog, Breed], {
-        static:{
-            initCalled:false,
-            init:function () {
+        static: {
+            initCalled: false,
+            init: function () {
                 this.initCalled = true;
             }
         }
     });
 
     var WrappedClass = define([Mammal, Wolf, Dog, Breed], {
-        static:{
-            DogMammal:Dog
+        static: {
+            DogMammal: Dog
         }
     });
 
     it.describe("Dog", function (it) {
-        var dog = new Dog({color:"gold"});
+        var dog = new Dog({color: "gold"});
         it.should("sound like a dog", function () {
             //This is true because they inherit from eachother!
             assert.isTrue(dog instanceof Wolf);
@@ -222,7 +221,7 @@ it.describe("comb.define",function (it) {
 
     it.describe("a Breed ", function (it) {
 
-        var breed = new Breed({color:"gold", type:"lab"});
+        var breed = new Breed({color: "gold", type: "lab"});
 
 
         it.should("sound like a lab", function () {
@@ -318,7 +317,7 @@ it.describe("comb.define",function (it) {
     it.describe("Singletons", function (it) {
         it.describe("when in creating my lab singleton", function (it) {
 
-            var lab = new MyLab({type:"dog"});
+            var lab = new MyLab({type: "dog"});
 
             it.should("still be a dog", function () {
                 var myLab = new MyLab();
@@ -341,7 +340,7 @@ it.describe("comb.define",function (it) {
 
         it.describe("when in creating my lab singleton with a constructor", function (it) {
 
-            var lab = new MyLabWithConstructor({type:"dog"});
+            var lab = new MyLabWithConstructor({type: "dog"});
 
             it.should("still be a dog", function () {
                 var myLab = new MyLabWithConstructor();
@@ -392,20 +391,22 @@ it.describe("comb.define",function (it) {
         assert.instanceOf(new WrappedClass.DogMammal(), Dog);
     });
 
-    it.describe("#_getSuper", function () {
-        var Mammal2 = define(Mammal, {
-            instance:{
-                speak:function () {
-                    return this._getSuper();
-                },
+    it.describe("#_getSuper", function (it) {
+        it.should("get the super function", function () {
+            var Mammal2 = define(Mammal, {
+                instance: {
+                    speak: function () {
+                        return this._getSuper();
+                    },
 
-                unspeak:function () {
-                    return this._getSuper();
+                    unspeak: function () {
+                        return this._getSuper();
+                    }
                 }
-            }
+            });
+            assert.equal(new Mammal2().speak()(), "A mammal of type mammal sounds like");
+            assert.isNull(new Mammal2().unspeak());
         });
-        assert.equal(new Mammal2().speak()(), "A mammal of type mammal sounds like");
-        assert.isNull(new Mammal2().unspeak());
     });
 
 
@@ -422,6 +423,6 @@ it.describe("comb.define",function (it) {
         });
     });
 
-}).as(module);
+});
 
 
