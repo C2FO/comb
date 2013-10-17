@@ -507,10 +507,10 @@ function (){
     <pre class="prettyprint linenums lang-js">
 function (){
    var ret = undefined;
-   if (this.freeCount &gt; 0) {
+   if (this.count &amp;lt;= this.__maxObjects &amp;&amp; this.freeCount &gt; 0) {
        ret = this.__freeObjects.dequeue();
        this.__inUseObjects.push(ret);
-   } else if (this.__maxObjects &gt; this.count) {
+   } else if (this.count &amp;lt; this.__maxObjects) {
        ret = this.createObject();
        this.__inUseObjects.push(ret);
    }
@@ -619,11 +619,10 @@ if the validation fails then it is removed from the pool;</p>
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (obj){
-   if (this.validate(obj) &amp;&amp; this.count &amp;lt;= this.__maxObjects) {
+   var index;
+   if (this.validate(obj) &amp;&amp; this.count &amp;lt;= this.__maxObjects &amp;&amp; (index = this.__inUseObjects.indexOf(obj)) &gt; -1) {
        this.__freeObjects.enqueue(obj);
-       var index;
-       if ((index = this.__inUseObjects.indexOf(obj)) &gt; -1)
-           this.__inUseObjects.splice(index, 1);
+       this.__inUseObjects.splice(index, 1);
    } else {
        this.removeObject(obj);
    }

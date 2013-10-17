@@ -1,3 +1,7 @@
+# 0.2.4
+
+* Fixed issue with pool ensuring only the max number of objects is created.
+
 # 0.2.3
 
 * Updated define to be more performant
