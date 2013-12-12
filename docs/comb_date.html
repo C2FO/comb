@@ -463,7 +463,7 @@
      * @param {Date} dateObject the date containing the month
      * @return {Number} the number of days in the month
      */
-    getDaysInMonth:function (/*Date*/dateObject) {
+    getDaysInMonth: function (/*Date*/dateObject) {
         //	summary:
         //		Returns the number of days in the month used by dateObject
         var month = dateObject.getMonth();
@@ -489,7 +489,7 @@
      * @param {Date} dateObject
      * @returns {Boolean} true if it is a leap year false otherwise
      */
-    isLeapYear:function (/*Date*/dateObject, utc) {
+    isLeapYear: function (/*Date*/dateObject, utc) {
         var year = dateObject[utc ? &quot;getUTCFullYear&quot; : &quot;getFullYear&quot;]();
         return (year % 400 === 0) || (year % 4 === 0 &amp;&amp; year % 100 !== 0);
     },
@@ -511,7 +511,7 @@
      *
      * @returns {Boolean} true if the date is a weekend
      */
-    isWeekend:function (/*Date?*/dateObject, utc) {
+    isWeekend: function (/*Date?*/dateObject, utc) {
         // summary:
         //	Determines if the date falls on a weekend, according to local custom.
         var day = (dateObject || new Date())[utc ? &quot;getUTCDay&quot; : &quot;getDay&quot;]();
@@ -533,7 +533,7 @@
      *
      * @returns {String} the timezone of the date
      */
-    getTimezoneName:getTimezoneName,
+    getTimezoneName: getTimezoneName,
     /**
      * Compares two dates
      *
@@ -565,7 +565,7 @@
      *
      * @returns -1 if date1 is &amp;lt; date2 0 if date1 === date2  1 if date1 &gt; date2
      */
-    compare:function (/*Date*/date1, /*Date*/date2, /*String*/portion) {
+    compare: function (/*Date*/date1, /*Date*/date2, /*String*/portion) {
         date1 = new Date(date1);
         date2 = new Date((date2 || new Date()));
         if (portion === &quot;date&quot;) {
@@ -637,7 +637,7 @@
      *  &amp;lt;/ul&gt;
      * @param {Number} [amount=0] the amount to add
      */
-    add:function (/*Date*/date, /*String*/interval, /*int*/amount) {
+    add: function (/*Date*/date, /*String*/interval, /*int*/amount) {
         var res = addTransform(interval, date, amount || 0);
         amount = res[0];
         var property = res[1];
@@ -712,7 +712,7 @@
      *      &amp;lt;li&gt;millisecond | milliseconds&amp;lt;/li&gt;
      *  &amp;lt;/ul&gt;
      */
-    difference:function (/*Date*/date1, /*Date?*/date2, /*String*/interval, utc) {
+    difference: function (/*Date*/date1, /*Date?*/date2, /*String*/interval, utc) {
         date2 = date2 || new Date();
         interval = interval || &quot;day&quot;;
         return differenceTransform(interval, date1, date2, utc);
@@ -756,7 +756,7 @@
      *
      *
      */
-    parse:function (dateStr, format) {
+    parse: function (dateStr, format) {
         if (!format) {
             throw new Error(&#x27;format required when calling comb.date.parse&#x27;);
         }
@@ -911,7 +911,7 @@
      *                  &amp;lt;li&gt; Z    Time zone    RFC 822 time zone    -0800 &amp;lt;/li&gt;
      * &amp;lt;/ul&gt;
      */
-    format:function (date, format, utc) {
+    format: function (date, format, utc) {
         utc = utc || false;
         var fullYear, month, day, d, hour, minute, second, millisecond;
         if (utc) {

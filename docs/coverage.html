@@ -256,10 +256,10 @@ td.cov-stats {
             </td>
             <td class="cov-stats">
                 <div>
-                    <span class='cov-label'>Coverage</span><span class='cov-value'>99.36</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>12469</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>3413</span>
-                    <span class='cov-label'>Missed</span><span class='cov-value'>22</span>
+                    <span class='cov-label'>Coverage</span><span class='cov-value'>99.30</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>12491</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>3417</span>
+                    <span class='cov-label'>Missed</span><span class='cov-value'>24</span>
                 </div>
             </td>
         </tr>
@@ -3044,6 +3044,931 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li></ol></pre></div>
 </div>
 
+<div class="cov-section cov-section-hover cov-section-high" id="base/date/index.js">
+    <table class='section-table'>
+        <tr>
+            <td>
+                <div class='cov-section-header'>base/date/index.js</div>
+            </td>
+            <td class="cov-stats">
+                <div>
+                    <span class='cov-label'>Coverage</span><span class='cov-value'>99.33</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>907</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>298</span>
+                    <span class='cov-label'>Missed</span><span class='cov-value'>2</span>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class='source' id="base/date/index.js-source"><pre class='prettyprint linenums'><ol class='linenums'><li class='green'><span class='hits'>1</span><code>var string = require("./../string").string,</code></li>
+<li class='green'><span class=''> </span><code>    transforms = require("./transforms.js"),</code></li>
+<li class='green'><span class=''> </span><code>    addTransform = transforms.addTransform,</code></li>
+<li class='green'><span class=''> </span><code>    differenceTransform = transforms.differenceTransform;</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * @ignore</code></li>
+<li class='green'><span class=''> </span><code> * Based on DOJO Date Implementation</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * Dojo is available under *either* the terms of the modified BSD license *or* the</code></li>
+<li class='green'><span class=''> </span><code> * Academic Free License version 2.1. As a recipient of Dojo, you may choose which</code></li>
+<li class='green'><span class=''> </span><code> * license to receive this code under (except as noted in per-module LICENSE</code></li>
+<li class='green'><span class=''> </span><code> * files). Some modules may not be the copyright of the Dojo Foundation. These</code></li>
+<li class='green'><span class=''> </span><code> * modules contain explicit declarations of copyright in both the LICENSE files in</code></li>
+<li class='green'><span class=''> </span><code> * the directories in which they reside and in the code itself. No external</code></li>
+<li class='green'><span class=''> </span><code> * contributions are allowed under licenses which are fundamentally incompatible</code></li>
+<li class='green'><span class=''> </span><code> * with the AFL or BSD licenses that Dojo is distributed under.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>var floor = Math.floor, round = Math.round, min = Math.min, pow = Math.pow, ceil = Math.ceil, abs = Math.abs;</code></li>
+<li class='green'><span class='hits'>1</span><code>var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];</code></li>
+<li class='green'><span class='hits'>1</span><code>var monthAbbr = ["Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."];</code></li>
+<li class='green'><span class='hits'>1</span><code>var monthLetter = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];</code></li>
+<li class='green'><span class='hits'>1</span><code>var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];</code></li>
+<li class='green'><span class='hits'>1</span><code>var dayAbbr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];</code></li>
+<li class='green'><span class='hits'>1</span><code>var dayLetter = ["S", "M", "T", "W", "T", "F", "S"];</code></li>
+<li class='green'><span class='hits'>1</span><code>var eraNames = ["Before Christ", "Anno Domini"];</code></li>
+<li class='green'><span class='hits'>1</span><code>var eraAbbr = ["BC", "AD"];</code></li>
+<li class='green'><span class='hits'>1</span><code>var eraLetter = ["B", "A"];</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>var comb = exports, date;</code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Determines if obj is a Date</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Anything} obj the thing to test if it is a Date</code></li>
+<li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
+<li class='green'><span class=''> </span><code> * @returns {Boolean} true if it is a Date false otherwise</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>comb.isDate = function (obj) {</code></li>
+<li class='green'><span class='hits'>1232</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>1232</span><code>    return (obj !== undef &amp;&amp; typeof obj === "object" &amp;&amp; obj instanceof Date);</code></li>
+<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function getDayOfYear(/*Date*/dateObject, utc) {</code></li>
+<li class='green'><span class=''> </span><code>    // summary: gets the day of the year as represented by dateObject</code></li>
+<li class='green'><span class='hits'>6</span><code>    return date.difference(new Date(dateObject.getFullYear(), 0, 1, dateObject.getHours()), dateObject, null, utc) + 1; // Number</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function getWeekOfYear(/*Date*/dateObject, /*Number*/firstDayOfWeek, utc) {</code></li>
+<li class='green'><span class='hits'>4</span><code>    firstDayOfWeek = firstDayOfWeek || 0;</code></li>
+<li class='green'><span class='hits'>4</span><code>    var fullYear = dateObject[utc ? "getUTCFullYear" : "getFullYear"]();</code></li>
+<li class='green'><span class='hits'>4</span><code>    var firstDayOfYear = new Date(fullYear, 0, 1).getDay(),</code></li>
+<li class='green'><span class=''> </span><code>        adj = (firstDayOfYear - firstDayOfWeek + 7) % 7,</code></li>
+<li class='green'><span class=''> </span><code>        week = floor((getDayOfYear(dateObject) + adj - 1) / 7);</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>    // if year starts on the specified day, start counting weeks at 1</code></li>
+<li class='green'><span class='hits'>4</span><code>    if (firstDayOfYear === firstDayOfWeek) {</code></li>
+<li class='green'><span class='hits'>4</span><code>        week++;</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>4</span><code>    return week; // Number</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function getTimezoneName(/*Date*/dateObject) {</code></li>
+<li class='green'><span class='hits'>37</span><code>    var str = dateObject.toString();</code></li>
+<li class='green'><span class='hits'>37</span><code>    var tz = '';</code></li>
+<li class='green'><span class='hits'>37</span><code>    var pos = str.indexOf('(');</code></li>
+<li class='green'><span class='hits'>37</span><code>    if (pos &gt; -1) {</code></li>
+<li class='green'><span class='hits'>33</span><code>        tz = str.substring(++pos, str.indexOf(')'));</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>37</span><code>    return tz; // String</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function buildDateEXP(pattern, tokens) {</code></li>
+<li class='green'><span class='hits'>55</span><code>    return pattern.replace(/([a-z])\1*/ig,function (match) {</code></li>
+<li class='green'><span class=''> </span><code>        // Build a simple regexp.  Avoid captures, which would ruin the tokens list</code></li>
+<li class='green'><span class='hits'>197</span><code>        var s,</code></li>
+<li class='green'><span class=''> </span><code>            c = match.charAt(0),</code></li>
+<li class='green'><span class=''> </span><code>            l = match.length,</code></li>
+<li class='green'><span class=''> </span><code>            p2 = '', p3 = '';</code></li>
+<li class='green'><span class='hits'>197</span><code>        p2 = '0?';</code></li>
+<li class='green'><span class='hits'>197</span><code>        p3 = '0{0,2}';</code></li>
+<li class='green'><span class='hits'>197</span><code>        if (c === 'y') {</code></li>
+<li class='green'><span class='hits'>33</span><code>            s = '\\d{2,4}';</code></li>
+<li class='green'><span class='hits'>164</span><code>        } else if (c === "M") {</code></li>
+<li class='green'><span class='hits'>33</span><code>            s = (l &gt; 2) ? '\\S+?' : '1[0-2]|' + p2 + '[1-9]';</code></li>
+<li class='green'><span class='hits'>131</span><code>        } else if (c === "D") {</code></li>
+<li class='green'><span class='hits'>4</span><code>            s = '[12][0-9][0-9]|3[0-5][0-9]|36[0-6]|' + p3 + '[1-9][0-9]|' + p2 + '[1-9]';</code></li>
+<li class='green'><span class='hits'>127</span><code>        } else if (c === "d") {</code></li>
+<li class='green'><span class='hits'>31</span><code>            s = '3[01]|[12]\\d|' + p2 + '[1-9]';</code></li>
+<li class='green'><span class='hits'>96</span><code>        } else if (c === "w") {</code></li>
+<li class='green'><span class='hits'>4</span><code>            s = '[1-4][0-9]|5[0-3]|' + p2 + '[1-9]';</code></li>
+<li class='green'><span class='hits'>92</span><code>        } else if (c === "E") {</code></li>
+<li class='green'><span class='hits'>12</span><code>            s = '\\S+';</code></li>
+<li class='green'><span class='hits'>80</span><code>        } else if (c === "h") {</code></li>
+<li class='green'><span class='hits'>10</span><code>            s = '1[0-2]|' + p2 + '[1-9]';</code></li>
+<li class='green'><span class='hits'>70</span><code>        } else if (c === "K") {</code></li>
+<li class='green'><span class='hits'>4</span><code>            s = '1[01]|' + p2 + '\\d';</code></li>
+<li class='green'><span class='hits'>66</span><code>        } else if (c === "H") {</code></li>
+<li class='green'><span class='hits'>2</span><code>            s = '1\\d|2[0-3]|' + p2 + '\\d';</code></li>
+<li class='green'><span class='hits'>64</span><code>        } else if (c === "k") {</code></li>
+<li class='green'><span class='hits'>2</span><code>            s = '1\\d|2[0-4]|' + p2 + '[1-9]';</code></li>
+<li class='green'><span class='hits'>62</span><code>        } else if (c === "m" || c === "s") {</code></li>
+<li class='green'><span class='hits'>30</span><code>            s = '[0-5]\\d';</code></li>
+<li class='green'><span class='hits'>32</span><code>        } else if (c === "S") {</code></li>
+<li class='green'><span class='hits'>10</span><code>            s = '\\d{' + l + '}';</code></li>
+<li class='green'><span class='hits'>22</span><code>        } else if (c === "a") {</code></li>
+<li class='green'><span class='hits'>6</span><code>            var am = 'AM', pm = 'PM';</code></li>
+<li class='green'><span class='hits'>6</span><code>            s = am + '|' + pm;</code></li>
+<li class='green'><span class='hits'>6</span><code>            if (am !== am.toLowerCase()) {</code></li>
+<li class='green'><span class='hits'>6</span><code>                s += '|' + am.toLowerCase();</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class='hits'>6</span><code>            if (pm !== pm.toLowerCase()) {</code></li>
+<li class='green'><span class='hits'>6</span><code>                s += '|' + pm.toLowerCase();</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class='hits'>6</span><code>            s = s.replace(/\./g, "\\.");</code></li>
+<li class='green'><span class='hits'>16</span><code>        } else if (c === 'v' || c === 'z' || c === 'Z' || c === 'G' || c === 'q' || c === 'Q') {</code></li>
+<li class='green'><span class='hits'>12</span><code>            s = ".*";</code></li>
+<li class='green'><span class=''> </span><code>        } else {</code></li>
+<li class='green'><span class='hits'>4</span><code>            s = c === " " ? "\\s*" : c + "*";</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class='hits'>197</span><code>        if (tokens) {</code></li>
+<li class='green'><span class='hits'>197</span><code>            tokens.push(match);</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>197</span><code>        return "(" + s + ")"; // add capture</code></li>
+<li class='green'><span class=''> </span><code>    }).replace(/[\xa0 ]/g, "[\\s\\xa0]"); // normalize whitespace.  Need explicit handling of \xa0 for IE.</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * @namespace Utilities for Dates</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>comb.date = {</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>    /**@lends comb.date*/</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>    /**</code></li>
+<li class='green'><span class=''> </span><code>     * Returns the number of days in the month of a date</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @example</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.getDaysInMonth(new Date(2006, 1, 1)); //28</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.getDaysInMonth(new Date(2004, 1, 1)); //29</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.getDaysInMonth(new Date(2006, 2, 1)); //31</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.getDaysInMonth(new Date(2006, 3, 1)); //30</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.getDaysInMonth(new Date(2006, 4, 1)); //31</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.getDaysInMonth(new Date(2006, 5, 1)); //30</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.getDaysInMonth(new Date(2006, 6, 1)); //31</code></li>
+<li class='green'><span class=''> </span><code>     * @param {Date} dateObject the date containing the month</code></li>
+<li class='green'><span class=''> </span><code>     * @return {Number} the number of days in the month</code></li>
+<li class='green'><span class=''> </span><code>     */</code></li>
+<li class='green'><span class=''> </span><code>    getDaysInMonth: function (/*Date*/dateObject) {</code></li>
+<li class='green'><span class=''> </span><code>        //	summary:</code></li>
+<li class='green'><span class=''> </span><code>        //		Returns the number of days in the month used by dateObject</code></li>
+<li class='green'><span class='hits'>36</span><code>        var month = dateObject.getMonth();</code></li>
+<li class='green'><span class='hits'>36</span><code>        var days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];</code></li>
+<li class='green'><span class='hits'>36</span><code>        if (month === 1 &amp;&amp; date.isLeapYear(dateObject)) {</code></li>
+<li class='green'><span class='hits'>6</span><code>            return 29;</code></li>
+<li class='green'><span class=''> </span><code>        } // Number</code></li>
+<li class='green'><span class='hits'>30</span><code>        return days[month]; // Number</code></li>
+<li class='green'><span class=''> </span><code>    },</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>    /**</code></li>
+<li class='green'><span class=''> </span><code>     * Determines if a date is a leap year</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @example</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.isLeapYear(new Date(1600, 0, 1)); //true</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.isLeapYear(new Date(2004, 0, 1)); //true</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.isLeapYear(new Date(2000, 0, 1)); //true</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.isLeapYear(new Date(2006, 0, 1)); //false</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.isLeapYear(new Date(1900, 0, 1)); //false</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.isLeapYear(new Date(1800, 0, 1)); //false</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.isLeapYear(new Date(1700, 0, 1)); //false</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @param {Date} dateObject</code></li>
+<li class='green'><span class=''> </span><code>     * @returns {Boolean} true if it is a leap year false otherwise</code></li>
+<li class='green'><span class=''> </span><code>     */</code></li>
+<li class='green'><span class=''> </span><code>    isLeapYear: function (/*Date*/dateObject, utc) {</code></li>
+<li class='green'><span class='hits'>28</span><code>        var year = dateObject[utc ? "getUTCFullYear" : "getFullYear"]();</code></li>
+<li class='green'><span class='hits'>28</span><code>        return (year % 400 === 0) || (year % 4 === 0 &amp;&amp; year % 100 !== 0);</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>    },</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>    /**</code></li>
+<li class='green'><span class=''> </span><code>     * Determines if a date is on a weekend</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @example</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * var thursday = new Date(2006, 8, 21);</code></li>
+<li class='green'><span class=''> </span><code>     * var saturday = new Date(2006, 8, 23);</code></li>
+<li class='green'><span class=''> </span><code>     * var sunday = new Date(2006, 8, 24);</code></li>
+<li class='green'><span class=''> </span><code>     * var monday = new Date(2006, 8, 25);</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.isWeekend(thursday)); //false</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.isWeekend(saturday); //true</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.isWeekend(sunday); //true</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.isWeekend(monday)); //false</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @param {Date} dateObject the date to test</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @returns {Boolean} true if the date is a weekend</code></li>
+<li class='green'><span class=''> </span><code>     */</code></li>
+<li class='green'><span class=''> </span><code>    isWeekend: function (/*Date?*/dateObject, utc) {</code></li>
+<li class='green'><span class=''> </span><code>        // summary:</code></li>
+<li class='green'><span class=''> </span><code>        //	Determines if the date falls on a weekend, according to local custom.</code></li>
+<li class='green'><span class='hits'>4</span><code>        var day = (dateObject || new Date())[utc ? "getUTCDay" : "getDay"]();</code></li>
+<li class='green'><span class='hits'>4</span><code>        return day === 0 || day === 6;</code></li>
+<li class='green'><span class=''> </span><code>    },</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>    /**</code></li>
+<li class='green'><span class=''> </span><code>     * Get the timezone of a date</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @example</code></li>
+<li class='green'><span class=''> </span><code>     *  //just setting the strLocal to simulate the toString() of a date</code></li>
+<li class='green'><span class=''> </span><code>     *  dt.str = 'Sun Sep 17 2006 22:25:51 GMT-0500 (CDT)';</code></li>
+<li class='green'><span class=''> </span><code>     *  //just setting the strLocal to simulate the locale</code></li>
+<li class='green'><span class=''> </span><code>     *  dt.strLocale = 'Sun 17 Sep 2006 10:25:51 PM CDT';</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.getTimezoneName(dt); //'CDT'</code></li>
+<li class='green'><span class=''> </span><code>     *  dt.str = 'Sun Sep 17 2006 22:57:18 GMT-0500 (CDT)';</code></li>
+<li class='green'><span class=''> </span><code>     *  dt.strLocale = 'Sun Sep 17 22:57:18 2006';</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.getTimezoneName(dt); //'CDT'</code></li>
+<li class='green'><span class=''> </span><code>     * @param dateObject the date to get the timezone from</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @returns {String} the timezone of the date</code></li>
+<li class='green'><span class=''> </span><code>     */</code></li>
+<li class='green'><span class=''> </span><code>    getTimezoneName: getTimezoneName,</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>    /**</code></li>
+<li class='green'><span class=''> </span><code>     * Compares two dates</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @example</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * var d1 = new Date();</code></li>
+<li class='green'><span class=''> </span><code>     * d1.setHours(0);</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.compare(d1, d1); // 0</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     *  var d1 = new Date();</code></li>
+<li class='green'><span class=''> </span><code>     *  d1.setHours(0);</code></li>
+<li class='green'><span class=''> </span><code>     *  var d2 = new Date();</code></li>
+<li class='green'><span class=''> </span><code>     *  d2.setFullYear(2005);</code></li>
+<li class='green'><span class=''> </span><code>     *  d2.setHours(12);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.compare(d1, d2, "date"); // 1</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.compare(d1, d2, "datetime"); // 1</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     *  var d1 = new Date();</code></li>
+<li class='green'><span class=''> </span><code>     *  d1.setHours(0);</code></li>
+<li class='green'><span class=''> </span><code>     *  var d2 = new Date();</code></li>
+<li class='green'><span class=''> </span><code>     *  d2.setFullYear(2005);</code></li>
+<li class='green'><span class=''> </span><code>     *  d2.setHours(12);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.compare(d2, d1, "date"); // -1</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.compare(d1, d2, "time"); //-1</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @param {Date|String} date1 the date to comapare</code></li>
+<li class='green'><span class=''> </span><code>     * @param {Date|String} [date2=new Date()] the date to compare date1 againse</code></li>
+<li class='green'><span class=''> </span><code>     * @param {"date"|"time"|"datetime"} portion compares the portion specified</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @returns -1 if date1 is &lt; date2 0 if date1 === date2  1 if date1 &gt; date2</code></li>
+<li class='green'><span class=''> </span><code>     */</code></li>
+<li class='green'><span class=''> </span><code>    compare: function (/*Date*/date1, /*Date*/date2, /*String*/portion) {</code></li>
+<li class='green'><span class='hits'>10</span><code>        date1 = new Date(date1);</code></li>
+<li class='green'><span class='hits'>10</span><code>        date2 = new Date((date2 || new Date()));</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>10</span><code>        if (portion === "date") {</code></li>
+<li class='green'><span class=''> </span><code>            // Ignore times and compare dates.</code></li>
+<li class='green'><span class='hits'>4</span><code>            date1.setHours(0, 0, 0, 0);</code></li>
+<li class='green'><span class='hits'>4</span><code>            date2.setHours(0, 0, 0, 0);</code></li>
+<li class='green'><span class='hits'>6</span><code>        } else if (portion === "time") {</code></li>
+<li class='green'><span class=''> </span><code>            // Ignore dates and compare times.</code></li>
+<li class='green'><span class='hits'>2</span><code>            date1.setFullYear(0, 0, 0);</code></li>
+<li class='green'><span class='hits'>2</span><code>            date2.setFullYear(0, 0, 0);</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class='hits'>10</span><code>        return date1 &gt; date2 ? 1 : date1 &lt; date2 ? -1 : 0;</code></li>
+<li class='green'><span class=''> </span><code>    },</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>    /**</code></li>
+<li class='green'><span class=''> </span><code>     * Adds a specified interval and amount to a date</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @example</code></li>
+<li class='green'><span class=''> </span><code>     *  var dtA = new Date(2005, 11, 27);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "year", 1); //new Date(2006, 11, 27);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "years", 1); //new Date(2006, 11, 27);</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 0, 1);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "quarter", 1); //new Date(2000, 3, 1);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "quarters", 1); //new Date(2000, 3, 1);</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 0, 1);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "month", 1); //new Date(2000, 1, 1);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "months", 1); //new Date(2000, 1, 1);</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 0, 31);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "month", 1); //new Date(2000, 1, 29);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "months", 1); //new Date(2000, 1, 29);</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 0, 1);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "week", 1); //new Date(2000, 0, 8);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "weeks", 1); //new Date(2000, 0, 8);</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 0, 1);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "day", 1); //new Date(2000, 0, 2);</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 0, 1);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "weekday", 1); //new Date(2000, 0, 3);</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 0, 1, 11);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "hour", 1); //new Date(2000, 0, 1, 12);</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 11, 31, 23, 59);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "minute", 1); //new Date(2001, 0, 1, 0, 0);</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 11, 31, 23, 59, 59);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "second", 1); //new Date(2001, 0, 1, 0, 0, 0);</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 11, 31, 23, 59, 59, 999);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "millisecond", 1); //new Date(2001, 0, 1, 0, 0, 0, 0);</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @param {Date} date</code></li>
+<li class='green'><span class=''> </span><code>     * @param {String} interval the interval to add</code></li>
+<li class='green'><span class=''> </span><code>     *  &lt;ul&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;day | days&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;weekday | weekdays&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;year | years&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;week | weeks&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;quarter | quarters&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;months | months&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;hour | hours&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;minute | minutes&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;second | seconds&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;millisecond | milliseconds&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *  &lt;/ul&gt;</code></li>
+<li class='green'><span class=''> </span><code>     * @param {Number} [amount=0] the amount to add</code></li>
+<li class='green'><span class=''> </span><code>     */</code></li>
+<li class='green'><span class=''> </span><code>    add: function (/*Date*/date, /*String*/interval, /*int*/amount) {</code></li>
+<li class='green'><span class='hits'>234</span><code>        var res = addTransform(interval, date, amount || 0);</code></li>
+<li class='green'><span class='hits'>234</span><code>        amount = res[0];</code></li>
+<li class='green'><span class='hits'>234</span><code>        var property = res[1];</code></li>
+<li class='green'><span class='hits'>234</span><code>        var sum = new Date(date);</code></li>
+<li class='green'><span class='hits'>234</span><code>        var fixOvershoot = res[2];</code></li>
+<li class='green'><span class='hits'>234</span><code>        if (property) {</code></li>
+<li class='green'><span class='hits'>234</span><code>            sum["set" + property](sum["get" + property]() + amount);</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>234</span><code>        if (fixOvershoot &amp;&amp; (sum.getDate() &lt; date.getDate())) {</code></li>
+<li class='green'><span class='hits'>26</span><code>            sum.setDate(0);</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>234</span><code>        return sum; // Date</code></li>
+<li class='green'><span class=''> </span><code>    },</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>    /**</code></li>
+<li class='green'><span class=''> </span><code>     * Finds the difference between two dates based on the specified interval</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @example</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * var dtA, dtB;</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * dtA = new Date(2005, 11, 27);</code></li>
+<li class='green'><span class=''> </span><code>     * dtB = new Date(2006, 11, 27);</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "year"); //1</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * dtA = new Date(2000, 1, 29);</code></li>
+<li class='green'><span class=''> </span><code>     * dtB = new Date(2001, 2, 1);</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "quarter"); //4</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "month"); //13</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * dtA = new Date(2000, 1, 1);</code></li>
+<li class='green'><span class=''> </span><code>     * dtB = new Date(2000, 1, 8);</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "week"); //1</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * dtA = new Date(2000, 1, 29);</code></li>
+<li class='green'><span class=''> </span><code>     * dtB = new Date(2000, 2, 1);</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "day"); //1</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * dtA = new Date(2006, 7, 3);</code></li>
+<li class='green'><span class=''> </span><code>     * dtB = new Date(2006, 7, 11);</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "weekday"); //6</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * dtA = new Date(2000, 11, 31, 23);</code></li>
+<li class='green'><span class=''> </span><code>     * dtB = new Date(2001, 0, 1, 0);</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "hour"); //1</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * dtA = new Date(2000, 11, 31, 23, 59);</code></li>
+<li class='green'><span class=''> </span><code>     * dtB = new Date(2001, 0, 1, 0, 0);</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "minute"); //1</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * dtA = new Date(2000, 11, 31, 23, 59, 59);</code></li>
+<li class='green'><span class=''> </span><code>     * dtB = new Date(2001, 0, 1, 0, 0, 0);</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "second"); //1</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * dtA = new Date(2000, 11, 31, 23, 59, 59, 999);</code></li>
+<li class='green'><span class=''> </span><code>     * dtB = new Date(2001, 0, 1, 0, 0, 0, 0);</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "millisecond"); //1</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @param {Date} date1</code></li>
+<li class='green'><span class=''> </span><code>     * @param {Date} [date2 = new Date()]</code></li>
+<li class='green'><span class=''> </span><code>     * @param {String} [interval = "day"] the intercal to find the difference of.</code></li>
+<li class='green'><span class=''> </span><code>     *   &lt;ul&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;day | days&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;weekday | weekdays&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;year | years&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;week | weeks&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;quarter | quarters&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;months | months&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;hour | hours&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;minute | minutes&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;second | seconds&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *      &lt;li&gt;millisecond | milliseconds&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *  &lt;/ul&gt;</code></li>
+<li class='green'><span class=''> </span><code>     */</code></li>
+<li class='green'><span class=''> </span><code>    difference: function (/*Date*/date1, /*Date?*/date2, /*String*/interval, utc) {</code></li>
+<li class='green'><span class='hits'>162</span><code>        date2 = date2 || new Date();</code></li>
+<li class='green'><span class='hits'>162</span><code>        interval = interval || "day";</code></li>
+<li class='green'><span class='hits'>162</span><code>        return differenceTransform(interval, date1, date2, utc);</code></li>
+<li class='green'><span class=''> </span><code>    },</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>    /**</code></li>
+<li class='green'><span class=''> </span><code>     * Parses a date string into a date object</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @example</code></li>
+<li class='green'><span class=''> </span><code>     *  var aug_11_2006 = new Date(2006, 7, 11, 0);</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.parse("08/11/06", "MM/dd/yy"); //aug_11_2006</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.parse("11Aug2006", 'ddMMMyyyy'); //aug_11_2006</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.parse("Aug2006", 'MMMyyyy'); //new Date(2006, 7, 1)</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.parse("Aug 11, 2006", "MMM dd, yyyy"); //aug_11_2006</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.parse("August 11, 2006", "MMMM dd, yyyy"); //aug_11_2006</code></li>
+<li class='green'><span class=''> </span><code>     *  comb.date.parse("Friday, August 11, 2006", "EEEE, MMMM dd, yyyy"); //aug_11_2006</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @param {String} dateStr The string to parse</code></li>
+<li class='green'><span class=''> </span><code>     * @param {String} format the format of the date composed of the following options</code></li>
+<li class='green'><span class=''> </span><code>     * &lt;ul&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; G    Era designator    Text    AD&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; y    Year    Year    1996; 96&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; M    Month in year    Month    July; Jul; 07&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; w    Week in year    Number    27&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; W    Week in month    Number    2&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; D    Day in year    Number    189&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; d    Day in month    Number    10&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; E    Day in week    Text    Tuesday; Tue&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; a    Am/pm marker    Text    PM&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; H    Hour in day (0-23)    Number    0&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; k    Hour in day (1-24)    Number    24&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; K    Hour in am/pm (0-11)    Number    0&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; h    Hour in am/pm (1-12)    Number    12&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; m    Minute in hour    Number    30&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; s    Second in minute    Number    55&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; S    Millisecond    Number    978&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; z    Time zone    General time zone    Pacific Standard Time; PST; GMT-08:00&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; Z    Time zone    RFC 822 time zone    -0800 &lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     * &lt;/ul&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @returns {Date} the parsed date</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     */</code></li>
+<li class='green'><span class=''> </span><code>    parse: function (dateStr, format) {</code></li>
+<li class='green'><span class='hits'>57</span><code>        if (!format) {</code></li>
+<li class='green'><span class='hits'>2</span><code>            throw new Error('format required when calling comb.date.parse');</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class='hits'>55</span><code>        var tokens = [], regexp = buildDateEXP(format, tokens),</code></li>
+<li class='green'><span class=''> </span><code>            re = new RegExp("^" + regexp + "$", "i"),</code></li>
+<li class='green'><span class=''> </span><code>            match = re.exec(dateStr);</code></li>
+<li class='green'><span class='hits'>55</span><code>        if (!match) {</code></li>
+<li class='green'><span class='hits'>7</span><code>            return null;</code></li>
+<li class='green'><span class=''> </span><code>        } // null</code></li>
+<li class='green'><span class='hits'>48</span><code>        var result = [1970, 0, 1, 0, 0, 0, 0], // will get converted to a Date at the end</code></li>
+<li class='green'><span class=''> </span><code>            amPm = "",</code></li>
+<li class='green'><span class=''> </span><code>            valid = match.every(function (v, i) {</code></li>
+<li class='green'><span class='hits'>212</span><code>                if (i) {</code></li>
+<li class='green'><span class='hits'>164</span><code>                    var token = tokens[i - 1];</code></li>
+<li class='green'><span class='hits'>164</span><code>                    var l = token.length, type = token.charAt(0);</code></li>
+<li class='green'><span class='hits'>164</span><code>                    if (type === 'y') {</code></li>
+<li class='green'><span class='hits'>26</span><code>                        if (v &lt; 100) {</code></li>
+<li class='green'><span class='hits'>6</span><code>                            v = parseInt(v, 10);</code></li>
+<li class='green'><span class=''> </span><code>                            //choose century to apply, according to a sliding window</code></li>
+<li class='green'><span class=''> </span><code>                            //of 80 years before and 20 years after present year</code></li>
+<li class='green'><span class='hits'>6</span><code>                            var year = '' + new Date().getFullYear(),</code></li>
+<li class='green'><span class=''> </span><code>                                century = year.substring(0, 2) * 100,</code></li>
+<li class='green'><span class=''> </span><code>                                cutoff = min(year.substring(2, 4) + 20, 99);</code></li>
+<li class='green'><span class='hits'>6</span><code>                            result[0] = (v &lt; cutoff) ? century + v : century - 100 + v;</code></li>
+<li class='green'><span class=''> </span><code>                        } else {</code></li>
+<li class='green'><span class='hits'>20</span><code>                            result[0] = v;</code></li>
+<li class='green'><span class=''> </span><code>                        }</code></li>
+<li class='green'><span class='hits'>138</span><code>                    } else if (type === "M") {</code></li>
+<li class='green'><span class='hits'>28</span><code>                        if (l &gt; 2) {</code></li>
+<li class='green'><span class='hits'>20</span><code>                            var months = monthNames;</code></li>
+<li class='green'><span class='hits'>20</span><code>                            if (l === 3) {</code></li>
+<li class='green'><span class='hits'>8</span><code>                                months = monthAbbr;</code></li>
+<li class='green'><span class=''> </span><code>                            }</code></li>
+<li class='green'><span class=''> </span><code>                            //Tolerate abbreviating period in month part</code></li>
+<li class='green'><span class=''> </span><code>                            //Case-insensitive comparison</code></li>
+<li class='green'><span class='hits'>20</span><code>                            v = v.replace(".", "").toLowerCase();</code></li>
+<li class='green'><span class='hits'>20</span><code>                            months = months.map(function (s) {</code></li>
+<li class='green'><span class='hits'>240</span><code>                                return s.replace(".", "").toLowerCase();</code></li>
+<li class='green'><span class=''> </span><code>                            });</code></li>
+<li class='green'><span class='hits'>20</span><code>                            if ((v = months.indexOf(v)) === -1) {</code></li>
+<li class='green'><span class='hits'>2</span><code>                                return false;</code></li>
+<li class='green'><span class=''> </span><code>                            }</code></li>
+<li class='green'><span class=''> </span><code>                        } else {</code></li>
+<li class='green'><span class='hits'>8</span><code>                            v--;</code></li>
+<li class='green'><span class=''> </span><code>                        }</code></li>
+<li class='green'><span class='hits'>26</span><code>                        result[1] = v;</code></li>
+<li class='green'><span class='hits'>110</span><code>                    } else if (type === "E" || type === "e") {</code></li>
+<li class='green'><span class='hits'>12</span><code>                        var days = dayNames;</code></li>
+<li class='green'><span class='hits'>12</span><code>                        if (l === 3) {</code></li>
+<li class='green'><span class='hits'>4</span><code>                            days = dayAbbr;</code></li>
+<li class='green'><span class=''> </span><code>                        }</code></li>
+<li class='green'><span class=''> </span><code>                        //Case-insensitive comparison</code></li>
+<li class='green'><span class='hits'>12</span><code>                        v = v.toLowerCase();</code></li>
+<li class='green'><span class='hits'>12</span><code>                        days = days.map(function (d) {</code></li>
+<li class='green'><span class='hits'>84</span><code>                            return d.toLowerCase();</code></li>
+<li class='green'><span class=''> </span><code>                        });</code></li>
+<li class='green'><span class='hits'>12</span><code>                        var d = days.indexOf(v);</code></li>
+<li class='green'><span class='hits'>12</span><code>                        if (d === -1) {</code></li>
+<li class='green'><span class='hits'>4</span><code>                            v = parseInt(v, 10);</code></li>
+<li class='green'><span class='hits'>4</span><code>                            if (isNaN(v) || v &gt; days.length) {</code></li>
+<li class='green'><span class='hits'>2</span><code>                                return false;</code></li>
+<li class='green'><span class=''> </span><code>                            }</code></li>
+<li class='green'><span class=''> </span><code>                        } else {</code></li>
+<li class='green'><span class='hits'>8</span><code>                            v = d;</code></li>
+<li class='green'><span class=''> </span><code>                        }</code></li>
+<li class='green'><span class='hits'>98</span><code>                    } else if (type === 'D' || type === "d") {</code></li>
+<li class='green'><span class='hits'>30</span><code>                        if (type === "D") {</code></li>
+<li class='green'><span class='hits'>4</span><code>                            result[1] = 0;</code></li>
+<li class='green'><span class=''> </span><code>                        }</code></li>
+<li class='green'><span class='hits'>30</span><code>                        result[2] = v;</code></li>
+<li class='green'><span class='hits'>68</span><code>                    } else if (type === "a") {</code></li>
+<li class='green'><span class='hits'>4</span><code>                        var am = "am";</code></li>
+<li class='green'><span class='hits'>4</span><code>                        var pm = "pm";</code></li>
+<li class='green'><span class='hits'>4</span><code>                        var period = /\./g;</code></li>
+<li class='green'><span class='hits'>4</span><code>                        v = v.replace(period, '').toLowerCase();</code></li>
+<li class='green'><span class=''> </span><code>                        // we might not have seen the hours field yet, so store the state and apply hour change later</code></li>
+<li class='green'><span class='hits'>4</span><code>                        amPm = (v === pm) ? 'p' : (v === am) ? 'a' : '';</code></li>
+<li class='green'><span class='hits'>64</span><code>                    } else if (type === "k" || type === "h" || type === "H" || type === "K") {</code></li>
+<li class='green'><span class='hits'>14</span><code>                        if (type === "k" &amp;&amp; (+v) === 24) {</code></li>
+<li class='green'><span class='hits'>2</span><code>                            v = 0;</code></li>
+<li class='green'><span class=''> </span><code>                        }</code></li>
+<li class='green'><span class='hits'>14</span><code>                        result[3] = v;</code></li>
+<li class='green'><span class='hits'>50</span><code>                    } else if (type === "m") {</code></li>
+<li class='green'><span class='hits'>14</span><code>                        result[4] = v;</code></li>
+<li class='green'><span class='hits'>36</span><code>                    } else if (type === "s") {</code></li>
+<li class='green'><span class='hits'>10</span><code>                        result[5] = v;</code></li>
+<li class='green'><span class='hits'>26</span><code>                    } else if (type === "S") {</code></li>
+<li class='green'><span class='hits'>8</span><code>                        result[6] = v;</code></li>
+<li class='green'><span class=''> </span><code>                    }</code></li>
+<li class='green'><span class=''> </span><code>                }</code></li>
+<li class='green'><span class='hits'>208</span><code>                return true;</code></li>
+<li class='green'><span class=''> </span><code>            });</code></li>
+<li class='green'><span class='hits'>48</span><code>        if (valid) {</code></li>
+<li class='green'><span class='hits'>44</span><code>            var hours = +result[3];</code></li>
+<li class='green'><span class=''> </span><code>            //account for am/pm</code></li>
+<li class='green'><span class='hits'>44</span><code>            if (amPm === 'p' &amp;&amp; hours &lt; 12) {</code></li>
+<li class='green'><span class='hits'>2</span><code>                result[3] = hours + 12; //e.g., 3pm -&gt; 15</code></li>
+<li class='green'><span class='hits'>42</span><code>            } else if (amPm === 'a' &amp;&amp; hours === 12) {</code></li>
+<li class='green'><span class='hits'>2</span><code>                result[3] = 0; //12am -&gt; 0</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class='hits'>44</span><code>            var dateObject = new Date(result[0], result[1], result[2], result[3], result[4], result[5], result[6]); // Date</code></li>
+<li class='green'><span class='hits'>44</span><code>            var dateToken = (tokens.indexOf('d') !== -1),</code></li>
+<li class='green'><span class=''> </span><code>                monthToken = (tokens.indexOf('M') !== -1),</code></li>
+<li class='green'><span class=''> </span><code>                month = result[1],</code></li>
+<li class='green'><span class=''> </span><code>                day = result[2],</code></li>
+<li class='green'><span class=''> </span><code>                dateMonth = dateObject.getMonth(),</code></li>
+<li class='green'><span class=''> </span><code>                dateDay = dateObject.getDate();</code></li>
+<li class='green'><span class='hits'>44</span><code>            if ((monthToken &amp;&amp; dateMonth &gt; month) || (dateToken &amp;&amp; dateDay &gt; day)) {</code></li>
+<li class='green'><span class='hits'>2</span><code>                return null;</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class='hits'>42</span><code>            return dateObject; // Date</code></li>
+<li class='green'><span class=''> </span><code>        } else {</code></li>
+<li class='green'><span class='hits'>4</span><code>            return null;</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class=''> </span><code>    },</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>    /**</code></li>
+<li class='green'><span class=''> </span><code>     * Formats a date to the specidifed format string</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @example</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * var date = new Date(2006, 7, 11, 0, 55, 12, 345);</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.format(date, "EEEE, MMMM dd, yyyy"); //"Friday, August 11, 2006"</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.format(date, "M/dd/yy"); //"8/11/06"</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.format(date, "E"); //"6"</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.format(date, "h:m a"); //"12:55 AM"</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.format(date, 'h:m:s'); //"12:55:12"</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.format(date, 'h:m:s.SS'); //"12:55:12.35"</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.format(date, 'k:m:s.SS'); //"24:55:12.35"</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.format(date, 'H:m:s.SS'); //"0:55:12.35"</code></li>
+<li class='green'><span class=''> </span><code>     * comb.date.format(date, "ddMMyyyy"); //"11082006"</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @param date the date to format</code></li>
+<li class='green'><span class=''> </span><code>     * @param {String} format the format of the date composed of the following options</code></li>
+<li class='green'><span class=''> </span><code>     * &lt;ul&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; G    Era designator    Text    AD&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; y    Year    Year    1996; 96&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; M    Month in year    Month    July; Jul; 07&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; w    Week in year    Number    27&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; W    Week in month    Number    2&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; D    Day in year    Number    189&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; d    Day in month    Number    10&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; E    Day in week    Text    Tuesday; Tue&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; a    Am/pm marker    Text    PM&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; H    Hour in day (0-23)    Number    0&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; k    Hour in day (1-24)    Number    24&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; K    Hour in am/pm (0-11)    Number    0&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; h    Hour in am/pm (1-12)    Number    12&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; m    Minute in hour    Number    30&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; s    Second in minute    Number    55&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; S    Millisecond    Number    978&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; z    Time zone    General time zone    Pacific Standard Time; PST; GMT-08:00&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; Z    Time zone    RFC 822 time zone    -0800 &lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code>     * &lt;/ul&gt;</code></li>
+<li class='green'><span class=''> </span><code>     */</code></li>
+<li class='green'><span class=''> </span><code>    format: function (date, format, utc) {</code></li>
+<li class='green'><span class='hits'>78</span><code>        utc = utc || false;</code></li>
+<li class='green'><span class='hits'>78</span><code>        var fullYear, month, day, d, hour, minute, second, millisecond;</code></li>
+<li class='green'><span class='hits'>78</span><code>        if (utc) {</code></li>
+<li class='green'><span class='hits'>26</span><code>            fullYear = date.getUTCFullYear();</code></li>
+<li class='green'><span class='hits'>26</span><code>            month = date.getUTCMonth();</code></li>
+<li class='green'><span class='hits'>26</span><code>            day = date.getUTCDay();</code></li>
+<li class='green'><span class='hits'>26</span><code>            d = date.getUTCDate();</code></li>
+<li class='green'><span class='hits'>26</span><code>            hour = date.getUTCHours();</code></li>
+<li class='green'><span class='hits'>26</span><code>            minute = date.getUTCMinutes();</code></li>
+<li class='green'><span class='hits'>26</span><code>            second = date.getUTCSeconds();</code></li>
+<li class='green'><span class='hits'>26</span><code>            millisecond = date.getUTCMilliseconds();</code></li>
+<li class='green'><span class=''> </span><code>        } else {</code></li>
+<li class='green'><span class='hits'>52</span><code>            fullYear = date.getFullYear();</code></li>
+<li class='green'><span class='hits'>52</span><code>            month = date.getMonth();</code></li>
+<li class='green'><span class='hits'>52</span><code>            d = date.getDate();</code></li>
+<li class='green'><span class='hits'>52</span><code>            day = date.getDay();</code></li>
+<li class='green'><span class='hits'>52</span><code>            hour = date.getHours();</code></li>
+<li class='green'><span class='hits'>52</span><code>            minute = date.getMinutes();</code></li>
+<li class='green'><span class='hits'>52</span><code>            second = date.getSeconds();</code></li>
+<li class='green'><span class='hits'>52</span><code>            millisecond = date.getMilliseconds();</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class='hits'>78</span><code>        return format.replace(/([A-Za-z])\1*/g, function (match, options) {</code></li>
+<li class='green'><span class='hits'>372</span><code>            var s, pad, h,</code></li>
+<li class='green'><span class=''> </span><code>                c = match.charAt(0),</code></li>
+<li class='green'><span class=''> </span><code>                l = match.length;</code></li>
+<li class='green'><span class='hits'>372</span><code>            if (c === 'd') {</code></li>
+<li class='green'><span class='hits'>42</span><code>                s = "" + d;</code></li>
+<li class='green'><span class='hits'>42</span><code>                pad = true;</code></li>
+<li class='green'><span class='hits'>330</span><code>            } else if (c === "H" &amp;&amp; !s) {</code></li>
+<li class='green'><span class='hits'>30</span><code>                s = "" + hour;</code></li>
+<li class='green'><span class='hits'>30</span><code>                pad = true;</code></li>
+<li class='green'><span class='hits'>300</span><code>            } else if (c === 'm' &amp;&amp; !s) {</code></li>
+<li class='green'><span class='hits'>40</span><code>                s = "" + minute;</code></li>
+<li class='green'><span class='hits'>40</span><code>                pad = true;</code></li>
+<li class='green'><span class='hits'>260</span><code>            } else if (c === 's') {</code></li>
+<li class='green'><span class='hits'>38</span><code>                if (!s) {</code></li>
+<li class='green'><span class='hits'>38</span><code>                    s = "" + second;</code></li>
+<li class='green'><span class=''> </span><code>                }</code></li>
+<li class='green'><span class='hits'>38</span><code>                pad = true;</code></li>
+<li class='green'><span class='hits'>222</span><code>            } else if (c === "G") {</code></li>
+<li class='green'><span class='hits'>4</span><code>                s = ((l &lt; 4) ? eraAbbr : eraNames)[fullYear &lt; 0 ? 0 : 1];</code></li>
+<li class='green'><span class='hits'>218</span><code>            } else if (c === "y") {</code></li>
+<li class='green'><span class='hits'>48</span><code>                s = fullYear;</code></li>
+<li class='green'><span class='hits'>48</span><code>                if (l &gt; 1) {</code></li>
+<li class='green'><span class='hits'>48</span><code>                    if (l === 2) {</code></li>
+<li class='green'><span class='hits'>6</span><code>                        s = string.truncate("" + s, 2, true);</code></li>
+<li class='green'><span class=''> </span><code>                    } else {</code></li>
+<li class='green'><span class='hits'>42</span><code>                        pad = true;</code></li>
+<li class='green'><span class=''> </span><code>                    }</code></li>
+<li class='green'><span class=''> </span><code>                }</code></li>
+<li class='green'><span class='hits'>170</span><code>            } else if (c.toUpperCase() === "Q") {</code></li>
+<li class='green'><span class='hits'>6</span><code>                s = ceil((month + 1) / 3);</code></li>
+<li class='green'><span class='hits'>6</span><code>                pad = true;</code></li>
+<li class='green'><span class='hits'>164</span><code>            } else if (c === "M") {</code></li>
+<li class='green'><span class='hits'>42</span><code>                if (l &lt; 3) {</code></li>
+<li class='green'><span class='hits'>32</span><code>                    s = month + 1;</code></li>
+<li class='green'><span class='hits'>32</span><code>                    pad = true;</code></li>
+<li class='green'><span class=''> </span><code>                } else {</code></li>
+<li class='green'><span class='hits'>10</span><code>                    s = (l === 3 ? monthAbbr : monthNames)[month];</code></li>
+<li class='green'><span class=''> </span><code>                }</code></li>
+<li class='green'><span class='hits'>122</span><code>            } else if (c === "w") {</code></li>
+<li class='green'><span class='hits'>4</span><code>                s = getWeekOfYear(date, 0, utc);</code></li>
+<li class='green'><span class='hits'>4</span><code>                pad = true;</code></li>
+<li class='green'><span class='hits'>118</span><code>            } else if (c === "D") {</code></li>
+<li class='green'><span class='hits'>2</span><code>                s = getDayOfYear(date, utc);</code></li>
+<li class='green'><span class='hits'>2</span><code>                pad = true;</code></li>
+<li class='green'><span class='hits'>116</span><code>            } else if (c === "E") {</code></li>
+<li class='green'><span class='hits'>12</span><code>                if (l &lt; 3) {</code></li>
+<li class='green'><span class='hits'>2</span><code>                    s = day + 1;</code></li>
+<li class='green'><span class='hits'>2</span><code>                    pad = true;</code></li>
+<li class='green'><span class=''> </span><code>                } else {</code></li>
+<li class='green'><span class='hits'>10</span><code>                    s = (l === -3 ? dayAbbr : dayNames)[day];</code></li>
+<li class='green'><span class=''> </span><code>                }</code></li>
+<li class='green'><span class='hits'>104</span><code>            } else if (c === 'a') {</code></li>
+<li class='green'><span class='hits'>2</span><code>                s = (hour &lt; 12) ? 'AM' : 'PM';</code></li>
+<li class='green'><span class='hits'>102</span><code>            } else if (c === "h") {</code></li>
+<li class='green'><span class='hits'>6</span><code>                s = (hour % 12) || 12;</code></li>
+<li class='green'><span class='hits'>6</span><code>                pad = true;</code></li>
+<li class='green'><span class='hits'>96</span><code>            } else if (c === "K") {</code></li>
+<li class='green'><span class='hits'>2</span><code>                s = (hour % 12);</code></li>
+<li class='green'><span class='hits'>2</span><code>                pad = true;</code></li>
+<li class='green'><span class='hits'>94</span><code>            } else if (c === "k") {</code></li>
+<li class='green'><span class='hits'>2</span><code>                s = hour || 24;</code></li>
+<li class='green'><span class='hits'>2</span><code>                pad = true;</code></li>
+<li class='green'><span class='hits'>92</span><code>            } else if (c === "S") {</code></li>
+<li class='green'><span class='hits'>36</span><code>                s = round(millisecond * pow(10, l - 3));</code></li>
+<li class='green'><span class='hits'>36</span><code>                pad = true;</code></li>
+<li class='green'><span class='hits'>56</span><code>            } else if (c === "z" || c === "v" || c === "Z") {</code></li>
+<li class='green'><span class='hits'>30</span><code>                s = getTimezoneName(date);</code></li>
+<li class='green'><span class='hits'>30</span><code>                if ((c === "z" || c === "v") &amp;&amp; !s) {</code></li>
+<li class='green'><span class='hits'>4</span><code>                    l = 4;</code></li>
+<li class='green'><span class=''> </span><code>                }</code></li>
+<li class='green'><span class='hits'>30</span><code>                if (!s || c === "Z") {</code></li>
+<li class='green'><span class='hits'>4</span><code>                    var offset = date.getTimezoneOffset();</code></li>
+<li class='green'><span class='hits'>4</span><code>                    var tz = [</code></li>
+<li class='green'><span class=''> </span><code>                        (offset &gt;= 0 ? "-" : "+"),</code></li>
+<li class='green'><span class=''> </span><code>                        string.pad(floor(abs(offset) / 60), 2, "0"),</code></li>
+<li class='green'><span class=''> </span><code>                        string.pad(abs(offset) % 60, 2, "0")</code></li>
+<li class='green'><span class=''> </span><code>                    ];</code></li>
+<li class='green'><span class='hits'>4</span><code>                    if (l === 4) {</code></li>
+<li class='green'><span class='hits'>4</span><code>                        tz.splice(0, 0, "GMT");</code></li>
+<li class='green'><span class='hits'>4</span><code>                        tz.splice(3, 0, ":");</code></li>
+<li class='green'><span class=''> </span><code>                    }</code></li>
+<li class='green'><span class='hits'>4</span><code>                    s = tz.join("");</code></li>
+<li class='green'><span class=''> </span><code>                }</code></li>
+<li class='green'><span class=''> </span><code>            } else {</code></li>
+<li class='green'><span class='hits'>26</span><code>                s = match;</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class='hits'>372</span><code>            if (pad) {</code></li>
+<li class='green'><span class='hits'>284</span><code>                s = string.pad(s, l, '0');</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class='hits'>372</span><code>            return s;</code></li>
+<li class='green'><span class=''> </span><code>        });</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>date = comb.date;</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Adds the specified year/s to the current date.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @example</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * //assuming that current year is 2012</code></li>
+<li class='green'><span class=''> </span><code> * comb.yearsFromNow(1); //2013-mm-dd hh:MM:ss</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Number} val the number of years to add</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of years added</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>comb.yearsFromNow = function (val) {</code></li>
+<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "years", val);</code></li>
+<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Subtracts the specified year/s from the current date.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Number} val the number of years to subtract</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of years subtracted</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>comb.yearsAgo = function (val) {</code></li>
+<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "years", -val);</code></li>
+<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Adds the specified month/s to the current date.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @example</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * //assuming that current month is february</code></li>
+<li class='green'><span class=''> </span><code> * comb.yearsFromNow(2); //yyyy-04-dd hh:MM:ss</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Number} val the number of months to add</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of years added</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>comb.monthsFromNow = function (val) {</code></li>
+<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "months", val);</code></li>
+<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Subtracts the specified month/s from the current date.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Number} val the number of months to subtract</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of months subtracted</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>comb.monthsAgo = function (val) {</code></li>
+<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "months", -val);</code></li>
+<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Adds the specified day/s to the current date.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Number} val the number of days to add</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of days added</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>comb.daysFromNow = function (val) {</code></li>
+<li class='green'><span class='hits'>27</span><code>    return date.add(new Date(), "days", val);</code></li>
+<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Subtracts the specified day/s from the current date.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Number} val the number of days to subtract</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of days subtracted</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>comb.daysAgo = function (val) {</code></li>
+<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "days", -val);</code></li>
+<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Adds the specified weekday/s to the current date.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Number} val the number of weekdays to add</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of weekdays added</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>comb.weekDaysFromNow = function (val) {</code></li>
+<li class='red'><span class='nohits'>0</span><code>    return date.add(new Date(), "weekdays", val);</code></li>
+<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Subtracts the specified weekday/s from the current date.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Number} val the number of weekdays to subtract</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of weekdays subtracted</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>comb.weekDaysAgo = function (val) {</code></li>
+<li class='red'><span class='nohits'>0</span><code>    return date.add(new Date(), "weekdays", -val);</code></li>
+<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Adds the specified hour/s to the current date.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Number} val the number of hours to add</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of hours added</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>comb.hoursFromNow = function (val) {</code></li>
+<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "hours", val);</code></li>
+<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Subtracts the specified hour/s from the current date.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Number} val the number of hours to subtract</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of hours subtracted</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>comb.hoursAgo = function (val) {</code></li>
+<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "hours", -val);</code></li>
+<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Adds the specified minute/s to the current date.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Number} val the number of minutes to add</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of minutes added</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>comb.minutesFromNow = function (val) {</code></li>
+<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "minutes", val);</code></li>
+<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Subtracts the specified minute/s from the current date.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Number} val the number of minutes to subtract</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of minutes subtracted</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>comb.minutesAgo = function (val) {</code></li>
+<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "minutes", -val);</code></li>
+<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Adds the specified second/s to the current date.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Number} val the number of seconds to add</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of seconds added</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>comb.secondsFromNow = function (val) {</code></li>
+<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "seconds", val);</code></li>
+<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Subtracts the specified second/s from the current date.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Number} val the number of seconds to subtract</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of seconds subtracted</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>comb.secondsAgo = function (val) {</code></li>
+<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "seconds", -val);</code></li>
+<li class='green'><span class=''> </span><code>};</code></li></ol></pre></div>
+</div>
+
 <div class="cov-section cov-section-hover cov-section-high" id="logging/index.js">
     <table class='section-table'>
         <tr>
@@ -5036,909 +5961,6 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li></ol></pre></div>
 </div>
 
-<div class="cov-section cov-section-hover cov-section-high" id="base/date/index.js">
-    <table class='section-table'>
-        <tr>
-            <td>
-                <div class='cov-section-header'>base/date/index.js</div>
-            </td>
-            <td class="cov-stats">
-                <div>
-                    <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>885</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>294</span>
-                    <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
-                </div>
-            </td>
-        </tr>
-    </table>
-    <div class='source' id="base/date/index.js-source"><pre class='prettyprint linenums'><ol class='linenums'><li class='green'><span class='hits'>1</span><code>var string = require("./../string").string,</code></li>
-<li class='green'><span class=''> </span><code>    transforms = require("./transforms.js"),</code></li>
-<li class='green'><span class=''> </span><code>    addTransform = transforms.addTransform,</code></li>
-<li class='green'><span class=''> </span><code>    differenceTransform = transforms.differenceTransform;</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * @ignore</code></li>
-<li class='green'><span class=''> </span><code> * Based on DOJO Date Implementation</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * Dojo is available under *either* the terms of the modified BSD license *or* the</code></li>
-<li class='green'><span class=''> </span><code> * Academic Free License version 2.1. As a recipient of Dojo, you may choose which</code></li>
-<li class='green'><span class=''> </span><code> * license to receive this code under (except as noted in per-module LICENSE</code></li>
-<li class='green'><span class=''> </span><code> * files). Some modules may not be the copyright of the Dojo Foundation. These</code></li>
-<li class='green'><span class=''> </span><code> * modules contain explicit declarations of copyright in both the LICENSE files in</code></li>
-<li class='green'><span class=''> </span><code> * the directories in which they reside and in the code itself. No external</code></li>
-<li class='green'><span class=''> </span><code> * contributions are allowed under licenses which are fundamentally incompatible</code></li>
-<li class='green'><span class=''> </span><code> * with the AFL or BSD licenses that Dojo is distributed under.</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>var floor = Math.floor, round = Math.round, min = Math.min, pow = Math.pow, ceil = Math.ceil, abs = Math.abs;</code></li>
-<li class='green'><span class='hits'>1</span><code>var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];</code></li>
-<li class='green'><span class='hits'>1</span><code>var monthAbbr = ["Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."];</code></li>
-<li class='green'><span class='hits'>1</span><code>var monthLetter = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];</code></li>
-<li class='green'><span class='hits'>1</span><code>var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];</code></li>
-<li class='green'><span class='hits'>1</span><code>var dayAbbr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];</code></li>
-<li class='green'><span class='hits'>1</span><code>var dayLetter = ["S", "M", "T", "W", "T", "F", "S"];</code></li>
-<li class='green'><span class='hits'>1</span><code>var eraNames = ["Before Christ", "Anno Domini"];</code></li>
-<li class='green'><span class='hits'>1</span><code>var eraAbbr = ["BC", "AD"];</code></li>
-<li class='green'><span class='hits'>1</span><code>var eraLetter = ["B", "A"];</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>var comb = exports, date;</code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Determines if obj is a Date</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @param {Anything} obj the thing to test if it is a Date</code></li>
-<li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
-<li class='green'><span class=''> </span><code> * @returns {Boolean} true if it is a Date false otherwise</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.isDate = function (obj) {</code></li>
-<li class='green'><span class='hits'>1232</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>1232</span><code>    return (obj !== undef &amp;&amp; typeof obj === "object" &amp;&amp; obj instanceof Date);</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>function getDayOfYear(/*Date*/dateObject, utc) {</code></li>
-<li class='green'><span class=''> </span><code>    // summary: gets the day of the year as represented by dateObject</code></li>
-<li class='green'><span class='hits'>6</span><code>    return date.difference(new Date(dateObject.getFullYear(), 0, 1, dateObject.getHours()), dateObject, null, utc) + 1; // Number</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>function getWeekOfYear(/*Date*/dateObject, /*Number*/firstDayOfWeek, utc) {</code></li>
-<li class='green'><span class='hits'>4</span><code>    firstDayOfWeek = firstDayOfWeek || 0;</code></li>
-<li class='green'><span class='hits'>4</span><code>    var fullYear = dateObject[utc ? "getUTCFullYear" : "getFullYear"]();</code></li>
-<li class='green'><span class='hits'>4</span><code>    var firstDayOfYear = new Date(fullYear, 0, 1).getDay(),</code></li>
-<li class='green'><span class=''> </span><code>        adj = (firstDayOfYear - firstDayOfWeek + 7) % 7,</code></li>
-<li class='green'><span class=''> </span><code>        week = floor((getDayOfYear(dateObject) + adj - 1) / 7);</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>    // if year starts on the specified day, start counting weeks at 1</code></li>
-<li class='green'><span class='hits'>4</span><code>    if (firstDayOfYear === firstDayOfWeek) {</code></li>
-<li class='green'><span class='hits'>4</span><code>        week++;</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>4</span><code>    return week; // Number</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>function getTimezoneName(/*Date*/dateObject) {</code></li>
-<li class='green'><span class='hits'>37</span><code>    var str = dateObject.toString();</code></li>
-<li class='green'><span class='hits'>37</span><code>    var tz = '';</code></li>
-<li class='green'><span class='hits'>37</span><code>    var pos = str.indexOf('(');</code></li>
-<li class='green'><span class='hits'>37</span><code>    if (pos &gt; -1) {</code></li>
-<li class='green'><span class='hits'>33</span><code>        tz = str.substring(++pos, str.indexOf(')'));</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>37</span><code>    return tz; // String</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>function buildDateEXP(pattern, tokens) {</code></li>
-<li class='green'><span class='hits'>55</span><code>    return pattern.replace(/([a-z])\1*/ig,function (match) {</code></li>
-<li class='green'><span class=''> </span><code>        // Build a simple regexp.  Avoid captures, which would ruin the tokens list</code></li>
-<li class='green'><span class='hits'>197</span><code>        var s,</code></li>
-<li class='green'><span class=''> </span><code>            c = match.charAt(0),</code></li>
-<li class='green'><span class=''> </span><code>            l = match.length,</code></li>
-<li class='green'><span class=''> </span><code>            p2 = '', p3 = '';</code></li>
-<li class='green'><span class='hits'>197</span><code>        p2 = '0?';</code></li>
-<li class='green'><span class='hits'>197</span><code>        p3 = '0{0,2}';</code></li>
-<li class='green'><span class='hits'>197</span><code>        if (c === 'y') {</code></li>
-<li class='green'><span class='hits'>33</span><code>            s = '\\d{2,4}';</code></li>
-<li class='green'><span class='hits'>164</span><code>        } else if (c === "M") {</code></li>
-<li class='green'><span class='hits'>33</span><code>            s = (l &gt; 2) ? '\\S+?' : '1[0-2]|' + p2 + '[1-9]';</code></li>
-<li class='green'><span class='hits'>131</span><code>        } else if (c === "D") {</code></li>
-<li class='green'><span class='hits'>4</span><code>            s = '[12][0-9][0-9]|3[0-5][0-9]|36[0-6]|' + p3 + '[1-9][0-9]|' + p2 + '[1-9]';</code></li>
-<li class='green'><span class='hits'>127</span><code>        } else if (c === "d") {</code></li>
-<li class='green'><span class='hits'>31</span><code>            s = '3[01]|[12]\\d|' + p2 + '[1-9]';</code></li>
-<li class='green'><span class='hits'>96</span><code>        } else if (c === "w") {</code></li>
-<li class='green'><span class='hits'>4</span><code>            s = '[1-4][0-9]|5[0-3]|' + p2 + '[1-9]';</code></li>
-<li class='green'><span class='hits'>92</span><code>        } else if (c === "E") {</code></li>
-<li class='green'><span class='hits'>12</span><code>            s = '\\S+';</code></li>
-<li class='green'><span class='hits'>80</span><code>        } else if (c === "h") {</code></li>
-<li class='green'><span class='hits'>10</span><code>            s = '1[0-2]|' + p2 + '[1-9]';</code></li>
-<li class='green'><span class='hits'>70</span><code>        } else if (c === "K") {</code></li>
-<li class='green'><span class='hits'>4</span><code>            s = '1[01]|' + p2 + '\\d';</code></li>
-<li class='green'><span class='hits'>66</span><code>        } else if (c === "H") {</code></li>
-<li class='green'><span class='hits'>2</span><code>            s = '1\\d|2[0-3]|' + p2 + '\\d';</code></li>
-<li class='green'><span class='hits'>64</span><code>        } else if (c === "k") {</code></li>
-<li class='green'><span class='hits'>2</span><code>            s = '1\\d|2[0-4]|' + p2 + '[1-9]';</code></li>
-<li class='green'><span class='hits'>62</span><code>        } else if (c === "m" || c === "s") {</code></li>
-<li class='green'><span class='hits'>30</span><code>            s = '[0-5]\\d';</code></li>
-<li class='green'><span class='hits'>32</span><code>        } else if (c === "S") {</code></li>
-<li class='green'><span class='hits'>10</span><code>            s = '\\d{' + l + '}';</code></li>
-<li class='green'><span class='hits'>22</span><code>        } else if (c === "a") {</code></li>
-<li class='green'><span class='hits'>6</span><code>            var am = 'AM', pm = 'PM';</code></li>
-<li class='green'><span class='hits'>6</span><code>            s = am + '|' + pm;</code></li>
-<li class='green'><span class='hits'>6</span><code>            if (am !== am.toLowerCase()) {</code></li>
-<li class='green'><span class='hits'>6</span><code>                s += '|' + am.toLowerCase();</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>6</span><code>            if (pm !== pm.toLowerCase()) {</code></li>
-<li class='green'><span class='hits'>6</span><code>                s += '|' + pm.toLowerCase();</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>6</span><code>            s = s.replace(/\./g, "\\.");</code></li>
-<li class='green'><span class='hits'>16</span><code>        } else if (c === 'v' || c === 'z' || c === 'Z' || c === 'G' || c === 'q' || c === 'Q') {</code></li>
-<li class='green'><span class='hits'>12</span><code>            s = ".*";</code></li>
-<li class='green'><span class=''> </span><code>        } else {</code></li>
-<li class='green'><span class='hits'>4</span><code>            s = c === " " ? "\\s*" : c + "*";</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>197</span><code>        if (tokens) {</code></li>
-<li class='green'><span class='hits'>197</span><code>            tokens.push(match);</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>197</span><code>        return "(" + s + ")"; // add capture</code></li>
-<li class='green'><span class=''> </span><code>    }).replace(/[\xa0 ]/g, "[\\s\\xa0]"); // normalize whitespace.  Need explicit handling of \xa0 for IE.</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * @namespace Utilities for Dates</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.date = {</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>    /**@lends comb.date*/</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>    /**</code></li>
-<li class='green'><span class=''> </span><code>     * Returns the number of days in the month of a date</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @example</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.getDaysInMonth(new Date(2006, 1, 1)); //28</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.getDaysInMonth(new Date(2004, 1, 1)); //29</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.getDaysInMonth(new Date(2006, 2, 1)); //31</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.getDaysInMonth(new Date(2006, 3, 1)); //30</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.getDaysInMonth(new Date(2006, 4, 1)); //31</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.getDaysInMonth(new Date(2006, 5, 1)); //30</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.getDaysInMonth(new Date(2006, 6, 1)); //31</code></li>
-<li class='green'><span class=''> </span><code>     * @param {Date} dateObject the date containing the month</code></li>
-<li class='green'><span class=''> </span><code>     * @return {Number} the number of days in the month</code></li>
-<li class='green'><span class=''> </span><code>     */</code></li>
-<li class='green'><span class=''> </span><code>    getDaysInMonth:function (/*Date*/dateObject) {</code></li>
-<li class='green'><span class=''> </span><code>        //	summary:</code></li>
-<li class='green'><span class=''> </span><code>        //		Returns the number of days in the month used by dateObject</code></li>
-<li class='green'><span class='hits'>36</span><code>        var month = dateObject.getMonth();</code></li>
-<li class='green'><span class='hits'>36</span><code>        var days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];</code></li>
-<li class='green'><span class='hits'>36</span><code>        if (month === 1 &amp;&amp; date.isLeapYear(dateObject)) {</code></li>
-<li class='green'><span class='hits'>6</span><code>            return 29;</code></li>
-<li class='green'><span class=''> </span><code>        } // Number</code></li>
-<li class='green'><span class='hits'>30</span><code>        return days[month]; // Number</code></li>
-<li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>    /**</code></li>
-<li class='green'><span class=''> </span><code>     * Determines if a date is a leap year</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @example</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.isLeapYear(new Date(1600, 0, 1)); //true</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.isLeapYear(new Date(2004, 0, 1)); //true</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.isLeapYear(new Date(2000, 0, 1)); //true</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.isLeapYear(new Date(2006, 0, 1)); //false</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.isLeapYear(new Date(1900, 0, 1)); //false</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.isLeapYear(new Date(1800, 0, 1)); //false</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.isLeapYear(new Date(1700, 0, 1)); //false</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @param {Date} dateObject</code></li>
-<li class='green'><span class=''> </span><code>     * @returns {Boolean} true if it is a leap year false otherwise</code></li>
-<li class='green'><span class=''> </span><code>     */</code></li>
-<li class='green'><span class=''> </span><code>    isLeapYear:function (/*Date*/dateObject, utc) {</code></li>
-<li class='green'><span class='hits'>28</span><code>        var year = dateObject[utc ? "getUTCFullYear" : "getFullYear"]();</code></li>
-<li class='green'><span class='hits'>28</span><code>        return (year % 400 === 0) || (year % 4 === 0 &amp;&amp; year % 100 !== 0);</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>    /**</code></li>
-<li class='green'><span class=''> </span><code>     * Determines if a date is on a weekend</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @example</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * var thursday = new Date(2006, 8, 21);</code></li>
-<li class='green'><span class=''> </span><code>     * var saturday = new Date(2006, 8, 23);</code></li>
-<li class='green'><span class=''> </span><code>     * var sunday = new Date(2006, 8, 24);</code></li>
-<li class='green'><span class=''> </span><code>     * var monday = new Date(2006, 8, 25);</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.isWeekend(thursday)); //false</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.isWeekend(saturday); //true</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.isWeekend(sunday); //true</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.isWeekend(monday)); //false</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @param {Date} dateObject the date to test</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @returns {Boolean} true if the date is a weekend</code></li>
-<li class='green'><span class=''> </span><code>     */</code></li>
-<li class='green'><span class=''> </span><code>    isWeekend:function (/*Date?*/dateObject, utc) {</code></li>
-<li class='green'><span class=''> </span><code>        // summary:</code></li>
-<li class='green'><span class=''> </span><code>        //	Determines if the date falls on a weekend, according to local custom.</code></li>
-<li class='green'><span class='hits'>4</span><code>        var day = (dateObject || new Date())[utc ? "getUTCDay" : "getDay"]();</code></li>
-<li class='green'><span class='hits'>4</span><code>        return day === 0 || day === 6;</code></li>
-<li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>    /**</code></li>
-<li class='green'><span class=''> </span><code>     * Get the timezone of a date</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @example</code></li>
-<li class='green'><span class=''> </span><code>     *  //just setting the strLocal to simulate the toString() of a date</code></li>
-<li class='green'><span class=''> </span><code>     *  dt.str = 'Sun Sep 17 2006 22:25:51 GMT-0500 (CDT)';</code></li>
-<li class='green'><span class=''> </span><code>     *  //just setting the strLocal to simulate the locale</code></li>
-<li class='green'><span class=''> </span><code>     *  dt.strLocale = 'Sun 17 Sep 2006 10:25:51 PM CDT';</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.getTimezoneName(dt); //'CDT'</code></li>
-<li class='green'><span class=''> </span><code>     *  dt.str = 'Sun Sep 17 2006 22:57:18 GMT-0500 (CDT)';</code></li>
-<li class='green'><span class=''> </span><code>     *  dt.strLocale = 'Sun Sep 17 22:57:18 2006';</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.getTimezoneName(dt); //'CDT'</code></li>
-<li class='green'><span class=''> </span><code>     * @param dateObject the date to get the timezone from</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @returns {String} the timezone of the date</code></li>
-<li class='green'><span class=''> </span><code>     */</code></li>
-<li class='green'><span class=''> </span><code>    getTimezoneName:getTimezoneName,</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>    /**</code></li>
-<li class='green'><span class=''> </span><code>     * Compares two dates</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @example</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * var d1 = new Date();</code></li>
-<li class='green'><span class=''> </span><code>     * d1.setHours(0);</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.compare(d1, d1); // 0</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     *  var d1 = new Date();</code></li>
-<li class='green'><span class=''> </span><code>     *  d1.setHours(0);</code></li>
-<li class='green'><span class=''> </span><code>     *  var d2 = new Date();</code></li>
-<li class='green'><span class=''> </span><code>     *  d2.setFullYear(2005);</code></li>
-<li class='green'><span class=''> </span><code>     *  d2.setHours(12);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.compare(d1, d2, "date"); // 1</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.compare(d1, d2, "datetime"); // 1</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     *  var d1 = new Date();</code></li>
-<li class='green'><span class=''> </span><code>     *  d1.setHours(0);</code></li>
-<li class='green'><span class=''> </span><code>     *  var d2 = new Date();</code></li>
-<li class='green'><span class=''> </span><code>     *  d2.setFullYear(2005);</code></li>
-<li class='green'><span class=''> </span><code>     *  d2.setHours(12);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.compare(d2, d1, "date"); // -1</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.compare(d1, d2, "time"); //-1</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @param {Date|String} date1 the date to comapare</code></li>
-<li class='green'><span class=''> </span><code>     * @param {Date|String} [date2=new Date()] the date to compare date1 againse</code></li>
-<li class='green'><span class=''> </span><code>     * @param {"date"|"time"|"datetime"} portion compares the portion specified</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @returns -1 if date1 is &lt; date2 0 if date1 === date2  1 if date1 &gt; date2</code></li>
-<li class='green'><span class=''> </span><code>     */</code></li>
-<li class='green'><span class=''> </span><code>    compare:function (/*Date*/date1, /*Date*/date2, /*String*/portion) {</code></li>
-<li class='green'><span class='hits'>10</span><code>        date1 = new Date(date1);</code></li>
-<li class='green'><span class='hits'>10</span><code>        date2 = new Date((date2 || new Date()));</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>10</span><code>        if (portion === "date") {</code></li>
-<li class='green'><span class=''> </span><code>            // Ignore times and compare dates.</code></li>
-<li class='green'><span class='hits'>4</span><code>            date1.setHours(0, 0, 0, 0);</code></li>
-<li class='green'><span class='hits'>4</span><code>            date2.setHours(0, 0, 0, 0);</code></li>
-<li class='green'><span class='hits'>6</span><code>        } else if (portion === "time") {</code></li>
-<li class='green'><span class=''> </span><code>            // Ignore dates and compare times.</code></li>
-<li class='green'><span class='hits'>2</span><code>            date1.setFullYear(0, 0, 0);</code></li>
-<li class='green'><span class='hits'>2</span><code>            date2.setFullYear(0, 0, 0);</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>10</span><code>        return date1 &gt; date2 ? 1 : date1 &lt; date2 ? -1 : 0;</code></li>
-<li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>    /**</code></li>
-<li class='green'><span class=''> </span><code>     * Adds a specified interval and amount to a date</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @example</code></li>
-<li class='green'><span class=''> </span><code>     *  var dtA = new Date(2005, 11, 27);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "year", 1); //new Date(2006, 11, 27);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "years", 1); //new Date(2006, 11, 27);</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 0, 1);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "quarter", 1); //new Date(2000, 3, 1);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "quarters", 1); //new Date(2000, 3, 1);</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 0, 1);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "month", 1); //new Date(2000, 1, 1);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "months", 1); //new Date(2000, 1, 1);</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 0, 31);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "month", 1); //new Date(2000, 1, 29);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "months", 1); //new Date(2000, 1, 29);</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 0, 1);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "week", 1); //new Date(2000, 0, 8);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "weeks", 1); //new Date(2000, 0, 8);</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 0, 1);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "day", 1); //new Date(2000, 0, 2);</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 0, 1);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "weekday", 1); //new Date(2000, 0, 3);</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 0, 1, 11);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "hour", 1); //new Date(2000, 0, 1, 12);</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 11, 31, 23, 59);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "minute", 1); //new Date(2001, 0, 1, 0, 0);</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 11, 31, 23, 59, 59);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "second", 1); //new Date(2001, 0, 1, 0, 0, 0);</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     *  dtA = new Date(2000, 11, 31, 23, 59, 59, 999);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.add(dtA, "millisecond", 1); //new Date(2001, 0, 1, 0, 0, 0, 0);</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @param {Date} date</code></li>
-<li class='green'><span class=''> </span><code>     * @param {String} interval the interval to add</code></li>
-<li class='green'><span class=''> </span><code>     *  &lt;ul&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;day | days&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;weekday | weekdays&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;year | years&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;week | weeks&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;quarter | quarters&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;months | months&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;hour | hours&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;minute | minutes&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;second | seconds&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;millisecond | milliseconds&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *  &lt;/ul&gt;</code></li>
-<li class='green'><span class=''> </span><code>     * @param {Number} [amount=0] the amount to add</code></li>
-<li class='green'><span class=''> </span><code>     */</code></li>
-<li class='green'><span class=''> </span><code>    add:function (/*Date*/date, /*String*/interval, /*int*/amount) {</code></li>
-<li class='green'><span class='hits'>228</span><code>        var res = addTransform(interval, date, amount || 0);</code></li>
-<li class='green'><span class='hits'>228</span><code>        amount = res[0];</code></li>
-<li class='green'><span class='hits'>228</span><code>        var property = res[1];</code></li>
-<li class='green'><span class='hits'>228</span><code>        var sum = new Date(date);</code></li>
-<li class='green'><span class='hits'>228</span><code>        var fixOvershoot = res[2];</code></li>
-<li class='green'><span class='hits'>228</span><code>        if (property) {</code></li>
-<li class='green'><span class='hits'>228</span><code>            sum["set" + property](sum["get" + property]() + amount);</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>228</span><code>        if (fixOvershoot &amp;&amp; (sum.getDate() &lt; date.getDate())) {</code></li>
-<li class='green'><span class='hits'>26</span><code>            sum.setDate(0);</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>228</span><code>        return sum; // Date</code></li>
-<li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>    /**</code></li>
-<li class='green'><span class=''> </span><code>     * Finds the difference between two dates based on the specified interval</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @example</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * var dtA, dtB;</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * dtA = new Date(2005, 11, 27);</code></li>
-<li class='green'><span class=''> </span><code>     * dtB = new Date(2006, 11, 27);</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "year"); //1</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * dtA = new Date(2000, 1, 29);</code></li>
-<li class='green'><span class=''> </span><code>     * dtB = new Date(2001, 2, 1);</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "quarter"); //4</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "month"); //13</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * dtA = new Date(2000, 1, 1);</code></li>
-<li class='green'><span class=''> </span><code>     * dtB = new Date(2000, 1, 8);</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "week"); //1</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * dtA = new Date(2000, 1, 29);</code></li>
-<li class='green'><span class=''> </span><code>     * dtB = new Date(2000, 2, 1);</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "day"); //1</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * dtA = new Date(2006, 7, 3);</code></li>
-<li class='green'><span class=''> </span><code>     * dtB = new Date(2006, 7, 11);</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "weekday"); //6</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * dtA = new Date(2000, 11, 31, 23);</code></li>
-<li class='green'><span class=''> </span><code>     * dtB = new Date(2001, 0, 1, 0);</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "hour"); //1</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * dtA = new Date(2000, 11, 31, 23, 59);</code></li>
-<li class='green'><span class=''> </span><code>     * dtB = new Date(2001, 0, 1, 0, 0);</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "minute"); //1</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * dtA = new Date(2000, 11, 31, 23, 59, 59);</code></li>
-<li class='green'><span class=''> </span><code>     * dtB = new Date(2001, 0, 1, 0, 0, 0);</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "second"); //1</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * dtA = new Date(2000, 11, 31, 23, 59, 59, 999);</code></li>
-<li class='green'><span class=''> </span><code>     * dtB = new Date(2001, 0, 1, 0, 0, 0, 0);</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.difference(dtA, dtB, "millisecond"); //1</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @param {Date} date1</code></li>
-<li class='green'><span class=''> </span><code>     * @param {Date} [date2 = new Date()]</code></li>
-<li class='green'><span class=''> </span><code>     * @param {String} [interval = "day"] the intercal to find the difference of.</code></li>
-<li class='green'><span class=''> </span><code>     *   &lt;ul&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;day | days&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;weekday | weekdays&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;year | years&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;week | weeks&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;quarter | quarters&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;months | months&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;hour | hours&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;minute | minutes&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;second | seconds&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *      &lt;li&gt;millisecond | milliseconds&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *  &lt;/ul&gt;</code></li>
-<li class='green'><span class=''> </span><code>     */</code></li>
-<li class='green'><span class=''> </span><code>    difference:function (/*Date*/date1, /*Date?*/date2, /*String*/interval, utc) {</code></li>
-<li class='green'><span class='hits'>162</span><code>        date2 = date2 || new Date();</code></li>
-<li class='green'><span class='hits'>162</span><code>        interval = interval || "day";</code></li>
-<li class='green'><span class='hits'>162</span><code>        return differenceTransform(interval, date1, date2, utc);</code></li>
-<li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>    /**</code></li>
-<li class='green'><span class=''> </span><code>     * Parses a date string into a date object</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @example</code></li>
-<li class='green'><span class=''> </span><code>     *  var aug_11_2006 = new Date(2006, 7, 11, 0);</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.parse("08/11/06", "MM/dd/yy"); //aug_11_2006</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.parse("11Aug2006", 'ddMMMyyyy'); //aug_11_2006</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.parse("Aug2006", 'MMMyyyy'); //new Date(2006, 7, 1)</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.parse("Aug 11, 2006", "MMM dd, yyyy"); //aug_11_2006</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.parse("August 11, 2006", "MMMM dd, yyyy"); //aug_11_2006</code></li>
-<li class='green'><span class=''> </span><code>     *  comb.date.parse("Friday, August 11, 2006", "EEEE, MMMM dd, yyyy"); //aug_11_2006</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @param {String} dateStr The string to parse</code></li>
-<li class='green'><span class=''> </span><code>     * @param {String} format the format of the date composed of the following options</code></li>
-<li class='green'><span class=''> </span><code>     * &lt;ul&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; G    Era designator    Text    AD&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; y    Year    Year    1996; 96&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; M    Month in year    Month    July; Jul; 07&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; w    Week in year    Number    27&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; W    Week in month    Number    2&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; D    Day in year    Number    189&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; d    Day in month    Number    10&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; E    Day in week    Text    Tuesday; Tue&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; a    Am/pm marker    Text    PM&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; H    Hour in day (0-23)    Number    0&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; k    Hour in day (1-24)    Number    24&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; K    Hour in am/pm (0-11)    Number    0&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; h    Hour in am/pm (1-12)    Number    12&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; m    Minute in hour    Number    30&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; s    Second in minute    Number    55&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; S    Millisecond    Number    978&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; z    Time zone    General time zone    Pacific Standard Time; PST; GMT-08:00&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; Z    Time zone    RFC 822 time zone    -0800 &lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     * &lt;/ul&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @returns {Date} the parsed date</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     */</code></li>
-<li class='green'><span class=''> </span><code>    parse:function (dateStr, format) {</code></li>
-<li class='green'><span class='hits'>57</span><code>        if (!format) {</code></li>
-<li class='green'><span class='hits'>2</span><code>            throw new Error('format required when calling comb.date.parse');</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>55</span><code>        var tokens = [], regexp = buildDateEXP(format, tokens),</code></li>
-<li class='green'><span class=''> </span><code>            re = new RegExp("^" + regexp + "$", "i"),</code></li>
-<li class='green'><span class=''> </span><code>            match = re.exec(dateStr);</code></li>
-<li class='green'><span class='hits'>55</span><code>        if (!match) {</code></li>
-<li class='green'><span class='hits'>7</span><code>            return null;</code></li>
-<li class='green'><span class=''> </span><code>        } // null</code></li>
-<li class='green'><span class='hits'>48</span><code>        var result = [1970, 0, 1, 0, 0, 0, 0], // will get converted to a Date at the end</code></li>
-<li class='green'><span class=''> </span><code>            amPm = "",</code></li>
-<li class='green'><span class=''> </span><code>            valid = match.every(function (v, i) {</code></li>
-<li class='green'><span class='hits'>212</span><code>                if (i) {</code></li>
-<li class='green'><span class='hits'>164</span><code>                    var token = tokens[i - 1];</code></li>
-<li class='green'><span class='hits'>164</span><code>                    var l = token.length, type = token.charAt(0);</code></li>
-<li class='green'><span class='hits'>164</span><code>                    if (type === 'y') {</code></li>
-<li class='green'><span class='hits'>26</span><code>                        if (v &lt; 100) {</code></li>
-<li class='green'><span class='hits'>6</span><code>                            v = parseInt(v, 10);</code></li>
-<li class='green'><span class=''> </span><code>                            //choose century to apply, according to a sliding window</code></li>
-<li class='green'><span class=''> </span><code>                            //of 80 years before and 20 years after present year</code></li>
-<li class='green'><span class='hits'>6</span><code>                            var year = '' + new Date().getFullYear(),</code></li>
-<li class='green'><span class=''> </span><code>                                century = year.substring(0, 2) * 100,</code></li>
-<li class='green'><span class=''> </span><code>                                cutoff = min(year.substring(2, 4) + 20, 99);</code></li>
-<li class='green'><span class='hits'>6</span><code>                            result[0] = (v &lt; cutoff) ? century + v : century - 100 + v;</code></li>
-<li class='green'><span class=''> </span><code>                        } else {</code></li>
-<li class='green'><span class='hits'>20</span><code>                            result[0] = v;</code></li>
-<li class='green'><span class=''> </span><code>                        }</code></li>
-<li class='green'><span class='hits'>138</span><code>                    } else if (type === "M") {</code></li>
-<li class='green'><span class='hits'>28</span><code>                        if (l &gt; 2) {</code></li>
-<li class='green'><span class='hits'>20</span><code>                            var months = monthNames;</code></li>
-<li class='green'><span class='hits'>20</span><code>                            if (l === 3) {</code></li>
-<li class='green'><span class='hits'>8</span><code>                                months = monthAbbr;</code></li>
-<li class='green'><span class=''> </span><code>                            }</code></li>
-<li class='green'><span class=''> </span><code>                            //Tolerate abbreviating period in month part</code></li>
-<li class='green'><span class=''> </span><code>                            //Case-insensitive comparison</code></li>
-<li class='green'><span class='hits'>20</span><code>                            v = v.replace(".", "").toLowerCase();</code></li>
-<li class='green'><span class='hits'>20</span><code>                            months = months.map(function (s) {</code></li>
-<li class='green'><span class='hits'>240</span><code>                                return s.replace(".", "").toLowerCase();</code></li>
-<li class='green'><span class=''> </span><code>                            });</code></li>
-<li class='green'><span class='hits'>20</span><code>                            if ((v = months.indexOf(v)) === -1) {</code></li>
-<li class='green'><span class='hits'>2</span><code>                                return false;</code></li>
-<li class='green'><span class=''> </span><code>                            }</code></li>
-<li class='green'><span class=''> </span><code>                        } else {</code></li>
-<li class='green'><span class='hits'>8</span><code>                            v--;</code></li>
-<li class='green'><span class=''> </span><code>                        }</code></li>
-<li class='green'><span class='hits'>26</span><code>                        result[1] = v;</code></li>
-<li class='green'><span class='hits'>110</span><code>                    } else if (type === "E" || type === "e") {</code></li>
-<li class='green'><span class='hits'>12</span><code>                        var days = dayNames;</code></li>
-<li class='green'><span class='hits'>12</span><code>                        if (l === 3) {</code></li>
-<li class='green'><span class='hits'>4</span><code>                            days = dayAbbr;</code></li>
-<li class='green'><span class=''> </span><code>                        }</code></li>
-<li class='green'><span class=''> </span><code>                        //Case-insensitive comparison</code></li>
-<li class='green'><span class='hits'>12</span><code>                        v = v.toLowerCase();</code></li>
-<li class='green'><span class='hits'>12</span><code>                        days = days.map(function (d) {</code></li>
-<li class='green'><span class='hits'>84</span><code>                            return d.toLowerCase();</code></li>
-<li class='green'><span class=''> </span><code>                        });</code></li>
-<li class='green'><span class='hits'>12</span><code>                        var d = days.indexOf(v);</code></li>
-<li class='green'><span class='hits'>12</span><code>                        if (d === -1) {</code></li>
-<li class='green'><span class='hits'>4</span><code>                            v = parseInt(v, 10);</code></li>
-<li class='green'><span class='hits'>4</span><code>                            if (isNaN(v) || v &gt; days.length) {</code></li>
-<li class='green'><span class='hits'>2</span><code>                                return false;</code></li>
-<li class='green'><span class=''> </span><code>                            }</code></li>
-<li class='green'><span class=''> </span><code>                        } else {</code></li>
-<li class='green'><span class='hits'>8</span><code>                            v = d;</code></li>
-<li class='green'><span class=''> </span><code>                        }</code></li>
-<li class='green'><span class='hits'>98</span><code>                    } else if (type === 'D' || type === "d") {</code></li>
-<li class='green'><span class='hits'>30</span><code>                        if (type === "D") {</code></li>
-<li class='green'><span class='hits'>4</span><code>                            result[1] = 0;</code></li>
-<li class='green'><span class=''> </span><code>                        }</code></li>
-<li class='green'><span class='hits'>30</span><code>                        result[2] = v;</code></li>
-<li class='green'><span class='hits'>68</span><code>                    } else if (type === "a") {</code></li>
-<li class='green'><span class='hits'>4</span><code>                        var am = "am";</code></li>
-<li class='green'><span class='hits'>4</span><code>                        var pm = "pm";</code></li>
-<li class='green'><span class='hits'>4</span><code>                        var period = /\./g;</code></li>
-<li class='green'><span class='hits'>4</span><code>                        v = v.replace(period, '').toLowerCase();</code></li>
-<li class='green'><span class=''> </span><code>                        // we might not have seen the hours field yet, so store the state and apply hour change later</code></li>
-<li class='green'><span class='hits'>4</span><code>                        amPm = (v === pm) ? 'p' : (v === am) ? 'a' : '';</code></li>
-<li class='green'><span class='hits'>64</span><code>                    } else if (type === "k" || type === "h" || type === "H" || type === "K") {</code></li>
-<li class='green'><span class='hits'>14</span><code>                        if (type === "k" &amp;&amp; (+v) === 24) {</code></li>
-<li class='green'><span class='hits'>2</span><code>                            v = 0;</code></li>
-<li class='green'><span class=''> </span><code>                        }</code></li>
-<li class='green'><span class='hits'>14</span><code>                        result[3] = v;</code></li>
-<li class='green'><span class='hits'>50</span><code>                    } else if (type === "m") {</code></li>
-<li class='green'><span class='hits'>14</span><code>                        result[4] = v;</code></li>
-<li class='green'><span class='hits'>36</span><code>                    } else if (type === "s") {</code></li>
-<li class='green'><span class='hits'>10</span><code>                        result[5] = v;</code></li>
-<li class='green'><span class='hits'>26</span><code>                    } else if (type === "S") {</code></li>
-<li class='green'><span class='hits'>8</span><code>                        result[6] = v;</code></li>
-<li class='green'><span class=''> </span><code>                    }</code></li>
-<li class='green'><span class=''> </span><code>                }</code></li>
-<li class='green'><span class='hits'>208</span><code>                return true;</code></li>
-<li class='green'><span class=''> </span><code>            });</code></li>
-<li class='green'><span class='hits'>48</span><code>        if (valid) {</code></li>
-<li class='green'><span class='hits'>44</span><code>            var hours = +result[3];</code></li>
-<li class='green'><span class=''> </span><code>            //account for am/pm</code></li>
-<li class='green'><span class='hits'>44</span><code>            if (amPm === 'p' &amp;&amp; hours &lt; 12) {</code></li>
-<li class='green'><span class='hits'>2</span><code>                result[3] = hours + 12; //e.g., 3pm -&gt; 15</code></li>
-<li class='green'><span class='hits'>42</span><code>            } else if (amPm === 'a' &amp;&amp; hours === 12) {</code></li>
-<li class='green'><span class='hits'>2</span><code>                result[3] = 0; //12am -&gt; 0</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>44</span><code>            var dateObject = new Date(result[0], result[1], result[2], result[3], result[4], result[5], result[6]); // Date</code></li>
-<li class='green'><span class='hits'>44</span><code>            var dateToken = (tokens.indexOf('d') !== -1),</code></li>
-<li class='green'><span class=''> </span><code>                monthToken = (tokens.indexOf('M') !== -1),</code></li>
-<li class='green'><span class=''> </span><code>                month = result[1],</code></li>
-<li class='green'><span class=''> </span><code>                day = result[2],</code></li>
-<li class='green'><span class=''> </span><code>                dateMonth = dateObject.getMonth(),</code></li>
-<li class='green'><span class=''> </span><code>                dateDay = dateObject.getDate();</code></li>
-<li class='green'><span class='hits'>44</span><code>            if ((monthToken &amp;&amp; dateMonth &gt; month) || (dateToken &amp;&amp; dateDay &gt; day)) {</code></li>
-<li class='green'><span class='hits'>2</span><code>                return null;</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>42</span><code>            return dateObject; // Date</code></li>
-<li class='green'><span class=''> </span><code>        } else {</code></li>
-<li class='green'><span class='hits'>4</span><code>            return null;</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>    /**</code></li>
-<li class='green'><span class=''> </span><code>     * Formats a date to the specidifed format string</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @example</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * var date = new Date(2006, 7, 11, 0, 55, 12, 345);</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.format(date, "EEEE, MMMM dd, yyyy"); //"Friday, August 11, 2006"</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.format(date, "M/dd/yy"); //"8/11/06"</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.format(date, "E"); //"6"</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.format(date, "h:m a"); //"12:55 AM"</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.format(date, 'h:m:s'); //"12:55:12"</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.format(date, 'h:m:s.SS'); //"12:55:12.35"</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.format(date, 'k:m:s.SS'); //"24:55:12.35"</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.format(date, 'H:m:s.SS'); //"0:55:12.35"</code></li>
-<li class='green'><span class=''> </span><code>     * comb.date.format(date, "ddMMyyyy"); //"11082006"</code></li>
-<li class='green'><span class=''> </span><code>     *</code></li>
-<li class='green'><span class=''> </span><code>     * @param date the date to format</code></li>
-<li class='green'><span class=''> </span><code>     * @param {String} format the format of the date composed of the following options</code></li>
-<li class='green'><span class=''> </span><code>     * &lt;ul&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; G    Era designator    Text    AD&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; y    Year    Year    1996; 96&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; M    Month in year    Month    July; Jul; 07&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; w    Week in year    Number    27&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; W    Week in month    Number    2&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; D    Day in year    Number    189&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; d    Day in month    Number    10&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; E    Day in week    Text    Tuesday; Tue&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; a    Am/pm marker    Text    PM&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; H    Hour in day (0-23)    Number    0&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; k    Hour in day (1-24)    Number    24&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; K    Hour in am/pm (0-11)    Number    0&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; h    Hour in am/pm (1-12)    Number    12&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; m    Minute in hour    Number    30&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; s    Second in minute    Number    55&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; S    Millisecond    Number    978&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; z    Time zone    General time zone    Pacific Standard Time; PST; GMT-08:00&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     *                  &lt;li&gt; Z    Time zone    RFC 822 time zone    -0800 &lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code>     * &lt;/ul&gt;</code></li>
-<li class='green'><span class=''> </span><code>     */</code></li>
-<li class='green'><span class=''> </span><code>    format:function (date, format, utc) {</code></li>
-<li class='green'><span class='hits'>78</span><code>        utc = utc || false;</code></li>
-<li class='green'><span class='hits'>78</span><code>        var fullYear, month, day, d, hour, minute, second, millisecond;</code></li>
-<li class='green'><span class='hits'>78</span><code>        if (utc) {</code></li>
-<li class='green'><span class='hits'>26</span><code>            fullYear = date.getUTCFullYear();</code></li>
-<li class='green'><span class='hits'>26</span><code>            month = date.getUTCMonth();</code></li>
-<li class='green'><span class='hits'>26</span><code>            day = date.getUTCDay();</code></li>
-<li class='green'><span class='hits'>26</span><code>            d = date.getUTCDate();</code></li>
-<li class='green'><span class='hits'>26</span><code>            hour = date.getUTCHours();</code></li>
-<li class='green'><span class='hits'>26</span><code>            minute = date.getUTCMinutes();</code></li>
-<li class='green'><span class='hits'>26</span><code>            second = date.getUTCSeconds();</code></li>
-<li class='green'><span class='hits'>26</span><code>            millisecond = date.getUTCMilliseconds();</code></li>
-<li class='green'><span class=''> </span><code>        } else {</code></li>
-<li class='green'><span class='hits'>52</span><code>            fullYear = date.getFullYear();</code></li>
-<li class='green'><span class='hits'>52</span><code>            month = date.getMonth();</code></li>
-<li class='green'><span class='hits'>52</span><code>            d = date.getDate();</code></li>
-<li class='green'><span class='hits'>52</span><code>            day = date.getDay();</code></li>
-<li class='green'><span class='hits'>52</span><code>            hour = date.getHours();</code></li>
-<li class='green'><span class='hits'>52</span><code>            minute = date.getMinutes();</code></li>
-<li class='green'><span class='hits'>52</span><code>            second = date.getSeconds();</code></li>
-<li class='green'><span class='hits'>52</span><code>            millisecond = date.getMilliseconds();</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>78</span><code>        return format.replace(/([A-Za-z])\1*/g, function (match, options) {</code></li>
-<li class='green'><span class='hits'>372</span><code>            var s, pad, h,</code></li>
-<li class='green'><span class=''> </span><code>                c = match.charAt(0),</code></li>
-<li class='green'><span class=''> </span><code>                l = match.length;</code></li>
-<li class='green'><span class='hits'>372</span><code>            if (c === 'd') {</code></li>
-<li class='green'><span class='hits'>42</span><code>                s = "" + d;</code></li>
-<li class='green'><span class='hits'>42</span><code>                pad = true;</code></li>
-<li class='green'><span class='hits'>330</span><code>            } else if (c === "H" &amp;&amp; !s) {</code></li>
-<li class='green'><span class='hits'>30</span><code>                s = "" + hour;</code></li>
-<li class='green'><span class='hits'>30</span><code>                pad = true;</code></li>
-<li class='green'><span class='hits'>300</span><code>            } else if (c === 'm' &amp;&amp; !s) {</code></li>
-<li class='green'><span class='hits'>40</span><code>                s = "" + minute;</code></li>
-<li class='green'><span class='hits'>40</span><code>                pad = true;</code></li>
-<li class='green'><span class='hits'>260</span><code>            } else if (c === 's') {</code></li>
-<li class='green'><span class='hits'>38</span><code>                if (!s) {</code></li>
-<li class='green'><span class='hits'>38</span><code>                    s = "" + second;</code></li>
-<li class='green'><span class=''> </span><code>                }</code></li>
-<li class='green'><span class='hits'>38</span><code>                pad = true;</code></li>
-<li class='green'><span class='hits'>222</span><code>            } else if (c === "G") {</code></li>
-<li class='green'><span class='hits'>4</span><code>                s = ((l &lt; 4) ? eraAbbr : eraNames)[fullYear &lt; 0 ? 0 : 1];</code></li>
-<li class='green'><span class='hits'>218</span><code>            } else if (c === "y") {</code></li>
-<li class='green'><span class='hits'>48</span><code>                s = fullYear;</code></li>
-<li class='green'><span class='hits'>48</span><code>                if (l &gt; 1) {</code></li>
-<li class='green'><span class='hits'>48</span><code>                    if (l === 2) {</code></li>
-<li class='green'><span class='hits'>6</span><code>                        s = string.truncate("" + s, 2, true);</code></li>
-<li class='green'><span class=''> </span><code>                    } else {</code></li>
-<li class='green'><span class='hits'>42</span><code>                        pad = true;</code></li>
-<li class='green'><span class=''> </span><code>                    }</code></li>
-<li class='green'><span class=''> </span><code>                }</code></li>
-<li class='green'><span class='hits'>170</span><code>            } else if (c.toUpperCase() === "Q") {</code></li>
-<li class='green'><span class='hits'>6</span><code>                s = ceil((month + 1) / 3);</code></li>
-<li class='green'><span class='hits'>6</span><code>                pad = true;</code></li>
-<li class='green'><span class='hits'>164</span><code>            } else if (c === "M") {</code></li>
-<li class='green'><span class='hits'>42</span><code>                if (l &lt; 3) {</code></li>
-<li class='green'><span class='hits'>32</span><code>                    s = month + 1;</code></li>
-<li class='green'><span class='hits'>32</span><code>                    pad = true;</code></li>
-<li class='green'><span class=''> </span><code>                } else {</code></li>
-<li class='green'><span class='hits'>10</span><code>                    s = (l === 3 ? monthAbbr : monthNames)[month];</code></li>
-<li class='green'><span class=''> </span><code>                }</code></li>
-<li class='green'><span class='hits'>122</span><code>            } else if (c === "w") {</code></li>
-<li class='green'><span class='hits'>4</span><code>                s = getWeekOfYear(date, 0, utc);</code></li>
-<li class='green'><span class='hits'>4</span><code>                pad = true;</code></li>
-<li class='green'><span class='hits'>118</span><code>            } else if (c === "D") {</code></li>
-<li class='green'><span class='hits'>2</span><code>                s = getDayOfYear(date, utc);</code></li>
-<li class='green'><span class='hits'>2</span><code>                pad = true;</code></li>
-<li class='green'><span class='hits'>116</span><code>            } else if (c === "E") {</code></li>
-<li class='green'><span class='hits'>12</span><code>                if (l &lt; 3) {</code></li>
-<li class='green'><span class='hits'>2</span><code>                    s = day + 1;</code></li>
-<li class='green'><span class='hits'>2</span><code>                    pad = true;</code></li>
-<li class='green'><span class=''> </span><code>                } else {</code></li>
-<li class='green'><span class='hits'>10</span><code>                    s = (l === -3 ? dayAbbr : dayNames)[day];</code></li>
-<li class='green'><span class=''> </span><code>                }</code></li>
-<li class='green'><span class='hits'>104</span><code>            } else if (c === 'a') {</code></li>
-<li class='green'><span class='hits'>2</span><code>                s = (hour &lt; 12) ? 'AM' : 'PM';</code></li>
-<li class='green'><span class='hits'>102</span><code>            } else if (c === "h") {</code></li>
-<li class='green'><span class='hits'>6</span><code>                s = (hour % 12) || 12;</code></li>
-<li class='green'><span class='hits'>6</span><code>                pad = true;</code></li>
-<li class='green'><span class='hits'>96</span><code>            } else if (c === "K") {</code></li>
-<li class='green'><span class='hits'>2</span><code>                s = (hour % 12);</code></li>
-<li class='green'><span class='hits'>2</span><code>                pad = true;</code></li>
-<li class='green'><span class='hits'>94</span><code>            } else if (c === "k") {</code></li>
-<li class='green'><span class='hits'>2</span><code>                s = hour || 24;</code></li>
-<li class='green'><span class='hits'>2</span><code>                pad = true;</code></li>
-<li class='green'><span class='hits'>92</span><code>            } else if (c === "S") {</code></li>
-<li class='green'><span class='hits'>36</span><code>                s = round(millisecond * pow(10, l - 3));</code></li>
-<li class='green'><span class='hits'>36</span><code>                pad = true;</code></li>
-<li class='green'><span class='hits'>56</span><code>            } else if (c === "z" || c === "v" || c === "Z") {</code></li>
-<li class='green'><span class='hits'>30</span><code>                s = getTimezoneName(date);</code></li>
-<li class='green'><span class='hits'>30</span><code>                if ((c === "z" || c === "v") &amp;&amp; !s) {</code></li>
-<li class='green'><span class='hits'>4</span><code>                    l = 4;</code></li>
-<li class='green'><span class=''> </span><code>                }</code></li>
-<li class='green'><span class='hits'>30</span><code>                if (!s || c === "Z") {</code></li>
-<li class='green'><span class='hits'>4</span><code>                    var offset = date.getTimezoneOffset();</code></li>
-<li class='green'><span class='hits'>4</span><code>                    var tz = [</code></li>
-<li class='green'><span class=''> </span><code>                        (offset &gt;= 0 ? "-" : "+"),</code></li>
-<li class='green'><span class=''> </span><code>                        string.pad(floor(abs(offset) / 60), 2, "0"),</code></li>
-<li class='green'><span class=''> </span><code>                        string.pad(abs(offset) % 60, 2, "0")</code></li>
-<li class='green'><span class=''> </span><code>                    ];</code></li>
-<li class='green'><span class='hits'>4</span><code>                    if (l === 4) {</code></li>
-<li class='green'><span class='hits'>4</span><code>                        tz.splice(0, 0, "GMT");</code></li>
-<li class='green'><span class='hits'>4</span><code>                        tz.splice(3, 0, ":");</code></li>
-<li class='green'><span class=''> </span><code>                    }</code></li>
-<li class='green'><span class='hits'>4</span><code>                    s = tz.join("");</code></li>
-<li class='green'><span class=''> </span><code>                }</code></li>
-<li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>26</span><code>                s = match;</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>372</span><code>            if (pad) {</code></li>
-<li class='green'><span class='hits'>284</span><code>                s = string.pad(s, l, '0');</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>372</span><code>            return s;</code></li>
-<li class='green'><span class=''> </span><code>        });</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>date = comb.date;</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Adds the specified year/s to the current date.</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @example</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * //assuming that current year is 2012</code></li>
-<li class='green'><span class=''> </span><code> * comb.yearsFromNow(1); //2013-mm-dd hh:MM:ss</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @param {Number} val the number of years to add</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of years added</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.yearsFromNow = function (val) {</code></li>
-<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "years", val);</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Subtracts the specified year/s from the current date.</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @param {Number} val the number of years to subtract</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of years subtracted</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.yearsAgo = function (val) {</code></li>
-<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "years", -val);</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Adds the specified month/s to the current date.</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @example</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * //assuming that current month is february</code></li>
-<li class='green'><span class=''> </span><code> * comb.yearsFromNow(2); //yyyy-04-dd hh:MM:ss</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @param {Number} val the number of months to add</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of years added</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.monthsFromNow = function (val) {</code></li>
-<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "months", val);</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Subtracts the specified month/s from the current date.</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @param {Number} val the number of months to subtract</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of months subtracted</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.monthsAgo = function (val) {</code></li>
-<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "months", -val);</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Adds the specified day/s to the current date.</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @param {Number} val the number of days to add</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of days added</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.daysFromNow = function (val) {</code></li>
-<li class='green'><span class='hits'>27</span><code>    return date.add(new Date(), "days", val);</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Subtracts the specified day/s from the current date.</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @param {Number} val the number of days to subtract</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of days subtracted</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.daysAgo = function (val) {</code></li>
-<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "days", -val);</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Adds the specified hour/s to the current date.</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @param {Number} val the number of hours to add</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of hours added</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.hoursFromNow = function (val) {</code></li>
-<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "hours", val);</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Subtracts the specified hour/s from the current date.</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @param {Number} val the number of hours to subtract</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of hours subtracted</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.hoursAgo = function (val) {</code></li>
-<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "hours", -val);</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Adds the specified minute/s to the current date.</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @param {Number} val the number of minutes to add</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of minutes added</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.minutesFromNow = function (val) {</code></li>
-<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "minutes", val);</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Subtracts the specified minute/s from the current date.</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @param {Number} val the number of minutes to subtract</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of minutes subtracted</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.minutesAgo = function (val) {</code></li>
-<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "minutes", -val);</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Adds the specified second/s to the current date.</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @param {Number} val the number of seconds to add</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of seconds added</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.secondsFromNow = function (val) {</code></li>
-<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "seconds", val);</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Subtracts the specified second/s from the current date.</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @param {Number} val the number of seconds to subtract</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @return {Date} a date with the number of seconds subtracted</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>comb.secondsAgo = function (val) {</code></li>
-<li class='green'><span class='hits'>1</span><code>    return date.add(new Date(), "seconds", -val);</code></li>
-<li class='green'><span class=''> </span><code>};</code></li></ol></pre></div>
-</div>
-
 <div class="cov-section cov-section-hover cov-section-high" id="base/date/transforms.js">
     <table class='section-table'>
         <tr>
@@ -5958,64 +5980,64 @@ td.cov-stats {
     <div class='source' id="base/date/transforms.js-source"><pre class='prettyprint linenums'><ol class='linenums'><li class='green'><span class='hits'>1</span><code>var floor = Math.floor, round = Math.round, min = Math.min, pow = Math.pow, ceil = Math.ceil, abs = Math.abs;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>var addMap = {</code></li>
-<li class='green'><span class=''> </span><code>    day:function addDay(date, amount) {</code></li>
+<li class='green'><span class=''> </span><code>    day: function addDay(date, amount) {</code></li>
 <li class='green'><span class='hits'>62</span><code>        return [amount, "Date", false];</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code>    weekday:function addWeekday(date, amount) {</code></li>
+<li class='green'><span class=''> </span><code>    weekday: function addWeekday(date, amount) {</code></li>
 <li class='green'><span class=''> </span><code>        // Divide the increment time span into weekspans plus leftover days</code></li>
 <li class='green'><span class=''> </span><code>        // e.g., 8 days is one 5-day weekspan / and two leftover days</code></li>
 <li class='green'><span class=''> </span><code>        // Can't have zero leftover days, so numbers divisible by 5 get</code></li>
 <li class='green'><span class=''> </span><code>        // a days value of 5, and the remaining days make up the number of weeks</code></li>
-<li class='green'><span class='hits'>32</span><code>        var days, weeks, mod = amount % 5, strt = date.getDay(), adj = 0;</code></li>
-<li class='green'><span class='hits'>32</span><code>        if (!mod) {</code></li>
+<li class='green'><span class='hits'>38</span><code>        var days, weeks, mod = amount % 5, strt = date.getDay(), adj = 0;</code></li>
+<li class='green'><span class='hits'>38</span><code>        if (!mod) {</code></li>
 <li class='green'><span class='hits'>12</span><code>            days = (amount &gt; 0) ? 5 : -5;</code></li>
 <li class='green'><span class='hits'>12</span><code>            weeks = (amount &gt; 0) ? ((amount - 5) / 5) : ((amount + 5) / 5);</code></li>
 <li class='green'><span class=''> </span><code>        } else {</code></li>
-<li class='green'><span class='hits'>20</span><code>            days = mod;</code></li>
-<li class='green'><span class='hits'>20</span><code>            weeks = parseInt(amount / 5, 10);</code></li>
+<li class='green'><span class='hits'>26</span><code>            days = mod;</code></li>
+<li class='green'><span class='hits'>26</span><code>            weeks = parseInt(amount / 5, 10);</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>32</span><code>        if (strt === 6 &amp;&amp; amount &gt; 0) {</code></li>
+<li class='green'><span class='hits'>38</span><code>        if (strt === 6 &amp;&amp; amount &gt; 0) {</code></li>
 <li class='green'><span class='hits'>4</span><code>            adj = 1;</code></li>
-<li class='green'><span class='hits'>28</span><code>        } else if (strt === 0 &amp;&amp; amount &lt; 0) {</code></li>
+<li class='green'><span class='hits'>34</span><code>        } else if (strt === 0 &amp;&amp; amount &lt; 0) {</code></li>
 <li class='green'><span class=''> </span><code>            // Orig date is Sun / negative increment</code></li>
 <li class='green'><span class=''> </span><code>            // Jump back over Sat</code></li>
 <li class='green'><span class='hits'>8</span><code>            adj = -1;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>        // Get weekday val for the new date</code></li>
-<li class='green'><span class='hits'>32</span><code>        var trgt = strt + days;</code></li>
+<li class='green'><span class='hits'>38</span><code>        var trgt = strt + days;</code></li>
 <li class='green'><span class=''> </span><code>        // New date is on Sat or Sun</code></li>
-<li class='green'><span class='hits'>32</span><code>        if (trgt === 0 || trgt === 6) {</code></li>
-<li class='green'><span class='hits'>4</span><code>            adj = (amount &gt; 0) ? 2 : -2;</code></li>
+<li class='green'><span class='hits'>38</span><code>        if ((trgt === 0 || trgt === 6) || ((trgt &gt; 6 || trgt &lt;= 0) &amp;&amp; strt !== 6 &amp;&amp; strt !== 0)) {</code></li>
+<li class='green'><span class='hits'>10</span><code>            adj = (amount &gt; 0) ? 2 : -2;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>        // Increment by number of weeks plus leftover days plus</code></li>
 <li class='green'><span class=''> </span><code>        // weekend adjustments</code></li>
-<li class='green'><span class='hits'>32</span><code>        return [(7 * weeks) + days + adj, "Date", false];</code></li>
+<li class='green'><span class='hits'>38</span><code>        return [(7 * weeks) + days + adj, "Date", false];</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code>    year:function addYear(date, amount) {</code></li>
+<li class='green'><span class=''> </span><code>    year: function addYear(date, amount) {</code></li>
 <li class='green'><span class='hits'>36</span><code>        return [amount, "FullYear", true];</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code>    week:function addWeek(date, amount) {</code></li>
+<li class='green'><span class=''> </span><code>    week: function addWeek(date, amount) {</code></li>
 <li class='green'><span class='hits'>6</span><code>        return [amount * 7, "Date", false];</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code>    quarter:function addYear(date, amount) {</code></li>
+<li class='green'><span class=''> </span><code>    quarter: function addYear(date, amount) {</code></li>
 <li class='green'><span class='hits'>18</span><code>        return [amount * 3, "Month", true];</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code>    month:function addYear(date, amount) {</code></li>
+<li class='green'><span class=''> </span><code>    month: function addYear(date, amount) {</code></li>
 <li class='green'><span class='hits'>22</span><code>        return [amount, "Month", true];</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function addTransform(interval, date, amount) {</code></li>
-<li class='green'><span class='hits'>228</span><code>    interval = interval.replace(/s$/, "");</code></li>
-<li class='green'><span class='hits'>228</span><code>    if (addMap.hasOwnProperty(interval)) {</code></li>
-<li class='green'><span class='hits'>176</span><code>        return addMap[interval](date, amount);</code></li>
+<li class='green'><span class='hits'>234</span><code>    interval = interval.replace(/s$/, "");</code></li>
+<li class='green'><span class='hits'>234</span><code>    if (addMap.hasOwnProperty(interval)) {</code></li>
+<li class='green'><span class='hits'>182</span><code>        return addMap[interval](date, amount);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class='hits'>52</span><code>    return [amount, "UTC" + interval.charAt(0).toUpperCase() + interval.substring(1) + "s", false];</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>var differenceMap = {</code></li>
-<li class='green'><span class=''> </span><code>    "quarter":function quarterDifference(date1, date2, utc) {</code></li>
+<li class='green'><span class=''> </span><code>    "quarter": function quarterDifference(date1, date2, utc) {</code></li>
 <li class='green'><span class='hits'>10</span><code>        var yearDiff = date2.getFullYear() - date1.getFullYear();</code></li>
 <li class='green'><span class='hits'>10</span><code>        var m1 = date1[utc ? "getUTCMonth" : "getMonth"]();</code></li>
 <li class='green'><span class='hits'>10</span><code>        var m2 = date2[utc ? "getUTCMonth" : "getMonth"]();</code></li>
@@ -6027,7 +6049,7 @@ td.cov-stats {
 <li class='green'><span class='hits'>10</span><code>        return q2 - q1;</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>    "weekday":function weekdayDifference(date1, date2, utc) {</code></li>
+<li class='green'><span class=''> </span><code>    "weekday": function weekdayDifference(date1, date2, utc) {</code></li>
 <li class='green'><span class='hits'>56</span><code>        var days = differenceTransform("day", date1, date2, utc), weeks;</code></li>
 <li class='green'><span class='hits'>56</span><code>        var mod = days % 7;</code></li>
 <li class='green'><span class=''> </span><code>        // Even number of weeks</code></li>
@@ -6066,30 +6088,30 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class='hits'>56</span><code>        return days;</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code>    year:function (date1, date2) {</code></li>
+<li class='green'><span class=''> </span><code>    year: function (date1, date2) {</code></li>
 <li class='green'><span class='hits'>16</span><code>        return date2.getFullYear() - date1.getFullYear();</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code>    month:function (date1, date2, utc) {</code></li>
+<li class='green'><span class=''> </span><code>    month: function (date1, date2, utc) {</code></li>
 <li class='green'><span class='hits'>10</span><code>        var m1 = date1[utc ? "getUTCMonth" : "getMonth"]();</code></li>
 <li class='green'><span class='hits'>10</span><code>        var m2 = date2[utc ? "getUTCMonth" : "getMonth"]();</code></li>
 <li class='green'><span class='hits'>10</span><code>        return (m2 - m1) + ((date2.getFullYear() - date1.getFullYear()) * 12);</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code>    week:function (date1, date2, utc) {</code></li>
+<li class='green'><span class=''> </span><code>    week: function (date1, date2, utc) {</code></li>
 <li class='green'><span class='hits'>22</span><code>        return round(differenceTransform("day", date1, date2, utc) / 7);</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code>    day:function (date1, date2) {</code></li>
+<li class='green'><span class=''> </span><code>    day: function (date1, date2) {</code></li>
 <li class='green'><span class='hits'>106</span><code>        return 1.1574074074074074e-8 * (date2.getTime() - date1.getTime());</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code>    hour:function (date1, date2) {</code></li>
+<li class='green'><span class=''> </span><code>    hour: function (date1, date2) {</code></li>
 <li class='green'><span class='hits'>12</span><code>        return 2.7777777777777776e-7 * (date2.getTime() - date1.getTime());</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code>    minute:function (date1, date2) {</code></li>
+<li class='green'><span class=''> </span><code>    minute: function (date1, date2) {</code></li>
 <li class='green'><span class='hits'>8</span><code>        return 0.000016666666666666667 * (date2.getTime() - date1.getTime());</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code>    second:function (date1, date2) {</code></li>
+<li class='green'><span class=''> </span><code>    second: function (date1, date2) {</code></li>
 <li class='green'><span class='hits'>6</span><code>        return 0.001 * (date2.getTime() - date1.getTime());</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
-<li class='green'><span class=''> </span><code>    millisecond:function (date1, date2) {</code></li>
+<li class='green'><span class=''> </span><code>    millisecond: function (date1, date2) {</code></li>
 <li class='green'><span class='hits'>8</span><code>        return date2.getTime() - date1.getTime();</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
@@ -6773,9 +6795,9 @@ td.cov-stats {
 <li class='green'><span class='hits'>1</span><code>function merge(target, source) {</code></li>
 <li class='green'><span class='hits'>467</span><code>    var name, s;</code></li>
 <li class='green'><span class='hits'>467</span><code>    for (name in source) {</code></li>
-<li class='green'><span class='hits'>646</span><code>        s = source[name];</code></li>
-<li class='green'><span class='hits'>646</span><code>        if (!(name in target) || (target[name] !== s)) {</code></li>
-<li class='green'><span class='hits'>644</span><code>            target[name] = s;</code></li>
+<li class='green'><span class='hits'>650</span><code>        s = source[name];</code></li>
+<li class='green'><span class='hits'>650</span><code>        if (!(name in target) || (target[name] !== s)) {</code></li>
+<li class='green'><span class='hits'>648</span><code>            target[name] = s;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class='hits'>467</span><code>    return target;</code></li>
@@ -8146,12 +8168,12 @@ td.cov-stats {
 <li class='green'><span class='hits'>349</span><code>        ch = ch || " ";</code></li>
 <li class='green'><span class='hits'>349</span><code>        var strLen = string.length;</code></li>
 <li class='green'><span class='hits'>349</span><code>        while (strLen &lt; length) {</code></li>
-<li class='green'><span class='hits'>231</span><code>            if (end) {</code></li>
+<li class='green'><span class='hits'>207</span><code>            if (end) {</code></li>
 <li class='green'><span class='hits'>137</span><code>                string += ch;</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>94</span><code>                string = ch + string;</code></li>
+<li class='green'><span class='hits'>70</span><code>                string = ch + string;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>231</span><code>            strLen++;</code></li>
+<li class='green'><span class='hits'>207</span><code>            strLen++;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class='hits'>349</span><code>        return string;</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
@@ -13046,7 +13068,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        __checkFile:function (stats) {</code></li>
 <li class='green'><span class='hits'>5</span><code>            var ret = new Promise();</code></li>
 <li class='green'><span class='hits'>5</span><code>            if (!this.__inRollover) {</code></li>
-<li class='green'><span class='hits'>4</span><code>                if (stats.size &gt;= this.maxSize) {</code></li>
+<li class='green'><span class='hits'>3</span><code>                if (stats.size &gt;= this.maxSize) {</code></li>
 <li class='green'><span class='hits'>2</span><code>                    if (this.maxBackupIndex &gt; 0) {</code></li>
 <li class='green'><span class='hits'>1</span><code>                        this.__inRollover = true;</code></li>
 <li class='green'><span class='hits'>1</span><code>                        this.__onExit().chain(hitch(this, "__rollover")).then(hitch(this, function () {</code></li>
@@ -13063,10 +13085,10 @@ td.cov-stats {
 <li class='green'><span class='hits'>1</span><code>                        ret.callback();</code></li>
 <li class='green'><span class=''> </span><code>                    }</code></li>
 <li class='green'><span class=''> </span><code>                } else {</code></li>
-<li class='green'><span class='hits'>2</span><code>                    ret.callback();</code></li>
+<li class='green'><span class='hits'>1</span><code>                    ret.callback();</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>1</span><code>                ret.callback();</code></li>
+<li class='green'><span class='hits'>2</span><code>                ret.callback();</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class='hits'>5</span><code>            return ret.promise();</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
@@ -13141,7 +13163,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        getters:{</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            maxSize:function () {</code></li>
-<li class='green'><span class='hits'>4</span><code>                return this.__maxSize;</code></li>
+<li class='green'><span class='hits'>3</span><code>                return this.__maxSize;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>

@@ -6,8 +6,6 @@ var it = require('it'),
     hitch = comb.hitch;
 
 
-
-
 it.describe("comb.date",function (it) {
 
 // Create a fake Date object with toString and toLocaleString
@@ -958,6 +956,36 @@ it.describe("comb.date",function (it) {
                     // Should be Mon, Jan 17
                     dtB = new Date(2000, 0, 17);
                     assert.deepEqual(dtB, comb.date.add(dtA, interv, 10));
+
+                    dtA = new Date(2013, 11, 19, 0, 0, 0); //Thu Dec 19
+                    //Should be Tue Dec 24
+                    dtB = new Date(2013, 11, 24, 0, 0, 0);
+                    assert.deepEqual(dtB, comb.date.add(dtA, interv, 3));
+
+                    dtA = new Date(2013, 11, 20, 0, 0, 0); //Fri Dec 20
+                    //Should be Mon Dec 23
+                    dtB = new Date(2013, 11, 24, 0, 0, 0);
+                    assert.deepEqual(dtB, comb.date.add(dtA, interv, 2));
+
+                    dtA = new Date(2013, 11, 17, 0, 0, 0); //Tue Dec 19
+                    //Should be Thu Dec 12
+                    dtB = new Date(2013, 11, 12, 0, 0, 0);
+                    assert.deepEqual(dtB, comb.date.add(dtA, interv, -3));
+
+                    dtA = new Date(2013, 11, 17, 0, 0, 0); //Tue Dec 17
+                    //Should be Fri Dec 13
+                    dtB = new Date(2013, 11, 13, 0, 0, 0);
+                    assert.deepEqual(dtB, comb.date.add(dtA, interv, -2));
+
+                    dtA = new Date(2013, 11, 16, 0, 0, 0); //Mon Dec 16
+                    //Should be Thu Dec 12
+                    dtB = new Date(2013, 11, 12, 0, 0, 0);
+                    assert.deepEqual(dtB, comb.date.add(dtA, interv, -2));
+
+                    dtA = new Date(2013, 11, 16, 0, 0, 0); //Mon Dec 16
+                    //Should be Thu Dec 12
+                    dtB = new Date(2013, 11, 13, 0, 0, 0);
+                    assert.deepEqual(dtB, comb.date.add(dtA, interv, -1));
 
                     // Sat, Jan 8
                     dtA = new Date(2000, 0, 8);
@@ -2092,6 +2120,3 @@ it.describe("comb.date",function (it) {
         });
     });
 }).as(module);
-
-
-
