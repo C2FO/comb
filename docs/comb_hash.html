@@ -345,6 +345,32 @@
                                 invert
                             </a></li>
                             
+                            <li><a href="./comb_hash.html#.omit">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                omit
+                            </a></li>
+                            
+                            <li><a href="./comb_hash.html#.pick">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                pick
+                            </a></li>
+                            
                             <li><a href="./comb_hash.html#.toArray">
                                 
                                 
@@ -594,6 +620,154 @@ function (hash){
    for (var i = 0, len = keys.length; i &amp;lt; len; ++i) {
        key = keys[i];
        ret[hash[key]] = key;
+   }
+   return ret;
+}
+    </pre>
+    
+
+
+    
+        <a name=".omit"></a>
+    <h3>
+        omit
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/object.js</em>
+
+<p><p>Returns a new hash with the specified keys omitted from the hash.</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {a: &quot;a&quot;, b: &quot;b&quot;, c: &quot;c&quot;};
+
+//as a function
+comb.hash.omit(obj, [&quot;a&quot;, &quot;b&quot;]); //{c: &quot;c&quot;}
+comb.hash.omit(obj, &quot;c&quot;); //{a: &quot;a&quot;, b: &quot;b&quot;};
+
+//as a monad
+comb(obj).omit([&quot;a&quot;, &quot;b&quot;]); //{c: &quot;c&quot;}
+comb(obj).omit(&quot;c&quot;); //{a: &quot;a&quot;, b: &quot;b&quot;};</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>hash</em>  : <p>The hash to omit values from</p>
+</li>
+    
+        <li> <em>omitted</em>  : <p>the keys to omit.</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Object</code> <p>a new Object with the keys omitted</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (hash,omitted){
+   if (!isHash(hash)) {
+       throw new TypeError(&quot;expected object got &quot;, pToString.call(hash));
+   }
+   if (baseString().isString(omitted)) {
+       omitted = [omitted];
+   }
+   var objKeys = baseArray().difference(Object.keys(hash), omitted), key, ret = {};
+   for (var i = 0, len = objKeys.length; i &amp;lt; len; ++i) {
+       key = objKeys[i];
+       ret[key] = hash[key];
+   }
+   return ret;
+}
+    </pre>
+    
+
+
+    
+        <a name=".pick"></a>
+    <h3>
+        pick
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/object.js</em>
+
+<p><p>Returns a new hash with the specified keys omitted from the hash.</p>
+<pre class='prettyprint linenums lang-js'><code>var obj = {a: &quot;a&quot;, b: &quot;b&quot;, c: &quot;c&quot;};
+
+//as a function
+comb.hash.pick(obj, [&quot;a&quot;, &quot;b&quot;]); //{a: &quot;a&quot;, b:&#39;b&#39;}
+comb.hash.pick(obj, &quot;c&quot;); //{c: &quot;c&quot;};
+
+//as a monad
+comb(obj).pick([&quot;a&quot;, &quot;b&quot;]); //{a: &quot;a&quot;, b:&#39;b&#39;}
+comb(obj).pick(&quot;c&quot;); //{c: &quot;c&quot;};</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>hash</em>  : <p>The hash to pick values from</p>
+</li>
+    
+        <li> <em>picked</em>  : <p>the keys to pick.</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Object</code> <p>a new Object with only the keys specified</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (hash,picked){
+   if (!isHash(hash)) {
+       throw new TypeError(&quot;expected object got &quot;, pToString.call(hash));
+   }
+   if (baseString().isString(picked)) {
+       picked = [picked];
+   }
+   var objKeys = baseArray().intersect(Object.keys(hash), picked), key, ret = {};
+   for (var i = 0, len = objKeys.length; i &amp;lt; len; ++i) {
+       key = objKeys[i];
+       ret[key] = hash[key];
    }
    return ret;
 }

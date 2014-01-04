@@ -1241,7 +1241,27 @@ Returns the values of a hash.
 ```                                       
 var obj = {a : "b", c : "d", e : "f"};    
 comb(obj).values(); //["b", "d", "f"]                                                                                          
-```                                       
+```
+
+###`pick`
+
+Pick certain key/value pairs from a hash
+
+```
+var ob = {a: "a", b: "b", c: "c"};
+comb(obj).pick(["a", "b"]); //{a: "a", b:'b'}
+comb(obj).pick("c"); //{c: "c"};
+```
+
+###`omit`
+
+Omit certain key/value pairs from a hash
+
+```
+var ob = {a: "a", b: "b", c: "c"};
+comb(obj).omit(["a", "b"]); //{c: "c"}
+comb(obj).omit("c"); //{a: "a", b: "b"};
+```
 
 ###`toArray`
 
