@@ -1,3 +1,14 @@
+# 0.2.6
+
+* Added new methods to `comb.hash`
+   * `pick` - pick only certain key/value pairs from an object
+   * `omit` - omit certain key/value pairs from an object
+
+# 0.2.5
+
+* Fixed the additions of weekdays on dates that span weekends. …
+   *  new Date(2013, 11, 19, 0, 0, 0) + 3 weekdays should be tuesday not Sunday
+
 # 0.2.4
 
 * Fixed issue with pool ensuring only the max number of objects is created.
