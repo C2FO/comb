@@ -1087,6 +1087,36 @@
                                 wait
                             </a></li>
                             
+                            <li><a href="./comb.html#.weekDaysAgo">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                weekDaysAgo
+                            </a></li>
+                            
+                            <li><a href="./comb.html#.weekDaysFromNow">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                weekDaysFromNow
+                            </a></li>
+                            
                             <li><a href="./comb.html#.when">
                                 
                                 <span class="label label-info">S</span>
@@ -4569,6 +4599,112 @@ function (args,fn){
 
 
     
+        <a name=".weekDaysAgo"></a>
+    <h3>
+        weekDaysAgo
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date/index.js</em>
+
+<p><p>Subtracts the specified weekday/s from the current date.</p>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>val</em>  : <p>the number of weekdays to subtract</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Date</code> <p>a date with the number of weekdays subtracted</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (val){
+   return date.add(new Date(), &quot;weekdays&quot;, -val);
+}
+    </pre>
+    
+
+
+    
+        <a name=".weekDaysFromNow"></a>
+    <h3>
+        weekDaysFromNow
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/date/index.js</em>
+
+<p><p>Adds the specified weekday/s to the current date.</p>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>val</em>  : <p>the number of weekdays to add</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Date</code> <p>a date with the number of weekdays added</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (val){
+   return date.add(new Date(), &quot;weekdays&quot;, val);
+}
+    </pre>
+    
+
+
+    
         <a name=".when"></a>
     <h3>
         when
@@ -4695,7 +4831,7 @@ readFile(__dirname + &quot;/test.json&quot;).then(
      function(buffer){
          console.log(contents);
      },
-     funciton(err){
+     function(err){
 
      }  console.error(err);
 );
