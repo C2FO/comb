@@ -257,7 +257,7 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>99.30</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>12568</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>12578</span>
                     <span class='cov-label'>LOC</span><span class='cov-value'>3441</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>24</span>
                 </div>
@@ -6488,7 +6488,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isUndefinedOrNull(obj) {</code></li>
-<li class='green'><span class='hits'>2984</span><code>    return isUndefined(obj) || isNull(obj);</code></li>
+<li class='green'><span class='hits'>3054</span><code>    return isUndefined(obj) || isNull(obj);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -6501,8 +6501,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isNull(obj) {</code></li>
-<li class='green'><span class='hits'>2986</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>2986</span><code>    return obj !== undef &amp;&amp; obj == null;</code></li>
+<li class='green'><span class='hits'>3046</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>3046</span><code>    return obj !== undef &amp;&amp; obj == null;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -6688,7 +6688,7 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>559</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>569</span>
                     <span class='cov-label'>LOC</span><span class='cov-value'>163</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
@@ -6697,7 +6697,7 @@ td.cov-stats {
     </table>
     <div class='source' id="base/object.js-source"><pre class='prettyprint linenums'><ol class='linenums'><li class='green'><span class='hits'>1</span><code>var comb = exports,</code></li>
 <li class='green'><span class=''> </span><code>    misc = require("./misc.js"),</code></li>
-<li class='green'><span class=''> </span><code>    isUndefinedOrNull = misc.isUndefined,</code></li>
+<li class='green'><span class=''> </span><code>    isUndefinedOrNull = misc.isUndefinedOrNull,</code></li>
 <li class='green'><span class=''> </span><code>    isArguments = misc.isArguments,</code></li>
 <li class='green'><span class=''> </span><code>    pSlice = Array.prototype.slice,</code></li>
 <li class='green'><span class=''> </span><code>    pToString = Object.prototype.toString,</code></li>
@@ -7029,8 +7029,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * ```</code></li>
 <li class='green'><span class=''> </span><code> * var obj = {a: "a", b: "b", c: "c"};</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * //as a function</code></li>
 <li class='green'><span class=''> </span><code> * comb.hash.omit(obj, ["a", "b"]); //{c: "c"}</code></li>
 <li class='green'><span class=''> </span><code> * comb.hash.omit(obj, "c"); //{a: "a", b: "b"};</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * //as a monad</code></li>
+<li class='green'><span class=''> </span><code> * comb(obj).omit(["a", "b"]); //{c: "c"}</code></li>
+<li class='green'><span class=''> </span><code> * comb(obj).omit("c"); //{a: "a", b: "b"};</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * ```</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
@@ -7060,8 +7065,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * ```</code></li>
 <li class='green'><span class=''> </span><code> * var obj = {a: "a", b: "b", c: "c"};</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * //as a function</code></li>
 <li class='green'><span class=''> </span><code> * comb.hash.pick(obj, ["a", "b"]); //{a: "a", b:'b'}</code></li>
 <li class='green'><span class=''> </span><code> * comb.hash.pick(obj, "c"); //{c: "c"};</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * //as a monad</code></li>
+<li class='green'><span class=''> </span><code> * comb(obj).pick(["a", "b"]); //{a: "a", b:'b'}</code></li>
+<li class='green'><span class=''> </span><code> * comb(obj).pick("c"); //{c: "c"};</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * ```</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>

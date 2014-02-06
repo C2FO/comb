@@ -1,3 +1,7 @@
+#0.2.7
+
+* Fixed object.deepEquals reference of isUndefinedNull.
+
 # 0.2.6
 
 * Added new methods to `comb.hash`
