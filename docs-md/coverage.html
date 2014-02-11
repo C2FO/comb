@@ -257,8 +257,8 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>99.30</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>12578</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>3441</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>12583</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>3445</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>24</span>
                 </div>
             </td>
@@ -906,9 +906,9 @@ td.cov-stats {
             </td>
             <td class="cov-stats">
                 <div>
-                    <span class='cov-label'>Coverage</span><span class='cov-value'>97.84</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>865</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>231</span>
+                    <span class='cov-label'>Coverage</span><span class='cov-value'>97.87</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>870</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>235</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>5</span>
                 </div>
             </td>
@@ -1001,7 +1001,6 @@ td.cov-stats {
 <li class='green'><span class='hits'>2339</span><code>            if (!self.__fired) {</code></li>
 <li class='green'><span class='hits'>2339</span><code>                self.__fired = true;</code></li>
 <li class='green'><span class='hits'>2339</span><code>                nextTick(function () {</code></li>
-<li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>2338</span><code>                    var cbs = self.__error ? self.__errorCbs : self.__cbs,</code></li>
 <li class='green'><span class=''> </span><code>                        res = self.__error || self.__results,</code></li>
 <li class='green'><span class=''> </span><code>                        i = -1, l = cbs.length;</code></li>
@@ -1259,9 +1258,15 @@ td.cov-stats {
 <li class='green'><span class='hits'>582</span><code>            function _callback() {</code></li>
 <li class='green'><span class='hits'>531</span><code>                try {</code></li>
 <li class='green'><span class='hits'>531</span><code>                    var res = isFunction(callback) ? spreadArgs(callback, arguments) : callback;</code></li>
-<li class='green'><span class='hits'>527</span><code>                    isPromiseLike(res) ? res.then(promise.callback, _errback) : promise.callback(res);</code></li>
+<li class='green'><span class='hits'>527</span><code>                    if (isPromiseLike(res)) {</code></li>
+<li class='green'><span class='hits'>199</span><code>                        res.then(promise.callback, _errback);</code></li>
+<li class='green'><span class=''> </span><code>                    } else {</code></li>
+<li class='green'><span class='hits'>328</span><code>                        promise.callback(res);</code></li>
+<li class='green'><span class='hits'>328</span><code>                        promise = null;</code></li>
+<li class='green'><span class=''> </span><code>                    }</code></li>
+<li class='green'><span class='hits'>527</span><code>                    callback = res = null;</code></li>
 <li class='green'><span class=''> </span><code>                } catch (e) {</code></li>
-<li class='green'><span class='hits'>4</span><code>                    return _errback(e);</code></li>
+<li class='green'><span class='hits'>4</span><code>                    _errback(e);</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -8252,12 +8257,12 @@ td.cov-stats {
 <li class='green'><span class='hits'>349</span><code>        ch = ch || " ";</code></li>
 <li class='green'><span class='hits'>349</span><code>        var strLen = string.length;</code></li>
 <li class='green'><span class='hits'>349</span><code>        while (strLen &lt; length) {</code></li>
-<li class='green'><span class='hits'>279</span><code>            if (end) {</code></li>
+<li class='green'><span class='hits'>255</span><code>            if (end) {</code></li>
 <li class='green'><span class='hits'>137</span><code>                string += ch;</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>142</span><code>                string = ch + string;</code></li>
+<li class='green'><span class='hits'>118</span><code>                string = ch + string;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>279</span><code>            strLen++;</code></li>
+<li class='green'><span class='hits'>255</span><code>            strLen++;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class='hits'>349</span><code>        return string;</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>

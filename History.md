@@ -1,3 +1,7 @@
+# 0.2.8
+
+* Fixed memory leak in promise.
+
 #0.2.7
 
 * Fixed object.deepEquals reference of isUndefinedNull.
