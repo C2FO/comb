@@ -920,9 +920,15 @@ function (callback,errback){
    function _callback() {
        try {
            var res = isFunction(callback) ? spreadArgs(callback, arguments) : callback;
-           isPromiseLike(res) ? res.then(promise.callback, _errback) : promise.callback(res);
+           if (isPromiseLike(res)) {
+               res.then(promise.callback, _errback);
+           } else {
+               promise.callback(res);
+               promise = null;
+           }
+           callback = res = null;
        } catch (e) {
-           return _errback(e);
+           _errback(e);
        }
    }
    self.addCallback(_callback);
