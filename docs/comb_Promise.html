@@ -1174,18 +1174,37 @@ asyncMethod().callback() //throws error
     <pre class="prettyprint linenums lang-js">
 function (){
    var ret = {
-       chain: this.chain.bind(this),
-       chainBoth: this.chainBoth.bind(this),
        promise: function () {
            return ret;
        }
    };
-   forEach([&quot;addCallback&quot;, &quot;addErrback&quot;, &quot;then&quot;, &quot;both&quot;, &quot;classic&quot;], function (action) {
-       ret[action] = function () {
-           spreadArgs(this[action], arguments, this);
-           return ret;
-       }.bind(this);
-   }, this);
+   var self = this;
+   ret[&quot;chain&quot;] = function () {
+       return spreadArgs(self[&quot;chain&quot;], arguments, self);
+   };
+   ret[&quot;chainBoth&quot;] = function () {
+       return spreadArgs(self[&quot;chainBoth&quot;], arguments, self);
+   };
+   ret[&quot;addCallback&quot;] = function () {
+       spreadArgs(self[&quot;addCallback&quot;], arguments, self);
+       return ret;
+   };
+   ret[&quot;addErrback&quot;] = function () {
+       spreadArgs(self[&quot;addErrback&quot;], arguments, self);
+       return ret;
+   };
+   ret[&quot;then&quot;] = function () {
+       spreadArgs(self[&quot;then&quot;], arguments, self);
+       return ret;
+   };
+   ret[&quot;both&quot;] = function () {
+       spreadArgs(self[&quot;both&quot;], arguments, self);
+       return ret;
+   };
+   ret[&quot;classic&quot;] = function () {
+       spreadArgs(self[&quot;classic&quot;], arguments, self);
+       return ret;
+   };
    return ret;
            
 }

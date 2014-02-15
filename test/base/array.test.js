@@ -224,22 +224,22 @@ it.describe("array",function (it) {
         assert.deepEqual(comb.array.toArray(), []);
         assert.deepEqual(comb.array.toArray(1), [1]);
         assert.deepEqual(array.toArray([1]), [1]);
-        assert.deepEqual(array.toArray({a:"b", c:"c"}), [
+        assert.deepEqual(array.toArray({a: "b", c: "c"}), [
             ["a", "b"],
             ["c", "c"]
         ]);
-        assert.deepEqual(array.toArray("a", {a:"b"}), ["a", ["a", "b"]]);
+        assert.deepEqual(array.toArray("a", {a: "b"}), ["a", ["a", "b"]]);
         var date = new Date();
         assert.deepEqual(array.toArray(date), [date]);
         assert.deepEqual(array.toArray(true), [true]);
         assert.deepEqual(array.toArray(false), [false]);
 
         assert.deepEqual(array.toArray([1]), [1]);
-        assert.deepEqual(array.toArray({a:"b", c:"c"}), [
+        assert.deepEqual(array.toArray({a: "b", c: "c"}), [
             ["a", "b"],
             ["c", "c"]
         ]);
-        assert.deepEqual(array.toArray("a", {a:"b"}), ["a", ["a", "b"]]);
+        assert.deepEqual(array.toArray("a", {a: "b"}), ["a", ["a", "b"]]);
         var date = new Date();
         assert.deepEqual(array.toArray(date), [date]);
         assert.deepEqual(array.toArray(true), [true]);
@@ -684,14 +684,14 @@ it.describe("array",function (it) {
         var arr1 = comb([ 3, -3, -2, -1, 1, 2]),
             arr2 = comb(["b", "c", "a"]),
             arr3 = comb([
-                {a:1},
-                {a:2},
-                {a:-2}
+                {a: 1},
+                {a: 2},
+                {a: -2}
             ]),
             arr4 = comb([
-                {a:"c"},
-                {a:"b"},
-                {a:"a"}
+                {a: "c"},
+                {a: "b"},
+                {a: "a"}
             ]),
             minDate = comb.daysFromNow(3),
             arr5 = comb([
@@ -700,40 +700,40 @@ it.describe("array",function (it) {
                 minDate
             ]);
         var arr6 = comb([
-            {a:comb.daysFromNow(5)},
-            {a:comb.daysFromNow(4)},
-            {a:minDate}
+            {a: comb.daysFromNow(5)},
+            {a: comb.daysFromNow(4)},
+            {a: minDate}
         ]);
         var arr7 = comb([true, false]);
         assert.equal(arr1.min(), -3);
         assert.equal(arr2.min(), "a");
         assert.isFalse(arr7.min());
-        assert.deepEqual(arr3.min("a"), {a:-2});
-        assert.deepEqual(arr4.min("a"), {a:"a"});
+        assert.deepEqual(arr3.min("a"), {a: -2});
+        assert.deepEqual(arr4.min("a"), {a: "a"});
         assert.deepEqual(arr5.min(), minDate);
-        assert.deepEqual(arr6.min("a"), {a:minDate});
+        assert.deepEqual(arr6.min("a"), {a: minDate});
 
         assert.equal(array.min(arr1), -3);
         assert.equal(array.min(arr2), "a");
         assert.isFalse(array.min(arr7));
-        assert.deepEqual(array.min(arr3, "a"), {a:-2});
-        assert.deepEqual(array.min(arr4, "a"), {a:"a"});
+        assert.deepEqual(array.min(arr3, "a"), {a: -2});
+        assert.deepEqual(array.min(arr4, "a"), {a: "a"});
         assert.deepEqual(array.min(arr5), minDate);
-        assert.deepEqual(array.min(arr6, "a"), {a:minDate});
+        assert.deepEqual(array.min(arr6, "a"), {a: minDate});
 
     });
     it.should("find the max value of an array", function () {
         var arr1 = comb([ 3, -3, -2, -1, 1, 2]),
             arr2 = comb(["b", "c", "a"]),
             arr3 = comb([
-                {a:1},
-                {a:2},
-                {a:-2}
+                {a: 1},
+                {a: 2},
+                {a: -2}
             ]),
             arr4 = comb([
-                {a:"c"},
-                {a:"b"},
-                {a:"a"}
+                {a: "c"},
+                {a: "b"},
+                {a: "a"}
             ]),
             maxDate = comb.daysFromNow(5),
             arr5 = comb([
@@ -742,26 +742,26 @@ it.describe("array",function (it) {
                 comb.daysFromNow(3)
             ]),
             arr6 = comb([
-                {a:maxDate},
-                {a:comb.daysFromNow(4)},
-                {a:comb.daysFromNow(3)}
+                {a: maxDate},
+                {a: comb.daysFromNow(4)},
+                {a: comb.daysFromNow(3)}
             ]),
             arr7 = comb([true, false]);
         assert.equal(arr1.max(), 3);
         assert.equal(arr2.max(), "c");
         assert.isTrue(arr7.max());
-        assert.deepEqual(arr3.max("a"), {a:2});
-        assert.deepEqual(arr4.max("a"), {a:"c"});
+        assert.deepEqual(arr3.max("a"), {a: 2});
+        assert.deepEqual(arr4.max("a"), {a: "c"});
         assert.deepEqual(arr5.max(), maxDate);
-        assert.deepEqual(arr6.max("a"), {a:maxDate});
+        assert.deepEqual(arr6.max("a"), {a: maxDate});
 
         assert.equal(array.max(arr1), 3);
         assert.equal(array.max(arr2), "c");
         assert.isTrue(array.max(arr7));
-        assert.deepEqual(array.max(arr3, "a"), {a:2});
-        assert.deepEqual(array.max(arr4, "a"), {a:"c"});
+        assert.deepEqual(array.max(arr3, "a"), {a: 2});
+        assert.deepEqual(array.max(arr4, "a"), {a: "c"});
         assert.deepEqual(array.max(arr5), maxDate);
-        assert.deepEqual(array.max(arr6, "a"), {a:maxDate});
+        assert.deepEqual(array.max(arr6, "a"), {a: maxDate});
     });
 
     it.should("sort an array", function () {
@@ -769,14 +769,14 @@ it.describe("array",function (it) {
             arr2 = comb(["b", "c", "a"]),
 
             arr3 = comb([
-                {a:1},
-                {a:2},
-                {a:-2}
+                {a: 1},
+                {a: 2},
+                {a: -2}
             ]),
             arr4 = comb([
-                {a:"c"},
-                {a:"b"},
-                {a:"a"}
+                {a: "c"},
+                {a: "b"},
+                {a: "a"}
             ]),
             fiveDays = comb.daysFromNow(5),
             fourDays = comb.daysFromNow(4),
@@ -787,9 +787,9 @@ it.describe("array",function (it) {
                 threeDays
             ]),
             arr6 = comb([
-                {a:fiveDays},
-                {a:fourDays},
-                {a:threeDays}
+                {a: fiveDays},
+                {a: fourDays},
+                {a: threeDays}
             ]),
             arr7 = comb([true, false]);
         assert.deepEqual(arr1.sort(), [-3, -2, -1, 1, 2, 3]);
@@ -801,25 +801,25 @@ it.describe("array",function (it) {
         assert.deepEqual(arr7, [true, false]);
 
         assert.deepEqual(arr3.sort("a"), [
-            {a:-2},
-            {a:1},
-            {a:2}
+            {a: -2},
+            {a: 1},
+            {a: 2}
         ]);
         assert.deepEqual(arr3, [
-            {a:1},
-            {a:2},
-            {a:-2}
+            {a: 1},
+            {a: 2},
+            {a: -2}
         ]);
 
         assert.deepEqual(arr4.sort("a"), [
-            {a:"a"},
-            {a:"b"},
-            {a:"c"}
+            {a: "a"},
+            {a: "b"},
+            {a: "c"}
         ]);
         assert.deepEqual(arr4, [
-            {a:"c"},
-            {a:"b"},
-            {a:"a"}
+            {a: "c"},
+            {a: "b"},
+            {a: "a"}
         ]);
 
 
@@ -835,21 +835,21 @@ it.describe("array",function (it) {
         ]);
 
         assert.deepEqual(arr6.sort("a"), [
-            {a:threeDays},
-            {a:fourDays},
-            {a:fiveDays}
+            {a: threeDays},
+            {a: fourDays},
+            {a: fiveDays}
         ]);
         assert.deepEqual(arr6.sort(function (a, b) {
             return a.a - b.a;
         }), [
-            {a:threeDays},
-            {a:fourDays},
-            {a:fiveDays}
+            {a: threeDays},
+            {a: fourDays},
+            {a: fiveDays}
         ]);
         assert.deepEqual(arr6, [
-            {a:fiveDays},
-            {a:fourDays},
-            {a:threeDays}
+            {a: fiveDays},
+            {a: fourDays},
+            {a: threeDays}
         ]);
 
 
@@ -862,25 +862,25 @@ it.describe("array",function (it) {
         assert.deepEqual(arr7, [true, false]);
 
         assert.deepEqual(array.sort(arr3, "a"), [
-            {a:-2},
-            {a:1},
-            {a:2}
+            {a: -2},
+            {a: 1},
+            {a: 2}
         ]);
         assert.deepEqual(arr3, [
-            {a:1},
-            {a:2},
-            {a:-2}
+            {a: 1},
+            {a: 2},
+            {a: -2}
         ]);
 
         assert.deepEqual(array.sort(arr4, "a"), [
-            {a:"a"},
-            {a:"b"},
-            {a:"c"}
+            {a: "a"},
+            {a: "b"},
+            {a: "c"}
         ]);
         assert.deepEqual(arr4, [
-            {a:"c"},
-            {a:"b"},
-            {a:"a"}
+            {a: "c"},
+            {a: "b"},
+            {a: "a"}
         ]);
 
 
@@ -896,26 +896,26 @@ it.describe("array",function (it) {
         ]);
 
         assert.deepEqual(array.sort(arr6, "a"), [
-            {a:threeDays},
-            {a:fourDays},
-            {a:fiveDays}
+            {a: threeDays},
+            {a: fourDays},
+            {a: fiveDays}
         ]);
         assert.deepEqual(array.sort(arr6, function (a, b) {
             return a.a - b.a;
         }), [
-            {a:threeDays},
-            {a:fourDays},
-            {a:fiveDays}
+            {a: threeDays},
+            {a: fourDays},
+            {a: fiveDays}
         ]);
         assert.deepEqual(arr6, [
-            {a:fiveDays},
-            {a:fourDays},
-            {a:threeDays}
+            {a: fiveDays},
+            {a: fourDays},
+            {a: threeDays}
         ]);
     });
 
     it.should("find the difference between two arrays", function () {
-        var a = {a:1}, b = {a:2}, c = {a:3};
+        var a = {a: 1}, b = {a: 2}, c = {a: 3};
         assert.deepEqual(comb([true, false]).difference([false]), [true]);
         assert.deepEqual(comb([1, 2, 3]).difference([2]), [1, 3]);
         assert.deepEqual(comb([1, 2, 3]).difference([2], [3]), [1]);
@@ -972,10 +972,10 @@ it.describe("array",function (it) {
     it.should("support pluck", function () {
 
         var arr = comb([
-            {name:{first:"Fred", last:"Jones"}, age:50, roles:["a", "b", "c"]},
-            {name:{first:"Bob", last:"Yukon"}, age:40, roles:["b", "c"]},
-            {name:{first:"Alice", last:"Palace"}, age:35, roles:["c"]},
-            {name:{first:"Johnny", last:"P."}, age:56, roles:[]}
+            {name: {first: "Fred", last: "Jones"}, age: 50, roles: ["a", "b", "c"]},
+            {name: {first: "Bob", last: "Yukon"}, age: 40, roles: ["b", "c"]},
+            {name: {first: "Alice", last: "Palace"}, age: 35, roles: ["c"]},
+            {name: {first: "Johnny", last: "P."}, age: 56, roles: []}
         ]);
 
         assert.deepEqual(array.pluck(arr, "name.first"), ["Fred", "Bob", "Alice", "Johnny"]);
@@ -991,16 +991,16 @@ it.describe("array",function (it) {
     it.should("support invoke", function () {
         function person(name, age) {
             return {
-                getName:function () {
+                getName: function () {
                     return name;
                 },
 
-                getOlder:function () {
+                getOlder: function () {
                     age++;
                     return this;
                 },
 
-                getAge:function () {
+                getAge: function () {
                     return age;
                 }
             };
@@ -1012,6 +1012,76 @@ it.describe("array",function (it) {
         assert.deepEqual(comb("getName").invoke(arr), ["Bob", "Alice", "Fred", "Johnny"]);
         assert.deepEqual(comb("getOlder").invoke(arr).invoke("getAge"), [42, 37, 52, 58]);
 
+    });
+
+    it.should("support parition", function () {
+        var arr = [1, 2, 3, 4, 5];
+        assert.deepEqual(comb.array.partition(arr, 1), [
+            [1],
+            [2],
+            [3],
+            [4],
+            [5]
+        ]);
+        assert.deepEqual(comb.array.partition(arr, 2), [
+            [1, 2],
+            [3, 4],
+            [5]
+        ]);
+        assert.deepEqual(comb.array.partition(arr, 3), [
+            [1, 2, 3],
+            [4, 5]
+        ]);
+        assert.deepEqual(comb.array.partition(arr, 4), [
+            [1, 2, 3, 4],
+            [5]
+        ]);
+
+        assert.deepEqual(comb.array.partition(arr, 5), [
+            [1, 2, 3, 4, 5]
+        ]);
+
+        assert.deepEqual(comb.array.partition(arr), [
+            [1, 2, 3, 4, 5]
+        ]);
+
+        assert.deepEqual(comb.array.partition(arr, 0), [
+            [1, 2, 3, 4, 5]
+        ]);
+
+
+        assert.deepEqual(comb(arr).partition(1), [
+            [1],
+            [2],
+            [3],
+            [4],
+            [5]
+        ]);
+        assert.deepEqual(comb(arr).partition(2), [
+            [1, 2],
+            [3, 4],
+            [5]
+        ]);
+        assert.deepEqual(comb(arr).partition(3), [
+            [1, 2, 3],
+            [4, 5]
+        ]);
+        assert.deepEqual(comb(arr).partition(4), [
+            [1, 2, 3, 4],
+            [5]
+        ]);
+
+        assert.deepEqual(comb(arr).partition(5), [
+            [1, 2, 3, 4, 5]
+        ]);
+
+        assert.deepEqual(comb(arr).partition(), [
+            [1, 2, 3, 4, 5]
+        ]);
+
+        assert.deepEqual(comb(arr).partition(0), [
+            [1, 2, 3, 4, 5]
+        ]);
     });
 
     it.should("support chaining", function () {
@@ -1029,4 +1099,3 @@ it.describe("array",function (it) {
         assert.isTrue(comb(true).valueOf());
     });
 }).as(module);
-

@@ -256,10 +256,10 @@ td.cov-stats {
             </td>
             <td class="cov-stats">
                 <div>
-                    <span class='cov-label'>Coverage</span><span class='cov-value'>99.30</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>12583</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>3445</span>
-                    <span class='cov-label'>Missed</span><span class='cov-value'>24</span>
+                    <span class='cov-label'>Coverage</span><span class='cov-value'>99.14</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>12643</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>3472</span>
+                    <span class='cov-label'>Missed</span><span class='cov-value'>30</span>
                 </div>
             </td>
         </tr>
@@ -298,28 +298,28 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isFunction(obj) {</code></li>
-<li class='green'><span class='hits'>18695</span><code>    return typeof obj === "function";</code></li>
+<li class='green'><span class='hits'>18759</span><code>    return typeof obj === "function";</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function spreadArgs(f, args, scope) {</code></li>
-<li class='green'><span class='hits'>17367</span><code>    var ret;</code></li>
-<li class='green'><span class='hits'>17367</span><code>    switch ((args || []).length) {</code></li>
+<li class='green'><span class='hits'>17960</span><code>    var ret;</code></li>
+<li class='green'><span class='hits'>17960</span><code>    switch ((args || []).length) {</code></li>
 <li class='green'><span class=''> </span><code>    case 0:</code></li>
-<li class='green'><span class='hits'>4938</span><code>        ret = f.call(scope);</code></li>
-<li class='green'><span class='hits'>4933</span><code>        break;</code></li>
+<li class='green'><span class='hits'>4954</span><code>        ret = f.call(scope);</code></li>
+<li class='green'><span class='hits'>4949</span><code>        break;</code></li>
 <li class='green'><span class=''> </span><code>    case 1:</code></li>
-<li class='green'><span class='hits'>6699</span><code>        ret = f.call(scope, args[0]);</code></li>
-<li class='green'><span class='hits'>6693</span><code>        break;</code></li>
+<li class='green'><span class='hits'>7267</span><code>        ret = f.call(scope, args[0]);</code></li>
+<li class='green'><span class='hits'>7261</span><code>        break;</code></li>
 <li class='green'><span class=''> </span><code>    case 2:</code></li>
-<li class='green'><span class='hits'>2993</span><code>        ret = f.call(scope, args[0], args[1]);</code></li>
-<li class='green'><span class='hits'>2992</span><code>        break;</code></li>
+<li class='green'><span class='hits'>3002</span><code>        ret = f.call(scope, args[0], args[1]);</code></li>
+<li class='green'><span class='hits'>3001</span><code>        break;</code></li>
 <li class='green'><span class=''> </span><code>    case 3:</code></li>
 <li class='green'><span class='hits'>2725</span><code>        ret = f.call(scope, args[0], args[1], args[2]);</code></li>
 <li class='green'><span class='hits'>2725</span><code>        break;</code></li>
 <li class='green'><span class=''> </span><code>    default:</code></li>
 <li class='green'><span class='hits'>12</span><code>        ret = f.apply(scope, args);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>17355</span><code>    return ret;</code></li>
+<li class='green'><span class='hits'>17948</span><code>    return ret;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -503,11 +503,11 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Function} partially hitched function</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function partial(method, args) {</code></li>
-<li class='green'><span class='hits'>8505</span><code>    args = Array.prototype.slice.call(arguments).slice(1);</code></li>
-<li class='green'><span class='hits'>8505</span><code>    if (!isString(method) &amp;&amp; !isFunction(method)) {</code></li>
+<li class='green'><span class='hits'>8561</span><code>    args = Array.prototype.slice.call(arguments).slice(1);</code></li>
+<li class='green'><span class='hits'>8561</span><code>    if (!isString(method) &amp;&amp; !isFunction(method)) {</code></li>
 <li class='green'><span class='hits'>2</span><code>        throw new Error(method + " must be the name of a property or function to execute");</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>8503</span><code>    if (isString(method)) {</code></li>
+<li class='green'><span class='hits'>8559</span><code>    if (isString(method)) {</code></li>
 <li class='green'><span class='hits'>4</span><code>        return function () {</code></li>
 <li class='green'><span class='hits'>4</span><code>            var func = this[method];</code></li>
 <li class='green'><span class='hits'>4</span><code>            if (isFunction(func)) {</code></li>
@@ -518,9 +518,9 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        };</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
-<li class='green'><span class='hits'>8499</span><code>        return function () {</code></li>
-<li class='green'><span class='hits'>1713</span><code>            var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
-<li class='green'><span class='hits'>1713</span><code>            return spreadArgs(method, scopeArgs, this)</code></li>
+<li class='green'><span class='hits'>8555</span><code>        return function () {</code></li>
+<li class='green'><span class='hits'>1729</span><code>            var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
+<li class='green'><span class='hits'>1729</span><code>            return spreadArgs(method, scopeArgs, this)</code></li>
 <li class='green'><span class=''> </span><code>        };</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
@@ -906,10 +906,10 @@ td.cov-stats {
             </td>
             <td class="cov-stats">
                 <div>
-                    <span class='cov-label'>Coverage</span><span class='cov-value'>97.87</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>870</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>235</span>
-                    <span class='cov-label'>Missed</span><span class='cov-value'>5</span>
+                    <span class='cov-label'>Coverage</span><span class='cov-value'>95.70</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>896</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>256</span>
+                    <span class='cov-label'>Missed</span><span class='cov-value'>11</span>
                 </div>
             </td>
         </tr>
@@ -943,6 +943,14 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class='hits'>1</span><code>function reject(e) {</code></li>
 <li class='red'><span class='nohits'>0</span><code>    return new Promise().errback(e);</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function promiseWrapper(wrapper, promise, action) {</code></li>
+<li class='red'><span class='nohits'>0</span><code>    var m = promise[action];</code></li>
+<li class='red'><span class='nohits'>0</span><code>    wrapper[action] = hitch(promise, function () {</code></li>
+<li class='red'><span class='nohits'>0</span><code>        spreadArgs(m, arguments, this);</code></li>
+<li class='red'><span class='nohits'>0</span><code>        return wrapper;</code></li>
+<li class='green'><span class=''> </span><code>    });</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -1320,19 +1328,37 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        promise: function () {</code></li>
 <li class='green'><span class='hits'>4156</span><code>            var ret = {</code></li>
-<li class='green'><span class=''> </span><code>                chain: this.chain.bind(this),</code></li>
-<li class='green'><span class=''> </span><code>                chainBoth: this.chainBoth.bind(this),</code></li>
 <li class='green'><span class=''> </span><code>                promise: function () {</code></li>
 <li class='green'><span class='hits'>756</span><code>                    return ret;</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>4156</span><code>            forEach(["addCallback", "addErrback", "then", "both", "classic"], function (action) {</code></li>
-<li class='green'><span class='hits'>20780</span><code>                ret[action] = function () {</code></li>
-<li class='green'><span class='hits'>1257</span><code>                    spreadArgs(this[action], arguments, this);</code></li>
-<li class='green'><span class='hits'>1257</span><code>                    return ret;</code></li>
-<li class='green'><span class=''> </span><code>                }.bind(this);</code></li>
-<li class='green'><span class=''> </span><code>            }, this);</code></li>
-<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>4156</span><code>            var self = this;</code></li>
+<li class='green'><span class='hits'>4156</span><code>            ret["chain"] = function () {</code></li>
+<li class='green'><span class='hits'>572</span><code>                return spreadArgs(self["chain"], arguments, self);</code></li>
+<li class='green'><span class=''> </span><code>            };</code></li>
+<li class='green'><span class='hits'>4156</span><code>            ret["chainBoth"] = function () {</code></li>
+<li class='green'><span class='hits'>5</span><code>                return spreadArgs(self["chainBoth"], arguments, self);</code></li>
+<li class='green'><span class=''> </span><code>            };</code></li>
+<li class='green'><span class='hits'>4156</span><code>            ret["addCallback"] = function () {</code></li>
+<li class='green'><span class='hits'>120</span><code>                spreadArgs(self["addCallback"], arguments, self);</code></li>
+<li class='green'><span class='hits'>120</span><code>                return ret;</code></li>
+<li class='green'><span class=''> </span><code>            };</code></li>
+<li class='green'><span class='hits'>4156</span><code>            ret["addErrback"] = function () {</code></li>
+<li class='green'><span class='hits'>7</span><code>                spreadArgs(self["addErrback"], arguments, self);</code></li>
+<li class='green'><span class='hits'>7</span><code>                return ret;</code></li>
+<li class='green'><span class=''> </span><code>            };</code></li>
+<li class='green'><span class='hits'>4156</span><code>            ret["then"] = function () {</code></li>
+<li class='green'><span class='hits'>1127</span><code>                spreadArgs(self["then"], arguments, self);</code></li>
+<li class='green'><span class='hits'>1127</span><code>                return ret;</code></li>
+<li class='green'><span class=''> </span><code>            };</code></li>
+<li class='green'><span class='hits'>4156</span><code>            ret["both"] = function () {</code></li>
+<li class='red'><span class='nohits'>0</span><code>                spreadArgs(self["both"], arguments, self);</code></li>
+<li class='red'><span class='nohits'>0</span><code>                return ret;</code></li>
+<li class='green'><span class=''> </span><code>            };</code></li>
+<li class='green'><span class='hits'>4156</span><code>            ret["classic"] = function () {</code></li>
+<li class='green'><span class='hits'>3</span><code>                spreadArgs(self["classic"], arguments, self);</code></li>
+<li class='green'><span class='hits'>3</span><code>                return ret;</code></li>
+<li class='green'><span class=''> </span><code>            };</code></li>
 <li class='green'><span class='hits'>4156</span><code>            return ret;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -3106,8 +3132,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Boolean} true if it is a Date false otherwise</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>comb.isDate = function (obj) {</code></li>
-<li class='green'><span class='hits'>1244</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>1244</span><code>    return (obj !== undef &amp;&amp; typeof obj === "object" &amp;&amp; obj instanceof Date);</code></li>
+<li class='green'><span class='hits'>1252</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>1252</span><code>    return (obj !== undef &amp;&amp; typeof obj === "object" &amp;&amp; obj instanceof Date);</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function getDayOfYear(/*Date*/dateObject, utc) {</code></li>
@@ -4679,8 +4705,8 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>1089</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>357</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>1123</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>363</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
             </td>
@@ -4700,7 +4726,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>var isArray = exports.isArray = function isArray(obj) {</code></li>
-<li class='green'><span class='hits'>16517</span><code>    return Object.prototype.toString.call(obj) === "[object Array]";</code></li>
+<li class='green'><span class='hits'>12425</span><code>    return Object.prototype.toString.call(obj) === "[object Array]";</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function isDate(obj) {</code></li>
@@ -4872,13 +4898,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function forEach(arr, iterator, scope) {</code></li>
-<li class='green'><span class='hits'>12598</span><code>    if (!isArray(arr) || typeof iterator !== "function") {</code></li>
+<li class='green'><span class='hits'>8498</span><code>    if (!isArray(arr) || typeof iterator !== "function") {</code></li>
 <li class='green'><span class='hits'>1</span><code>        throw new TypeError();</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>12597</span><code>    for (var i = 0, len = arr.length; i &lt; len; ++i) {</code></li>
-<li class='green'><span class='hits'>91461</span><code>        iterator.call(scope || arr, arr[i], i, arr);</code></li>
+<li class='green'><span class='hits'>8497</span><code>    for (var i = 0, len = arr.length; i &lt; len; ++i) {</code></li>
+<li class='green'><span class='hits'>71456</span><code>        iterator.call(scope || arr, arr[i], i, arr);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>12597</span><code>    return arr;</code></li>
+<li class='green'><span class='hits'>8497</span><code>    return arr;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function every(arr, iterator, scope) {</code></li>
@@ -5712,6 +5738,39 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    });</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Paritition an array.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> * var arr = [1,2,3,4,5];</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * comb.array.partition(arr, 1); //[[1], [2], [3], [4], [5]]</code></li>
+<li class='green'><span class=''> </span><code> * comb.array.partition(arr, 2); //[[1,2], [3,4], [5]]</code></li>
+<li class='green'><span class=''> </span><code> * comb.array.partition(arr, 3); //[[1,2,3], [4,5]]</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * comb.array.partition(arr); //[[1, 2, 3, 4, 5]]</code></li>
+<li class='green'><span class=''> </span><code> * comb.array.partition(arr, 0); //[[1, 2, 3, 4, 5]]</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param array</code></li>
+<li class='green'><span class=''> </span><code> * @param partitionSize</code></li>
+<li class='green'><span class=''> </span><code> * @returns {Array}</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
+<li class='green'><span class=''> </span><code> * @memberOf comb.array</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>function partition(array, partitionSize) {</code></li>
+<li class='green'><span class='hits'>14</span><code>    partitionSize = partitionSize || array.length;</code></li>
+<li class='green'><span class='hits'>14</span><code>    var ret = [];</code></li>
+<li class='green'><span class='hits'>14</span><code>    for (var i = 0, l = array.length; i &lt; l; i += partitionSize) {</code></li>
+<li class='green'><span class='hits'>30</span><code>        ret.push(array.slice(i, i + partitionSize));</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>14</span><code>    return ret;</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>var comb = exports;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -5735,38 +5794,39 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>comb.array = {</code></li>
-<li class='green'><span class=''> </span><code>    toArray:toArray,</code></li>
-<li class='green'><span class=''> </span><code>    sum:sum,</code></li>
-<li class='green'><span class=''> </span><code>    avg:avg,</code></li>
-<li class='green'><span class=''> </span><code>    sort:sort,</code></li>
-<li class='green'><span class=''> </span><code>    min:min,</code></li>
-<li class='green'><span class=''> </span><code>    max:max,</code></li>
-<li class='green'><span class=''> </span><code>    difference:difference,</code></li>
-<li class='green'><span class=''> </span><code>    removeDuplicates:removeDuplicates,</code></li>
-<li class='green'><span class=''> </span><code>    unique:unique,</code></li>
-<li class='green'><span class=''> </span><code>    rotate:rotate,</code></li>
-<li class='green'><span class=''> </span><code>    permutations:permutations,</code></li>
-<li class='green'><span class=''> </span><code>    zip:zip,</code></li>
-<li class='green'><span class=''> </span><code>    transpose:transpose,</code></li>
-<li class='green'><span class=''> </span><code>    valuesAt:valuesAt,</code></li>
-<li class='green'><span class=''> </span><code>    union:union,</code></li>
-<li class='green'><span class=''> </span><code>    intersect:intersect,</code></li>
-<li class='green'><span class=''> </span><code>    powerSet:powerSet,</code></li>
-<li class='green'><span class=''> </span><code>    cartesian:cartesian,</code></li>
-<li class='green'><span class=''> </span><code>    compact:compact,</code></li>
-<li class='green'><span class=''> </span><code>    multiply:multiply,</code></li>
-<li class='green'><span class=''> </span><code>    flatten:flatten,</code></li>
-<li class='green'><span class=''> </span><code>    pluck:pluck,</code></li>
-<li class='green'><span class=''> </span><code>    invoke:invoke,</code></li>
-<li class='green'><span class=''> </span><code>    forEach:forEach,</code></li>
-<li class='green'><span class=''> </span><code>    map:map,</code></li>
-<li class='green'><span class=''> </span><code>    filter:filter,</code></li>
-<li class='green'><span class=''> </span><code>    reduce:reduce,</code></li>
-<li class='green'><span class=''> </span><code>    reduceRight:reduceRight,</code></li>
-<li class='green'><span class=''> </span><code>    some:some,</code></li>
-<li class='green'><span class=''> </span><code>    every:every,</code></li>
-<li class='green'><span class=''> </span><code>    indexOf:indexOf,</code></li>
-<li class='green'><span class=''> </span><code>    lastIndexOf:lastIndexOf</code></li>
+<li class='green'><span class=''> </span><code>    toArray: toArray,</code></li>
+<li class='green'><span class=''> </span><code>    sum: sum,</code></li>
+<li class='green'><span class=''> </span><code>    avg: avg,</code></li>
+<li class='green'><span class=''> </span><code>    sort: sort,</code></li>
+<li class='green'><span class=''> </span><code>    min: min,</code></li>
+<li class='green'><span class=''> </span><code>    max: max,</code></li>
+<li class='green'><span class=''> </span><code>    difference: difference,</code></li>
+<li class='green'><span class=''> </span><code>    removeDuplicates: removeDuplicates,</code></li>
+<li class='green'><span class=''> </span><code>    unique: unique,</code></li>
+<li class='green'><span class=''> </span><code>    rotate: rotate,</code></li>
+<li class='green'><span class=''> </span><code>    permutations: permutations,</code></li>
+<li class='green'><span class=''> </span><code>    zip: zip,</code></li>
+<li class='green'><span class=''> </span><code>    transpose: transpose,</code></li>
+<li class='green'><span class=''> </span><code>    valuesAt: valuesAt,</code></li>
+<li class='green'><span class=''> </span><code>    union: union,</code></li>
+<li class='green'><span class=''> </span><code>    intersect: intersect,</code></li>
+<li class='green'><span class=''> </span><code>    powerSet: powerSet,</code></li>
+<li class='green'><span class=''> </span><code>    cartesian: cartesian,</code></li>
+<li class='green'><span class=''> </span><code>    compact: compact,</code></li>
+<li class='green'><span class=''> </span><code>    multiply: multiply,</code></li>
+<li class='green'><span class=''> </span><code>    flatten: flatten,</code></li>
+<li class='green'><span class=''> </span><code>    pluck: pluck,</code></li>
+<li class='green'><span class=''> </span><code>    invoke: invoke,</code></li>
+<li class='green'><span class=''> </span><code>    forEach: forEach,</code></li>
+<li class='green'><span class=''> </span><code>    map: map,</code></li>
+<li class='green'><span class=''> </span><code>    filter: filter,</code></li>
+<li class='green'><span class=''> </span><code>    reduce: reduce,</code></li>
+<li class='green'><span class=''> </span><code>    reduceRight: reduceRight,</code></li>
+<li class='green'><span class=''> </span><code>    some: some,</code></li>
+<li class='green'><span class=''> </span><code>    every: every,</code></li>
+<li class='green'><span class=''> </span><code>    indexOf: indexOf,</code></li>
+<li class='green'><span class=''> </span><code>    lastIndexOf: lastIndexOf,</code></li>
+<li class='green'><span class=''> </span><code>    partition: partition</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -6439,8 +6499,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Array} array version of the arguments object</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function argsToArray(args, slice) {</code></li>
-<li class='green'><span class='hits'>16574</span><code>    slice = slice || 0;</code></li>
-<li class='green'><span class='hits'>16574</span><code>    return arraySlice.call(args, slice);</code></li>
+<li class='green'><span class='hits'>16645</span><code>    slice = slice || 0;</code></li>
+<li class='green'><span class='hits'>16645</span><code>    return arraySlice.call(args, slice);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -6453,8 +6513,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isBoolean(obj) {</code></li>
-<li class='green'><span class='hits'>12180</span><code>    var undef, type = typeof obj;</code></li>
-<li class='green'><span class='hits'>12180</span><code>    return obj != undef &amp;&amp; type == "boolean" || type == "Boolean";</code></li>
+<li class='green'><span class='hits'>12273</span><code>    var undef, type = typeof obj;</code></li>
+<li class='green'><span class='hits'>12273</span><code>    return obj != undef &amp;&amp; type == "boolean" || type == "Boolean";</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -6466,8 +6526,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isUndefined(obj) {</code></li>
-<li class='green'><span class='hits'>3294</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>3294</span><code>    return obj !== null &amp;&amp; obj === undef;</code></li>
+<li class='green'><span class='hits'>3316</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>3316</span><code>    return obj !== null &amp;&amp; obj === undef;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -6493,7 +6553,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isUndefinedOrNull(obj) {</code></li>
-<li class='green'><span class='hits'>3054</span><code>    return isUndefined(obj) || isNull(obj);</code></li>
+<li class='green'><span class='hits'>3076</span><code>    return isUndefined(obj) || isNull(obj);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -6506,8 +6566,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isNull(obj) {</code></li>
-<li class='green'><span class='hits'>3046</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>3046</span><code>    return obj !== undef &amp;&amp; obj == null;</code></li>
+<li class='green'><span class='hits'>3068</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>3068</span><code>    return obj !== undef &amp;&amp; obj == null;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -6520,13 +6580,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isArguments(object) {</code></li>
-<li class='green'><span class='hits'>1249</span><code>    return !isUndefinedOrNull(object) &amp;&amp; Object.prototype.toString.call(object) == '[object Arguments]';</code></li>
+<li class='green'><span class='hits'>1257</span><code>    return !isUndefinedOrNull(object) &amp;&amp; Object.prototype.toString.call(object) == '[object Arguments]';</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function isInstance(obj, clazz) {</code></li>
-<li class='green'><span class='hits'>1230</span><code>    if (typeof clazz == "function") {</code></li>
-<li class='green'><span class='hits'>1229</span><code>        return obj instanceof clazz;</code></li>
+<li class='green'><span class='hits'>1238</span><code>    if (typeof clazz == "function") {</code></li>
+<li class='green'><span class='hits'>1237</span><code>        return obj instanceof clazz;</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
 <li class='green'><span class='hits'>1</span><code>        return false;</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
@@ -6543,8 +6603,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isInstanceOf(obj, clazz) {</code></li>
-<li class='green'><span class='hits'>1230</span><code>    return argsToArray(arguments, 1).some(function (c) {</code></li>
-<li class='green'><span class='hits'>1230</span><code>        return isInstance(obj, c);</code></li>
+<li class='green'><span class='hits'>1238</span><code>    return argsToArray(arguments, 1).some(function (c) {</code></li>
+<li class='green'><span class='hits'>1238</span><code>        return isInstance(obj, c);</code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -6626,8 +6686,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Boolean} true if it is a number false otherwise</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>comb.isNumber = function(obj) {</code></li>
-<li class='green'><span class='hits'>2704</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>2704</span><code>    return obj !== undef &amp;&amp; obj != null &amp;&amp; (typeof obj == "number" || obj instanceof Number);</code></li>
+<li class='green'><span class='hits'>2712</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>2712</span><code>    return obj !== undef &amp;&amp; obj != null &amp;&amp; (typeof obj == "number" || obj instanceof Number);</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -6975,8 +7035,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isObject(obj) {</code></li>
-<li class='green'><span class='hits'>4234</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>4234</span><code>    return obj !== null &amp;&amp; obj !== undef &amp;&amp; typeof obj === "object";</code></li>
+<li class='green'><span class='hits'>4242</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>4242</span><code>    return obj !== null &amp;&amp; obj !== undef &amp;&amp; typeof obj === "object";</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -7372,8 +7432,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isString(obj) {</code></li>
-<li class='green'><span class='hits'>35767</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>35767</span><code>    return obj != undef &amp;&amp; (typeof obj == "string" || obj instanceof String);</code></li>
+<li class='green'><span class='hits'>35887</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>35887</span><code>    return obj != undef &amp;&amp; (typeof obj == "string" || obj instanceof String);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>comb.isString = isString;</code></li>
@@ -11868,13 +11928,13 @@ td.cov-stats {
 <li class='green'><span class='hits'>1</span><code>var methods = ["forEach", "map", "filter", "reduce", "reduceRight", "some", "every", "indexOf", "lastIndexOf",</code></li>
 <li class='green'><span class=''> </span><code>    "zip", "sum", "avg", "sort", "min", "max", "difference", "removeDuplicates", "unique", "rotate",</code></li>
 <li class='green'><span class=''> </span><code>    "permutations", "transpose", "valuesAt", "union", "intersect", "powerSet", "cartesian", "compact",</code></li>
-<li class='green'><span class=''> </span><code>    "multiply", "flatten", "pluck", "invoke"];</code></li>
+<li class='green'><span class=''> </span><code>    "multiply", "flatten", "pluck", "invoke", "partition"];</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>module.exports = function (o) {</code></li>
-<li class='green'><span class='hits'>183</span><code>    extend(o, methods, array);</code></li>
-<li class='green'><span class='hits'>183</span><code>    extend(o, stringMethods, string);</code></li>
-<li class='green'><span class='hits'>183</span><code>    return o;</code></li>
+<li class='green'><span class='hits'>191</span><code>    extend(o, methods, array);</code></li>
+<li class='green'><span class='hits'>191</span><code>    extend(o, stringMethods, string);</code></li>
+<li class='green'><span class='hits'>191</span><code>    return o;</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -11911,7 +11971,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>var methods = {</code></li>
 <li class='green'><span class=''> </span><code>    array:function () {</code></li>
-<li class='green'><span class='hits'>183</span><code>        return arrayExtension(this);</code></li>
+<li class='green'><span class='hits'>191</span><code>        return arrayExtension(this);</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>    date:function () {</code></li>
@@ -11932,15 +11992,15 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>    object:function () {</code></li>
-<li class='green'><span class='hits'>528</span><code>        return objectExtension(this);</code></li>
+<li class='green'><span class='hits'>536</span><code>        return objectExtension(this);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>module.exports = function (o) {</code></li>
-<li class='green'><span class='hits'>1206</span><code>    extend(o, Object.keys(methods), methods, function (name, func) {</code></li>
-<li class='green'><span class='hits'>8442</span><code>        return base.partial(func);</code></li>
+<li class='green'><span class='hits'>1214</span><code>    extend(o, Object.keys(methods), methods, function (name, func) {</code></li>
+<li class='green'><span class='hits'>8498</span><code>        return base.partial(func);</code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
-<li class='green'><span class='hits'>1206</span><code>    return o;</code></li>
+<li class='green'><span class='hits'>1214</span><code>    return o;</code></li>
 <li class='green'><span class=''> </span><code>};</code></li></ol></pre></div>
 </div>
 
@@ -12079,35 +12139,35 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    FALSE = isExtension(false);</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function createExtension(obj) {</code></li>
-<li class='green'><span class='hits'>1288</span><code>    if (base.isBoolean(obj)) {</code></li>
+<li class='green'><span class='hits'>1302</span><code>    if (base.isBoolean(obj)) {</code></li>
 <li class='green'><span class='hits'>17</span><code>        return obj ? TRUE : FALSE;</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1271</span><code>    if (!base.isUndefinedOrNull(obj) &amp;&amp; !obj.__isExtended__) {</code></li>
-<li class='green'><span class='hits'>1206</span><code>        obj = isExtension(obj);</code></li>
-<li class='green'><span class='hits'>1206</span><code>        obj = castExtension(obj);</code></li>
-<li class='green'><span class='hits'>1206</span><code>        if (obj.isObject()) {</code></li>
-<li class='green'><span class='hits'>528</span><code>            obj.object();</code></li>
+<li class='green'><span class='hits'>1285</span><code>    if (!base.isUndefinedOrNull(obj) &amp;&amp; !obj.__isExtended__) {</code></li>
+<li class='green'><span class='hits'>1214</span><code>        obj = isExtension(obj);</code></li>
+<li class='green'><span class='hits'>1214</span><code>        obj = castExtension(obj);</code></li>
+<li class='green'><span class='hits'>1214</span><code>        if (obj.isObject()) {</code></li>
+<li class='green'><span class='hits'>536</span><code>            obj.object();</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>1206</span><code>        if (obj.isArguments()) {</code></li>
+<li class='green'><span class='hits'>1214</span><code>        if (obj.isArguments()) {</code></li>
 <li class='green'><span class='hits'>4</span><code>            obj.args();</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>1206</span><code>        if (obj.isArray()) {</code></li>
-<li class='green'><span class='hits'>183</span><code>            obj.array();</code></li>
+<li class='green'><span class='hits'>1214</span><code>        if (obj.isArray()) {</code></li>
+<li class='green'><span class='hits'>191</span><code>            obj.array();</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>1206</span><code>        if (obj.isFunction()) {</code></li>
+<li class='green'><span class='hits'>1214</span><code>        if (obj.isFunction()) {</code></li>
 <li class='green'><span class='hits'>42</span><code>            obj.func();</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>1206</span><code>        if (obj.isString()) {</code></li>
+<li class='green'><span class='hits'>1214</span><code>        if (obj.isString()) {</code></li>
 <li class='green'><span class='hits'>485</span><code>            obj.string();</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>1206</span><code>        if (obj.isDate()) {</code></li>
+<li class='green'><span class='hits'>1214</span><code>        if (obj.isDate()) {</code></li>
 <li class='green'><span class='hits'>275</span><code>            obj.date();</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>1206</span><code>        if (obj.isNumber()) {</code></li>
+<li class='green'><span class='hits'>1214</span><code>        if (obj.isNumber()) {</code></li>
 <li class='green'><span class='hits'>159</span><code>            obj.number();</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1271</span><code>    return obj;</code></li>
+<li class='green'><span class='hits'>1285</span><code>    return obj;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>exports.createExtension = createExtension;</code></li></ol></pre></div>
@@ -12156,8 +12216,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>];</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>module.exports = function (o) {</code></li>
-<li class='green'><span class='hits'>1208</span><code>    var valueOf = false, val;</code></li>
-<li class='green'><span class='hits'>1208</span><code>    if (!base.isInstanceOf(o, Object)) {</code></li>
+<li class='green'><span class='hits'>1216</span><code>    var valueOf = false, val;</code></li>
+<li class='green'><span class='hits'>1216</span><code>    if (!base.isInstanceOf(o, Object)) {</code></li>
 <li class='green'><span class='hits'>638</span><code>        if (base.isBoolean(o)) {</code></li>
 <li class='green'><span class='hits'>2</span><code>            val = new Boolean(o);</code></li>
 <li class='green'><span class='hits'>2</span><code>            valueOf = true;</code></li>
@@ -12169,10 +12229,10 @@ td.cov-stats {
 <li class='green'><span class='hits'>481</span><code>            valueOf = true;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
-<li class='green'><span class='hits'>570</span><code>        val = o;</code></li>
+<li class='green'><span class='hits'>578</span><code>        val = o;</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1208</span><code>    var ret = extend(val, methods, base, null, valueOf);</code></li>
-<li class='green'><span class='hits'>1208</span><code>    if (valueOf) {</code></li>
+<li class='green'><span class='hits'>1216</span><code>    var ret = extend(val, methods, base, null, valueOf);</code></li>
+<li class='green'><span class='hits'>1216</span><code>    if (valueOf) {</code></li>
 <li class='green'><span class='hits'>638</span><code>        Object.defineProperty(ret, "valueOf", {</code></li>
 <li class='green'><span class=''> </span><code>            value:function () {</code></li>
 <li class='green'><span class='hits'>5094</span><code>                return o;</code></li>
@@ -12182,7 +12242,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>            configurable:true</code></li>
 <li class='green'><span class=''> </span><code>        });</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1208</span><code>    Object.defineProperty(ret, "eq", {</code></li>
+<li class='green'><span class='hits'>1216</span><code>    Object.defineProperty(ret, "eq", {</code></li>
 <li class='green'><span class=''> </span><code>        value:function (other) {</code></li>
 <li class='green'><span class='hits'>6</span><code>            return o === other;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
@@ -12191,7 +12251,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        configurable:true</code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1208</span><code>    Object.defineProperty(ret, "neq", {</code></li>
+<li class='green'><span class='hits'>1216</span><code>    Object.defineProperty(ret, "neq", {</code></li>
 <li class='green'><span class=''> </span><code>        value:function (other) {</code></li>
 <li class='green'><span class='hits'>6</span><code>            return o !== other;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
@@ -12199,7 +12259,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        enumerable:false,</code></li>
 <li class='green'><span class=''> </span><code>        configurable:true</code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
-<li class='green'><span class='hits'>1208</span><code>    Object.defineProperty(ret, "print", {</code></li>
+<li class='green'><span class='hits'>1216</span><code>    Object.defineProperty(ret, "print", {</code></li>
 <li class='green'><span class=''> </span><code>        value:function () {</code></li>
 <li class='green'><span class='hits'>3</span><code>            console.log(o);</code></li>
 <li class='green'><span class='hits'>3</span><code>            return val;</code></li>
@@ -12208,13 +12268,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        enumerable:false,</code></li>
 <li class='green'><span class=''> </span><code>        configurable:true</code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
-<li class='green'><span class='hits'>1208</span><code>    Object.defineProperty(ret, "__isExtended__", {</code></li>
+<li class='green'><span class='hits'>1216</span><code>    Object.defineProperty(ret, "__isExtended__", {</code></li>
 <li class='green'><span class=''> </span><code>        value:true,</code></li>
 <li class='green'><span class=''> </span><code>        writable:false,</code></li>
 <li class='green'><span class=''> </span><code>        enumerable:false,</code></li>
 <li class='green'><span class=''> </span><code>        configurable:true</code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
-<li class='green'><span class='hits'>1208</span><code>    return ret;</code></li>
+<li class='green'><span class='hits'>1216</span><code>    return ret;</code></li>
 <li class='green'><span class=''> </span><code>};</code></li></ol></pre></div>
 </div>
 
@@ -12299,15 +12359,15 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>];</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>module.exports = function (o) {</code></li>
-<li class='green'><span class='hits'>528</span><code>    comb = comb || (require("../index"));</code></li>
-<li class='green'><span class='hits'>528</span><code>    extend(o, methods, base);</code></li>
-<li class='green'><span class='hits'>528</span><code>    extend(o, hashMethods, hash);</code></li>
-<li class='green'><span class='hits'>528</span><code>    extend(o, lastMethod, base, function (name, func) {</code></li>
-<li class='green'><span class='hits'>528</span><code>        return function () {</code></li>
+<li class='green'><span class='hits'>536</span><code>    comb = comb || (require("../index"));</code></li>
+<li class='green'><span class='hits'>536</span><code>    extend(o, methods, base);</code></li>
+<li class='green'><span class='hits'>536</span><code>    extend(o, hashMethods, hash);</code></li>
+<li class='green'><span class='hits'>536</span><code>    extend(o, lastMethod, base, function (name, func) {</code></li>
+<li class='green'><span class='hits'>536</span><code>        return function () {</code></li>
 <li class='green'><span class='hits'>1</span><code>            return comb(func.apply(null, argsToArray(arguments).concat([this])));</code></li>
 <li class='green'><span class=''> </span><code>        };</code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
-<li class='green'><span class='hits'>528</span><code>    return o;</code></li>
+<li class='green'><span class='hits'>536</span><code>    return o;</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li></ol></pre></div>
 </div>
@@ -12399,28 +12459,28 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    comb;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function proxyFunc(name, func, valueOf, scope) {</code></li>
-<li class='green'><span class='hits'>45860</span><code>    return function proxy() {</code></li>
-<li class='green'><span class='hits'>9149</span><code>        comb || (comb = require("../index"));</code></li>
-<li class='green'><span class='hits'>9149</span><code>        var ret = func.apply(scope, [valueOf ? this.valueOf() : this].concat(argsToArray(arguments)));</code></li>
-<li class='green'><span class='hits'>9146</span><code>        if (ret &amp;&amp; !base.isBoolean(ret) &amp;&amp; ret !== this &amp;&amp; !ret.__isExtended__) {</code></li>
-<li class='green'><span class='hits'>579</span><code>            ret = comb(ret);</code></li>
+<li class='green'><span class='hits'>46571</span><code>    return function proxy() {</code></li>
+<li class='green'><span class='hits'>9212</span><code>        comb || (comb = require("../index"));</code></li>
+<li class='green'><span class='hits'>9212</span><code>        var ret = func.apply(scope, [valueOf ? this.valueOf() : this].concat(argsToArray(arguments)));</code></li>
+<li class='green'><span class='hits'>9209</span><code>        if (ret &amp;&amp; !base.isBoolean(ret) &amp;&amp; ret !== this &amp;&amp; !ret.__isExtended__) {</code></li>
+<li class='green'><span class='hits'>586</span><code>            ret = comb(ret);</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>9146</span><code>        return ret;</code></li>
+<li class='green'><span class='hits'>9209</span><code>        return ret;</code></li>
 <li class='green'><span class=''> </span><code>    };</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function extend(obj, methods, base, creator, valueOf) {</code></li>
-<li class='green'><span class='hits'>7798</span><code>    valueOf = isBoolean(valueOf) ? valueOf : false;</code></li>
-<li class='green'><span class='hits'>7798</span><code>    array.forEach(methods, function (method) {</code></li>
-<li class='green'><span class='hits'>58603</span><code>        var newFunc, func, m, name;</code></li>
-<li class='green'><span class='hits'>58603</span><code>        if (Array.isArray(method) &amp;&amp; method.length === 2) {</code></li>
+<li class='green'><span class='hits'>7854</span><code>    valueOf = isBoolean(valueOf) ? valueOf : false;</code></li>
+<li class='green'><span class='hits'>7854</span><code>    array.forEach(methods, function (method) {</code></li>
+<li class='green'><span class='hits'>59378</span><code>        var newFunc, func, m, name;</code></li>
+<li class='green'><span class='hits'>59378</span><code>        if (Array.isArray(method) &amp;&amp; method.length === 2) {</code></li>
 <li class='green'><span class='hits'>974</span><code>            m = method[0];</code></li>
 <li class='green'><span class='hits'>974</span><code>            name = method[1];</code></li>
 <li class='green'><span class=''> </span><code>        } else {</code></li>
-<li class='green'><span class='hits'>57629</span><code>            m = name = method;</code></li>
+<li class='green'><span class='hits'>58404</span><code>            m = name = method;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>58603</span><code>        Object.defineProperty(obj, name, {</code></li>
+<li class='green'><span class='hits'>59378</span><code>        Object.defineProperty(obj, name, {</code></li>
 <li class='green'><span class=''> </span><code>            value:(creator || proxyFunc)(name, base[m], valueOf, base),</code></li>
 <li class='green'><span class=''> </span><code>            writable:false,</code></li>
 <li class='green'><span class=''> </span><code>            enumerable:false,</code></li>
@@ -12428,7 +12488,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        });</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>    });</code></li>
-<li class='green'><span class='hits'>7798</span><code>    return obj;</code></li>
+<li class='green'><span class='hits'>7854</span><code>    return obj;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>

@@ -458,6 +458,21 @@
                                 multiply
                             </a></li>
                             
+                            <li><a href="./comb_array.html#.partition">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                partition
+                            </a></li>
+                            
                             <li><a href="./comb_array.html#.permutations">
                                 
                                 <span class="label label-info">S</span>
@@ -1375,6 +1390,72 @@ function (arr,times){
    var ret = [], i = 0;
    while (++i &amp;lt;= times) {
        ret = ret.concat(arr);
+   }
+   return ret;
+}
+    </pre>
+    
+
+
+    
+        <a name=".partition"></a>
+    <h3>
+        partition
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/array.js</em>
+
+<p><p>Paritition an array.</p>
+<pre class='prettyprint linenums lang-js'><code>var arr = [1,2,3,4,5];
+
+comb.array.partition(arr, 1); //[[1], [2], [3], [4], [5]]
+comb.array.partition(arr, 2); //[[1,2], [3,4], [5]]
+comb.array.partition(arr, 3); //[[1,2,3], [4,5]]
+
+comb.array.partition(arr); //[[1, 2, 3, 4, 5]]
+comb.array.partition(arr, 0); //[[1, 2, 3, 4, 5]]</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>array</em>  : </li>
+    
+        <li> <em>partitionSize</em>  : </li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>Array</code> </li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (array,partitionSize){
+   partitionSize = partitionSize || array.length;
+   var ret = [];
+   for (var i = 0, l = array.length; i &amp;lt; l; i += partitionSize) {
+       ret.push(array.slice(i, i + partitionSize));
    }
    return ret;
 }
