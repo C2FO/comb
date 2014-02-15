@@ -1,3 +1,9 @@
+# 0.2.9
+
+* Increased `comb.Promise` performance
+   * Benchmark before `~10.5 sec` now `~6.8 sec`
+   * Added new `comb.array.partition`
+
 # 0.2.8
 
 * Fixed memory leak in promise.

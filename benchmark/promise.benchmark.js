@@ -7,7 +7,7 @@ function runComb() {
     while (++i < 100000) {
         p = p.chain(function () {
             return i;
-        }, console.log);
+        });
     }
     return p.chain(function () {
         console.log("%d MB", (process.memoryUsage().rss / 1024 / 1024));
@@ -24,7 +24,7 @@ function runQ() {
     while (++i < 100000) {
         p = p.then(function () {
             return i;
-        }, console.log);
+        });
     }
     p.then(function () {
         console.log("%d MB", (process.memoryUsage().rss / 1024 / 1024));
