@@ -257,8 +257,8 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>99.14</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>12643</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>3472</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>12655</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>3478</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>30</span>
                 </div>
             </td>
@@ -4008,9 +4008,9 @@ td.cov-stats {
             </td>
             <td class="cov-stats">
                 <div>
-                    <span class='cov-label'>Coverage</span><span class='cov-value'>99.39</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>678</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>163</span>
+                    <span class='cov-label'>Coverage</span><span class='cov-value'>99.41</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>690</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>169</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>1</span>
                 </div>
             </td>
@@ -4276,7 +4276,9 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        info: function (message) {</code></li>
-<li class='green'><span class='hits'>17</span><code>            return this.log.apply(this, [Level.INFO].concat(argsToArray(arguments)));</code></li>
+<li class='green'><span class='hits'>17</span><code>            if (this.isInfo) {</code></li>
+<li class='green'><span class='hits'>12</span><code>                return this.log.apply(this, [Level.INFO].concat(argsToArray(arguments)));</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -4287,7 +4289,9 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        debug: function (message) {</code></li>
-<li class='green'><span class='hits'>14</span><code>            return this.log.apply(this, [Level.DEBUG].concat(argsToArray(arguments)));</code></li>
+<li class='green'><span class='hits'>14</span><code>            if (this.isDebug) {</code></li>
+<li class='green'><span class='hits'>9</span><code>                return this.log.apply(this, [Level.DEBUG].concat(argsToArray(arguments)));</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -4298,7 +4302,9 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        error: function (message) {</code></li>
-<li class='green'><span class='hits'>14</span><code>            return this.log.apply(this, [Level.ERROR].concat(argsToArray(arguments)));</code></li>
+<li class='green'><span class='hits'>14</span><code>            if (this.isError) {</code></li>
+<li class='green'><span class='hits'>9</span><code>                return this.log.apply(this, [Level.ERROR].concat(argsToArray(arguments)));</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -4309,7 +4315,9 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        warn: function (message) {</code></li>
-<li class='green'><span class='hits'>14</span><code>            return this.log.apply(this, [Level.WARN].concat(argsToArray(arguments)));</code></li>
+<li class='green'><span class='hits'>14</span><code>            if (this.isWarn) {</code></li>
+<li class='green'><span class='hits'>9</span><code>                return this.log.apply(this, [Level.WARN].concat(argsToArray(arguments)));</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -4320,7 +4328,9 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        trace: function (message) {</code></li>
-<li class='green'><span class='hits'>14</span><code>            return this.log.apply(this, [Level.TRACE].concat(argsToArray(arguments)));</code></li>
+<li class='green'><span class='hits'>14</span><code>            if (this.isTrace) {</code></li>
+<li class='green'><span class='hits'>9</span><code>                return this.log.apply(this, [Level.TRACE].concat(argsToArray(arguments)));</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -4331,7 +4341,9 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        fatal: function (message) {</code></li>
-<li class='green'><span class='hits'>14</span><code>            return this.log.apply(this, [Level.FATAL].concat(argsToArray(arguments)));</code></li>
+<li class='green'><span class='hits'>14</span><code>            if (this.isFatal) {</code></li>
+<li class='green'><span class='hits'>9</span><code>                return this.log.apply(this, [Level.FATAL].concat(argsToArray(arguments)));</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -4364,12 +4376,12 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        log: function (level, message) {</code></li>
-<li class='green'><span class='hits'>93</span><code>            var args = argsToArray(arguments, 1);</code></li>
-<li class='green'><span class='hits'>93</span><code>            level = Level.toLevel(level);</code></li>
-<li class='green'><span class='hits'>93</span><code>            if (args.length &gt; 1) {</code></li>
-<li class='green'><span class='hits'>18</span><code>                message = format.apply(null, args);</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>93</span><code>            if (level.isGreaterOrEqualToo(this.level)) {</code></li>
+<li class='green'><span class='hits'>63</span><code>            level = Level.toLevel(level);</code></li>
+<li class='green'><span class='hits'>63</span><code>            if (level.isGreaterOrEqualToo(this.level)) {</code></li>
+<li class='green'><span class='hits'>63</span><code>                var args = argsToArray(arguments, 1);</code></li>
+<li class='green'><span class='hits'>63</span><code>                if (args.length &gt; 1) {</code></li>
+<li class='green'><span class='hits'>12</span><code>                    message = format.apply(null, args);</code></li>
+<li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class='hits'>63</span><code>                if (Level.TRACE.equals(level)) {</code></li>
 <li class='green'><span class='hits'>10</span><code>                    var err = new Error;</code></li>
 <li class='green'><span class='hits'>10</span><code>                    err.name = "Trace";</code></li>
@@ -4385,7 +4397,7 @@ td.cov-stats {
 <li class='green'><span class='hits'>63</span><code>                    appenders[i].append(event);</code></li>
 <li class='green'><span class=''> </span><code>                });</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>93</span><code>            return this;</code></li>
+<li class='green'><span class='hits'>63</span><code>            return this;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -4531,7 +4543,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
 <li class='green'><span class=''> </span><code>            level: function () {</code></li>
-<li class='green'><span class='hits'>199</span><code>                return this.__level;</code></li>
+<li class='green'><span class='hits'>256</span><code>                return this.__level;</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
@@ -4545,32 +4557,32 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
 <li class='green'><span class=''> </span><code>            isDebug: function () {</code></li>
-<li class='green'><span class='hits'>8</span><code>                return Level.DEBUG.isGreaterOrEqualToo(this.level);</code></li>
+<li class='green'><span class='hits'>22</span><code>                return Level.DEBUG.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
 <li class='green'><span class=''> </span><code>            isTrace: function () {</code></li>
-<li class='green'><span class='hits'>8</span><code>                return Level.TRACE.isGreaterOrEqualToo(this.level);</code></li>
+<li class='green'><span class='hits'>22</span><code>                return Level.TRACE.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
 <li class='green'><span class=''> </span><code>            isInfo: function () {</code></li>
-<li class='green'><span class='hits'>8</span><code>                return Level.INFO.isGreaterOrEqualToo(this.level);</code></li>
+<li class='green'><span class='hits'>25</span><code>                return Level.INFO.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
 <li class='green'><span class=''> </span><code>            isWarn: function () {</code></li>
-<li class='green'><span class='hits'>8</span><code>                return Level.WARN.isGreaterOrEqualToo(this.level);</code></li>
+<li class='green'><span class='hits'>22</span><code>                return Level.WARN.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
 <li class='green'><span class=''> </span><code>            isError: function () {</code></li>
-<li class='green'><span class='hits'>8</span><code>                return Level.ERROR.isGreaterOrEqualToo(this.level);</code></li>
+<li class='green'><span class='hits'>22</span><code>                return Level.ERROR.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
 <li class='green'><span class=''> </span><code>            isFatal: function () {</code></li>
-<li class='green'><span class='hits'>8</span><code>                return Level.FATAL.isGreaterOrEqualToo(this.level);</code></li>
+<li class='green'><span class='hits'>22</span><code>                return Level.FATAL.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
@@ -6499,8 +6511,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Array} array version of the arguments object</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function argsToArray(args, slice) {</code></li>
-<li class='green'><span class='hits'>16645</span><code>    slice = slice || 0;</code></li>
-<li class='green'><span class='hits'>16645</span><code>    return arraySlice.call(args, slice);</code></li>
+<li class='green'><span class='hits'>16555</span><code>    slice = slice || 0;</code></li>
+<li class='green'><span class='hits'>16555</span><code>    return arraySlice.call(args, slice);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -6686,8 +6698,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Boolean} true if it is a number false otherwise</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>comb.isNumber = function(obj) {</code></li>
-<li class='green'><span class='hits'>2712</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>2712</span><code>    return obj !== undef &amp;&amp; obj != null &amp;&amp; (typeof obj == "number" || obj instanceof Number);</code></li>
+<li class='green'><span class='hits'>2739</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>2739</span><code>    return obj !== undef &amp;&amp; obj != null &amp;&amp; (typeof obj == "number" || obj instanceof Number);</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -6916,8 +6928,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isHash(obj) {</code></li>
-<li class='green'><span class='hits'>293</span><code>    var ret = comb.isObject(obj);</code></li>
-<li class='green'><span class='hits'>293</span><code>    return ret &amp;&amp; obj.constructor === Object;</code></li>
+<li class='green'><span class='hits'>287</span><code>    var ret = comb.isObject(obj);</code></li>
+<li class='green'><span class='hits'>287</span><code>    return ret &amp;&amp; obj.constructor === Object;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -7035,8 +7047,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isObject(obj) {</code></li>
-<li class='green'><span class='hits'>4242</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>4242</span><code>    return obj !== null &amp;&amp; obj !== undef &amp;&amp; typeof obj === "object";</code></li>
+<li class='green'><span class='hits'>4236</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>4236</span><code>    return obj !== null &amp;&amp; obj !== undef &amp;&amp; typeof obj === "object";</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -7432,8 +7444,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isString(obj) {</code></li>
-<li class='green'><span class='hits'>35887</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>35887</span><code>    return obj != undef &amp;&amp; (typeof obj == "string" || obj instanceof String);</code></li>
+<li class='green'><span class='hits'>35857</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>35857</span><code>    return obj != undef &amp;&amp; (typeof obj == "string" || obj instanceof String);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>comb.isString = isString;</code></li>
@@ -8317,12 +8329,12 @@ td.cov-stats {
 <li class='green'><span class='hits'>349</span><code>        ch = ch || " ";</code></li>
 <li class='green'><span class='hits'>349</span><code>        var strLen = string.length;</code></li>
 <li class='green'><span class='hits'>349</span><code>        while (strLen &lt; length) {</code></li>
-<li class='green'><span class='hits'>255</span><code>            if (end) {</code></li>
+<li class='green'><span class='hits'>279</span><code>            if (end) {</code></li>
 <li class='green'><span class='hits'>137</span><code>                string += ch;</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>118</span><code>                string = ch + string;</code></li>
+<li class='green'><span class='hits'>142</span><code>                string = ch + string;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>255</span><code>            strLen++;</code></li>
+<li class='green'><span class='hits'>279</span><code>            strLen++;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class='hits'>349</span><code>        return string;</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
@@ -8430,22 +8442,22 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>     * @returns {String} the formatted string</code></li>
 <li class='green'><span class=''> </span><code>     */</code></li>
 <li class='green'><span class=''> </span><code>    format:function (str, obj) {</code></li>
-<li class='green'><span class='hits'>112</span><code>        !date &amp;&amp; (date = require("./date"));</code></li>
-<li class='green'><span class='hits'>112</span><code>        if (obj instanceof Array) {</code></li>
-<li class='green'><span class='hits'>48</span><code>            var i = 0, len = obj.length;</code></li>
+<li class='green'><span class='hits'>100</span><code>        !date &amp;&amp; (date = require("./date"));</code></li>
+<li class='green'><span class='hits'>100</span><code>        if (obj instanceof Array) {</code></li>
+<li class='green'><span class='hits'>42</span><code>            var i = 0, len = obj.length;</code></li>
 <li class='green'><span class=''> </span><code>            //find the matches</code></li>
-<li class='green'><span class='hits'>48</span><code>            return str.replace(FORMAT_REGEX, function (m, format, type) {</code></li>
-<li class='green'><span class='hits'>88</span><code>                var replacer, ret;</code></li>
-<li class='green'><span class='hits'>88</span><code>                if (i &lt; len) {</code></li>
-<li class='green'><span class='hits'>86</span><code>                    replacer = obj[i++];</code></li>
+<li class='green'><span class='hits'>42</span><code>            return str.replace(FORMAT_REGEX, function (m, format, type) {</code></li>
+<li class='green'><span class='hits'>82</span><code>                var replacer, ret;</code></li>
+<li class='green'><span class='hits'>82</span><code>                if (i &lt; len) {</code></li>
+<li class='green'><span class='hits'>80</span><code>                    replacer = obj[i++];</code></li>
 <li class='green'><span class=''> </span><code>                } else {</code></li>
 <li class='green'><span class=''> </span><code>                    //we are out of things to replace with so</code></li>
 <li class='green'><span class=''> </span><code>                    //just return the match?</code></li>
 <li class='green'><span class='hits'>2</span><code>                    return m;</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
-<li class='green'><span class='hits'>86</span><code>                if (m == "%s" || m == "%d" || m == "%D") {</code></li>
+<li class='green'><span class='hits'>80</span><code>                if (m == "%s" || m == "%d" || m == "%D") {</code></li>
 <li class='green'><span class=''> </span><code>                    //fast path!</code></li>
-<li class='green'><span class='hits'>36</span><code>                    ret = replacer + "";</code></li>
+<li class='green'><span class='hits'>30</span><code>                    ret = replacer + "";</code></li>
 <li class='green'><span class='hits'>50</span><code>                } else if (m == "%Z") {</code></li>
 <li class='green'><span class='hits'>2</span><code>                    ret = replacer.toUTCString();</code></li>
 <li class='green'><span class='hits'>48</span><code>                } else if (m == "%j") {</code></li>
@@ -8474,9 +8486,9 @@ td.cov-stats {
 <li class='green'><span class='hits'>8</span><code>                            break;</code></li>
 <li class='green'><span class=''> </span><code>                    }</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
-<li class='green'><span class='hits'>80</span><code>                return ret;</code></li>
+<li class='green'><span class='hits'>74</span><code>                return ret;</code></li>
 <li class='green'><span class=''> </span><code>            });</code></li>
-<li class='green'><span class='hits'>64</span><code>        } else if (isHash(obj)) {</code></li>
+<li class='green'><span class='hits'>58</span><code>        } else if (isHash(obj)) {</code></li>
 <li class='green'><span class='hits'>36</span><code>            return str.replace(INTERP_REGEX, function (m, format, value) {</code></li>
 <li class='green'><span class='hits'>142</span><code>                value = obj[value];</code></li>
 <li class='green'><span class='hits'>142</span><code>                if (!misc.isUndefined(value)) {</code></li>
@@ -8497,8 +8509,8 @@ td.cov-stats {
 <li class='green'><span class='hits'>2</span><code>                return m;</code></li>
 <li class='green'><span class=''> </span><code>            });</code></li>
 <li class='green'><span class=''> </span><code>        } else {</code></li>
-<li class='green'><span class='hits'>28</span><code>            var args = Array.prototype.slice.call(arguments).slice(1);</code></li>
-<li class='green'><span class='hits'>28</span><code>            return exports.string.format(str, args);</code></li>
+<li class='green'><span class='hits'>22</span><code>            var args = Array.prototype.slice.call(arguments).slice(1);</code></li>
+<li class='green'><span class='hits'>22</span><code>            return exports.string.format(str, args);</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -13622,13 +13634,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @returns {Boolean} true if this is &gt;= false otherwise.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        isGreaterOrEqualToo:function (level) {</code></li>
-<li class='green'><span class='hits'>288</span><code>            var ret = false;</code></li>
-<li class='green'><span class='hits'>288</span><code>            if (level &amp;&amp; base.isNumber(level.level)) {</code></li>
-<li class='green'><span class='hits'>288</span><code>                if (this.level &gt;= level.level) {</code></li>
-<li class='green'><span class='hits'>187</span><code>                    ret = true;</code></li>
+<li class='green'><span class='hits'>345</span><code>            var ret = false;</code></li>
+<li class='green'><span class='hits'>345</span><code>            if (level &amp;&amp; base.isNumber(level.level)) {</code></li>
+<li class='green'><span class='hits'>345</span><code>                if (this.level &gt;= level.level) {</code></li>
+<li class='green'><span class='hits'>244</span><code>                    ret = true;</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>288</span><code>            return ret;</code></li>
+<li class='green'><span class='hits'>345</span><code>            return ret;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -13655,23 +13667,23 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @returns {comb.logging.Level|null} returns a level if one can be determined null otherwise.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        toLevel:function (level, defaultLevel) {</code></li>
-<li class='green'><span class='hits'>193</span><code>            var ret = null;</code></li>
-<li class='green'><span class='hits'>193</span><code>            var args = base.argsToArray(arguments);</code></li>
-<li class='green'><span class='hits'>193</span><code>            if (args.length === 1) {</code></li>
-<li class='green'><span class='hits'>191</span><code>                var level = args[0];</code></li>
+<li class='green'><span class='hits'>163</span><code>            var ret = null;</code></li>
+<li class='green'><span class='hits'>163</span><code>            var args = base.argsToArray(arguments);</code></li>
+<li class='green'><span class='hits'>163</span><code>            if (args.length === 1) {</code></li>
+<li class='green'><span class='hits'>161</span><code>                var level = args[0];</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>191</span><code>                if (base.isNumber(level)) {</code></li>
+<li class='green'><span class='hits'>161</span><code>                if (base.isNumber(level)) {</code></li>
 <li class='green'><span class='hits'>11</span><code>                    var strLevel = LEVELS_REVERSE[level];</code></li>
 <li class='green'><span class='hits'>11</span><code>                    ret = Level[strLevel];</code></li>
-<li class='green'><span class='hits'>180</span><code>                } else if (base.isString(level)) {</code></li>
+<li class='green'><span class='hits'>150</span><code>                } else if (base.isString(level)) {</code></li>
 <li class='green'><span class='hits'>48</span><code>                    ret = Level[level.toUpperCase()];</code></li>
 <li class='green'><span class=''> </span><code>                } else {</code></li>
-<li class='green'><span class='hits'>132</span><code>                    ret = level;</code></li>
+<li class='green'><span class='hits'>102</span><code>                    ret = level;</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
 <li class='green'><span class='hits'>2</span><code>                ret = (Level.toLevel(args[0]) || args[1]);</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>193</span><code>            return ret;</code></li>
+<li class='green'><span class='hits'>163</span><code>            return ret;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
