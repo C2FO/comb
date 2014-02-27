@@ -1,3 +1,7 @@
+# 0.2.10
+
+* Added check to log functions for level before formatting message or delegating to `log`.
+
 # 0.2.9
 
 * Increased `comb.Promise` performance
