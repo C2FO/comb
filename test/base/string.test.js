@@ -206,5 +206,10 @@ it.describe("comb/base/string.js",function (it) {
             assert.equal(comb("abcdefg").truncate(3), "abc");
             assert.equal(comb("abcdefg").truncate(3, true), "efg");
         });
+
+
+        it.should("escape HTML properly", function () {
+            assert.equal(comb.string.escapeHtml("<a b=\"c\">&'</a>"), "&lt;a b=&quot;c&quot;&gt;&amp;&#39;&lt;/a&gt;");
+        });
     });
 }).as(module);
