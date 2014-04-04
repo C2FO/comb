@@ -306,6 +306,21 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methods<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
+                            <li><a href="./comb_string.html#.escapeHtml">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                escapeHtml
+                            </a></li>
+                            
                             <li><a href="./comb_string.html#.format">
                                 
                                 <span class="label label-info">S</span>
@@ -713,12 +728,84 @@
             }
         }
         return ret;
+    },
+    /**
+     * Escapes an HTML string by replacing &amp;lt;&gt;&amp;&quot; characters.
+     *
+     * @example
+     * comb.string.escapeHtml(&#x27;&amp;lt;script&gt;alert(&quot;test&quot;)&amp;lt;/script&gt;&#x27;); // &amp;lt;script&amp;gt;alert(&quot;test&quot;)&amp;lt;/script&amp;gt;
+     *
+     * @param {String} str The string to escape.
+     */
+    escapeHtml: function(str) {
+        return String(str)
+            .replace(/&amp;/g, &#x27;&amp;amp;&#x27;)
+            .replace(/&amp;lt;/g, &#x27;&amp;lt;&#x27;)
+            .replace(/&gt;/g, &#x27;&amp;gt;&#x27;)
+            .replace(/&quot;/g, &#x27;&amp;quot;&#x27;)
+            .replace(/&#x27;/g, &#x27;&amp;#39;&#x27;);
     }
 };
     </pre>
     
 
     
+    
+        <a name=".escapeHtml"></a>
+    <h3>
+        escapeHtml
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/string.js</em>
+
+<p><p>Escapes an HTML string by replacing &lt;&gt;&amp;&quot; characters.</p>
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.string.escapeHtml(&#x27;&lt;script&gt;alert(&quot;test&quot;)&lt;/script&gt;&#x27;); // &amp;lt;script&amp;gt;alert(&quot;test&quot;)&amp;lt;/script&amp;gt;
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>str</em>  : <p>The string to escape.</p>
+</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (str){
+   return String(str)
+       .replace(/&amp;/g, &#x27;&amp;amp;&#x27;)
+       .replace(/&amp;lt;/g, &#x27;&amp;lt;&#x27;)
+       .replace(/&gt;/g, &#x27;&amp;gt;&#x27;)
+       .replace(/&quot;/g, &#x27;&amp;quot;&#x27;)
+       .replace(/&#x27;/g, &#x27;&amp;#39;&#x27;);
+       
+}
+    </pre>
+    
+
+
     
         <a name=".format"></a>
     <h3>
