@@ -1,3 +1,7 @@
+# 0.2.11
+
+* Added `comb.string.escapeHtml`
+
 # 0.2.10
 
 * Added check to log functions for level before formatting message or delegating to `log`.
@@ -138,13 +142,13 @@
 * Logging changes
   * Added `comb.logger` as shortcut to get a logger
   * Changed appenders to register themselves for dynamic appender creation
-* Updated docs   	
+* Updated docs
 
 #0.1.2/2012-07-17
 * Bug fixes
   * Changed comb.logging.PropertyConfigurator to deep merge porperties (Clone to config object)
 * Added comb.array.multiply
-* Updated docs to use [coddoc](https://github.comb/doug-martin/coddoc)  
+* Updated docs to use [coddoc](https://github.comb/doug-martin/coddoc)
 
 #0.1.1/2012-04-20
 
@@ -183,13 +187,13 @@
      * comb.number.roundCeil for round numbers up always
   * Bug Fixes
      * Fixed logging appender level setting, before the appenders level would always be overriden on initialization
-     
+
 
 
 
 #0.0.8 / 2012-02-9
 
-  * Added new MethodMissing plugin 
+  * Added new MethodMissing plugin
   * Bug fixes
     * Changed inflections to underscore between word boundaries and numbers and vice versa with camelize.
 
