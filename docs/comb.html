@@ -488,6 +488,8 @@
                             
                             <li><a href="./comb.html#.deepEqual">
                                 
+                                <span class="label label-info">S</span>
+                                
                                 
                                 <span class="label label-label">F</span>
                                 
@@ -500,6 +502,8 @@
                             </a></li>
                             
                             <li><a href="./comb.html#.deepMerge">
+                                
+                                <span class="label label-info">S</span>
                                 
                                 
                                 <span class="label label-label">F</span>
@@ -528,6 +532,8 @@
                             </a></li>
                             
                             <li><a href="./comb.html#.extend">
+                                
+                                <span class="label label-info">S</span>
                                 
                                 
                                 <span class="label label-label">F</span>
@@ -677,6 +683,8 @@
                             
                             <li><a href="./comb.html#.isEmpty">
                                 
+                                <span class="label label-info">S</span>
+                                
                                 
                                 <span class="label label-label">F</span>
                                 
@@ -704,6 +712,8 @@
                             </a></li>
                             
                             <li><a href="./comb.html#.isHash">
+                                
+                                <span class="label label-info">S</span>
                                 
                                 
                                 <span class="label label-label">F</span>
@@ -762,6 +772,8 @@
                             </a></li>
                             
                             <li><a href="./comb.html#.isObject">
+                                
+                                <span class="label label-info">S</span>
                                 
                                 
                                 <span class="label label-label">F</span>
@@ -881,6 +893,8 @@
                             
                             <li><a href="./comb.html#.merge">
                                 
+                                <span class="label label-info">S</span>
+                                
                                 
                                 <span class="label label-label">F</span>
                                 
@@ -980,6 +994,51 @@
                                 
                                 
                                 pluralize
+                            </a></li>
+                            
+                            <li><a href="./comb.html#.promisfyStream">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                promisfyStream
+                            </a></li>
+                            
+                            <li><a href="./comb.html#.rejected">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                rejected
+                            </a></li>
+                            
+                            <li><a href="./comb.html#.resolved">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                resolved
                             </a></li>
                             
                             <li><a href="./comb.html#.secondsAgo">
@@ -2053,6 +2112,8 @@ function (val){
     <h3>
         deepEqual
         
+        <span class="label label-info">Static</span>
+        
         
         <span class="label label-label">Function</span>
         
@@ -2113,6 +2174,8 @@ function (o1,o2){
         <a name=".deepMerge"></a>
     <h3>
         deepMerge
+        
+        <span class="label label-info">Static</span>
         
         
         <span class="label label-label">Function</span>
@@ -2247,6 +2310,8 @@ function (handle){
         <a name=".extend"></a>
     <h3>
         extend
+        
+        <span class="label label-info">Static</span>
         
         
         <span class="label label-label">Function</span>
@@ -2901,6 +2966,8 @@ function (obj){
     <h3>
         isEmpty
         
+        <span class="label label-info">Static</span>
+        
         
         <span class="label label-label">Function</span>
         
@@ -3017,6 +3084,8 @@ function (obj){
         <a name=".isHash"></a>
     <h3>
         isHash
+        
+        <span class="label label-info">Static</span>
         
         
         <span class="label label-label">Function</span>
@@ -3252,6 +3321,8 @@ function (obj){
         <a name=".isObject"></a>
     <h3>
         isObject
+        
+        <span class="label label-info">Static</span>
         
         
         <span class="label label-label">Function</span>
@@ -3701,6 +3772,8 @@ function (cb){
     <h3>
         merge
         
+        <span class="label label-info">Static</span>
+        
         
         <span class="label label-label">Function</span>
         
@@ -4134,6 +4207,210 @@ function (str){
        }
    }
    return ret;
+}
+    </pre>
+    
+
+
+    
+        <a name=".promisfyStream"></a>
+    <h3>
+        promisfyStream
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p><p>Wraps a stream in a promise waiting for either the <code>&quot;end&quot;</code> or <code>&quot;error&quot;</code> event to be triggered.</p>
+<pre class='prettyprint linenums lang-js'><code>comb.promisfyStream(fs.createdReadStream(&quot;my.file&quot;)).chain(function(){
+     console.log(&quot;done reading!&quot;);
+});</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>stream</em>  : <p>stream to wrap</p>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> <p>a Promise is resolved if <code>&quot;end&quot;</code> is triggered before <code>&quot;error&quot;</code> or rejected if <code>&quot;error&quot;</code> is triggered.</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (stream){
+   var ret = new Promise(), called;
+   function errorHandler() {
+       if (!called) {
+           called = true;
+           spreadArgs(ret.errback, arguments, ret);
+           stream.removeListener(&quot;error&quot;, endHandler);
+           stream.removeListener(&quot;end&quot;, endHandler);
+           stream = ret = null;
+       }
+   }
+   function endHandler() {
+       if (!called) {
+           called = true;
+           spreadArgs(ret.callback, arguments, ret);
+           stream.removeListener(&quot;error&quot;, endHandler);
+           stream.removeListener(&quot;end&quot;, endHandler);
+           stream = ret = null;
+       }
+   }
+   stream.on(&quot;error&quot;, errorHandler).on(&quot;end&quot;, endHandler);
+   return ret.promise();
+}
+    </pre>
+    
+
+
+    
+        <a name=".rejected"></a>
+    <h3>
+        rejected
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p><p>Creates a new <a href='./comb_Promise.html#'> comb.Promise</a> that is rejected with the given value.</p>
+<pre class='prettyprint linenums lang-js'><code>comb.resolved(new Error(&quot;error!&quot;)).chain(null, function(err){
+     console.error(err.stack);
+});</code></pre>
+<p>If you give it a promise it will wait for the promise to resolve or error but with reject either way.</p>
+<pre class='prettyprint linenums lang-js'><code>comb.resolved(new comb.Promise().callback(1)).chain(null, function(err){
+     //err === 1
+});</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>val</em>  : <ul>
+<li>val to reject with</li>
+</ul>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> <p>a rejected promise with the specified value.</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (val){
+   var ret = new Promise();
+   when(val).chain(ret.errback, ret.errback);
+   return ret.promise();
+}
+    </pre>
+    
+
+
+    
+        <a name=".resolved"></a>
+    <h3>
+        resolved
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined promise.js</em>
+
+<p><p>Creates a new <a href='./comb_Promise.html#'> comb.Promise</a> that is resolved with the given value.</p>
+<pre class='prettyprint linenums lang-js'><code>comb.resolved(1).chain(function(val){
+     //val === 1
+});</code></pre>
+<p>If you give it a promise it will wait for the promise to resolve or error.</p>
+<pre class='prettyprint linenums lang-js'><code>comb.resolved(new comb.Promise().callback(1)).chain(function(val){
+     //val === 1
+});</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>val</em>  : <ul>
+<li>val to resolve with</li>
+</ul>
+</li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>comb.Promise</code> <p>a promisfied version of the value.</p>
+</li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (val){
+   var ret = new Promise();
+   when(val).chain(ret.callback, ret.errback);
+   return ret.promise();
 }
     </pre>
     
@@ -4592,7 +4869,7 @@ function (args,fn){
        } else {
            return when(fn.apply(this, arguments));
        }
-   }
+   };
 }
     </pre>
     
