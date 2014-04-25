@@ -3,10 +3,11 @@ var it = require('it'),
     assert = require('assert'),
     comb = require("index"),
     Promise = comb.Promise,
-    PromiseList = comb.PromiseList;
+    PromiseList = comb.PromiseList,
+    Readable = require("stream").Readable;
 
 
-it.describe("The promise API",function (it) {
+it.describe("The promise API", function (it) {
 
     it.describe("comb.Promise", function (it) {
 
@@ -574,7 +575,7 @@ it.describe("The promise API",function (it) {
 
         it.should("honor the promise api when callback and no errback", function (next) {
             var promise = new Promise();
-            comb.when(promise,function (res) {
+            comb.when(promise, function (res) {
                 assert.equal(res, "hello");
                 next();
             }).addErrback(next);
@@ -684,12 +685,12 @@ it.describe("The promise API",function (it) {
 
         it.should("accept an array of promises", function (next) {
             comb.when([
-                    new comb.Promise().callback("hello"),
-                    new comb.Promise().callback("world"),
-                    new comb.Promise().callback("!")
-                ]).chain(function (res) {
-                    assert.deepEqual(res, ["hello", "world", "!"]);
-                }).classic(next);
+                new comb.Promise().callback("hello"),
+                new comb.Promise().callback("world"),
+                new comb.Promise().callback("!")
+            ]).chain(function (res) {
+                assert.deepEqual(res, ["hello", "world", "!"]);
+            }).classic(next);
         });
 
     });
@@ -741,59 +742,59 @@ it.describe("The promise API",function (it) {
 
         it.should("execute the items serially", function (next) {
             comb.serial([
-                    comb.partial(asyncAction, 1, 100),
-                    comb.partial(syncAction, 1.5),
-                    comb.partial(asyncAction, 2, 90),
-                    comb.partial(syncAction, 2.5),
-                    comb.partial(asyncAction, 3, 80),
-                    comb.partial(syncAction, 3.5),
-                    comb.partial(asyncAction, 4, 70),
-                    comb.partial(syncAction, 4.5),
-                    comb.partial(asyncAction, 5, 60),
-                    comb.partial(syncAction, 5.5),
-                    comb.partial(asyncAction, 6, 50)
-                ]).then(function (res) {
-                    assert.deepEqual(res, [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6]);
-                    next();
-                }, next);
+                comb.partial(asyncAction, 1, 100),
+                comb.partial(syncAction, 1.5),
+                comb.partial(asyncAction, 2, 90),
+                comb.partial(syncAction, 2.5),
+                comb.partial(asyncAction, 3, 80),
+                comb.partial(syncAction, 3.5),
+                comb.partial(asyncAction, 4, 70),
+                comb.partial(syncAction, 4.5),
+                comb.partial(asyncAction, 5, 60),
+                comb.partial(syncAction, 5.5),
+                comb.partial(asyncAction, 6, 50)
+            ]).then(function (res) {
+                assert.deepEqual(res, [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6]);
+                next();
+            }, next);
         });
 
         it.should("catch errors", function (next) {
             comb.serial([
-                    comb.partial(asyncAction, 1, 100),
-                    comb.partial(syncAction, 1.5),
-                    comb.partial(asyncAction, 2, 90),
-                    comb.partial(syncAction, 2.5),
-                    comb.partial(asyncAction, 3, 80),
-                    comb.partial(syncAction, 3.5),
-                    comb.partial(asyncAction, 4, 70),
-                    comb.partial(syncAction, 4.5),
-                    comb.partial(asyncAction, 5, 60),
-                    comb.partial(syncAction, 5.5, true),
-                    comb.partial(asyncAction, 6, 50)
-                ]).then(next, function (res) {
-                    assert.deepEqual(res, "ERROR");
-                    next();
-                });
+                comb.partial(asyncAction, 1, 100),
+                comb.partial(syncAction, 1.5),
+                comb.partial(asyncAction, 2, 90),
+                comb.partial(syncAction, 2.5),
+                comb.partial(asyncAction, 3, 80),
+                comb.partial(syncAction, 3.5),
+                comb.partial(asyncAction, 4, 70),
+                comb.partial(syncAction, 4.5),
+                comb.partial(asyncAction, 5, 60),
+                comb.partial(syncAction, 5.5, true),
+                comb.partial(asyncAction, 6, 50)
+            ]).then(next, function (res) {
+                assert.deepEqual(res, "ERROR");
+                next();
+            });
         });
 
         it.should("catch async errors", function (next) {
             comb.serial([
-                    comb.partial(asyncAction, 1, 100, true),
-                    comb.partial(syncAction, 1.5),
-                    comb.partial(asyncAction, 2, 90),
-                    comb.partial(syncAction, 2.5),
-                    comb.partial(asyncAction, 3, 80),
-                    comb.partial(syncAction, 3.5),
-                    comb.partial(asyncAction, 4, 70),
-                    comb.partial(syncAction, 4.5),
-                    comb.partial(asyncAction, 5, 60),
-                    comb.partial(syncAction, 5.5, true),
-                    comb.partial(asyncAction, 6, 50)
-                ]).then(next, function (res) {
-                    assert.deepEqual(res, 1);
-                    next();
-                });
+                comb.partial(asyncAction, 1, 100, true),
+                comb.partial(syncAction, 1.5),
+                comb.partial(asyncAction, 2, 90),
+                comb.partial(syncAction, 2.5),
+                comb.partial(asyncAction, 3, 80),
+                comb.partial(syncAction, 3.5),
+                comb.partial(asyncAction, 4, 70),
+                comb.partial(syncAction, 4.5),
+                comb.partial(asyncAction, 5, 60),
+                comb.partial(syncAction, 5.5, true),
+                comb.partial(asyncAction, 6, 50)
+            ]).then(next, function (res) {
+                assert.deepEqual(res, 1);
+                next();
+            });
         });
 
         it.should("throw an error if not called with an array", function () {
@@ -851,60 +852,60 @@ it.describe("The promise API",function (it) {
 
         it.should("execute the items serially", function (next) {
             comb.chain([
-                    asyncAction(1, 100),
-                    syncAction(1.5),
-                    asyncAction(2, 90),
-                    syncAction(2.5),
-                    asyncAction(3, 80),
-                    syncAction(3.5),
-                    asyncAction(4, 70),
-                    syncAction(4.5),
-                    asyncAction(5, 60),
-                    syncAction(5.5),
-                    asyncAction(6, 50)
-                ]).then(function (results, prev) {
-                    assert.deepEqual(results, 38.5);
-                    assert.isUndefined(prev);
-                    next();
-                }, next);
+                asyncAction(1, 100),
+                syncAction(1.5),
+                asyncAction(2, 90),
+                syncAction(2.5),
+                asyncAction(3, 80),
+                syncAction(3.5),
+                asyncAction(4, 70),
+                syncAction(4.5),
+                asyncAction(5, 60),
+                syncAction(5.5),
+                asyncAction(6, 50)
+            ]).then(function (results, prev) {
+                assert.deepEqual(results, 38.5);
+                assert.isUndefined(prev);
+                next();
+            }, next);
         });
 
         it.should("catch errors", function (next) {
             comb.chain([
-                    asyncAction(1, 100),
-                    syncAction(1.5),
-                    asyncAction(2, 90),
-                    syncAction(2.5),
-                    asyncAction(3, 80),
-                    syncAction(3.5),
-                    asyncAction(4, 70),
-                    syncAction(4.5),
-                    asyncAction(5, 60),
-                    syncAction(5.5, true),
-                    asyncAction(6, 50)
-                ]).then(next, function (res) {
-                    assert.deepEqual(res, "ERROR");
-                    next();
-                });
+                asyncAction(1, 100),
+                syncAction(1.5),
+                asyncAction(2, 90),
+                syncAction(2.5),
+                asyncAction(3, 80),
+                syncAction(3.5),
+                asyncAction(4, 70),
+                syncAction(4.5),
+                asyncAction(5, 60),
+                syncAction(5.5, true),
+                asyncAction(6, 50)
+            ]).then(next, function (res) {
+                assert.deepEqual(res, "ERROR");
+                next();
+            });
         });
 
         it.should("catch async errors", function (next) {
             comb.chain([
-                    asyncAction(1, 100, true),
-                    syncAction(1.5),
-                    asyncAction(2, 90),
-                    syncAction(2.5),
-                    asyncAction(3, 80),
-                    syncAction(3.5),
-                    asyncAction(4, 70),
-                    syncAction(4.5),
-                    asyncAction(5, 60),
-                    syncAction(5.5, true),
-                    asyncAction(6, 500)
-                ]).then(next, function (res) {
-                    assert.deepEqual(res, "ERROR");
-                    next();
-                });
+                asyncAction(1, 100, true),
+                syncAction(1.5),
+                asyncAction(2, 90),
+                syncAction(2.5),
+                asyncAction(3, 80),
+                syncAction(3.5),
+                asyncAction(4, 70),
+                syncAction(4.5),
+                asyncAction(5, 60),
+                syncAction(5.5, true),
+                asyncAction(6, 500)
+            ]).then(next, function (res) {
+                assert.deepEqual(res, "ERROR");
+                next();
+            });
         });
 
         it.should("throw an error if not called with an array", function () {
@@ -927,22 +928,22 @@ it.describe("The promise API",function (it) {
 
         it.should("return multiple arguments if function callback with multiple args", function (next) {
             comb.chain([
-                    asyncActionMulti(1, 100),
-                    asyncActionMulti(1.5),
-                    asyncActionMulti(2, 90),
-                    asyncActionMulti(2.5),
-                    asyncActionMulti(3, 80),
-                    asyncActionMulti(3.5),
-                    asyncActionMulti(4, 70),
-                    asyncActionMulti(4.5),
-                    asyncActionMulti(5, 60),
-                    asyncActionMulti(5.5),
-                    asyncActionMulti(6, 50)
-                ]).then(function (num, prev) {
-                    assert.equal(num, 38.5);
-                    assert.equal(prev, 137.5);
-                    next();
-                }, next);
+                asyncActionMulti(1, 100),
+                asyncActionMulti(1.5),
+                asyncActionMulti(2, 90),
+                asyncActionMulti(2.5),
+                asyncActionMulti(3, 80),
+                asyncActionMulti(3.5),
+                asyncActionMulti(4, 70),
+                asyncActionMulti(4.5),
+                asyncActionMulti(5, 60),
+                asyncActionMulti(5.5),
+                asyncActionMulti(6, 50)
+            ]).then(function (num, prev) {
+                assert.equal(num, 38.5);
+                assert.equal(prev, 137.5);
+                next();
+            }, next);
         });
     });
 
@@ -977,6 +978,94 @@ it.describe("The promise API",function (it) {
         });
 
     });
-}).as(module);
+
+    it.describe("comb.promisfyStream", function (it) {
+
+        function createStream() {
+            var ret = new Readable();
+            ret._read = function () {
+            }
+            return ret;
+        }
+
+        it.should("promisfy a stream", function () {
+            var collected = [];
+            var stream = createStream().on("data", function (data) {
+                collected.push(data + "");
+            });
+            var promise = comb.promisfyStream(stream).chain(function () {
+                assert.deepEqual(collected, ["a", "b", "c", "d"]);
+            })
+            stream.push("a");
+            stream.push("b");
+            stream.push("c");
+            stream.push("d");
+            stream.push(null);
+            return promise;
+
+        });
 
 
+        it.should("error if the promise errors", function () {
+            var collected = [];
+            var stream = createStream().on("data", function (data) {
+                collected.push(data + "");
+            });
+            var promise = comb.promisfyStream(stream).chain(assert.fail, function (err) {
+                assert.deepEqual(collected, ["a", "b", "c"]);
+                assert.equal(err.message, "error!");
+            })
+            stream.push("a");
+            stream.push("b");
+            stream.push("c");
+            stream.emit("error", new Error("error!"));
+            stream.push(null);
+            return promise;
+
+        });
+
+    });
+
+    it.describe("comb.resolved", function (it) {
+
+        it.should("resolve with a value", function () {
+            return comb.resolved(1).chain(function (val) {
+                assert.equal(val, 1);
+            });
+        });
+
+        it.should("wait for the value of a promise if a promise is passed in", function () {
+            return comb.resolved(comb.resolved(1)).chain(function (val) {
+                assert.equal(val, 1);
+            });
+        });
+
+        it.should("resolve as an error if the value is a promise and it errores", function () {
+            return comb.resolved(new comb.Promise().errback(new Error("error!"))).chain(assert.fail, function (err) {
+                assert.equal(err.message, "error!");
+            });
+        });
+    });
+
+    it.describe("comb.rejected", function (it) {
+
+        it.should("rejected with a value", function () {
+            return comb.rejected(1).chain(assert.fail, function (val) {
+                assert.equal(val, 1);
+            });
+        });
+
+        it.should("wait for the value of a promise if a promise is passed in", function () {
+            return comb.rejected(comb.resolved(1)).chain(assert.fail, function (val) {
+                assert.equal(val, 1);
+            });
+        });
+
+        it.should("resolve as an error if the value is a promise and it errores", function () {
+            return comb.rejected(comb.rejected(new Error("error!"))).chain(assert.fail, function (err) {
+                assert.equal(err.message, "error!");
+            });
+        });
+
+    });
+});

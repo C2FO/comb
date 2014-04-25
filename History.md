@@ -1,3 +1,11 @@
+# 0.3.0
+
+* Added
+  * `comb.promisfyStream`
+  * `comb.resolved`
+  * `comb.rejected`
+
+
 # 0.2.11
 
 * Added `comb.string.escapeHtml`
