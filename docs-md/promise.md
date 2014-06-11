@@ -222,13 +222,14 @@ new Promise().callback()
     });
 ```
 
-If you still cannot handle the error you can rethrow the error.
+If you still cannot handle the error you can rethrow the error. It will handle errors thrown asynchronously or synchronously.
 
 ```
 new Promise().callback()
     .chain(function(){
         throw new Error("error");
     }, function(){
+        // return async error
         return new Promise().errback(new Error("error not handled"));
     })
     .classic(function(err, str){
