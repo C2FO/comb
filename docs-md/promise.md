@@ -1,6 +1,6 @@
 #[Promises](./comb_Promise.html)
 
-`comb` provides an async wrapper called a [promise](http://en.wikipedia.org/wiki/Futures_and_promises). Promises are a way of handling async and sync behavior by encapsulating it in a wrapper. One of the benefits of promises is that it encourages the separation of success and failure logic, and provides a value that can be passed around rather than providing callbacks for every async action. 
+`comb` provides an async wrapper called a [promise](http://en.wikipedia.org/wiki/Futures_and_promises). Promises are a way of handling async and sync behavior by encapsulating it in a wrapper. One of the benefits of promises is that they encourage the separation of success and failure logic. Promises provide a value that can be passed around rather than providing callbacks for every async action. 
 
 ##[comb.Promise](./comb_Promise.html)
 
@@ -14,7 +14,7 @@ var promise = new comb.Promise();
 
 ###Resolving Promises
 
-When working with a promise you must resolve the promise in order to callbacks/errbacks to be invoked. Resolution can happen before for after callbacks/errbacks have been registered. The methods to resolve a promise are `callback`, `errback`, and `resolve`.
+When working with a promise you must resolve the promise in order for callbacks/errbacks to be invoked. Resolution can happen before for after callbacks/errbacks have been registered. The methods to resolve a promise are `callback`, `errback`, and `resolve`.
 
 ###callback  and errback
 
@@ -71,7 +71,7 @@ readFile("myFile.txt").then(function(text){
 After rewriting the `readFile()` method with resolve the code is a lot cleaner with only three lines and you still get the same promise API.
 
 
-###Listening for Promise Resolutions.
+###Listening for Promise Resolutions
 
 To listen for the resolution of promises there are the following methods. For the following examples we will use the `readFile` method defined above.
 
@@ -144,7 +144,7 @@ readFile("myFile.txt").classic(function(err, file){
 
 ###chain
 
-The chain method is used to chain promises together so they execute ir order. The chain method is different from the [comb.serial](./comb.html#.serial) method in that it pipes the results from one promise into the next.
+The chain method is used to chain promises together so they execute in order. The chain method is different from the [comb.serial](./comb.html#.serial) method in that it pipes the results from one promise into the next.
 
 In the following example we chain the results of different promise actions into a single result.
 
@@ -179,10 +179,10 @@ new Promise().callback()
     });
 ```
 
-If you do not provide an `errback` for each chain then it will be propogated to the final promise
+If you do not provide an `errback` for each chain then it will be propogated to the final promise.
 
 ```
-new Promise().callbac()
+new Promise().callback()
     .chain(function(){
         return new comb.Promise().errback(new Error("error"));
     })
@@ -196,7 +196,7 @@ new Promise().callbac()
 
 ###Catching Errors
 
-Chain also allows you to catch errors so you can handle them successfully
+Chain also allows you to catch errors so you can handle them successfully.
 
 ```
 new Promise().callback()
@@ -219,6 +219,7 @@ new Promise().callback()
     })
     .classic(function(err, str){
         console.log(str); //"caught error and handled"
+    });
 ```
 
 If you still cannot handle the error you can rethrow the error.
@@ -232,6 +233,7 @@ new Promise().callback()
     })
     .classic(function(err, str){
         console.log(err.message); //"error not handled"
+    });
 ```
 
 ```
@@ -243,6 +245,7 @@ new Promise()
     })
     .classic(function(err, str){
         console.log(err.message); //"error not handled"
+    });
 ```
 
 ##[comb.PromiseList](./comb_PromiseList.html)
@@ -301,7 +304,6 @@ function readFiles(){
 		return readFile(file);
 	});
 	return comb.when(files);
-
 }
 
 readFiles("myFile.txt", "myFile2.txt", "myFile3.txt").then(function(files){
@@ -425,7 +427,7 @@ comb.async.forEach(asyncArr(), function(item, index){
     });                                                                                           
     return ret.promise();                                                                         
 }).then(function(){                                                                               
-    console.log(myNewArr) //[[1,0], [2,1], [3,2], [4,3], [5,4]]                                   
+    console.log(myNewArr); //[[1,0], [2,1], [3,2], [4,3], [5,4]]                                   
 });                                                                                               
 ```                                                                                                                                                                                                     
 
@@ -459,7 +461,7 @@ comb.async.forEach(asyncArr(), function(item, index){
      });                                                                                               
      return ret.promise();                                                                             
  }).then(function(){                                                                                   
-     console.log(myNewArr) //[2,4,6,8,10];                                                             
+     console.log(myNewArr); //[2,4,6,8,10];                                                             
  });                                                                                                   
  ```                                                                                                                                                                                                                                                                                                                             
 
@@ -493,7 +495,7 @@ comb.async.filter(asyncArr(), function(item, index){
     });                                                                   
     return ret.promise();                                                 
 }).then(function(){                                                       
-    console.log(myNewArr) //[1,3,5];                                      
+    console.log(myNewArr); //[1,3,5];                                      
 })                                                                        
 ```                                                                       
 ##[comb.async.every](./comb_async.html#.every)
@@ -526,7 +528,7 @@ comb.async.every(asyncArr(), function(item, index){
     });                                                                                              
     return ret.promise();                                                                            
 }).then(function(){                                                                                  
-    console.log(myNewArr) //false;                                                                   
+    console.log(myNewArr); //false;                                                                   
 })                                                                                                   
 ```                                                                                                  
 
@@ -560,7 +562,7 @@ comb.async.some(asyncArr(), function(item, index){
     });                                                                                                 
     return ret.promise();                                                                               
 }).then(function(){                                                                                     
-    console.log(myNewArr) //false;                                                                      
+    console.log(myNewArr); //false;                                                                      
 })                                                                                                      
 ```  
 
