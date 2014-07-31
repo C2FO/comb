@@ -994,7 +994,7 @@ it.describe("The promise API", function (it) {
                 collected.push(data + "");
             });
             var promise = comb.promisfyStream(stream).chain(function () {
-                assert.deepEqual(collected, ["a", "b", "c", "d"]);
+                assert.deepEqual(collected.join(""), "abcd");
             })
             stream.push("a");
             stream.push("b");
@@ -1012,7 +1012,7 @@ it.describe("The promise API", function (it) {
                 collected.push(data + "");
             });
             var promise = comb.promisfyStream(stream).chain(assert.fail, function (err) {
-                assert.deepEqual(collected, ["a", "b", "c"]);
+                assert.deepEqual(collected.join(""), "abc");
                 assert.equal(err.message, "error!");
             })
             stream.push("a");
