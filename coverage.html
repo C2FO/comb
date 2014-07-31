@@ -256,10 +256,10 @@ td.cov-stats {
             </td>
             <td class="cov-stats">
                 <div>
-                    <span class='cov-label'>Coverage</span><span class='cov-value'>99.14</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>12655</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>3478</span>
-                    <span class='cov-label'>Missed</span><span class='cov-value'>30</span>
+                    <span class='cov-label'>Coverage</span><span class='cov-value'>98.98</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>12822</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>3514</span>
+                    <span class='cov-label'>Missed</span><span class='cov-value'>36</span>
                 </div>
             </td>
         </tr>
@@ -298,28 +298,28 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isFunction(obj) {</code></li>
-<li class='green'><span class='hits'>18759</span><code>    return typeof obj === "function";</code></li>
+<li class='green'><span class='hits'>18865</span><code>    return typeof obj === "function";</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function spreadArgs(f, args, scope) {</code></li>
-<li class='green'><span class='hits'>17960</span><code>    var ret;</code></li>
-<li class='green'><span class='hits'>17960</span><code>    switch ((args || []).length) {</code></li>
+<li class='green'><span class='hits'>18121</span><code>    var ret;</code></li>
+<li class='green'><span class='hits'>18121</span><code>    switch ((args || []).length) {</code></li>
 <li class='green'><span class=''> </span><code>    case 0:</code></li>
-<li class='green'><span class='hits'>4954</span><code>        ret = f.call(scope);</code></li>
-<li class='green'><span class='hits'>4949</span><code>        break;</code></li>
+<li class='green'><span class='hits'>4992</span><code>        ret = f.call(scope);</code></li>
+<li class='green'><span class='hits'>4987</span><code>        break;</code></li>
 <li class='green'><span class=''> </span><code>    case 1:</code></li>
-<li class='green'><span class='hits'>7267</span><code>        ret = f.call(scope, args[0]);</code></li>
-<li class='green'><span class='hits'>7261</span><code>        break;</code></li>
+<li class='green'><span class='hits'>7359</span><code>        ret = f.call(scope, args[0]);</code></li>
+<li class='green'><span class='hits'>7347</span><code>        break;</code></li>
 <li class='green'><span class=''> </span><code>    case 2:</code></li>
-<li class='green'><span class='hits'>3002</span><code>        ret = f.call(scope, args[0], args[1]);</code></li>
-<li class='green'><span class='hits'>3001</span><code>        break;</code></li>
+<li class='green'><span class='hits'>3033</span><code>        ret = f.call(scope, args[0], args[1]);</code></li>
+<li class='green'><span class='hits'>3032</span><code>        break;</code></li>
 <li class='green'><span class=''> </span><code>    case 3:</code></li>
 <li class='green'><span class='hits'>2725</span><code>        ret = f.call(scope, args[0], args[1], args[2]);</code></li>
 <li class='green'><span class='hits'>2725</span><code>        break;</code></li>
 <li class='green'><span class=''> </span><code>    default:</code></li>
 <li class='green'><span class='hits'>12</span><code>        ret = f.apply(scope, args);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>17948</span><code>    return ret;</code></li>
+<li class='green'><span class='hits'>18103</span><code>    return ret;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -335,13 +335,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Function} the hitched function</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function hitch(scope, method, args) {</code></li>
-<li class='green'><span class='hits'>5171</span><code>    args = Array.prototype.slice.call(arguments).slice(2);</code></li>
-<li class='green'><span class='hits'>5171</span><code>    if ((isString(method) &amp;&amp; !(method in scope))) {</code></li>
+<li class='green'><span class='hits'>5239</span><code>    args = Array.prototype.slice.call(arguments).slice(2);</code></li>
+<li class='green'><span class='hits'>5239</span><code>    if ((isString(method) &amp;&amp; !(method in scope))) {</code></li>
 <li class='green'><span class='hits'>2</span><code>        throw new Error(method + " property not defined in scope");</code></li>
-<li class='green'><span class='hits'>5169</span><code>    } else if (!isString(method) &amp;&amp; !isFunction(method)) {</code></li>
+<li class='green'><span class='hits'>5237</span><code>    } else if (!isString(method) &amp;&amp; !isFunction(method)) {</code></li>
 <li class='green'><span class='hits'>1</span><code>        throw new Error(method + " is not a function");</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>5168</span><code>    if (isString(method)) {</code></li>
+<li class='green'><span class='hits'>5236</span><code>    if (isString(method)) {</code></li>
 <li class='green'><span class='hits'>132</span><code>        return function () {</code></li>
 <li class='green'><span class='hits'>380</span><code>            var func = scope[method];</code></li>
 <li class='green'><span class='hits'>380</span><code>            if (isFunction(func)) {</code></li>
@@ -352,9 +352,9 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        };</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
-<li class='green'><span class='hits'>5036</span><code>        return function () {</code></li>
-<li class='green'><span class='hits'>3170</span><code>            var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
-<li class='green'><span class='hits'>3170</span><code>            return spreadArgs(method, scopeArgs, scope);</code></li>
+<li class='green'><span class='hits'>5104</span><code>        return function () {</code></li>
+<li class='green'><span class='hits'>3207</span><code>            var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
+<li class='green'><span class='hits'>3207</span><code>            return spreadArgs(method, scopeArgs, scope);</code></li>
 <li class='green'><span class=''> </span><code>        };</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
@@ -906,9 +906,9 @@ td.cov-stats {
             </td>
             <td class="cov-stats">
                 <div>
-                    <span class='cov-label'>Coverage</span><span class='cov-value'>95.70</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>896</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>256</span>
+                    <span class='cov-label'>Coverage</span><span class='cov-value'>96.10</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>998</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>282</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>11</span>
                 </div>
             </td>
@@ -996,35 +996,35 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @constructs</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        constructor: function () {</code></li>
-<li class='green'><span class='hits'>2491</span><code>            this.__errorCbs = [];</code></li>
-<li class='green'><span class='hits'>2491</span><code>            this.__cbs = [];</code></li>
-<li class='green'><span class='hits'>2491</span><code>            this.callback = hitch(this, this.callback);</code></li>
-<li class='green'><span class='hits'>2491</span><code>            this.errback = hitch(this, this.errback);</code></li>
+<li class='green'><span class='hits'>2525</span><code>            this.__errorCbs = [];</code></li>
+<li class='green'><span class='hits'>2525</span><code>            this.__cbs = [];</code></li>
+<li class='green'><span class='hits'>2525</span><code>            this.callback = hitch(this, this.callback);</code></li>
+<li class='green'><span class='hits'>2525</span><code>            this.errback = hitch(this, this.errback);</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
 <li class='green'><span class=''> </span><code>         * @private</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        __resolve: function () {</code></li>
-<li class='green'><span class='hits'>2339</span><code>            var self = this;</code></li>
-<li class='green'><span class='hits'>2339</span><code>            if (!self.__fired) {</code></li>
-<li class='green'><span class='hits'>2339</span><code>                self.__fired = true;</code></li>
-<li class='green'><span class='hits'>2339</span><code>                nextTick(function () {</code></li>
-<li class='green'><span class='hits'>2338</span><code>                    var cbs = self.__error ? self.__errorCbs : self.__cbs,</code></li>
+<li class='green'><span class='hits'>2373</span><code>            var self = this;</code></li>
+<li class='green'><span class='hits'>2373</span><code>            if (!self.__fired) {</code></li>
+<li class='green'><span class='hits'>2373</span><code>                self.__fired = true;</code></li>
+<li class='green'><span class='hits'>2373</span><code>                nextTick(function () {</code></li>
+<li class='green'><span class='hits'>2372</span><code>                    var cbs = self.__error ? self.__errorCbs : self.__cbs,</code></li>
 <li class='green'><span class=''> </span><code>                        res = self.__error || self.__results,</code></li>
 <li class='green'><span class=''> </span><code>                        i = -1, l = cbs.length;</code></li>
-<li class='green'><span class='hits'>2338</span><code>                    while (++i &lt; l) {</code></li>
-<li class='green'><span class='hits'>2245</span><code>                        spreadArgs(cbs[i], res);</code></li>
+<li class='green'><span class='hits'>2372</span><code>                    while (++i &lt; l) {</code></li>
+<li class='green'><span class='hits'>2264</span><code>                        spreadArgs(cbs[i], res);</code></li>
 <li class='green'><span class=''> </span><code>                    }</code></li>
-<li class='green'><span class='hits'>2338</span><code>                    self.__errorCbs.length = self.__cbs.length = 0;</code></li>
-<li class='green'><span class='hits'>2338</span><code>                    self = null;</code></li>
+<li class='green'><span class='hits'>2372</span><code>                    self.__errorCbs.length = self.__cbs.length = 0;</code></li>
+<li class='green'><span class='hits'>2372</span><code>                    self = null;</code></li>
 <li class='green'><span class=''> </span><code>                });</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        __callNextTick: function (cb, results) {</code></li>
-<li class='green'><span class='hits'>745</span><code>            nextTick(function () {</code></li>
-<li class='green'><span class='hits'>745</span><code>                spreadArgs(cb, results);</code></li>
-<li class='green'><span class='hits'>745</span><code>                cb = results = null;</code></li>
+<li class='green'><span class='hits'>760</span><code>            nextTick(function () {</code></li>
+<li class='green'><span class='hits'>760</span><code>                spreadArgs(cb, results);</code></li>
+<li class='green'><span class='hits'>760</span><code>                cb = results = null;</code></li>
 <li class='green'><span class=''> </span><code>            });</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -1037,17 +1037,17 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.Promise} this promise for chaining</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        addCallback: function (cb) {</code></li>
-<li class='green'><span class='hits'>3011</span><code>            if (cb) {</code></li>
-<li class='green'><span class='hits'>3011</span><code>                if (isPromise(cb)) {</code></li>
+<li class='green'><span class='hits'>3045</span><code>            if (cb) {</code></li>
+<li class='green'><span class='hits'>3045</span><code>                if (isPromise(cb)) {</code></li>
 <li class='green'><span class='hits'>2</span><code>                    cb = cb.callback;</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
-<li class='green'><span class='hits'>3011</span><code>                if (this.__fired &amp;&amp; this.__results) {</code></li>
-<li class='green'><span class='hits'>731</span><code>                    this.__callNextTick(cb, this.__results);</code></li>
+<li class='green'><span class='hits'>3045</span><code>                if (this.__fired &amp;&amp; this.__results) {</code></li>
+<li class='green'><span class='hits'>740</span><code>                    this.__callNextTick(cb, this.__results);</code></li>
 <li class='green'><span class=''> </span><code>                } else {</code></li>
-<li class='green'><span class='hits'>2280</span><code>                    this.__cbs.push(cb);</code></li>
+<li class='green'><span class='hits'>2305</span><code>                    this.__cbs.push(cb);</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>3011</span><code>            return this;</code></li>
+<li class='green'><span class='hits'>3045</span><code>            return this;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -1059,17 +1059,17 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.Promise} this promise for chaining</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        addErrback: function (cb) {</code></li>
-<li class='green'><span class='hits'>2893</span><code>            if (cb) {</code></li>
-<li class='green'><span class='hits'>2887</span><code>                if (isPromise(cb)) {</code></li>
+<li class='green'><span class='hits'>2927</span><code>            if (cb) {</code></li>
+<li class='green'><span class='hits'>2921</span><code>                if (isPromise(cb)) {</code></li>
 <li class='red'><span class='nohits'>0</span><code>                    cb = cb.errback;</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
-<li class='green'><span class='hits'>2887</span><code>                if (this.__fired &amp;&amp; this.__error) {</code></li>
-<li class='green'><span class='hits'>14</span><code>                    this.__callNextTick(cb, this.__error);</code></li>
+<li class='green'><span class='hits'>2921</span><code>                if (this.__fired &amp;&amp; this.__error) {</code></li>
+<li class='green'><span class='hits'>20</span><code>                    this.__callNextTick(cb, this.__error);</code></li>
 <li class='green'><span class=''> </span><code>                } else {</code></li>
-<li class='green'><span class='hits'>2873</span><code>                    this.__errorCbs.push(cb);</code></li>
+<li class='green'><span class='hits'>2901</span><code>                    this.__errorCbs.push(cb);</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>2893</span><code>            return this;</code></li>
+<li class='green'><span class='hits'>2927</span><code>            return this;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -1098,13 +1098,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @param {*} args variable number of results to pass back to listeners of the promise</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        callback: function (args) {</code></li>
-<li class='green'><span class='hits'>2186</span><code>            args = argsToArray(arguments);</code></li>
-<li class='green'><span class='hits'>2186</span><code>            if (this.__fired) {</code></li>
+<li class='green'><span class='hits'>2208</span><code>            args = argsToArray(arguments);</code></li>
+<li class='green'><span class='hits'>2208</span><code>            if (this.__fired) {</code></li>
 <li class='green'><span class='hits'>1</span><code>                throw new Error("Already fired!");</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>2185</span><code>            this.__results = args;</code></li>
-<li class='green'><span class='hits'>2185</span><code>            this.__resolve();</code></li>
-<li class='green'><span class='hits'>2185</span><code>            return this.promise();</code></li>
+<li class='green'><span class='hits'>2207</span><code>            this.__results = args;</code></li>
+<li class='green'><span class='hits'>2207</span><code>            this.__resolve();</code></li>
+<li class='green'><span class='hits'>2207</span><code>            return this.promise();</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -1114,12 +1114,12 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @param {*} args  number of errors to pass back to listeners of the promise</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        errback: function (args) {</code></li>
-<li class='green'><span class='hits'>155</span><code>            if (this.__fired) {</code></li>
-<li class='green'><span class='hits'>1</span><code>                throw args || new Error("Already fired");</code></li>
+<li class='green'><span class='hits'>170</span><code>            if (this.__fired) {</code></li>
+<li class='green'><span class='hits'>4</span><code>                throw args || new Error("Already fired");</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>154</span><code>            this.__error = argsToArray(arguments);</code></li>
-<li class='green'><span class='hits'>154</span><code>            this.__resolve();</code></li>
-<li class='green'><span class='hits'>154</span><code>            return this.promise();</code></li>
+<li class='green'><span class='hits'>166</span><code>            this.__error = argsToArray(arguments);</code></li>
+<li class='green'><span class='hits'>166</span><code>            this.__resolve();</code></li>
+<li class='green'><span class='hits'>166</span><code>            return this.promise();</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -1156,14 +1156,14 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.Promise} this promise for chaining</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        then: function (callback, errback) {</code></li>
-<li class='green'><span class='hits'>1842</span><code>            if (isPromise(callback)) {</code></li>
+<li class='green'><span class='hits'>1859</span><code>            if (isPromise(callback)) {</code></li>
 <li class='green'><span class='hits'>153</span><code>                errback = callback.errback;</code></li>
 <li class='green'><span class='hits'>153</span><code>                callback = callback.callback;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>1842</span><code>            this.addCallback(callback);</code></li>
-<li class='green'><span class='hits'>1842</span><code>            this.addErrback(errback);</code></li>
+<li class='green'><span class='hits'>1859</span><code>            this.addCallback(callback);</code></li>
+<li class='green'><span class='hits'>1859</span><code>            this.addErrback(errback);</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1842</span><code>            return this;</code></li>
+<li class='green'><span class='hits'>1859</span><code>            return this;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -1247,40 +1247,40 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.Promise} A new that wraps the promise for chaining</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        chain: function (callback, errback) {</code></li>
-<li class='green'><span class='hits'>582</span><code>            var promise = new Promise(),</code></li>
+<li class='green'><span class='hits'>599</span><code>            var promise = new Promise(),</code></li>
 <li class='green'><span class=''> </span><code>                self = this;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>582</span><code>            function _errback(e) {</code></li>
-<li class='green'><span class='hits'>84</span><code>                if (isFunction(errback)) {</code></li>
-<li class='green'><span class='hits'>5</span><code>                    try {</code></li>
-<li class='green'><span class='hits'>5</span><code>                        var res = spreadArgs(errback, [e]);</code></li>
-<li class='green'><span class='hits'>4</span><code>                        isPromiseLike(res) ? res.then(promise.callback, promise.errback) : promise.callback(res);</code></li>
+<li class='green'><span class='hits'>599</span><code>            function _errback(e) {</code></li>
+<li class='green'><span class='hits'>94</span><code>                if (isFunction(errback)) {</code></li>
+<li class='green'><span class='hits'>15</span><code>                    try {</code></li>
+<li class='green'><span class='hits'>15</span><code>                        var res = spreadArgs(errback, [e]);</code></li>
+<li class='green'><span class='hits'>11</span><code>                        isPromiseLike(res) ? res.then(promise.callback, promise.errback) : promise.callback(res);</code></li>
 <li class='green'><span class=''> </span><code>                    } catch (e) {</code></li>
-<li class='green'><span class='hits'>1</span><code>                        promise.errback(e);</code></li>
+<li class='green'><span class='hits'>4</span><code>                        promise.errback(e);</code></li>
 <li class='green'><span class=''> </span><code>                    }</code></li>
 <li class='green'><span class=''> </span><code>                } else {</code></li>
 <li class='green'><span class='hits'>79</span><code>                    promise.errback(e);</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>582</span><code>            function _callback() {</code></li>
-<li class='green'><span class='hits'>531</span><code>                try {</code></li>
-<li class='green'><span class='hits'>531</span><code>                    var res = isFunction(callback) ? spreadArgs(callback, arguments) : callback;</code></li>
-<li class='green'><span class='hits'>527</span><code>                    if (isPromiseLike(res)) {</code></li>
-<li class='green'><span class='hits'>199</span><code>                        res.then(promise.callback, _errback);</code></li>
+<li class='green'><span class='hits'>599</span><code>            function _callback() {</code></li>
+<li class='green'><span class='hits'>541</span><code>                try {</code></li>
+<li class='green'><span class='hits'>541</span><code>                    var res = isFunction(callback) ? spreadArgs(callback, arguments) : callback;</code></li>
+<li class='green'><span class='hits'>537</span><code>                    if (isPromiseLike(res)) {</code></li>
+<li class='green'><span class='hits'>206</span><code>                        res.then(promise.callback, _errback);</code></li>
 <li class='green'><span class=''> </span><code>                    } else {</code></li>
-<li class='green'><span class='hits'>328</span><code>                        promise.callback(res);</code></li>
-<li class='green'><span class='hits'>328</span><code>                        promise = null;</code></li>
+<li class='green'><span class='hits'>331</span><code>                        promise.callback(res);</code></li>
+<li class='green'><span class='hits'>331</span><code>                        promise = null;</code></li>
 <li class='green'><span class=''> </span><code>                    }</code></li>
-<li class='green'><span class='hits'>527</span><code>                    callback = res = null;</code></li>
+<li class='green'><span class='hits'>537</span><code>                    callback = res = null;</code></li>
 <li class='green'><span class=''> </span><code>                } catch (e) {</code></li>
 <li class='green'><span class='hits'>4</span><code>                    _errback(e);</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>582</span><code>            self.addCallback(_callback);</code></li>
-<li class='green'><span class='hits'>582</span><code>            self.addErrback(_errback);</code></li>
-<li class='green'><span class='hits'>582</span><code>            return promise.promise();</code></li>
+<li class='green'><span class='hits'>599</span><code>            self.addCallback(_callback);</code></li>
+<li class='green'><span class='hits'>599</span><code>            self.addErrback(_errback);</code></li>
+<li class='green'><span class='hits'>599</span><code>            return promise.promise();</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -1327,39 +1327,39 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {Object} an object containing "chain", "chainBoth", "promise", "addCallback", "addErrback", "then", "both".</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        promise: function () {</code></li>
-<li class='green'><span class='hits'>4156</span><code>            var ret = {</code></li>
+<li class='green'><span class='hits'>4218</span><code>            var ret = {</code></li>
 <li class='green'><span class=''> </span><code>                promise: function () {</code></li>
-<li class='green'><span class='hits'>756</span><code>                    return ret;</code></li>
+<li class='green'><span class='hits'>765</span><code>                    return ret;</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>4156</span><code>            var self = this;</code></li>
-<li class='green'><span class='hits'>4156</span><code>            ret["chain"] = function () {</code></li>
-<li class='green'><span class='hits'>572</span><code>                return spreadArgs(self["chain"], arguments, self);</code></li>
+<li class='green'><span class='hits'>4218</span><code>            var self = this;</code></li>
+<li class='green'><span class='hits'>4218</span><code>            ret["chain"] = function () {</code></li>
+<li class='green'><span class='hits'>589</span><code>                return spreadArgs(self["chain"], arguments, self);</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>4156</span><code>            ret["chainBoth"] = function () {</code></li>
+<li class='green'><span class='hits'>4218</span><code>            ret["chainBoth"] = function () {</code></li>
 <li class='green'><span class='hits'>5</span><code>                return spreadArgs(self["chainBoth"], arguments, self);</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>4156</span><code>            ret["addCallback"] = function () {</code></li>
+<li class='green'><span class='hits'>4218</span><code>            ret["addCallback"] = function () {</code></li>
 <li class='green'><span class='hits'>120</span><code>                spreadArgs(self["addCallback"], arguments, self);</code></li>
 <li class='green'><span class='hits'>120</span><code>                return ret;</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>4156</span><code>            ret["addErrback"] = function () {</code></li>
+<li class='green'><span class='hits'>4218</span><code>            ret["addErrback"] = function () {</code></li>
 <li class='green'><span class='hits'>7</span><code>                spreadArgs(self["addErrback"], arguments, self);</code></li>
 <li class='green'><span class='hits'>7</span><code>                return ret;</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>4156</span><code>            ret["then"] = function () {</code></li>
-<li class='green'><span class='hits'>1127</span><code>                spreadArgs(self["then"], arguments, self);</code></li>
-<li class='green'><span class='hits'>1127</span><code>                return ret;</code></li>
+<li class='green'><span class='hits'>4218</span><code>            ret["then"] = function () {</code></li>
+<li class='green'><span class='hits'>1144</span><code>                spreadArgs(self["then"], arguments, self);</code></li>
+<li class='green'><span class='hits'>1144</span><code>                return ret;</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>4156</span><code>            ret["both"] = function () {</code></li>
+<li class='green'><span class='hits'>4218</span><code>            ret["both"] = function () {</code></li>
 <li class='red'><span class='nohits'>0</span><code>                spreadArgs(self["both"], arguments, self);</code></li>
 <li class='red'><span class='nohits'>0</span><code>                return ret;</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>4156</span><code>            ret["classic"] = function () {</code></li>
+<li class='green'><span class='hits'>4218</span><code>            ret["classic"] = function () {</code></li>
 <li class='green'><span class='hits'>3</span><code>                spreadArgs(self["classic"], arguments, self);</code></li>
 <li class='green'><span class='hits'>3</span><code>                return ret;</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>4156</span><code>            return ret;</code></li>
+<li class='green'><span class='hits'>4218</span><code>            return ret;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -1577,11 +1577,11 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isPromiseLike(obj) {</code></li>
-<li class='green'><span class='hits'>2704</span><code>    return isObject(obj, Promise) &amp;&amp; typeof obj.then === "function";</code></li>
+<li class='green'><span class='hits'>2730</span><code>    return isObject(obj, Promise) &amp;&amp; typeof obj.then === "function";</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function isPromise(obj) {</code></li>
-<li class='green'><span class='hits'>8604</span><code>    return obj instanceof Promise;</code></li>
+<li class='green'><span class='hits'>8689</span><code>    return obj instanceof Promise;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -1601,36 +1601,36 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function when(args, cb, eb) {</code></li>
-<li class='green'><span class='hits'>1364</span><code>    var args = argsToArray(arguments), p;</code></li>
-<li class='green'><span class='hits'>1364</span><code>    eb = base.isFunction(args[args.length - 1]) ? args.pop() : null;</code></li>
-<li class='green'><span class='hits'>1364</span><code>    cb = base.isFunction(args[args.length - 1]) ? args.pop() : null;</code></li>
-<li class='green'><span class='hits'>1364</span><code>    if (eb &amp;&amp; !cb) {</code></li>
+<li class='green'><span class='hits'>1373</span><code>    var args = argsToArray(arguments), p;</code></li>
+<li class='green'><span class='hits'>1373</span><code>    eb = base.isFunction(args[args.length - 1]) ? args.pop() : null;</code></li>
+<li class='green'><span class='hits'>1373</span><code>    cb = base.isFunction(args[args.length - 1]) ? args.pop() : null;</code></li>
+<li class='green'><span class='hits'>1373</span><code>    if (eb &amp;&amp; !cb) {</code></li>
 <li class='green'><span class='hits'>9</span><code>        cb = eb;</code></li>
 <li class='green'><span class='hits'>9</span><code>        eb = null;</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1364</span><code>    if (!args.length) {</code></li>
+<li class='green'><span class='hits'>1373</span><code>    if (!args.length) {</code></li>
 <li class='green'><span class='hits'>7</span><code>        p = new Promise().callback(args);</code></li>
-<li class='green'><span class='hits'>1357</span><code>    } else if (args.length == 1) {</code></li>
-<li class='green'><span class='hits'>1317</span><code>        args = args.pop();</code></li>
-<li class='green'><span class='hits'>1317</span><code>        if (isPromiseLike(args)) {</code></li>
-<li class='green'><span class='hits'>647</span><code>            p = args;</code></li>
-<li class='green'><span class='hits'>670</span><code>        } else if (isArray(args) &amp;&amp; array.every(args, isPromiseLike)) {</code></li>
+<li class='green'><span class='hits'>1366</span><code>    } else if (args.length == 1) {</code></li>
+<li class='green'><span class='hits'>1326</span><code>        args = args.pop();</code></li>
+<li class='green'><span class='hits'>1326</span><code>        if (isPromiseLike(args)) {</code></li>
+<li class='green'><span class='hits'>651</span><code>            p = args;</code></li>
+<li class='green'><span class='hits'>675</span><code>        } else if (isArray(args) &amp;&amp; array.every(args, isPromiseLike)) {</code></li>
 <li class='green'><span class='hits'>89</span><code>            p = new PromiseList(args, true);</code></li>
 <li class='green'><span class=''> </span><code>        } else {</code></li>
-<li class='green'><span class='hits'>581</span><code>            p = new Promise().callback(args);</code></li>
+<li class='green'><span class='hits'>586</span><code>            p = new Promise().callback(args);</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
 <li class='green'><span class='hits'>40</span><code>        p = new PromiseList(args.map(function (a) {</code></li>
 <li class='green'><span class='hits'>135</span><code>            return isPromiseLike(a) ? a : new Promise().callback(a);</code></li>
 <li class='green'><span class=''> </span><code>        }), true);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1364</span><code>    if (cb) {</code></li>
+<li class='green'><span class='hits'>1373</span><code>    if (cb) {</code></li>
 <li class='green'><span class='hits'>15</span><code>        p.addCallback(cb);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1364</span><code>    if (eb) {</code></li>
+<li class='green'><span class='hits'>1373</span><code>    if (eb) {</code></li>
 <li class='green'><span class='hits'>6</span><code>        p.addErrback(eb);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1364</span><code>    return p.promise();</code></li>
+<li class='green'><span class='hits'>1373</span><code>    return p.promise();</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -1788,7 +1788,106 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        } else {</code></li>
 <li class='green'><span class='hits'>1</span><code>            return when(fn.apply(this, arguments));</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class=''> </span><code>    };</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Wraps a stream in a promise waiting for either the `"end"` or `"error"` event to be triggered.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> * comb.promisfyStream(fs.createdReadStream("my.file")).chain(function(){</code></li>
+<li class='green'><span class=''> </span><code> *      console.log("done reading!");</code></li>
+<li class='green'><span class=''> </span><code> * });</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param stream stream to wrap</code></li>
+<li class='green'><span class=''> </span><code> * @return {comb.Promise} a Promise is resolved if `"end"` is triggered before `"error"` or rejected if `"error"` is triggered.</code></li>
+<li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>function promisfyStream(stream) {</code></li>
+<li class='green'><span class='hits'>2</span><code>    var ret = new Promise(), called;</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>2</span><code>    function errorHandler() {</code></li>
+<li class='green'><span class='hits'>1</span><code>        if (!called) {</code></li>
+<li class='green'><span class='hits'>1</span><code>            called = true;</code></li>
+<li class='green'><span class='hits'>1</span><code>            spreadArgs(ret.errback, arguments, ret);</code></li>
+<li class='green'><span class='hits'>1</span><code>            stream.removeListener("error", endHandler);</code></li>
+<li class='green'><span class='hits'>1</span><code>            stream.removeListener("end", endHandler);</code></li>
+<li class='green'><span class='hits'>1</span><code>            stream = ret = null;</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>2</span><code>    function endHandler() {</code></li>
+<li class='green'><span class='hits'>1</span><code>        if (!called) {</code></li>
+<li class='green'><span class='hits'>1</span><code>            called = true;</code></li>
+<li class='green'><span class='hits'>1</span><code>            spreadArgs(ret.callback, arguments, ret);</code></li>
+<li class='green'><span class='hits'>1</span><code>            stream.removeListener("error", endHandler);</code></li>
+<li class='green'><span class='hits'>1</span><code>            stream.removeListener("end", endHandler);</code></li>
+<li class='green'><span class='hits'>1</span><code>            stream = ret = null;</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>2</span><code>    stream.on("error", errorHandler).on("end", endHandler);</code></li>
+<li class='green'><span class='hits'>2</span><code>    return ret.promise();</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Creates a new {@link comb.Promise} that is resolved with the given value.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> * comb.resolved(1).chain(function(val){</code></li>
+<li class='green'><span class=''> </span><code> *      //val === 1</code></li>
+<li class='green'><span class=''> </span><code> * });</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * If you give it a promise it will wait for the promise to resolve or error.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> * comb.resolved(new comb.Promise().callback(1)).chain(function(val){</code></li>
+<li class='green'><span class=''> </span><code> *      //val === 1</code></li>
+<li class='green'><span class=''> </span><code> * });</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param val - val to resolve with</code></li>
+<li class='green'><span class=''> </span><code> * @returns {comb.Promise} a promisfied version of the value.</code></li>
+<li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>function resolved(val) {</code></li>
+<li class='green'><span class='hits'>5</span><code>    var ret = new Promise();</code></li>
+<li class='green'><span class='hits'>5</span><code>    when(val).chain(ret.callback, ret.errback);</code></li>
+<li class='green'><span class='hits'>5</span><code>    return ret.promise();</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Creates a new {@link comb.Promise} that is rejected with the given value.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> * comb.resolved(new Error("error!")).chain(null, function(err){</code></li>
+<li class='green'><span class=''> </span><code> *      console.error(err.stack);</code></li>
+<li class='green'><span class=''> </span><code> * });</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * If you give it a promise it will wait for the promise to resolve or error but with reject either way.</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> * comb.resolved(new comb.Promise().callback(1)).chain(null, function(err){</code></li>
+<li class='green'><span class=''> </span><code> *      //err === 1</code></li>
+<li class='green'><span class=''> </span><code> * });</code></li>
+<li class='green'><span class=''> </span><code> * ```</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param val - val to reject with</code></li>
+<li class='green'><span class=''> </span><code> * @returns {comb.Promise} a rejected promise with the specified value.</code></li>
+<li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>function rejected(val) {</code></li>
+<li class='green'><span class='hits'>4</span><code>    var ret = new Promise();</code></li>
+<li class='green'><span class='hits'>4</span><code>    when(val).chain(ret.errback, ret.errback);</code></li>
+<li class='green'><span class='hits'>4</span><code>    return ret.promise();</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -1799,6 +1898,9 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    wait: wait,</code></li>
 <li class='green'><span class=''> </span><code>    serial: serial,</code></li>
 <li class='green'><span class=''> </span><code>    chain: chain,</code></li>
+<li class='green'><span class=''> </span><code>    promisfyStream: promisfyStream,</code></li>
+<li class='green'><span class=''> </span><code>    resolved: resolved,</code></li>
+<li class='green'><span class=''> </span><code>    rejected: rejected,</code></li>
 <li class='green'><span class=''> </span><code>    Promise: Promise,</code></li>
 <li class='green'><span class=''> </span><code>    PromiseList: PromiseList</code></li>
 <li class='green'><span class=''> </span><code>});</code></li>
@@ -1809,6 +1911,627 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li></ol></pre></div>
+</div>
+
+<div class="cov-section cov-section-hover cov-section-high" id="define.js">
+    <table class='section-table'>
+        <tr>
+            <td>
+                <div class='cov-section-header'>define.js</div>
+            </td>
+            <td class="cov-stats">
+                <div>
+                    <span class='cov-label'>Coverage</span><span class='cov-value'>96.49</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>603</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>171</span>
+                    <span class='cov-label'>Missed</span><span class='cov-value'>6</span>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class='source' id="define.js-source"><pre class='prettyprint linenums'><ol class='linenums'><li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Used to keep track of classes and to create unique ids</code></li>
+<li class='green'><span class=''> </span><code> * @ignore</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>var classCounter = 0, Base,</code></li>
+<li class='green'><span class=''> </span><code>    _base = require("./base"),</code></li>
+<li class='green'><span class=''> </span><code>    isHash = _base.isHash,</code></li>
+<li class='green'><span class=''> </span><code>    isArray = _base.isArray,</code></li>
+<li class='green'><span class=''> </span><code>    SUPER_REGEXP = /(super)/ig,</code></li>
+<li class='green'><span class=''> </span><code>    invoke = _base.__spreadArgs;</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function callSuper(args, a) {</code></li>
+<li class='green'><span class='hits'>1243</span><code>    var meta = this.__meta,</code></li>
+<li class='green'><span class=''> </span><code>        supers = meta.supers,</code></li>
+<li class='green'><span class=''> </span><code>        l = supers.length, superMeta = meta.superMeta, pos = superMeta.pos;</code></li>
+<li class='green'><span class='hits'>1243</span><code>    if (l &gt; pos) {</code></li>
+<li class='green'><span class='hits'>1243</span><code>        a &amp;&amp; (args = a);</code></li>
+<li class='green'><span class='hits'>1243</span><code>        var name = superMeta.name, f = superMeta.f, m;</code></li>
+<li class='green'><span class='hits'>1243</span><code>        do {</code></li>
+<li class='green'><span class='hits'>1243</span><code>            m = supers[pos][name];</code></li>
+<li class='green'><span class='hits'>1243</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
+<li class='green'><span class='hits'>1239</span><code>                superMeta.pos = 1 + pos;</code></li>
+<li class='green'><span class='hits'>1239</span><code>                return invoke(m, args, this);</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class=''> </span><code>        } while (l &gt; ++pos);</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>4</span><code>    return null;</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function getSuper() {</code></li>
+<li class='green'><span class='hits'>2</span><code>    var meta = this.__meta,</code></li>
+<li class='green'><span class=''> </span><code>        supers = meta.supers,</code></li>
+<li class='green'><span class=''> </span><code>        l = supers.length, superMeta = meta.superMeta, pos = superMeta.pos;</code></li>
+<li class='green'><span class='hits'>2</span><code>    if (l &gt; pos) {</code></li>
+<li class='green'><span class='hits'>2</span><code>        var name = superMeta.name, f = superMeta.f, m;</code></li>
+<li class='green'><span class='hits'>2</span><code>        do {</code></li>
+<li class='green'><span class='hits'>3</span><code>            m = supers[pos][name];</code></li>
+<li class='green'><span class='hits'>3</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
+<li class='green'><span class='hits'>1</span><code>                superMeta.pos = 1 + pos;</code></li>
+<li class='green'><span class='hits'>1</span><code>                return m.bind(this);</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class=''> </span><code>        } while (l &gt; ++pos);</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>1</span><code>    return null;</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function defaultFunction() {</code></li>
+<li class='green'><span class='hits'>287</span><code>    var meta = this.__meta || {},</code></li>
+<li class='green'><span class=''> </span><code>        supers = meta.supers,</code></li>
+<li class='green'><span class=''> </span><code>        l = supers.length, superMeta = meta.superMeta, pos = superMeta.pos;</code></li>
+<li class='green'><span class='hits'>287</span><code>    if (l &gt; pos) {</code></li>
+<li class='green'><span class='hits'>143</span><code>        var name = superMeta.name, f = superMeta.f, m;</code></li>
+<li class='green'><span class='hits'>143</span><code>        do {</code></li>
+<li class='green'><span class='hits'>223</span><code>            m = supers[pos][name];</code></li>
+<li class='green'><span class='hits'>223</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
+<li class='green'><span class='hits'>96</span><code>                superMeta.pos = 1 + pos;</code></li>
+<li class='green'><span class='hits'>96</span><code>                return invoke(m, arguments, this);</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class=''> </span><code>        } while (l &gt; ++pos);</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>191</span><code>    return null;</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function functionWrapper(f, name) {</code></li>
+<li class='green'><span class='hits'>316</span><code>    if (f.toString().match(SUPER_REGEXP)) {</code></li>
+<li class='green'><span class='hits'>104</span><code>        var wrapper = function () {</code></li>
+<li class='green'><span class='hits'>2128</span><code>            var ret, meta = this.__meta || {};</code></li>
+<li class='green'><span class='hits'>2128</span><code>            var orig = meta.superMeta;</code></li>
+<li class='green'><span class='hits'>2128</span><code>            meta.superMeta = {f: f, pos: 0, name: name};</code></li>
+<li class='green'><span class='hits'>2128</span><code>            ret = invoke(f, arguments, this);</code></li>
+<li class='green'><span class='hits'>2128</span><code>            meta.superMeta = orig;</code></li>
+<li class='green'><span class='hits'>2128</span><code>            return ret;</code></li>
+<li class='green'><span class=''> </span><code>        };</code></li>
+<li class='green'><span class='hits'>104</span><code>        wrapper._f = f;</code></li>
+<li class='green'><span class='hits'>104</span><code>        return wrapper;</code></li>
+<li class='green'><span class=''> </span><code>    } else {</code></li>
+<li class='green'><span class='hits'>212</span><code>        f._f = f;</code></li>
+<li class='green'><span class='hits'>212</span><code>        return f;</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * @ignore</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>function defineMixinProps(child, proto) {</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>34</span><code>    var operations = proto.setters || {};</code></li>
+<li class='green'><span class='hits'>34</span><code>    for (var i in operations) {</code></li>
+<li class='green'><span class='hits'>15</span><code>        if (!child.__lookupSetter__(i)) {  //make sure that the setter isnt already there</code></li>
+<li class='green'><span class='hits'>15</span><code>            child.__defineSetter__(i, operations[i]);</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>34</span><code>    operations = proto.getters || {};</code></li>
+<li class='green'><span class='hits'>34</span><code>    for (i in operations) {</code></li>
+<li class='green'><span class='hits'>15</span><code>        if (!child.__lookupGetter__(i)) {</code></li>
+<li class='green'><span class=''> </span><code>            //define the getter if the child does not already have it</code></li>
+<li class='green'><span class='hits'>15</span><code>            child.__defineGetter__(i, operations[i]);</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>34</span><code>    for (var j in proto) {</code></li>
+<li class='green'><span class='hits'>103</span><code>        if (j != "getters" &amp;&amp; j != "setters") {</code></li>
+<li class='green'><span class='hits'>83</span><code>            var p = proto[j];</code></li>
+<li class='green'><span class='hits'>83</span><code>            if ("function" === typeof p) {</code></li>
+<li class='green'><span class='hits'>78</span><code>                if (!child.hasOwnProperty(j)) {</code></li>
+<li class='green'><span class='hits'>10</span><code>                    child[j] = functionWrapper(defaultFunction, j);</code></li>
+<li class='green'><span class=''> </span><code>                }</code></li>
+<li class='green'><span class=''> </span><code>            } else {</code></li>
+<li class='green'><span class='hits'>5</span><code>                child[j] = p;</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * @ignore</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>function mixin() {</code></li>
+<li class='green'><span class='hits'>7</span><code>    var args = Array.prototype.slice.call(arguments), l = args.length;</code></li>
+<li class='green'><span class='hits'>7</span><code>    var child = this.prototype, childMeta = child.__meta, thisMeta = this.__meta, bases = child.__meta.bases, staticBases = bases.slice(),</code></li>
+<li class='green'><span class=''> </span><code>        staticSupers = thisMeta.supers || [], supers = childMeta.supers || [];</code></li>
+<li class='green'><span class='hits'>7</span><code>    for (var i = 0; i &lt; l; i++) {</code></li>
+<li class='green'><span class='hits'>17</span><code>        var m = args[i], mProto = m.prototype;</code></li>
+<li class='green'><span class='hits'>17</span><code>        var protoMeta = mProto.__meta, meta = m.__meta;</code></li>
+<li class='green'><span class='hits'>17</span><code>        if (!protoMeta) {</code></li>
+<li class='red'><span class='nohits'>0</span><code>            protoMeta = {proto: mProto || {}};</code></li>
+<li class='red'><span class='nohits'>0</span><code>            Object.defineProperty(mProto, "__meta", {</code></li>
+<li class='green'><span class=''> </span><code>                enumerable: false,</code></li>
+<li class='green'><span class=''> </span><code>                value: protoMeta</code></li>
+<li class='green'><span class=''> </span><code>            });</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class='hits'>17</span><code>        if (!meta) {</code></li>
+<li class='red'><span class='nohits'>0</span><code>            meta = {proto: m["__proto__"] || {}};</code></li>
+<li class='red'><span class='nohits'>0</span><code>            Object.defineProperty(m, "__meta", {</code></li>
+<li class='green'><span class=''> </span><code>                enumerable: false,</code></li>
+<li class='green'><span class=''> </span><code>                value: protoMeta</code></li>
+<li class='green'><span class=''> </span><code>            });</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class='hits'>17</span><code>        defineMixinProps(child, protoMeta.proto || {});</code></li>
+<li class='green'><span class='hits'>17</span><code>        defineMixinProps(this, meta.proto || {});</code></li>
+<li class='green'><span class=''> </span><code>        //copy the bases for static,</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>17</span><code>        mixinSupers(m.prototype, supers, bases);</code></li>
+<li class='green'><span class='hits'>17</span><code>        mixinSupers(m, staticSupers, staticBases);</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>7</span><code>    return this;</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * @ignore</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>function mixinSupers(sup, arr, bases) {</code></li>
+<li class='green'><span class='hits'>386</span><code>    var meta = sup.__meta;</code></li>
+<li class='green'><span class='hits'>386</span><code>    if (!meta) {</code></li>
+<li class='red'><span class='nohits'>0</span><code>        meta = {};</code></li>
+<li class='red'><span class='nohits'>0</span><code>        Object.defineProperty(sup, "__meta", {</code></li>
+<li class='green'><span class=''> </span><code>            enumerable: false,</code></li>
+<li class='green'><span class=''> </span><code>            value: meta</code></li>
+<li class='green'><span class=''> </span><code>        });</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>386</span><code>    var unique = sup.__meta.unique;</code></li>
+<li class='green'><span class='hits'>386</span><code>    !unique &amp;&amp; (meta.unique = "define" + ++classCounter);</code></li>
+<li class='green'><span class=''> </span><code>    //check it we already have this super mixed into our prototype chain</code></li>
+<li class='green'><span class=''> </span><code>    //if true then we have already looped their supers!</code></li>
+<li class='green'><span class='hits'>386</span><code>    if (bases.indexOf(unique) == -1) {</code></li>
+<li class='green'><span class=''> </span><code>        //add their id to our bases</code></li>
+<li class='green'><span class='hits'>234</span><code>        bases.push(unique);</code></li>
+<li class='green'><span class='hits'>234</span><code>        var supers = sup.__meta.supers || [], i = supers.length - 1 || 0;</code></li>
+<li class='green'><span class='hits'>234</span><code>        while (i &gt;= 0) {</code></li>
+<li class='green'><span class='hits'>258</span><code>            mixinSupers(supers[i--], arr, bases);</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class='hits'>234</span><code>        arr.unshift(sup);</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * @ignore</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>function defineProps(child, proto) {</code></li>
+<li class='green'><span class='hits'>92</span><code>    var operations = proto.setters;</code></li>
+<li class='green'><span class='hits'>92</span><code>    if (operations) {</code></li>
+<li class='green'><span class='hits'>8</span><code>        for (var i in operations) {</code></li>
+<li class='green'><span class='hits'>13</span><code>            child.__defineSetter__(i, operations[i]);</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>92</span><code>    operations = proto.getters || {};</code></li>
+<li class='green'><span class='hits'>92</span><code>    if (operations) {</code></li>
+<li class='green'><span class='hits'>92</span><code>        for (i in operations) {</code></li>
+<li class='green'><span class='hits'>47</span><code>            child.__defineGetter__(i, operations[i]);</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>92</span><code>    for (i in proto) {</code></li>
+<li class='green'><span class='hits'>357</span><code>        if (i != "getters" &amp;&amp; i != "setters") {</code></li>
+<li class='green'><span class='hits'>336</span><code>            var f = proto[i];</code></li>
+<li class='green'><span class='hits'>336</span><code>            if ("function" === typeof f) {</code></li>
+<li class='green'><span class='hits'>303</span><code>                var meta = f.__meta || {};</code></li>
+<li class='green'><span class='hits'>303</span><code>                if (!meta.isConstructor) {</code></li>
+<li class='green'><span class='hits'>302</span><code>                    child[i] = functionWrapper(f, i);</code></li>
+<li class='green'><span class=''> </span><code>                } else {</code></li>
+<li class='green'><span class='hits'>1</span><code>                    child[i] = f;</code></li>
+<li class='green'><span class=''> </span><code>                }</code></li>
+<li class='green'><span class=''> </span><code>            } else {</code></li>
+<li class='green'><span class='hits'>33</span><code>                child[i] = f;</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function _export(obj, name) {</code></li>
+<li class='green'><span class='hits'>11</span><code>    if (obj &amp;&amp; name) {</code></li>
+<li class='green'><span class='hits'>2</span><code>        obj[name] = this;</code></li>
+<li class='green'><span class=''> </span><code>    } else {</code></li>
+<li class='green'><span class='hits'>9</span><code>        obj.exports = obj = this;</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>11</span><code>    return this;</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function extend(proto) {</code></li>
+<li class='green'><span class='hits'>3</span><code>    return define(this, proto);</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * @ignore</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>function __define(child, sup, proto) {</code></li>
+<li class='green'><span class='hits'>48</span><code>    var childProto = child.prototype, supers = [];</code></li>
+<li class='green'><span class='hits'>48</span><code>    var unique = "define" + ++classCounter, bases = [], staticBases = [];</code></li>
+<li class='green'><span class='hits'>48</span><code>    var instanceSupers = [], staticSupers = [];</code></li>
+<li class='green'><span class='hits'>48</span><code>    var meta = {</code></li>
+<li class='green'><span class=''> </span><code>        supers: instanceSupers,</code></li>
+<li class='green'><span class=''> </span><code>        unique: unique,</code></li>
+<li class='green'><span class=''> </span><code>        bases: bases,</code></li>
+<li class='green'><span class=''> </span><code>        superMeta: {</code></li>
+<li class='green'><span class=''> </span><code>            f: null,</code></li>
+<li class='green'><span class=''> </span><code>            pos: 0,</code></li>
+<li class='green'><span class=''> </span><code>            name: null</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class=''> </span><code>    };</code></li>
+<li class='green'><span class='hits'>48</span><code>    Object.defineProperty(childProto, "__meta", {</code></li>
+<li class='green'><span class=''> </span><code>        enumerable: false,</code></li>
+<li class='green'><span class=''> </span><code>        value: meta</code></li>
+<li class='green'><span class=''> </span><code>    });</code></li>
+<li class='green'><span class='hits'>48</span><code>    var childMeta = {</code></li>
+<li class='green'><span class=''> </span><code>        supers: staticSupers,</code></li>
+<li class='green'><span class=''> </span><code>        unique: unique,</code></li>
+<li class='green'><span class=''> </span><code>        bases: staticBases,</code></li>
+<li class='green'><span class=''> </span><code>        isConstructor: true,</code></li>
+<li class='green'><span class=''> </span><code>        superMeta: {</code></li>
+<li class='green'><span class=''> </span><code>            f: null,</code></li>
+<li class='green'><span class=''> </span><code>            pos: 0,</code></li>
+<li class='green'><span class=''> </span><code>            name: null</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class=''> </span><code>    };</code></li>
+<li class='green'><span class='hits'>48</span><code>    Object.defineProperty(child, "__meta", {</code></li>
+<li class='green'><span class=''> </span><code>        enumerable: false,</code></li>
+<li class='green'><span class=''> </span><code>        value: childMeta</code></li>
+<li class='green'><span class=''> </span><code>    });</code></li>
+<li class='green'><span class='hits'>48</span><code>    if ((isHash(sup) &amp;&amp; !proto)) {</code></li>
+<li class='green'><span class='hits'>2</span><code>        proto = sup;</code></li>
+<li class='green'><span class='hits'>2</span><code>        sup = Base;</code></li>
+<li class='green'><span class='hits'>46</span><code>    } else if ((!sup &amp;&amp; isHash(proto))) {</code></li>
+<li class='green'><span class='hits'>14</span><code>        sup = Base;</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>48</span><code>    if ("function" === typeof sup || isArray(sup)) {</code></li>
+<li class='green'><span class='hits'>47</span><code>        supers = isArray(sup) ? sup : [sup];</code></li>
+<li class='green'><span class='hits'>47</span><code>        sup = supers.shift();</code></li>
+<li class='green'><span class='hits'>47</span><code>        child.__proto__ = sup;</code></li>
+<li class='green'><span class='hits'>47</span><code>        childProto.__proto__ = sup.prototype;</code></li>
+<li class='green'><span class='hits'>47</span><code>        mixinSupers(sup.prototype, instanceSupers, bases),</code></li>
+<li class='green'><span class=''> </span><code>            mixinSupers(sup, staticSupers, staticBases);</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>48</span><code>    if (proto) {</code></li>
+<li class='green'><span class='hits'>46</span><code>        var instance = meta.proto = proto.instance || {};</code></li>
+<li class='green'><span class='hits'>46</span><code>        !instance.hasOwnProperty("constructor") &amp;&amp; (instance.constructor = defaultFunction);</code></li>
+<li class='green'><span class='hits'>46</span><code>        var stat = childMeta.proto = proto.static || {};</code></li>
+<li class='green'><span class='hits'>46</span><code>        stat.init = stat.init || defaultFunction;</code></li>
+<li class='green'><span class='hits'>46</span><code>        defineProps(childProto, instance, false);</code></li>
+<li class='green'><span class='hits'>46</span><code>        defineProps(child, stat, true);</code></li>
+<li class='green'><span class=''> </span><code>    } else {</code></li>
+<li class='green'><span class='hits'>2</span><code>        meta.proto = {};</code></li>
+<li class='green'><span class='hits'>2</span><code>        childMeta.proto = {};</code></li>
+<li class='green'><span class='hits'>2</span><code>        child.init = functionWrapper(defaultFunction, "init");</code></li>
+<li class='green'><span class='hits'>2</span><code>        childProto.constructor = functionWrapper(defaultFunction, "constructor");</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>48</span><code>    if (supers.length) {</code></li>
+<li class='green'><span class='hits'>7</span><code>        invoke(mixin, supers, child);</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>48</span><code>    Object.defineProperty(childProto, "_super", {</code></li>
+<li class='green'><span class=''> </span><code>        enumerable: false,</code></li>
+<li class='green'><span class=''> </span><code>        value: callSuper</code></li>
+<li class='green'><span class=''> </span><code>    });</code></li>
+<li class='green'><span class='hits'>48</span><code>    Object.defineProperty(child, "_super", {</code></li>
+<li class='green'><span class=''> </span><code>        enumerable: false,</code></li>
+<li class='green'><span class=''> </span><code>        value: callSuper</code></li>
+<li class='green'><span class=''> </span><code>    });</code></li>
+<li class='green'><span class='hits'>48</span><code>    Object.defineProperty(child, "_getSuper", {</code></li>
+<li class='green'><span class=''> </span><code>        enumerable: false,</code></li>
+<li class='green'><span class=''> </span><code>        value: getSuper</code></li>
+<li class='green'><span class=''> </span><code>    });</code></li>
+<li class='green'><span class='hits'>48</span><code>    Object.defineProperty(childProto, "_getSuper", {</code></li>
+<li class='green'><span class=''> </span><code>        enumerable: false,</code></li>
+<li class='green'><span class=''> </span><code>        value: getSuper</code></li>
+<li class='green'><span class=''> </span><code>    });</code></li>
+<li class='green'><span class='hits'>48</span><code>    Object.defineProperty(childProto, "_static", {</code></li>
+<li class='green'><span class=''> </span><code>        enumerable: false,</code></li>
+<li class='green'><span class=''> </span><code>        value: child</code></li>
+<li class='green'><span class=''> </span><code>    });</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function define(sup, proto) {</code></li>
+<li class='green'><span class='hits'>45</span><code>    function defineConstructor() {</code></li>
+<li class='green'><span class='hits'>2875</span><code>        invoke(this.constructor, arguments, this);</code></li>
+<li class='green'><span class='hits'>2874</span><code>        sup = proto = null;</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>45</span><code>    __define(defineConstructor, sup, proto);</code></li>
+<li class='green'><span class='hits'>45</span><code>    return defineConstructor.init() || defineConstructor;</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>function singleton(sup, proto) {</code></li>
+<li class='green'><span class='hits'>3</span><code>    var retInstance;</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>3</span><code>    function singletonConstructor() {</code></li>
+<li class='green'><span class='hits'>6</span><code>        if (!retInstance) {</code></li>
+<li class='green'><span class='hits'>2</span><code>            invoke(this.constructor, arguments, this);</code></li>
+<li class='green'><span class='hits'>2</span><code>            retInstance = this;</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class='hits'>6</span><code>        return retInstance;</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>3</span><code>    __define(singletonConstructor, sup, proto);</code></li>
+<li class='green'><span class='hits'>3</span><code>    return  singletonConstructor.init() || singletonConstructor;</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>Base = define({</code></li>
+<li class='green'><span class=''> </span><code>    instance: {},</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>    "static": {</code></li>
+<li class='green'><span class=''> </span><code>        mixin: mixin,</code></li>
+<li class='green'><span class=''> </span><code>        extend: extend,</code></li>
+<li class='green'><span class=''> </span><code>        as: _export</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code>});</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Defines a new class to be used</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * &lt;p&gt;</code></li>
+<li class='green'><span class=''> </span><code> *     Class methods</code></li>
+<li class='green'><span class=''> </span><code> *     &lt;ul&gt;</code></li>
+<li class='green'><span class=''> </span><code> *         &lt;li&gt;as(module | object, name): exports the object to module or the object with the name&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code> *         &lt;li&gt;mixin(mixin) : mixes in an object&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code> *     &lt;/ul&gt;</code></li>
+<li class='green'><span class=''> </span><code> *     &lt;/br&gt;</code></li>
+<li class='green'><span class=''> </span><code> *     Instance methods</code></li>
+<li class='green'><span class=''> </span><code> *     &lt;ul&gt;</code></li>
+<li class='green'><span class=''> </span><code> *         &lt;li&gt;_super(argumnents, [?newargs]): calls the super of the current method&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code> *     &lt;/ul&gt;</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *      &lt;/br&gt;</code></li>
+<li class='green'><span class=''> </span><code> *     Instance properties</code></li>
+<li class='green'><span class=''> </span><code> *     &lt;ul&gt;</code></li>
+<li class='green'><span class=''> </span><code> *         &lt;li&gt;_static: use to reference class properties and methods&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code> *     &lt;/ul&gt;</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * &lt;/p&gt;</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @example</code></li>
+<li class='green'><span class=''> </span><code> *  //Class without a super class</code></li>
+<li class='green'><span class=''> </span><code> * var Mammal = comb.define(null, {</code></li>
+<li class='green'><span class=''> </span><code> *      instance : {</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *          constructor: function(options) {</code></li>
+<li class='green'><span class=''> </span><code> *              options = options || {};</code></li>
+<li class='green'><span class=''> </span><code> *              this._super(arguments);</code></li>
+<li class='green'><span class=''> </span><code> *              this._type = options.type || "mammal";</code></li>
+<li class='green'><span class=''> </span><code> *          },</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *          speak : function() {</code></li>
+<li class='green'><span class=''> </span><code> *              return  "A mammal of type " + this._type + " sounds like";</code></li>
+<li class='green'><span class=''> </span><code> *          },</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *          //Define your getters</code></li>
+<li class='green'><span class=''> </span><code> *          getters : {</code></li>
+<li class='green'><span class=''> </span><code> *              type : function() {</code></li>
+<li class='green'><span class=''> </span><code> *                  return this._type;</code></li>
+<li class='green'><span class=''> </span><code> *              }</code></li>
+<li class='green'><span class=''> </span><code> *          },</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *           //Define your setters</code></li>
+<li class='green'><span class=''> </span><code> *          setters : {</code></li>
+<li class='green'><span class=''> </span><code> *              type : function(t) {</code></li>
+<li class='green'><span class=''> </span><code> *                  this._type = t;</code></li>
+<li class='green'><span class=''> </span><code> *              }</code></li>
+<li class='green'><span class=''> </span><code> *          }</code></li>
+<li class='green'><span class=''> </span><code> *      },</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *      //Define your static methods</code></li>
+<li class='green'><span class=''> </span><code> *      static : {</code></li>
+<li class='green'><span class=''> </span><code> *          soundOff : function() {</code></li>
+<li class='green'><span class=''> </span><code> *              return "Im a mammal!!";</code></li>
+<li class='green'><span class=''> </span><code> *          }</code></li>
+<li class='green'><span class=''> </span><code> *      }</code></li>
+<li class='green'><span class=''> </span><code> * });</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * //Show singular inheritance</code></li>
+<li class='green'><span class=''> </span><code> *var Wolf = comb.define(Mammal, {</code></li>
+<li class='green'><span class=''> </span><code> *   instance: {</code></li>
+<li class='green'><span class=''> </span><code> *       constructor: function(options) {</code></li>
+<li class='green'><span class=''> </span><code> *          options = options || {};</code></li>
+<li class='green'><span class=''> </span><code> *          //You can call your super constructor, or you may not</code></li>
+<li class='green'><span class=''> </span><code> *          //call it to prevent the super initializing parameters</code></li>
+<li class='green'><span class=''> </span><code> *          this._super(arguments);</code></li>
+<li class='green'><span class=''> </span><code> *          this._sound = "growl";</code></li>
+<li class='green'><span class=''> </span><code> *          this._color = options.color || "grey";</code></li>
+<li class='green'><span class=''> </span><code> *      },</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *      speak : function() {</code></li>
+<li class='green'><span class=''> </span><code> *          //override my super classes speak</code></li>
+<li class='green'><span class=''> </span><code> *          //Should return "A mammal of type mammal sounds like a growl"</code></li>
+<li class='green'><span class=''> </span><code> *          return this._super(arguments) + " a " + this._sound;</code></li>
+<li class='green'><span class=''> </span><code> *      },</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *      //add new getters for sound and color</code></li>
+<li class='green'><span class=''> </span><code> *      getters : {</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *          color : function() {</code></li>
+<li class='green'><span class=''> </span><code> *              return this._color;</code></li>
+<li class='green'><span class=''> </span><code> *          },</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *          sound : function() {</code></li>
+<li class='green'><span class=''> </span><code> *              return this._sound;</code></li>
+<li class='green'><span class=''> </span><code> *          }</code></li>
+<li class='green'><span class=''> </span><code> *      },</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *      setters : {</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *          //NOTE color is read only except on initialization</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *          sound : function(s) {</code></li>
+<li class='green'><span class=''> </span><code> *              this._sound = s;</code></li>
+<li class='green'><span class=''> </span><code> *          }</code></li>
+<li class='green'><span class=''> </span><code> *      }</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *  },</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *  static : {</code></li>
+<li class='green'><span class=''> </span><code> *      //override my satic soundOff</code></li>
+<li class='green'><span class=''> </span><code> *      soundOff : function() {</code></li>
+<li class='green'><span class=''> </span><code> *          //You can even call super in your statics!!!</code></li>
+<li class='green'><span class=''> </span><code> *          //should return "I'm a mammal!! that growls"</code></li>
+<li class='green'><span class=''> </span><code> *          return this._super(arguments) + " that growls";</code></li>
+<li class='green'><span class=''> </span><code> *      }</code></li>
+<li class='green'><span class=''> </span><code> *  }</code></li>
+<li class='green'><span class=''> </span><code> *});</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * //Typical hierarchical inheritance</code></li>
+<li class='green'><span class=''> </span><code> * // Mammal-&gt;Wolf-&gt;Dog</code></li>
+<li class='green'><span class=''> </span><code> * var Dog = comb.define(Wolf, {</code></li>
+<li class='green'><span class=''> </span><code> *    instance: {</code></li>
+<li class='green'><span class=''> </span><code> *        constructor: function(options) {</code></li>
+<li class='green'><span class=''> </span><code> *            options = options || {};</code></li>
+<li class='green'><span class=''> </span><code> *            this._super(arguments);</code></li>
+<li class='green'><span class=''> </span><code> *            //override Wolfs initialization of sound to woof.</code></li>
+<li class='green'><span class=''> </span><code> *            this._sound = "woof";</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *        },</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *        speak : function() {</code></li>
+<li class='green'><span class=''> </span><code> *            //Should return "A mammal of type mammal sounds like a growl thats domesticated"</code></li>
+<li class='green'><span class=''> </span><code> *            return this._super(arguments) + " thats domesticated";</code></li>
+<li class='green'><span class=''> </span><code> *        }</code></li>
+<li class='green'><span class=''> </span><code> *    },</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *    static : {</code></li>
+<li class='green'><span class=''> </span><code> *        soundOff : function() {</code></li>
+<li class='green'><span class=''> </span><code> *            //should return "I'm a mammal!! that growls but now barks"</code></li>
+<li class='green'><span class=''> </span><code> *            return this._super(arguments) + " but now barks";</code></li>
+<li class='green'><span class=''> </span><code> *        }</code></li>
+<li class='green'><span class=''> </span><code> *    }</code></li>
+<li class='green'><span class=''> </span><code> *});</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * dog instanceof Wolf =&gt; true</code></li>
+<li class='green'><span class=''> </span><code> * dog instanceof Mammal =&gt; true</code></li>
+<li class='green'><span class=''> </span><code> * dog.speak() =&gt; "A mammal of type mammal sounds like a woof thats domesticated"</code></li>
+<li class='green'><span class=''> </span><code> * dog.type =&gt; "mammal"</code></li>
+<li class='green'><span class=''> </span><code> * dog.color =&gt; "gold"</code></li>
+<li class='green'><span class=''> </span><code> * dog.sound =&gt; "woof"</code></li>
+<li class='green'><span class=''> </span><code> * Dog.soundOff() =&gt; "Im a mammal!! that growls but now barks"</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * // Mammal-&gt;Wolf-&gt;Dog-&gt;Breed</code></li>
+<li class='green'><span class=''> </span><code> *var Breed = comb.define(Dog, {</code></li>
+<li class='green'><span class=''> </span><code> *    instance: {</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *        //initialize outside of constructor</code></li>
+<li class='green'><span class=''> </span><code> *        _pitch : "high",</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *        constructor: function(options) {</code></li>
+<li class='green'><span class=''> </span><code> *            options = options || {};</code></li>
+<li class='green'><span class=''> </span><code> *            this._super(arguments);</code></li>
+<li class='green'><span class=''> </span><code> *            this.breed = options.breed || "lab";</code></li>
+<li class='green'><span class=''> </span><code> *        },</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *        speak : function() {</code></li>
+<li class='green'><span class=''> </span><code> *            //Should return "A mammal of type mammal sounds like a</code></li>
+<li class='green'><span class=''> </span><code> *            //growl thats domesticated with a high pitch!"</code></li>
+<li class='green'><span class=''> </span><code> *            return this._super(arguments) + " with a " + this._pitch + " pitch!";</code></li>
+<li class='green'><span class=''> </span><code> *        },</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *        getters : {</code></li>
+<li class='green'><span class=''> </span><code> *            pitch : function() {</code></li>
+<li class='green'><span class=''> </span><code> *                return this._pitch;</code></li>
+<li class='green'><span class=''> </span><code> *            }</code></li>
+<li class='green'><span class=''> </span><code> *        }</code></li>
+<li class='green'><span class=''> </span><code> *    },</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *    static : {</code></li>
+<li class='green'><span class=''> </span><code> *        soundOff : function() {</code></li>
+<li class='green'><span class=''> </span><code> *            //should return "I'M A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</code></li>
+<li class='green'><span class=''> </span><code> *            return this._super(arguments).toUpperCase() + "!";</code></li>
+<li class='green'><span class=''> </span><code> *        }</code></li>
+<li class='green'><span class=''> </span><code> *    }</code></li>
+<li class='green'><span class=''> </span><code> * });</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * var breed = new Breed({color : "gold", type : "lab"}),</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * breed instanceof Dog =&gt; true</code></li>
+<li class='green'><span class=''> </span><code> * breed instanceof Wolf =&gt; true</code></li>
+<li class='green'><span class=''> </span><code> * breed instanceof Mammal =&gt; true</code></li>
+<li class='green'><span class=''> </span><code> * breed.speak() =&gt; "A mammal of type lab sounds like a woof "</code></li>
+<li class='green'><span class=''> </span><code> *                  + "thats domesticated with a high pitch!"</code></li>
+<li class='green'><span class=''> </span><code> * breed.type =&gt; "lab"</code></li>
+<li class='green'><span class=''> </span><code> * breed.color =&gt; "gold"</code></li>
+<li class='green'><span class=''> </span><code> * breed.sound =&gt; "woof"</code></li>
+<li class='green'><span class=''> </span><code> * breed.soundOff() =&gt; "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *  //Example of multiple inheritance</code></li>
+<li class='green'><span class=''> </span><code> *  //NOTE proto is optional</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *  //Mammal is super class</code></li>
+<li class='green'><span class=''> </span><code> *  //Wolf Dog and Breed inject functionality into the prototype</code></li>
+<li class='green'><span class=''> </span><code> * var Lab = comb.define([Mammal, Wolf, Dog, Breed]);</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * var lab = new Lab();</code></li>
+<li class='green'><span class=''> </span><code> * lab instanceof Wolf =&gt; false</code></li>
+<li class='green'><span class=''> </span><code> * lab instanceof Dog =&gt; false</code></li>
+<li class='green'><span class=''> </span><code> * lab instanceof Breed =&gt; false</code></li>
+<li class='green'><span class=''> </span><code> * lab instanceof Mammal =&gt; true</code></li>
+<li class='green'><span class=''> </span><code> * lab.speak() =&gt; "A mammal of type mammal sounds like a"</code></li>
+<li class='green'><span class=''> </span><code> *                + " woof thats domesticated with a high pitch!"</code></li>
+<li class='green'><span class=''> </span><code> * Lab.soundOff() =&gt; "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @name define</code></li>
+<li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Array|Class} super the supers of this class</code></li>
+<li class='green'><span class=''> </span><code> * @param {Object} [proto] the object used to define this class</code></li>
+<li class='green'><span class=''> </span><code> * @param {Object} [proto.instance] the instance methods of the class</code></li>
+<li class='green'><span class=''> </span><code> * @param {Object} [proto.instance.getters] the getters for the class</code></li>
+<li class='green'><span class=''> </span><code> * @param {Object} [proto.instance.setters] the setters for the class</code></li>
+<li class='green'><span class=''> </span><code> * @param {Object} [proto.static] the Class level methods of this class</code></li>
+<li class='green'><span class=''> </span><code> * @param {Object} [proto.static.getters] static getters for the object</code></li>
+<li class='green'><span class=''> </span><code> * @param {Object} [proto.static.setters] static setters for the object</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @returns {Object} the constructor of the class to be used with new keyword</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>exports.define = define;</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * Defines a singleton instance of a Class. See {@link define}</code></li>
+<li class='green'><span class=''> </span><code> * @example</code></li>
+<li class='green'><span class=''> </span><code> *  var MyLab = comb.singleton([Mammal, Wolf, Dog, Breed]);</code></li>
+<li class='green'><span class=''> </span><code> *  var myLab1 = new MyLab();</code></li>
+<li class='green'><span class=''> </span><code> *  myLab1.type = "collie"</code></li>
+<li class='green'><span class=''> </span><code> *  var myLab2 = new MyLab();</code></li>
+<li class='green'><span class=''> </span><code> *  myLab1 === myLab2 =&gt; true</code></li>
+<li class='green'><span class=''> </span><code> *  myLab1.type =&gt; "collie"</code></li>
+<li class='green'><span class=''> </span><code> *  myLab2.type =&gt; "collie"</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @name singleton</code></li>
+<li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>exports.singleton = singleton;</code></li>
 <li class='green'><span class=''> </span><code></code></li></ol></pre></div>
 </div>
 
@@ -4738,7 +5461,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>var isArray = exports.isArray = function isArray(obj) {</code></li>
-<li class='green'><span class='hits'>12425</span><code>    return Object.prototype.toString.call(obj) === "[object Array]";</code></li>
+<li class='green'><span class='hits'>12430</span><code>    return Object.prototype.toString.call(obj) === "[object Array]";</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function isDate(obj) {</code></li>
@@ -6511,8 +7234,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Array} array version of the arguments object</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function argsToArray(args, slice) {</code></li>
-<li class='green'><span class='hits'>16555</span><code>    slice = slice || 0;</code></li>
-<li class='green'><span class='hits'>16555</span><code>    return arraySlice.call(args, slice);</code></li>
+<li class='green'><span class='hits'>16598</span><code>    slice = slice || 0;</code></li>
+<li class='green'><span class='hits'>16598</span><code>    return arraySlice.call(args, slice);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -6765,8 +7488,8 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>569</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>163</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>575</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>162</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
             </td>
@@ -6882,9 +7605,9 @@ td.cov-stats {
 <li class='green'><span class='hits'>1</span><code>function merge(target, source) {</code></li>
 <li class='green'><span class='hits'>467</span><code>    var name, s;</code></li>
 <li class='green'><span class='hits'>467</span><code>    for (name in source) {</code></li>
-<li class='green'><span class='hits'>650</span><code>        s = source[name];</code></li>
-<li class='green'><span class='hits'>650</span><code>        if (!(name in target) || (target[name] !== s)) {</code></li>
-<li class='green'><span class='hits'>648</span><code>            target[name] = s;</code></li>
+<li class='green'><span class='hits'>656</span><code>        s = source[name];</code></li>
+<li class='green'><span class='hits'>656</span><code>        if (!(name in target) || (target[name] !== s)) {</code></li>
+<li class='green'><span class='hits'>654</span><code>            target[name] = s;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class='hits'>467</span><code>    return target;</code></li>
@@ -6926,6 +7649,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * @returns {Boolean} true if it is a hash false otherwise</code></li>
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isHash(obj) {</code></li>
 <li class='green'><span class='hits'>287</span><code>    var ret = comb.isObject(obj);</code></li>
@@ -6956,6 +7680,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Object} the merged object</code></li>
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> * @name merge</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function combMerge(obj, props) {</code></li>
 <li class='green'><span class='hits'>442</span><code>    if (!obj) {</code></li>
@@ -6988,6 +7713,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Object} the merged object</code></li>
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> * @name deepMerge</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function combDeepMerge(obj, props) {</code></li>
 <li class='green'><span class='hits'>5</span><code>    if (!obj) {</code></li>
@@ -6998,7 +7724,6 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class='hits'>5</span><code>    return obj; // Object</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class='hits'>1</span><code>;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
 <li class='green'><span class=''> </span><code> * Extends the prototype of an object if it exists otherwise it extends the object.</code></li>
@@ -7031,6 +7756,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * @returns {Object} returns the extended object</code></li>
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function extend(parent, extend) {</code></li>
 <li class='green'><span class='hits'>4</span><code>    var proto = parent.prototype || parent;</code></li>
@@ -7045,10 +7771,11 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * @returns {Boolean} true if it is an object false otherwise</code></li>
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isObject(obj) {</code></li>
-<li class='green'><span class='hits'>4236</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>4236</span><code>    return obj !== null &amp;&amp; obj !== undef &amp;&amp; typeof obj === "object";</code></li>
+<li class='green'><span class='hits'>4262</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>4262</span><code>    return obj !== null &amp;&amp; obj !== undef &amp;&amp; typeof obj === "object";</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -7063,6 +7790,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @param object the object to test</code></li>
 <li class='green'><span class=''> </span><code> * @returns {Boolean} true if the object is empty;</code></li>
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isEmpty(object) {</code></li>
 <li class='green'><span class='hits'>9</span><code>    if (comb.isObject(object)) {</code></li>
@@ -7087,6 +7815,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @param o3 the second thing to compare</code></li>
 <li class='green'><span class=''> </span><code> * @return {Boolean}</code></li>
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
+<li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function deepEqual(o1, o2) {</code></li>
 <li class='green'><span class='hits'>24</span><code>    return  _deepEqual(o1, o2);</code></li>
@@ -7418,8 +8147,8 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>1187</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>131</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>1204</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>132</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
             </td>
@@ -7444,8 +8173,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isString(obj) {</code></li>
-<li class='green'><span class='hits'>35857</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>35857</span><code>    return obj != undef &amp;&amp; (typeof obj == "string" || obj instanceof String);</code></li>
+<li class='green'><span class='hits'>36061</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>36061</span><code>    return obj != undef &amp;&amp; (typeof obj == "string" || obj instanceof String);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>comb.isString = isString;</code></li>
@@ -8329,12 +9058,12 @@ td.cov-stats {
 <li class='green'><span class='hits'>349</span><code>        ch = ch || " ";</code></li>
 <li class='green'><span class='hits'>349</span><code>        var strLen = string.length;</code></li>
 <li class='green'><span class='hits'>349</span><code>        while (strLen &lt; length) {</code></li>
-<li class='green'><span class='hits'>279</span><code>            if (end) {</code></li>
+<li class='green'><span class='hits'>231</span><code>            if (end) {</code></li>
 <li class='green'><span class='hits'>137</span><code>                string += ch;</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>142</span><code>                string = ch + string;</code></li>
+<li class='green'><span class='hits'>94</span><code>                string = ch + string;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>279</span><code>            strLen++;</code></li>
+<li class='green'><span class='hits'>231</span><code>            strLen++;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class='hits'>349</span><code>        return string;</code></li>
 <li class='green'><span class=''> </span><code>    },</code></li>
@@ -8609,6 +9338,23 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class='hits'>89</span><code>        return ret;</code></li>
+<li class='green'><span class=''> </span><code>    },</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>    /**</code></li>
+<li class='green'><span class=''> </span><code>     * Escapes an HTML string by replacing &lt;&gt;&amp;" characters.</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @example</code></li>
+<li class='green'><span class=''> </span><code>     * comb.string.escapeHtml('&lt;script&gt;alert("test")&lt;/script&gt;'); // &amp;lt;script&amp;gt;alert("test")&amp;lt;/script&amp;gt;</code></li>
+<li class='green'><span class=''> </span><code>     *</code></li>
+<li class='green'><span class=''> </span><code>     * @param {String} str The string to escape.</code></li>
+<li class='green'><span class=''> </span><code>     */</code></li>
+<li class='green'><span class=''> </span><code>    escapeHtml: function(str) {</code></li>
+<li class='green'><span class='hits'>1</span><code>        return String(str)</code></li>
+<li class='green'><span class=''> </span><code>            .replace(/&amp;/g, '&amp;amp;')</code></li>
+<li class='green'><span class=''> </span><code>            .replace(/&lt;/g, '&amp;lt;')</code></li>
+<li class='green'><span class=''> </span><code>            .replace(/&gt;/g, '&amp;gt;')</code></li>
+<li class='green'><span class=''> </span><code>            .replace(/"/g, '&amp;quot;')</code></li>
+<li class='green'><span class=''> </span><code>            .replace(/'/g, '&amp;#39;');</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li></ol></pre></div>
@@ -11301,585 +12047,6 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    PriorityQueue : require("./PriorityQueue"),</code></li>
 <li class='green'><span class=''> </span><code>    Pool : require("./Pool")</code></li>
 <li class='green'><span class=''> </span><code>};</code></li></ol></pre></div>
-</div>
-
-<div class="cov-section cov-section-hover cov-section-high" id="define.js">
-    <table class='section-table'>
-        <tr>
-            <td>
-                <div class='cov-section-header'>define.js</div>
-            </td>
-            <td class="cov-stats">
-                <div>
-                    <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>561</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>161</span>
-                    <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
-                </div>
-            </td>
-        </tr>
-    </table>
-    <div class='source' id="define.js-source"><pre class='prettyprint linenums'><ol class='linenums'><li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Used to keep track of classes and to create unique ids</code></li>
-<li class='green'><span class=''> </span><code> * @ignore</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>var classCounter = 0, Base,</code></li>
-<li class='green'><span class=''> </span><code>    _base = require("./base"),</code></li>
-<li class='green'><span class=''> </span><code>    isHash = _base.isHash,</code></li>
-<li class='green'><span class=''> </span><code>    isArray = _base.isArray,</code></li>
-<li class='green'><span class=''> </span><code>    SUPER_REGEXP = /(super)/ig,</code></li>
-<li class='green'><span class=''> </span><code>    invoke = _base.__spreadArgs;</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>function callSuper(args, a) {</code></li>
-<li class='green'><span class='hits'>1243</span><code>    var meta = this.__meta,</code></li>
-<li class='green'><span class=''> </span><code>        supers = meta.supers,</code></li>
-<li class='green'><span class=''> </span><code>        l = supers.length, superMeta = meta.superMeta, pos = superMeta.pos;</code></li>
-<li class='green'><span class='hits'>1243</span><code>    if (l &gt; pos) {</code></li>
-<li class='green'><span class='hits'>1243</span><code>        a &amp;&amp; (args = a);</code></li>
-<li class='green'><span class='hits'>1243</span><code>        var name = superMeta.name, f = superMeta.f, m;</code></li>
-<li class='green'><span class='hits'>1243</span><code>        do {</code></li>
-<li class='green'><span class='hits'>1243</span><code>            m = supers[pos][name];</code></li>
-<li class='green'><span class='hits'>1243</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
-<li class='green'><span class='hits'>1239</span><code>                superMeta.pos = 1 + pos;</code></li>
-<li class='green'><span class='hits'>1239</span><code>                return invoke(m, args, this);</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class=''> </span><code>        } while (l &gt; ++pos);</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>4</span><code>    return null;</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>function getSuper() {</code></li>
-<li class='green'><span class='hits'>2</span><code>    var meta = this.__meta,</code></li>
-<li class='green'><span class=''> </span><code>        supers = meta.supers,</code></li>
-<li class='green'><span class=''> </span><code>        l = supers.length, superMeta = meta.superMeta, pos = superMeta.pos;</code></li>
-<li class='green'><span class='hits'>2</span><code>    if (l &gt; pos) {</code></li>
-<li class='green'><span class='hits'>2</span><code>        var name = superMeta.name, f = superMeta.f, m;</code></li>
-<li class='green'><span class='hits'>2</span><code>        do {</code></li>
-<li class='green'><span class='hits'>3</span><code>            m = supers[pos][name];</code></li>
-<li class='green'><span class='hits'>3</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
-<li class='green'><span class='hits'>1</span><code>                superMeta.pos = 1 + pos;</code></li>
-<li class='green'><span class='hits'>1</span><code>                return m.bind(this);</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class=''> </span><code>        } while (l &gt; ++pos);</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>1</span><code>    return null;</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>function defaultFunction() {</code></li>
-<li class='green'><span class='hits'>287</span><code>    var meta = this.__meta || {},</code></li>
-<li class='green'><span class=''> </span><code>        supers = meta.supers,</code></li>
-<li class='green'><span class=''> </span><code>        l = supers.length, superMeta = meta.superMeta, pos = superMeta.pos;</code></li>
-<li class='green'><span class='hits'>287</span><code>    if (l &gt; pos) {</code></li>
-<li class='green'><span class='hits'>143</span><code>        var name = superMeta.name, f = superMeta.f, m;</code></li>
-<li class='green'><span class='hits'>143</span><code>        do {</code></li>
-<li class='green'><span class='hits'>223</span><code>            m = supers[pos][name];</code></li>
-<li class='green'><span class='hits'>223</span><code>            if ("function" === typeof m &amp;&amp; (m = m._f || m) !== f) {</code></li>
-<li class='green'><span class='hits'>96</span><code>                superMeta.pos = 1 + pos;</code></li>
-<li class='green'><span class='hits'>96</span><code>                return invoke(m, arguments, this);</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class=''> </span><code>        } while (l &gt; ++pos);</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>191</span><code>    return null;</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>function functionWrapper(f, name) {</code></li>
-<li class='green'><span class='hits'>316</span><code>    if (f.toString().match(SUPER_REGEXP)) {</code></li>
-<li class='green'><span class='hits'>104</span><code>        var wrapper = function () {</code></li>
-<li class='green'><span class='hits'>2128</span><code>            var ret, meta = this.__meta || {};</code></li>
-<li class='green'><span class='hits'>2128</span><code>            var orig = meta.superMeta;</code></li>
-<li class='green'><span class='hits'>2128</span><code>            meta.superMeta = {f: f, pos: 0, name: name};</code></li>
-<li class='green'><span class='hits'>2128</span><code>            ret = invoke(f, arguments, this);</code></li>
-<li class='green'><span class='hits'>2128</span><code>            meta.superMeta = orig;</code></li>
-<li class='green'><span class='hits'>2128</span><code>            return ret;</code></li>
-<li class='green'><span class=''> </span><code>        };</code></li>
-<li class='green'><span class='hits'>104</span><code>        wrapper._f = f;</code></li>
-<li class='green'><span class='hits'>104</span><code>        return wrapper;</code></li>
-<li class='green'><span class=''> </span><code>    } else {</code></li>
-<li class='green'><span class='hits'>212</span><code>        f._f = f;</code></li>
-<li class='green'><span class='hits'>212</span><code>        return f;</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * @ignore</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>function defineMixinProps(child, proto) {</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>34</span><code>    var operations = proto.setters || {};</code></li>
-<li class='green'><span class='hits'>34</span><code>    for (var i in operations) {</code></li>
-<li class='green'><span class='hits'>15</span><code>        if (!child.__lookupSetter__(i)) {  //make sure that the setter isnt already there</code></li>
-<li class='green'><span class='hits'>15</span><code>            child.__defineSetter__(i, operations[i]);</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>34</span><code>    operations = proto.getters || {};</code></li>
-<li class='green'><span class='hits'>34</span><code>    for (i in operations) {</code></li>
-<li class='green'><span class='hits'>15</span><code>        if (!child.__lookupGetter__(i)) {</code></li>
-<li class='green'><span class=''> </span><code>            //define the getter if the child does not already have it</code></li>
-<li class='green'><span class='hits'>15</span><code>            child.__defineGetter__(i, operations[i]);</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>34</span><code>    for (var j in proto) {</code></li>
-<li class='green'><span class='hits'>103</span><code>        if (j != "getters" &amp;&amp; j != "setters") {</code></li>
-<li class='green'><span class='hits'>83</span><code>            var p = proto[j];</code></li>
-<li class='green'><span class='hits'>83</span><code>            if ("function" === typeof p) {</code></li>
-<li class='green'><span class='hits'>78</span><code>                if (!child.hasOwnProperty(j)) {</code></li>
-<li class='green'><span class='hits'>10</span><code>                    child[j] = functionWrapper(defaultFunction, j);</code></li>
-<li class='green'><span class=''> </span><code>                }</code></li>
-<li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>5</span><code>                child[j] = p;</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * @ignore</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>function mixin() {</code></li>
-<li class='green'><span class='hits'>7</span><code>    var args = Array.prototype.slice.call(arguments), l = args.length;</code></li>
-<li class='green'><span class='hits'>7</span><code>    var child = this.prototype, childMeta = child.__meta, thisMeta = this.__meta, bases = child.__meta.bases, staticBases = bases.slice(),</code></li>
-<li class='green'><span class=''> </span><code>        staticSupers = thisMeta.supers || [], supers = childMeta.supers || [];</code></li>
-<li class='green'><span class='hits'>7</span><code>    for (var i = 0; i &lt; l; i++) {</code></li>
-<li class='green'><span class='hits'>17</span><code>        var m = args[i], mProto = m.prototype;</code></li>
-<li class='green'><span class='hits'>17</span><code>        var protoMeta = mProto.__meta, meta = m.__meta;</code></li>
-<li class='green'><span class='hits'>17</span><code>        !protoMeta &amp;&amp; (protoMeta = (mProto.__meta = {proto: mProto || {}}));</code></li>
-<li class='green'><span class='hits'>17</span><code>        !meta &amp;&amp; (meta = (m.__meta = {proto: m.__proto__ || {}}));</code></li>
-<li class='green'><span class='hits'>17</span><code>        defineMixinProps(child, protoMeta.proto || {});</code></li>
-<li class='green'><span class='hits'>17</span><code>        defineMixinProps(this, meta.proto || {});</code></li>
-<li class='green'><span class=''> </span><code>        //copy the bases for static,</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>17</span><code>        mixinSupers(m.prototype, supers, bases);</code></li>
-<li class='green'><span class='hits'>17</span><code>        mixinSupers(m, staticSupers, staticBases);</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>7</span><code>    return this;</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * @ignore</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>function mixinSupers(sup, arr, bases) {</code></li>
-<li class='green'><span class='hits'>386</span><code>    var meta = sup.__meta;</code></li>
-<li class='green'><span class='hits'>386</span><code>    !meta &amp;&amp; (meta = (sup.__meta = {}));</code></li>
-<li class='green'><span class='hits'>386</span><code>    var unique = sup.__meta.unique;</code></li>
-<li class='green'><span class='hits'>386</span><code>    !unique &amp;&amp; (meta.unique = "define" + ++classCounter);</code></li>
-<li class='green'><span class=''> </span><code>    //check it we already have this super mixed into our prototype chain</code></li>
-<li class='green'><span class=''> </span><code>    //if true then we have already looped their supers!</code></li>
-<li class='green'><span class='hits'>386</span><code>    if (bases.indexOf(unique) == -1) {</code></li>
-<li class='green'><span class=''> </span><code>        //add their id to our bases</code></li>
-<li class='green'><span class='hits'>234</span><code>        bases.push(unique);</code></li>
-<li class='green'><span class='hits'>234</span><code>        var supers = sup.__meta.supers || [], i = supers.length - 1 || 0;</code></li>
-<li class='green'><span class='hits'>234</span><code>        while (i &gt;= 0) {</code></li>
-<li class='green'><span class='hits'>258</span><code>            mixinSupers(supers[i--], arr, bases);</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>234</span><code>        arr.unshift(sup);</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * @ignore</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>function defineProps(child, proto) {</code></li>
-<li class='green'><span class='hits'>92</span><code>    var operations = proto.setters;</code></li>
-<li class='green'><span class='hits'>92</span><code>    if (operations) {</code></li>
-<li class='green'><span class='hits'>8</span><code>        for (var i in operations) {</code></li>
-<li class='green'><span class='hits'>13</span><code>            child.__defineSetter__(i, operations[i]);</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>92</span><code>    operations = proto.getters || {};</code></li>
-<li class='green'><span class='hits'>92</span><code>    if (operations) {</code></li>
-<li class='green'><span class='hits'>92</span><code>        for (i in operations) {</code></li>
-<li class='green'><span class='hits'>47</span><code>            child.__defineGetter__(i, operations[i]);</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>92</span><code>    for (i in proto) {</code></li>
-<li class='green'><span class='hits'>357</span><code>        if (i != "getters" &amp;&amp; i != "setters") {</code></li>
-<li class='green'><span class='hits'>336</span><code>            var f = proto[i];</code></li>
-<li class='green'><span class='hits'>336</span><code>            if ("function" === typeof f) {</code></li>
-<li class='green'><span class='hits'>303</span><code>                var meta = f.__meta || {};</code></li>
-<li class='green'><span class='hits'>303</span><code>                if (!meta.isConstructor) {</code></li>
-<li class='green'><span class='hits'>302</span><code>                    child[i] = functionWrapper(f, i);</code></li>
-<li class='green'><span class=''> </span><code>                } else {</code></li>
-<li class='green'><span class='hits'>1</span><code>                    child[i] = f;</code></li>
-<li class='green'><span class=''> </span><code>                }</code></li>
-<li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>33</span><code>                child[i] = f;</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>function _export(obj, name) {</code></li>
-<li class='green'><span class='hits'>11</span><code>    if (obj &amp;&amp; name) {</code></li>
-<li class='green'><span class='hits'>2</span><code>        obj[name] = this;</code></li>
-<li class='green'><span class=''> </span><code>    } else {</code></li>
-<li class='green'><span class='hits'>9</span><code>        obj.exports = obj = this;</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>11</span><code>    return this;</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>function extend(proto) {</code></li>
-<li class='green'><span class='hits'>3</span><code>    return define(this, proto);</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * @ignore</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>function __define(child, sup, proto) {</code></li>
-<li class='green'><span class='hits'>48</span><code>    var childProto = child.prototype, supers = [];</code></li>
-<li class='green'><span class='hits'>48</span><code>    var unique = "define" + ++classCounter, bases = [], staticBases = [];</code></li>
-<li class='green'><span class='hits'>48</span><code>    var instanceSupers = [], staticSupers = [];</code></li>
-<li class='green'><span class='hits'>48</span><code>    var meta = childProto.__meta = {</code></li>
-<li class='green'><span class=''> </span><code>        supers: instanceSupers,</code></li>
-<li class='green'><span class=''> </span><code>        unique: unique,</code></li>
-<li class='green'><span class=''> </span><code>        bases: bases,</code></li>
-<li class='green'><span class=''> </span><code>        superMeta: {</code></li>
-<li class='green'><span class=''> </span><code>            f: null,</code></li>
-<li class='green'><span class=''> </span><code>            pos: 0,</code></li>
-<li class='green'><span class=''> </span><code>            name: null</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class=''> </span><code>    };</code></li>
-<li class='green'><span class='hits'>48</span><code>    var childMeta = child.__meta = {</code></li>
-<li class='green'><span class=''> </span><code>        supers: staticSupers,</code></li>
-<li class='green'><span class=''> </span><code>        unique: unique,</code></li>
-<li class='green'><span class=''> </span><code>        bases: staticBases,</code></li>
-<li class='green'><span class=''> </span><code>        isConstructor: true,</code></li>
-<li class='green'><span class=''> </span><code>        superMeta: {</code></li>
-<li class='green'><span class=''> </span><code>            f: null,</code></li>
-<li class='green'><span class=''> </span><code>            pos: 0,</code></li>
-<li class='green'><span class=''> </span><code>            name: null</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class=''> </span><code>    };</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>48</span><code>    if ((isHash(sup) &amp;&amp; !proto)) {</code></li>
-<li class='green'><span class='hits'>2</span><code>        proto = sup;</code></li>
-<li class='green'><span class='hits'>2</span><code>        sup = Base;</code></li>
-<li class='green'><span class='hits'>46</span><code>    } else if ((!sup &amp;&amp; isHash(proto))) {</code></li>
-<li class='green'><span class='hits'>14</span><code>        sup = Base;</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>48</span><code>    if ("function" === typeof sup || isArray(sup)) {</code></li>
-<li class='green'><span class='hits'>47</span><code>        supers = isArray(sup) ? sup : [sup];</code></li>
-<li class='green'><span class='hits'>47</span><code>        sup = supers.shift();</code></li>
-<li class='green'><span class='hits'>47</span><code>        child.__proto__ = sup;</code></li>
-<li class='green'><span class='hits'>47</span><code>        childProto.__proto__ = sup.prototype;</code></li>
-<li class='green'><span class='hits'>47</span><code>        mixinSupers(sup.prototype, instanceSupers, bases),</code></li>
-<li class='green'><span class=''> </span><code>            mixinSupers(sup, staticSupers, staticBases);</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>48</span><code>    if (proto) {</code></li>
-<li class='green'><span class='hits'>46</span><code>        var instance = meta.proto = proto.instance || {};</code></li>
-<li class='green'><span class='hits'>46</span><code>        !instance.hasOwnProperty("constructor") &amp;&amp; (instance.constructor = defaultFunction);</code></li>
-<li class='green'><span class='hits'>46</span><code>        var stat = childMeta.proto = proto.static || {};</code></li>
-<li class='green'><span class='hits'>46</span><code>        stat.init = stat.init || defaultFunction;</code></li>
-<li class='green'><span class='hits'>46</span><code>        defineProps(childProto, instance, false);</code></li>
-<li class='green'><span class='hits'>46</span><code>        defineProps(child, stat, true);</code></li>
-<li class='green'><span class=''> </span><code>    } else {</code></li>
-<li class='green'><span class='hits'>2</span><code>        meta.proto = {};</code></li>
-<li class='green'><span class='hits'>2</span><code>        childMeta.proto = {};</code></li>
-<li class='green'><span class='hits'>2</span><code>        child.init = functionWrapper(defaultFunction, "init");</code></li>
-<li class='green'><span class='hits'>2</span><code>        childProto.constructor = functionWrapper(defaultFunction, "constructor");</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>48</span><code>    if (supers.length) {</code></li>
-<li class='green'><span class='hits'>7</span><code>        invoke(mixin, supers, child);</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>48</span><code>    childProto._super = child._super = callSuper;</code></li>
-<li class='green'><span class='hits'>48</span><code>    childProto._getSuper = child._getSuper = getSuper;</code></li>
-<li class='green'><span class='hits'>48</span><code>    childProto._static = child;</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>function define(sup, proto) {</code></li>
-<li class='green'><span class='hits'>45</span><code>    function defineConstructor() {</code></li>
-<li class='green'><span class='hits'>2841</span><code>        invoke(this.constructor, arguments, this);</code></li>
-<li class='green'><span class='hits'>2840</span><code>        sup = proto = null;</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>45</span><code>    __define(defineConstructor, sup, proto);</code></li>
-<li class='green'><span class='hits'>45</span><code>    return defineConstructor.init() || defineConstructor;</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>function singleton(sup, proto) {</code></li>
-<li class='green'><span class='hits'>3</span><code>    var retInstance;</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>3</span><code>    function singletonConstructor() {</code></li>
-<li class='green'><span class='hits'>6</span><code>        if (!retInstance) {</code></li>
-<li class='green'><span class='hits'>2</span><code>            invoke(this.constructor, arguments, this);</code></li>
-<li class='green'><span class='hits'>2</span><code>            retInstance = this;</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>6</span><code>        return retInstance;</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>3</span><code>    __define(singletonConstructor, sup, proto);</code></li>
-<li class='green'><span class='hits'>3</span><code>    return  singletonConstructor.init() || singletonConstructor;</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>Base = define({</code></li>
-<li class='green'><span class=''> </span><code>    instance: {},</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>    "static": {</code></li>
-<li class='green'><span class=''> </span><code>        mixin: mixin,</code></li>
-<li class='green'><span class=''> </span><code>        extend: extend,</code></li>
-<li class='green'><span class=''> </span><code>        as: _export</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code>});</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Defines a new class to be used</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * &lt;p&gt;</code></li>
-<li class='green'><span class=''> </span><code> *     Class methods</code></li>
-<li class='green'><span class=''> </span><code> *     &lt;ul&gt;</code></li>
-<li class='green'><span class=''> </span><code> *         &lt;li&gt;as(module | object, name): exports the object to module or the object with the name&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code> *         &lt;li&gt;mixin(mixin) : mixes in an object&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code> *     &lt;/ul&gt;</code></li>
-<li class='green'><span class=''> </span><code> *     &lt;/br&gt;</code></li>
-<li class='green'><span class=''> </span><code> *     Instance methods</code></li>
-<li class='green'><span class=''> </span><code> *     &lt;ul&gt;</code></li>
-<li class='green'><span class=''> </span><code> *         &lt;li&gt;_super(argumnents, [?newargs]): calls the super of the current method&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code> *     &lt;/ul&gt;</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *      &lt;/br&gt;</code></li>
-<li class='green'><span class=''> </span><code> *     Instance properties</code></li>
-<li class='green'><span class=''> </span><code> *     &lt;ul&gt;</code></li>
-<li class='green'><span class=''> </span><code> *         &lt;li&gt;_static: use to reference class properties and methods&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code> *     &lt;/ul&gt;</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * &lt;/p&gt;</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @example</code></li>
-<li class='green'><span class=''> </span><code> *  //Class without a super class</code></li>
-<li class='green'><span class=''> </span><code> * var Mammal = comb.define(null, {</code></li>
-<li class='green'><span class=''> </span><code> *      instance : {</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *          constructor: function(options) {</code></li>
-<li class='green'><span class=''> </span><code> *              options = options || {};</code></li>
-<li class='green'><span class=''> </span><code> *              this._super(arguments);</code></li>
-<li class='green'><span class=''> </span><code> *              this._type = options.type || "mammal";</code></li>
-<li class='green'><span class=''> </span><code> *          },</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *          speak : function() {</code></li>
-<li class='green'><span class=''> </span><code> *              return  "A mammal of type " + this._type + " sounds like";</code></li>
-<li class='green'><span class=''> </span><code> *          },</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *          //Define your getters</code></li>
-<li class='green'><span class=''> </span><code> *          getters : {</code></li>
-<li class='green'><span class=''> </span><code> *              type : function() {</code></li>
-<li class='green'><span class=''> </span><code> *                  return this._type;</code></li>
-<li class='green'><span class=''> </span><code> *              }</code></li>
-<li class='green'><span class=''> </span><code> *          },</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *           //Define your setters</code></li>
-<li class='green'><span class=''> </span><code> *          setters : {</code></li>
-<li class='green'><span class=''> </span><code> *              type : function(t) {</code></li>
-<li class='green'><span class=''> </span><code> *                  this._type = t;</code></li>
-<li class='green'><span class=''> </span><code> *              }</code></li>
-<li class='green'><span class=''> </span><code> *          }</code></li>
-<li class='green'><span class=''> </span><code> *      },</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *      //Define your static methods</code></li>
-<li class='green'><span class=''> </span><code> *      static : {</code></li>
-<li class='green'><span class=''> </span><code> *          soundOff : function() {</code></li>
-<li class='green'><span class=''> </span><code> *              return "Im a mammal!!";</code></li>
-<li class='green'><span class=''> </span><code> *          }</code></li>
-<li class='green'><span class=''> </span><code> *      }</code></li>
-<li class='green'><span class=''> </span><code> * });</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * //Show singular inheritance</code></li>
-<li class='green'><span class=''> </span><code> *var Wolf = comb.define(Mammal, {</code></li>
-<li class='green'><span class=''> </span><code> *   instance: {</code></li>
-<li class='green'><span class=''> </span><code> *       constructor: function(options) {</code></li>
-<li class='green'><span class=''> </span><code> *          options = options || {};</code></li>
-<li class='green'><span class=''> </span><code> *          //You can call your super constructor, or you may not</code></li>
-<li class='green'><span class=''> </span><code> *          //call it to prevent the super initializing parameters</code></li>
-<li class='green'><span class=''> </span><code> *          this._super(arguments);</code></li>
-<li class='green'><span class=''> </span><code> *          this._sound = "growl";</code></li>
-<li class='green'><span class=''> </span><code> *          this._color = options.color || "grey";</code></li>
-<li class='green'><span class=''> </span><code> *      },</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *      speak : function() {</code></li>
-<li class='green'><span class=''> </span><code> *          //override my super classes speak</code></li>
-<li class='green'><span class=''> </span><code> *          //Should return "A mammal of type mammal sounds like a growl"</code></li>
-<li class='green'><span class=''> </span><code> *          return this._super(arguments) + " a " + this._sound;</code></li>
-<li class='green'><span class=''> </span><code> *      },</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *      //add new getters for sound and color</code></li>
-<li class='green'><span class=''> </span><code> *      getters : {</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *          color : function() {</code></li>
-<li class='green'><span class=''> </span><code> *              return this._color;</code></li>
-<li class='green'><span class=''> </span><code> *          },</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *          sound : function() {</code></li>
-<li class='green'><span class=''> </span><code> *              return this._sound;</code></li>
-<li class='green'><span class=''> </span><code> *          }</code></li>
-<li class='green'><span class=''> </span><code> *      },</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *      setters : {</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *          //NOTE color is read only except on initialization</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *          sound : function(s) {</code></li>
-<li class='green'><span class=''> </span><code> *              this._sound = s;</code></li>
-<li class='green'><span class=''> </span><code> *          }</code></li>
-<li class='green'><span class=''> </span><code> *      }</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *  },</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *  static : {</code></li>
-<li class='green'><span class=''> </span><code> *      //override my satic soundOff</code></li>
-<li class='green'><span class=''> </span><code> *      soundOff : function() {</code></li>
-<li class='green'><span class=''> </span><code> *          //You can even call super in your statics!!!</code></li>
-<li class='green'><span class=''> </span><code> *          //should return "I'm a mammal!! that growls"</code></li>
-<li class='green'><span class=''> </span><code> *          return this._super(arguments) + " that growls";</code></li>
-<li class='green'><span class=''> </span><code> *      }</code></li>
-<li class='green'><span class=''> </span><code> *  }</code></li>
-<li class='green'><span class=''> </span><code> *});</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * //Typical hierarchical inheritance</code></li>
-<li class='green'><span class=''> </span><code> * // Mammal-&gt;Wolf-&gt;Dog</code></li>
-<li class='green'><span class=''> </span><code> * var Dog = comb.define(Wolf, {</code></li>
-<li class='green'><span class=''> </span><code> *    instance: {</code></li>
-<li class='green'><span class=''> </span><code> *        constructor: function(options) {</code></li>
-<li class='green'><span class=''> </span><code> *            options = options || {};</code></li>
-<li class='green'><span class=''> </span><code> *            this._super(arguments);</code></li>
-<li class='green'><span class=''> </span><code> *            //override Wolfs initialization of sound to woof.</code></li>
-<li class='green'><span class=''> </span><code> *            this._sound = "woof";</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *        },</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *        speak : function() {</code></li>
-<li class='green'><span class=''> </span><code> *            //Should return "A mammal of type mammal sounds like a growl thats domesticated"</code></li>
-<li class='green'><span class=''> </span><code> *            return this._super(arguments) + " thats domesticated";</code></li>
-<li class='green'><span class=''> </span><code> *        }</code></li>
-<li class='green'><span class=''> </span><code> *    },</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *    static : {</code></li>
-<li class='green'><span class=''> </span><code> *        soundOff : function() {</code></li>
-<li class='green'><span class=''> </span><code> *            //should return "I'm a mammal!! that growls but now barks"</code></li>
-<li class='green'><span class=''> </span><code> *            return this._super(arguments) + " but now barks";</code></li>
-<li class='green'><span class=''> </span><code> *        }</code></li>
-<li class='green'><span class=''> </span><code> *    }</code></li>
-<li class='green'><span class=''> </span><code> *});</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * dog instanceof Wolf =&gt; true</code></li>
-<li class='green'><span class=''> </span><code> * dog instanceof Mammal =&gt; true</code></li>
-<li class='green'><span class=''> </span><code> * dog.speak() =&gt; "A mammal of type mammal sounds like a woof thats domesticated"</code></li>
-<li class='green'><span class=''> </span><code> * dog.type =&gt; "mammal"</code></li>
-<li class='green'><span class=''> </span><code> * dog.color =&gt; "gold"</code></li>
-<li class='green'><span class=''> </span><code> * dog.sound =&gt; "woof"</code></li>
-<li class='green'><span class=''> </span><code> * Dog.soundOff() =&gt; "Im a mammal!! that growls but now barks"</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * // Mammal-&gt;Wolf-&gt;Dog-&gt;Breed</code></li>
-<li class='green'><span class=''> </span><code> *var Breed = comb.define(Dog, {</code></li>
-<li class='green'><span class=''> </span><code> *    instance: {</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *        //initialize outside of constructor</code></li>
-<li class='green'><span class=''> </span><code> *        _pitch : "high",</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *        constructor: function(options) {</code></li>
-<li class='green'><span class=''> </span><code> *            options = options || {};</code></li>
-<li class='green'><span class=''> </span><code> *            this._super(arguments);</code></li>
-<li class='green'><span class=''> </span><code> *            this.breed = options.breed || "lab";</code></li>
-<li class='green'><span class=''> </span><code> *        },</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *        speak : function() {</code></li>
-<li class='green'><span class=''> </span><code> *            //Should return "A mammal of type mammal sounds like a</code></li>
-<li class='green'><span class=''> </span><code> *            //growl thats domesticated with a high pitch!"</code></li>
-<li class='green'><span class=''> </span><code> *            return this._super(arguments) + " with a " + this._pitch + " pitch!";</code></li>
-<li class='green'><span class=''> </span><code> *        },</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *        getters : {</code></li>
-<li class='green'><span class=''> </span><code> *            pitch : function() {</code></li>
-<li class='green'><span class=''> </span><code> *                return this._pitch;</code></li>
-<li class='green'><span class=''> </span><code> *            }</code></li>
-<li class='green'><span class=''> </span><code> *        }</code></li>
-<li class='green'><span class=''> </span><code> *    },</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *    static : {</code></li>
-<li class='green'><span class=''> </span><code> *        soundOff : function() {</code></li>
-<li class='green'><span class=''> </span><code> *            //should return "I'M A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</code></li>
-<li class='green'><span class=''> </span><code> *            return this._super(arguments).toUpperCase() + "!";</code></li>
-<li class='green'><span class=''> </span><code> *        }</code></li>
-<li class='green'><span class=''> </span><code> *    }</code></li>
-<li class='green'><span class=''> </span><code> * });</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * var breed = new Breed({color : "gold", type : "lab"}),</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * breed instanceof Dog =&gt; true</code></li>
-<li class='green'><span class=''> </span><code> * breed instanceof Wolf =&gt; true</code></li>
-<li class='green'><span class=''> </span><code> * breed instanceof Mammal =&gt; true</code></li>
-<li class='green'><span class=''> </span><code> * breed.speak() =&gt; "A mammal of type lab sounds like a woof "</code></li>
-<li class='green'><span class=''> </span><code> *                  + "thats domesticated with a high pitch!"</code></li>
-<li class='green'><span class=''> </span><code> * breed.type =&gt; "lab"</code></li>
-<li class='green'><span class=''> </span><code> * breed.color =&gt; "gold"</code></li>
-<li class='green'><span class=''> </span><code> * breed.sound =&gt; "woof"</code></li>
-<li class='green'><span class=''> </span><code> * breed.soundOff() =&gt; "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *  //Example of multiple inheritance</code></li>
-<li class='green'><span class=''> </span><code> *  //NOTE proto is optional</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *  //Mammal is super class</code></li>
-<li class='green'><span class=''> </span><code> *  //Wolf Dog and Breed inject functionality into the prototype</code></li>
-<li class='green'><span class=''> </span><code> * var Lab = comb.define([Mammal, Wolf, Dog, Breed]);</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * var lab = new Lab();</code></li>
-<li class='green'><span class=''> </span><code> * lab instanceof Wolf =&gt; false</code></li>
-<li class='green'><span class=''> </span><code> * lab instanceof Dog =&gt; false</code></li>
-<li class='green'><span class=''> </span><code> * lab instanceof Breed =&gt; false</code></li>
-<li class='green'><span class=''> </span><code> * lab instanceof Mammal =&gt; true</code></li>
-<li class='green'><span class=''> </span><code> * lab.speak() =&gt; "A mammal of type mammal sounds like a"</code></li>
-<li class='green'><span class=''> </span><code> *                + " woof thats domesticated with a high pitch!"</code></li>
-<li class='green'><span class=''> </span><code> * Lab.soundOff() =&gt; "IM A MAMMAL!! THAT GROWLS BUT NOW BARKS!"</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @name define</code></li>
-<li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @param {Array|Class} super the supers of this class</code></li>
-<li class='green'><span class=''> </span><code> * @param {Object} [proto] the object used to define this class</code></li>
-<li class='green'><span class=''> </span><code> * @param {Object} [proto.instance] the instance methods of the class</code></li>
-<li class='green'><span class=''> </span><code> * @param {Object} [proto.instance.getters] the getters for the class</code></li>
-<li class='green'><span class=''> </span><code> * @param {Object} [proto.instance.setters] the setters for the class</code></li>
-<li class='green'><span class=''> </span><code> * @param {Object} [proto.static] the Class level methods of this class</code></li>
-<li class='green'><span class=''> </span><code> * @param {Object} [proto.static.getters] static getters for the object</code></li>
-<li class='green'><span class=''> </span><code> * @param {Object} [proto.static.setters] static setters for the object</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @returns {Object} the constructor of the class to be used with new keyword</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>exports.define = define;</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * Defines a singleton instance of a Class. See {@link define}</code></li>
-<li class='green'><span class=''> </span><code> * @example</code></li>
-<li class='green'><span class=''> </span><code> *  var MyLab = comb.singleton([Mammal, Wolf, Dog, Breed]);</code></li>
-<li class='green'><span class=''> </span><code> *  var myLab1 = new MyLab();</code></li>
-<li class='green'><span class=''> </span><code> *  myLab1.type = "collie"</code></li>
-<li class='green'><span class=''> </span><code> *  var myLab2 = new MyLab();</code></li>
-<li class='green'><span class=''> </span><code> *  myLab1 === myLab2 =&gt; true</code></li>
-<li class='green'><span class=''> </span><code> *  myLab1.type =&gt; "collie"</code></li>
-<li class='green'><span class=''> </span><code> *  myLab2.type =&gt; "collie"</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @name singleton</code></li>
-<li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>exports.singleton = singleton;</code></li>
-<li class='green'><span class=''> </span><code></code></li></ol></pre></div>
 </div>
 
 <div class="cov-section cov-section-hover cov-section-high" id="extensions/arguments.js">
