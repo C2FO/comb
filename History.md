@@ -1,3 +1,7 @@
+# 0.3.1
+
+* Fixed comb.define to make dynamic properties not enumerable
+
 # 0.3.0
 
 * Added
