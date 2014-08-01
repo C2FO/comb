@@ -957,7 +957,7 @@
                 s = fullYear;
                 if (l &gt; 1) {
                     if (l === 2) {
-                        s = string.truncate(&quot;&quot; + s, 2, true);
+                        s = getString().truncate(&quot;&quot; + s, 2, true);
                     } else {
                         pad = true;
                     }
@@ -1008,8 +1008,8 @@
                     var offset = date.getTimezoneOffset();
                     var tz = [
                         (offset &gt;= 0 ? &quot;-&quot; : &quot;+&quot;),
-                        string.pad(floor(abs(offset) / 60), 2, &quot;0&quot;),
-                        string.pad(abs(offset) % 60, 2, &quot;0&quot;)
+                        getString().pad(floor(abs(offset) / 60), 2, &quot;0&quot;),
+                        getString().pad(abs(offset) % 60, 2, &quot;0&quot;)
                     ];
                     if (l === 4) {
                         tz.splice(0, 0, &quot;GMT&quot;);
@@ -1021,7 +1021,7 @@
                 s = match;
             }
             if (pad) {
-                s = string.pad(s, l, &#x27;0&#x27;);
+                s = getString().pad(s, l, &#x27;0&#x27;);
             }
             return s;
         });
@@ -1458,7 +1458,7 @@ function (date,format,utc){
            s = fullYear;
            if (l &gt; 1) {
                if (l === 2) {
-                   s = string.truncate(&quot;&quot; + s, 2, true);
+                   s = getString().truncate(&quot;&quot; + s, 2, true);
                } else {
                    pad = true;
                }
@@ -1509,8 +1509,8 @@ function (date,format,utc){
                var offset = date.getTimezoneOffset();
                var tz = [
                    (offset &gt;= 0 ? &quot;-&quot; : &quot;+&quot;),
-                   string.pad(floor(abs(offset) / 60), 2, &quot;0&quot;),
-                   string.pad(abs(offset) % 60, 2, &quot;0&quot;)
+                   getString().pad(floor(abs(offset) / 60), 2, &quot;0&quot;),
+                   getString().pad(abs(offset) % 60, 2, &quot;0&quot;)
                ];
                if (l === 4) {
                    tz.splice(0, 0, &quot;GMT&quot;);
@@ -1522,7 +1522,7 @@ function (date,format,utc){
            s = match;
        }
        if (pad) {
-           s = string.pad(s, l, &#x27;0&#x27;);
+           s = getString().pad(s, l, &#x27;0&#x27;);
        }
        return s;
    });

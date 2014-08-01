@@ -1,3 +1,7 @@
+# 0.3.2
+
+* Update `comb.string.format` to be able to specify precision with numbers.
+
 # 0.3.1
 
 * Fixed comb.define to make dynamic properties not enumerable
