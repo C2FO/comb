@@ -537,8 +537,11 @@ comb.string.format(&#39;%.2d&#39;, 10); //&quot;10.00&quot;
 comb.string.format(&#39;%5d&#39;, 10); //&quot;   10&quot;
 
 //Signed
-comb.string.format(&#39;%+d&#39;, 10); //&quot;+10&quot;
+comb.string.format(&#39;%+d&#39;, 10);  //&quot;+10&quot;
 comb.string.format(&#39;%+d&#39;, -10); //&quot;-10&quot;
+
+comb.string.format(&#39;% d&#39;, 10);  //&quot; 10&quot;
+comb.string.format(&#39;% d&#39;, -10); //&quot;-10&quot;
 
 //width
 comb.string.format(&#39;% 5d&#39;, 10); //&quot;   10&quot;
