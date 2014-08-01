@@ -56,7 +56,7 @@ it.describe("comb/base/string.js", function (it) {
             it.should("format strings properly", function () {
                 assert.equal(comb.string.format("{apple}, {orange}, {notthere} and {number}", {apple: "apple", orange: "orange", number: 10}), "apple, orange, {notthere} and 10");
                 assert.equal(comb.string.format("{[-s10]apple}, {[%#10]orange}, {[10]banana} and {[-10]watermelons}", {apple: "apple", orange: "orange", banana: "bananas", watermelons: "watermelons"}), "applesssss, ####orange,    bananas and watermelon");
-                assert.equal(comb.string.format("{[- 10]number}, {[yyyy]date}, and {[4]object}", {number: 1, date: new Date(1970, 1, 1), object: {a: "b"}}), '1         , 1970, and {\n    "a": "b"\n}');
+                assert.equal(comb.string.format("{[-10]number}, {[yyyy]date}, and {[4]object}", {number: 1, date: new Date(1970, 1, 1), object: {a: "b"}}), '1         , 1970, and {\n    "a": "b"\n}');
                 assert.equal(comb.string.format("%s and %s", ["apple", "orange"]), "apple and orange");
                 assert.equal(comb.string.format("%s and %s and %s", ["apple", "orange"]), "apple and orange and %s");
                 assert.equal(comb.string.format("%s and %s", "apple", "orange"), "apple and orange");
@@ -92,7 +92,7 @@ it.describe("comb/base/string.js", function (it) {
 
                 assert.equal(comb("{apple}, {orange}, {notthere} and {number}").format({apple: "apple", orange: "orange", number: 10}), "apple, orange, {notthere} and 10");
                 assert.equal(comb("{[-s10]apple}, {[%#10]orange}, {[10]banana} and {[-10]watermelons}").format({apple: "apple", orange: "orange", banana: "bananas", watermelons: "watermelons"}), "applesssss, ####orange,    bananas and watermelon");
-                assert.equal(comb("{[- 10]number}, {[yyyy]date}, and {[4]object}").format({number: 1, date: new Date(1970, 1, 1), object: {a: "b"}}), '1         , 1970, and {\n    "a": "b"\n}');
+                assert.equal(comb("{[-10]number}, {[yyyy]date}, and {[4]object}").format({number: 1, date: new Date(1970, 1, 1), object: {a: "b"}}), '1         , 1970, and {\n    "a": "b"\n}');
                 assert.equal(comb("%s and %s").format(["apple", "orange"]), "apple and orange");
                 assert.equal(comb("%s and %s and %s").format(["apple", "orange"]), "apple and orange and %s");
                 assert.equal(comb("%s and %s").format("apple", "orange"), "apple and orange");
@@ -132,10 +132,12 @@ it.describe("comb/base/string.js", function (it) {
                 assert.equal(comb.string.format('%5d', 10), "   10");
                 assert.equal(comb.string.format('%+d', 10), "+10");
                 assert.equal(comb.string.format('%+d', -10), "-10");
+                assert.equal(comb.string.format('% d', 10), " 10");
+                assert.equal(comb.string.format('% d', -10), "-10");
                 assert.equal(comb.string.format('% 5d', 10), "   10");
                 assert.equal(comb.string.format('% 6.2d', 10), " 10.00");
                 assert.equal(comb.string.format('%+ 7.2d', 10), " +10.00");
-                assert.equal(comb.string.format('%- 7.2d', 10), "10.00  ");
+                assert.equal(comb.string.format('%-7.2d', 10), "10.00  ");
                 assert.equal(comb.string.format('%010d', 10), "0000000010");
                 assert.equal(comb.string.format('%!10d', 10), "!!!!!!!!10");
                 assert.equal(comb.string.format('%-+!10d', 10), "+10!!!!!!!");
@@ -231,4 +233,4 @@ it.describe("comb/base/string.js", function (it) {
             assert.equal(comb.string.escapeHtml("<a b=\"c\">&'</a>"), "&lt;a b=&quot;c&quot;&gt;&amp;&#39;&lt;/a&gt;");
         });
     });
-}).as(module);
+});
