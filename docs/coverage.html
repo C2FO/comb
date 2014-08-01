@@ -257,7 +257,7 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>98.90</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>12913</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>12915</span>
                     <span class='cov-label'>LOC</span><span class='cov-value'>3536</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>39</span>
                 </div>
@@ -2544,7 +2544,7 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>98.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>529</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>531</span>
                     <span class='cov-label'>LOC</span><span class='cov-value'>150</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>3</span>
                 </div>
@@ -2584,9 +2584,9 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function truncate(string, length, end) {</code></li>
-<li class='green'><span class='hits'>45</span><code>    var ret = string;</code></li>
-<li class='green'><span class='hits'>45</span><code>    if (comb.isString(ret)) {</code></li>
-<li class='green'><span class='hits'>43</span><code>        if (string.length &gt; length) {</code></li>
+<li class='green'><span class='hits'>46</span><code>    var ret = string;</code></li>
+<li class='green'><span class='hits'>46</span><code>    if (comb.isString(ret)) {</code></li>
+<li class='green'><span class='hits'>44</span><code>        if (string.length &gt; length) {</code></li>
 <li class='green'><span class='hits'>27</span><code>            if (end) {</code></li>
 <li class='green'><span class='hits'>8</span><code>                var l = string.length;</code></li>
 <li class='green'><span class='hits'>8</span><code>                ret = string.substring(l - length, l);</code></li>
@@ -2597,7 +2597,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    } else {</code></li>
 <li class='green'><span class='hits'>2</span><code>        ret = truncate("" + ret, length);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>45</span><code>    return ret;</code></li>
+<li class='green'><span class='hits'>46</span><code>    return ret;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -2637,18 +2637,18 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function pad(string, length, ch, end) {</code></li>
-<li class='green'><span class='hits'>361</span><code>    string = "" + string; //check for numbers</code></li>
-<li class='green'><span class='hits'>361</span><code>    ch = ch || " ";</code></li>
-<li class='green'><span class='hits'>361</span><code>    var strLen = string.length;</code></li>
-<li class='green'><span class='hits'>361</span><code>    while (strLen &lt; length) {</code></li>
-<li class='green'><span class='hits'>292</span><code>        if (end) {</code></li>
+<li class='green'><span class='hits'>360</span><code>    string = "" + string; //check for numbers</code></li>
+<li class='green'><span class='hits'>360</span><code>    ch = ch || " ";</code></li>
+<li class='green'><span class='hits'>360</span><code>    var strLen = string.length;</code></li>
+<li class='green'><span class='hits'>360</span><code>    while (strLen &lt; length) {</code></li>
+<li class='green'><span class='hits'>290</span><code>        if (end) {</code></li>
 <li class='green'><span class='hits'>150</span><code>            string += ch;</code></li>
 <li class='green'><span class=''> </span><code>        } else {</code></li>
-<li class='green'><span class='hits'>142</span><code>            string = ch + string;</code></li>
+<li class='green'><span class='hits'>140</span><code>            string = ch + string;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>292</span><code>        strLen++;</code></li>
+<li class='green'><span class='hits'>290</span><code>        strLen++;</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>361</span><code>    return string;</code></li>
+<li class='green'><span class='hits'>360</span><code>    return string;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -2665,7 +2665,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isString(obj) {</code></li>
-<li class='green'><span class='hits'>36062</span><code>    return toStr.call(obj) === '[object String]';</code></li>
+<li class='green'><span class='hits'>36063</span><code>    return toStr.call(obj) === '[object String]';</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>comb.isString = isString;</code></li>
@@ -2673,7 +2673,7 @@ td.cov-stats {
 <li class='green'><span class='hits'>1</span><code>var FORMAT_REGEX = /%((?:-?\+?.?\d*(?:\.\d+)*)?|(?:\[[^\[|\]]*\]))?([sjdDZ])/g;</code></li>
 <li class='green'><span class='hits'>1</span><code>var INTERP_REGEX = /{(?:\[([^\[|\]]*)\])?(\w+)}/g;</code></li>
 <li class='green'><span class='hits'>1</span><code>var STR_FORMAT = /(-?)(\+?)([A-Z|a-z|\W]?)([1-9][0-9]*)?$/;</code></li>
-<li class='green'><span class='hits'>1</span><code>var NUMBER_FORMAT = /(-?)(\+?)([^\.1-9])?([1-9][0-9]*)?(\.[1-9][0-9]*)?$/;</code></li>
+<li class='green'><span class='hits'>1</span><code>var NUMBER_FORMAT = /(-?)([\+| ]?)([^\.1-9])?([1-9][0-9]*)?(\.[1-9][0-9]*)?$/;</code></li>
 <li class='green'><span class='hits'>1</span><code>var OBJECT_FORMAT = /([1-9][0-9]*)$/g;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function formatString(string, format) {</code></li>
@@ -2693,13 +2693,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function formatNumber(number, format) {</code></li>
-<li class='green'><span class='hits'>27</span><code>    var ret = "";</code></li>
-<li class='green'><span class='hits'>27</span><code>    if (typeof number === "number") {</code></li>
-<li class='green'><span class='hits'>25</span><code>        ret = "" + number;</code></li>
-<li class='green'><span class='hits'>25</span><code>        var match = format.match(NUMBER_FORMAT);</code></li>
-<li class='green'><span class='hits'>25</span><code>        if (match) {</code></li>
-<li class='green'><span class='hits'>25</span><code>            var isLeftJustified = match[1], signed = match[2], padChar = match[3], width = match[4], precision = match[5];</code></li>
-<li class='green'><span class='hits'>25</span><code>            if (precision) {</code></li>
+<li class='green'><span class='hits'>29</span><code>    var ret = "";</code></li>
+<li class='green'><span class='hits'>29</span><code>    if (typeof number === "number") {</code></li>
+<li class='green'><span class='hits'>27</span><code>        ret = "" + number;</code></li>
+<li class='green'><span class='hits'>27</span><code>        var match = format.match(NUMBER_FORMAT);</code></li>
+<li class='green'><span class='hits'>27</span><code>        if (match) {</code></li>
+<li class='green'><span class='hits'>27</span><code>            var isLeftJustified = match[1], signed = match[2], padChar = match[3], width = match[4], precision = match[5];</code></li>
+<li class='green'><span class='hits'>27</span><code>            if (precision) {</code></li>
 <li class='green'><span class='hits'>4</span><code>                precision = parseInt(precision.replace(/^\./, ""), 10);</code></li>
 <li class='green'><span class='hits'>4</span><code>                ret = round(number, precision) + "";</code></li>
 <li class='green'><span class=''> </span><code>                //check and ensure we have padding zeros</code></li>
@@ -2710,15 +2710,15 @@ td.cov-stats {
 <li class='red'><span class='nohits'>0</span><code>                    ret = [split[0], pad(split[1], precision, "0", true)].join(".");</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>25</span><code>            if (signed) {</code></li>
-<li class='green'><span class='hits'>10</span><code>                ret = (number &gt; 0 ? "+" : "") + ret;</code></li>
+<li class='green'><span class='hits'>27</span><code>            if (signed) {</code></li>
+<li class='green'><span class='hits'>14</span><code>                ret = (number &gt; 0 ? signed : "") + ret;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>25</span><code>            if (width) {</code></li>
+<li class='green'><span class='hits'>27</span><code>            if (width) {</code></li>
 <li class='green'><span class='hits'>18</span><code>                width = parseInt(width, 10);</code></li>
 <li class='green'><span class='hits'>18</span><code>                if (ret.length &lt; width) {</code></li>
-<li class='green'><span class='hits'>16</span><code>                    ret = pad(ret, width, padChar || " ", isLeftJustified);</code></li>
+<li class='green'><span class='hits'>15</span><code>                    ret = pad(ret, width, padChar || " ", isLeftJustified);</code></li>
 <li class='green'><span class=''> </span><code>                } else {</code></li>
-<li class='green'><span class='hits'>2</span><code>                    ret = truncate(ret, width);</code></li>
+<li class='green'><span class='hits'>3</span><code>                    ret = truncate(ret, width);</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -2726,7 +2726,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    } else {</code></li>
 <li class='green'><span class='hits'>2</span><code>        throw new Error("comb.string.format : when using %d the parameter must be a number!");</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>25</span><code>    return ret;</code></li>
+<li class='green'><span class='hits'>27</span><code>    return ret;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function formatObject(object, format) {</code></li>
@@ -2771,8 +2771,11 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * comb.string.format('%5d', 10); //"   10"</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * //Signed</code></li>
-<li class='green'><span class=''> </span><code> * comb.string.format('%+d', 10); //"+10"</code></li>
+<li class='green'><span class=''> </span><code> * comb.string.format('%+d', 10);  //"+10"</code></li>
 <li class='green'><span class=''> </span><code> * comb.string.format('%+d', -10); //"-10"</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * comb.string.format('% d', 10);  //" 10"</code></li>
+<li class='green'><span class=''> </span><code> * comb.string.format('% d', -10); //"-10"</code></li>
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * //width</code></li>
 <li class='green'><span class=''> </span><code> * comb.string.format('% 5d', 10); //"   10"</code></li>
@@ -2859,38 +2862,38 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function format(str, obj) {</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>124</span><code>    if (obj instanceof Array) {</code></li>
-<li class='green'><span class='hits'>54</span><code>        var i = 0, len = obj.length;</code></li>
+<li class='green'><span class='hits'>128</span><code>    if (obj instanceof Array) {</code></li>
+<li class='green'><span class='hits'>56</span><code>        var i = 0, len = obj.length;</code></li>
 <li class='green'><span class=''> </span><code>        //find the matches</code></li>
-<li class='green'><span class='hits'>54</span><code>        return str.replace(FORMAT_REGEX, function (m, format, type) {</code></li>
-<li class='green'><span class='hits'>94</span><code>            var replacer, ret;</code></li>
-<li class='green'><span class='hits'>94</span><code>            if (i &lt; len) {</code></li>
-<li class='green'><span class='hits'>92</span><code>                replacer = obj[i++];</code></li>
+<li class='green'><span class='hits'>56</span><code>        return str.replace(FORMAT_REGEX, function (m, format, type) {</code></li>
+<li class='green'><span class='hits'>96</span><code>            var replacer, ret;</code></li>
+<li class='green'><span class='hits'>96</span><code>            if (i &lt; len) {</code></li>
+<li class='green'><span class='hits'>94</span><code>                replacer = obj[i++];</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
 <li class='green'><span class=''> </span><code>                //we are out of things to replace with so</code></li>
 <li class='green'><span class=''> </span><code>                //just return the match?</code></li>
 <li class='green'><span class='hits'>2</span><code>                return m;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>92</span><code>            if (m === "%s" || m === "%d" || m === "%D") {</code></li>
+<li class='green'><span class='hits'>94</span><code>            if (m === "%s" || m === "%d" || m === "%D") {</code></li>
 <li class='green'><span class=''> </span><code>                //fast path!</code></li>
 <li class='green'><span class='hits'>31</span><code>                ret = replacer + "";</code></li>
-<li class='green'><span class='hits'>61</span><code>            } else if (m === "%Z") {</code></li>
+<li class='green'><span class='hits'>63</span><code>            } else if (m === "%Z") {</code></li>
 <li class='green'><span class='hits'>2</span><code>                ret = replacer.toUTCString();</code></li>
-<li class='green'><span class='hits'>59</span><code>            } else if (m === "%j") {</code></li>
+<li class='green'><span class='hits'>61</span><code>            } else if (m === "%j") {</code></li>
 <li class='green'><span class='hits'>4</span><code>                try {</code></li>
 <li class='green'><span class='hits'>4</span><code>                    ret = JSON.stringify(replacer);</code></li>
 <li class='green'><span class=''> </span><code>                } catch (e) {</code></li>
 <li class='green'><span class='hits'>2</span><code>                    throw new Error("comb.string.format : Unable to parse json from ", replacer);</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>55</span><code>                format = format.replace(/^\[|\]$/g, "");</code></li>
-<li class='green'><span class='hits'>55</span><code>                switch (type) {</code></li>
+<li class='green'><span class='hits'>57</span><code>                format = format.replace(/^\[|\]$/g, "");</code></li>
+<li class='green'><span class='hits'>57</span><code>                switch (type) {</code></li>
 <li class='green'><span class=''> </span><code>                case "s":</code></li>
 <li class='green'><span class='hits'>8</span><code>                    ret = formatString(replacer, format);</code></li>
 <li class='green'><span class='hits'>8</span><code>                    break;</code></li>
 <li class='green'><span class=''> </span><code>                case "d":</code></li>
-<li class='green'><span class='hits'>25</span><code>                    ret = formatNumber(replacer, format);</code></li>
-<li class='green'><span class='hits'>23</span><code>                    break;</code></li>
+<li class='green'><span class='hits'>27</span><code>                    ret = formatNumber(replacer, format);</code></li>
+<li class='green'><span class='hits'>25</span><code>                    break;</code></li>
 <li class='green'><span class=''> </span><code>                case "j":</code></li>
 <li class='green'><span class='hits'>6</span><code>                    ret = formatObject(replacer, format);</code></li>
 <li class='green'><span class='hits'>4</span><code>                    break;</code></li>
@@ -2902,9 +2905,9 @@ td.cov-stats {
 <li class='green'><span class='hits'>8</span><code>                    break;</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>86</span><code>            return ret;</code></li>
+<li class='green'><span class='hits'>88</span><code>            return ret;</code></li>
 <li class='green'><span class=''> </span><code>        });</code></li>
-<li class='green'><span class='hits'>70</span><code>    } else if (isHash(obj)) {</code></li>
+<li class='green'><span class='hits'>72</span><code>    } else if (isHash(obj)) {</code></li>
 <li class='green'><span class='hits'>36</span><code>        return str.replace(INTERP_REGEX, function (m, format, value) {</code></li>
 <li class='green'><span class='hits'>142</span><code>            value = obj[value];</code></li>
 <li class='green'><span class='hits'>142</span><code>            if (!misc.isUndefined(value)) {</code></li>
@@ -2925,8 +2928,8 @@ td.cov-stats {
 <li class='green'><span class='hits'>2</span><code>            return m;</code></li>
 <li class='green'><span class=''> </span><code>        });</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
-<li class='green'><span class='hits'>34</span><code>        var args = pSlice.call(arguments).slice(1);</code></li>
-<li class='green'><span class='hits'>34</span><code>        return format(str, args);</code></li>
+<li class='green'><span class='hits'>36</span><code>        var args = pSlice.call(arguments).slice(1);</code></li>
+<li class='green'><span class='hits'>36</span><code>        return format(str, args);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -3078,8 +3081,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>    multiply: multiply,</code></li>
 <li class='green'><span class=''> </span><code>    style: style,</code></li>
 <li class='green'><span class=''> </span><code>    escapeHtml: escapeHtml</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
-<li class='green'><span class=''> </span><code></code></li></ol></pre></div>
+<li class='green'><span class=''> </span><code>};</code></li></ol></pre></div>
 </div>
 
 <div class="cov-section cov-section-hover cov-section-high" id="async.js">
@@ -8983,8 +8985,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isHash(obj) {</code></li>
-<li class='green'><span class='hits'>299</span><code>    var ret = comb.isObject(obj);</code></li>
-<li class='green'><span class='hits'>299</span><code>    return ret &amp;&amp; obj.constructor === Object;</code></li>
+<li class='green'><span class='hits'>301</span><code>    var ret = comb.isObject(obj);</code></li>
+<li class='green'><span class='hits'>301</span><code>    return ret &amp;&amp; obj.constructor === Object;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -9105,8 +9107,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isObject(obj) {</code></li>
-<li class='green'><span class='hits'>4274</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>4274</span><code>    return obj !== null &amp;&amp; obj !== undef &amp;&amp; typeof obj === "object";</code></li>
+<li class='green'><span class='hits'>4276</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>4276</span><code>    return obj !== null &amp;&amp; obj !== undef &amp;&amp; typeof obj === "object";</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>

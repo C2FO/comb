@@ -1,3 +1,9 @@
+# 0.3.3
+
+* Update `comb.string.format` to be support ` ` as a flag when signing a number
+    * `comb.string.format('% d', 10);  //" 10"`
+    * `comb.string.format('% d', -10); //"-10"`
+
 # 0.3.2
 
 * Update `comb.string.format` to be able to specify precision with numbers.
