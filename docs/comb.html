@@ -3528,8 +3528,7 @@ comb.isString(true) //false
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (obj){
-   var undef;
-   return obj != undef &amp;&amp; (typeof obj == &quot;string&quot; || obj instanceof String);
+   return toStr.call(obj) === &#x27;[object String]&#x27;;
 }
     </pre>
     
