@@ -1,3 +1,11 @@
+# 0.3.4
+
+* Update `comb.string.format` to handle signing numbers with padding properly
+  * `comb.string.format('%+07.2d', 10); //"+010.00"`
+  * `comb.string.format('%+07.2d', -10); //"-010.00"`
+  * `comb.string.format('%+ 7.2d', 10); //" +10.00"`
+  * `comb.string.format('%+ 7.2d', -10); //" -10.00"`
+
 # 0.3.3
 
 * Update `comb.string.format` to be support ` ` as a flag when signing a number

@@ -137,6 +137,14 @@ it.describe("comb/base/string.js", function (it) {
                 assert.equal(comb.string.format('% 5d', 10), "   10");
                 assert.equal(comb.string.format('% 6.2d', 10), " 10.00");
                 assert.equal(comb.string.format('%+ 7.2d', 10), " +10.00");
+                assert.equal(comb.string.format('%+07.2d', 10), "+010.00");
+                assert.equal(comb.string.format('%+07.2d', -10), "-010.00");
+                assert.equal(comb.string.format('%+ 7.2d', -10), " -10.00");
+                assert.equal(comb.string.format('% 7.2d', -10), " -10.00");
+                assert.equal(comb.string.format('%  7.2d', -10), " -10.00");
+                assert.equal(comb.string.format('% 7.2d', 10), "  10.00");
+                assert.equal(comb.string.format('%  7.2d', 10), "  10.00");
+                assert.equal(comb.string.format('% 07.2d', 10), " 010.00");
                 assert.equal(comb.string.format('%-7.2d', 10), "10.00  ");
                 assert.equal(comb.string.format('%010d', 10), "0000000010");
                 assert.equal(comb.string.format('%!10d', 10), "!!!!!!!!10");

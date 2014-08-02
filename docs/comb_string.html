@@ -544,13 +544,20 @@ comb.string.format(&#39;% d&#39;, 10);  //&quot; 10&quot;
 comb.string.format(&#39;% d&#39;, -10); //&quot;-10&quot;
 
 //width
-comb.string.format(&#39;% 5d&#39;, 10); //&quot;   10&quot;
+comb.string.format(&#39;%5d&#39;, 10); //&quot;   10&quot;
 
 //width and precision
-comb.string.format(&#39;% 6.2d&#39;, 10); //&quot; 10.00&quot;
+comb.string.format(&#39;%6.2d&#39;, 10); //&quot; 10.00&quot;
 
 //signed, width and precision
-comb.string.format(&#39;%+ 7.2d&#39;, 10); //&quot; +10.00&quot;
+comb.string.format(&#39;%+ 7.2d&#39;, 10);  //&quot; +10.00&quot;
+comb.string.format(&#39;%+ 7.2d&#39;, -10); //&quot; -10.00&quot;
+comb.string.format(&#39;%+07.2d&#39;, 10);  //&quot;+010.00&quot;
+comb.string.format(&#39;%+07.2d&#39;, -10); //&quot;-010.00&quot;
+comb.string.format(&#39;%  7.2d&#39;, 10);  //&quot;  10.00&quot;
+comb.string.format(&#39;%  7.2d&#39;, -10); //&quot; -10.00&quot;
+comb.string.format(&#39;% 7.2d&#39;, 10);   //&quot;  10.00&quot;
+comb.string.format(&#39;% 7.2d&#39;, -10);  //&quot; -10.00&quot;
 
 //use a 0 as padding
 comb.string.format(&#39;%010d&#39;, 10); //&quot;0000000010&quot;
@@ -581,7 +588,7 @@ comb.string.format(&quot;{[.2]min}...{[.2]max}&quot;, {min: 1, max: 10}); //&quo
     <em>Arguments</em>
     <ul>
     
-        <li> <em>str</em>  : <p>the string to format, if you want to use a spacing character as padding (other than \s) then put your format in brackets.  <ol>      <li>String Formats %[options]s</li>          <ul>              <li>- : left justified</li>              <li>Char : padding character <b>Excludes d,j,s</b></li>              <li>Number : width</li>          </ul>      </li>      <li>Number Formats %[options]d</li>          <ul>              <li>- : left justified</li>              <li>+ : signed number</li>              <li>Char : padding character <b>Excludes d,j,s</b></li>              <li>Number : width</li>              <li>.Precision</li>          </ul>      </li>      <li>Object Formats %[options]j</li>          <ul>              <li>Number : spacing for object properties.</li>          </ul>      </li>  </ol></p>
+        <li> <em>str</em>  : <p>the string to format, if you want to use a spacing character as padding (other than \s) then put your format in brackets.  <ol>      <li>String Formats %[options]s</li>          <ul>              <li>- : left justified</li>              <li>Char : padding character <b>Excludes d,j,s</b></li>              <li>Number : width</li>          </ul>      </li>      <li>Number Formats %[options]d</li>          <ul>              <li><code>-</code> : left justified</li>              <li><code>+</code> or <code>&lt;space&gt;</code> : signed number if space is used the number will use a extra <code>&lt;space&gt;</code> instead of a <code>+</code></li>              <li><code>&lt;Char&gt;</code> : padding character <b>Excludes d,j,s</b></li>              <li><code>Number</code> : width</li>              <li><code>.Number</code>: specify the precision of the number</li>          </ul>      </li>      <li>Object Formats %[options]j</li>          <ul>              <li>Number : spacing for object properties.</li>          </ul>      </li>  </ol></p>
 </li>
     
         <li> <em>obj</em>  : <p>the parameters to replace in the string                                    if an array is passed then the array is used sequentially                                    if an object is passed then the object keys are used                                    if a variable number of args are passed then they are used like an array</p>
