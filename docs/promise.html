@@ -281,13 +281,13 @@
 
 
 <h1><a href="./comb_Promise.html">Promises</a></h1>
-<p><code>comb</code> provides an async wrapper called a <a href="http://en.wikipedia.org/wiki/Futures_and_promises">promise</a>. Promises are a way of handling async and sync behavior by encapsulating it in a wrapper. One of the benefits of promises is that it encourages the separation of success and failure logic, and provides a value that can be passed around rather than providing callbacks for every async action. </p>
+<p><code>comb</code> provides an async wrapper called a <a href="http://en.wikipedia.org/wiki/Futures_and_promises">promise</a>. Promises are a way of handling async and sync behavior by encapsulating it in a wrapper. One of the benefits of promises is that they encourage the separation of success and failure logic. Promises provide a value that can be passed around rather than providing callbacks for every async action. </p>
 <h2><a href="./comb_Promise.html">comb.Promise</a></h2>
 <p>The <a href="./comb_Promise.html">comb.Promise</a> is the backbone for <code>comb</code>s async utilities. </p>
 <p>To create a promise</p>
 <pre class='prettyprint linenums lang-js'><code>var promise = new comb.Promise();</code></pre>
 <h3>Resolving Promises</h3>
-<p>When working with a promise you must resolve the promise in order to callbacks/errbacks to be invoked. Resolution can happen before for after callbacks/errbacks have been registered. The methods to resolve a promise are <code>callback</code>, <code>errback</code>, and <code>resolve</code>.</p>
+<p>When working with a promise you must resolve the promise in order for callbacks/errbacks to be invoked. Resolution can happen before for after callbacks/errbacks have been registered. The methods to resolve a promise are <code>callback</code>, <code>errback</code>, and <code>resolve</code>.</p>
 <h3>callback  and errback</h3>
 <p>The callback method is used to resolve a promise as a success.</p>
 <pre class='prettyprint linenums lang-js'><code>
@@ -326,7 +326,7 @@ readFile(&quot;myFile.txt&quot;).then(function(text){
     console.log(text);
 }, errorHandler);</code></pre>
 <p>After rewriting the <code>readFile()</code> method with resolve the code is a lot cleaner with only three lines and you still get the same promise API.</p>
-<h3>Listening for Promise Resolutions.</h3>
+<h3>Listening for Promise Resolutions</h3>
 <p>To listen for the resolution of promises there are the following methods. For the following examples we will use the <code>readFile</code> method defined above.</p>
 <h3>then</h3>
 <p>The <code>then</code> methods accepts two arugments a <code>callback</code> and an optional <code>errback</code>.</p>
@@ -381,7 +381,7 @@ readFile(&quot;myFile.txt&quot;).classic(function(err, file){
     }
 });</code></pre>
 <h3>chain</h3>
-<p>The chain method is used to chain promises together so they execute ir order. The chain method is different from the <a href="./comb.html#.serial">comb.serial</a> method in that it pipes the results from one promise into the next.</p>
+<p>The chain method is used to chain promises together so they execute in order. The chain method is different from the <a href="./comb.html#.serial">comb.serial</a> method in that it pipes the results from one promise into the next.</p>
 <p>In the following example we chain the results of different promise actions into a single result.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncString(str){
     var ret = new comb.Promise();
@@ -407,8 +407,8 @@ asyncString(&quot;hello&quot;)
     }).then(function(str){
         console.log(str); //&quot;hello world!&quot;
     });</code></pre>
-<p>If you do not provide an <code>errback</code> for each chain then it will be propogated to the final promise</p>
-<pre class='prettyprint linenums lang-js'><code>new Promise().callbac()
+<p>If you do not provide an <code>errback</code> for each chain then it will be propogated to the final promise.</p>
+<pre class='prettyprint linenums lang-js'><code>new Promise().callback()
     .chain(function(){
         return new comb.Promise().errback(new Error(&quot;error&quot;));
     })
@@ -419,7 +419,7 @@ asyncString(&quot;hello&quot;)
         console.log(err.message); //&quot;error&quot;
     });</code></pre>
 <h3>Catching Errors</h3>
-<p>Chain also allows you to catch errors so you can handle them successfully</p>
+<p>Chain also allows you to catch errors so you can handle them successfully.</p>
 <pre class='prettyprint linenums lang-js'><code>new Promise().callback()
     .chain(function(){
         throw new Error(&quot;error&quot;);
@@ -436,16 +436,19 @@ asyncString(&quot;hello&quot;)
         return new Promise().callback(&quot;caught error and handled&quot;);
     })
     .classic(function(err, str){
-        console.log(str); //&quot;caught error and handled&quot;</code></pre>
-<p>If you still cannot handle the error you can rethrow the error.</p>
+        console.log(str); //&quot;caught error and handled&quot;
+    });</code></pre>
+<p>If you still cannot handle the error you can rethrow the error. It will handle errors thrown asynchronously or synchronously.</p>
 <pre class='prettyprint linenums lang-js'><code>new Promise().callback()
     .chain(function(){
         throw new Error(&quot;error&quot;);
     }, function(){
+        // return async error
         return new Promise().errback(new Error(&quot;error not handled&quot;));
     })
     .classic(function(err, str){
-        console.log(err.message); //&quot;error not handled&quot;</code></pre>
+        console.log(err.message); //&quot;error not handled&quot;
+    });</code></pre>
 <pre class='prettyprint linenums lang-js'><code>new Promise()
     .chain(function(){
         throw new Error(&quot;error&quot;);
@@ -453,7 +456,8 @@ asyncString(&quot;hello&quot;)
         throw new Error(&quot;error not handled&quot;);
     })
     .classic(function(err, str){
-        console.log(err.message); //&quot;error not handled&quot;</code></pre>
+        console.log(err.message); //&quot;error not handled&quot;
+    });</code></pre>
 <h2><a href="./comb_PromiseList.html">comb.PromiseList</a></h2>
 <p>A promise list is used to listen for the completion of an array of promises. You may also use <a href="./comb.html#.when">comb.when</a>
 with an array of promises.</p>
@@ -495,7 +499,6 @@ comb.when(
         return readFile(file);
     });
     return comb.when(files);
-
 }
 
 readFiles(&quot;myFile.txt&quot;, &quot;myFile2.txt&quot;, &quot;myFile3.txt&quot;).then(function(files){
@@ -588,7 +591,7 @@ comb.async.forEach(asyncArr(), function(item, index){
     });                                                                                           
     return ret.promise();                                                                         
 }).then(function(){                                                                               
-    console.log(myNewArr) //[[1,0], [2,1], [3,2], [4,3], [5,4]]                                   
+    console.log(myNewArr); //[[1,0], [2,1], [3,2], [4,3], [5,4]]                                   
 });</code></pre>
 <h2><a href="./comb_async.html#.map">comb.async.map</a></h2>
 <p> Loops through the results of an promise resolving with the return value of the iterator function.<br> The promise can return an array or just a single item.                                                </p>
@@ -611,7 +614,7 @@ comb.async.forEach(asyncArr(), function(item, index){
      });                                                                                               
      return ret.promise();                                                                             
  }).then(function(){                                                                                   
-     console.log(myNewArr) //[2,4,6,8,10];                                                             
+     console.log(myNewArr); //[2,4,6,8,10];                                                             
  });</code></pre>
 <h2><a href="./comb_async.html#.filter">comb.async.filter</a></h2>
 <p>Loops through the results of an promise resolving with the filtered array.
@@ -635,7 +638,7 @@ comb.async.filter(asyncArr(), function(item){
     });                                                                   
     return ret.promise();                                                 
 }).then(function(){                                                       
-    console.log(myNewArr) //[1,3,5];                                      
+    console.log(myNewArr); //[1,3,5];                                      
 })</code></pre>
 <h2><a href="./comb_async.html#.every">comb.async.every</a></h2>
 <p>Loops through the results of an promise resolving with true if every item passed, false otherwise.<br>The promise can return an array or just a single item.                                               </p>
@@ -658,7 +661,7 @@ comb.async.every(asyncArr(), function(item){
     });                                                                                              
     return ret.promise();                                                                            
 }).then(function(){                                                                                  
-    console.log(myNewArr) //false;                                                                   
+    console.log(myNewArr); //false;                                                                   
 })</code></pre>
 <h2><a href="./comb_async.html#.some">comb.async.some</a></h2>
 <p>Loops through the results of an promise resolving with true if some items passed, false otherwise.<br>The promise can return an array or just a single item.                                                  </p>
@@ -681,7 +684,7 @@ comb.async.some(asyncArr(), function(item){
     });                                                                                                 
     return ret.promise();                                                                               
 }).then(function(){                                                                                     
-    console.log(myNewArr) //false;                                                                      
+    console.log(myNewArr); //false;                                                                      
 })</code></pre>
 <h2><a href="./comb_async.html#.pluck">comb.async.pluck</a></h2>
 <p>Async version of <a href="./comb_array.html#.pluck">comb.array.pluck</a></p>
