@@ -1,3 +1,8 @@
+# 0.3.5
+
+* Fixed issue where messages were not propagated down to appenders even if there level was set to accept them
+* Added error logging to rolling file appender if there was an issue rolling over.
+
 # 0.3.4
 
 * Update `comb.string.format` to handle signing numbers with padding properly

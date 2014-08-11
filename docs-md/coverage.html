@@ -256,15 +256,262 @@ td.cov-stats {
             </td>
             <td class="cov-stats">
                 <div>
-                    <span class='cov-label'>Coverage</span><span class='cov-value'>98.90</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>12930</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>3541</span>
-                    <span class='cov-label'>Missed</span><span class='cov-value'>39</span>
+                    <span class='cov-label'>Coverage</span><span class='cov-value'>98.65</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>12954</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>3555</span>
+                    <span class='cov-label'>Missed</span><span class='cov-value'>48</span>
                 </div>
             </td>
         </tr>
     </table>
     <hr class="section">
+</div>
+
+<div class="cov-section cov-section-hover cov-section-med" id="logging/appenders/rollingFileAppender.js">
+    <table class='section-table'>
+        <tr>
+            <td>
+                <div class='cov-section-header'>logging/appenders/rollingFileAppender.js</div>
+            </td>
+            <td class="cov-stats">
+                <div>
+                    <span class='cov-label'>Coverage</span><span class='cov-value'>90.00</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>229</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>90</span>
+                    <span class='cov-label'>Missed</span><span class='cov-value'>9</span>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class='source' id="logging/appenders/rollingFileAppender.js-source"><pre class='prettyprint linenums'><ol class='linenums'><li class='green'><span class='hits'>1</span><code>var define = require("../../define.js").define,</code></li>
+<li class='green'><span class=''> </span><code>    promise = require("../../promise"),</code></li>
+<li class='green'><span class=''> </span><code>    Promise = promise.Promise,</code></li>
+<li class='green'><span class=''> </span><code>    PromiseList = promise.PromiseList,</code></li>
+<li class='green'><span class=''> </span><code>    base = require("../../base"),</code></li>
+<li class='green'><span class=''> </span><code>    hitch = base.hitch,</code></li>
+<li class='green'><span class=''> </span><code>    string = base.string,</code></li>
+<li class='green'><span class=''> </span><code>    escape = base.regexp.escapeString,</code></li>
+<li class='green'><span class=''> </span><code>    style = string.style,</code></li>
+<li class='green'><span class=''> </span><code>    format = string.format,</code></li>
+<li class='green'><span class=''> </span><code>    FileAppender = require("./fileAppender"),</code></li>
+<li class='green'><span class=''> </span><code>    Level = require("../level"),</code></li>
+<li class='green'><span class=''> </span><code>    fs = require("fs"),</code></li>
+<li class='green'><span class=''> </span><code>    path = require("path");</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>1</span><code>var conversion = {</code></li>
+<li class='green'><span class=''> </span><code>    MB: 1048576,</code></li>
+<li class='green'><span class=''> </span><code>    KB: 1024,</code></li>
+<li class='green'><span class=''> </span><code>    GB: 1073741824</code></li>
+<li class='green'><span class=''> </span><code>};</code></li>
+<li class='green'><span class='hits'>1</span><code>var DEFAULT_SIZE = "10MB";</code></li>
+<li class='green'><span class='hits'>1</span><code>var convertToBytes = function (str) {</code></li>
+<li class='green'><span class='hits'>3</span><code>    var ret = DEFAULT_SIZE;</code></li>
+<li class='green'><span class='hits'>3</span><code>    var match = str.match(/(\d+)(MB|KB|GB)$/);</code></li>
+<li class='green'><span class='hits'>3</span><code>    if (match &amp;&amp; match.length == 3) {</code></li>
+<li class='green'><span class='hits'>3</span><code>        var size = parseInt(match[1], 10);</code></li>
+<li class='green'><span class='hits'>3</span><code>        ret = size * conversion[match[2]];</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class='hits'>3</span><code>    return ret;</code></li>
+<li class='green'><span class=''> </span><code>}</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>/**</code></li>
+<li class='green'><span class=''> </span><code> * @class Appends messages to a file. Rolls files over when a size limit has been reached. Once the max file size has</code></li>
+<li class='green'><span class=''> </span><code> * been reached it is rolled over to a file called &amp;lt;logName&amp;gt;.log.n where n is a number.</code></li>
+<li class='green'><span class=''> </span><code> * &lt;/br&gt;&lt;/br&gt;</code></li>
+<li class='green'><span class=''> </span><code> * &lt;p&gt;Example. RollingFileAppender is current writing to myLog.log, the log reaches is max size to it is</code></li>
+<li class='green'><span class=''> </span><code> * renamed to myLog.log.1 and a new myLog.log is created.&lt;/p&gt;</code></li>
+<li class='green'><span class=''> </span><code> * &lt;/br&gt;</code></li>
+<li class='green'><span class=''> </span><code> * If maxBackupIndex is reached then the log at that index is deleted. If maxBackupIndex is set to 0 then no log is</code></li>
+<li class='green'><span class=''> </span><code> * rolled over.&lt;/p&gt;</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @name RollingFileAppender</code></li>
+<li class='green'><span class=''> </span><code> * @augments comb.logging.appenders.FileAppender</code></li>
+<li class='green'><span class=''> </span><code> * @memberOf comb.logging.appenders</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Object} [options] options to assign to this Appender</code></li>
+<li class='green'><span class=''> </span><code> * @param {String} [options.name="appender"] the name of this Appender. If you want two of the same type of appender</code></li>
+<li class='green'><span class=''> </span><code> *                                           on a logger it must have a different name.</code></li>
+<li class='green'><span class=''> </span><code> * @param {String} [options.pattern="[{[yyyy-MM-ddTHH:mm:ss:SSS (z)]timeStamp}] {[- 5]levelName} {[-20]name} - {message}"]</code></li>
+<li class='green'><span class=''> </span><code> *  &lt;p&gt;Available Options for formatting see {@link comb.string.format} for formatting options&lt;/p&gt;</code></li>
+<li class='green'><span class=''> </span><code> *  &lt;ul&gt;</code></li>
+<li class='green'><span class=''> </span><code> *      &lt;li&gt;timeStamp - the timestamp of the event being logged&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code> *      &lt;li&gt;level - the {@link comb.logging.Level} of the event&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code> *      &lt;li&gt;levelName - the name of the level being logged&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code> *      &lt;li&gt;name - the name of the logger logging the event&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code> *      &lt;li&gt;message - the message being logged&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code> * &lt;/ul&gt;</code></li>
+<li class='green'><span class=''> </span><code> * @param {comb.logging.Level|String} [options.level=comb.logging.Level.INFO] the logging level of this appender</code></li>
+<li class='green'><span class=''> </span><code> *      &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; the level can be different from the logger in the case that you want a particular logger</code></li>
+<li class='green'><span class=''> </span><code> *      to only log particular event of a level. For example an appender that only logs errors. BEWARE that if the</code></li>
+<li class='green'><span class=''> </span><code> *      appenders level is lower than the logger is will not recieve any messages.&lt;/p&gt;</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {String} [options.file="./log.log"] the file to log events to.</code></li>
+<li class='green'><span class=''> </span><code> * @param {String} [options.encoding="utf8"] the encoding of the file.</code></li>
+<li class='green'><span class=''> </span><code> * @param {Boolean} [options.overwrite=false] if true the log file is overwritten otherwise it is appended to.</code></li>
+<li class='green'><span class=''> </span><code> * @param {String} [options.maxSize="10MB"] the maxSize of a file. Valid options include "KB", "MB", or "GB"</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * &lt;pre class="code"&gt;</code></li>
+<li class='green'><span class=''> </span><code> *     maxSize = "100MB"</code></li>
+<li class='green'><span class=''> </span><code> *     //or</code></li>
+<li class='green'><span class=''> </span><code> *     maxSize = "100KB"</code></li>
+<li class='green'><span class=''> </span><code> *     //or</code></li>
+<li class='green'><span class=''> </span><code> *     maxSize = "1GB"</code></li>
+<li class='green'><span class=''> </span><code> * &lt;/pre&gt;</code></li>
+<li class='green'><span class=''> </span><code> *</code></li>
+<li class='green'><span class=''> </span><code> * @param {Number} [options.maxBackupIndex=10] the maximum number of files to rollOver.</code></li>
+<li class='green'><span class=''> </span><code> */</code></li>
+<li class='green'><span class='hits'>1</span><code>FileAppender.extend({</code></li>
+<li class='green'><span class=''> </span><code>    instance: {</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>        __watching: false,</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>        constructor: function (options) {</code></li>
+<li class='green'><span class='hits'>3</span><code>            options = options || {};</code></li>
+<li class='green'><span class='hits'>3</span><code>            this.maxSize = options.maxSize || DEFAULT_SIZE;</code></li>
+<li class='green'><span class='hits'>3</span><code>            !options.name &amp;&amp; (options.name = "rollingFileAppender");</code></li>
+<li class='green'><span class='hits'>3</span><code>            this.maxBackupIndex = options.maxBackupIndex || 10;</code></li>
+<li class='green'><span class='hits'>3</span><code>            this.__queue = [];</code></li>
+<li class='green'><span class='hits'>3</span><code>            this.__inRollover = false;</code></li>
+<li class='green'><span class='hits'>3</span><code>            this._super([options]);</code></li>
+<li class='green'><span class=''> </span><code>        },</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>        __startCheck: function () {</code></li>
+<li class='green'><span class='hits'>1</span><code>            if (!this.__watching) {</code></li>
+<li class='green'><span class='hits'>1</span><code>                this.__watching = true;</code></li>
+<li class='green'><span class='hits'>1</span><code>                fs.watchFile(this.__file, hitch(this, "__checkFile"));</code></li>
+<li class='green'><span class='hits'>1</span><code>                fs.stat(this.__file, hitch(this, function (err, stat) {</code></li>
+<li class='green'><span class='hits'>1</span><code>                    this.__checkFile(stat);</code></li>
+<li class='green'><span class=''> </span><code>                }));</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class=''> </span><code>        },</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>        __checkFile: function (stats) {</code></li>
+<li class='green'><span class='hits'>5</span><code>            var ret = new Promise(), self = this;</code></li>
+<li class='green'><span class='hits'>5</span><code>            if (!this.__inRollover) {</code></li>
+<li class='green'><span class='hits'>3</span><code>                if (stats.size &gt;= this.maxSize) {</code></li>
+<li class='green'><span class='hits'>2</span><code>                    if (this.maxBackupIndex &gt; 0) {</code></li>
+<li class='green'><span class='hits'>1</span><code>                        this.__inRollover = true;</code></li>
+<li class='green'><span class='hits'>1</span><code>                        this.__onExit()</code></li>
+<li class='green'><span class=''> </span><code>                            .chain(function () {</code></li>
+<li class='green'><span class='hits'>1</span><code>                                return self.__rollover();</code></li>
+<li class='green'><span class=''> </span><code>                            })</code></li>
+<li class='green'><span class=''> </span><code>                            .chain(function () {</code></li>
+<li class='green'><span class='hits'>1</span><code>                                var ws = fs.createWriteStream(self.__file, {flags: "w", encoding: self.__encoding});</code></li>
+<li class='green'><span class='hits'>1</span><code>                                ws.on("open", function () {</code></li>
+<li class='green'><span class='hits'>1</span><code>                                    self.__writeStream = ws;</code></li>
+<li class='green'><span class='hits'>1</span><code>                                    self.__inRollover = false;</code></li>
+<li class='green'><span class='hits'>1</span><code>                                    self.__checkQueue();</code></li>
+<li class='green'><span class='hits'>1</span><code>                                    ret.callback();</code></li>
+<li class='green'><span class=''> </span><code>                                });</code></li>
+<li class='green'><span class=''> </span><code>                            }, function (err) {</code></li>
+<li class='red'><span class='nohits'>0</span><code>                                process.stderr.write("comb.logging.appenders.RollingFileAppender : error rolling over files resuming writing");</code></li>
+<li class='red'><span class='nohits'>0</span><code>                                process.stderr.write(err.stack);</code></li>
+<li class='red'><span class='nohits'>0</span><code>                                var ws = fs.createWriteStream(self.__file, {flags: "w", encoding: self.__encoding});</code></li>
+<li class='red'><span class='nohits'>0</span><code>                                ws.on("open", function () {</code></li>
+<li class='red'><span class='nohits'>0</span><code>                                    self.__writeStream = ws;</code></li>
+<li class='red'><span class='nohits'>0</span><code>                                    self.__inRollover = false;</code></li>
+<li class='red'><span class='nohits'>0</span><code>                                    self.__checkQueue();</code></li>
+<li class='red'><span class='nohits'>0</span><code>                                    ret.callback();</code></li>
+<li class='green'><span class=''> </span><code>                                });</code></li>
+<li class='green'><span class=''> </span><code>                            });</code></li>
+<li class='green'><span class=''> </span><code>                    } else {</code></li>
+<li class='green'><span class='hits'>1</span><code>                        this.__writeStream = fs.createWriteStream(this.__file, {flags: "w", encoding: this.__encoding});</code></li>
+<li class='green'><span class='hits'>1</span><code>                        ret.callback();</code></li>
+<li class='green'><span class=''> </span><code>                    }</code></li>
+<li class='green'><span class=''> </span><code>                } else {</code></li>
+<li class='green'><span class='hits'>1</span><code>                    ret.callback();</code></li>
+<li class='green'><span class=''> </span><code>                }</code></li>
+<li class='green'><span class=''> </span><code>            } else {</code></li>
+<li class='green'><span class='hits'>2</span><code>                ret.callback();</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class='hits'>5</span><code>            return ret.promise();</code></li>
+<li class='green'><span class=''> </span><code>        },</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>        append: function (event) {</code></li>
+<li class='green'><span class='hits'>12</span><code>            if (this._canAppend(event)) {</code></li>
+<li class='green'><span class='hits'>12</span><code>                !this.__watching &amp;&amp; this.__startCheck();</code></li>
+<li class='green'><span class='hits'>12</span><code>                var ws = this.__writeStream;</code></li>
+<li class='green'><span class='hits'>12</span><code>                if (!this.__inRollover &amp;&amp; ws &amp;&amp; ws.writable) {</code></li>
+<li class='green'><span class='hits'>9</span><code>                    this._super(arguments);</code></li>
+<li class='green'><span class=''> </span><code>                } else {</code></li>
+<li class='green'><span class='hits'>3</span><code>                    this.__queue.push(event);</code></li>
+<li class='green'><span class=''> </span><code>                }</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class=''> </span><code>        },</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>        __checkQueue: function () {</code></li>
+<li class='green'><span class='hits'>1</span><code>            this.__queue.forEach(this.append, this);</code></li>
+<li class='green'><span class='hits'>1</span><code>            this.__queue.length = 0;</code></li>
+<li class='green'><span class=''> </span><code>        },</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>        __rollover: function () {</code></li>
+<li class='green'><span class='hits'>1</span><code>            var ret = new Promise(), file = this.__file, self = this;</code></li>
+<li class='green'><span class='hits'>1</span><code>            var dir = path.dirname(file), baseName = new RegExp("(" + escape(path.basename(path.basename(file))) + ")(?:\\.(\\d*))*");</code></li>
+<li class='green'><span class='hits'>1</span><code>            fs.readdir(dir, function (err, files) {</code></li>
+<li class='green'><span class='hits'>1</span><code>                if (err) {</code></li>
+<li class='red'><span class='nohits'>0</span><code>                    ret.errback(err);</code></li>
+<li class='green'><span class=''> </span><code>                } else {</code></li>
+<li class='green'><span class='hits'>1</span><code>                    files = files.filter(</code></li>
+<li class='green'><span class=''> </span><code>                        function (f) {</code></li>
+<li class='green'><span class='hits'>5</span><code>                            var match = f.match(baseName);</code></li>
+<li class='green'><span class='hits'>5</span><code>                            if (match) {</code></li>
+<li class='green'><span class='hits'>4</span><code>                                return true;</code></li>
+<li class='green'><span class=''> </span><code>                            } else {</code></li>
+<li class='green'><span class='hits'>1</span><code>                                return false;</code></li>
+<li class='green'><span class=''> </span><code>                            }</code></li>
+<li class='green'><span class=''> </span><code>                        });</code></li>
+<li class='green'><span class='hits'>1</span><code>                    files = files.sort(function (a, b) {</code></li>
+<li class='green'><span class='hits'>6</span><code>                        var ret = 0;</code></li>
+<li class='green'><span class='hits'>6</span><code>                        if (a &gt; b) {</code></li>
+<li class='green'><span class='hits'>3</span><code>                            ret = 0;</code></li>
+<li class='green'><span class='hits'>3</span><code>                        } else if (a &lt; b) {</code></li>
+<li class='green'><span class='hits'>3</span><code>                            ret = 1;</code></li>
+<li class='green'><span class=''> </span><code>                        }</code></li>
+<li class='green'><span class='hits'>6</span><code>                        return ret;</code></li>
+<li class='green'><span class=''> </span><code>                    });</code></li>
+<li class='green'><span class='hits'>1</span><code>                    var count = files.length, i = 0;</code></li>
+<li class='green'><span class='hits'>1</span><code>                    var checkFile = function () {</code></li>
+<li class='green'><span class='hits'>5</span><code>                        if (count &gt; 0) {</code></li>
+<li class='green'><span class='hits'>4</span><code>                            var f = dir + "/" + files[i++];</code></li>
+<li class='green'><span class='hits'>4</span><code>                            if (count &gt; self.maxBackupIndex) {</code></li>
+<li class='green'><span class=''> </span><code>                                //drop the file;</code></li>
+<li class='green'><span class='hits'>1</span><code>                                count--;</code></li>
+<li class='green'><span class='hits'>1</span><code>                                fs.unlink(f, function (err) {</code></li>
+<li class='green'><span class='hits'>1</span><code>                                    err ? ret.errback(err) : checkFile();</code></li>
+<li class='green'><span class=''> </span><code>                                });</code></li>
+<li class='green'><span class=''> </span><code>                            } else {</code></li>
+<li class='green'><span class=''> </span><code>                                //rename the file</code></li>
+<li class='green'><span class='hits'>3</span><code>                                var rn = self.__file + "." + count--;</code></li>
+<li class='green'><span class='hits'>3</span><code>                                fs.rename(f, rn, function (err) {</code></li>
+<li class='green'><span class='hits'>3</span><code>                                    err ? ret.errback(err) : checkFile();</code></li>
+<li class='green'><span class=''> </span><code>                                });</code></li>
+<li class='green'><span class=''> </span><code>                            }</code></li>
+<li class='green'><span class=''> </span><code>                        } else {</code></li>
+<li class='green'><span class='hits'>1</span><code>                            ret.callback();</code></li>
+<li class='green'><span class=''> </span><code>                        }</code></li>
+<li class='green'><span class=''> </span><code>                    };</code></li>
+<li class='green'><span class='hits'>1</span><code>                    checkFile();</code></li>
+<li class='green'><span class=''> </span><code>                }</code></li>
+<li class='green'><span class=''> </span><code>            });</code></li>
+<li class='green'><span class='hits'>1</span><code>            return ret.promise();</code></li>
+<li class='green'><span class=''> </span><code>        },</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>        getters: {</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>            maxSize: function () {</code></li>
+<li class='green'><span class='hits'>3</span><code>                return this.__maxSize;</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class=''> </span><code>        },</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>        setters: {</code></li>
+<li class='green'><span class=''> </span><code>            maxSize: function (size) {</code></li>
+<li class='green'><span class='hits'>3</span><code>                this.__maxSize = size ? convertToBytes(size) : DEFAULT_SIZE;</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class=''> </span><code>        }</code></li>
+<li class='green'><span class=''> </span><code>    }</code></li>
+<li class='green'><span class=''> </span><code>}).registerType("RollingFileAppender").as(module);</code></li></ol></pre></div>
 </div>
 
 <div class="cov-section cov-section-hover cov-section-high" id="base/functions.js">
@@ -298,28 +545,28 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isFunction(obj) {</code></li>
-<li class='green'><span class='hits'>18865</span><code>    return typeof obj === "function";</code></li>
+<li class='green'><span class='hits'>18863</span><code>    return typeof obj === "function";</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function spreadArgs(f, args, scope) {</code></li>
-<li class='green'><span class='hits'>18120</span><code>    var ret;</code></li>
-<li class='green'><span class='hits'>18120</span><code>    switch ((args || []).length) {</code></li>
+<li class='green'><span class='hits'>18114</span><code>    var ret;</code></li>
+<li class='green'><span class='hits'>18114</span><code>    switch ((args || []).length) {</code></li>
 <li class='green'><span class=''> </span><code>    case 0:</code></li>
-<li class='green'><span class='hits'>4991</span><code>        ret = f.call(scope);</code></li>
-<li class='green'><span class='hits'>4986</span><code>        break;</code></li>
+<li class='green'><span class='hits'>4985</span><code>        ret = f.call(scope);</code></li>
+<li class='green'><span class='hits'>4980</span><code>        break;</code></li>
 <li class='green'><span class=''> </span><code>    case 1:</code></li>
-<li class='green'><span class='hits'>7359</span><code>        ret = f.call(scope, args[0]);</code></li>
-<li class='green'><span class='hits'>7347</span><code>        break;</code></li>
+<li class='green'><span class='hits'>7360</span><code>        ret = f.call(scope, args[0]);</code></li>
+<li class='green'><span class='hits'>7348</span><code>        break;</code></li>
 <li class='green'><span class=''> </span><code>    case 2:</code></li>
-<li class='green'><span class='hits'>3033</span><code>        ret = f.call(scope, args[0], args[1]);</code></li>
-<li class='green'><span class='hits'>3032</span><code>        break;</code></li>
+<li class='green'><span class='hits'>3032</span><code>        ret = f.call(scope, args[0], args[1]);</code></li>
+<li class='green'><span class='hits'>3031</span><code>        break;</code></li>
 <li class='green'><span class=''> </span><code>    case 3:</code></li>
 <li class='green'><span class='hits'>2725</span><code>        ret = f.call(scope, args[0], args[1], args[2]);</code></li>
 <li class='green'><span class='hits'>2725</span><code>        break;</code></li>
 <li class='green'><span class=''> </span><code>    default:</code></li>
 <li class='green'><span class='hits'>12</span><code>        ret = f.apply(scope, args);</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>18102</span><code>    return ret;</code></li>
+<li class='green'><span class='hits'>18096</span><code>    return ret;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -335,26 +582,26 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Function} the hitched function</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function hitch(scope, method, args) {</code></li>
-<li class='green'><span class='hits'>5239</span><code>    args = Array.prototype.slice.call(arguments).slice(2);</code></li>
-<li class='green'><span class='hits'>5239</span><code>    if ((isString(method) &amp;&amp; !(method in scope))) {</code></li>
+<li class='green'><span class='hits'>5235</span><code>    args = Array.prototype.slice.call(arguments).slice(2);</code></li>
+<li class='green'><span class='hits'>5235</span><code>    if ((isString(method) &amp;&amp; !(method in scope))) {</code></li>
 <li class='green'><span class='hits'>2</span><code>        throw new Error(method + " property not defined in scope");</code></li>
-<li class='green'><span class='hits'>5237</span><code>    } else if (!isString(method) &amp;&amp; !isFunction(method)) {</code></li>
+<li class='green'><span class='hits'>5233</span><code>    } else if (!isString(method) &amp;&amp; !isFunction(method)) {</code></li>
 <li class='green'><span class='hits'>1</span><code>        throw new Error(method + " is not a function");</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>5236</span><code>    if (isString(method)) {</code></li>
-<li class='green'><span class='hits'>132</span><code>        return function () {</code></li>
-<li class='green'><span class='hits'>380</span><code>            var func = scope[method];</code></li>
-<li class='green'><span class='hits'>380</span><code>            if (isFunction(func)) {</code></li>
-<li class='green'><span class='hits'>377</span><code>                var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
-<li class='green'><span class='hits'>377</span><code>                return spreadArgs(func, scopeArgs, scope);</code></li>
+<li class='green'><span class='hits'>5232</span><code>    if (isString(method)) {</code></li>
+<li class='green'><span class='hits'>130</span><code>        return function () {</code></li>
+<li class='green'><span class='hits'>379</span><code>            var func = scope[method];</code></li>
+<li class='green'><span class='hits'>379</span><code>            if (isFunction(func)) {</code></li>
+<li class='green'><span class='hits'>376</span><code>                var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
+<li class='green'><span class='hits'>376</span><code>                return spreadArgs(func, scopeArgs, scope);</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
 <li class='green'><span class='hits'>3</span><code>                return func;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        };</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
-<li class='green'><span class='hits'>5104</span><code>        return function () {</code></li>
-<li class='green'><span class='hits'>3207</span><code>            var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
-<li class='green'><span class='hits'>3207</span><code>            return spreadArgs(method, scopeArgs, scope);</code></li>
+<li class='green'><span class='hits'>5102</span><code>        return function () {</code></li>
+<li class='green'><span class='hits'>3200</span><code>            var scopeArgs = args.concat(Array.prototype.slice.call(arguments));</code></li>
+<li class='green'><span class='hits'>3200</span><code>            return spreadArgs(method, scopeArgs, scope);</code></li>
 <li class='green'><span class=''> </span><code>        };</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
@@ -996,27 +1243,27 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @constructs</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        constructor: function () {</code></li>
-<li class='green'><span class='hits'>2525</span><code>            this.__errorCbs = [];</code></li>
-<li class='green'><span class='hits'>2525</span><code>            this.__cbs = [];</code></li>
-<li class='green'><span class='hits'>2525</span><code>            this.callback = hitch(this, this.callback);</code></li>
-<li class='green'><span class='hits'>2525</span><code>            this.errback = hitch(this, this.errback);</code></li>
+<li class='green'><span class='hits'>2526</span><code>            this.__errorCbs = [];</code></li>
+<li class='green'><span class='hits'>2526</span><code>            this.__cbs = [];</code></li>
+<li class='green'><span class='hits'>2526</span><code>            this.callback = hitch(this, this.callback);</code></li>
+<li class='green'><span class='hits'>2526</span><code>            this.errback = hitch(this, this.errback);</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
 <li class='green'><span class=''> </span><code>         * @private</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        __resolve: function () {</code></li>
-<li class='green'><span class='hits'>2373</span><code>            var self = this;</code></li>
-<li class='green'><span class='hits'>2373</span><code>            if (!self.__fired) {</code></li>
-<li class='green'><span class='hits'>2373</span><code>                self.__fired = true;</code></li>
-<li class='green'><span class='hits'>2373</span><code>                nextTick(function () {</code></li>
-<li class='green'><span class='hits'>2372</span><code>                    var cbs = self.__error ? self.__errorCbs : self.__cbs,</code></li>
+<li class='green'><span class='hits'>2374</span><code>            var self = this;</code></li>
+<li class='green'><span class='hits'>2374</span><code>            if (!self.__fired) {</code></li>
+<li class='green'><span class='hits'>2374</span><code>                self.__fired = true;</code></li>
+<li class='green'><span class='hits'>2374</span><code>                nextTick(function () {</code></li>
+<li class='green'><span class='hits'>2373</span><code>                    var cbs = self.__error ? self.__errorCbs : self.__cbs,</code></li>
 <li class='green'><span class=''> </span><code>                        res = self.__error || self.__results,</code></li>
 <li class='green'><span class=''> </span><code>                        i = -1, l = cbs.length;</code></li>
-<li class='green'><span class='hits'>2372</span><code>                    while (++i &lt; l) {</code></li>
+<li class='green'><span class='hits'>2373</span><code>                    while (++i &lt; l) {</code></li>
 <li class='green'><span class='hits'>2264</span><code>                        spreadArgs(cbs[i], res);</code></li>
 <li class='green'><span class=''> </span><code>                    }</code></li>
-<li class='green'><span class='hits'>2372</span><code>                    self.__errorCbs.length = self.__cbs.length = 0;</code></li>
-<li class='green'><span class='hits'>2372</span><code>                    self = null;</code></li>
+<li class='green'><span class='hits'>2373</span><code>                    self.__errorCbs.length = self.__cbs.length = 0;</code></li>
+<li class='green'><span class='hits'>2373</span><code>                    self = null;</code></li>
 <li class='green'><span class=''> </span><code>                });</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
@@ -1098,13 +1345,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @param {*} args variable number of results to pass back to listeners of the promise</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        callback: function (args) {</code></li>
-<li class='green'><span class='hits'>2208</span><code>            args = argsToArray(arguments);</code></li>
-<li class='green'><span class='hits'>2208</span><code>            if (this.__fired) {</code></li>
+<li class='green'><span class='hits'>2209</span><code>            args = argsToArray(arguments);</code></li>
+<li class='green'><span class='hits'>2209</span><code>            if (this.__fired) {</code></li>
 <li class='green'><span class='hits'>1</span><code>                throw new Error("Already fired!");</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>2207</span><code>            this.__results = args;</code></li>
-<li class='green'><span class='hits'>2207</span><code>            this.__resolve();</code></li>
-<li class='green'><span class='hits'>2207</span><code>            return this.promise();</code></li>
+<li class='green'><span class='hits'>2208</span><code>            this.__results = args;</code></li>
+<li class='green'><span class='hits'>2208</span><code>            this.__resolve();</code></li>
+<li class='green'><span class='hits'>2208</span><code>            return this.promise();</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -1156,14 +1403,14 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.Promise} this promise for chaining</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        then: function (callback, errback) {</code></li>
-<li class='green'><span class='hits'>1859</span><code>            if (isPromise(callback)) {</code></li>
+<li class='green'><span class='hits'>1858</span><code>            if (isPromise(callback)) {</code></li>
 <li class='green'><span class='hits'>153</span><code>                errback = callback.errback;</code></li>
 <li class='green'><span class='hits'>153</span><code>                callback = callback.callback;</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>1859</span><code>            this.addCallback(callback);</code></li>
-<li class='green'><span class='hits'>1859</span><code>            this.addErrback(errback);</code></li>
+<li class='green'><span class='hits'>1858</span><code>            this.addCallback(callback);</code></li>
+<li class='green'><span class='hits'>1858</span><code>            this.addErrback(errback);</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1859</span><code>            return this;</code></li>
+<li class='green'><span class='hits'>1858</span><code>            return this;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -1247,10 +1494,10 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.Promise} A new that wraps the promise for chaining</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        chain: function (callback, errback) {</code></li>
-<li class='green'><span class='hits'>599</span><code>            var promise = new Promise(),</code></li>
+<li class='green'><span class='hits'>600</span><code>            var promise = new Promise(),</code></li>
 <li class='green'><span class=''> </span><code>                self = this;</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>599</span><code>            function _errback(e) {</code></li>
+<li class='green'><span class='hits'>600</span><code>            function _errback(e) {</code></li>
 <li class='green'><span class='hits'>94</span><code>                if (isFunction(errback)) {</code></li>
 <li class='green'><span class='hits'>15</span><code>                    try {</code></li>
 <li class='green'><span class='hits'>15</span><code>                        var res = spreadArgs(errback, [e]);</code></li>
@@ -1263,24 +1510,24 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>599</span><code>            function _callback() {</code></li>
-<li class='green'><span class='hits'>541</span><code>                try {</code></li>
-<li class='green'><span class='hits'>541</span><code>                    var res = isFunction(callback) ? spreadArgs(callback, arguments) : callback;</code></li>
-<li class='green'><span class='hits'>537</span><code>                    if (isPromiseLike(res)) {</code></li>
+<li class='green'><span class='hits'>600</span><code>            function _callback() {</code></li>
+<li class='green'><span class='hits'>542</span><code>                try {</code></li>
+<li class='green'><span class='hits'>542</span><code>                    var res = isFunction(callback) ? spreadArgs(callback, arguments) : callback;</code></li>
+<li class='green'><span class='hits'>538</span><code>                    if (isPromiseLike(res)) {</code></li>
 <li class='green'><span class='hits'>206</span><code>                        res.then(promise.callback, _errback);</code></li>
 <li class='green'><span class=''> </span><code>                    } else {</code></li>
-<li class='green'><span class='hits'>331</span><code>                        promise.callback(res);</code></li>
-<li class='green'><span class='hits'>331</span><code>                        promise = null;</code></li>
+<li class='green'><span class='hits'>332</span><code>                        promise.callback(res);</code></li>
+<li class='green'><span class='hits'>332</span><code>                        promise = null;</code></li>
 <li class='green'><span class=''> </span><code>                    }</code></li>
-<li class='green'><span class='hits'>537</span><code>                    callback = res = null;</code></li>
+<li class='green'><span class='hits'>538</span><code>                    callback = res = null;</code></li>
 <li class='green'><span class=''> </span><code>                } catch (e) {</code></li>
 <li class='green'><span class='hits'>4</span><code>                    _errback(e);</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>599</span><code>            self.addCallback(_callback);</code></li>
-<li class='green'><span class='hits'>599</span><code>            self.addErrback(_errback);</code></li>
-<li class='green'><span class='hits'>599</span><code>            return promise.promise();</code></li>
+<li class='green'><span class='hits'>600</span><code>            self.addCallback(_callback);</code></li>
+<li class='green'><span class='hits'>600</span><code>            self.addErrback(_errback);</code></li>
+<li class='green'><span class='hits'>600</span><code>            return promise.promise();</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -1327,39 +1574,39 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {Object} an object containing "chain", "chainBoth", "promise", "addCallback", "addErrback", "then", "both".</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        promise: function () {</code></li>
-<li class='green'><span class='hits'>4218</span><code>            var ret = {</code></li>
+<li class='green'><span class='hits'>4220</span><code>            var ret = {</code></li>
 <li class='green'><span class=''> </span><code>                promise: function () {</code></li>
 <li class='green'><span class='hits'>765</span><code>                    return ret;</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>4218</span><code>            var self = this;</code></li>
-<li class='green'><span class='hits'>4218</span><code>            ret["chain"] = function () {</code></li>
-<li class='green'><span class='hits'>589</span><code>                return spreadArgs(self["chain"], arguments, self);</code></li>
+<li class='green'><span class='hits'>4220</span><code>            var self = this;</code></li>
+<li class='green'><span class='hits'>4220</span><code>            ret["chain"] = function () {</code></li>
+<li class='green'><span class='hits'>590</span><code>                return spreadArgs(self["chain"], arguments, self);</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>4218</span><code>            ret["chainBoth"] = function () {</code></li>
+<li class='green'><span class='hits'>4220</span><code>            ret["chainBoth"] = function () {</code></li>
 <li class='green'><span class='hits'>5</span><code>                return spreadArgs(self["chainBoth"], arguments, self);</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>4218</span><code>            ret["addCallback"] = function () {</code></li>
+<li class='green'><span class='hits'>4220</span><code>            ret["addCallback"] = function () {</code></li>
 <li class='green'><span class='hits'>120</span><code>                spreadArgs(self["addCallback"], arguments, self);</code></li>
 <li class='green'><span class='hits'>120</span><code>                return ret;</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>4218</span><code>            ret["addErrback"] = function () {</code></li>
+<li class='green'><span class='hits'>4220</span><code>            ret["addErrback"] = function () {</code></li>
 <li class='green'><span class='hits'>7</span><code>                spreadArgs(self["addErrback"], arguments, self);</code></li>
 <li class='green'><span class='hits'>7</span><code>                return ret;</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>4218</span><code>            ret["then"] = function () {</code></li>
-<li class='green'><span class='hits'>1144</span><code>                spreadArgs(self["then"], arguments, self);</code></li>
-<li class='green'><span class='hits'>1144</span><code>                return ret;</code></li>
+<li class='green'><span class='hits'>4220</span><code>            ret["then"] = function () {</code></li>
+<li class='green'><span class='hits'>1143</span><code>                spreadArgs(self["then"], arguments, self);</code></li>
+<li class='green'><span class='hits'>1143</span><code>                return ret;</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>4218</span><code>            ret["both"] = function () {</code></li>
+<li class='green'><span class='hits'>4220</span><code>            ret["both"] = function () {</code></li>
 <li class='red'><span class='nohits'>0</span><code>                spreadArgs(self["both"], arguments, self);</code></li>
 <li class='red'><span class='nohits'>0</span><code>                return ret;</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>4218</span><code>            ret["classic"] = function () {</code></li>
+<li class='green'><span class='hits'>4220</span><code>            ret["classic"] = function () {</code></li>
 <li class='green'><span class='hits'>3</span><code>                spreadArgs(self["classic"], arguments, self);</code></li>
 <li class='green'><span class='hits'>3</span><code>                return ret;</code></li>
 <li class='green'><span class=''> </span><code>            };</code></li>
-<li class='green'><span class='hits'>4218</span><code>            return ret;</code></li>
+<li class='green'><span class='hits'>4220</span><code>            return ret;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -1577,11 +1824,11 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isPromiseLike(obj) {</code></li>
-<li class='green'><span class='hits'>2730</span><code>    return isObject(obj, Promise) &amp;&amp; typeof obj.then === "function";</code></li>
+<li class='green'><span class='hits'>2731</span><code>    return isObject(obj, Promise) &amp;&amp; typeof obj.then === "function";</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function isPromise(obj) {</code></li>
-<li class='green'><span class='hits'>8689</span><code>    return obj instanceof Promise;</code></li>
+<li class='green'><span class='hits'>8688</span><code>    return obj instanceof Promise;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -1997,7 +2244,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function functionWrapper(f, name) {</code></li>
-<li class='green'><span class='hits'>316</span><code>    if (f.toString().match(SUPER_REGEXP)) {</code></li>
+<li class='green'><span class='hits'>317</span><code>    if (f.toString().match(SUPER_REGEXP)) {</code></li>
 <li class='green'><span class='hits'>104</span><code>        var wrapper = function () {</code></li>
 <li class='green'><span class='hits'>2128</span><code>            var ret, meta = this.__meta || {};</code></li>
 <li class='green'><span class='hits'>2128</span><code>            var orig = meta.superMeta;</code></li>
@@ -2009,8 +2256,8 @@ td.cov-stats {
 <li class='green'><span class='hits'>104</span><code>        wrapper._f = f;</code></li>
 <li class='green'><span class='hits'>104</span><code>        return wrapper;</code></li>
 <li class='green'><span class=''> </span><code>    } else {</code></li>
-<li class='green'><span class='hits'>212</span><code>        f._f = f;</code></li>
-<li class='green'><span class='hits'>212</span><code>        return f;</code></li>
+<li class='green'><span class='hits'>213</span><code>        f._f = f;</code></li>
+<li class='green'><span class='hits'>213</span><code>        return f;</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -2127,12 +2374,12 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class='hits'>92</span><code>    for (i in proto) {</code></li>
-<li class='green'><span class='hits'>357</span><code>        if (i != "getters" &amp;&amp; i != "setters") {</code></li>
-<li class='green'><span class='hits'>336</span><code>            var f = proto[i];</code></li>
-<li class='green'><span class='hits'>336</span><code>            if ("function" === typeof f) {</code></li>
-<li class='green'><span class='hits'>303</span><code>                var meta = f.__meta || {};</code></li>
-<li class='green'><span class='hits'>303</span><code>                if (!meta.isConstructor) {</code></li>
-<li class='green'><span class='hits'>302</span><code>                    child[i] = functionWrapper(f, i);</code></li>
+<li class='green'><span class='hits'>358</span><code>        if (i != "getters" &amp;&amp; i != "setters") {</code></li>
+<li class='green'><span class='hits'>337</span><code>            var f = proto[i];</code></li>
+<li class='green'><span class='hits'>337</span><code>            if ("function" === typeof f) {</code></li>
+<li class='green'><span class='hits'>304</span><code>                var meta = f.__meta || {};</code></li>
+<li class='green'><span class='hits'>304</span><code>                if (!meta.isConstructor) {</code></li>
+<li class='green'><span class='hits'>303</span><code>                    child[i] = functionWrapper(f, i);</code></li>
 <li class='green'><span class=''> </span><code>                } else {</code></li>
 <li class='green'><span class='hits'>1</span><code>                    child[i] = f;</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
@@ -2154,7 +2401,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function extend(proto) {</code></li>
-<li class='green'><span class='hits'>3</span><code>    return define(this, proto);</code></li>
+<li class='green'><span class='hits'>7</span><code>    return define(this, proto);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -2249,8 +2496,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>function define(sup, proto) {</code></li>
 <li class='green'><span class='hits'>45</span><code>    function defineConstructor() {</code></li>
-<li class='green'><span class='hits'>2875</span><code>        invoke(this.constructor, arguments, this);</code></li>
-<li class='green'><span class='hits'>2874</span><code>        sup = proto = null;</code></li>
+<li class='green'><span class='hits'>2876</span><code>        invoke(this.constructor, arguments, this);</code></li>
+<li class='green'><span class='hits'>2875</span><code>        sup = proto = null;</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>45</span><code>    __define(defineConstructor, sup, proto);</code></li>
@@ -2642,12 +2889,12 @@ td.cov-stats {
 <li class='green'><span class='hits'>376</span><code>    ch = ch || " ";</code></li>
 <li class='green'><span class='hits'>376</span><code>    var strLen = string.length;</code></li>
 <li class='green'><span class='hits'>376</span><code>    while (strLen &lt; length) {</code></li>
-<li class='green'><span class='hits'>330</span><code>        if (end) {</code></li>
+<li class='green'><span class='hits'>306</span><code>        if (end) {</code></li>
 <li class='green'><span class='hits'>158</span><code>            string += ch;</code></li>
 <li class='green'><span class=''> </span><code>        } else {</code></li>
-<li class='green'><span class='hits'>172</span><code>            string = ch + string;</code></li>
+<li class='green'><span class='hits'>148</span><code>            string = ch + string;</code></li>
 <li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class='hits'>330</span><code>        strLen++;</code></li>
+<li class='green'><span class='hits'>306</span><code>        strLen++;</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class='hits'>376</span><code>    return string;</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
@@ -2666,7 +2913,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @memberOf comb</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isString(obj) {</code></li>
-<li class='green'><span class='hits'>36063</span><code>    return toStr.call(obj) === '[object String]';</code></li>
+<li class='green'><span class='hits'>36081</span><code>    return toStr.call(obj) === '[object String]';</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class='hits'>1</span><code>comb.isString = isString;</code></li>
@@ -2851,11 +3098,11 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> *      &lt;/li&gt;</code></li>
 <li class='green'><span class=''> </span><code> *      &lt;li&gt;Number Formats %[options]d&lt;/li&gt;</code></li>
 <li class='green'><span class=''> </span><code> *          &lt;ul&gt;</code></li>
-<li class='green'><span class=''> </span><code> *              &lt;li&gt;- : left justified&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code> *              &lt;li&gt;+ or &lt;space&gt; : signed number if space is used the number will use a extra ` ` instead of a `+`&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code> *              &lt;li&gt;Char : padding character &lt;b&gt;Excludes d,j,s&lt;/b&gt;&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code> *              &lt;li&gt;Number : width&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code> *              &lt;li&gt;.Precision&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code> *              &lt;li&gt;`-` : left justified&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code> *              &lt;li&gt;`+` or `&lt;space&gt;` : signed number if space is used the number will use a extra `&lt;space&gt;` instead of a `+`&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code> *              &lt;li&gt;`&lt;Char&gt;` : padding character &lt;b&gt;Excludes d,j,s&lt;/b&gt;&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code> *              &lt;li&gt;`Number` : width&lt;/li&gt;</code></li>
+<li class='green'><span class=''> </span><code> *              &lt;li&gt;`.Number`: specify the precision of the number&lt;/li&gt;</code></li>
 <li class='green'><span class=''> </span><code> *          &lt;/ul&gt;</code></li>
 <li class='green'><span class=''> </span><code> *      &lt;/li&gt;</code></li>
 <li class='green'><span class=''> </span><code> *      &lt;li&gt;Object Formats %[options]j&lt;/li&gt;</code></li>
@@ -5298,9 +5545,9 @@ td.cov-stats {
             </td>
             <td class="cov-stats">
                 <div>
-                    <span class='cov-label'>Coverage</span><span class='cov-value'>99.41</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>690</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>169</span>
+                    <span class='cov-label'>Coverage</span><span class='cov-value'>99.42</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>693</span>
+                    <span class='cov-label'>LOC</span><span class='cov-value'>172</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>1</span>
                 </div>
             </td>
@@ -5566,9 +5813,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        info: function (message) {</code></li>
-<li class='green'><span class='hits'>17</span><code>            if (this.isInfo) {</code></li>
-<li class='green'><span class='hits'>12</span><code>                return this.log.apply(this, [Level.INFO].concat(argsToArray(arguments)));</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class='hits'>17</span><code>            return this.log.apply(this, [Level.INFO].concat(argsToArray(arguments)));</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -5579,9 +5824,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        debug: function (message) {</code></li>
-<li class='green'><span class='hits'>14</span><code>            if (this.isDebug) {</code></li>
-<li class='green'><span class='hits'>9</span><code>                return this.log.apply(this, [Level.DEBUG].concat(argsToArray(arguments)));</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class='hits'>14</span><code>            return this.log.apply(this, [Level.DEBUG].concat(argsToArray(arguments)));</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -5592,9 +5835,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        error: function (message) {</code></li>
-<li class='green'><span class='hits'>14</span><code>            if (this.isError) {</code></li>
-<li class='green'><span class='hits'>9</span><code>                return this.log.apply(this, [Level.ERROR].concat(argsToArray(arguments)));</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class='hits'>14</span><code>            return this.log.apply(this, [Level.ERROR].concat(argsToArray(arguments)));</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -5605,9 +5846,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        warn: function (message) {</code></li>
-<li class='green'><span class='hits'>14</span><code>            if (this.isWarn) {</code></li>
-<li class='green'><span class='hits'>9</span><code>                return this.log.apply(this, [Level.WARN].concat(argsToArray(arguments)));</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class='hits'>14</span><code>            return this.log.apply(this, [Level.WARN].concat(argsToArray(arguments)));</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -5618,9 +5857,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        trace: function (message) {</code></li>
-<li class='green'><span class='hits'>14</span><code>            if (this.isTrace) {</code></li>
-<li class='green'><span class='hits'>9</span><code>                return this.log.apply(this, [Level.TRACE].concat(argsToArray(arguments)));</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class='hits'>14</span><code>            return this.log.apply(this, [Level.TRACE].concat(argsToArray(arguments)));</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -5631,9 +5868,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        fatal: function (message) {</code></li>
-<li class='green'><span class='hits'>14</span><code>            if (this.isFatal) {</code></li>
-<li class='green'><span class='hits'>9</span><code>                return this.log.apply(this, [Level.FATAL].concat(argsToArray(arguments)));</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class='hits'>14</span><code>            return this.log.apply(this, [Level.FATAL].concat(argsToArray(arguments)));</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -5666,8 +5901,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @return {comb.logging.Logger} for chaining.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        log: function (level, message) {</code></li>
-<li class='green'><span class='hits'>63</span><code>            level = Level.toLevel(level);</code></li>
-<li class='green'><span class='hits'>63</span><code>            if (level.isGreaterOrEqualToo(this.level)) {</code></li>
+<li class='green'><span class='hits'>93</span><code>            level = Level.toLevel(level);</code></li>
+<li class='green'><span class='hits'>93</span><code>            if (this.hasLevelGt(level)) {</code></li>
 <li class='green'><span class='hits'>63</span><code>                var args = argsToArray(arguments, 1);</code></li>
 <li class='green'><span class='hits'>63</span><code>                if (args.length &gt; 1) {</code></li>
 <li class='green'><span class='hits'>12</span><code>                    message = format.apply(null, args);</code></li>
@@ -5687,7 +5922,7 @@ td.cov-stats {
 <li class='green'><span class='hits'>63</span><code>                    appenders[i].append(event);</code></li>
 <li class='green'><span class=''> </span><code>                });</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>63</span><code>            return this;</code></li>
+<li class='green'><span class='hits'>93</span><code>            return this;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -5798,6 +6033,21 @@ td.cov-stats {
 <li class='green'><span class='hits'>8</span><code>            return ret;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class=''> </span><code>        hasLevelGt: function (level) {</code></li>
+<li class='green'><span class='hits'>93</span><code>            var ret = level.isGreaterOrEqualToo(this.level), i, appenders, keys, l;</code></li>
+<li class='green'><span class='hits'>93</span><code>            if (!ret) {</code></li>
+<li class='green'><span class='hits'>30</span><code>                appenders = this.__appenders;</code></li>
+<li class='green'><span class='hits'>30</span><code>                keys = Object.keys(appenders);</code></li>
+<li class='green'><span class='hits'>30</span><code>                l = keys.length;</code></li>
+<li class='green'><span class='hits'>30</span><code>                i = -1;</code></li>
+<li class='green'><span class=''> </span><code></code></li>
+<li class='green'><span class='hits'>30</span><code>                while (++i &lt; l &amp;&amp; !ret) {</code></li>
+<li class='green'><span class='hits'>30</span><code>                    ret = level.isGreaterOrEqualToo(appenders[keys[i]].level);</code></li>
+<li class='green'><span class=''> </span><code>                }</code></li>
+<li class='green'><span class=''> </span><code>            }</code></li>
+<li class='green'><span class='hits'>93</span><code>            return ret;</code></li>
+<li class='green'><span class=''> </span><code>        },</code></li>
+<li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
 <li class='green'><span class=''> </span><code>         * @ignore</code></li>
 <li class='green'><span class=''> </span><code>         * */</code></li>
@@ -5833,7 +6083,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
 <li class='green'><span class=''> </span><code>            level: function () {</code></li>
-<li class='green'><span class='hits'>256</span><code>                return this.__level;</code></li>
+<li class='green'><span class='hits'>199</span><code>                return this.__level;</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
@@ -5847,32 +6097,32 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
 <li class='green'><span class=''> </span><code>            isDebug: function () {</code></li>
-<li class='green'><span class='hits'>22</span><code>                return Level.DEBUG.isGreaterOrEqualToo(this.level);</code></li>
+<li class='green'><span class='hits'>8</span><code>                return Level.DEBUG.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
 <li class='green'><span class=''> </span><code>            isTrace: function () {</code></li>
-<li class='green'><span class='hits'>22</span><code>                return Level.TRACE.isGreaterOrEqualToo(this.level);</code></li>
+<li class='green'><span class='hits'>8</span><code>                return Level.TRACE.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
 <li class='green'><span class=''> </span><code>            isInfo: function () {</code></li>
-<li class='green'><span class='hits'>25</span><code>                return Level.INFO.isGreaterOrEqualToo(this.level);</code></li>
+<li class='green'><span class='hits'>8</span><code>                return Level.INFO.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
 <li class='green'><span class=''> </span><code>            isWarn: function () {</code></li>
-<li class='green'><span class='hits'>22</span><code>                return Level.WARN.isGreaterOrEqualToo(this.level);</code></li>
+<li class='green'><span class='hits'>8</span><code>                return Level.WARN.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
 <li class='green'><span class=''> </span><code>            isError: function () {</code></li>
-<li class='green'><span class='hits'>22</span><code>                return Level.ERROR.isGreaterOrEqualToo(this.level);</code></li>
+<li class='green'><span class='hits'>8</span><code>                return Level.ERROR.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
 <li class='green'><span class=''> </span><code>            isFatal: function () {</code></li>
-<li class='green'><span class='hits'>22</span><code>                return Level.FATAL.isGreaterOrEqualToo(this.level);</code></li>
+<li class='green'><span class='hits'>8</span><code>                return Level.FATAL.isGreaterOrEqualToo(this.level);</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
@@ -8582,8 +8832,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Array} array version of the arguments object</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function argsToArray(args, slice) {</code></li>
-<li class='green'><span class='hits'>16598</span><code>    slice = slice || 0;</code></li>
-<li class='green'><span class='hits'>16598</span><code>    return arraySlice.call(args, slice);</code></li>
+<li class='green'><span class='hits'>16659</span><code>    slice = slice || 0;</code></li>
+<li class='green'><span class='hits'>16659</span><code>    return arraySlice.call(args, slice);</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -8769,8 +9019,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @returns {Boolean} true if it is a number false otherwise</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>comb.isNumber = function(obj) {</code></li>
-<li class='green'><span class='hits'>2740</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>2740</span><code>    return obj !== undef &amp;&amp; obj != null &amp;&amp; (typeof obj == "number" || obj instanceof Number);</code></li>
+<li class='green'><span class='hits'>2743</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>2743</span><code>    return obj !== undef &amp;&amp; obj != null &amp;&amp; (typeof obj == "number" || obj instanceof Number);</code></li>
 <li class='green'><span class=''> </span><code>};</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>/**</code></li>
@@ -9122,8 +9372,8 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @static</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
 <li class='green'><span class='hits'>1</span><code>function isObject(obj) {</code></li>
-<li class='green'><span class='hits'>4284</span><code>    var undef;</code></li>
-<li class='green'><span class='hits'>4284</span><code>    return obj !== null &amp;&amp; obj !== undef &amp;&amp; typeof obj === "object";</code></li>
+<li class='green'><span class='hits'>4285</span><code>    var undef;</code></li>
+<li class='green'><span class='hits'>4285</span><code>    return obj !== null &amp;&amp; obj !== undef &amp;&amp; typeof obj === "object";</code></li>
 <li class='green'><span class=''> </span><code>}</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
@@ -13046,7 +13296,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>            /**@ignore*/</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            level:function () {</code></li>
-<li class='green'><span class='hits'>70</span><code>                return this.__level;</code></li>
+<li class='green'><span class='hits'>100</span><code>                return this.__level;</code></li>
 <li class='green'><span class=''> </span><code>            },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>            name:function () {</code></li>
@@ -13141,16 +13391,16 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @augments comb.logging.appenders.Appender</code></li>
 <li class='green'><span class=''> </span><code> * @memberOf comb.logging.appenders</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>define(Appender, {</code></li>
-<li class='green'><span class=''> </span><code>    instance:{</code></li>
+<li class='green'><span class='hits'>1</span><code>Appender.extend({</code></li>
+<li class='green'><span class=''> </span><code>    instance: {</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        constructor:function (options) {</code></li>
+<li class='green'><span class=''> </span><code>        constructor: function (options) {</code></li>
 <li class='green'><span class='hits'>7</span><code>            options = options || {};</code></li>
 <li class='green'><span class='hits'>7</span><code>            !options.name &amp;&amp; (options.name = "consoleAppender");</code></li>
 <li class='green'><span class='hits'>7</span><code>            this._super(arguments, [options]);</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        append:function (event) {</code></li>
+<li class='green'><span class=''> </span><code>        append: function (event) {</code></li>
 <li class='green'><span class='hits'>6</span><code>            if (this._canAppend(event)) {</code></li>
 <li class='green'><span class='hits'>6</span><code>                var message = format(this.__pattern, event);</code></li>
 <li class='green'><span class='hits'>6</span><code>                var level = event.level;</code></li>
@@ -13180,7 +13430,7 @@ td.cov-stats {
             <td class="cov-stats">
                 <div>
                     <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>83</span>
+                    <span class='cov-label'>SLOC</span><span class='cov-value'>86</span>
                     <span class='cov-label'>LOC</span><span class='cov-value'>22</span>
                     <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
                 </div>
@@ -13235,23 +13485,26 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> * @param {Boolean} [options.overwrite=false] if true the log file is overwritten otherwise it is appended to.</code></li>
 <li class='green'><span class=''> </span><code> * @ignoreCode</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>define(Appender, {</code></li>
-<li class='green'><span class=''> </span><code>    instance:{</code></li>
+<li class='green'><span class='hits'>1</span><code>Appender.extend({</code></li>
+<li class='green'><span class=''> </span><code>    instance: {</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        constructor:function (options) {</code></li>
+<li class='green'><span class=''> </span><code>        constructor: function (options) {</code></li>
 <li class='green'><span class='hits'>8</span><code>            options = options || {};</code></li>
 <li class='green'><span class='hits'>8</span><code>            !options.name &amp;&amp; (options.name = "fileAppender");</code></li>
 <li class='green'><span class='hits'>8</span><code>            this.__file = options.file || "./log.log";</code></li>
 <li class='green'><span class='hits'>8</span><code>            this.__encoding = options.encoding || "utf8";</code></li>
 <li class='green'><span class='hits'>8</span><code>            this.__overwrite = options.overwrite || false;</code></li>
-<li class='green'><span class='hits'>8</span><code>            this.__writeStream = options.writeStream || fs.createWriteStream(this.__file, { flags:this.__overwrite ? "w" : 'a', encoding:this.__encoding});</code></li>
+<li class='green'><span class='hits'>8</span><code>            this.__writeStream = options.writeStream || fs.createWriteStream(this.__file, {</code></li>
+<li class='green'><span class=''> </span><code>                flags: this.__overwrite ? "w" : 'a',</code></li>
+<li class='green'><span class=''> </span><code>                encoding: this.__encoding</code></li>
+<li class='green'><span class=''> </span><code>            });</code></li>
 <li class='green'><span class='hits'>8</span><code>            this._super([options]);</code></li>
 <li class='green'><span class='hits'>8</span><code>            this.__pattern += "\n";</code></li>
 <li class='green'><span class='hits'>8</span><code>            base.listenForExit(base.hitch(this, "__onExit"));</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        __onExit:function () {</code></li>
+<li class='green'><span class=''> </span><code>        __onExit: function () {</code></li>
 <li class='green'><span class='hits'>14</span><code>            var ret = new Promise();</code></li>
 <li class='green'><span class='hits'>14</span><code>            var ws = this.__writeStream;</code></li>
 <li class='green'><span class='hits'>14</span><code>            this.__writeStream = null;</code></li>
@@ -13260,7 +13513,7 @@ td.cov-stats {
 <li class='green'><span class='hits'>14</span><code>            return ret.promise();</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        append:function (event) {</code></li>
+<li class='green'><span class=''> </span><code>        append: function (event) {</code></li>
 <li class='green'><span class='hits'>15</span><code>            var ws = this.__writeStream;</code></li>
 <li class='green'><span class='hits'>15</span><code>            if (this._canAppend(event) &amp;&amp; ws &amp;&amp; ws.writable) {</code></li>
 <li class='green'><span class='hits'>15</span><code>                var message = format(this.__pattern, event);</code></li>
@@ -13369,7 +13622,7 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code> *</code></li>
 <li class='green'><span class=''> </span><code> * @ignoreCode</code></li>
 <li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>define(FileAppender, {</code></li>
+<li class='green'><span class='hits'>1</span><code>FileAppender.extend({</code></li>
 <li class='green'><span class=''> </span><code>    instance:{</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        constructor:function (options) {</code></li>
@@ -13402,235 +13655,6 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>        }</code></li>
 <li class='green'><span class=''> </span><code>    }</code></li>
 <li class='green'><span class=''> </span><code>}).registerType("JSONAppender").as(module);</code></li></ol></pre></div>
-</div>
-
-<div class="cov-section cov-section-hover cov-section-high" id="logging/appenders/rollingFileAppender.js">
-    <table class='section-table'>
-        <tr>
-            <td>
-                <div class='cov-section-header'>logging/appenders/rollingFileAppender.js</div>
-            </td>
-            <td class="cov-stats">
-                <div>
-                    <span class='cov-label'>Coverage</span><span class='cov-value'>100.00</span>
-                    <span class='cov-label'>SLOC</span><span class='cov-value'>211</span>
-                    <span class='cov-label'>LOC</span><span class='cov-value'>79</span>
-                    <span class='cov-label'>Missed</span><span class='cov-value'>0</span>
-                </div>
-            </td>
-        </tr>
-    </table>
-    <div class='source' id="logging/appenders/rollingFileAppender.js-source"><pre class='prettyprint linenums'><ol class='linenums'><li class='green'><span class='hits'>1</span><code>var define = require("../../define.js").define,</code></li>
-<li class='green'><span class=''> </span><code>    promise = require("../../promise"),</code></li>
-<li class='green'><span class=''> </span><code>    Promise = promise.Promise,</code></li>
-<li class='green'><span class=''> </span><code>    PromiseList = promise.PromiseList,</code></li>
-<li class='green'><span class=''> </span><code>    base = require("../../base"),</code></li>
-<li class='green'><span class=''> </span><code>    hitch = base.hitch,</code></li>
-<li class='green'><span class=''> </span><code>    string = base.string,</code></li>
-<li class='green'><span class=''> </span><code>    escape = base.regexp.escapeString,</code></li>
-<li class='green'><span class=''> </span><code>    style = string.style,</code></li>
-<li class='green'><span class=''> </span><code>    format = string.format,</code></li>
-<li class='green'><span class=''> </span><code>    FileAppender = require("./fileAppender"),</code></li>
-<li class='green'><span class=''> </span><code>    Level = require("../level"),</code></li>
-<li class='green'><span class=''> </span><code>    fs = require("fs"),</code></li>
-<li class='green'><span class=''> </span><code>    path = require("path");</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>1</span><code>var conversion = {</code></li>
-<li class='green'><span class=''> </span><code>    MB:1048576,</code></li>
-<li class='green'><span class=''> </span><code>    KB:1024,</code></li>
-<li class='green'><span class=''> </span><code>    GB:1073741824</code></li>
-<li class='green'><span class=''> </span><code>};</code></li>
-<li class='green'><span class='hits'>1</span><code>var DEFAULT_SIZE = "10MB";</code></li>
-<li class='green'><span class='hits'>1</span><code>var convertToBytes = function (str) {</code></li>
-<li class='green'><span class='hits'>3</span><code>    var ret = DEFAULT_SIZE;</code></li>
-<li class='green'><span class='hits'>3</span><code>    var match = str.match(/(\d+)(MB|KB|GB)$/);</code></li>
-<li class='green'><span class='hits'>3</span><code>    if (match &amp;&amp; match.length == 3) {</code></li>
-<li class='green'><span class='hits'>3</span><code>        var size = parseInt(match[1], 10);</code></li>
-<li class='green'><span class='hits'>3</span><code>        ret = size * conversion[match[2]];</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class='hits'>3</span><code>    return ret;</code></li>
-<li class='green'><span class=''> </span><code>}</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>/**</code></li>
-<li class='green'><span class=''> </span><code> * @class Appends messages to a file. Rolls files over when a size limit has been reached. Once the max file size has</code></li>
-<li class='green'><span class=''> </span><code> * been reached it is rolled over to a file called &amp;lt;logName&amp;gt;.log.n where n is a number.</code></li>
-<li class='green'><span class=''> </span><code> * &lt;/br&gt;&lt;/br&gt;</code></li>
-<li class='green'><span class=''> </span><code> * &lt;p&gt;Example. RollingFileAppender is current writing to myLog.log, the log reaches is max size to it is</code></li>
-<li class='green'><span class=''> </span><code> * renamed to myLog.log.1 and a new myLog.log is created.&lt;/p&gt;</code></li>
-<li class='green'><span class=''> </span><code> * &lt;/br&gt;</code></li>
-<li class='green'><span class=''> </span><code> * If maxBackupIndex is reached then the log at that index is deleted. If maxBackupIndex is set to 0 then no log is</code></li>
-<li class='green'><span class=''> </span><code> * rolled over.&lt;/p&gt;</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @name RollingFileAppender</code></li>
-<li class='green'><span class=''> </span><code> * @augments comb.logging.appenders.FileAppender</code></li>
-<li class='green'><span class=''> </span><code> * @memberOf comb.logging.appenders</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @param {Object} [options] options to assign to this Appender</code></li>
-<li class='green'><span class=''> </span><code> * @param {String} [options.name="appender"] the name of this Appender. If you want two of the same type of appender</code></li>
-<li class='green'><span class=''> </span><code> *                                           on a logger it must have a different name.</code></li>
-<li class='green'><span class=''> </span><code> * @param {String} [options.pattern="[{[yyyy-MM-ddTHH:mm:ss:SSS (z)]timeStamp}] {[- 5]levelName} {[-20]name} - {message}"]</code></li>
-<li class='green'><span class=''> </span><code> *  &lt;p&gt;Available Options for formatting see {@link comb.string.format} for formatting options&lt;/p&gt;</code></li>
-<li class='green'><span class=''> </span><code> *  &lt;ul&gt;</code></li>
-<li class='green'><span class=''> </span><code> *      &lt;li&gt;timeStamp - the timestamp of the event being logged&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code> *      &lt;li&gt;level - the {@link comb.logging.Level} of the event&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code> *      &lt;li&gt;levelName - the name of the level being logged&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code> *      &lt;li&gt;name - the name of the logger logging the event&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code> *      &lt;li&gt;message - the message being logged&lt;/li&gt;</code></li>
-<li class='green'><span class=''> </span><code> * &lt;/ul&gt;</code></li>
-<li class='green'><span class=''> </span><code> * @param {comb.logging.Level|String} [options.level=comb.logging.Level.INFO] the logging level of this appender</code></li>
-<li class='green'><span class=''> </span><code> *      &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; the level can be different from the logger in the case that you want a particular logger</code></li>
-<li class='green'><span class=''> </span><code> *      to only log particular event of a level. For example an appender that only logs errors. BEWARE that if the</code></li>
-<li class='green'><span class=''> </span><code> *      appenders level is lower than the logger is will not recieve any messages.&lt;/p&gt;</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @param {String} [options.file="./log.log"] the file to log events to.</code></li>
-<li class='green'><span class=''> </span><code> * @param {String} [options.encoding="utf8"] the encoding of the file.</code></li>
-<li class='green'><span class=''> </span><code> * @param {Boolean} [options.overwrite=false] if true the log file is overwritten otherwise it is appended to.</code></li>
-<li class='green'><span class=''> </span><code> * @param {String} [options.maxSize="10MB"] the maxSize of a file. Valid options include "KB", "MB", or "GB"</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * &lt;pre class="code"&gt;</code></li>
-<li class='green'><span class=''> </span><code> *     maxSize = "100MB"</code></li>
-<li class='green'><span class=''> </span><code> *     //or</code></li>
-<li class='green'><span class=''> </span><code> *     maxSize = "100KB"</code></li>
-<li class='green'><span class=''> </span><code> *     //or</code></li>
-<li class='green'><span class=''> </span><code> *     maxSize = "1GB"</code></li>
-<li class='green'><span class=''> </span><code> * &lt;/pre&gt;</code></li>
-<li class='green'><span class=''> </span><code> *</code></li>
-<li class='green'><span class=''> </span><code> * @param {Number} [options.maxBackupIndex=10] the maximum number of files to rollOver.</code></li>
-<li class='green'><span class=''> </span><code> */</code></li>
-<li class='green'><span class='hits'>1</span><code>define(FileAppender, {</code></li>
-<li class='green'><span class=''> </span><code>    instance:{</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        __watching:false,</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        constructor:function (options) {</code></li>
-<li class='green'><span class='hits'>3</span><code>            options = options || {};</code></li>
-<li class='green'><span class='hits'>3</span><code>            this.maxSize = options.maxSize || DEFAULT_SIZE;</code></li>
-<li class='green'><span class='hits'>3</span><code>            !options.name &amp;&amp; (options.name = "rollingFileAppender");</code></li>
-<li class='green'><span class='hits'>3</span><code>            this.maxBackupIndex = options.maxBackupIndex || 10;</code></li>
-<li class='green'><span class='hits'>3</span><code>            this.__queue = [];</code></li>
-<li class='green'><span class='hits'>3</span><code>            this.__inRollover = false;</code></li>
-<li class='green'><span class='hits'>3</span><code>            this._super([options]);</code></li>
-<li class='green'><span class=''> </span><code>        },</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        __startCheck:function () {</code></li>
-<li class='green'><span class='hits'>1</span><code>            if (!this.__watching) {</code></li>
-<li class='green'><span class='hits'>1</span><code>                this.__watching = true;</code></li>
-<li class='green'><span class='hits'>1</span><code>                fs.watchFile(this.__file, hitch(this, "__checkFile"));</code></li>
-<li class='green'><span class='hits'>1</span><code>                fs.stat(this.__file, hitch(this, function (err, stat) {</code></li>
-<li class='green'><span class='hits'>1</span><code>                    this.__checkFile(stat);</code></li>
-<li class='green'><span class=''> </span><code>                }));</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class=''> </span><code>        },</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        __checkFile:function (stats) {</code></li>
-<li class='green'><span class='hits'>5</span><code>            var ret = new Promise();</code></li>
-<li class='green'><span class='hits'>5</span><code>            if (!this.__inRollover) {</code></li>
-<li class='green'><span class='hits'>3</span><code>                if (stats.size &gt;= this.maxSize) {</code></li>
-<li class='green'><span class='hits'>2</span><code>                    if (this.maxBackupIndex &gt; 0) {</code></li>
-<li class='green'><span class='hits'>1</span><code>                        this.__inRollover = true;</code></li>
-<li class='green'><span class='hits'>1</span><code>                        this.__onExit().chain(hitch(this, "__rollover")).then(hitch(this, function () {</code></li>
-<li class='green'><span class='hits'>1</span><code>                            var ws = fs.createWriteStream(this.__file, { flags:"w", encoding:this.__encoding});</code></li>
-<li class='green'><span class='hits'>1</span><code>                            ws.on("open", hitch(this, function () {</code></li>
-<li class='green'><span class='hits'>1</span><code>                                this.__writeStream = ws;</code></li>
-<li class='green'><span class='hits'>1</span><code>                                this.__inRollover = false;</code></li>
-<li class='green'><span class='hits'>1</span><code>                                this.__checkQueue();</code></li>
-<li class='green'><span class='hits'>1</span><code>                                ret.callback();</code></li>
-<li class='green'><span class=''> </span><code>                            }));</code></li>
-<li class='green'><span class=''> </span><code>                        }), hitch(ret, "errback", new Error("comb.logging.appenders.RollingFileAppender : error rolling over files")));</code></li>
-<li class='green'><span class=''> </span><code>                    } else {</code></li>
-<li class='green'><span class='hits'>1</span><code>                        this.__writeStream = fs.createWriteStream(this.__file, { flags:"w", encoding:this.__encoding});</code></li>
-<li class='green'><span class='hits'>1</span><code>                        ret.callback();</code></li>
-<li class='green'><span class=''> </span><code>                    }</code></li>
-<li class='green'><span class=''> </span><code>                } else {</code></li>
-<li class='green'><span class='hits'>1</span><code>                    ret.callback();</code></li>
-<li class='green'><span class=''> </span><code>                }</code></li>
-<li class='green'><span class=''> </span><code>            } else {</code></li>
-<li class='green'><span class='hits'>2</span><code>                ret.callback();</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>5</span><code>            return ret.promise();</code></li>
-<li class='green'><span class=''> </span><code>        },</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        append:function (event) {</code></li>
-<li class='green'><span class='hits'>12</span><code>            if (this._canAppend(event)) {</code></li>
-<li class='green'><span class='hits'>12</span><code>                !this.__watching &amp;&amp; this.__startCheck();</code></li>
-<li class='green'><span class='hits'>12</span><code>                var ws = this.__writeStream;</code></li>
-<li class='green'><span class='hits'>12</span><code>                if (!this.__inRollover &amp;&amp; ws &amp;&amp; ws.writable) {</code></li>
-<li class='green'><span class='hits'>9</span><code>                    this._super(arguments);</code></li>
-<li class='green'><span class=''> </span><code>                } else {</code></li>
-<li class='green'><span class='hits'>3</span><code>                    this.__queue.push(event);</code></li>
-<li class='green'><span class=''> </span><code>                }</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class=''> </span><code>        },</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        __checkQueue:function () {</code></li>
-<li class='green'><span class='hits'>1</span><code>            this.__queue.forEach(this.append, this);</code></li>
-<li class='green'><span class='hits'>1</span><code>            this.__queue.length = 0;</code></li>
-<li class='green'><span class=''> </span><code>        },</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        __rollover:function () {</code></li>
-<li class='green'><span class='hits'>1</span><code>            var ret = new Promise(), file = this.__file;</code></li>
-<li class='green'><span class='hits'>1</span><code>            var dir = path.dirname(file), baseName = new RegExp("(" + escape(path.basename(path.basename(file))) + ")(?:\\.(\\d*))*");</code></li>
-<li class='green'><span class='hits'>1</span><code>            fs.readdir(dir, hitch(this, function (err, files) {</code></li>
-<li class='green'><span class='hits'>1</span><code>                files = files.filter(</code></li>
-<li class='green'><span class=''> </span><code>                    function (f) {</code></li>
-<li class='green'><span class='hits'>5</span><code>                        var match = f.match(baseName);</code></li>
-<li class='green'><span class='hits'>5</span><code>                        if (match) {</code></li>
-<li class='green'><span class='hits'>4</span><code>                            return true;</code></li>
-<li class='green'><span class=''> </span><code>                        } else {</code></li>
-<li class='green'><span class='hits'>1</span><code>                            return false;</code></li>
-<li class='green'><span class=''> </span><code>                        }</code></li>
-<li class='green'><span class=''> </span><code>                    });</code></li>
-<li class='green'><span class='hits'>1</span><code>                files = files.sort(function (a, b) {</code></li>
-<li class='green'><span class='hits'>6</span><code>                    var ret = 0;</code></li>
-<li class='green'><span class='hits'>6</span><code>                    if (a &gt; b) {</code></li>
-<li class='green'><span class='hits'>3</span><code>                        ret = 0;</code></li>
-<li class='green'><span class='hits'>3</span><code>                    } else if (a &lt; b) {</code></li>
-<li class='green'><span class='hits'>3</span><code>                        ret = 1;</code></li>
-<li class='green'><span class=''> </span><code>                    }</code></li>
-<li class='green'><span class='hits'>6</span><code>                    return ret;</code></li>
-<li class='green'><span class=''> </span><code>                });</code></li>
-<li class='green'><span class='hits'>1</span><code>                var count = files.length, i = 0;</code></li>
-<li class='green'><span class='hits'>1</span><code>                var checkFile = hitch(this, function () {</code></li>
-<li class='green'><span class='hits'>5</span><code>                    if (count &gt; 0) {</code></li>
-<li class='green'><span class='hits'>4</span><code>                        var f = dir + "/" + files[i++];</code></li>
-<li class='green'><span class='hits'>4</span><code>                        if (count &gt; this.maxBackupIndex) {</code></li>
-<li class='green'><span class=''> </span><code>                            //drop the file;</code></li>
-<li class='green'><span class='hits'>1</span><code>                            count--;</code></li>
-<li class='green'><span class='hits'>1</span><code>                            fs.unlink(f, function (err) {</code></li>
-<li class='green'><span class='hits'>1</span><code>                                err ? ret.errback(err) : checkFile();</code></li>
-<li class='green'><span class=''> </span><code>                            });</code></li>
-<li class='green'><span class=''> </span><code>                        } else {</code></li>
-<li class='green'><span class=''> </span><code>                            //rename the file</code></li>
-<li class='green'><span class='hits'>3</span><code>                            var rn = this.__file + "." + count--;</code></li>
-<li class='green'><span class='hits'>3</span><code>                            fs.rename(f, rn, function (err) {</code></li>
-<li class='green'><span class='hits'>3</span><code>                                err ? ret.errback(err) : checkFile();</code></li>
-<li class='green'><span class=''> </span><code>                            });</code></li>
-<li class='green'><span class=''> </span><code>                        }</code></li>
-<li class='green'><span class=''> </span><code>                    } else {</code></li>
-<li class='green'><span class='hits'>1</span><code>                        ret.callback();</code></li>
-<li class='green'><span class=''> </span><code>                    }</code></li>
-<li class='green'><span class=''> </span><code>                });</code></li>
-<li class='green'><span class='hits'>1</span><code>                checkFile();</code></li>
-<li class='green'><span class=''> </span><code>            }));</code></li>
-<li class='green'><span class='hits'>1</span><code>            return ret.promise();</code></li>
-<li class='green'><span class=''> </span><code>        },</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        getters:{</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>            maxSize:function () {</code></li>
-<li class='green'><span class='hits'>3</span><code>                return this.__maxSize;</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class=''> </span><code>        },</code></li>
-<li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class=''> </span><code>        setters:{</code></li>
-<li class='green'><span class=''> </span><code>            maxSize:function (size) {</code></li>
-<li class='green'><span class='hits'>3</span><code>                this.__maxSize = size ? convertToBytes(size) : DEFAULT_SIZE;</code></li>
-<li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class=''> </span><code>        }</code></li>
-<li class='green'><span class=''> </span><code>    }</code></li>
-<li class='green'><span class=''> </span><code>}).registerType("RollingFileAppender").as(module);</code></li></ol></pre></div>
 </div>
 
 <div class="cov-section cov-section-hover cov-section-high" id="logging/config.js">
@@ -13927,13 +13951,13 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @returns {Boolean} true if this is &gt;= false otherwise.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        isGreaterOrEqualToo:function (level) {</code></li>
-<li class='green'><span class='hits'>345</span><code>            var ret = false;</code></li>
-<li class='green'><span class='hits'>345</span><code>            if (level &amp;&amp; base.isNumber(level.level)) {</code></li>
-<li class='green'><span class='hits'>345</span><code>                if (this.level &gt;= level.level) {</code></li>
-<li class='green'><span class='hits'>244</span><code>                    ret = true;</code></li>
+<li class='green'><span class='hits'>318</span><code>            var ret = false;</code></li>
+<li class='green'><span class='hits'>318</span><code>            if (level &amp;&amp; base.isNumber(level.level)) {</code></li>
+<li class='green'><span class='hits'>318</span><code>                if (this.level &gt;= level.level) {</code></li>
+<li class='green'><span class='hits'>187</span><code>                    ret = true;</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>345</span><code>            return ret;</code></li>
+<li class='green'><span class='hits'>318</span><code>            return ret;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>
@@ -13960,23 +13984,23 @@ td.cov-stats {
 <li class='green'><span class=''> </span><code>         * @returns {comb.logging.Level|null} returns a level if one can be determined null otherwise.</code></li>
 <li class='green'><span class=''> </span><code>         */</code></li>
 <li class='green'><span class=''> </span><code>        toLevel:function (level, defaultLevel) {</code></li>
-<li class='green'><span class='hits'>163</span><code>            var ret = null;</code></li>
-<li class='green'><span class='hits'>163</span><code>            var args = base.argsToArray(arguments);</code></li>
-<li class='green'><span class='hits'>163</span><code>            if (args.length === 1) {</code></li>
-<li class='green'><span class='hits'>161</span><code>                var level = args[0];</code></li>
+<li class='green'><span class='hits'>193</span><code>            var ret = null;</code></li>
+<li class='green'><span class='hits'>193</span><code>            var args = base.argsToArray(arguments);</code></li>
+<li class='green'><span class='hits'>193</span><code>            if (args.length === 1) {</code></li>
+<li class='green'><span class='hits'>191</span><code>                var level = args[0];</code></li>
 <li class='green'><span class=''> </span><code></code></li>
-<li class='green'><span class='hits'>161</span><code>                if (base.isNumber(level)) {</code></li>
+<li class='green'><span class='hits'>191</span><code>                if (base.isNumber(level)) {</code></li>
 <li class='green'><span class='hits'>11</span><code>                    var strLevel = LEVELS_REVERSE[level];</code></li>
 <li class='green'><span class='hits'>11</span><code>                    ret = Level[strLevel];</code></li>
-<li class='green'><span class='hits'>150</span><code>                } else if (base.isString(level)) {</code></li>
+<li class='green'><span class='hits'>180</span><code>                } else if (base.isString(level)) {</code></li>
 <li class='green'><span class='hits'>48</span><code>                    ret = Level[level.toUpperCase()];</code></li>
 <li class='green'><span class=''> </span><code>                } else {</code></li>
-<li class='green'><span class='hits'>102</span><code>                    ret = level;</code></li>
+<li class='green'><span class='hits'>132</span><code>                    ret = level;</code></li>
 <li class='green'><span class=''> </span><code>                }</code></li>
 <li class='green'><span class=''> </span><code>            } else {</code></li>
 <li class='green'><span class='hits'>2</span><code>                ret = (Level.toLevel(args[0]) || args[1]);</code></li>
 <li class='green'><span class=''> </span><code>            }</code></li>
-<li class='green'><span class='hits'>163</span><code>            return ret;</code></li>
+<li class='green'><span class='hits'>193</span><code>            return ret;</code></li>
 <li class='green'><span class=''> </span><code>        },</code></li>
 <li class='green'><span class=''> </span><code></code></li>
 <li class='green'><span class=''> </span><code>        /**</code></li>

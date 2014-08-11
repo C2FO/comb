@@ -926,9 +926,7 @@ function (appenders){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   if (this.isDebug) {
-       return this.log.apply(this, [Level.DEBUG].concat(argsToArray(arguments)));
-   }
+   return this.log.apply(this, [Level.DEBUG].concat(argsToArray(arguments)));
            
 }
     </pre>
@@ -980,9 +978,7 @@ function (message){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   if (this.isError) {
-       return this.log.apply(this, [Level.ERROR].concat(argsToArray(arguments)));
-   }
+   return this.log.apply(this, [Level.ERROR].concat(argsToArray(arguments)));
            
 }
     </pre>
@@ -1034,9 +1030,7 @@ function (message){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   if (this.isFatal) {
-       return this.log.apply(this, [Level.FATAL].concat(argsToArray(arguments)));
-   }
+   return this.log.apply(this, [Level.FATAL].concat(argsToArray(arguments)));
            
 }
     </pre>
@@ -1210,9 +1204,7 @@ function (level,message){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   if (this.isInfo) {
-       return this.log.apply(this, [Level.INFO].concat(argsToArray(arguments)));
-   }
+   return this.log.apply(this, [Level.INFO].concat(argsToArray(arguments)));
            
 }
     </pre>
@@ -1312,7 +1304,7 @@ function (name){
     <pre class="prettyprint linenums lang-js">
 function (level,message){
    level = Level.toLevel(level);
-   if (level.isGreaterOrEqualToo(this.level)) {
+   if (this.hasLevelGt(level)) {
        var args = argsToArray(arguments, 1);
        if (args.length &gt; 1) {
            message = format.apply(null, args);
@@ -1538,9 +1530,7 @@ function (appenders){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   if (this.isTrace) {
-       return this.log.apply(this, [Level.TRACE].concat(argsToArray(arguments)));
-   }
+   return this.log.apply(this, [Level.TRACE].concat(argsToArray(arguments)));
            
 }
     </pre>
@@ -1592,9 +1582,7 @@ function (message){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (message){
-   if (this.isWarn) {
-       return this.log.apply(this, [Level.WARN].concat(argsToArray(arguments)));
-   }
+   return this.log.apply(this, [Level.WARN].concat(argsToArray(arguments)));
            
 }
     </pre>

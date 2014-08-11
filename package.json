@@ -1,7 +1,7 @@
 {
     "name": "comb",
     "description": "A framework for node",
-    "version": "0.3.4",
+    "version": "0.3.5",
     "keywords": ["OO", "Object Oriented", "Collections", "Tree", "HashTable", "Pool", "Logging", "Promise", "Promises", "Proxy"],
     "repository": {
         "type": "git",
