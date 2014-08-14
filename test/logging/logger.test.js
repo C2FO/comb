@@ -7,7 +7,7 @@ var it = require('it'),
     Level = logging.Level;
 
 
-it.describe("comb.logging.Logger",function (it) {
+it.describe("comb.logging.Logger", function (it) {
 
 
     it.describe("static methods", function (it) {
@@ -299,6 +299,78 @@ it.describe("comb.logging.Logger",function (it) {
                     {message: "Hello world", levelName: "FATAL"}
                 ]);
             });
+
+            it.describe(".timer", function (it) {
+
+                function checkMessages(level) {
+                    var messageMatchers = [/^hello \[Duration: \d+ms]/, /^Hello world \[Duration: \d+ms]/, /^Hello world \[Duration: \d+ms]/];
+                    assert.isTrue(MyAppender.messages.every(function (message, i) {
+                        return messageMatchers[i].test(message.message) && message.levelName === level;
+                    }));
+                }
+
+                it.should("log debug messages", function () {
+                    var timer = logger.timer();
+                    timer.debug("hello");
+                    timer.debug("Hello %s", "world");
+                    timer.log("debug", "Hello %s", "world");
+                    logger.level = "INFO";
+                    timer.debug("Hello %s", "world");
+                    checkMessages("DEBUG");
+                });
+
+                it.should("log trace messages", function () {
+                    var timer = logger.timer();
+                    timer.trace("hello");
+                    timer.trace("Hello %s", "world");
+                    timer.log("trace", "Hello %s", "world");
+                    logger.level = "INFO";
+                    timer.trace("Hello %s", "world");
+                    var messageMatchers = [/^Trace: hello \[Duration: \d+ms]/, /^Trace: Hello world \[Duration: \d+ms]/, /^Trace: Hello world \[Duration: \d+ms]/];
+                    assert.isTrue(MyAppender.messages.every(function (message, i) {
+                        return messageMatchers[i].test(message.message) && message.levelName === "TRACE";
+                    }));
+                });
+
+                it.should("log info messages", function () {
+                    var timer = logger.timer();
+                    timer.info("hello");
+                    timer.info("Hello %s", "world");
+                    timer.log("info", "Hello %s", "world");
+                    logger.level = "WARN";
+                    timer.info("Hello %s", "world");
+                    checkMessages("INFO");
+                });
+                it.should("log warn messages", function () {
+                    var timer = logger.timer();
+                    timer.warn("hello");
+                    timer.warn("Hello %s", "world");
+                    timer.log("warn", "Hello %s", "world");
+                    logger.level = "ERROR";
+                    timer.warn("Hello %s", "world");
+                    checkMessages("WARN");
+
+                });
+                it.should("log error messages", function () {
+                    var timer = logger.timer();
+                    timer.error("hello");
+                    timer.error("Hello %s", "world");
+                    timer.log("error", "Hello %s", "world");
+                    logger.level = "FATAL";
+                    timer.error("Hello %s", "world");
+                    checkMessages("ERROR");
+
+                });
+                it.should("log fatal messages", function () {
+                    var timer = logger.timer();
+                    timer.fatal("hello");
+                    timer.fatal("Hello %s", "world");
+                    timer.log("fatal", "Hello %s", "world");
+                    logger.level = "OFF";
+                    timer.fatal("Hello %s", "world");
+                    checkMessages("FATAL");
+                });
+            });
         });
     });
-}).as(module);
+});

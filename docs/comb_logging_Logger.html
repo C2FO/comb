@@ -533,6 +533,20 @@
 
                             </a></li>
                             
+                            <li><a href="./comb_logging_Logger.html#timer">
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                timer
+
+                            </a></li>
+                            
                             <li><a href="./comb_logging_Logger.html#trace">
                                 
                                 
@@ -1479,6 +1493,86 @@ function (name){
 function (appenders){
    appenders.forEach(this.removeAppender, this);
    return this;
+           
+}
+    </pre>
+    
+
+
+  
+    <a name="timer"></a>
+    <h3>
+        timer
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined logging/index.js</em>
+
+<p><p>Create a timer that can be used to log statements with a duration at the send.</p>
+<pre class='prettyprint linenums lang-js'><code>var timer = LOGGER.timer();
+setTimeout(function(){
+     timer.info(&quot;HELLO TIMERS!!!&quot;); //HELLO TIMERS!!! [Duration: 5000ms]
+}, 5000);</code></pre>
+</p>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>timerFormat</em>  : </li>
+    
+     </ul>
+
+
+    <em>Returns</em>
+    <ul>
+    
+        <li> <code>{info: Function, debug: Function, error: Function, warn: Function, trace: Function, fatal: Function, end: Function}</code> </li>
+    
+    </ul>
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (timerFormat){
+   timerFormat = timerFormat || &quot; [Duration: %dms]&quot;;
+   function timerLog(level, start) {
+       return function (message) {
+           var args = argsToArray(arguments, 1);
+           message += timerFormat;
+           args.push(new Date() - start);
+           self.log.apply(self, [level, message].concat(args));
+           return ret;
+       };
+   }
+   var start = new Date(),
+       self = this,
+       ret = {
+           info: timerLog(Level.INFO, start),
+           debug: timerLog(Level.DEBUG, start),
+           error: timerLog(Level.ERROR, start),
+           warn: timerLog(Level.WARN, start),
+           trace: timerLog(Level.TRACE, start),
+           fatal: timerLog(Level.FATAL, start),
+           log: function (level) {
+               return timerLog(level, start).apply(this, argsToArray(arguments, 1));
+           },
+           end: function () {
+               start = self = null;
+           }
+       };
+   return ret;
            
 }
     </pre>

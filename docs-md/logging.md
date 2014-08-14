@@ -83,6 +83,17 @@ console.log(comb.logger('my.logger.log').level.name); //'WARN'
 
 Above you can see that as we change levels the loggers that inherit from the parents levels change also. This is a powerful concept especially when handling loggers accross a large application and you do not want to configure every logger but have enough control to log only the information you need at the time.
 
+#### `.timer()`
+
+The comb logger also has a `timer()` method that will append a duration to the end of your log message
+
+```
+var timer = LOGGER.timer();
+setTimeout(function(){
+    timer.info("HELLO TIMERS!!!"); //HELLO TIMERS!!! [Duration: 5000ms]
+}, 5000);
+```
+
 ####Appenders
 
 Appenders are the objects that handle events and deliver them to where they need to go. `comb` supports a few types of appenders out of the box.
