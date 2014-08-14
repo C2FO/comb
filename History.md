@@ -1,3 +1,7 @@
+# 0.3.6
+
+* Added new `timer` function to comb.logger.
+
 # 0.3.5
 
 * Fixed issue where messages were not propagated down to appenders even if there level was set to accept them
