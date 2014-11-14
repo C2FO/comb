@@ -1,7 +1,7 @@
 {
     "name": "comb",
     "description": "A framework for node",
-    "version": "0.3.6",
+    "version": "0.3.7",
     "keywords": ["OO", "Object Oriented", "Collections", "Tree", "HashTable", "Pool", "Logging", "Promise", "Promises", "Proxy"],
     "repository": {
         "type": "git",
@@ -14,10 +14,14 @@
         "lib": "lib"
     },
     "devDependencies": {
-        "it": "~0.2.0"
+        "it": "0.2.7",
+        "grunt": "^0.4.5",
+        "grunt-contrib-jshint": "^0.10.0",
+        "grunt-exec": "^0.4.6",
+        "grunt-it": "^0.3.1"
     },
     "scripts": {
-        "test": "export NODE_PATH=lib:$(NODE_PATH) && export NODE_ENV=test && ./node_modules/it/bin/it"
+        "test": "grunt test"
     },
     "engines": {
         "node": ">= 0.6.1"

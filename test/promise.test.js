@@ -4,7 +4,8 @@ var it = require('it'),
     comb = require("index"),
     Promise = comb.Promise,
     PromiseList = comb.PromiseList,
-    Readable = require("stream").Readable;
+    Readable = require("stream").Readable,
+    fs = require("fs");
 
 
 it.describe("The promise API", function (it) {
@@ -984,27 +985,39 @@ it.describe("The promise API", function (it) {
         function createStream() {
             var ret = new Readable();
             ret._read = function () {
-            }
+            };
             return ret;
         }
 
-        it.should("promisfy a stream", function () {
+        it.should("promisfy a readable stream", function () {
             var collected = [];
             var stream = createStream().on("data", function (data) {
                 collected.push(data + "");
             });
             var promise = comb.promisfyStream(stream).chain(function () {
                 assert.deepEqual(collected.join(""), "abcd");
-            })
+            });
             stream.push("a");
             stream.push("b");
             stream.push("c");
             stream.push("d");
             stream.push(null);
             return promise;
-
         });
 
+        it.should("promisfy a writable stream by providing a custom resolve event", function () {
+            var writeStream = fs.createWriteStream("./tmp.txt");
+            var promise = comb.promisfyStream(writeStream, "finish").chain(function () {
+                assert.equal(fs.readFileSync("./tmp.txt"), "abcd");
+                fs.unlinkSync("tmp.txt");
+            });
+            writeStream.write("a");
+            writeStream.write("b");
+            writeStream.write("c");
+            writeStream.write("d");
+            writeStream.end();
+            return promise;
+        });
 
         it.should("error if the promise errors", function () {
             var collected = [];
@@ -1014,7 +1027,7 @@ it.describe("The promise API", function (it) {
             var promise = comb.promisfyStream(stream).chain(assert.fail, function (err) {
                 assert.deepEqual(collected.join(""), "abc");
                 assert.equal(err.message, "error!");
-            })
+            });
             stream.push("a");
             stream.push("b");
             stream.push("c");
