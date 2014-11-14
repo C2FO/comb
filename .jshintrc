@@ -1,7 +1,8 @@
 {
     "predef": [
         "console",
-        "require"
+        "require",
+        "-Promise"
     ],
 
     "node": true,
@@ -12,11 +13,11 @@
     "bitwise": false,
     "camelcase": true,
     "curly": true,
-    "eqeqeq": true,
+    "eqeqeq": false,
     "forin": false,
     "immed": true,
     "indent": 4,
-    "latedef": true,
+    "latedef": "nofunc",
     "newcap": true,
     "noarg": true,
     "noempty": true,
@@ -34,7 +35,6 @@
     "boss": true,
     "debug": false,
     "eqnull": true,
-    "es5": true,
     "esnext": true,
     "evil": false,
     "expr": true,
@@ -47,7 +47,7 @@
     "loopfunc": false,
     "multistr": false,
     "onecase": false,
-    "proto": false,
+    "proto": true,
     "regexdash": false,
     "scripturl": false,
     "smarttabs": false,
