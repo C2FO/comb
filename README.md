@@ -22,7 +22,7 @@ Framework for node that provides a one stop shop for frequently needed utilities
 
 ##Highlights                                                                                                                                       
                                                                                                                                                     
-* 100% test coverage!                                                                                                                              
+* 98.48% test coverage!
 * comb([define](http://c2fo.github.com/comb/comb.html#.define)|[singleton](http://c2fo.github.com/comb/comb.html#.singleton))                                                                          
   * The backbone of comb.                                                                                                                          
   * Options for classical inheritance models as well as mixins(pseudo multi-inheritance)                                                           

@@ -1,3 +1,9 @@
+# 0.3.7
+
+* Added grunt support.
+* Better compliance with .jshintrc
+* Update `comb.promisfyStream` to accept custom event to resolve promise in order to better support writeable/duplex/transform streams.
+
 # 0.3.6
 
 * Added new `timer` function to comb.logger.

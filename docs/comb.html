@@ -4231,10 +4231,19 @@ function (str){
 <hr/>
 <em>Defined promise.js</em>
 
-<p><p>Wraps a stream in a promise waiting for either the <code>&quot;end&quot;</code> or <code>&quot;error&quot;</code> event to be triggered.</p>
+<p><p>Wraps a stream in a promise waiting for an <code>&quot;end&quot;</code>, <code>&quot;error&quot;</code>, or if provided, a custom resolve event to be triggered.</p>
 <pre class='prettyprint linenums lang-js'><code>comb.promisfyStream(fs.createdReadStream(&quot;my.file&quot;)).chain(function(){
      console.log(&quot;done reading!&quot;);
-});</code></pre>
+});
+
+// or for streams that emit a &quot;finish&quot; event
+var writeStream = fs.createWriteStream(&quot;my.file&quot;);
+comb.promisfyStream(writeStream, &quot;finish&quot;).chain(function () {
+     console.log(&quot;done writing!&quot;);
+})
+writeStream.write(&quot;a&quot;);
+writeStream.write(&quot;b&quot;);
+writeStream.end();</code></pre>
 </p>
 
 
@@ -4244,13 +4253,16 @@ function (str){
         <li> <em>stream</em>  : <p>stream to wrap</p>
 </li>
     
+        <li> <em>resolveEvent</em>  : <p>(optional) the stream event that resolves the promise.  If no resolve event is provided the promise will resolve with <code>&quot;end&quot;</code>.</p>
+</li>
+    
      </ul>
 
 
     <em>Returns</em>
     <ul>
     
-        <li> <code>comb.Promise</code> <p>a Promise is resolved if <code>&quot;end&quot;</code> is triggered before <code>&quot;error&quot;</code> or rejected if <code>&quot;error&quot;</code> is triggered.</p>
+        <li> <code>comb.Promise</code> <p>a Promise is resolved if <code>&quot;end&quot;</code> or custom resolve event is triggered before <code>&quot;error&quot;</code> or rejected if <code>&quot;error&quot;</code> is triggered.</p>
 </li>
     
     </ul>
@@ -4260,27 +4272,25 @@ function (str){
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-function (stream){
-   var ret = new Promise(), called;
-   function errorHandler() {
-       if (!called) {
-           called = true;
-           spreadArgs(ret.errback, arguments, ret);
-           stream.removeListener(&quot;error&quot;, endHandler);
-           stream.removeListener(&quot;end&quot;, endHandler);
-           stream = ret = null;
-       }
+function (stream,resolveEvent){
+   var ret = new Promise(), called, errorHandler, endHandler;
+   if (typeof resolveEvent === &quot;undefined&quot;) {
+       resolveEvent = &quot;end&quot;;
    }
-   function endHandler() {
-       if (!called) {
-           called = true;
-           spreadArgs(ret.callback, arguments, ret);
-           stream.removeListener(&quot;error&quot;, endHandler);
-           stream.removeListener(&quot;end&quot;, endHandler);
-           stream = ret = null;
-       }
+   function handle(handleFunc) {
+       return function streamHandle() {
+           if (!called) {
+               called = true;
+               spreadArgs(handleFunc, arguments, ret);
+               stream.removeListener(&quot;error&quot;, endHandler);
+               stream.removeListener(resolveEvent, endHandler);
+               stream = ret = null;
+           }
+       };
    }
-   stream.on(&quot;error&quot;, errorHandler).on(&quot;end&quot;, endHandler);
+   errorHandler = handle(ret.errback);
+   endHandler = handle(ret.callback);
+   stream.on(&quot;error&quot;, errorHandler).on(resolveEvent, endHandler);
    return ret.promise();
 }
     </pre>
@@ -5268,9 +5278,9 @@ function (val){
 <hr>
 
     
-  <h2>License</h2>
+  <h2 id="license">License</h2>
 <p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
-<h2>Meta</h2>
+<h2 id="meta">Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>
 <li>Website: <a href="http://c2fo.com">http://c2fo.com</a></li>
