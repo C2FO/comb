@@ -306,21 +306,6 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methods<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
-                            <li><a href="./comb_number.html#.round">
-                                
-                                <span class="label label-info">S</span>
-                                
-                                
-                                <span class="label label-label">F</span>
-                                
-                                
-                                
-                                <span class="label label-success">P</span>
-                                
-                                
-                                round
-                            </a></li>
-                            
                             <li><a href="./comb_number.html#.roundCeil">
                                 
                                 <span class="label label-info">S</span>
@@ -336,6 +321,36 @@
                                 roundCeil
                             </a></li>
                             
+                            <li><a href="./comb_number.html#.roundHalfDown">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                roundHalfDown
+                            </a></li>
+                            
+                            <li><a href="./comb_number.html#.roundHalfUp">
+                                
+                                <span class="label label-info">S</span>
+                                
+                                
+                                <span class="label label-label">F</span>
+                                
+                                
+                                
+                                <span class="label label-success">P</span>
+                                
+                                
+                                roundHalfUp
+                            </a></li>
+                            
                         </ul>
                     </li>
                 </ul>
@@ -347,6 +362,7 @@
 <em>Defined base/number.js</em>
 
 <p><p>Utilities for numbers</p>
+<p>The <code>comb.number</code> namespace can be used to decorate numbers with additional chainable functionality</p>
 </p>
 
 
@@ -354,116 +370,6 @@
 
 
     
-    <em>Source</em>
-    <pre class="prettyprint linenums lang-js">
-{
-    /**@lends comb.number*/
-    /**
-     * Rounds a number to the specified places.
-     *
-     * @example
-     *
-     * comb.number.round(10.000009, 2); //10
-     * comb.number.round(10.000009, 5); //10.00001
-     * comb.number.round(10.0009, 3); //10.001
-     * comb.number.round(10.0009, 2); //10
-     * comb.number.round(10.0009, 3); //10.001
-     *
-     * @param {Number} num the number to round.
-     * @param {Number} places the number of places to round to.
-     */
-    round : function(number, places, increment) {
-        increment = increment || 1e-20;
-        var factor = 10 / (10 * (increment || 10));
-        return (Math.ceil(factor * +number) / factor).toFixed(places) * 1; // Number
-    },
-    /**
-     * Rounds a number to the specified places, rounding up.
-     *
-     * @example
-     *
-     * comb.number.roundCeil(10.000001, 2); //10.01
-     * comb.number.roundCeil(10.000002, 5); //10.00001
-     * comb.number.roundCeil(10.0003, 3); //10.001
-     * comb.number.roundCeil(10.0004, 2); //10.01
-     * comb.number.roundCeil(10.0005, 3); //10.001
-     * comb.number.roundCeil(10.0002, 2); //10.01
-     *
-     * @param {Number} num the number to round.
-     * @param {Number} places the number of places to round to.
-     */
-    roundCeil : function(number, places){
-         return Math.ceil(number * Math.pow(10, places))/Math.pow(10, places);
-    }
-}
-    </pre>
-    
-
-    
-    
-        <a name=".round"></a>
-    <h3>
-        round
-        
-        <span class="label label-info">Static</span>
-        
-        
-        <span class="label label-label">Function</span>
-        
-        
-                
-         <span class="label label-success">Public</span>
-                
-        
-   </h3>
-
-<hr/>
-<em>Defined base/number.js</em>
-
-<p><p>Rounds a number to the specified places.</p>
-</p>
-
-    <em>Example</em>
-        <pre class="prettyprint linenums lang-js">
-comb.number.round(10.000009, 2); //10
-comb.number.round(10.000009, 5); //10.00001
-comb.number.round(10.0009, 3); //10.001
-comb.number.round(10.0009, 2); //10
-comb.number.round(10.0009, 3); //10.001
-        </pre>
-
-
-    <em>Arguments</em>
-    <ul>
-    
-        <li> <em>number</em>  : </li>
-    
-        <li> <em>places</em>  : <p>the number of places to round to.</p>
-</li>
-    
-        <li> <em>increment</em>  : </li>
-    
-        <li> <em>num</em> <code>Number</code> : <p>the number to round.</p>
-</li>
-    
-     </ul>
-
-
-
-
-    
-    <em>Source</em>
-    <pre class="prettyprint linenums lang-js">
-function (number,places,increment){
-   increment = increment || 1e-20;
-   var factor = 10 / (10 * (increment || 10));
-   return (Math.ceil(factor * +number) / factor).toFixed(places) * 1; // Number
-       
-}
-    </pre>
-    
-
-
     
         <a name=".roundCeil"></a>
     <h3>
@@ -501,12 +407,10 @@ comb.number.roundCeil(10.0002, 2); //10.01
     <em>Arguments</em>
     <ul>
     
-        <li> <em>number</em>  : </li>
-    
-        <li> <em>places</em>  : <p>the number of places to round to.</p>
+        <li> <em>num</em>  : <p>the number to round.</p>
 </li>
     
-        <li> <em>num</em> <code>Number</code> : <p>the number to round.</p>
+        <li> <em>precision</em>  : <p>the number of places to round to.</p>
 </li>
     
      </ul>
@@ -517,9 +421,136 @@ comb.number.roundCeil(10.0002, 2); //10.01
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-function (number,places){
-   return Math.ceil(number * Math.pow(10, places))/Math.pow(10, places);
-       
+function (num,precision){
+   return Math.ceil(num * Math.pow(10, precision))/Math.pow(10, precision);
+}
+    </pre>
+    
+
+
+    
+        <a name=".roundHalfDown"></a>
+    <h3>
+        roundHalfDown
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/number.js</em>
+
+<p><p>Rounds a number half down to the specified places.</p>
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.number.roundHalfDown(0.225, 2);     //0.22
+comb.number.roundHalfDown(10.384, 2);    //10.38
+comb.number.roundHalfDown(10.386, 2);    //10.38
+comb.number.roundHalfDown(10.3869, 3);   //10.386
+comb.number.roundHalfDown(10.3861, 3);   //10.386
+comb.number.roundHalfDown(10.269019, 5); //10.26901
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>num</em>  : <p>the number to round.</p>
+</li>
+    
+        <li> <em>precision</em>  : <p>the number of places to round to.</p>
+</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (num,precision){
+   var multiplier = pow(10, precision);
+   return Math.floor(num * multiplier) / multiplier;
+}
+    </pre>
+    
+
+
+    
+        <a name=".roundHalfUp"></a>
+    <h3>
+        roundHalfUp
+        
+        <span class="label label-info">Static</span>
+        
+        
+        <span class="label label-label">Function</span>
+        
+        
+                
+         <span class="label label-success">Public</span>
+                
+        
+   </h3>
+
+<hr/>
+<em>Defined base/number.js</em>
+
+<p><p>Rounds a number half up to the specified places.</p>
+</p>
+
+    <em>Example</em>
+        <pre class="prettyprint linenums lang-js">
+comb.number.roundHalfUp(0.225, 2);     //0.23
+comb.number.roundHalfUp(10.384, 2);    //10.38
+comb.number.roundHalfUp(10.386, 2);    //10.39
+comb.number.roundHalfUp(10.3869, 3);   //10.387
+comb.number.roundHalfUp(10.3861, 3);   //10.386
+comb.number.roundHalfUp(10.269019, 5); //10.26902
+comb.number.roundHalfUp(-2.384, 2);    //-2.38
+comb.number.roundHalfUp(-2.385, 2);    //-2.38
+comb.number.roundHalfUp(-2.386, 2);    //-2.39
+        </pre>
+
+
+    <em>Arguments</em>
+    <ul>
+    
+        <li> <em>num</em>  : <p>the number to round.</p>
+</li>
+    
+        <li> <em>precision</em>  : <p>the number of places to round to.</p>
+</li>
+    
+     </ul>
+
+
+
+
+    
+    <em>Source</em>
+    <pre class="prettyprint linenums lang-js">
+function (num,precision){
+   var multiplier = pow(10, precision),
+       numMod = parseInt((num * multiplier), 10),
+       lastDigit = parseInt(num * (multiplier * 10), 10) - (numMod * 10);
+   if (lastDigit &amp;lt; -5) {
+       numMod -= 1;
+   } else if (lastDigit &gt;= 5) {
+       numMod += 1;
+   }
+   return numMod / multiplier;
 }
     </pre>
     
@@ -529,9 +560,9 @@ function (number,places){
 <hr>
 
     
-  <h2>License</h2>
+  <h2 id="license">License</h2>
 <p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
-<h2>Meta</h2>
+<h2 id="meta">Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>
 <li>Website: <a href="http://c2fo.com">http://c2fo.com</a></li>
