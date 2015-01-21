@@ -1,3 +1,7 @@
+# 0.4.0
+
+* Update `comb.number.round` to default to new `comb.number.roundHalfUp` method.
+
 # 0.3.6
 
 * Added new `timer` function to comb.logger.
