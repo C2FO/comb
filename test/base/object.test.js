@@ -170,6 +170,7 @@ it.describe("comb/base/object.js", function (it) {
         assert.isTrue(comb.deepEqual({a: "a"}, {a: "a"}));
         assert.isFalse(comb.deepEqual({a: "b"}, {a: "a"}));
         assert.isFalse(comb.deepEqual("a", new String("a")));
+        assert.isFalse(comb.deepEqual(new String("a"), "a"));
         assert.isTrue(comb.deepEqual(/a|b/ig, /a|b/ig));
         assert.isFalse(comb.deepEqual(/a|b/ig, /a|b/g));
         assert.isTrue(comb.deepEqual(new Date(2000, 2, 2, 2, 2, 2), new Date(2000, 2, 2, 2, 2, 2)));
@@ -430,5 +431,3 @@ it.describe("comb/base/object.js", function (it) {
 
     });
 });
-
-
