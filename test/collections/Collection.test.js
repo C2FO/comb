@@ -1,7 +1,7 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../../index"),
     Collection = comb.collections.Collection;
 
 
@@ -18,9 +18,9 @@ it.describe("comb.collections.Collection", function (it) {
             it.should("throw an error if invoked", function () {
                 assert.throws(function () {
                     collection[m]();
-                })
-            })
-        })
+                });
+            });
+        });
     });
 
 }).as(module);

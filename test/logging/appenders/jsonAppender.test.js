@@ -1,7 +1,7 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../../../index"),
     logging = comb.logging,
     JSONAppender = logging.appenders.JSONAppender;
 
@@ -9,18 +9,18 @@ var it = require('it'),
 it.describe("comb.logging.appenders.JSONAppender", function (it) {
 
     var MockWriteStream = {
-        writable:true,
-        on:function () {
+        writable: true,
+        on: function () {
         },
-        destroySoon:function () {
+        destroySoon: function () {
         },
-        write:function (str) {
+        write: function (str) {
             return str;
         }
     };
 
     var logger = logging.Logger.getLogger("JSONAppenderTest"),
-        appender = new JSONAppender({writeStream:MockWriteStream});
+        appender = new JSONAppender({writeStream: MockWriteStream});
     logger.addAppender(appender);
 
     it.should("be added to the logger", function () {
@@ -34,7 +34,7 @@ it.describe("comb.logging.appenders.JSONAppender", function (it) {
         var levels = ["debug", "trace", "info", "warn", "error", "fatal"];
         var conn = comb.connect(MockWriteStream, "write", function (str) {
             if (!str.match(/^\[|\]$/)) {
-                str = str.replace(/^,/, "")
+                str = str.replace(/^,/, "");
                 var obj = JSON.parse(str);
                 assert.isTrue(obj.message.match(levels[count]) != null);
                 count++;

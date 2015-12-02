@@ -160,8 +160,6 @@
                             
                             <li><a href="./History.html">Change Log</a></li>
                             
-                            <li><a href="./coverage.html">Test Coverage</a></li>
-                            
                         </ul>
                         
 
@@ -1327,7 +1325,7 @@ function (level,message){
            var err = new Error;
            err.name = &quot;Trace&quot;;
            err.message = message || &#x27;&#x27;;
-           Error.captureStackTrace(err, arguments.callee);
+           Error.captureStackTrace(err, log);
            message = err.stack;
        } else if (Level.ERROR.equals(level) &amp;&amp; isInstanceOf(message, Error)) {
            message = message.stack;

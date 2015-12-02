@@ -160,8 +160,6 @@
                             
                             <li><a href="./History.html">Change Log</a></li>
                             
-                            <li><a href="./coverage.html">Test Coverage</a></li>
-                            
                         </ul>
                         
 
@@ -508,7 +506,7 @@ function (){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (){
-   var ret = undefined;
+   var ret;
    if (this.count &amp;lt;= this.__maxObjects &amp;&amp; this.freeCount &gt; 0) {
        ret = this.__freeObjects.dequeue();
        this.__inUseObjects.push(ret);

@@ -1,3 +1,9 @@
+# 1.0.0
+
+* Node 5 support
+* Updated to use jshint
+* Added grunt
+
 # 0.4.1
 
 * Adding `wrapStyle` option to `ConsoleAppender` to allow stripping of styling. Defaults to true.

@@ -1,7 +1,7 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../../index"),
     logging = comb.logging,
     Logger = comb.logging.Logger,
     Level = logging.Level,
@@ -11,7 +11,7 @@ var it = require('it'),
     fs = require("fs");
 
 
-it.describe("comb.logging",function (it) {
+it.describe("comb.logging", function (it) {
     var config = {
         "combConfigTest": {
             "level": "INFO",
@@ -93,7 +93,7 @@ it.describe("comb.logging",function (it) {
     var setupFS = function () {
         fs.readFile = function (name, cb) {
             cb(null, JSON.stringify(config2));
-        }
+        };
 
         fs.watchFile = function (name, cb) {
 
@@ -250,14 +250,14 @@ it.describe("comb.logging",function (it) {
                 cb(new Error());
             };
             assert.throws(function () {
-                topic.configure("myLog.json")
+                topic.configure("myLog.json");
             });
             fs.readFile = function (name, cb) {
                 cb(null, config);
-            }
+            };
             assert.throws(function () {
-                topic.configure("{]")
-            })
+                topic.configure("{]");
+            });
         });
 
         it.afterAll(resetFS);

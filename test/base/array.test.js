@@ -1,9 +1,9 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index");
+    comb = require("../../index");
 
-it.describe("array",function (it) {
+it.describe("array", function (it) {
 
     var array = comb.array;
 
@@ -240,7 +240,7 @@ it.describe("array",function (it) {
             ["c", "c"]
         ]);
         assert.deepEqual(array.toArray("a", {a: "b"}), ["a", ["a", "b"]]);
-        var date = new Date();
+        date = new Date();
         assert.deepEqual(array.toArray(date), [date]);
         assert.deepEqual(array.toArray(true), [true]);
         assert.deepEqual(array.toArray(false), [false]);
@@ -252,7 +252,9 @@ it.describe("array",function (it) {
         assert.equal(comb([]).sum([]), 0);
         assert.equal(comb([1, 2, 3]).sum(), 6);
         assert.equal(comb(["A", "B", "C"]).sum(), "ABC");
-        var d1 = new Date(1999), d2 = new Date(2000), d3 = new Date(3000);
+        var d1 = new Date(1999),
+            d2 = new Date(2000),
+            d3 = new Date(3000);
         assert.equal(comb([d1, d2, d3]).sum(), d1.toString() + d2.toString() + d3.toString());
         assert.equal(comb([
             {},
@@ -264,7 +266,9 @@ it.describe("array",function (it) {
         assert.equal(array.sum([]), 0);
         assert.equal(array.sum([1, 2, 3]), 6);
         assert.equal(array.sum(["A", "B", "C"]), "ABC");
-        var d1 = new Date(1999), d2 = new Date(2000), d3 = new Date(3000);
+        d1 = new Date(1999);
+        d2 = new Date(2000);
+        d3 = new Date(3000);
         assert.equal(array.sum([d1, d2, d3]), d1.toString() + d2.toString() + d3.toString());
         assert.equal(array.sum([
             {},
@@ -336,72 +340,72 @@ it.describe("array",function (it) {
     it.should("find the powerset", function () {
         assert.deepEqual(comb([1, 2]).powerSet(), [
             [],
-            [ 1 ],
-            [ 2 ],
-            [ 1, 2 ]
+            [1],
+            [2],
+            [1, 2]
         ]);
         assert.deepEqual(comb([1, 2, 3]).powerSet(), [
             [],
-            [ 1 ],
-            [ 2 ],
-            [ 1, 2 ],
-            [ 3 ],
-            [ 1, 3 ],
-            [ 2, 3 ],
-            [ 1, 2, 3 ]
+            [1],
+            [2],
+            [1, 2],
+            [3],
+            [1, 3],
+            [2, 3],
+            [1, 2, 3]
         ]);
         assert.deepEqual(comb([1, 2, 3, 4]).powerSet(), [
             [],
-            [ 1 ],
-            [ 2 ],
-            [ 1, 2 ],
-            [ 3 ],
-            [ 1, 3 ],
-            [ 2, 3 ],
-            [ 1, 2, 3 ],
-            [ 4 ],
-            [ 1, 4 ],
-            [ 2, 4 ],
-            [ 1, 2, 4 ],
-            [ 3, 4 ],
-            [ 1, 3, 4 ],
-            [ 2, 3, 4 ],
-            [ 1, 2, 3, 4 ]
+            [1],
+            [2],
+            [1, 2],
+            [3],
+            [1, 3],
+            [2, 3],
+            [1, 2, 3],
+            [4],
+            [1, 4],
+            [2, 4],
+            [1, 2, 4],
+            [3, 4],
+            [1, 3, 4],
+            [2, 3, 4],
+            [1, 2, 3, 4]
         ]);
 
         assert.deepEqual(array.powerSet([1, 2]), [
             [],
-            [ 1 ],
-            [ 2 ],
-            [ 1, 2 ]
+            [1],
+            [2],
+            [1, 2]
         ]);
         assert.deepEqual(array.powerSet([1, 2, 3]), [
             [],
-            [ 1 ],
-            [ 2 ],
-            [ 1, 2 ],
-            [ 3 ],
-            [ 1, 3 ],
-            [ 2, 3 ],
-            [ 1, 2, 3 ]
+            [1],
+            [2],
+            [1, 2],
+            [3],
+            [1, 3],
+            [2, 3],
+            [1, 2, 3]
         ]);
         assert.deepEqual(array.powerSet([1, 2, 3, 4]), [
             [],
-            [ 1 ],
-            [ 2 ],
-            [ 1, 2 ],
-            [ 3 ],
-            [ 1, 3 ],
-            [ 2, 3 ],
-            [ 1, 2, 3 ],
-            [ 4 ],
-            [ 1, 4 ],
-            [ 2, 4 ],
-            [ 1, 2, 4 ],
-            [ 3, 4 ],
-            [ 1, 3, 4 ],
-            [ 2, 3, 4 ],
-            [ 1, 2, 3, 4 ]
+            [1],
+            [2],
+            [1, 2],
+            [3],
+            [1, 3],
+            [2, 3],
+            [1, 2, 3],
+            [4],
+            [1, 4],
+            [2, 4],
+            [1, 2, 4],
+            [3, 4],
+            [1, 3, 4],
+            [2, 3, 4],
+            [1, 2, 3, 4]
         ]);
     });
 
@@ -415,7 +419,7 @@ it.describe("array",function (it) {
         assert.deepEqual(comb([1, 2]).cartesian([2, 3, 4]), [
             [1, 2],
             [1, 3],
-            [1, 4] ,
+            [1, 4],
             [2, 2],
             [2, 3],
             [2, 4]
@@ -423,10 +427,10 @@ it.describe("array",function (it) {
         assert.deepEqual(comb([1, 2, 3]).cartesian([2, 3, 4]), [
             [1, 2],
             [1, 3],
-            [1, 4] ,
+            [1, 4],
             [2, 2],
             [2, 3],
-            [2, 4] ,
+            [2, 4],
             [3, 2],
             [3, 3],
             [3, 4]
@@ -442,7 +446,7 @@ it.describe("array",function (it) {
         assert.deepEqual(array.cartesian([1, 2], [2, 3, 4]), [
             [1, 2],
             [1, 3],
-            [1, 4] ,
+            [1, 4],
             [2, 2],
             [2, 3],
             [2, 4]
@@ -450,10 +454,10 @@ it.describe("array",function (it) {
         assert.deepEqual(array.cartesian([1, 2, 3], [2, 3, 4]), [
             [1, 2],
             [1, 3],
-            [1, 4] ,
+            [1, 4],
             [2, 2],
             [2, 3],
-            [2, 4] ,
+            [2, 4],
             [3, 2],
             [3, 3],
             [3, 4]
@@ -485,20 +489,20 @@ it.describe("array",function (it) {
     it.should("find permutations of an array ", function () {
         var arr = comb([1, 2, 3]);
         assert.deepEqual(arr.permutations(), [
-            [ 1, 2, 3 ],
-            [ 1, 3, 2 ],
-            [ 2, 3, 1 ],
-            [ 2, 1, 3 ],
-            [ 3, 1, 2 ],
-            [ 3, 2, 1 ]
+            [1, 2, 3],
+            [1, 3, 2],
+            [2, 3, 1],
+            [2, 1, 3],
+            [3, 1, 2],
+            [3, 2, 1]
         ]);
         assert.deepEqual(arr.permutations(2), [
-            [ 1, 2],
-            [ 1, 3],
-            [ 2, 3],
-            [ 2, 1],
-            [ 3, 1],
-            [ 3, 2]
+            [1, 2],
+            [1, 3],
+            [2, 3],
+            [2, 1],
+            [3, 1],
+            [3, 2]
         ]);
         assert.deepEqual(arr.permutations(1), [
             [1],
@@ -512,20 +516,20 @@ it.describe("array",function (it) {
 
 
         assert.deepEqual(array.permutations(arr), [
-            [ 1, 2, 3 ],
-            [ 1, 3, 2 ],
-            [ 2, 3, 1 ],
-            [ 2, 1, 3 ],
-            [ 3, 1, 2 ],
-            [ 3, 2, 1 ]
+            [1, 2, 3],
+            [1, 3, 2],
+            [2, 3, 1],
+            [2, 1, 3],
+            [3, 1, 2],
+            [3, 2, 1]
         ]);
         assert.deepEqual(array.permutations(arr, 2), [
-            [ 1, 2],
-            [ 1, 3],
-            [ 2, 3],
-            [ 2, 1],
-            [ 3, 1],
-            [ 3, 2]
+            [1, 2],
+            [1, 3],
+            [2, 3],
+            [2, 1],
+            [3, 1],
+            [3, 2]
         ]);
         assert.deepEqual(array.permutations(arr, 1), [
             [1],
@@ -539,14 +543,14 @@ it.describe("array",function (it) {
     });
 
     it.should("zip an arrays ", function () {
-        var a = [ 4, 5, 6 ];
-        var b = [ 7, 8, 9 ];
+        var a = [4, 5, 6];
+        var b = [7, 8, 9];
 
         assert.deepEqual(comb([1]).zip([2], [3]), [
-            [ 1, 2, 3 ]
+            [1, 2, 3]
         ]);
         assert.deepEqual(comb([1, 2]).zip([2], [3]), [
-            [ 1, 2, 3 ],
+            [1, 2, 3],
             [2, null, null]
         ]);
         assert.deepEqual(comb([1, 2, 3]).zip(a, b), [
@@ -566,10 +570,10 @@ it.describe("array",function (it) {
 
 
         assert.deepEqual(array.zip([1], [2], [3]), [
-            [ 1, 2, 3 ]
+            [1, 2, 3]
         ]);
         assert.deepEqual(array.zip([1, 2], [2], [3]), [
-            [ 1, 2, 3 ],
+            [1, 2, 3],
             [2, null, null]
         ]);
         assert.deepEqual(array.zip([1, 2, 3], a, b), [
@@ -612,17 +616,17 @@ it.describe("array",function (it) {
             [1, 2, 3],
             [4, 5, 6]
         ]).transpose(), [
-            [ 1, 4 ],
-            [ 2, 5 ],
-            [ 3, 6 ]
+            [1, 4],
+            [2, 5],
+            [3, 6]
         ]);
         assert.deepEqual(comb([
             [1, 2],
             [3, 4],
             [5, 6]
         ]).transpose(), [
-            [ 1, 3, 5 ],
-            [ 2, 4, 6 ]
+            [1, 3, 5],
+            [2, 4, 6]
         ]);
         assert.deepEqual(comb([
             [1],
@@ -637,17 +641,17 @@ it.describe("array",function (it) {
             [1, 2, 3],
             [4, 5, 6]
         ]), [
-            [ 1, 4 ],
-            [ 2, 5 ],
-            [ 3, 6 ]
+            [1, 4],
+            [2, 5],
+            [3, 6]
         ]);
         assert.deepEqual(array.transpose([
             [1, 2],
             [3, 4],
             [5, 6]
         ]), [
-            [ 1, 3, 5 ],
-            [ 2, 4, 6 ]
+            [1, 3, 5],
+            [2, 4, 6]
         ]);
         assert.deepEqual(array.transpose([
             [1],
@@ -681,7 +685,7 @@ it.describe("array",function (it) {
     });
 
     it.should("find the min value of an array", function () {
-        var arr1 = comb([ 3, -3, -2, -1, 1, 2]),
+        var arr1 = comb([3, -3, -2, -1, 1, 2]),
             arr2 = comb(["b", "c", "a"]),
             arr3 = comb([
                 {a: 1},
@@ -723,7 +727,7 @@ it.describe("array",function (it) {
 
     });
     it.should("find the max value of an array", function () {
-        var arr1 = comb([ 3, -3, -2, -1, 1, 2]),
+        var arr1 = comb([3, -3, -2, -1, 1, 2]),
             arr2 = comb(["b", "c", "a"]),
             arr3 = comb([
                 {a: 1},
@@ -765,7 +769,7 @@ it.describe("array",function (it) {
     });
 
     it.should("sort an array", function () {
-        var arr1 = comb([ 3, -3, -2, -1, 1, 2]),
+        var arr1 = comb([3, -3, -2, -1, 1, 2]),
             arr2 = comb(["b", "c", "a"]),
 
             arr3 = comb([
@@ -793,7 +797,7 @@ it.describe("array",function (it) {
             ]),
             arr7 = comb([true, false]);
         assert.deepEqual(arr1.sort(), [-3, -2, -1, 1, 2, 3]);
-        assert.deepEqual(arr1, [ 3, -3, -2, -1, 1, 2]);
+        assert.deepEqual(arr1, [3, -3, -2, -1, 1, 2]);
         assert.deepEqual(arr2.sort(), ["a", "b", "c"]);
         assert.deepEqual(arr2, ["b", "c", "a"]);
 
@@ -854,7 +858,7 @@ it.describe("array",function (it) {
 
 
         assert.deepEqual(array.sort(arr1), [-3, -2, -1, 1, 2, 3]);
-        assert.deepEqual(arr1, [ 3, -3, -2, -1, 1, 2]);
+        assert.deepEqual(arr1, [3, -3, -2, -1, 1, 2]);
         assert.deepEqual(array.sort(arr2), ["a", "b", "c"]);
         assert.deepEqual(arr2, ["b", "c", "a"]);
 

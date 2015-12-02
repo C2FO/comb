@@ -1,8 +1,19 @@
 {
     "name": "comb",
     "description": "A framework for node",
-    "version": "0.4.1",
-    "keywords": ["OO", "Object Oriented", "Collections", "Tree", "HashTable", "Pool", "Logging", "Promise", "Promises", "Proxy"],
+    "version": "1.0.0",
+    "keywords": [
+        "OO",
+        "Object Oriented",
+        "Collections",
+        "Tree",
+        "HashTable",
+        "Pool",
+        "Logging",
+        "Promise",
+        "Promises",
+        "Proxy"
+    ],
     "repository": {
         "type": "git",
         "url": "git@github.com:C2FO/comb.git"
@@ -14,12 +25,19 @@
         "lib": "lib"
     },
     "devDependencies": {
-        "it": "~0.2.0"
+        "coveralls": "^2.11.4",
+        "grunt-contrib-jshint": "^0.11.3",
+        "grunt-exec": "^0.4.6",
+        "grunt-it": "^1.0.0",
+        "istanbul": "^0.4.1",
+        "it": "^1.1.0",
+        "jit-grunt": "^0.9.1",
+        "time-grunt": "^1.2.2"
     },
     "scripts": {
-        "test": "export NODE_PATH=lib:$(NODE_PATH) && export NODE_ENV=test && ./node_modules/it/bin/it"
+        "test": "grunt test"
     },
     "engines": {
-        "node": ">= 0.6.1"
+        "node": ">= 5.0.0"
     }
 }

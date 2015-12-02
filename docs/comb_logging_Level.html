@@ -160,8 +160,6 @@
                             
                             <li><a href="./History.html">Change Log</a></li>
                             
-                            <li><a href="./coverage.html">Test Coverage</a></li>
-                            
                         </ul>
                         
 
@@ -575,7 +573,7 @@ function (level,defaultLevel){
    var ret = null;
    var args = base.argsToArray(arguments);
    if (args.length === 1) {
-       var level = args[0];
+       level = args[0];
        if (base.isNumber(level)) {
            var strLevel = LEVELS_REVERSE[level];
            ret = Level[strLevel];
@@ -640,7 +638,7 @@ function (level,defaultLevel){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (level){
-   return level.level == this.level;
+   return level.level === this.level;
            
 }
     </pre>

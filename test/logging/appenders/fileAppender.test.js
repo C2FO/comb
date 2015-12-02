@@ -1,7 +1,7 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../../../index"),
     logging = comb.logging,
     FileAppender = logging.appenders.FileAppender;
 
@@ -9,18 +9,18 @@ var it = require('it'),
 it.describe("comb.logging.appenders.FileAppender", function (it) {
 
     var MockWriteStream = {
-        writable:true,
-        on:function () {
+        writable: true,
+        on: function () {
         },
-        destroySoon:function () {
+        destroySoon: function () {
         },
-        write:function (str) {
+        write: function (str) {
             return str;
         }
     };
 
     var logger = logging.Logger.getLogger("FilerAppenderTest"),
-        appender = new FileAppender({writeStream:MockWriteStream});
+        appender = new FileAppender({writeStream: MockWriteStream});
     logger.addAppender(appender);
 
     it.should("be added to the logger", function () {
@@ -45,7 +45,7 @@ it.describe("comb.logging.appenders.FileAppender", function (it) {
 
         logger.level = logging.Level.OFF;
         count = 0;
-        var conn = comb.connect(MockWriteStream, "write", function (str) {
+        conn = comb.connect(MockWriteStream, "write", function (str) {
             assert.isTrue(str.match(levels[count]) != null);
             count++;
         });

@@ -1,7 +1,7 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../../index"),
     logging = comb.logging,
     Logger = logging.Logger,
     Level = logging.Level;
@@ -134,7 +134,7 @@ it.describe("comb.logging.Logger", function (it) {
 
         it.should("not have an appenders by default", function () {
             assert.isEmpty(logger.appenders);
-        })
+        });
 
         it.should("not have an child loggers by default", function () {
             assert.isEmpty(logger.subLoggers);
