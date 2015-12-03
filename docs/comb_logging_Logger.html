@@ -1327,7 +1327,7 @@ function (level,message){
            var err = new Error;
            err.name = &quot;Trace&quot;;
            err.message = message || &#x27;&#x27;;
-           Error.captureStackTrace(err, arguments.callee);
+           Error.captureStackTrace(err, log);
            message = err.stack;
        } else if (Level.ERROR.equals(level) &amp;&amp; isInstanceOf(message, Error)) {
            message = message.stack;
@@ -1687,9 +1687,9 @@ function (message){
 <hr>
 
     
-  <h2 id="license">License</h2>
+  <h2>License</h2>
 <p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
-<h2 id="meta">Meta</h2>
+<h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>
 <li>Website: <a href="http://c2fo.com">http://c2fo.com</a></li>

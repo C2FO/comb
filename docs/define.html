@@ -280,8 +280,8 @@
 
 
 
-<h1 id="-define-comb-html-define-"><a href="./comb.html#.define">define</a></h1>
-<h2 id="instance-methods">Instance Methods</h2>
+<h1><a href="./comb.html#.define">define</a></h1>
+<h2>Instance Methods</h2>
 <p>When defining classes in <code>comb</code> there are two root level properties you can define,  <code>instance</code> and  <code>static</code>. </p>
 <p>The optional instance object is used to define properties and methods on an instance of a class. </p>
 <p>The optional static property is used to define class level methods and properties than can be used without an instance of a class.</p>
@@ -489,7 +489,7 @@ try {
 } catch (e) {
     console.error(e); //prints [TypeError: Breed must be a String]
 }</code></pre>
-<h2 id="static-methods">Static Methods</h2>
+<h2>Static Methods</h2>
 <p>As stated above  <code>comb.define</code> looks for an optional static  property on the <code>prototype</code> declaration  of a class. </p>
 <p>Lets modify <code>Mammal</code> to include static properties. </p>
 <pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define({
@@ -541,7 +541,7 @@ console.log(myMammal.type); //prints mammal
 Mammal.DEFAULT_TYPE = &quot;whale&quot;;
 myMammal = new Mammal();
 console.log(myMammal.type); //prints whale</code></pre>
-<h3 id="inheritance-in-static-functions-">Inheritance In Static Functions.</h3>
+<h3>Inheritance In Static Functions.</h3>
 <p>One neat thing about defining classes in <code>comb</code> is that you not only get the advantages of inheritance in instance methods but static methods as well. So lets modify <code>Dog</code> and <code>Wolf</code> to take advantage of that.</p>
 <pre class='prettyprint linenums lang-js'><code>var Wolf = Mammal.extend({
     instance:{
@@ -648,9 +648,9 @@ console.log(Dog.soundOff());
 console.log(DogWolf.soundOff());
 console.log(WolfDog.soundOff());</code></pre>
 <p>As you can see inheritance within the static methods follows the same order as it does within  the instance methods.</p>
-<h3 id="static-getters-and-setters">Static Getters and Setters</h3>
+<h3>Static Getters and Setters</h3>
 <p>Getters and setters are declared the same way in a static declaration as they are in an instance declaration.</p>
-<h3 id="getting-an-instance-of-my-self-">Getting an Instance of my self.</h3>
+<h3>Getting an Instance of my self.</h3>
 <p>One nuance about prototypal inheritance is that the scope in which a function is called is not consistent. For example, lets add a reproduce method to <code>Mammal</code>.</p>
 <pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define({
     instance:{
@@ -700,7 +700,7 @@ console.log(WolfDog.soundOff());</code></pre>
      return obj instanceof this._static; 
 }</code></pre>
 <p>This comes in handy when dealing with multiple inheritance, and wanting to check if an object is of the same concrete class.</p>
-<h3 id="static-initialization">Static initialization</h3>
+<h3>Static initialization</h3>
 <p><code>comb.define</code> also provides a mechanism for initializing when creating a class. <code>init</code> will be called on creation of any class.</p>
 <pre class='prettyprint linenums lang-js'><code>var Mammal = comb.define({
     instance:{
@@ -748,9 +748,9 @@ console.log(WolfDog.soundOff());</code></pre>
 <hr>
 
     
-  <h2 id="license">License</h2>
+  <h2>License</h2>
 <p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
-<h2 id="meta">Meta</h2>
+<h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>
 <li>Website: <a href="http://c2fo.com">http://c2fo.com</a></li>

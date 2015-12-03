@@ -1,3 +1,9 @@
+# 0.5.0
+
+* Node 5 support.
+* Updated to use jshint
+* Added grunt
+
 # 0.4.0
 
 * Update `comb.number.round` to default to new `comb.number.roundHalfUp` method.

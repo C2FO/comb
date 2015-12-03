@@ -1,7 +1,7 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../../index"),
     MinHeap = comb.collections.MinHeap;
 
 it.describe("comb.collections.MinHeap", function (it) {
@@ -29,9 +29,9 @@ it.describe("comb.collections.MinHeap", function (it) {
         h.insert(3, 'd');
         var keys = h.keys;
         for (var i = 0; i < 4; i++) {
-            assert.isTrue(keys.indexOf(i) != -1);
+            assert.isTrue(keys.indexOf(i) !== -1);
         }
-        for (var i = 0; i < 4; i++) {
+        for (i = 0; i < 4; i++) {
             assert.isTrue(h.containsKey(i));
         }
         assert.isFalse(h.containsKey(4));
@@ -44,10 +44,10 @@ it.describe("comb.collections.MinHeap", function (it) {
         h.insert(2, 'c');
         h.insert(3, 'd');
         var vals = h.values;
-        assert.isTrue(vals.indexOf("a") != -1);
-        assert.isTrue(vals.indexOf("b") != -1);
-        assert.isTrue(vals.indexOf("c") != -1);
-        assert.isTrue(vals.indexOf("d") != -1);
+        assert.isTrue(vals.indexOf("a") !== -1);
+        assert.isTrue(vals.indexOf("b") !== -1);
+        assert.isTrue(vals.indexOf("c") !== -1);
+        assert.isTrue(vals.indexOf("d") !== -1);
         assert.isTrue(h.containsValue("a"));
         assert.isTrue(h.containsValue("b"));
         assert.isTrue(h.containsValue("c"));

@@ -1,10 +1,11 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index");
+    comb = require("../../index");
 
 
 it.describe("comb/base/object.js", function (it) {
+    /*jshint -W053 */
 
     it.should("determine if someting is an object", function () {
         assert.isTrue(comb.isObject(new Date()));
@@ -163,7 +164,7 @@ it.describe("comb/base/object.js", function (it) {
             assert.isFalse(m2.test2);
             assert.equal(m2.test3, "hello");
             assert.equal(m2.test4, "world");
-        })
+        });
     });
 
     it.should("determine if objects are deepEqual properly", function () {
@@ -180,12 +181,12 @@ it.describe("comb/base/object.js", function (it) {
         ], [
             {a: "a"}
         ]));
-        assert.isTrue(comb(new Buffer("abc")).deepEqual(new Buffer("abc")))
+        assert.isTrue(comb(new Buffer("abc")).deepEqual(new Buffer("abc")));
         assert.isFalse(comb([
             {a: "b"}
         ]).deepEqual([
-                {a: "a"}
-            ]));
+            {a: "a"}
+        ]));
         (function () {
             var argsA = arguments;
             (function () {
@@ -205,14 +206,14 @@ it.describe("comb/base/object.js", function (it) {
         assert.isTrue(comb([
             {a: "a"}
         ]).deepEqual([
-                {a: "a"}
-            ]));
-        assert.isTrue(comb(new Buffer("abc")).deepEqual(new Buffer("abc")))
+            {a: "a"}
+        ]));
+        assert.isTrue(comb(new Buffer("abc")).deepEqual(new Buffer("abc")));
         assert.isFalse(comb([
             {a: "b"}
         ]).deepEqual([
-                {a: "a"}
-            ]));
+            {a: "a"}
+        ]));
         (function () {
             var argsA = arguments;
             (function () {
@@ -346,7 +347,7 @@ it.describe("comb/base/object.js", function (it) {
                 it.should("throw an error if the object is not a hash", function () {
                     assert.throws(function () {
                         comb.hash.omit("hello");
-                    })
+                    });
                 });
             });
 

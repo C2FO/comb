@@ -1,4 +1,5 @@
 [![build status](https://secure.travis-ci.org/C2FO/comb.png)](http://travis-ci.org/C2FO/comb)
+[![Coverage Status](https://coveralls.io/repos/C2FO/comb/badge.svg?branch=master&service=github)](https://coveralls.io/github/C2FO/comb?branch=master)
 
 #Comb
                                                                                                                                              
