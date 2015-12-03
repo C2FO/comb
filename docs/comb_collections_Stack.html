@@ -522,7 +522,7 @@ function (){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (obj){
-   return this.__stack.indexOf(obj) != -1;
+   return this.__stack.indexOf(obj) !== -1;
            
 }
     </pre>
@@ -566,7 +566,8 @@ function (obj){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (){
-   var ret = undefined,next = this.__next;
+   var next = this.__next,
+       ret;
    if (next &gt;= 0) {
        ret = this.__stack[next];
    }
@@ -614,7 +615,9 @@ function (){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (){
-   var ret = undefined, stack, next = this.__next;
+   var next = this.__next,
+       ret,
+       stack;
    if (next &gt;= 0) {
        stack = this.__stack;
        ret = stack[next];
@@ -717,8 +720,8 @@ function (data){
     <pre class="prettyprint linenums lang-js">
 function (obj){
    var index = this.__stack.indexOf(obj), ret = false;
-   if (index != -1) {
-       if (index == this.__next) {
+   if (index !== -1) {
+       if (index === this.__next) {
            this.pop();
        } else {
            this.__stack.splice(index, 1);
@@ -737,9 +740,9 @@ function (obj){
 <hr>
 
     
-  <h2 id="license">License</h2>
+  <h2>License</h2>
 <p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
-<h2 id="meta">Meta</h2>
+<h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>
 <li>Website: <a href="http://c2fo.com">http://c2fo.com</a></li>

@@ -1,7 +1,7 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../index"),
     define = comb.define,
     singleton = comb.singleton;
 
@@ -18,7 +18,7 @@ it.describe("comb.define", function (it) {
             },
 
             speak: function () {
-                return  "A mammal of type " + this._type + " sounds like";
+                return "A mammal of type " + this._type + " sounds like";
             },
 
             //Define your getters
@@ -239,7 +239,7 @@ it.describe("comb.define", function (it) {
         });
 
         it.should("but after setting the type it should be a collie", function () {
-            breed.type = "collie"
+            breed.type = "collie";
             assert.isTrue(breed instanceof Dog);
             assert.isTrue(breed instanceof Wolf);
             assert.isTrue(breed instanceof Mammal);
@@ -253,7 +253,7 @@ it.describe("comb.define", function (it) {
         });
 
         it.should("but after setting the color it should be grey", function () {
-            breed.color = "grey"
+            breed.color = "grey";
             assert.isTrue(breed instanceof Dog);
             assert.isTrue(breed instanceof Wolf);
             assert.isTrue(breed instanceof Mammal);
@@ -267,7 +267,7 @@ it.describe("comb.define", function (it) {
         });
 
         it.should("but after setting the sound it should sound like a bark", function () {
-            breed.sound = "bark"
+            breed.sound = "bark";
             assert.isTrue(breed instanceof Dog);
             assert.isTrue(breed instanceof Wolf);
             assert.isTrue(breed instanceof Mammal);
@@ -281,7 +281,7 @@ it.describe("comb.define", function (it) {
         });
 
         it.should("but after setting the pitch it should be low pitched", function () {
-            breed.pitch = "low"
+            breed.pitch = "low";
             assert.isTrue(breed instanceof Dog);
             assert.isTrue(breed instanceof Wolf);
             assert.isTrue(breed instanceof Mammal);
@@ -321,7 +321,7 @@ it.describe("comb.define", function (it) {
 
             it.should("still be a dog", function () {
                 var myLab = new MyLab();
-                assert.isTrue(lab == myLab);
+                assert.isTrue(lab === myLab);
                 assert.equal(lab.type, "dog");
                 assert.equal(myLab.type, "dog");
                 assert.equal(Dog.mammalInheritedProp, "mammalInheritedProp");
@@ -344,7 +344,7 @@ it.describe("comb.define", function (it) {
 
             it.should("still be a dog", function () {
                 var myLab = new MyLabWithConstructor();
-                assert.isTrue(lab == myLab);
+                assert.isTrue(lab === myLab);
                 assert.equal(lab.type, "dog");
                 assert.equal(myLab.type, "dog");
                 assert.equal(Dog.mammalInheritedProp, "mammalInheritedProp");
@@ -366,7 +366,7 @@ it.describe("comb.define", function (it) {
 
             it.should("still be a dog", function () {
                 var myLab = new MyLab();
-                assert.isTrue(lab == myLab);
+                assert.isTrue(lab === myLab);
                 assert.equal(lab.type, "dog");
                 assert.equal(myLab.type, "dog");
                 assert.equal(Dog.mammalInheritedProp, "mammalInheritedProp");

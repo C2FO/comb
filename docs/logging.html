@@ -280,9 +280,9 @@
 
 
 
-<h2 id="logging-">Logging.</h2>
+<h2>Logging.</h2>
 <p><code>comb</code>&#39;s logging api is fairly straight forward.</p>
-<h3 id="the-logger">The logger</h3>
+<h3>The logger</h3>
 <pre class='prettyprint linenums lang-js'><code>var logger = comb.logger(&quot;logger&quot;);</code></pre>
 <p>The <code>comb.logger</code> function simply creates a logger that can be used to log different <strong>events</strong>. The logging api allows one retrive the same logger anywhere in your module. For example, suppose you have the following two files.</p>
 <p><code>a.js</code></p>
@@ -291,7 +291,7 @@ var logger = comb.logger(&quot;logger&quot;);</code></pre>
 <p><code>b.js</code></p>
 <pre class='prettyprint linenums lang-js'><code>var logger = comb.logger(&quot;logger&quot;);</code></pre>
 <p>Both of the previous loggers are one and the same.</p>
-<h3 id="logger-inheritance">Logger inheritance</h3>
+<h3>Logger inheritance</h3>
 <p>As with other logging APIs loggers can inherit from eachother, through a <strong>dot</strong> notation.</p>
 <pre class='prettyprint linenums lang-js'><code>                         rootLogger - &quot;&quot;
                                  /         \
@@ -303,7 +303,7 @@ var logger = comb.logger(&quot;logger&quot;);</code></pre>
 <p>The above configuration shows six loggers the <strong>rootLogger</strong>, two children <code>my</code> and <code>myOther</code>, and sub loggers.</p>
 <p>So what does this inheritance mean?</p>
 <p>Well it has to do with logging <code>levels</code> and <code>appenders</code>.</p>
-<h4 id="levels">Levels</h4>
+<h4>Levels</h4>
 <p>In the above examples we could define a level of <code>INFO</code> to the logger <code>my</code> and a level of <code>ERROR</code> to <code>myOther</code> and all sub loggers would inherit the respective <code>level</code>. The same applies for <code>appender</code>s  any appenders added to a logger will be propogated down. So lets look at an example.</p>
 <pre class='prettyprint linenums lang-js'><code>//lets grab two loggers
 var logger = comb.logger(&quot;my&quot;),
@@ -333,13 +333,13 @@ console.log(logger3.level.name); //&#39;WARN&#39;
 console.log(logger4.level.name); //&#39;INFO&#39;
 console.log(comb.logger(&#39;my.logger.log&#39;).level.name); //&#39;WARN&#39;</code></pre>
 <p>Above you can see that as we change levels the loggers that inherit from the parents levels change also. This is a powerful concept especially when handling loggers accross a large application and you do not want to configure every logger but have enough control to log only the information you need at the time.</p>
-<h4 id="-timer-"><code>.timer()</code></h4>
+<h4><code>.timer()</code></h4>
 <p>The comb logger also has a <code>timer()</code> method that will append a duration to the end of your log message</p>
 <pre class='prettyprint linenums lang-js'><code>var timer = LOGGER.timer();
 setTimeout(function(){
     timer.info(&quot;HELLO TIMERS!!!&quot;); //HELLO TIMERS!!! [Duration: 5000ms]
 }, 5000);</code></pre>
-<h4 id="appenders">Appenders</h4>
+<h4>Appenders</h4>
 <p>Appenders are the objects that handle events and deliver them to where they need to go. <code>comb</code> supports a few types of appenders out of the box.</p>
 <ul>
 <li><code>ConsoleAppender</code> : Logs <strong>events</strong> to the console the.</li>
@@ -352,10 +352,10 @@ setTimeout(function(){
     .addAppender(&quot;FileAppender&quot;, {file:&#39;/var/log/my.log&#39;})
     .addAppender(&quot;RollingFileAppender&quot;, {file:&#39;/var/log/myRolling.log&#39;})
     .addAppender(&quot;JSONAppender&quot;, {file:&#39;/var/log/myJson.log&#39;});</code></pre>
-<h2 id="configuring-your-loggers">Configuring your loggers</h2>
+<h2>Configuring your loggers</h2>
 <p>Ok so now that we have an idea of the different aspects of a logger, lets look at configuring your loggers.</p>
 <p>To configure your loggers just call <code>comb.logger.configure</code></p>
-<h3 id="default-configuration">Default configuration</h3>
+<h3>Default configuration</h3>
 <p>If you call <code>comb.logger.configure</code> without any arguments then a <a href="./comb_logging_appenders_ConsoleAppender.html">ConsoleAppender</a> will be added to all loggers.</p>
 <pre class='prettyprint linenums lang-js'><code>comb.logger.configure();
 
@@ -366,7 +366,7 @@ var myLogger = comb.logger(&quot;my.logger&quot;);</code></pre>
 
 //myLogger will have the FileAppender
 var myLogger = comb.logger(&quot;my.logger&quot;);</code></pre>
-<h3 id="configuring-with-json-or-a-file">Configuring with JSON or a File</h3>
+<h3>Configuring with JSON or a File</h3>
 <p>You can also pass in either the location of a log configuration or an object with your configuration.</p>
 <p>A sample configuration can look like the following</p>
 <pre class='prettyprint linenums lang-js'><code>comb.logger.configure({
@@ -405,7 +405,7 @@ var myLogger = comb.logger(&quot;my.logger&quot;);</code></pre>
         ]
     }
 })</code></pre>
-<h2 id="log-line-format">Log Line Format</h2>
+<h2>Log Line Format</h2>
 <p><a href="./comb_logging_appenders_ConsoleAppender.html">ConsoleAppender</a>, <a href="./comb_logging_appenders_FileAppender.html">FileAppender</a>, and <a href="./comb_logging_appenders_RollingFileAppender.html">RollingFileAppender</a> all support custom formatting for writing out log lines. </p>
 <p>By default they all use the following format.</p>
 <pre class='prettyprint linenums lang-js'><code>[{[yyyy-MM-ddTHH:mm:ss:SSS (z)]timeStamp}] {[- 5]levelName} {[-20]name} - {message}</code></pre>
@@ -425,7 +425,7 @@ var myLogger = comb.logger(&quot;my.logger&quot;);</code></pre>
 <pre class='prettyprint linenums lang-js'><code>var myLogger = comb.logger(&quot;my.logger&quot;)
     .addAppender(&quot;ConsoleAppender&quot;, {pattern : &quot;{[- 5]levelName} {[-20]name} - {message}&quot;});</code></pre>
 <p>For more information on formatting syntax see <a href="./comb_string.html#.format">comb.string.format</a>.</p>
-<h2 id="logging-messages">Logging Messages</h2>
+<h2>Logging Messages</h2>
 <p>To log messages you can use <a href="./comb_logging_Logger.html#log">log</a>.</p>
 <pre class='prettyprint linenums lang-js'><code>var logger = comb.logger(&quot;logger&quot;);
 
@@ -452,9 +452,9 @@ logger.info(&quot;{name} DIED!&quot;, {name : &quot;FRED&quot;});</code></pre>
 <hr>
 
     
-  <h2 id="license">License</h2>
+  <h2>License</h2>
 <p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
-<h2 id="meta">Meta</h2>
+<h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>
 <li>Website: <a href="http://c2fo.com">http://c2fo.com</a></li>

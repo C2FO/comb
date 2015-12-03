@@ -1,12 +1,12 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../../index"),
     define = comb.define,
     hitch = comb.hitch;
 
 
-it.describe("comb.date",function (it) {
+it.describe("comb.date", function (it) {
 
 // Create a fake Date object with toString and toLocaleString
 // results manually set to simulate tests for multiple browsers
@@ -271,8 +271,8 @@ it.describe("comb.date",function (it) {
         it.describe("namespaced", function (it) {
 
             it.should("parse 08/11/06", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
-                assert.deepEqual(comb.date.parse("08/11/06", "MM/dd/yy"), aug_11_2006);
+                var aug112006 = new Date(2006, 7, 11, 0);
+                assert.deepEqual(comb.date.parse("08/11/06", "MM/dd/yy"), aug112006);
             });
 
             it.should("not parse 13/11/06", function () {
@@ -285,18 +285,18 @@ it.describe("comb.date",function (it) {
 
 
             it.should("parse 8/11/06", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
-                assert.deepEqual(comb.date.parse("8/11/06", "M/dd/yy"), aug_11_2006);
+                var aug112006 = new Date(2006, 7, 11, 0);
+                assert.deepEqual(comb.date.parse("8/11/06", "M/dd/yy"), aug112006);
             });
 
             it.should("parse 8/11/2006", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
-                assert.deepEqual(comb.date.parse("8/11/2006", "M/dd/yyyy"), aug_11_2006);
+                var aug112006 = new Date(2006, 7, 11, 0);
+                assert.deepEqual(comb.date.parse("8/11/2006", "M/dd/yyyy"), aug112006);
             });
 
             it.should("parse 11Aug2006", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
-                assert.deepEqual(comb.date.parse("11Aug2006", 'ddMMMyyyy'), aug_11_2006);
+                var aug112006 = new Date(2006, 7, 11, 0);
+                assert.deepEqual(comb.date.parse("11Aug2006", 'ddMMMyyyy'), aug112006);
             });
 
             it.should("not parse 11Ag2006", function () {
@@ -304,28 +304,28 @@ it.describe("comb.date",function (it) {
             });
 
             it.should("parse Aug2006", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
+                var aug112006 = new Date(2006, 7, 11, 0);
                 assert.deepEqual(comb.date.parse("Aug2006", 'MMMyyyy'), new Date(2006, 7, 1));
             });
 
             it.should("parse Aug 11, 2006", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
-                assert.deepEqual(comb.date.parse("Aug 11, 2006", "MMM dd, yyyy"), aug_11_2006);
+                var aug112006 = new Date(2006, 7, 11, 0);
+                assert.deepEqual(comb.date.parse("Aug 11, 2006", "MMM dd, yyyy"), aug112006);
             });
 
             it.should("parse August 11, 06", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
-                assert.deepEqual(comb.date.parse("August 11, 2006", "MMMM dd, yyyy"), aug_11_2006);
+                var aug112006 = new Date(2006, 7, 11, 0);
+                assert.deepEqual(comb.date.parse("August 11, 2006", "MMMM dd, yyyy"), aug112006);
             });
 
             it.should("parse Friday, August 11, 06", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
-                assert.deepEqual(comb.date.parse("Friday, August 11, 2006", "EEEE, MMMM dd, yyyy"), aug_11_2006);
+                var aug112006 = new Date(2006, 7, 11, 0);
+                assert.deepEqual(comb.date.parse("Friday, August 11, 2006", "EEEE, MMMM dd, yyyy"), aug112006);
             });
 
             it.should("parse format date : 6, August 11, 2006 with format : E, MMMM dd, yyyy", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
-                assert.deepEqual(comb.date.parse("6, August 11, 2006", "E, MMMM dd, yyyy"), aug_11_2006);
+                var aug112006 = new Date(2006, 7, 11, 0);
+                assert.deepEqual(comb.date.parse("6, August 11, 2006", "E, MMMM dd, yyyy"), aug112006);
             });
 
 
@@ -408,8 +408,8 @@ it.describe("comb.date",function (it) {
         it.describe("extension", function (it) {
 
             it.should("parse 08/11/06", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
-                assert.deepEqual(comb("08/11/06").parseDate("MM/dd/yy"), aug_11_2006);
+                var aug112006 = new Date(2006, 7, 11, 0);
+                assert.deepEqual(comb("08/11/06").parseDate("MM/dd/yy"), aug112006);
             });
 
             it.should("not parse 13/11/06", function () {
@@ -422,18 +422,18 @@ it.describe("comb.date",function (it) {
 
 
             it.should("parse 8/11/06", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
-                assert.deepEqual(comb("8/11/06").parseDate("M/dd/yy"), aug_11_2006);
+                var aug112006 = new Date(2006, 7, 11, 0);
+                assert.deepEqual(comb("8/11/06").parseDate("M/dd/yy"), aug112006);
             });
 
             it.should("parse 8/11/2006", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
-                assert.deepEqual(comb("8/11/2006").parseDate("M/dd/yyyy"), aug_11_2006);
+                var aug112006 = new Date(2006, 7, 11, 0);
+                assert.deepEqual(comb("8/11/2006").parseDate("M/dd/yyyy"), aug112006);
             });
 
             it.should("parse 11Aug2006", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
-                assert.deepEqual(comb("11Aug2006").parseDate('ddMMMyyyy'), aug_11_2006);
+                var aug112006 = new Date(2006, 7, 11, 0);
+                assert.deepEqual(comb("11Aug2006").parseDate('ddMMMyyyy'), aug112006);
             });
 
             it.should("not parse 11Ag2006", function () {
@@ -441,28 +441,28 @@ it.describe("comb.date",function (it) {
             });
 
             it.should("parse Aug2006", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
+                var aug112006 = new Date(2006, 7, 11, 0);
                 assert.deepEqual(comb("Aug2006").parseDate('MMMyyyy'), new Date(2006, 7, 1));
             });
 
             it.should("parse Aug 11, 2006", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
-                assert.deepEqual(comb("Aug 11, 2006").parseDate("MMM dd, yyyy"), aug_11_2006);
+                var aug112006 = new Date(2006, 7, 11, 0);
+                assert.deepEqual(comb("Aug 11, 2006").parseDate("MMM dd, yyyy"), aug112006);
             });
 
             it.should("parse August 11, 06", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
-                assert.deepEqual(comb("August 11, 2006").parseDate("MMMM dd, yyyy"), aug_11_2006);
+                var aug112006 = new Date(2006, 7, 11, 0);
+                assert.deepEqual(comb("August 11, 2006").parseDate("MMMM dd, yyyy"), aug112006);
             });
 
             it.should("parse Friday, August 11, 06", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
-                assert.deepEqual(comb("Friday, August 11, 2006").parseDate("EEEE, MMMM dd, yyyy"), aug_11_2006);
+                var aug112006 = new Date(2006, 7, 11, 0);
+                assert.deepEqual(comb("Friday, August 11, 2006").parseDate("EEEE, MMMM dd, yyyy"), aug112006);
             });
 
             it.should("parse format date : 6, August 11, 2006 with format : E, MMMM dd, yyyy", function () {
-                var aug_11_2006 = new Date(2006, 7, 11, 0);
-                assert.deepEqual(comb("6, August 11, 2006").parseDate("E, MMMM dd, yyyy"), aug_11_2006);
+                var aug112006 = new Date(2006, 7, 11, 0);
+                assert.deepEqual(comb("6, August 11, 2006").parseDate("E, MMMM dd, yyyy"), aug112006);
             });
 
 

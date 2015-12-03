@@ -1,14 +1,16 @@
 {
     "predef": [
         "console",
-        "require"
+        "setImmediate"
     ],
-
+    "globals": {
+        "Promise": true,
+        "setImmediate": false
+    },
     "node": true,
-    "browser": true,
+    "browser": false,
     "devel": true,
-    "jquery": true,
-
+    "jquery": false,
     "bitwise": false,
     "camelcase": true,
     "curly": true,
@@ -16,7 +18,7 @@
     "forin": false,
     "immed": true,
     "indent": 4,
-    "latedef": true,
+    "latedef": "nofunc",
     "newcap": true,
     "noarg": true,
     "noempty": true,
@@ -26,15 +28,13 @@
     "regexp": false,
     "undef": true,
     "unused": false,
-    "strict": false,
+    "strict": true,
     "trailing": true,
     "white": false,
-
     "asi": false,
-    "boss": true,
+    "boss": false,
     "debug": false,
     "eqnull": true,
-    "es5": true,
     "esnext": true,
     "evil": false,
     "expr": true,
@@ -53,6 +53,6 @@
     "smarttabs": false,
     "shadow": false,
     "sub": true,
-    "supernew": false,
+    "supernew": true,
     "validthis": false
 }

@@ -1,7 +1,7 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../index"),
     Promise = comb.Promise,
     PromiseList = comb.PromiseList,
     Readable = require("stream").Readable;
@@ -123,7 +123,7 @@ it.describe("The promise API", function (it) {
 
             it.should("callback when using both with a promise and errback is called", function (next) {
                 var promise = new Promise();
-                var bothPromise = new Promise()
+                var bothPromise = new Promise();
                 bothPromise.addCallback(function (res) {
                     assert.equal(res, "errback");
                     next();
@@ -157,7 +157,7 @@ it.describe("The promise API", function (it) {
 
             it.should("callback when using then with a promise", function (next) {
                 var promise = new Promise();
-                var thenPromise = new Promise()
+                var thenPromise = new Promise();
                 thenPromise.then(function (res) {
                     assert.equal(res, "callback");
                     next();
@@ -825,7 +825,7 @@ it.describe("The promise API", function (it) {
                     !error ? ret.callback(num + add) : ret.errback("ERROR");
                 }, timeout);
                 return ret;
-            }
+            };
         }
 
         function asyncActionMulti(add, timeout, error) {
@@ -837,7 +837,7 @@ it.describe("The promise API", function (it) {
                     !error ? ret.callback(num + add, num + prev) : ret.errback("ERROR");
                 }, timeout || 0);
                 return ret;
-            }
+            };
         }
 
         function syncAction(add, error) {
@@ -847,7 +847,7 @@ it.describe("The promise API", function (it) {
                 } else {
                     return num + add;
                 }
-            }
+            };
         }
 
         it.should("execute the items serially", function (next) {
@@ -984,7 +984,7 @@ it.describe("The promise API", function (it) {
         function createStream() {
             var ret = new Readable();
             ret._read = function () {
-            }
+            };
             return ret;
         }
 
@@ -995,7 +995,7 @@ it.describe("The promise API", function (it) {
             });
             var promise = comb.promisfyStream(stream).chain(function () {
                 assert.deepEqual(collected.join(""), "abcd");
-            })
+            });
             stream.push("a");
             stream.push("b");
             stream.push("c");
@@ -1014,7 +1014,7 @@ it.describe("The promise API", function (it) {
             var promise = comb.promisfyStream(stream).chain(assert.fail, function (err) {
                 assert.deepEqual(collected.join(""), "abc");
                 assert.equal(err.message, "error!");
-            })
+            });
             stream.push("a");
             stream.push("b");
             stream.push("c");

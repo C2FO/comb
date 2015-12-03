@@ -1,10 +1,10 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index");
+    comb = require("../../index");
 
 
-it.describe("comb/base/regexp.js",function (it) {
+it.describe("comb/base/regexp.js", function (it) {
 //Super of other classes
 
     it.should("escape it properly", function () {
