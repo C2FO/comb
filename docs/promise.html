@@ -280,15 +280,15 @@
 
 
 
-<h1 id="-promises-comb_promise-html-"><a href="./comb_Promise.html">Promises</a></h1>
+<h1><a href="./comb_Promise.html">Promises</a></h1>
 <p><code>comb</code> provides an async wrapper called a <a href="http://en.wikipedia.org/wiki/Futures_and_promises">promise</a>. Promises are a way of handling async and sync behavior by encapsulating it in a wrapper. One of the benefits of promises is that they encourage the separation of success and failure logic. Promises provide a value that can be passed around rather than providing callbacks for every async action. </p>
-<h2 id="-comb-promise-comb_promise-html-"><a href="./comb_Promise.html">comb.Promise</a></h2>
+<h2><a href="./comb_Promise.html">comb.Promise</a></h2>
 <p>The <a href="./comb_Promise.html">comb.Promise</a> is the backbone for <code>comb</code>s async utilities. </p>
 <p>To create a promise</p>
 <pre class='prettyprint linenums lang-js'><code>var promise = new comb.Promise();</code></pre>
-<h3 id="resolving-promises">Resolving Promises</h3>
+<h3>Resolving Promises</h3>
 <p>When working with a promise you must resolve the promise in order for callbacks/errbacks to be invoked. Resolution can happen before for after callbacks/errbacks have been registered. The methods to resolve a promise are <code>callback</code>, <code>errback</code>, and <code>resolve</code>.</p>
-<h3 id="callback-and-errback">callback  and errback</h3>
+<h3>callback  and errback</h3>
 <p>The callback method is used to resolve a promise as a success.</p>
 <pre class='prettyprint linenums lang-js'><code>
 function readFile(file, encoding){
@@ -310,7 +310,7 @@ readFile(&quot;myFile.txt&quot;).then(function(text){
     console.log(text);
 }, errorHandler);</code></pre>
 <p>As you can see from above we can easily wrap the <code>fs.readFile</code> function with a promise. The advantage of this is that you can now seperate the success and error resolution paths with the <code>then</code> function. The above example just passes the error to a global error handler and your success callback does not have to worry about the error condition.</p>
-<h3 id="resolve">resolve</h3>
+<h3>resolve</h3>
 <p><code>callback</code> and <code>errback</code> are great if you are working with other promise methods but as you can see from above you still have to handle the error and success path when working with node style callback. This is where the <code>resolve</code> method comes in handy.</p>
 <p>Resolve wraps <code>callback</code> and <code>errback</code> in a single method that accepts an <code>error</code> as the first argument. If the error is undefined or null then the rest of the arguments are used to resolve the promise.</p>
 <p>Lets rewrite the <code>readFile</code> funciton with resolve.</p>
@@ -326,9 +326,9 @@ readFile(&quot;myFile.txt&quot;).then(function(text){
     console.log(text);
 }, errorHandler);</code></pre>
 <p>After rewriting the <code>readFile()</code> method with resolve the code is a lot cleaner with only three lines and you still get the same promise API.</p>
-<h3 id="listening-for-promise-resolutions">Listening for Promise Resolutions</h3>
+<h3>Listening for Promise Resolutions</h3>
 <p>To listen for the resolution of promises there are the following methods. For the following examples we will use the <code>readFile</code> method defined above.</p>
-<h3 id="then">then</h3>
+<h3>then</h3>
 <p>The <code>then</code> methods accepts two arugments a <code>callback</code> and an optional <code>errback</code>.</p>
 <pre class='prettyprint linenums lang-js'><code>var readFilePromise = readFile(&quot;myFile.txt&quot;);
 
@@ -370,7 +370,7 @@ readAndConvertToUppercase(&quot;myFile.txt&quot;).then(
         console.log(err);
     }
 );</code></pre>
-<h3 id="classic">classic</h3>
+<h3>classic</h3>
 <p>The <code>classic</code> method can be used to register a callback with a node style callback</p>
 <pre class='prettyprint linenums lang-js'><code>
 readFile(&quot;myFile.txt&quot;).classic(function(err, file){
@@ -380,7 +380,7 @@ readFile(&quot;myFile.txt&quot;).classic(function(err, file){
         console.log(file);
     }
 });</code></pre>
-<h3 id="chain">chain</h3>
+<h3>chain</h3>
 <p>The chain method is used to chain promises together so they execute in order. The chain method is different from the <a href="./comb.html#.serial">comb.serial</a> method in that it pipes the results from one promise into the next.</p>
 <p>In the following example we chain the results of different promise actions into a single result.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncString(str){
@@ -418,7 +418,7 @@ asyncString(&quot;hello&quot;)
     .classic(function(err, str){
         console.log(err.message); //&quot;error&quot;
     });</code></pre>
-<h3 id="catching-errors">Catching Errors</h3>
+<h3>Catching Errors</h3>
 <p>Chain also allows you to catch errors so you can handle them successfully.</p>
 <pre class='prettyprint linenums lang-js'><code>new Promise().callback()
     .chain(function(){
@@ -458,7 +458,7 @@ asyncString(&quot;hello&quot;)
     .classic(function(err, str){
         console.log(err.message); //&quot;error not handled&quot;
     });</code></pre>
-<h2 id="-comb-promiselist-comb_promiselist-html-"><a href="./comb_PromiseList.html">comb.PromiseList</a></h2>
+<h2><a href="./comb_PromiseList.html">comb.PromiseList</a></h2>
 <p>A promise list is used to listen for the completion of an array of promises. You may also use <a href="./comb.html#.when">comb.when</a>
 with an array of promises.</p>
 <pre class='prettyprint linenums lang-js'><code>function readFiles(){
@@ -474,7 +474,7 @@ readFiles(&quot;myFile.txt&quot;, &quot;myFile2.txt&quot;, &quot;myFile3.txt&quo
         console.log(data);
     });
 }, errorHandler);</code></pre>
-<h2 id="-comb-when-comb-html-when-"><a href="./comb.html#.when">comb.when</a></h2>
+<h2><a href="./comb.html#.when">comb.when</a></h2>
 <p>The <code>comb.when</code> function allows one to wrap a sync or async call or calls with the same API.</p>
 <p>In the following example we created a new function that reads the files synchronoulsly. We then use the <code>comb.when</code> function to wrap both the async and sync calls in a promise.</p>
 <pre class='prettyprint linenums lang-js'><code>function readFileSync(){
@@ -506,7 +506,7 @@ readFiles(&quot;myFile.txt&quot;, &quot;myFile2.txt&quot;, &quot;myFile3.txt&quo
         console.log(data);
     });
 }, errorHandler);</code></pre>
-<h2 id="-comb-serial-comb-html-serial-"><a href="./comb.html#.serial">comb.serial</a></h2>
+<h2><a href="./comb.html#.serial">comb.serial</a></h2>
 <p>The <code>comb.serial</code> function is useful if you need to perform a set of actions in order. The serial method takes a list of function that need to be executed in order. The return value of the functions can be anything if they are promises then the next function will not execute until the promise has resolved. The results from each function are will be the result of the returned promise. <strong>NOTE</strong> the results from each function are not propogated to the next.</p>
 <pre class='prettyprint linenums lang-js'><code>var asyncAction = function(item, timeout){                                
    var ret = new comb.Promise(); 
@@ -526,7 +526,7 @@ comb.serial([
 ]).then(function(results){                                                
     console.log(results); // [1,2,3,4,5,6];                               
 });</code></pre>
-<h2 id="-comb-chain-comb-html-chain-"><a href="./comb.html#.chain">comb.chain</a></h2>
+<h2><a href="./comb.html#.chain">comb.chain</a></h2>
 <p>The <code>comb.chain</code> method is similar to the <code>comb.serial</code> method except that it <strong>does</strong> propogate results from one function to the next. The promise returned from <code>comb.chain</code> will resolve with the result of the last action in the list.</p>
 <pre class='prettyprint linenums lang-js'><code>function asyncAction(add, timeout) {   
     //number gathered from the previous function
@@ -550,7 +550,7 @@ comb.chain([
 ]).then(function(results){             
      console.log(results); //15        
 });</code></pre>
-<h2 id="-comb-wrap-comb-html-wrap-"><a href="./comb.html#.wrap">comb.wrap</a></h2>
+<h2><a href="./comb.html#.wrap">comb.wrap</a></h2>
 <p>The <code>comb.wrap</code> method is used to wrap a function that is defined with a node style callback in a promise.</p>
 <p>Suppose we wanted to wrap all async fs methods in a promise we could do the following.</p>
 <pre class='prettyprint linenums lang-js'><code>var fsFunctions = [&quot;rename&quot;,&quot;truncate&quot;,&quot;chown&quot;,&quot;fchown&quot;, &quot;lchown&quot;,&quot;chmod&quot;,&quot;fchmod&quot;,&quot;lchmod&quot;, &quot;stat&quot;,
@@ -567,7 +567,7 @@ fsFunctions.forEach(function(method){
 <pre class='prettyprint linenums lang-js'><code>fsp.rename(&quot;myFile.txt&quot;, &quot;myFile.txt.bak&quot;).then(function(){
     //do something.
 });</code></pre>
-<h2 id="-comb-async-foreach-comb_async-html-foreach-"><a href="./comb_async.html#.forEach">comb.async.forEach</a></h2>
+<h2><a href="./comb_async.html#.forEach">comb.async.forEach</a></h2>
 <p>Loops through the results of an promise. The promise can return an array or just a single item.   </p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){                                                                              
     var ret = new comb.Promise();                                                                 
@@ -593,7 +593,7 @@ comb.async.forEach(asyncArr(), function(item, index){
 }).then(function(){                                                                               
     console.log(myNewArr); //[[1,0], [2,1], [3,2], [4,3], [5,4]]                                   
 });</code></pre>
-<h2 id="-comb-async-map-comb_async-html-map-"><a href="./comb_async.html#.map">comb.async.map</a></h2>
+<h2><a href="./comb_async.html#.map">comb.async.map</a></h2>
 <p> Loops through the results of an promise resolving with the return value of the iterator function.<br> The promise can return an array or just a single item.                                                </p>
 <pre class='prettyprint linenums lang-js'><code> function asyncArr(){                                                                                  
      var ret = new comb.Promise();                                                                     
@@ -616,7 +616,7 @@ comb.async.forEach(asyncArr(), function(item, index){
  }).then(function(){                                                                                   
      console.log(myNewArr); //[2,4,6,8,10];                                                             
  });</code></pre>
-<h2 id="-comb-async-filter-comb_async-html-filter-"><a href="./comb_async.html#.filter">comb.async.filter</a></h2>
+<h2><a href="./comb_async.html#.filter">comb.async.filter</a></h2>
 <p>Loops through the results of an promise resolving with the filtered array.
 The promise can return an array or just a single item.                    </p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){                                                      
@@ -640,7 +640,7 @@ comb.async.filter(asyncArr(), function(item){
 }).then(function(){                                                       
     console.log(myNewArr); //[1,3,5];                                      
 })</code></pre>
-<h2 id="-comb-async-every-comb_async-html-every-"><a href="./comb_async.html#.every">comb.async.every</a></h2>
+<h2><a href="./comb_async.html#.every">comb.async.every</a></h2>
 <p>Loops through the results of an promise resolving with true if every item passed, false otherwise.<br>The promise can return an array or just a single item.                                               </p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){                                                                                 
     var ret = new comb.Promise();                                                                    
@@ -663,7 +663,7 @@ comb.async.every(asyncArr(), function(item){
 }).then(function(){                                                                                  
     console.log(myNewArr); //false;                                                                   
 })</code></pre>
-<h2 id="-comb-async-some-comb_async-html-some-"><a href="./comb_async.html#.some">comb.async.some</a></h2>
+<h2><a href="./comb_async.html#.some">comb.async.some</a></h2>
 <p>Loops through the results of an promise resolving with true if some items passed, false otherwise.<br>The promise can return an array or just a single item.                                                  </p>
 <pre class='prettyprint linenums lang-js'><code>function asyncArr(){                                                                                    
     var ret = new comb.Promise();                                                                       
@@ -686,7 +686,7 @@ comb.async.some(asyncArr(), function(item){
 }).then(function(){                                                                                     
     console.log(myNewArr); //false;                                                                      
 })</code></pre>
-<h2 id="-comb-async-pluck-comb_async-html-pluck-"><a href="./comb_async.html#.pluck">comb.async.pluck</a></h2>
+<h2><a href="./comb_async.html#.pluck">comb.async.pluck</a></h2>
 <p>Async version of <a href="./comb_array.html#.pluck">comb.array.pluck</a></p>
 <pre class='prettyprint linenums lang-js'><code>var when = comb.when,                                                                                                        
     array = comb.async.array;                                                                                                
@@ -712,9 +712,9 @@ pluck(asyncArr(), &quot;age&quot;).then(function(values){
 <hr>
 
     
-  <h2 id="license">License</h2>
+  <h2>License</h2>
 <p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
-<h2 id="meta">Meta</h2>
+<h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>
 <li>Website: <a href="http://c2fo.com">http://c2fo.com</a></li>

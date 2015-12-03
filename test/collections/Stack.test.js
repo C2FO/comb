@@ -1,7 +1,7 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../../index"),
     Stack = comb.collections.Stack;
 
 it.describe("comb.collections.Stack", function (it) {
@@ -63,7 +63,7 @@ it.describe("comb.collections.Stack", function (it) {
         stack.push("test6");
         var vals = ["test", "test1", "test2", "test3", "test4", "test5", "test6"].reverse();
         assert.isTrue(stack.values.every(function (v, i) {
-            return v == vals[i]
+            return v === vals[i];
         }));
         assert.equal("test,test1,test2,test3,test4,test5,test6", stack.toString());
     });

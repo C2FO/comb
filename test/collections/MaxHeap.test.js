@@ -1,7 +1,7 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../../index"),
     MaxHeap = comb.collections.MaxHeap;
 
 it.describe("comb.collections.MaxHeap", function (it) {
@@ -29,9 +29,9 @@ it.describe("comb.collections.MaxHeap", function (it) {
         h.insert(3, 'd');
         var keys = h.keys;
         for (var i = 0; i < 4; i++) {
-            assert.isTrue(keys.indexOf(i) != -1);
+            assert.isTrue(keys.indexOf(i) !== -1);
         }
-        for (var i = 0; i < 4; i++) {
+        for (i = 0; i < 4; i++) {
             assert.isTrue(h.containsKey(i));
         }
         assert.isFalse(h.containsKey(4));
@@ -44,10 +44,10 @@ it.describe("comb.collections.MaxHeap", function (it) {
         h.insert(2, 'c');
         h.insert(3, 'd');
         var vals = h.values;
-        assert.isTrue(vals.indexOf("a") != -1);
-        assert.isTrue(vals.indexOf("b") != -1);
-        assert.isTrue(vals.indexOf("c") != -1);
-        assert.isTrue(vals.indexOf("d") != -1);
+        assert.isTrue(vals.indexOf("a") !== -1);
+        assert.isTrue(vals.indexOf("b") !== -1);
+        assert.isTrue(vals.indexOf("c") !== -1);
+        assert.isTrue(vals.indexOf("d") !== -1);
         assert.isTrue(h.containsValue("a"));
         assert.isTrue(h.containsValue("b"));
         assert.isTrue(h.containsValue("c"));
@@ -158,14 +158,14 @@ it.describe("comb.collections.MaxHeap", function (it) {
         var orig = console.log;
         console.log = function (str) {
             res.push(str);
-        }
+        };
         h.print();
         console.log = orig;
-        return res.join("\n");
+        res = res.join("\n");
 
-        var expected = "\t\t~\n\t0 : a\n\n\t\t~\n3 : d\n\n\t\t~\n\t2 : c\n\n\t\t\t~\n\t\t1 : b\n\n\t\t\t~"
+        var expected = "\t\t~\n\t0 : a\n\n\t\t~\n3 : d\n\n\t\t~\n\t2 : c\n\n\t\t\t~\n\t\t1 : b\n\n\t\t\t~";
         assert.equal(res, expected);
-    })
+    });
 
 
 }).as(module);

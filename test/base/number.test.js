@@ -1,10 +1,11 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index");
+    comb = require("../../index");
 
 
-it.describe("comb/base/number.js",function (it) {
+it.describe("comb/base/number.js", function (it) {
+    /*jshint -W053 */
 //Super of other classes
     it.should("test if something is a number", function () {
         assert.isTrue(comb.isNumber(1));

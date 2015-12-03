@@ -1,11 +1,11 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../index"),
     Promise = comb.Promise,
     PromiseList = comb.PromiseList;
 
-it.describe("comb.PromiseList",function (it) {
+it.describe("comb.PromiseList", function (it) {
 
 
     it.should("should callback after all have fired ", function (next) {
@@ -72,7 +72,7 @@ it.describe("comb.PromiseList",function (it) {
         promise.callback("hello");
         promise2.callback("world");
         promise3.callback("!");
-        var pl = new PromiseList([promise, promise2, promise3])
+        var pl = new PromiseList([promise, promise2, promise3]);
         pl.addCallback(function () {
             assert.throws(function () {
                 pl.callback();
@@ -86,7 +86,7 @@ it.describe("comb.PromiseList",function (it) {
         promise.callback("hello");
         promise2.callback("world");
         promise3.callback("!");
-        var pl = new PromiseList([promise, promise2, promise3])
+        var pl = new PromiseList([promise, promise2, promise3]);
         pl.addCallback(function () {
             assert.throws(function () {
                 pl.errback();

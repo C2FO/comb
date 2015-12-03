@@ -1,9 +1,10 @@
-var comb = require("index"),
+"use strict";
+var comb = require("../index"),
     assert = require("assert"),
     when = comb.when,
     it = require("it");
 
-it.describe("comb.async",function (it) {
+it.describe("comb.async", function (it) {
     var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], array = comb.async.array;
 
     function asyncArr() {
@@ -25,21 +26,20 @@ it.describe("comb.async",function (it) {
             return array(asyncArr()).forEach(function (item, index) {
                 assert.equal(item, arr[index]);
             }).chain(function (results) {
-                    assert.deepEqual(results, arr);
-                });
+                assert.deepEqual(results, arr);
+            });
         });
 
         it.should("Loop through each item in an array and return the results", function () {
             return array(arr).forEach(function (item, index) {
                 assert.equal(item, arr[index]);
             }).chain(function (results) {
-                    assert.deepEqual(results, arr);
-                });
+                assert.deepEqual(results, arr);
+            });
         });
 
         it.should("wait for inner promises to complete and return the original array", function () {
             return array(arr).forEach(function (item, index) {
-                debugger;
                 var ret = new comb.Promise();
                 process.nextTick(function () {
                     assert.equal(item, arr[index]);
@@ -47,8 +47,8 @@ it.describe("comb.async",function (it) {
                 });
                 return ret;
             }).chain(function (results) {
-                    assert.deepEqual(results, arr);
-                });
+                assert.deepEqual(results, arr);
+            });
         });
 
         it.should("should accept non array items but still loop and return the non array item", function () {
@@ -56,30 +56,30 @@ it.describe("comb.async",function (it) {
                 assert.equal(item, 1);
                 assert.equal(index, 0);
             }).chain(function (results) {
-                    assert.deepEqual(results, 1);
-                });
+                assert.deepEqual(results, 1);
+            });
         });
 
         it.should("catch thrown errors", function (next) {
             array(asyncArr()).forEach(function (item, index) {
-                if (index == 4) {
+                if (index === 4) {
                     throw new Error("error");
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results.message, "error");
-                    next();
-                });
+                assert.deepEqual(results.message, "error");
+                next();
+            });
         });
 
         it.should("catch async errors", function (next) {
             array(asyncArr()).forEach(function (item, index) {
-                if (index == 4) {
+                if (index === 4) {
                     return new comb.Promise().errback(new Error("error"));
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results.message, "error");
-                    next();
-                });
+                assert.deepEqual(results.message, "error");
+                next();
+            });
         });
 
     });
@@ -91,10 +91,10 @@ it.describe("comb.async",function (it) {
                 assert.equal(item, arr[index]);
                 return item * 2;
             }).chain(function (results) {
-                    assert.deepEqual(results, arr.map(function (i) {
-                        return i * 2;
-                    }));
-                });
+                assert.deepEqual(results, arr.map(function (i) {
+                    return i * 2;
+                }));
+            });
         });
 
         it.should("Loop through each item in an array and return the results", function () {
@@ -102,10 +102,10 @@ it.describe("comb.async",function (it) {
                 assert.equal(item, arr[index]);
                 return item * 2;
             }).chain(function (results) {
-                    assert.deepEqual(results, arr.map(function (i) {
-                        return i * 2;
-                    }));
-                });
+                assert.deepEqual(results, arr.map(function (i) {
+                    return i * 2;
+                }));
+            });
         });
 
         it.should("wait for inner promises to complete and return the original array", function () {
@@ -117,10 +117,10 @@ it.describe("comb.async",function (it) {
                 });
                 return ret;
             }).chain(function (results) {
-                    assert.deepEqual(results, arr.map(function (i) {
-                        return i * 2;
-                    }));
-                });
+                assert.deepEqual(results, arr.map(function (i) {
+                    return i * 2;
+                }));
+            });
         });
 
         it.should("should accept non array items but still loop and return the non array item", function () {
@@ -129,30 +129,30 @@ it.describe("comb.async",function (it) {
                 assert.equal(index, 0);
                 return item * 2;
             }).chain(function (results) {
-                    assert.deepEqual(results, [2]);
-                });
+                assert.deepEqual(results, [2]);
+            });
         });
 
         it.should("catch thrown errors", function (next) {
             array(asyncArr()).map(function (item, index) {
-                if (index == 4) {
+                if (index === 4) {
                     throw new Error("error");
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results.message, "error");
-                    next();
-                });
+                assert.deepEqual(results.message, "error");
+                next();
+            });
         });
 
         it.should("catch async errors", function (next) {
             array(asyncArr()).map(function (item, index) {
-                if (index == 4) {
+                if (index === 4) {
                     return new comb.Promise().errback(new Error("error"));
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results.message, "error");
-                    next();
-                });
+                assert.deepEqual(results.message, "error");
+                next();
+            });
         });
 
     });
@@ -165,8 +165,8 @@ it.describe("comb.async",function (it) {
                 assert.equal(item, arr[index]);
                 return item % 2;
             }).chain(function (results) {
-                    assert.deepEqual(results, [1, 3, 5, 7, 9, 11, 13, 15]);
-                });
+                assert.deepEqual(results, [1, 3, 5, 7, 9, 11, 13, 15]);
+            });
         });
 
         it.should("Loop through each item in an array and return the results", function () {
@@ -174,8 +174,8 @@ it.describe("comb.async",function (it) {
                 assert.equal(item, arr[index]);
                 return item % 2;
             }).chain(function (results) {
-                    assert.deepEqual(results, [1, 3, 5, 7, 9, 11, 13, 15]);
-                });
+                assert.deepEqual(results, [1, 3, 5, 7, 9, 11, 13, 15]);
+            });
         });
 
         it.should("wait for inner promises to complete and return the original array", function () {
@@ -187,8 +187,8 @@ it.describe("comb.async",function (it) {
                 });
                 return ret;
             }).chain(function (results) {
-                    assert.deepEqual(results, [1, 3, 5, 7, 9, 11, 13, 15]);
-                });
+                assert.deepEqual(results, [1, 3, 5, 7, 9, 11, 13, 15]);
+            });
         });
 
         it.should("should accept non array items but still loop and return the non array item", function () {
@@ -197,30 +197,30 @@ it.describe("comb.async",function (it) {
                 assert.equal(index, 0);
                 return item % 1;
             }).chain(function (results) {
-                    assert.deepEqual(results, []);
-                });
+                assert.deepEqual(results, []);
+            });
         });
 
         it.should("catch thrown errors", function (next) {
             array(asyncArr()).filter(function (item, index) {
-                if (index == 4) {
+                if (index === 4) {
                     throw new Error("error");
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results.message, "error");
-                    next();
-                });
+                assert.deepEqual(results.message, "error");
+                next();
+            });
         });
 
         it.should("catch async errors", function (next) {
             array(asyncArr()).filter(function (item, index) {
-                if (index == 4) {
+                if (index === 4) {
                     return new comb.Promise().errback(new Error("error"));
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results.message, "error");
-                    next();
-                });
+                assert.deepEqual(results.message, "error");
+                next();
+            });
         });
 
     });
@@ -233,8 +233,8 @@ it.describe("comb.async",function (it) {
                 assert.equal(item, arr[index]);
                 return comb.isNumber(item);
             }).chain(function (results) {
-                    assert.isTrue(results);
-                });
+                assert.isTrue(results);
+            });
         });
 
         it.should("loop through results of a promise and return false if all items do not pass", function () {
@@ -242,8 +242,8 @@ it.describe("comb.async",function (it) {
                 assert.equal(item, arr[index]);
                 return comb.isString(item);
             }).chain(function (results) {
-                    assert.isFalse(results);
-                });
+                assert.isFalse(results);
+            });
         });
 
         it.should("Loop through each item in an array and return true if all items pass", function () {
@@ -251,8 +251,8 @@ it.describe("comb.async",function (it) {
                 assert.equal(item, arr[index]);
                 return comb.isNumber(item);
             }).chain(function (results) {
-                    assert.isTrue(results);
-                });
+                assert.isTrue(results);
+            });
         });
 
         it.should("Loop through each item in an array and return false if all items do not pass", function () {
@@ -260,8 +260,8 @@ it.describe("comb.async",function (it) {
                 assert.equal(item, arr[index]);
                 return comb.isString(item);
             }).chain(function (results) {
-                    assert.isFalse(results);
-                });
+                assert.isFalse(results);
+            });
         });
 
         it.should("wait for inner promises to complete and return true if all items pass", function () {
@@ -273,8 +273,8 @@ it.describe("comb.async",function (it) {
                 });
                 return ret;
             }).chain(function (results) {
-                    assert.isTrue(results);
-                });
+                assert.isTrue(results);
+            });
         });
 
         it.should("wait for inner promises to complete and return false if all items do not pass", function () {
@@ -286,8 +286,8 @@ it.describe("comb.async",function (it) {
                 });
                 return ret;
             }).chain(function (results) {
-                    assert.isFalse(results);
-                });
+                assert.isFalse(results);
+            });
         });
 
         it.should("should accept non array items but still loop and return the non array item", function () {
@@ -296,30 +296,30 @@ it.describe("comb.async",function (it) {
                 assert.equal(index, 0);
                 return comb.isNumber(item);
             }).chain(function (results) {
-                    assert.isTrue(results);
-                });
+                assert.isTrue(results);
+            });
         });
 
         it.should("catch thrown errors", function (next) {
             array(asyncArr()).every(function (item, index) {
-                if (index == 4) {
+                if (index === 4) {
                     throw new Error("error");
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results.message, "error");
-                    next();
-                });
+                assert.deepEqual(results.message, "error");
+                next();
+            });
         });
 
         it.should("catch async errors", function (next) {
             array(asyncArr()).every(function (item, index) {
-                if (index == 4) {
+                if (index === 4) {
                     return new comb.Promise().errback(new Error("error"));
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results.message, "error");
-                    next();
-                });
+                assert.deepEqual(results.message, "error");
+                next();
+            });
         });
 
     });
@@ -330,10 +330,10 @@ it.describe("comb.async",function (it) {
         it.should("loop through results of a promise and return true if some items pass", function () {
             return array(asyncArr()).some(function (item, index) {
                 assert.equal(item, arr[index]);
-                return item == 1;
+                return item === 1;
             }).chain(function (results) {
-                    assert.isTrue(results);
-                });
+                assert.isTrue(results);
+            });
         });
 
         it.should("loop through results of a promise and return false if not items pass", function () {
@@ -341,17 +341,17 @@ it.describe("comb.async",function (it) {
                 assert.equal(item, arr[index]);
                 return item > 16;
             }).chain(function (results) {
-                    assert.isFalse(results);
-                });
+                assert.isFalse(results);
+            });
         });
 
         it.should("Loop through each item in an array and return true if some items pass", function () {
             return array(arr).some(function (item, index) {
                 assert.equal(item, arr[index]);
-                return item == 1;
+                return item === 1;
             }).chain(function (results) {
-                    assert.isTrue(results);
-                });
+                assert.isTrue(results);
+            });
         });
 
         it.should("Loop through each item in an array and return false if no items pass", function () {
@@ -359,8 +359,8 @@ it.describe("comb.async",function (it) {
                 assert.equal(item, arr[index]);
                 return item > 16;
             }).chain(function (results) {
-                    assert.isFalse(results);
-                });
+                assert.isFalse(results);
+            });
         });
 
         it.should("wait for inner promises to complete and return true if some items pass", function () {
@@ -368,12 +368,12 @@ it.describe("comb.async",function (it) {
                 var ret = new comb.Promise();
                 process.nextTick(function () {
                     assert.equal(item, arr[index]);
-                    ret.callback(item == 1);
+                    ret.callback(item === 1);
                 });
                 return ret;
             }).chain(function (results) {
-                    assert.isTrue(results);
-                });
+                assert.isTrue(results);
+            });
         });
 
         it.should("wait for inner promises to complete and return false if no items pass", function () {
@@ -385,8 +385,8 @@ it.describe("comb.async",function (it) {
                 });
                 return ret;
             }).chain(function (results) {
-                    assert.isFalse(results);
-                });
+                assert.isFalse(results);
+            });
         });
 
         it.should("should accept non array items but still loop and return true if the item passes", function () {
@@ -395,40 +395,40 @@ it.describe("comb.async",function (it) {
                 assert.equal(index, 0);
                 return item === 1;
             }).chain(function (results) {
-                    assert.isTrue(results);
-                });
+                assert.isTrue(results);
+            });
         });
 
         it.should("should accept non array items but still loop and return false if the item does not pass", function () {
             return array(asyncIndex(0)).some(function (item, index) {
                 assert.equal(item, 1);
                 assert.equal(index, 0);
-                return item != 1;
+                return item !== 1;
             }).chain(function (results) {
-                    assert.isFalse(results);
-                });
+                assert.isFalse(results);
+            });
         });
 
         it.should("catch thrown errors", function (next) {
             array(asyncArr()).some(function (item, index) {
-                if (index == 4) {
+                if (index === 4) {
                     throw new Error("error");
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results.message, "error");
-                    next();
-                });
+                assert.deepEqual(results.message, "error");
+                next();
+            });
         });
 
         it.should("catch async errors", function (next) {
             array(asyncArr()).some(function (item, index) {
-                if (index == 4) {
+                if (index === 4) {
                     return new comb.Promise().errback(new Error("error"));
                 }
             }).then(next, function (results) {
-                    assert.deepEqual(results.message, "error");
-                    next();
-                });
+                assert.deepEqual(results.message, "error");
+                next();
+            });
         });
 
     });
@@ -510,7 +510,7 @@ it.describe("comb.async",function (it) {
                     [2, "B"],
                     [3, "C"]
                 ]).flatten(), [1, "A", 2, "B", 3, "C"])
-            )
+            );
         });
     });
 
@@ -536,37 +536,37 @@ it.describe("comb.async",function (it) {
             return when(
                 asyncDeepEqual(array([1, 2]).powerSet(), [
                     [],
-                    [ 1 ],
-                    [ 2 ],
-                    [ 1, 2 ]
+                    [1],
+                    [2],
+                    [1, 2]
                 ]),
                 asyncDeepEqual(array([1, 2, 3]).powerSet(), [
                     [],
-                    [ 1 ],
-                    [ 2 ],
-                    [ 1, 2 ],
-                    [ 3 ],
-                    [ 1, 3 ],
-                    [ 2, 3 ],
-                    [ 1, 2, 3 ]
+                    [1],
+                    [2],
+                    [1, 2],
+                    [3],
+                    [1, 3],
+                    [2, 3],
+                    [1, 2, 3]
                 ]),
                 asyncDeepEqual(array([1, 2, 3, 4]).powerSet(), [
                     [],
-                    [ 1 ],
-                    [ 2 ],
-                    [ 1, 2 ],
-                    [ 3 ],
-                    [ 1, 3 ],
-                    [ 2, 3 ],
-                    [ 1, 2, 3 ],
-                    [ 4 ],
-                    [ 1, 4 ],
-                    [ 2, 4 ],
-                    [ 1, 2, 4 ],
-                    [ 3, 4 ],
-                    [ 1, 3, 4 ],
-                    [ 2, 3, 4 ],
-                    [ 1, 2, 3, 4 ]
+                    [1],
+                    [2],
+                    [1, 2],
+                    [3],
+                    [1, 3],
+                    [2, 3],
+                    [1, 2, 3],
+                    [4],
+                    [1, 4],
+                    [2, 4],
+                    [1, 2, 4],
+                    [3, 4],
+                    [1, 3, 4],
+                    [2, 3, 4],
+                    [1, 2, 3, 4]
                 ])
             );
         });
@@ -585,7 +585,7 @@ it.describe("comb.async",function (it) {
                 asyncDeepEqual(array([1, 2]).cartesian(array([2, 3, 4])), [
                     [1, 2],
                     [1, 3],
-                    [1, 4] ,
+                    [1, 4],
                     [2, 2],
                     [2, 3],
                     [2, 4]
@@ -593,10 +593,10 @@ it.describe("comb.async",function (it) {
                 asyncDeepEqual(array([1, 2, 3]).cartesian([2, 3, 4]), [
                     [1, 2],
                     [1, 3],
-                    [1, 4] ,
+                    [1, 4],
                     [2, 2],
                     [2, 3],
-                    [2, 4] ,
+                    [2, 4],
                     [3, 2],
                     [3, 3],
                     [3, 4]
@@ -627,21 +627,21 @@ it.describe("comb.async",function (it) {
             var arr = [1, 2, 3];
             return when(
                 asyncDeepEqual(array(arr).permutations(), [
-                    [ 1, 2, 3 ],
-                    [ 1, 3, 2 ],
-                    [ 2, 3, 1 ],
-                    [ 2, 1, 3 ],
-                    [ 3, 1, 2 ],
-                    [ 3, 2, 1 ]
+                    [1, 2, 3],
+                    [1, 3, 2],
+                    [2, 3, 1],
+                    [2, 1, 3],
+                    [3, 1, 2],
+                    [3, 2, 1]
 
                 ]),
                 asyncDeepEqual(array(arr).permutations(2), [
-                    [ 1, 2],
-                    [ 1, 3],
-                    [ 2, 3],
-                    [ 2, 1],
-                    [ 3, 1],
-                    [ 3, 2]
+                    [1, 2],
+                    [1, 3],
+                    [2, 3],
+                    [2, 1],
+                    [3, 1],
+                    [3, 2]
                 ]),
                 asyncDeepEqual(array(arr).permutations(1), [
                     [1],
@@ -687,17 +687,17 @@ it.describe("comb.async",function (it) {
                     [1, 2, 3],
                     [4, 5, 6]
                 ]).transpose(), [
-                    [ 1, 4 ],
-                    [ 2, 5 ],
-                    [ 3, 6 ]
+                    [1, 4],
+                    [2, 5],
+                    [3, 6]
                 ]),
                 asyncDeepEqual(array([
                     [1, 2],
                     [3, 4],
                     [5, 6]
                 ]).transpose(), [
-                    [ 1, 3, 5 ],
-                    [ 2, 4, 6 ]
+                    [1, 3, 5],
+                    [2, 4, 6]
                 ]),
                 asyncDeepEqual(array([
                     [1],
@@ -734,7 +734,7 @@ it.describe("comb.async",function (it) {
 
     it.describe(".min", function (it) {
         it.should("find the min value of an array", function () {
-            var arr1 = [ 3, -3, -2, -1, 1, 2],
+            var arr1 = [3, -3, -2, -1, 1, 2],
                 arr2 = ["b", "c", "a"],
                 arr3 = [
                     {a: 1},
@@ -774,7 +774,7 @@ it.describe("comb.async",function (it) {
 
     it.describe(".max", function (it) {
         it.should("find the max value of an array", function () {
-            var arr1 = [ 3, -3, -2, -1, 1, 2],
+            var arr1 = [3, -3, -2, -1, 1, 2],
                 arr2 = ["b", "c", "a"],
                 arr3 = [
                     {a: 1},
@@ -813,7 +813,7 @@ it.describe("comb.async",function (it) {
 
     it.describe(".sort", function (it) {
         it.should("sort an array", function () {
-            var arr1 = [ 3, -3, -2, -1, 1, 2],
+            var arr1 = [3, -3, -2, -1, 1, 2],
                 arr2 = ["b", "c", "a"],
 
                 arr3 = [

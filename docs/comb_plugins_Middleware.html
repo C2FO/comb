@@ -669,7 +669,7 @@ function (state,op,args){
            } else {
                nextTick(func.hitch(this, function () {
                    //if Ive looped through all of them callback
-                   if (count == length) {
+                   if (count === length) {
                        promise.callback();
                    } else {
                        //call next
@@ -747,7 +747,7 @@ instance.post(&quot;save&quot;, function(next){
 function (fun,callback){
    var hook = this.__hooks.post[fun];
    //if I havent initialized it create it;
-   if (hook == undefined) {
+   if (hook === undefined) {
        hook = this.__hooks.post[fun] = [];
    }
    hook.push(callback);
@@ -827,9 +827,9 @@ function (fun,callback){
 <hr>
 
     
-  <h2 id="license">License</h2>
+  <h2>License</h2>
 <p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
-<h2 id="meta">Meta</h2>
+<h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>
 <li>Website: <a href="http://c2fo.com">http://c2fo.com</a></li>

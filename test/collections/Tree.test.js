@@ -1,7 +1,7 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../../index"),
     Tree = comb.collections.Tree;
 
 
@@ -15,8 +15,8 @@ it.describe("A Tree interface", function (it) {
                 assert.throws(function () {
                     tree[m]();
                 });
-            })
-        })
+            });
+        });
     });
 
 }).as(module);
