@@ -539,7 +539,7 @@ function (){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (index){
-   throw Error(&quot;NOT IMPLEMENTED&quot;);
+   throw new Error(&quot;NOT IMPLEMENTED&quot;);
            
 }
     </pre>
@@ -582,7 +582,7 @@ item as been added to the bottom of the heap.</p>
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (index){
-   throw Error(&quot;NOT IMPLEMENTED&quot;);
+   throw new Error(&quot;NOT IMPLEMENTED&quot;);
            
 }
     </pre>
@@ -672,7 +672,7 @@ function (){
 function (key){
    var heap = this.__heap;
    for (var i = heap.length - 1; i &gt;= 0; i--) {
-       if (heap[i].key == key) {
+       if (heap[i].key === key) {
            return true;
        }
    }
@@ -730,7 +730,7 @@ function (key){
 function (value){
    var heap = this.__heap;
    for (var i = heap.length - 1; i &gt;= 0; i--) {
-       if (heap[i].value == value) {
+       if (heap[i].value === value) {
            return true;
        }
    }
@@ -783,7 +783,7 @@ function (key,value){
        var l = this.__heap.push(this.__makeNode(key, value));
        this.__upHeap(l - 1);
    } else {
-       throw TypeError(&quot;Invalid key&quot;);
+       throw new TypeError(&quot;Invalid key&quot;);
    }
            
 }
@@ -828,7 +828,9 @@ function (key,value){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (){
-   var ret = undefined, heap = this.__heap, l = heap.length;
+   var heap = this.__heap,
+       l = heap.length,
+       ret;
    if (l) {
        ret = heap[0];
    }
@@ -876,7 +878,9 @@ function (){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (){
-   var ret = undefined, heap = this.__heap, l = heap.length;
+   var heap = this.__heap,
+       l = heap.length,
+       ret;
    if (l) {
        ret = heap[0];
    }
@@ -960,10 +964,12 @@ function (){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (){
-   var ret = undefined, heap = this.__heap, l = heap.length;
+   var heap = this.__heap,
+       l = heap.length,
+       ret;
    if (l) {
        ret = heap[0];
-       if (l == 1) {
+       if (l === 1) {
            heap.length = 0;
        } else {
            heap[0] = heap.pop();
@@ -981,9 +987,9 @@ function (){
 <hr>
 
     
-  <h2 id="license">License</h2>
+  <h2>License</h2>
 <p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
-<h2 id="meta">Meta</h2>
+<h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>
 <li>Website: <a href="http://c2fo.com">http://c2fo.com</a></li>

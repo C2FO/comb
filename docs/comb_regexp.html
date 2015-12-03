@@ -353,7 +353,7 @@
      */
     escapeString:function (str, except) {
         return str.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, function (ch) {
-            if (except &amp;&amp; except.indexOf(ch) != -1) {
+            if (except &amp;&amp; except.indexOf(ch) !== -1) {
                 return ch;
             }
             return &quot;\\&quot; + ch;
@@ -415,7 +415,7 @@
     <pre class="prettyprint linenums lang-js">
 function (str,except){
    return str.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, function (ch) {
-       if (except &amp;&amp; except.indexOf(ch) != -1) {
+       if (except &amp;&amp; except.indexOf(ch) !== -1) {
            return ch;
        }
        return &quot;\\&quot; + ch;
@@ -430,9 +430,9 @@ function (str,except){
 <hr>
 
     
-  <h2 id="license">License</h2>
+  <h2>License</h2>
 <p>MIT <a href="https://github.com/C2FO/comb/raw/master/LICENSE">https://github.com/C2FO/comb/raw/master/LICENSE</a></p>
-<h2 id="meta">Meta</h2>
+<h2>Meta</h2>
 <ul>
 <li>Code: <code>git clone git://github.com/C2FO/comb.git</code></li>
 <li>Website: <a href="http://c2fo.com">http://c2fo.com</a></li>

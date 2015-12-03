@@ -1,13 +1,13 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../../index"),
     define = comb.define,
     hitch = comb.hitch,
     Broadcaster = comb;
 
 
-it.describe("comb/base/functions.js",function (it) {
+it.describe("comb/base/functions.js", function (it) {
 
 
     it.should("test if something is a function", function () {
@@ -160,7 +160,7 @@ it.describe("comb/base/functions.js",function (it) {
         });
     });
 
-    it.describe("#hitchAll",function (it) {
+    it.describe("#hitchAll", function (it) {
 
         var obj;
         it.beforeEach(function () {
@@ -211,7 +211,11 @@ it.describe("comb/base/functions.js",function (it) {
     it.describe("#partial", function (it) {
         it.should("not change the execution scope", function () {
             var func = comb(function (test) {
-                assert[test ? "isTrue" : "isUndefined"](this.test);
+                if (!test) {
+                    assert.isUndefined(this);
+                } else {
+                    assert.isTrue(this.test);
+                }
             });
             var c = comb.partial(func);
             c();
@@ -244,10 +248,12 @@ it.describe("comb/base/functions.js",function (it) {
             }, "hello");
             c("world");
 
-            comb("test2").partial("test").call({test: function (val1, val2) {
-                assert.equal(val1, "test");
-                assert.equal(val2, "test2");
-            }}, "test2");
+            comb("test2").partial("test").call({
+                test: function (val1, val2) {
+                    assert.equal(val1, "test");
+                    assert.equal(val2, "test2");
+                }
+            }, "test2");
 
         });
 
@@ -370,5 +376,3 @@ it.describe("comb/base/functions.js",function (it) {
     });
 
 }).as(module);
-
-

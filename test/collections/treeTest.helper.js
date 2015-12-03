@@ -1,7 +1,7 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index");
+    comb = require("../../index");
 
 var Mammal = comb.define(null, {
     instance:{
@@ -93,7 +93,7 @@ exports.setup = function (it, Tree, words, orderedWords, mammals, orderedMammals
                 it.should("throw an error if cb is not defined", function () {
                     assert.throws(function () {
                         tree.forEach();
-                    })
+                    });
                 });
 
 
@@ -112,7 +112,7 @@ exports.setup = function (it, Tree, words, orderedWords, mammals, orderedMammals
                 it.should("throw an error if cb is not defined", function () {
                     assert.throws(function () {
                         tree.map();
-                    })
+                    });
                 });
 
                 ordered.forEach(function (order) {
@@ -131,7 +131,7 @@ exports.setup = function (it, Tree, words, orderedWords, mammals, orderedMammals
                 it.should("throw an error if cb is not defined", function () {
                     assert.throws(function () {
                         tree.filter();
-                    })
+                    });
                 });
 
                 ordered.forEach(function (order) {
@@ -142,7 +142,6 @@ exports.setup = function (it, Tree, words, orderedWords, mammals, orderedMammals
                                 assert.deepEqual(a, order[1][i++]);
                                 return false;
                             }, null, order[0]).isEmpty());
-                        ;
                     });
                 });
             });
@@ -182,7 +181,7 @@ exports.setup = function (it, Tree, words, orderedWords, mammals, orderedMammals
 
                 it.should("throw an error if no cb is supplied", function () {
                     assert.throws(function () {
-                        tree.every()
+                        tree.every();
                     });
                 });
 
@@ -206,7 +205,7 @@ exports.setup = function (it, Tree, words, orderedWords, mammals, orderedMammals
 
                 it.should("throw an error if no cb is supplied", function () {
                     assert.throws(function () {
-                        tree.some()
+                        tree.some();
                     });
                 });
 
@@ -232,7 +231,7 @@ exports.setup = function (it, Tree, words, orderedWords, mammals, orderedMammals
                 var orig = console.log;
                 console.log = function (str) {
                     res.push(str);
-                }
+                };
                 tree.print();
                 console.log = orig;
                 assert.equal(res.join("\n"), expected);

@@ -1,9 +1,9 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index");
+    comb = require("../../index");
 
-it.describe("comb/base/misc.js",function (it) {
+it.describe("comb/base/misc.js", function (it) {
 //Super of other classes
     it.should("#isBoolean", function () {
         //This is true because they inherit from eachother!
@@ -86,6 +86,7 @@ it.describe("comb/base/misc.js",function (it) {
     });
 
     it.should("#isInstanceOf", function () {
+        /*jshint -W053 */
         //This is true because they inherit from eachother!
         assert.isTrue(comb.isInstanceOf(new Date(), Date));
         assert.isTrue(comb(new Date()).isInstanceOf(Date));

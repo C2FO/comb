@@ -1,4 +1,5 @@
-var comb = require("index"),
+"use strict";
+var comb = require("../../index"),
     assert = require("assert"),
     it = require("it");
 

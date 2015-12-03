@@ -1,10 +1,11 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index");
+    comb = require("../../index");
 
 
 it.describe("comb/base/object.js", function (it) {
+    /*jshint -W053 */
 
     it.should("determine if someting is an object", function () {
         assert.isTrue(comb.isObject(new Date()));
@@ -163,13 +164,14 @@ it.describe("comb/base/object.js", function (it) {
             assert.isFalse(m2.test2);
             assert.equal(m2.test3, "hello");
             assert.equal(m2.test4, "world");
-        })
+        });
     });
 
     it.should("determine if objects are deepEqual properly", function () {
         assert.isTrue(comb.deepEqual({a: "a"}, {a: "a"}));
         assert.isFalse(comb.deepEqual({a: "b"}, {a: "a"}));
         assert.isFalse(comb.deepEqual("a", new String("a")));
+        assert.isFalse(comb.deepEqual(new String("a"), "a"));
         assert.isTrue(comb.deepEqual(/a|b/ig, /a|b/ig));
         assert.isFalse(comb.deepEqual(/a|b/ig, /a|b/g));
         assert.isTrue(comb.deepEqual(new Date(2000, 2, 2, 2, 2, 2), new Date(2000, 2, 2, 2, 2, 2)));
@@ -179,12 +181,12 @@ it.describe("comb/base/object.js", function (it) {
         ], [
             {a: "a"}
         ]));
-        assert.isTrue(comb(new Buffer("abc")).deepEqual(new Buffer("abc")))
+        assert.isTrue(comb(new Buffer("abc")).deepEqual(new Buffer("abc")));
         assert.isFalse(comb([
             {a: "b"}
         ]).deepEqual([
-                {a: "a"}
-            ]));
+            {a: "a"}
+        ]));
         (function () {
             var argsA = arguments;
             (function () {
@@ -204,14 +206,14 @@ it.describe("comb/base/object.js", function (it) {
         assert.isTrue(comb([
             {a: "a"}
         ]).deepEqual([
-                {a: "a"}
-            ]));
-        assert.isTrue(comb(new Buffer("abc")).deepEqual(new Buffer("abc")))
+            {a: "a"}
+        ]));
+        assert.isTrue(comb(new Buffer("abc")).deepEqual(new Buffer("abc")));
         assert.isFalse(comb([
             {a: "b"}
         ]).deepEqual([
-                {a: "a"}
-            ]));
+            {a: "a"}
+        ]));
         (function () {
             var argsA = arguments;
             (function () {
@@ -345,7 +347,7 @@ it.describe("comb/base/object.js", function (it) {
                 it.should("throw an error if the object is not a hash", function () {
                     assert.throws(function () {
                         comb.hash.omit("hello");
-                    })
+                    });
                 });
             });
 
@@ -430,5 +432,3 @@ it.describe("comb/base/object.js", function (it) {
 
     });
 });
-
-

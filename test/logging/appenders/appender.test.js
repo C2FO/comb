@@ -1,21 +1,21 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../../../index"),
     logging = comb.logging,
     Appender = logging.appenders.Appender;
 
 it.describe("comb.logging.appenders.Appender", function (it) {
 
     var MyAppender = comb.define(Appender, {
-        instance:{
-            append:function (event) {
+        instance: {
+            append: function (event) {
                 if (this._canAppend(event)) {
                     this.onAppend(comb.string.format(this.__pattern, event));
                 }
             },
 
-            onAppend:function () {
+            onAppend: function () {
 
             }
         }
@@ -28,7 +28,7 @@ it.describe("comb.logging.appenders.Appender", function (it) {
     it.describe("adding appender to loggers", function (it) {
         var appender;
         it.beforeAll(function () {
-            appender = new Appender({name:"myAppender1"});
+            appender = new Appender({name: "myAppender1"});
             logger1.addAppender(appender);
         });
 
@@ -77,15 +77,15 @@ it.describe("comb.logging.appenders.Appender", function (it) {
 
         it.should("throw an error if append is called", function () {
             assert.throws(function () {
-                appender.append()
+                appender.append();
             });
-        })
+        });
     });
 
     it.describe("adding an appender and setting the level ", function (it) {
         var topic;
         it.beforeAll(function () {
-            topic = new MyAppender({level:6})
+            topic = new MyAppender({level: 6});
         });
 
         it.should("have its level set to FATAL", function () {
