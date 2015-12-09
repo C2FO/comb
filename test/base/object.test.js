@@ -105,7 +105,7 @@ it.describe("comb/base/object.js", function (it) {
 
     it.describe("#deepMerge", function (it) {
         it.should("merge all nested objects", function () {
-            var ret = comb.deepMerge(null, {test: true, a: {b: 4}},
+            var ret = comb.deepMerge(null, {test: true, a: {b: 4}, nully: null},
                 {test2: false, a: {c: 3}},
                 {test3: "hello", test4: "world", a: {d: {e: 2}}},
                 {a: {d: {f: {g: 1}}}});
@@ -113,6 +113,7 @@ it.describe("comb/base/object.js", function (it) {
             assert.isFalse(ret.test2);
             assert.equal(ret.test3, "hello");
             assert.equal(ret.test4, "world");
+            assert.equal("nully" in ret, true);
             assert.deepEqual(ret.a, {b: 4, c: 3, d: {e: 2, f: {g: 1}}});
 
             var ret2 = comb({}).deepMerge({test: true, a: {b: 4}},
