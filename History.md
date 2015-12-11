@@ -1,3 +1,8 @@
+# 0.4.1
+
+* Adding `wrapStyle` option to `ConsoleAppender` to allow stripping of styling. Defaults to true.
+* Added `levelNameColored` to `ConsoleAppender`
+
 # 0.4.0
 
 * Update `comb.number.round` to default to new `comb.number.roundHalfUp` method.
