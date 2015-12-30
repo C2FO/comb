@@ -694,7 +694,7 @@ it.describe("comb.date", function (it) {
 
     it.describe("#getTimezoneName", function (it) {
 
-        it.describe("namespace", function () {
+        it.describe("namespace", function (it) {
             it.should("return CDT", function () {
                 dt.str = 'Sun Sep 17 2006 22:25:51 GMT-0500 (CDT)';
                 dt.strLocale = 'Sun 17 Sep 2006 10:25:51 PM CDT';
@@ -705,7 +705,7 @@ it.describe("comb.date", function (it) {
             });
         });
 
-        it.describe("extension", function () {
+        it.describe("extension", function (it) {
             it.should("return CDT", function () {
                 dt.str = 'Sun Sep 17 2006 22:25:51 GMT-0500 (CDT)';
                 dt.strLocale = 'Sun 17 Sep 2006 10:25:51 PM CDT';

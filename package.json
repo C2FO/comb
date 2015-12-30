@@ -1,7 +1,7 @@
 {
     "name": "comb",
     "description": "A framework for node",
-    "version": "0.5.0",
+    "version": "1.0.0",
     "keywords": [
         "OO",
         "Object Oriented",
@@ -29,9 +29,9 @@
         "grunt": "^0.4.5",
         "grunt-contrib-jshint": "^0.11.3",
         "grunt-exec": "^0.4.6",
-        "grunt-it": "^0.3.1",
+        "grunt-it": "^1.0.0",
         "istanbul": "^0.4.1",
-        "it": "~0.2.0",
+        "it": "^1.0.1",
         "jit-grunt": "^0.9.1",
         "time-grunt": "^1.2.2"
     },

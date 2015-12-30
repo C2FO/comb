@@ -122,7 +122,7 @@ it.describe("comb.collections.Pool", function (it) {
 
     });
 
-    it.describe("creating a new pool maxObjects", function () {
+    it.describe("creating a new pool maxObjects", function (it) {
         var p = new Pool({maxObjects:3});
 
         it.should("know its maxObjects count ", function () {
@@ -149,5 +149,3 @@ it.describe("comb.collections.Pool", function (it) {
         });
     });
 }).as(module);
-
-

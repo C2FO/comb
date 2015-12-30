@@ -92,7 +92,7 @@ it.describe("The promise API", function (it) {
                 process.nextTick(comb.hitch(promise, "errback", "errback"), 1000);
             });
 
-            it.should("callback when using both and callback is called", function (next) {
+            it.should("callback when using both and callback is called directly", function (next) {
                 var promise = new Promise();
                 promise.callback("callback");
                 promise.both(function (res) {
@@ -101,7 +101,7 @@ it.describe("The promise API", function (it) {
                 });
             });
 
-            it.should("callback when using both and errback is called", function (next) {
+            it.should("callback when using both and errback is called directly", function (next) {
                 var promise = new Promise();
                 promise.errback("errback");
                 promise.both(function (res) {
@@ -188,7 +188,7 @@ it.describe("The promise API", function (it) {
                 }, next);
             });
 
-            it.should("errback when using then and errback is called", function (next) {
+            it.should("errback when using then and errback is called directly", function (next) {
                 var promise = new Promise();
                 promise.errback("errback");
                 promise.then(next, function (res) {

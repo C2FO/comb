@@ -47,7 +47,7 @@ it.describe("comb.logging.appenders.Appender", function (it) {
             assert.equal(appender.level, logging.Level.INFO);
         });
 
-        it.should("allow its level to be set", function () {
+        it.should("allow its pattern to be set", function () {
             appender.pattern = "{message}";
             assert.equal(appender.pattern, "{message}");
         });
@@ -125,6 +125,3 @@ it.describe("comb.logging.appenders.Appender", function (it) {
     });
 
 }).as(module);
-
-
-

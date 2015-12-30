@@ -323,7 +323,7 @@ it.describe("comb/base/object.js", function (it) {
 
         it.describe(".omit", function (it) {
             var obj = {a: "a", b: "b", c: "c"};
-            it.describe("as a function", function () {
+            it.describe("as a function", function (it) {
                 it.should("omit key/value pairs from a hash using an array of keys", function () {
                     assert.deepEqual(comb.hash.omit(obj, ["a", "b"]), {c: "c"});
                 });
@@ -352,7 +352,7 @@ it.describe("comb/base/object.js", function (it) {
                 });
             });
 
-            it.describe("as a monad", function () {
+            it.describe("as a monad", function (it) {
                 it.should("omit key/value pairs from a hash using an array of keys", function () {
                     assert.deepEqual(comb(obj).omit(["a", "b"]), {c: "c"});
                 });
