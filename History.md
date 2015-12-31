@@ -1,6 +1,6 @@
-# 0.5.0
+# 1.0.0
 
-* Node 5 support.
+* Node 5 support
 * Updated to use jshint
 * Added grunt
 
