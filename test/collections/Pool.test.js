@@ -1,7 +1,7 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../../index"),
     Pool = comb.collections.Pool;
 
 it.describe("comb.collections.Pool", function (it) {
@@ -58,7 +58,7 @@ it.describe("comb.collections.Pool", function (it) {
 
     it.should("throw an error when creating a with maxObjects less than minObject", function () {
         assert.throws(function () {
-            new new Pool({maxObject:1, minObjects:3});
+            new Pool({maxObject:1, minObjects:3});
         });
     });
 
@@ -70,7 +70,7 @@ it.describe("comb.collections.Pool", function (it) {
         assert.equal(p.freeCount, 0);
         assert.equal(p.inUseCount, 1);
         assert.equal(p.count, 1);
-        var o2 = p.getObject()
+        var o2 = p.getObject();
         assert.isObject(o2);
         assert.equal(p.freeCount, 0);
         assert.equal(p.inUseCount, 2);
@@ -122,7 +122,7 @@ it.describe("comb.collections.Pool", function (it) {
 
     });
 
-    it.describe("creating a new pool maxObjects", function () {
+    it.describe("creating a new pool maxObjects", function (it) {
         var p = new Pool({maxObjects:3});
 
         it.should("know its maxObjects count ", function () {
@@ -149,5 +149,3 @@ it.describe("comb.collections.Pool", function (it) {
         });
     });
 }).as(module);
-
-

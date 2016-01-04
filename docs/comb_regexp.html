@@ -160,8 +160,6 @@
                             
                             <li><a href="./History.html">Change Log</a></li>
                             
-                            <li><a href="./coverage.html">Test Coverage</a></li>
-                            
                         </ul>
                         
 
@@ -353,7 +351,7 @@
      */
     escapeString:function (str, except) {
         return str.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, function (ch) {
-            if (except &amp;&amp; except.indexOf(ch) != -1) {
+            if (except &amp;&amp; except.indexOf(ch) !== -1) {
                 return ch;
             }
             return &quot;\\&quot; + ch;
@@ -415,7 +413,7 @@
     <pre class="prettyprint linenums lang-js">
 function (str,except){
    return str.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, function (ch) {
-       if (except &amp;&amp; except.indexOf(ch) != -1) {
+       if (except &amp;&amp; except.indexOf(ch) !== -1) {
            return ch;
        }
        return &quot;\\&quot; + ch;

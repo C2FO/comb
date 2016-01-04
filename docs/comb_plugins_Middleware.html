@@ -160,8 +160,6 @@
                             
                             <li><a href="./History.html">Change Log</a></li>
                             
-                            <li><a href="./coverage.html">Test Coverage</a></li>
-                            
                         </ul>
                         
 
@@ -669,7 +667,7 @@ function (state,op,args){
            } else {
                nextTick(func.hitch(this, function () {
                    //if Ive looped through all of them callback
-                   if (count == length) {
+                   if (count === length) {
                        promise.callback();
                    } else {
                        //call next
@@ -747,7 +745,7 @@ instance.post(&quot;save&quot;, function(next){
 function (fun,callback){
    var hook = this.__hooks.post[fun];
    //if I havent initialized it create it;
-   if (hook == undefined) {
+   if (hook === undefined) {
        hook = this.__hooks.post[fun] = [];
    }
    hook.push(callback);

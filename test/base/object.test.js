@@ -1,10 +1,11 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index");
+    comb = require("../../index");
 
 
 it.describe("comb/base/object.js", function (it) {
+    /*jshint -W053 */
 
     it.should("determine if someting is an object", function () {
         assert.isTrue(comb.isObject(new Date()));
@@ -104,7 +105,7 @@ it.describe("comb/base/object.js", function (it) {
 
     it.describe("#deepMerge", function (it) {
         it.should("merge all nested objects", function () {
-            var ret = comb.deepMerge(null, {test: true, a: {b: 4}},
+            var ret = comb.deepMerge(null, {test: true, a: {b: 4}, nully: null},
                 {test2: false, a: {c: 3}},
                 {test3: "hello", test4: "world", a: {d: {e: 2}}},
                 {a: {d: {f: {g: 1}}}});
@@ -112,6 +113,7 @@ it.describe("comb/base/object.js", function (it) {
             assert.isFalse(ret.test2);
             assert.equal(ret.test3, "hello");
             assert.equal(ret.test4, "world");
+            assert.equal("nully" in ret, true);
             assert.deepEqual(ret.a, {b: 4, c: 3, d: {e: 2, f: {g: 1}}});
 
             var ret2 = comb({}).deepMerge({test: true, a: {b: 4}},
@@ -163,13 +165,14 @@ it.describe("comb/base/object.js", function (it) {
             assert.isFalse(m2.test2);
             assert.equal(m2.test3, "hello");
             assert.equal(m2.test4, "world");
-        })
+        });
     });
 
     it.should("determine if objects are deepEqual properly", function () {
         assert.isTrue(comb.deepEqual({a: "a"}, {a: "a"}));
         assert.isFalse(comb.deepEqual({a: "b"}, {a: "a"}));
         assert.isFalse(comb.deepEqual("a", new String("a")));
+        assert.isFalse(comb.deepEqual(new String("a"), "a"));
         assert.isTrue(comb.deepEqual(/a|b/ig, /a|b/ig));
         assert.isFalse(comb.deepEqual(/a|b/ig, /a|b/g));
         assert.isTrue(comb.deepEqual(new Date(2000, 2, 2, 2, 2, 2), new Date(2000, 2, 2, 2, 2, 2)));
@@ -179,12 +182,12 @@ it.describe("comb/base/object.js", function (it) {
         ], [
             {a: "a"}
         ]));
-        assert.isTrue(comb(new Buffer("abc")).deepEqual(new Buffer("abc")))
+        assert.isTrue(comb(new Buffer("abc")).deepEqual(new Buffer("abc")));
         assert.isFalse(comb([
             {a: "b"}
         ]).deepEqual([
-                {a: "a"}
-            ]));
+            {a: "a"}
+        ]));
         (function () {
             var argsA = arguments;
             (function () {
@@ -204,14 +207,14 @@ it.describe("comb/base/object.js", function (it) {
         assert.isTrue(comb([
             {a: "a"}
         ]).deepEqual([
-                {a: "a"}
-            ]));
-        assert.isTrue(comb(new Buffer("abc")).deepEqual(new Buffer("abc")))
+            {a: "a"}
+        ]));
+        assert.isTrue(comb(new Buffer("abc")).deepEqual(new Buffer("abc")));
         assert.isFalse(comb([
             {a: "b"}
         ]).deepEqual([
-                {a: "a"}
-            ]));
+            {a: "a"}
+        ]));
         (function () {
             var argsA = arguments;
             (function () {
@@ -320,7 +323,7 @@ it.describe("comb/base/object.js", function (it) {
 
         it.describe(".omit", function (it) {
             var obj = {a: "a", b: "b", c: "c"};
-            it.describe("as a function", function () {
+            it.describe("as a function", function (it) {
                 it.should("omit key/value pairs from a hash using an array of keys", function () {
                     assert.deepEqual(comb.hash.omit(obj, ["a", "b"]), {c: "c"});
                 });
@@ -345,11 +348,11 @@ it.describe("comb/base/object.js", function (it) {
                 it.should("throw an error if the object is not a hash", function () {
                     assert.throws(function () {
                         comb.hash.omit("hello");
-                    })
+                    });
                 });
             });
 
-            it.describe("as a monad", function () {
+            it.describe("as a monad", function (it) {
                 it.should("omit key/value pairs from a hash using an array of keys", function () {
                     assert.deepEqual(comb(obj).omit(["a", "b"]), {c: "c"});
                 });
@@ -430,5 +433,3 @@ it.describe("comb/base/object.js", function (it) {
 
     });
 });
-
-

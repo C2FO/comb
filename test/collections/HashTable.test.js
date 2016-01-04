@@ -1,19 +1,19 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../../index"),
     HashTable = comb.collections.HashTable;
 
 it.describe("comb.collections.HashTable", function (it) {
     var entrySet = [
-        {key:1000, value:"entry1"},
-        {key:1001, value:"entry2"},
-        {key:{}, value:"entry3"},
-        {key:{}, value:"entry4"},
-        {key:"key", value:"entry5"},
-        {key:"key2", value:"entry6"},
-        {key:new Date(), value:"entry7"},
-        {key:new Date(1999, 11, 12), value:"entry8"}
+        {key: 1000, value: "entry1"},
+        {key: 1001, value: "entry2"},
+        {key: {}, value: "entry3"},
+        {key: {}, value: "entry4"},
+        {key: "key", value: "entry5"},
+        {key: "key2", value: "entry6"},
+        {key: new Date(), value: "entry7"},
+        {key: new Date(1999, 11, 12), value: "entry8"}
     ];
 
     var key1, key2, d1, d2;
@@ -23,7 +23,7 @@ it.describe("comb.collections.HashTable", function (it) {
         var table = new HashTable();
 
         it.should("find the correct values", function () {
-            key1 = new Object(), key2 = {};
+            key1 = {}, key2 = {};
             table.set(key1, "key1");
             table.put(key2, "key2");
             assert.equal(table.get(key1), "key1");
@@ -40,7 +40,7 @@ it.describe("comb.collections.HashTable", function (it) {
         });
 
         it.should("remove values", function () {
-            var key1 = new Object(), key2 = {};
+            var key1 = {}, key2 = {};
             table.put(key1, "key1");
             table.put(key2, "key2");
             assert.isTrue(table.contains(key1));
@@ -183,7 +183,7 @@ it.describe("comb.collections.HashTable", function (it) {
             });
             ret.forEach(function (i, j) {
                 assert.equal(i, j);
-            })
+            });
         });
 
         it.should("#filter", function () {

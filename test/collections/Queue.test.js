@@ -1,7 +1,7 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../../index"),
     Queue = comb.collections.Queue;
 
 
@@ -41,7 +41,7 @@ it.describe("comb.collections.Queue", function (it) {
     it.should("return all values", function () {
         var vals = ["test", "test1", "test2", "test3", "test4", "test5", "test6"];
         assert.isTrue(queue.values.every(function (v, i) {
-            return v == vals[i]
+            return v === vals[i];
         }));
     });
 

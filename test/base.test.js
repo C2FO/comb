@@ -1,6 +1,7 @@
+"use strict";
 var it = require("it"),
     assert = require("assert"),
-    comb = require("index");
+    comb = require("../index");
 
 it.describe("comb", function(it){
     it.should("define a plugin", function(){

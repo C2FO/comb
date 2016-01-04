@@ -1,12 +1,12 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../../../index"),
     logging = comb.logging,
     ConsoleAppender = logging.appenders.ConsoleAppender;
 
 
-it.describe("comb.logging.appenders.ConsoleAppender",function (it) {
+it.describe("comb.logging.appenders.ConsoleAppender", function (it) {
 
     var logger = comb.logger("ConsoleLoggerTest"), appender;
     it.beforeAll(function () {
@@ -84,7 +84,7 @@ it.describe("comb.logging.appenders.ConsoleAppender",function (it) {
             assert.equal(count, 5);
 
             console.log = function (str) {
-                assert.isTrue(str.match(/Trace: message/) != null)
+                assert.isTrue(str.match(/Trace: message/) != null);
                 count++;
             };
             styleLogger.trace("message");
