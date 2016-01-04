@@ -84,7 +84,7 @@ it.describe("comb.logging.appenders.ConsoleAppender", function (it) {
             assert.equal(count, 5);
 
             console.log = function (str) {
-                assert.isTrue(str.match(/Trace: message/) != null)
+                assert.isTrue(str.match(/Trace: message/) != null);
                 count++;
             };
             styleLogger.trace("message");
