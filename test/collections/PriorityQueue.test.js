@@ -1,7 +1,7 @@
 "use strict";
 var it = require('it'),
     assert = require('assert'),
-    comb = require("index"),
+    comb = require("../../index"),
     PriorityQueue = comb.collections.PriorityQueue;
 
 it.describe("comb.collections.PriorityQueue", function (it) {
@@ -30,9 +30,9 @@ it.describe("comb.collections.PriorityQueue", function (it) {
 
         var keys = q.keys;
         for (var i = 0; i < 4; i++) {
-            assert.isTrue(keys.indexOf(i) != -1);
+            assert.isTrue(keys.indexOf(i) !== -1);
         }
-        for (var i = 0; i < 4; i++) {
+        for (i = 0; i < 4; i++) {
             assert.isTrue(q.containsKey(i));
         }
         assert.isFalse(q.containsKey(4));
@@ -46,10 +46,10 @@ it.describe("comb.collections.PriorityQueue", function (it) {
         q.enqueue(2, 'c');
         q.enqueue(3, 'd');
         var vals = q.values;
-        assert.isTrue(vals.indexOf("a") != -1);
-        assert.isTrue(vals.indexOf("b") != -1);
-        assert.isTrue(vals.indexOf("c") != -1);
-        assert.isTrue(vals.indexOf("d") != -1);
+        assert.isTrue(vals.indexOf("a") !== -1);
+        assert.isTrue(vals.indexOf("b") !== -1);
+        assert.isTrue(vals.indexOf("c") !== -1);
+        assert.isTrue(vals.indexOf("d") !== -1);
         assert.isTrue(q.containsValue("a"));
         assert.isTrue(q.containsValue("b"));
         assert.isTrue(q.containsValue("c"));

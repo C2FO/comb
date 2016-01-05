@@ -160,8 +160,6 @@
                             
                             <li><a href="./History.html">Change Log</a></li>
                             
-                            <li><a href="./coverage.html">Test Coverage</a></li>
-                            
                         </ul>
                         
 
@@ -761,7 +759,7 @@ function (arr){
    if (arr.length) {
        var total = sum(arr);
        if (number.isNumber(total)) {
-           return  total / arr.length;
+           return total / arr.length;
        } else {
            throw new Error(&quot;Cannot average an array of non numbers.&quot;);
        }

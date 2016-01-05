@@ -160,8 +160,6 @@
                             
                             <li><a href="./History.html">Change Log</a></li>
                             
-                            <li><a href="./coverage.html">Test Coverage</a></li>
-                            
                         </ul>
                         
 
@@ -417,7 +415,7 @@ m.speak();
             <pre class="prettyprint linenums lang-js">
 function (){
    this.__listeners = {};
-   				
+           
 }
             </pre>
       
@@ -466,14 +464,15 @@ function (){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (topic,args){
-   var args = Array.prototype.slice.call(arguments, 0), topic = args.shift();
+   args = Array.prototype.slice.call(arguments, 0);
+   topic = args.shift();
    if (topic &amp;&amp; topic in this.__listeners) {
-   	var list = this.__listeners[topic], i = list.length - 1;
-   	while (i &gt;= 0) {
-   		list[i--].cb.apply(this, args);
-   	}
+       var list = this.__listeners[topic], i = list.length - 1;
+       while (i &gt;= 0) {
+           list[i--].cb.apply(this, args);
+       }
    }
-   				
+           
 }
     </pre>
     
@@ -528,20 +527,22 @@ Simimlar to <a href='./comb.html#.listen'> comb.listen</a></p>
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (topic,callback){
-   if (!func.isFunction(callback)) throw new Error(&quot;callback must be a function&quot;);
+   if (!func.isFunction(callback)) {
+       throw new Error(&quot;callback must be a function&quot;);
+   }
    var handle = {
-   	topic : topic,
-   	cb : callback
+       topic: topic,
+       cb: callback
    };
    var list = this.__listeners[topic];
    if (!list) {
-   	list = (this.__listeners[topic] = [handle]);
-   	handle.pos = 0;
+       list = (this.__listeners[topic] = [handle]);
+       handle.pos = 0;
    } else {
-   	handle.pos = list.push(handle);
+       handle.pos = list.push(handle);
    }
    return handle;
-   				
+           
 }
     </pre>
     
@@ -586,20 +587,20 @@ Similar to <a href='./comb.html#.unListen'> comb.unListen</a></p>
     <pre class="prettyprint linenums lang-js">
 function (handle){
    if (handle) {
-   	var topic = handle.topic;
-   	if (topic in this.__listeners) {
-   		var listeners = this.__listeners, list = listeners[topic];
-   		if (list) {
-   			for (var i = list.length - 1; i &gt;= 0; i--) {
-   				if (list[i] == handle) {
-   					list.splice(i, 1);
-   					break;
-   				}
-   			}
-   		}
-   	}
+       var topic = handle.topic;
+       if (topic in this.__listeners) {
+           var listeners = this.__listeners, list = listeners[topic];
+           if (list) {
+               for (var i = list.length - 1; i &gt;= 0; i--) {
+                   if (list[i] === handle) {
+                       list.splice(i, 1);
+                       break;
+                   }
+               }
+           }
+       }
    }
-   				
+           
 }
     </pre>
     

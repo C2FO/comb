@@ -1,27 +1,28 @@
-[![build status](https://secure.travis-ci.org/C2FO/comb.png)](http://travis-ci.org/C2FO/comb)
+[![build status](https://travis-ci.org/C2FO/comb.svg?branch=master)](http://travis-ci.org/C2FO/comb)
+[![Coverage Status](https://coveralls.io/repos/C2FO/comb/badge.svg?branch=master&service=github)](https://coveralls.io/github/C2FO/comb?branch=master)
 
 #Comb
-                                                                                                                                             
-                                                                                                                                                    
+
+
 ##Overview                                                                                                                                         
-                                                                                                                                                    
+
 Framework for node that provides a one stop shop for frequently needed utilities, including:                                                       
-                                                                                                                                                   
+
 * [OO utilties](http://c2fo.github.com/comb/define.html)                                                                                                                     
 * Collections                                                                                                                                      
 * [Logging](http://c2fo.github.com/comb/logging.html)                                                                                                                        
 * [String &amp; date formatting](http://c2fo.github.com/comb/utilities)                                                                                                      
 * [Flow control](http://c2fo.github.com/comb/promise.html)                                                                                                                   
-                                                                                                                                                   
-                                                                                                                                                    
+
+
 ##Installation                                                                                                                                     
-                                                                                                                                                    
+
 `npm install comb`
 
 ###[Getting Started](http://c2fo.github.com/comb/introduction.html)
 
 ##Highlights                                                                                                                                       
-                                                                                                                                                    
+
 * 100% test coverage!                                                                                                                              
 * comb([define](http://c2fo.github.com/comb/comb.html#.define)|[singleton](http://c2fo.github.com/comb/comb.html#.singleton))                                                                          
   * The backbone of comb.                                                                                                                          
@@ -49,13 +50,13 @@ Framework for node that provides a one stop shop for frequently needed utilities
   * [PriorityQueue](http://c2fo.github.com/comb/comb_collections_PriorityQueue.html)                                                                                         
   * [Queue](http://c2fo.github.com/comb/comb_collections_Queue.html)                                                                                                         
   * [Stack](http://c2fo.github.com/comb/comb_collections_Stack.html)                                                                                                         
-                                                                                                                                                    
+
 * [Flow control](http://c2fo.github.com/comb/promise.html)                                                                                                                   
   * [Promises](http://c2fo.github.com/comb/comb_Promise.html)                                                                                                                
   * [PromiseList](http://c2fo.github.com/comb/comb_PromiseList.html)                                                                                                         
   * [comb.when](http://c2fo.github.com/comb/comb.html#.when)                                                                                                                 
   * [comb.serial](http://c2fo.github.com/comb/comb.html#.serial)                                                                                                             
-                                                                                                                                                    
+
 ##License
 
 
