@@ -160,8 +160,6 @@
                             
                             <li><a href="./History.html">Change Log</a></li>
                             
-                            <li><a href="./coverage.html">Test Coverage</a></li>
-                            
                         </ul>
                         
 
@@ -523,7 +521,7 @@ function (){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (obj){
-   return this.__queue.indexOf(obj) != -1;
+   return this.__queue.indexOf(obj) !== -1;
            
 }
     </pre>
@@ -567,8 +565,10 @@ function (obj){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (){
-   var ret = undefined,next = this.__next, queue;
-   if (next != this.__last) {
+   var next = this.__next,
+       ret,
+       queue;
+   if (next !== this.__last) {
        queue = this.__queue;
        ret = queue[next];
        queue[this.__next++] = undefined;
@@ -661,8 +661,9 @@ function (data){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (){
-   var ret = undefined, next = this.__next;
-   if (next != this.__last) {
+   var next = this.__next,
+       ret;
+   if (next !== this.__last) {
        ret = this.__queue[next];
    }
    return ret;
@@ -718,8 +719,8 @@ function (){
     <pre class="prettyprint linenums lang-js">
 function (obj){
    var index = this.__queue.indexOf(obj), ret = false;
-   if (index != -1) {
-       if (index == this.__next) {
+   if (index !== -1) {
+       if (index === this.__next) {
            this.dequeue();
        } else {
            this.__queue.splice(index, 1);

@@ -160,8 +160,6 @@
                             
                             <li><a href="./History.html">Change Log</a></li>
                             
-                            <li><a href="./coverage.html">Test Coverage</a></li>
-                            
                         </ul>
                         
 
@@ -690,7 +688,7 @@ function (options){
 function (node,level){
    //console.log(level);
    var str = [];
-   if (node == null || node == undefined) {
+   if (node == null || node === undefined) {
        str.push(multiply(&#x27;\t&#x27;, level));
        str.push(&quot;~&quot;);
        console.log(str.join(&quot;&quot;));
@@ -793,7 +791,7 @@ function (value){
    while (root != null) {
        var cmp = this.compare(value, root.data);
        if (cmp) {
-           root = root[(cmp == -1) ? &quot;left&quot; : &quot;right&quot;];
+           root = root[(cmp === -1) ? &quot;left&quot; : &quot;right&quot;];
        } else {
            ret = true;
            root = null;
@@ -857,13 +855,15 @@ function (value){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (cb,scope,order){
-   if (typeof cb !== &quot;function&quot;)
-       throw new TypeError();
+   if (typeof cb !== &quot;function&quot;) {
+       throw new TypeError(&quot;cb must be a function&quot;);
+   }
    order = order || Tree.IN_ORDER;
    scope = scope || this;
    var ret = false;
-   this.traverseWithCondition(this.__root, order, function(node) {
-       return (ret = cb.call(scope, node, this));
+   this.traverseWithCondition(this.__root, order, function (node) {
+       ret = cb.call(scope, node, this);
+       return ret;
    });
    return ret;
            
@@ -923,12 +923,13 @@ function (cb,scope,order){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (cb,scope,order){
-   if (typeof cb !== &quot;function&quot;)
-       throw new TypeError();
+   if (typeof cb !== &quot;function&quot;) {
+       throw new TypeError(&quot;cb must be a function&quot;);
+   }
    order = order || Tree.IN_ORDER;
    scope = scope || this;
    var ret = new this._static();
-   this.traverse(this.__root, order, function(node) {
+   this.traverse(this.__root, order, function (node) {
        var include = cb.call(scope, node, this);
        include &amp;&amp; ret.insert(node);
    });
@@ -989,7 +990,7 @@ function (value){
    while (root != null) {
        var cmp = this.compare(value, root.data);
        if (cmp) {
-           root = root[(cmp == -1) ? &quot;left&quot; : &quot;right&quot;];
+           root = root[(cmp === -1) ? &quot;left&quot; : &quot;right&quot;];
        } else {
            ret = root.data;
            break;
@@ -1052,9 +1053,9 @@ function (value){
 function (value,exclusive){
    //find a better way!!!!
    var ret = [], compare = this.compare;
-   this.traverse(this.__root, exports.REVERSE_ORDER, function(v) {
+   this.traverse(this.__root, exports.REVERSE_ORDER, function (v) {
        var cmp = compare(value, v);
-       if ((!exclusive &amp;&amp; cmp == 0) || cmp == -1) {
+       if ((!exclusive &amp;&amp; cmp === 0) || cmp === -1) {
            ret.push(v);
            return true;
        } else {
@@ -1118,9 +1119,9 @@ function (value,exclusive){
 function (value,exclusive){
    //find a better way!!!!
    var ret = [], compare = this.compare;
-   this.traverseWithCondition(this.__root, exports.IN_ORDER, function(v) {
+   this.traverseWithCondition(this.__root, exports.IN_ORDER, function (v) {
        var cmp = compare(value, v);
-       if ((!exclusive &amp;&amp; cmp == 0) || cmp == 1) {
+       if ((!exclusive &amp;&amp; cmp === 0) || cmp === 1) {
            ret.push(v);
            return true;
        } else {
@@ -1177,11 +1178,12 @@ function (value,exclusive){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (cb,scope,order){
-   if (typeof cb !== &quot;function&quot;)
-       throw new TypeError();
+   if (typeof cb !== &quot;function&quot;) {
+       throw new TypeError(&quot;cb must be a function&quot;);
+   }
    order = order || Tree.IN_ORDER;
    scope = scope || this;
-   this.traverse(this.__root, order, function(node) {
+   this.traverse(this.__root, order, function (node) {
        cb.call(scope, node, this);
    });
            
@@ -1329,13 +1331,13 @@ function (){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (cb,scope,order){
-   if (typeof cb !== &quot;function&quot;)
-       throw new TypeError();
+   if (typeof cb !== &quot;function&quot;) {
+       throw new TypeError(&quot;cb must be a function&quot;);
+   }
    order = order || Tree.IN_ORDER;
    scope = scope || this;
-   var construct = this._static;
    var ret = new this._static();
-   this.traverse(this.__root, order, function(node) {
+   this.traverse(this.__root, order, function (node) {
        ret.insert(cb.call(scope, node, this));
    });
    return ret;
@@ -1434,7 +1436,9 @@ function (){
 function (fun,accumulator,order){
    var arr = this.toArray(order);
    var args = [fun];
-   !base.isUndefinedOrNull(accumulator) &amp;&amp; args.push(accumulator)
+   if (!base.isUndefinedOrNull(accumulator)) {
+       args.push(accumulator);
+   }
    return arr.reduce.apply(arr, args);
            
 }
@@ -1495,7 +1499,9 @@ function (fun,accumulator,order){
 function (fun,accumulator,order){
    var arr = this.toArray(order);
    var args = [fun];
-   !base.isUndefinedOrNull(accumulator) &amp;&amp; args.push(accumulator)
+   if (!base.isUndefinedOrNull(accumulator)) {
+       args.push(accumulator);
+   }
    return arr.reduceRight.apply(arr, args);
            
 }
@@ -1598,12 +1604,13 @@ function (data){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (cb,scope,order){
-   if (typeof cb !== &quot;function&quot;)
-       throw new TypeError();
+   if (typeof cb !== &quot;function&quot;) {
+       throw new TypeError(&quot;cb must be a function&quot;);
+   }
    order = order || Tree.IN_ORDER;
    scope = scope || this;
    var ret;
-   this.traverseWithCondition(this.__root, order, function(node) {
+   this.traverseWithCondition(this.__root, order, function (node) {
        ret = cb.call(scope, node, this);
        return !ret;
    });
@@ -1661,7 +1668,7 @@ function (cb,scope,order){
 function (order){
    order = order || Tree.IN_ORDER;
    var arr = [];
-   this.traverse(this.__root, order, function(node) {
+   this.traverse(this.__root, order, function (node) {
        arr.push(node);
    });
    return arr;

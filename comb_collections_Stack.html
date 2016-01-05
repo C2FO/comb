@@ -160,8 +160,6 @@
                             
                             <li><a href="./History.html">Change Log</a></li>
                             
-                            <li><a href="./coverage.html">Test Coverage</a></li>
-                            
                         </ul>
                         
 
@@ -522,7 +520,7 @@ function (){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (obj){
-   return this.__stack.indexOf(obj) != -1;
+   return this.__stack.indexOf(obj) !== -1;
            
 }
     </pre>
@@ -566,7 +564,8 @@ function (obj){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (){
-   var ret = undefined,next = this.__next;
+   var next = this.__next,
+       ret;
    if (next &gt;= 0) {
        ret = this.__stack[next];
    }
@@ -614,7 +613,9 @@ function (){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (){
-   var ret = undefined, stack, next = this.__next;
+   var next = this.__next,
+       ret,
+       stack;
    if (next &gt;= 0) {
        stack = this.__stack;
        ret = stack[next];
@@ -717,8 +718,8 @@ function (data){
     <pre class="prettyprint linenums lang-js">
 function (obj){
    var index = this.__stack.indexOf(obj), ret = false;
-   if (index != -1) {
-       if (index == this.__next) {
+   if (index !== -1) {
+       if (index === this.__next) {
            this.pop();
        } else {
            this.__stack.splice(index, 1);

@@ -160,8 +160,6 @@
                             
                             <li><a href="./History.html">Change Log</a></li>
                             
-                            <li><a href="./coverage.html">Test Coverage</a></li>
-                            
                         </ul>
                         
 
@@ -539,7 +537,7 @@ function (){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (index){
-   throw Error(&quot;NOT IMPLEMENTED&quot;);
+   throw new Error(&quot;NOT IMPLEMENTED&quot;);
            
 }
     </pre>
@@ -582,7 +580,7 @@ item as been added to the bottom of the heap.</p>
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (index){
-   throw Error(&quot;NOT IMPLEMENTED&quot;);
+   throw new Error(&quot;NOT IMPLEMENTED&quot;);
            
 }
     </pre>
@@ -672,7 +670,7 @@ function (){
 function (key){
    var heap = this.__heap;
    for (var i = heap.length - 1; i &gt;= 0; i--) {
-       if (heap[i].key == key) {
+       if (heap[i].key === key) {
            return true;
        }
    }
@@ -730,7 +728,7 @@ function (key){
 function (value){
    var heap = this.__heap;
    for (var i = heap.length - 1; i &gt;= 0; i--) {
-       if (heap[i].value == value) {
+       if (heap[i].value === value) {
            return true;
        }
    }
@@ -783,7 +781,7 @@ function (key,value){
        var l = this.__heap.push(this.__makeNode(key, value));
        this.__upHeap(l - 1);
    } else {
-       throw TypeError(&quot;Invalid key&quot;);
+       throw new TypeError(&quot;Invalid key&quot;);
    }
            
 }
@@ -828,7 +826,9 @@ function (key,value){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (){
-   var ret = undefined, heap = this.__heap, l = heap.length;
+   var heap = this.__heap,
+       l = heap.length,
+       ret;
    if (l) {
        ret = heap[0];
    }
@@ -876,7 +876,9 @@ function (){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (){
-   var ret = undefined, heap = this.__heap, l = heap.length;
+   var heap = this.__heap,
+       l = heap.length,
+       ret;
    if (l) {
        ret = heap[0];
    }
@@ -960,10 +962,12 @@ function (){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (){
-   var ret = undefined, heap = this.__heap, l = heap.length;
+   var heap = this.__heap,
+       l = heap.length,
+       ret;
    if (l) {
        ret = heap[0];
-       if (l == 1) {
+       if (l === 1) {
            heap.length = 0;
        } else {
            heap[0] = heap.pop();
