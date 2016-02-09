@@ -1,3 +1,7 @@
+# 1.1.0
+
+* Adding the actual error to logging meta data.
+
 # 1.0.0
 
 * Node 5 support

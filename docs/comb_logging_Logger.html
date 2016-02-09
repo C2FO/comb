@@ -1137,6 +1137,8 @@ function (name){
         <li> <em>message</em>  : <p>the message to be logged</p>
 </li>
     
+        <li> <em>rawMessage</em>  : </li>
+    
      </ul>
 
 
@@ -1153,7 +1155,7 @@ function (name){
     
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
-function (level,message){
+function (level,message,rawMessage){
    return {
        hostname: os.hostname(),
        pid: process.pid,
@@ -1163,7 +1165,8 @@ function (level,message){
        levelName: level.name,
        message: message,
        timeStamp: new Date(),
-       name: this.fullName
+       name: this.fullName,
+       rawMessage: rawMessage
    };
            
 }
@@ -1315,6 +1318,7 @@ function (name){
     <em>Source</em>
     <pre class="prettyprint linenums lang-js">
 function (level,message){
+   var rawMessage = message;
    level = Level.toLevel(level);
    if (this.hasLevelGt(level)) {
        var args = argsToArray(arguments, 1);
@@ -1331,7 +1335,7 @@ function (level,message){
            message = message.stack;
        }
        var type = level.name.toLowerCase(), appenders = this.__appenders;
-       var event = this.getLogEvent(level, message);
+       var event = this.getLogEvent(level, message, rawMessage);
        Object.keys(appenders).forEach(function (i) {
            appenders[i].append(event);
        });
