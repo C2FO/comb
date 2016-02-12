@@ -1,5 +1,9 @@
 # 1.1.0
 
+* Porting 1.1.0 code back to 1.0.1 so we don't have to updated all the dependent apps.
+
+# 1.1.0
+
 * Adding the actual error to logging meta data.
 
 # 1.0.0
