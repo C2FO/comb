@@ -84,6 +84,10 @@ it.describe("comb/base/inflections.js", function (it) {
         assert.equal(comb("1HelloWorld").underscore(), "1_hello_world");
         assert.equal(comb("column_name").underscore(), "column_name");
         assert.equal(comb("columnName").underscore(), "column_name");
+        assert.equal(comb("hello1World").underscore(), "hello_1_world");
+        assert.equal(comb("helloWorld10").underscore(), "hello_world_10");
+        assert.equal(comb("10hello10World10").underscore(), "10_hello_10_world_10");
+        assert.equal(comb("10hello10world10").underscore(), "10_hello_10_world_10");
     });
 
     it.should("classify correctly", function () {
