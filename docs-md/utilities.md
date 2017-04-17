@@ -1,8 +1,8 @@
-#Common Utilities
+# Common Utilities
 
 `comb` includes a lot of function that are used commonly when developing application. Here we'll go over a few of the most commonly used ones.
 
-##is* functions
+## is* functions
 
 `comb` includes a number of `is` function to test if something is of the type.
 
@@ -23,9 +23,9 @@
 * [isRegExp](./comb.html#.isRegExp)
 * [isString](./comb.html#.isString)
 
-##[String utilities](./comb_string.html)
+## [String utilities](./comb_string.html)
 
-###[format](./comb_string.html#.format)
+### [format](./comb_string.html#.format)
 
 Formats a string with the specified format.                                  
                                                                                
@@ -86,7 +86,7 @@ comb.string.format("{[-s10]apple}, {[%#10]orange}, {[10]banana} and {[-10]waterm
 * Date Options `%[format]D` or `%[format]Z`. See [comb.date.format](./comb_date.html#.format) for formatting options.   
                                                                   
 
-###[style](./comb_string.html#.style)
+### [style](./comb_string.html#.style)
 
 Styles a string for terminal output.
 
@@ -123,16 +123,16 @@ The style options include
 * grey
 * black
 
-###Others
+### Others
 * [pad](./comb_string.html#.pad)
 * [toArray](./comb_string.html#.pad)
 * [truncate](./comb_string.html#.pad)
 * [multiply](./comb_string.html#.pad)
 
                                                                                            
-##[Array utilities](./comb_array.html)
+## [Array utilities](./comb_array.html)
 
-###[avg](./comb_array.html#.avg)
+### [avg](./comb_array.html#.avg)
 
 Averages an array of numbers.
 
@@ -140,7 +140,7 @@ Averages an array of numbers.
 comb.array.avg([1,2,3]); //2
 ```
 
-###[compact](./comb_array.html#.compact)
+### [compact](./comb_array.html#.compact)
 
 Compacts an array removing `null` or `undefined` objects from the array.
 
@@ -150,7 +150,7 @@ comb.array.compact([1,null,null,x,2]) => [1,2]
 comb.array.compact([1,2]) => [1,2]
 ```
 
-###[difference](./comb_array.html#.difference)
+### [difference](./comb_array.html#.difference)
 
 Finds the difference of the two arrays.
 
@@ -159,7 +159,7 @@ comb.array.difference([1,2,3], [2,3]); //[1]
 comb.array.difference(["a","b",3], [3]); //["a","b"]
 ```
 
-###[flatten](./comb_array.html#.flatten)
+### [flatten](./comb_array.html#.flatten)
 
 Flatten multiple arrays into a single array
 
@@ -168,7 +168,7 @@ comb.array.flatten([1,2], [2,3], [3,4]) => [1,2,2,3,3,4]
 comb.array.flatten([1,"A"], [2,"B"], [3,"C"]) => [1,"A",2,"B",3,"C"]
 ```
 
-###[intersect](./comb_array.html#.compact)
+### [intersect](./comb_array.html#.compact)
 
 Finds the intersection of arrays.
 
@@ -180,7 +180,7 @@ comb.array.intersect([1,2,3,4,5], [1,2,3,4,5], [1,2,3]) => [1,2,3]
 comb.array.intersect([[1,2,3,4,5],[1,2,3,4,5],[1,2,3]]) => [1,2,3]
 ```
 
-###[max](./comb_array.html#.compact)
+### [max](./comb_array.html#.compact)
 
 Finds that max value of an array. If a second argument is provided and it is a function it will be used as a comparator function. If the second argument is a string then it will be used as a property look up on each item.
 
@@ -192,7 +192,7 @@ comb.array.max([{a : 1}, {a : 2}, {a : -2}], function(a,b){
 
 ```
 
-###[min](./comb_array.html#.compact)
+### [min](./comb_array.html#.compact)
 
 Finds that min value of an array. If a second argument is provided and it is a function it will be used as a comparator function. If the second argument is a string then it will be used as a property look up on each item.
 
@@ -203,7 +203,7 @@ comb.array.min([{a : 1}, {a : 2}, {a : -2}], function(a,b){
 }); //{a : -2}
 ```
 
-###[sort](./comb_array.html#.compact)
+### [sort](./comb_array.html#.compact)
 
 
 Allows the sorting of an array based on a property name instead. This can also act as a sort that does not change the original array. **NOTE: this does not change the original array!**
@@ -213,7 +213,7 @@ comb.array.sort([{a : 1}, {a : 2}, {a : -2}], "a"); //[{a : -2}, {a : 1}, {a : 2
 ```
         
 
-###[removeDuplicates](./comb_array.html#.removeDuplicates)
+### [removeDuplicates](./comb_array.html#.removeDuplicates)
 
 Removes duplicates from an array.
 
@@ -222,7 +222,7 @@ comb.array.removeDuplicates([1,1,1]) => [1]
 comb.array.removeDuplicates([1,2,3,2]) => [1,2,3]
 ```
 
-###[sum](./comb_array.html#.sum)
+### [sum](./comb_array.html#.sum)
 
 Finds the sum of an array
 
@@ -230,7 +230,7 @@ Finds the sum of an array
 comb.array.sum([1,2,3]) => 6
 ```
 
-###[toArray](./comb_array.html#.toArray)
+### [toArray](./comb_array.html#.toArray)
 
 Converts anything to an array. Useful if you want to covert a hash into an array.
 
@@ -241,7 +241,7 @@ comb.array.toArray(["a"]) =>  ["a"];
 comb.array.toArray() => [];
 comb.array.toArray("a", {a : "b"}) => ["a", ["a", "b"]];
 ```
-###[union](./comb_array.html#.union)
+### [union](./comb_array.html#.union)
 
 Finds the union of two arrays
 
@@ -250,7 +250,7 @@ comb.array.union(['a','b','c'], ['b','c', 'd']) => ["a", "b", "c", "d"]
 comb.array.union(["a"], ["b"], ["c"], ["d"], ["c"]) => ["a", "b", "c", "d"]
 ```
 
-###[zip](./comb_array.html#.zip)
+### [zip](./comb_array.html#.zip)
 
 Zips multiple arrays into a single array.
 
@@ -267,9 +267,9 @@ comb.array.zip(a, [1,2], [8]) => [[4,1,8],[5,2,null],[6,null,null]]
 
 
 
-##[Number utilities](./comb_number.html)
+## [Number utilities](./comb_number.html)
 
-###[round](./comb_number.html#.round)
+### [round](./comb_number.html#.round)
 Rounds a number to the specified places.
 
 ```
@@ -279,7 +279,7 @@ comb.number.round(10.0009, 3); //10.001
 comb.number.round(10.0009, 2); //10
 comb.number.round(10.0009, 3); //10.001
 ```
-###[roundCeil](./comb_number.html#.roundCel)
+### [roundCeil](./comb_number.html#.roundCel)
 
 Rounds a number to the specified places, rounding up.
 
@@ -292,9 +292,9 @@ comb.number.roundCeil(10.0005, 3); //10.001
 comb.number.roundCeil(10.0002, 2); //10.01
 ```
 
-##[Date utilities](./comb_date.html)
+## [Date utilities](./comb_date.html)
 
-###[add](./comb_date.html#.add)
+### [add](./comb_date.html#.add)
 
 Adds a specified interval and amount to a date
 

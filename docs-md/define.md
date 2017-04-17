@@ -1,8 +1,8 @@
 
-#[define](./comb.html#.define)
+# [define](./comb.html#.define)
 
 
-##Instance Methods 
+## Instance Methods 
 
 
 When defining classes in `comb` there are two root level properties you can define,  `instance` and  `static`. 
@@ -260,7 +260,7 @@ try {
 }
 ```
 
-##Static Methods
+## Static Methods
 
 
 As stated above  `comb.define` looks for an optional static  property on the `prototype` declaration  of a class. 
@@ -330,7 +330,7 @@ myMammal = new Mammal();
 console.log(myMammal.type); //prints whale
 ```
 
-###Inheritance In Static Functions.
+### Inheritance In Static Functions.
 
 
 One neat thing about defining classes in `comb` is that you not only get the advantages of inheritance in instance methods but static methods as well. So lets modify `Dog` and `Wolf` to take advantage of that.
@@ -448,13 +448,13 @@ console.log(WolfDog.soundOff());
 As you can see inheritance within the static methods follows the same order as it does within  the instance methods.
 
 
-###Static Getters and Setters
+### Static Getters and Setters
 
 
 Getters and setters are declared the same way in a static declaration as they are in an instance declaration.
 
 
-###Getting an Instance of my self.
+### Getting an Instance of my self.
 
 
 One nuance about prototypal inheritance is that the scope in which a function is called is not consistent. For example, lets add a reproduce method to `Mammal`.
@@ -520,7 +520,7 @@ sameSpecies : function(obj){
 
 This comes in handy when dealing with multiple inheritance, and wanting to check if an object is of the same concrete class.
 
-###Static initialization
+### Static initialization
 
 `comb.define` also provides a mechanism for initializing when creating a class. `init` will be called on creation of any class.
 
