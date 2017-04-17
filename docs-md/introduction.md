@@ -1,4 +1,4 @@
-#Comb
+# Comb
 
 `comb` can be used as a namespace or a `function` when using comb as a `function` it decorates the passed in value with methods that can be chained togther or used stand alone. The following types are supported.
 
@@ -12,9 +12,9 @@
 * [Argument](#arguments)
 * `RegExp`
 
-##Notes
+## Notes
 
-###Strict Equalities
+### Strict Equalities
 
 When comparing primitives you should use the `eq` and `neq` methods as primitives are coverted to their Object counter parts.
 
@@ -31,7 +31,7 @@ console.log(combOne.neq(one)); //false
 ```
 
 
-###Printing values.
+### Printing values.
 
 When using `console.log` you should convert primitive values to strings either trough the toString method or `"" + value' otherwise you will end up with the object printed instead of the expected value.
 
@@ -42,7 +42,7 @@ comb("hello").print(); //"hello"
 ```
 
 
-##Common Methods
+## Common Methods
 
 Comb will be default decorate any value passed in with the following methods.
 
@@ -88,11 +88,11 @@ value.deepEqual({a : "b", c : "b"})); //false
 ```
 
 <a name="arrays"></a>
-##Arrays
+## Arrays
 
 `Array`s will be decorated with the following functions.
 
-###`style`
+### `style`
 Styles each string in the array.
 
 ```
@@ -100,7 +100,7 @@ Styles each string in the array.
 comb(["red", "green","blue"]).style("red").join("\n")); 
 ```
 
-###`forEach`
+### `forEach`
 
 Chainable version of `Array.prototype.forEach` returning the original array
 
@@ -117,31 +117,31 @@ comb([1,2,3])
 	});
 ```
 
-###`map`
+### `map`
 
 Same as `Array.prototype.map` but the return value is decorated with all the array methods.
 
-###`filter`
+### `filter`
 
 Same as `Array.prototype.filter` but the return value is decorated with all the array methods.
 
-###`reduce`
+### `reduce`
 
 Same as `Array.prototype.filter` but the return value is decorated by `comb`.
 
-###`reduceRight`
+### `reduceRight`
 
 Same as `Array.prototype.reduceRight` but the return value is decorated by `comb`.
 
-###`indexOf`
+### `indexOf`
 
 Same as `Array.prototype.indexOf` but with a decorated number.
 
-###`lastIndexOf`
+### `lastIndexOf`
 
 Same as `Array.prototype.lastIndexOf` but with a decorated number.
 
-###`zip`
+### `zip`
 
 Zips array together.
 
@@ -151,7 +151,7 @@ comb([1, 2]).zip([2], [3]); // [[ 1, 2, 3 ], [2, null, null]]
 comb([1, 2, 3]).zip(a, b);  //[[1, 4, 7],[2, 5, 8],[3, 6, 9]]
 ```
 
-###`sum`
+### `sum`
 
 Sums an array
 
@@ -160,7 +160,7 @@ comb([1,2,3]).sum(); //6
 comb([1,2,3]).sum().isNumber(); //true
 ```
 
-###`avg`
+### `avg`
 
 Finds the average of an array of numbers.
 
@@ -169,7 +169,7 @@ comb([1,2,3]).avg(); //2
 comb([1,2,3]).avg().isNumber(); //true
 ```
 
-###`sort`
+### `sort`
 
 Sorts an array. **NOTE** This does not change the original array.
 
@@ -184,7 +184,7 @@ comb(arr).pluck("a");           //[3,2,1]
 
 ```
 
-###`min`
+### `min`
 
 Finds the minimum value in an array.
 
@@ -196,7 +196,7 @@ var arr2 = [{a : 3}, {a : 2}, {a : 1}];
 comb(arr).min("a"); //{a : 1}
 ```
 
-###`max`
+### `max`
 
 Finds the maximum value in an array.
 
@@ -208,7 +208,7 @@ var arr2 = [{a : 3}, {a : 2}, {a : 1}];
 comb(arr).max("a"); //{a : 3}
 ```
 
-###`difference`
+### `difference`
 
 Finds the difference between two arrays.
 
@@ -220,7 +220,7 @@ comb(["a", "b", 3]).difference([3]);    //["a", "b"]
 comb([a, b, c]).difference([b, c]);     //[a]
 ```
 
-###`removeDuplicates`
+### `removeDuplicates`
 
 Removes duplicates from an array.
 
@@ -229,7 +229,7 @@ comb([1, 2, 2, 3, 3, 3, 4, 4, 4]).removeDuplicates(); //[1, 2, 3, 4]
 comb(["a", "b", "b"]).removeDuplicates();             // ["a", "b"]
 ```
 
-###`unique`
+### `unique`
 
 Alias to `removeDuplicates`
 
@@ -238,7 +238,7 @@ comb([1, 2, 2, 3, 3, 3, 4, 4, 4]).unique(); // [1, 2, 3, 4]);
 comb(["a", "b", "b"]).unique();            // ["a", "b"]);
 ```
 
-###`rotate`
+### `rotate`
 
 Rotates an array by `1` or the specified number of places.
 
@@ -255,7 +255,7 @@ arr.rotate(-4); // ["a", "b", "c", "d"]);
 
 ```
 
-###`permutations`
+### `permutations`
 
 Finds all permutaions of the array.
 
@@ -286,7 +286,7 @@ arr.permutations(1); //[
 					  //]
 ```
 
-###`transpose`
+### `transpose`
 
 Transposes a multidimensional array.
 
@@ -298,7 +298,7 @@ comb([[1, 2, 3],[4, 5, 6]]).transpose(); //[
 										  //]
 ```
 
-###`valuesAt`
+### `valuesAt`
 
 Retrieves the values at the specified locations.
 
@@ -309,7 +309,7 @@ arr.valuesAt(1, 2, 3, 4); //["b", "c", "d", null]);
 arr.valuesAt(0, 3);       //["a", "d"]);
 ```
 
-###`union`
+### `union`
 
 Returns the union of the value with the passed in arrays.
 
@@ -318,7 +318,7 @@ comb(["a", "b", "c"]).union(["b", "c", "d"]);  //["a", "b", "c", "d"]);
 comb(["a"]).union(["b"], ["c"], ["d"], ["c"]); //["a", "b", "c", "d"]);
 ```
 
-###`intersect`
+### `intersect`
 
 Finds the intersection of arrays.
 
@@ -330,7 +330,7 @@ comb([1, 2, 3, 4, 5]).intersect([1, 2, 3, 4, 5], [1, 2, 3]); //[1, 2, 3]
         
 ```
 
-###`powerSet`
+### `powerSet`
 
 Finds the powerset of an array.
 
@@ -343,7 +343,7 @@ comb([1, 2]).powerSet()); //[
 						   //]
 ```								       
 
-###`cartesian`
+### `cartesian`
 
 Finds the cartesian product of arrays.
 
@@ -356,7 +356,7 @@ comb([1, 2]).cartesian([2, 3]); //[
 						         //]
 ```
 
-###`compact`
+### `compact`
 
 Compacts an array removing `undefined` or `null`.
 
@@ -364,7 +364,7 @@ Compacts an array removing `undefined` or `null`.
 comb([1, null, undefined, x, 2]).compact(); //[1, 2]
 ```
 
-###`multiply`
+### `multiply`
 
 Duplicates the elements in an array the specified number of times.
 
@@ -372,7 +372,7 @@ Duplicates the elements in an array the specified number of times.
 comb([1, 2, 3]).multiply(2); //[1, 2, 3, 1, 2, 3]
 ```
 
-###`flatten`
+### `flatten`
 
 Flattens arrays.
 
@@ -383,7 +383,7 @@ comb([[1, 2],2]).flatten([2, 3], [3, 4]); //[[1, 2],2,2,3,3,4]
 
 ```
 
-###`pluck`
+### `pluck`
 
 Plucks values from each item in the array.
 
@@ -401,7 +401,7 @@ arr.pluck("roles.length"); //[3, 2, 1, 0]
 arr.pluck("roles.0"); //["a", "b", "c", undefined]            
 ```
 
-###`invoke`
+### `invoke`
 
 Invokes the specified method on each item in the array.
 
@@ -432,9 +432,9 @@ arr.invoke("getName"); //["Bob", "Alice", "Fred", "Johnny"]
 arr.invoke("getOlder").invoke("getAge"); //[41, 36, 51, 57];                                                                                                     
 ```
 <a name="strings"></a>
-##Strings
+## Strings
 
-###`style`
+### `style`
 
 Styles a string. See [comb.string.style](./comb_string.html#.style) for style types. 
 ```
@@ -445,7 +445,7 @@ comb("string").style(["green", "bold"])
 
 ```
 
-###`multiply`
+### `multiply`
 
 Repeats the string the specified number of times.
 
@@ -453,7 +453,7 @@ Repeats the string the specified number of times.
 comb("HELLO ").multitply(5)); ///"HELLO HELLO HELLO HELLO HELLO"
 ```
 
-###`toArray`
+### `toArray`
 
 ```
 comb("a|b|c|d").toArray("|"); //["a","b","c","d"]
@@ -461,7 +461,7 @@ comb("a").toArray("|");       //["a"]
 comb("").toArray("|");        //[]
 ```
 
-###`format`
+### `format`
 
 Formats a string. See [comb.string.format](./comb_string.html#.format) for formatting flags.
 
@@ -497,7 +497,7 @@ comb("{[-s10]apple}, {[%#10]orange}, {[10]banana} and {[-10]watermelons}").forma
 }); //applesssss, ####orange,    bananas and watermelon
 ```
 
-###`truncate`
+### `truncate`
 
 Truncates a string.
 
@@ -510,7 +510,7 @@ comb("abcdefg").truncate(3,true); // "efg"
 comb("abcdefg").truncate();       //"abcdefg"
 ```
 
-###`pad`
+### `pad`
 
 Pads a string with.
 
@@ -521,7 +521,7 @@ str.pad(5, " ", true); //"STR  "
 str.pad(5, "$", true); //"$$STR"
 ```
 
-###`camelize`
+### `camelize`
 
 Camelize an underscored string.
 
@@ -531,7 +531,7 @@ comb('column_name').camelize(); // "columnName"
 comb('columnName').camelize();  // "columnName"
 ``` 
 
-###`underscore`
+### `underscore`
 
 Underscore a camelcased string.
 
@@ -541,7 +541,7 @@ comb('column_name').underscore(); // "column_name"
 comb('columnName').underscore();  // "column_name"
 ``` 
 
-###`classify`
+### `classify`
 
 Singularizes and camelizes the string. Also strips out all characters preceding and including a period (".").
 
@@ -551,7 +551,7 @@ comb('post').classify();         //"post"
 comb('schema.post').classify();  //"post"
 ```
 
-###`pluralize`
+### `pluralize`
 
 Returns the plural form of the string.
 
@@ -564,7 +564,7 @@ comb("the blue mailman").pluralize(); //"the blue mailmen"
 comb("CamelOctopus").pluralize();     //"CamelOctopi"
 ```
 
-###`singularize`
+### `singularize`
 
 The reverse of `pluralize` returns the singluar version of a string.
 
@@ -577,7 +577,7 @@ comb("the blue mailmen").singularize()); //"the blue mailman"
 comb("CamelOctopi").singularize());      //"CamelOctopus"
 ```
 
-###`applyFirst`
+### `applyFirst`
 
 Creates a function that will invoke the method with the strings name on the first argument passed in.
 
@@ -588,7 +588,7 @@ length(arr); //4
 console.log(arr); //1,2,3,4                                                                                                                                          
 ```
                                                                                 
-###`bindFirst`
+### `bindFirst`
 Alias to apply first.
 
 ```                                                                                
@@ -599,7 +599,7 @@ console.log(arr); //1,2,3,4
                                                                                    
 ```
 
-###`partial`
+### `partial`
 
 Creates a function that curries arguments but does not change the scope.
 
@@ -614,7 +614,7 @@ var scope = {
 func.call(scope); //true
 ```
 
-###`parseDate`
+### `parseDate`
 
 Parses a date string. See [comb.date.parse](./comb_date.html#.parse) for formatting options.
 
@@ -628,7 +628,7 @@ comb("August 11, 2006").date.parse("MMMM dd, yyyy");          //aug_11_2006
 comb("Friday, August 11, 2006").parse("EEEE, MMMM dd, yyyy"); //aug_11_2006
 ```
 
-###`escape`
+### `escape`
 
 Escapes a string.
 
@@ -636,7 +636,7 @@ Escapes a string.
 comb(".$?*|{}()[]\/+^").escape() + ""); //^"
 ```
 
-###`pluck`
+### `pluck`
 
 Inverted form of `comb.array.pluck`. 
 
@@ -654,7 +654,7 @@ comb("roles.length").pluck(arr); //[3, 2, 1, 0]
 comb("roles.0").pluck(arr); //["a", "b", "c", undefined] 
 ```
 
-###`invoke`
+### `invoke`
 
 Inverted of `comb.array.invoke`.
 
@@ -685,7 +685,7 @@ comb("getName").invoke(arr); //["Bob", "Alice", "Fred", "Johnny"]
 comb("getOlder").invoke(arr).invoke("getAge"); //[41, 36, 51, 57];
 ```
 
-###`hitch`
+### `hitch`
 
 Hitches a named method on an object.
 
@@ -706,7 +706,7 @@ test(); // "hello"
 curried("!"); //["hello", "world", "!"]
 ```
 
-###`bind`
+### `bind`
 
 Binds a named method on an object.
 
@@ -728,7 +728,7 @@ curried("!"); //["hello", "world", "!"]
 
 ```
 
-###`hitchIgnore`
+### `hitchIgnore`
 
 Hitches a named method on an object ignoring passed in arguments.
 
@@ -744,7 +744,7 @@ var curried = comb("curried").hitchIgnore(obj, "world");
 curried("!"); //["hello", "world"]
 ```
 
-###`bindIgnore`
+### `bindIgnore`
 
 Binds a named method on an object ignoring passed in arguments.
 
@@ -760,7 +760,7 @@ var curried = comb("curried").bindIgnore(obj, "world");
 curried("!"); //["hello", "world"]
 ```
 
-###`curry`
+### `curry`
 
 Curries arguments the specified number of times in the specified scope.
 
@@ -778,9 +778,9 @@ curriedFunc("a")("b")("c")("d"); //[true, "a", "b", "c", "d"]
 ```
 
 <a name="dates"></a>
-##Dates
+## Dates
 
-###`add`
+### `add`
 
 Add the specified interval the specified number of times. See [comb.date.add](./comb_date.html#.add) for more arugment types.
 
@@ -798,7 +798,7 @@ dateFormat(dt.add("milliseconds", 2)); //2009-02-01 01:01:01.113
 
 ```
 
-###`compare`
+### `compare`
 
 compares this date to another.
 
@@ -819,7 +819,7 @@ comb(d2).compare(d1, "datetime") //-1
 
 ```
 
-###`difference`
+### `difference`
 
 Finds the difference between two dates. See [comb.date.difference](./comb_date.html#.difference).
 
@@ -829,7 +829,7 @@ comb(new Date(2005, 11, 27)).difference(new Date(2006, 11, 27), "year"); //1
 
 ```
 
-###`format`
+### `format`
 
 Formats a date with the specified formatting flags. See [comb.date.format](./comb_date.html#.format). 
 
@@ -840,7 +840,7 @@ date.format("yyyy-MM-dd"); //2011-02-01
 date.format("HH:mm:ss.SSS"); //01:01:01.111
 ```
 
-###`getDaysInMonth`
+### `getDaysInMonth`
 
 Returns the days in the dates month.
 
@@ -854,10 +854,10 @@ comb(new Date(1700, 1, 1)).getDaysInMonth() //28
 comb(new Date(1600, 1, 1)).getDaysInMonth() //29
 ```
 
-###`getTimezoneName`
+### `getTimezoneName`
 Returns the name of the timezone for the date.
 
-###`isLeapYear`
+### `isLeapYear`
 
 Returns a boolean indicating if the year is leap year.
 
@@ -871,7 +871,7 @@ comb(new Date(1800, 0, 1)).isLeapYear(); //false
 comb(new Date(1700, 0, 1)).isLeapYear(); //false
 ```
 
-###`isWeekend`
+### `isWeekend`
 
 Returns if the date falls on a weekend.
 
@@ -887,9 +887,9 @@ monday.isWeekend(); //false
 ```
 
 <a name="functions"></a>
-##Functions
+## Functions
 
-###`hitch`
+### `hitch`
 
 Hitches a function to the specified scope, currying any extra arguments.
 
@@ -903,7 +903,7 @@ add(11); //26
 add(12); //28
 ```
 
-###`bind`
+### `bind`
 
 Hitches a function to the specified scope, currying any extra arguments.
 
@@ -917,7 +917,7 @@ add(11); //26
 add(12); //28
 ```
 
-###`hitchIgnore`
+### `hitchIgnore`
 
 Hitches a function to the specified scope, ignoring any extra arguments.
 
@@ -932,7 +932,7 @@ add(11); //4
 add(12); //4
 ```
 
-###`bindIgnore`
+### `bindIgnore`
 
 Hitches a function to the specified scope, ignoring any extra arguments.
 
@@ -947,7 +947,7 @@ add(11); //4
 add(12); //4
 ```
 
-###`partial`
+### `partial`
 
 Returns a function that does not change execution scope but curries arguments.
 
@@ -965,7 +965,7 @@ arr.pushTwo(3);
 console.log(arr); //[[2,1], [2,3]]
 ```
 
-###`applyFirst`
+### `applyFirst`
 
 Creates a function that runs in the scope of the first arugment, and applies the rest.
 
@@ -983,7 +983,7 @@ console.log(arr); //[ [ 2, 1 ], [ 2, 2 ], [ 2, 3 ] ]
 
 ```
 
-###`bindFirst`
+### `bindFirst`
 
 Same as apply first.
 
@@ -1000,7 +1000,7 @@ pushTwo(arr, 3);
 console.log(arr); //[ [ 2, 1 ], [ 2, 2 ], [ 2, 3 ] ]
 ```
 
-###`curry`
+### `curry`
 
 Curries a function the specified number of times.
 
@@ -1012,7 +1012,7 @@ var curried = func.curry(4, {test:true});
 console.log(curried("a")("b")("c")("d"));
 ```
 
-###`extend`
+### `extend`
 
 Extends the prototype of a function.
 
@@ -1034,9 +1034,9 @@ console.log(m2.getStr()); //"world"
 ```
 <a name="numbers"></a>
 
-##Number
+## Number
 
-###`round`
+### `round`
 Rounds a number. See [comb.number.round](./comb_number.html#.round)
 
 ```
@@ -1048,7 +1048,7 @@ comb(10.0009).round(3).print();    //10.001
 comb(10.0009).round(2, 1).print(); //11
 ```
 
-###`roundCeil`
+### `roundCeil`
 
 Rounds a number up. See [comb.number.roundCeil](./comb_number.html#.roundCeil)
 
@@ -1063,9 +1063,9 @@ comb(10.0004).roundCeil(2).print();    //10.01
 ```
 
 <a name="objects"></a>
-##Objects
+## Objects
 
-###`hitch`
+### `hitch`
 
 Hitches a function to run in the scope of this object.
 
@@ -1080,7 +1080,7 @@ func(); //"test";
 
 ```
 
-###`hitchIgnore`
+### `hitchIgnore`
 
 Hitches a function to run in the scope of this object, ignoring extra arguments.
 
@@ -1095,7 +1095,7 @@ func("hello"); //["test"];
 
 ```
 
-###`bind`
+### `bind`
 
 Binds a function to run in the scope of this object.
 
@@ -1110,7 +1110,7 @@ func(); //"test";
 
 ```
 
-###`bindIgnore`
+### `bindIgnore`
 
 Binds a function to run in the scope of this object, ignoring extra arguments.
 
@@ -1125,7 +1125,7 @@ func("hello"); //["test"];
 
 ```
 
-###`merge`
+### `merge`
 
 Merges another object into this object.
 
@@ -1135,7 +1135,7 @@ console.log(obj.merge({b : "c"})); //{a : "b", b : "c"}
 console.log(obj.merge({a : "d"})); //{a : "d", b : "c"}
 ```
 
-###`extend`
+### `extend`
 
 Merges another object into this object.
 
@@ -1145,7 +1145,7 @@ console.log(obj.extend({b : "c"})); //{a : "b", b : "c"}
 console.log(obj.extend({a : "d"})); //{a : "d", b : "c"}
 ```
 
-###`deepMerge`
+### `deepMerge`
 
 Deeply merges another object into this object, meaning that merges in nested objects.
 
@@ -1201,7 +1201,7 @@ format.format([obj.merge({a:{d:{f:{g:1}}}})]).print();
  */
 ```
 
-###`forEach`
+### `forEach`
 
 Iterate through each key/value pair in an object.
 
@@ -1213,7 +1213,7 @@ comb(obj).forEach(function(value, key){
                            
 ```
 
-###`filter`
+### `filter`
 
 Filters out key/value pairs in an object. Filters out key/value pairs that return a falsey value from the iterator.
                                                                                                                    
@@ -1225,7 +1225,7 @@ comb(obj).filter(function(value, key){
                                                                                                                    
 ```                                                                                                                
 
-###`invert`
+### `invert`
 
  Returns a new hash that is the invert of the hash.   
                                                       
@@ -1234,7 +1234,7 @@ comb(obj).filter(function(value, key){
  comb(obj).invert(); //{b : "a", d : "c", f : "e"}                                                         
  ```                                                  
 
-###`values`
+### `values`
 
 Returns the values of a hash.             
                                           
@@ -1243,7 +1243,7 @@ var obj = {a : "b", c : "d", e : "f"};
 comb(obj).values(); //["b", "d", "f"]                                                                                          
 ```
 
-###`pick`
+### `pick`
 
 Pick certain key/value pairs from a hash
 
@@ -1253,7 +1253,7 @@ comb(obj).pick(["a", "b"]); //{a: "a", b:'b'}
 comb(obj).pick("c"); //{c: "c"};
 ```
 
-###`omit`
+### `omit`
 
 Omit certain key/value pairs from a hash
 
@@ -1263,7 +1263,7 @@ comb(obj).omit(["a", "b"]); //{c: "c"}
 comb(obj).omit("c"); //{a: "a", b: "b"};
 ```
 
-###`toArray`
+### `toArray`
 
 Converts a hash to an array.                                    
                                                                 
@@ -1273,9 +1273,9 @@ comb(obj).toArray(); //[["a", "b"], ["c", "d"], ["e", "f"]]
 ```
 
 <a name="arguments"></a>
-##Arguments
+## Arguments
 
-###`toArray`
+### `toArray`
  
 Converts an arugments object to an array.
 

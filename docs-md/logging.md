@@ -1,4 +1,4 @@
-##Logging.
+## Logging.
 
 `comb`'s logging api is fairly straight forward.
 
@@ -26,7 +26,7 @@ var logger = comb.logger("logger");
 
 Both of the previous loggers are one and the same.
 
-###Logger inheritance
+### Logger inheritance
 
 As with other logging APIs loggers can inherit from eachother, through a **dot** notation.
 
@@ -47,7 +47,7 @@ So what does this inheritance mean?
 
 Well it has to do with logging `levels` and `appenders`.
 
-####Levels
+#### Levels
 In the above examples we could define a level of `INFO` to the logger `my` and a level of `ERROR` to `myOther` and all sub loggers would inherit the respective `level`. The same applies for `appender`s  any appenders added to a logger will be propogated down. So lets look at an example.
 
 ```
@@ -94,7 +94,7 @@ setTimeout(function(){
 }, 5000);
 ```
 
-####Appenders
+#### Appenders
 
 Appenders are the objects that handle events and deliver them to where they need to go. `comb` supports a few types of appenders out of the box.
 
@@ -112,13 +112,13 @@ var myLogger = comb.logger("my.logger")
     .addAppender("JSONAppender", {file:'/var/log/myJson.log'});        
 ```
 
-##Configuring your loggers
+## Configuring your loggers
 
 Ok so now that we have an idea of the different aspects of a logger, lets look at configuring your loggers.
 
 To configure your loggers just call `comb.logger.configure`
 
-###Default configuration
+### Default configuration
 
 If you call `comb.logger.configure` without any arguments then a [ConsoleAppender](./comb_logging_appenders_ConsoleAppender.html) will be added to all loggers.
 
@@ -139,7 +139,7 @@ var myLogger = comb.logger("my.logger");
 
 ```
 
-###Configuring with JSON or a File
+### Configuring with JSON or a File
 
 You can also pass in either the location of a log configuration or an object with your configuration.
 
@@ -185,7 +185,7 @@ comb.logger.configure({
 })                                                                                               
 ```
 
-##Log Line Format
+## Log Line Format
 
 [ConsoleAppender](./comb_logging_appenders_ConsoleAppender.html), [FileAppender](./comb_logging_appenders_FileAppender.html), and [RollingFileAppender](./comb_logging_appenders_RollingFileAppender.html) all support custom formatting for writing out log lines. 
 
@@ -216,7 +216,7 @@ var myLogger = comb.logger("my.logger")
 
 For more information on formatting syntax see [comb.string.format](./comb_string.html#.format).
 
-##Logging Messages
+## Logging Messages
 
 To log messages you can use [log](./comb_logging_Logger.html#log).
 

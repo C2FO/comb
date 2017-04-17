@@ -78,7 +78,7 @@
 
 * Fixed memory leak in promise.
 
-#0.2.7
+# 0.2.7
 
 * Fixed object.deepEquals reference of isUndefinedNull.
 
@@ -102,10 +102,10 @@
 * Updated define to be more performant
 * Rewrote Promise#chain
 
-#0.2.1
+# 0.2.1
 * Added check for `getgid` when logging on non posix systems
 
-#0.2.0 / 2012-11-20
+# 0.2.0 / 2012-11-20
 * Added new features to comb.define
   * extend - supports direct extension `Mammal.extend({})`
   * define now accepts a hash directly istead of requiring null if there is not a super
@@ -118,7 +118,7 @@
 
 
 
-#0.1.10 / 2012-11-14
+# 0.1.10 / 2012-11-14
 * Added new properites to logger events
   * gid
   * pid
@@ -126,21 +126,21 @@
   * hostname
 
 
-#0.1.91 / 2012-10-01
+# 0.1.91 / 2012-10-01
 * Added `_getSuper` to classes declared with comb.define
 
-#0.1.9 / 2012-09-22
+# 0.1.9 / 2012-09-22
 * Change comb.array.intersection to not use recursion
 * added `comb.wait`
 
-#0.1.8/2012-09-10
+# 0.1.8/2012-09-10
 * Added travis CI build
 * Updated comb.date to use maps where possible and removed switch statements to use else if
 * Updated tests to run as expected each time
 * Updated tests to be timezone agnostic
 * Fixed console appender test
 
-#0.1.7/2012-09-05
+# 0.1.7/2012-09-05
 * comb.async
  * forEach
  * map
@@ -177,16 +177,16 @@
 * Updated docs
 
 
-#0.1.6/2012-08-29
+# 0.1.6/2012-08-29
 * Changed comb.when to accept an array of promises as well as multi args
 * Added comb.chain to pipe results from one item to another
 * Updated docs and tests
 
 
-#0.1.5/2012-08-26
+# 0.1.5/2012-08-26
 * Changed middleware plugin to error properly
 
-#0.1.4/2012-08-20
+# 0.1.4/2012-08-20
 * added new short cut for configuring loggers
 * Added changed logger.addAppender to accept a string and options to use Appender.createAppender method.
 * comb.argsToArray now takes a slice argument to remove arguments.
@@ -194,7 +194,7 @@
 * Added a "promise" method to comb.Promise to allow for the return of an object that will not allow calling function to resolve the promise.
 * Cleaned up promise using code to return the "promise" wrapper.
 
-#0.1.3/2012-08-16
+# 0.1.3/2012-08-16
 * new array methods
   * sort
   * min
@@ -206,25 +206,25 @@
   * Changed appenders to register themselves for dynamic appender creation
 * Updated docs
 
-#0.1.2/2012-07-17
+# 0.1.2/2012-07-17
 * Bug fixes
   * Changed comb.logging.PropertyConfigurator to deep merge porperties (Clone to config object)
 * Added comb.array.multiply
 * Updated docs to use [coddoc](https://github.comb/doug-martin/coddoc)
 
-#0.1.1/2012-04-20
+# 0.1.1/2012-04-20
 
   * Migrated all tests to use [it](http://github.com/doug-martin/it)
   * More Tests
   * Added functionality to comb.Promise/PromiseList (allowing promises as callbacks and node style callbacks for)
 
-#0.1.0/2012-03-02
+# 0.1.0/2012-03-02
 
   * comb.define performance increase
   * Changed HashTable to use strict equal
   * Doc fixes
 
-#0.0.9 /2012-02-16
+# 0.0.9 /2012-02-16
 
   * Complete redesign of comb.define to be more flexible and efficient
      * this._super does not require and Arguments object any more to call super
@@ -253,13 +253,13 @@
 
 
 
-#0.0.8 / 2012-02-9
+# 0.0.8 / 2012-02-9
 
   * Added new MethodMissing plugin
   * Bug fixes
     * Changed inflections to underscore between word boundaries and numbers and vice versa with camelize.
 
-#0.0.7 / 2012-02-04
+# 0.0.7 / 2012-02-04
 
   * Bug Fixes
   * Fixed issue with array.zip
@@ -273,7 +273,7 @@
   * Updated docs.
 
 
-#0.0.6 / 2011-12-29
+# 0.0.6 / 2011-12-29
 
   * Bug Fixes
   * Added new Proxy methods
@@ -286,7 +286,7 @@
   * static initialization block on objects using comb.define
   * more tests
 
-#0.0.3 / 2011-06-23
+# 0.0.3 / 2011-06-23
 
   * 100% test coverage
   * Bug fixes
@@ -300,7 +300,7 @@
     * make uninstall
   * Added jscoverage sub module
 
-#0.0.2 / 2011-06-11
+# 0.0.2 / 2011-06-11
 
 
   * Added Logging
@@ -308,7 +308,7 @@
   * String styling
   * Updated Docs.
 
-#0.0.1 / 2011-05-19
+# 0.0.1 / 2011-05-19
 
 
   * Initial release

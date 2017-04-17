@@ -1,10 +1,10 @@
 [![build status](https://travis-ci.org/C2FO/comb.svg?branch=master)](http://travis-ci.org/C2FO/comb)
 [![Coverage Status](https://coveralls.io/repos/C2FO/comb/badge.svg?branch=master&service=github)](https://coveralls.io/github/C2FO/comb?branch=master)
 
-#Comb
+# Comb
 
 
-##Overview                                                                                                                                         
+## Overview                                                                                                                                         
 
 Framework for node that provides a one stop shop for frequently needed utilities, including:                                                       
 
@@ -15,13 +15,13 @@ Framework for node that provides a one stop shop for frequently needed utilities
 * [Flow control](http://c2fo.github.com/comb/promise.html)                                                                                                                   
 
 
-##Installation                                                                                                                                     
+## Installation                                                                                                                                     
 
 `npm install comb`
 
-###[Getting Started](http://c2fo.github.com/comb/introduction.html)
+### [Getting Started](http://c2fo.github.com/comb/introduction.html)
 
-##Highlights                                                                                                                                       
+## Highlights                                                                                                                                       
 
 * 100% test coverage!                                                                                                                              
 * comb([define](http://c2fo.github.com/comb/comb.html#.define)|[singleton](http://c2fo.github.com/comb/comb.html#.singleton))                                                                          
@@ -57,12 +57,12 @@ Framework for node that provides a one stop shop for frequently needed utilities
   * [comb.when](http://c2fo.github.com/comb/comb.html#.when)                                                                                                                 
   * [comb.serial](http://c2fo.github.com/comb/comb.html#.serial)                                                                                                             
 
-##License
+## License
 
 
 MIT <https://github.com/c2fo/comb/raw/master/LICENSE>
 
-##Meta
+## Meta
 
 * Code: `git clone git://github.com/c2fo/comb.git`
 * JsDoc: <http://c2fo.github.com/comb>

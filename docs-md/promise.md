@@ -1,8 +1,8 @@
-#[Promises](./comb_Promise.html)
+# [Promises](./comb_Promise.html)
 
 `comb` provides an async wrapper called a [promise](http://en.wikipedia.org/wiki/Futures_and_promises). Promises are a way of handling async and sync behavior by encapsulating it in a wrapper. One of the benefits of promises is that they encourage the separation of success and failure logic. Promises provide a value that can be passed around rather than providing callbacks for every async action. 
 
-##[comb.Promise](./comb_Promise.html)
+## [comb.Promise](./comb_Promise.html)
 
 The [comb.Promise](./comb_Promise.html) is the backbone for `comb`s async utilities. 
 
@@ -12,11 +12,11 @@ To create a promise
 var promise = new comb.Promise();
 ```
 
-###Resolving Promises
+### Resolving Promises
 
 When working with a promise you must resolve the promise in order for callbacks/errbacks to be invoked. Resolution can happen before for after callbacks/errbacks have been registered. The methods to resolve a promise are `callback`, `errback`, and `resolve`.
 
-###callback  and errback
+### callback  and errback
 
 The callback method is used to resolve a promise as a success.
 
@@ -45,7 +45,7 @@ readFile("myFile.txt").then(function(text){
 
 As you can see from above we can easily wrap the `fs.readFile` function with a promise. The advantage of this is that you can now seperate the success and error resolution paths with the `then` function. The above example just passes the error to a global error handler and your success callback does not have to worry about the error condition.
 
-###resolve
+### resolve
 
 `callback` and `errback` are great if you are working with other promise methods but as you can see from above you still have to handle the error and success path when working with node style callback. This is where the `resolve` method comes in handy.
 
@@ -71,11 +71,11 @@ readFile("myFile.txt").then(function(text){
 After rewriting the `readFile()` method with resolve the code is a lot cleaner with only three lines and you still get the same promise API.
 
 
-###Listening for Promise Resolutions
+### Listening for Promise Resolutions
 
 To listen for the resolution of promises there are the following methods. For the following examples we will use the `readFile` method defined above.
 
-###then
+### then
 The `then` methods accepts two arugments a `callback` and an optional `errback`.
 
 ```
@@ -126,7 +126,7 @@ readAndConvertToUppercase("myFile.txt").then(
 );
 ```
 
-###classic
+### classic
 
 The `classic` method can be used to register a callback with a node style callback
 
@@ -142,7 +142,7 @@ readFile("myFile.txt").classic(function(err, file){
 
 ```
 
-###chain
+### chain
 
 The chain method is used to chain promises together so they execute in order. The chain method is different from the [comb.serial](./comb.html#.serial) method in that it pipes the results from one promise into the next.
 
@@ -194,7 +194,7 @@ new Promise().callback()
     });
 ```
 
-###Catching Errors
+### Catching Errors
 
 Chain also allows you to catch errors so you can handle them successfully.
 
@@ -249,7 +249,7 @@ new Promise()
     });
 ```
 
-##[comb.PromiseList](./comb_PromiseList.html)
+## [comb.PromiseList](./comb_PromiseList.html)
 
 A promise list is used to listen for the completion of an array of promises. You may also use [comb.when](./comb.html#.when)
 with an array of promises.
@@ -271,7 +271,7 @@ readFiles("myFile.txt", "myFile2.txt", "myFile3.txt").then(function(files){
 ```
 
 
-##[comb.when](./comb.html#.when)
+## [comb.when](./comb.html#.when)
 
 The `comb.when` function allows one to wrap a sync or async call or calls with the same API.
 
@@ -314,7 +314,7 @@ readFiles("myFile.txt", "myFile2.txt", "myFile3.txt").then(function(files){
 }, errorHandler);
 ```
 
-##[comb.serial](./comb.html#.serial)
+## [comb.serial](./comb.html#.serial)
 
 The `comb.serial` function is useful if you need to perform a set of actions in order. The serial method takes a list of function that need to be executed in order. The return value of the functions can be anything if they are promises then the next function will not execute until the promise has resolved. The results from each function are will be the result of the returned promise. **NOTE** the results from each function are not propogated to the next.
 
@@ -340,7 +340,7 @@ comb.serial([
 });                                                                       
 ```
 
-##[comb.chain](./comb.html#.chain)
+## [comb.chain](./comb.html#.chain)
 
 The `comb.chain` method is similar to the `comb.serial` method except that it **does** propogate results from one function to the next. The promise returned from `comb.chain` will resolve with the result of the last action in the list.
 
@@ -369,7 +369,7 @@ comb.chain([
 });                                    
 ```
 
-##[comb.wrap](./comb.html#.wrap)
+## [comb.wrap](./comb.html#.wrap)
 
 The `comb.wrap` method is used to wrap a function that is defined with a node style callback in a promise.
 
@@ -396,7 +396,7 @@ fsp.rename("myFile.txt", "myFile.txt.bak").then(function(){
 });
 ```
 
-##[comb.async.forEach](./comb_async.html#.forEach)
+## [comb.async.forEach](./comb_async.html#.forEach)
 
 Loops through the results of an promise. The promise can return an array or just a single item.   
                                                                                                   
@@ -432,7 +432,7 @@ comb.async.forEach(asyncArr(), function(item, index){
 });                                                                                               
 ```                                                                                                                                                                                                     
 
-##[comb.async.map](./comb_async.html#.map)
+## [comb.async.map](./comb_async.html#.map)
 
  Loops through the results of an promise resolving with the return value of the iterator function.     
  The promise can return an array or just a single item.                                                
@@ -466,7 +466,7 @@ comb.async.forEach(asyncArr(), function(item, index){
  });                                                                                                   
  ```                                                                                                                                                                                                                                                                                                                             
 
-##[comb.async.filter](./comb_async.html#.filter)
+## [comb.async.filter](./comb_async.html#.filter)
 
 Loops through the results of an promise resolving with the filtered array.
 The promise can return an array or just a single item.                    
@@ -499,7 +499,7 @@ comb.async.filter(asyncArr(), function(item, index){
     console.log(myNewArr); //[1,3,5];                                      
 })                                                                        
 ```                                                                       
-##[comb.async.every](./comb_async.html#.every)
+## [comb.async.every](./comb_async.html#.every)
 
 Loops through the results of an promise resolving with true if every item passed, false otherwise.   
 The promise can return an array or just a single item.                                               
@@ -533,7 +533,7 @@ comb.async.every(asyncArr(), function(item, index){
 })                                                                                                   
 ```                                                                                                  
 
-##[comb.async.some](./comb_async.html#.some)
+## [comb.async.some](./comb_async.html#.some)
 
 Loops through the results of an promise resolving with true if some items passed, false otherwise.      
 The promise can return an array or just a single item.                                                  
@@ -567,7 +567,7 @@ comb.async.some(asyncArr(), function(item, index){
 })                                                                                                      
 ```  
 
-##[comb.async.pluck](./comb_async.html#.pluck)
+## [comb.async.pluck](./comb_async.html#.pluck)
 
 Async version of [comb.array.pluck](./comb_array.html#.pluck)
                                                                                                                              
