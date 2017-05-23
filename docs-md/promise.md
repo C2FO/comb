@@ -14,7 +14,7 @@ var promise = new comb.Promise();
 
 ### Resolving Promises
 
-When working with a promise you must resolve the promise in order for callbacks/errbacks to be invoked. Resolution can happen before for after callbacks/errbacks have been registered. The methods to resolve a promise are `callback`, `errback`, and `resolve`.
+When working with a promise you must resolve the promise in order for callbacks/errbacks to be invoked. Resolution can happen before or after callbacks/errbacks have been registered. The methods to resolve a promise are `callback`, `errback`, and `resolve`.
 
 ### callback  and errback
 
