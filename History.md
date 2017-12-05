@@ -1,3 +1,8 @@
+# 1.2.0
+
+* Fixed issue in comb.date.format not correctly returning an abbreviated weekday name for "EEE"
+* Removed periods from abbreviated month name list. Punctuation should be added in the format string to be more flexible.
+
 # 1.1.0
 
 * Porting 1.1.0 code back to 1.0.1 so we don't have to updated all the dependent apps.

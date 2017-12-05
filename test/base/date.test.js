@@ -190,6 +190,10 @@ it.describe("comb.date", function (it) {
             assert.equal(date.format("E", true), "6");
         });
 
+        it.should("EEE to Fri ", function () {
+            assert.equal(date.format("EEE", true), "Fri")
+        });
+
         it.should("h:m a to 5:55 AM ", function () {
             assert.equal(date.format("h:m a", true), ((date.getUTCHours() % 12) || 12) + ":55 AM");
         });
