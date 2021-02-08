@@ -1,7 +1,7 @@
 {
     "name": "comb",
     "description": "A framework for node",
-    "version": "1.2.0",
+    "version": "2.0.0",
     "keywords": [
         "OO",
         "Object Oriented",
@@ -39,6 +39,6 @@
         "test": "grunt test"
     },
     "engines": {
-        "node": ">= 4.0.0"
+        "node": ">= 10.0.0"
     }
 }
